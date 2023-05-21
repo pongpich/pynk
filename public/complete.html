@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KLDH7S5');</script>
+  <!-- End Google Tag Manager -->
+  <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e }, ttq.load = function (e, n) { var i = "https://analytics.tiktok.com/i18n/pixel/events.js"; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = i, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; var o = document.createElement("script"); o.type = "text/javascript", o.async = !0, o.src = i + "?sdkid=" + e + "&lib=" + t; var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(o, a) };
+
+      ttq.load('C7SICRR9OPOOJ4K41UQ0');
+      ttq.page();
+    }(window, document, 'ttq');
+  </script>
+  <!-- Facebook Pixel Code -->
+  <script>
+    !(function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod
+          ? n.callMethod.apply(n, arguments)
+          : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = "2.0";
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    })(
+      window,
+      document,
+      "script",
+      "https://connect.facebook.net/en_US/fbevents.js"
+    );
+    fbq("init", "2089309924624680");
+    fbq('trackCustom', 'View-fittowhey_4week');
+  </script>
+  <title>Bebe Stay Fit</title>
+  <meta property="og:title" content="Bebe Stay Fit" />
+  <meta property="og:description" content="Bebe Stayfit Daily Fit for A Better Life ปั้นหุ่นฟิต พิชิตหุ่นสวย" />
+  <meta name="description" content="Bebe Stayfit Daily Fit for A Better Life ปั้นหุ่นฟิต พิชิตหุ่นสวย" />
+  <meta property="og:image" content="https://fittowhey.com/8week/img/OG.jpg" />
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/bebeStayFit_Logo.png" />
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/form.css" />
+  <link rel="stylesheet" href="../css/loading.min.css">
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLDH7S5" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="page1">
+    <div id="container">
+      <div class="form-wrap">
+        <h1>ลงทะเบียนปรึกษาผู้เชี่ยวชาญในการเข้าร่วม Bebe Stay Fit</h1>
+        <form id="postData">
+          <div class="form-group">
+            <label for="full-name">ชื่อ-นามสกุล</label>
+            <input required type="text" name="fullName" id="fullName" />
+          </div>
+          <div class="form-group">
+            <label for="email">อีเมลของคุณ</label>
+            <input required type="text" name="email" id="email" />
+          </div>
+          <div class="form-group">
+            <label for="phone">เบอร์โทรศัพท์ที่สามารถติดต่อได้</label>
+            <input required type="text" name="phone" id="phone" />
+          </div>
+          <div class="form-group">
+            <label for="target">เป้าหมายในการลดน้ำหนักของคุณ</label>
+            <textarea required type="text" name="target" id="target" rows="5" placeholder="โปรดระบุ"></textarea>
+          </div>
+          <button class="btn ld-ext-right" id="btn_submit" type="submit">ลงทะเบียน</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Form Script -->
+  <script src="./js/axios.min.js"></script>
+  <script type="text/javascript">
+    document.getElementById("postData").addEventListener("submit", postData);
+    var submitButton = document.getElementById("btn_submit");
+    submitButton.addEventListener(
+      "click",
+      function () {
+        fbq("trackCustom", "RegisterExpert-fittowhey_4week");
+      },
+      false
+    );
+
+    function postData(event) {
+      event.preventDefault();
+
+      var div = document.createElement("div");
+      div.setAttribute("class", "ld ld-ring ld-spin");
+      document.getElementById("btn_submit").appendChild(div);
+      //fbq("trackCustom", "apply-digitalasset101");
+      var url =
+        "https://script.google.com/a/planforfit.com/macros/s/AKfycbw6svRdsRxZl6raH7wH8JzVnGD49StiOhSD-EAJwGtoSNp0AWPIQteprkATOI17hSF0/exec?path=/contact";
+
+      var body = {
+        full_name: document.getElementById("fullName").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        target: document.getElementById("target").value,
+        created_time: formatDate(new Date())
+      };
+
+
+      /*     fetch(url, {
+            method: "POST",
+            headers: new Headers(),
+            body: body
+          })
+            .then(response => response.json())
+            .then(data => {
+              window.location.href = "./complete_thankyou.html";
+            })
+            .catch(err => console.log(err)); */
+
+
+      var authText = "Basic ZThGbDJvVnU2aTVzUTk2WGFsQnZRV2JiQkJGWnNyenQ6";
+      const bodyFormData = {
+        email: 'asdasdfdasfdas',
+        fb: 'fdsafsdaf'
+      };
+      axios({
+        method: 'post',
+        url: 'https://sheet.best/api/sheets/3b1f8334-65ae-4a09-b0c2-dbcc1a9f5752',
+        data: body,
+        headers: { 'Authorization': authText }
+      }).then(function (response) {
+        //handle success
+        console.log(response.data);
+        window.location.href = "./complete_thankyou.html";
+      })
+        .catch(function (response) {
+          //handle error
+          console.log(response);
+        });
+
+    }
+
+    function formatDate(date) {
+      var year = date.getFullYear(),
+        month = date.getMonth() + 1, // months are zero indexed
+        day = date.getDate(),
+        hour = date.getHours(),
+        minute = date.getMinutes(),
+        second = date.getSeconds(),
+        hourFormatted = hour % 12 || 12, // hour returned in 24 hour format
+        minuteFormatted = minute < 10 ? "0" + minute : minute,
+        morning = hour < 12 ? "am" : "pm";
+
+      return (
+        day +
+        "/" +
+        month +
+        "/" +
+        year +
+        " " +
+        hourFormatted +
+        ":" +
+        minuteFormatted +
+        morning
+      );
+    }
+
+  </script>
+</body>
+
+</html>

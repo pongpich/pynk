@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Prompt', sans-serif;
+  line-height: 1.8;
+  background-image: url('https://fittowhey.com/2weekchallenge/img/BG2weekchallenge.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+a {
+  text-decoration: none;
+}
+
+.form-wrap {
+  /* 
+    This is the white area around the form and heading, etc
+  */
+ background-color: white;
+ padding: 15px 25px;
+ margin-bottom: 1em;
+ color: #333;
+ position: absolute;
+ top: 5%;
+ left: 25%;
+}
+
+@media only screen and (max-width: 480px) {
+  .form-wrap {
+   top: 5%;
+   left: 1%;
+   right: 1%;
+  }
+
+  #container {
+    max-width: 480px;
+  }
+}
+
+.form-wrap h1,
+.form-wrap p {
+  /* 
+    May want to center these
+  */
+ text-align: center;
+}
+
+.form-wrap .form-group {
+  /* 
+    Each label, input is wrapped in .form-group
+  */
+ margin-top: 15px;
+}
+
+.form-wrap .form-group label {
+ display: block;
+ color: #666;
+}
+
+.form-wrap .form-group input,
+.form-wrap .form-group textarea {
+  /* 
+    Inputs should reach accross the .form-wrap 100% and have some padding
+  */
+ width: 100%;
+ padding: 10px;
+ border: #ddd 1px solid;
+ border-radius: 5px;
+}
+
+.form-wrap .form-group input[type=radio] {
+  width: auto;
+  margin-right: 1em;
+}
+
+.form-wrap .form-group .payment_date {
+  width: 55%;
+  margin-right: 1em;
+}
+
+.form-wrap .form-group .payment_time {
+  width: 20%;
+}
+
+.form-wrap button {
+ width: 100%;
+ background-color: #5AAB04;
+ color: white;
+ padding: 10px;
+ margin-top: 40px;
+ cursor: pointer;
+ font-size: 24px;
+ font-weight: bold;
+ border-radius: 5px;
+}
+
+.form-wrap button:hover {
+  /* 
+    Hover background color for button is #37a08e
+  */
+ background-color: #37a08e;
+}
+
+.form-wrap .bottom-text {
+  /* 
+    Bottom text is smaller
+  */
+ font-size: 14px;
+ margin-top: 20px;
+}
+
+footer {
+  /* 
+  Should be centered
+ */
+  text-align: center;
+  color: white;
+}
+
+footer a {
+  /* 
+    Footer link color is #49c1a2
+  */
+ color: #49c1a2;
+}
+
+@media only screen and (max-width: 540px) {
+  .bottom-pinkLogin1,.bottom-pinkLogin1:hover,.bottom-pinkLogin1:focus {
+    background-color: #ffffff !important;
+    box-shadow: 0px 2px 12px 1px  #c4c4c4;
+    margin-top: 10px !important;
+    height: 70px;
+    width: 320px !important;
+    border-color: #e25e96;
+    color: #F8159D !important;
+    margin-bottom: 50px;
+    border-radius: 40px;
+    font-size: 22px !important;
+  }
+}
+
+.bottom-pinkLogin1,.bottom-pinkLogin1:hover,.bottom-pinkLogin1:focus {
+  background-color: #ffffff !important;
+  box-shadow: 0px 2px 12px 1px  #c4c4c4;
+  margin-top: 10px;
+  height: 70px;
+  width: 500px;
+  border-color: #e25e96;
+  color: #F8159D !important;
+  margin-bottom: 50px;
+  border-radius: 40px;
+  font-size: 32px !important;
+}
