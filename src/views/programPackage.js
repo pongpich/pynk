@@ -2,15 +2,15 @@ import React, { Component } from "react";
 //import InformationCalculate from './information/information_calculate';
 //import SelectPackage from './information/buy_program';
 import { Link } from 'react-router-dom';
-import ellipse_71 from "../../assets/img/ellipse_71.png";
-import lemonade from "../../assets/img/lemonade.png";
-import latte2 from "../../assets/img/latte2.png";
-import lfittocsachet5g from "../../assets/img/lfittocsachet5g.png";
-import shaker from "../../assets/img/shaker.png";
+import ellipse_71 from "../assets/img/ellipse_71.png";
+import lemonade from "../assets/img/lemonade.png";
+import latte2 from "../assets/img/latte2.png";
+import lfittocsachet5g from "../assets/img/lfittocsachet5g.png";
+import shaker from "../assets/img/shaker.png";
 import { connect } from "react-redux";
-import { loginUser } from "../../redux/auth";
-import { selectProgram, getAllProgram } from "../../redux/exerciseProgram";
-import IntlMessages from "../../helpers/IntlMessages";
+import { loginUser } from "../redux/auth";
+import { selectProgram, getAllProgram } from "../redux/exerciseProgram";
+import IntlMessages from "../helpers/IntlMessages";
 
 class ProgramPackage extends React.Component {
   constructor(props) {
