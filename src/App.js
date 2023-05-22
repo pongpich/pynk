@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Component } from 'react';
-import Home from '../src/views/information/home';
+import Home from '../src/views/stay_fit/information/home';
 import Buy_program from '../src/views/information/buy_program';
 import Register from '../src/views/information/register';
 import Fitto_Plant_Protein from '../src/views/information/fitto_plant_protein';
