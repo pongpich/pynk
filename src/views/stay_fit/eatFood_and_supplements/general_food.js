@@ -1,5 +1,5 @@
 import React from 'react';
-import basedProgram from "../../assets/img/foot_supplement/based-butrition-program.jpg";
+import basedProgram from "../../../assets/img/foot_supplement/based-butrition-program.jpg";
 
 
 const generalFood = function () {

@@ -1,39 +1,41 @@
 import './App.css';
 import React, { Component } from 'react';
-import Home from '../src/views/stay_fit/information/home';
-import Buy_program from '../src/views/information/buy_program';
-import Register from '../src/views/information/register';
-import Fitto_Plant_Protein from '../src/views/information/fitto_plant_protein';
-import EditFitto_Plant_Protein from '../src/views/information/edit_fitto_plant_protein';
-import InformationCalculate from "../src/views/information/information_calculate";
-import Shipping_Address from "../src/views/information/shipping_address";
-import EditShipping_Address from "../src/views/information/edit_shipping_address";
-import Payment from "../src/views/information/payment";
-import SubscriptionPayment from "../src/views/information/subscriptionPayment";
-import subscriptionDiscount from "../src/views/information/subscriptionDiscount";
-import Welcome_NewMember from "../src/views/information/welcome_new_member";
-import Basic_Information from "../src/views/information/basic_information";
-import Your_Program from "../src/views/information/your_program";
-import Cc_token from "../src/views/information/cc_token";
-import Profile from "./views/profile/profile";
-import EditProfile from "./views/profile/editProfile";
-import Cancel_Package from "./views/profile/cancel_package";
-import Cancel_Package_New from "./views/profile/cancel_package_new";
-import Cancel_Package_Succeed from "./views/profile/cancel_packag_succeed";
-import Subscription_Success from "./views/information/subscription_success";
+import Home from '../src/views/pynk/home';
+
+import HomeStayFit from '../src/views/stay_fit/information/home';
+import Buy_program from '../src/views/stay_fit/information/buy_program';
+import Register from '../src/views/stay_fit/information/register';
+import Fitto_Plant_Protein from '../src/views/stay_fit/information/fitto_plant_protein';
+import EditFitto_Plant_Protein from '../src/views/stay_fit/information/edit_fitto_plant_protein';
+import InformationCalculate from "../src/views/stay_fit/information/information_calculate";
+import Shipping_Address from "../src/views/stay_fit/information/shipping_address";
+import EditShipping_Address from "../src/views/stay_fit/information/edit_shipping_address";
+import Payment from "../src/views/stay_fit/information/payment";
+import SubscriptionPayment from "../src/views/stay_fit/information/subscriptionPayment";
+import subscriptionDiscount from "../src/views/stay_fit/information/subscriptionDiscount";
+import Welcome_NewMember from "../src/views/stay_fit/information/welcome_new_member";
+import Basic_Information from "../src/views/stay_fit/information/basic_information";
+import Your_Program from "../src/views/stay_fit/information/your_program";
+import Cc_token from "../src/views/stay_fit/information/cc_token";
+import Profile from "./views/stay_fit/profile/profile";
+import EditProfile from "./views/stay_fit/profile/editProfile";
+import Cancel_Package from "./views/stay_fit/profile/cancel_package";
+import Cancel_Package_New from "./views/stay_fit/profile/cancel_package_new";
+import Cancel_Package_Succeed from "./views/stay_fit/profile/cancel_packag_succeed";
+import Subscription_Success from "./views/stay_fit/information/subscription_success";
 import ProgramPackage from "./views/programPackage";
-import videoList from "./views/information/video_List";
-import logo from "./views/images/logo.png";
-import Shipping_check from './views/profile/shipping_check';
-import Billing_history from './views/profile/billing_history';
-import Food_supplement from './views/information/food_supplement';
-import Reset_password from './views/profile/reset_password';
-import Reset_password_succeed from './views/profile/reset_password_succeed';
-import New_password from './views/profile/new_password';
-import Dashboard from './views/information/dashboard';
-import Challenge from './views/information/challenge';
-import Exercise_method from './views/information/exercise_method';
-import Admin from './views/admin/admin';
+import videoList from "./views/stay_fit/information/video_List";
+import logo from "./views/stay_fit/images/logo.png";
+import Shipping_check from './views/stay_fit/profile/shipping_check';
+import Billing_history from './views/stay_fit/profile/billing_history';
+import Food_supplement from './views/stay_fit/information/food_supplement';
+import Reset_password from './views/stay_fit/profile/reset_password';
+import Reset_password_succeed from './views/stay_fit/profile/reset_password_succeed';
+import New_password from './views/stay_fit/profile/new_password';
+import Dashboard from './views/stay_fit/information/dashboard';
+import Challenge from './views/stay_fit/information/challenge';
+import Exercise_method from './views/stay_fit/information/exercise_method';
+import Admin from './views/stay_fit/admin/admin';
 import { IntlProvider } from "react-intl";
 import AppLocale from "./lang";
 import IntlMessages from "../src/helpers/IntlMessages";
@@ -421,36 +423,28 @@ class App extends Component {
                 </div>
               </>
               :
-              (pagePath === "/home") ?
-                <>
-                  <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                  </button>
-                  <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
-                      <li className="nav-item">
-                        {/*  <a className="nav-link pointer"  >ราคา</a> */}
-                      </li>
-                      <li className="nav-item">
-                        {/* <a className="nav-link pointer" >สร้างโปรแกรมส่วนตัว</a> */}
-                      </li>
-                    </ul>
-                    {/* <div className="mt-0 mb-2">{this.manuTH_EN()}</div>
-                    &nbsp; &nbsp;&nbsp; */}
-                    <button className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}><IntlMessages id="navbarHome.register"></IntlMessages></button>
-                                        &nbsp; &nbsp;&nbsp;
-                    <a className="nav-link nav-linkHead3 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <img src={user_circle} alt="vector" className="padding-rightIcon" /><IntlMessages id="navbarHome.login" /></a>
-                    <div class="dropdown">
-                    </div>
-                  </div>
+              <>
+                <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+                    <li className="nav-item">
 
-                </>
-                :
-                <div className="mt-0 mb-2">
-                  {this.manuTH_EN2()}
+                    </li>
+                    <li className="nav-item">
+
+                    </li>
+                  </ul>
+                  <button className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}><IntlMessages id="navbarHome.register"></IntlMessages></button>
+                  &nbsp; &nbsp;&nbsp;
+                  <a className="nav-link nav-linkHead3 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <img src={user_circle} alt="vector" className="padding-rightIcon" /><IntlMessages id="navbarHome.login" /></a>
+                  <div class="dropdown">
+                  </div>
                 </div>
 
+              </>
           }
 
         </div>
@@ -484,6 +478,8 @@ class App extends Component {
                   <Redirect to="/home" />
                 </Route>
                 <Route path='/home' component={Home} />
+                <Route path='/stay_fit_home' component={HomeStayFit} />
+
                 <Route path='/information_calculate' component={InformationCalculate} />
                 <Route path='/buy_program' component={Buy_program} />
                 <Route path='/register' component={Register} />
