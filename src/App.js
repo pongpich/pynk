@@ -23,7 +23,7 @@ import Cancel_Package from "./views/stay_fit/profile/cancel_package";
 import Cancel_Package_New from "./views/stay_fit/profile/cancel_package_new";
 import Cancel_Package_Succeed from "./views/stay_fit/profile/cancel_packag_succeed";
 import Subscription_Success from "./views/stay_fit/information/subscription_success";
-import ProgramPackage from "./views/programPackage";
+import ProgramPackage from "./views/stay_fit/programPackage";
 import videoList from "./views/stay_fit/information/video_List";
 import logo from "./views/stay_fit/images/logo.png";
 import Shipping_check from './views/stay_fit/profile/shipping_check';
