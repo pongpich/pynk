@@ -278,10 +278,11 @@ class Home extends React.Component {
     return (
       <>
         <div className="win-541">
+          
           <img src={head} alt="vector" className="home-image" />
           <div className="box-home">
             <div className="top-Home">
-              <p className="textHome bold">สนใจสมัครรร</p>
+              <p className="textHome bold">สนใจสมัคร</p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
                 <a
                   id='contact_expert_btn'

@@ -201,29 +201,144 @@ class Home extends React.Component {
         return (
             <>
                 <div className="win-541">
-                    {/*  <img src={head} alt="vector" className="home-image" /> */}
+               
                     <div className="box-home">
                         <div className="top-Home">
-
-                            <h1>PYNK WEBSITE</h1>
-                            <a
-                                className="btn bottom-pinkLogin1 bold"
-                                type="button"
-                                onClick={() => this.props.history.push("/stay_fit_home")}
-                            >
-                                Bebe Stay Fit
-                            </a>
-                            <a
-                                className="btn bottom-pinkLogin1 bold"
-                                type="button"
-                                href="https://platform.bebefitroutine.com/#/login"
-                                target="_blank"
-                            >
-                                Bebe Platfrom
-                            </a>
-
-
+                            <p className="textHome bold">สนใจสมัคร</p>
+                            <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
+                                <a
+                                    id='contact_expert_btn'
+                                    className="btn bottom-pinkLogin1 bold"
+                                    type="button"
+                                //href="https://fittowhey.com/8week/complete"
+                                //onClick={() => this.props.history.push("/complete")}
+                                >
+                                    ปรึกษาผู้เชี่ยวชาญ
+                                </a>
+                                <button
+                                    id='register_btn'
+                                    className="btn bottom-pinkLogin3 bold"
+                                    type="button"
+                                //onClick={() => this.props.history.push("/programPackage")}
+                                >
+                                    ลงทะเบียน
+                                </button>
+                            </div>
                         </div>
+                    </div>
+                    <img src={part3} alt="vector" className="home-image" />
+                    <img src={part4} alt="vector" className="home-image" />
+                    <img src={part5} alt="vector" className="home-image" />
+                    <img src={part6} alt="vector" className="home-image" />
+                    <img src={part7} alt="vector" className="home-image" />
+                    <img src={part8} alt="vector" className="home-image" />
+                    <div className="part16">
+                        <img src={part9} alt="vector" className="home-image part16-1" />
+                        <a
+                            onClick={() => this.props.history.push("/programPackage")}
+                            className="btn  bold button-pinkLogin3 col-4 col-sm-4  col-md-4 col-lg-4"
+                            type="button"
+                        >
+                            เริ่มคำนวณ
+                        </a>
+                    </div>
+                    <img src={part10} alt="vector" className="home-image" />
+                    <div className="box-home">
+                        <div className="top-Home">
+                            <p className="textHome bold">
+                                สำหรับผู้ที่มีปัญหาสุขภาพ แต่ไม่อยากที่จะพลาดแคมเปญนี้
+                            </p>
+                            <p className="textHome2 bold">
+                                สามารถรับคำแนะนำลงทะเบียนปรึกษาผู้เชี่ยวชาญได้ที่
+                            </p>
+                            <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
+                                <a onClick={() => this.props.history.push("/complete")}>
+                                    <button
+                                        onClick={() => this.props.history.push("/complete")}
+                                        className="btn bottom-pinkLogin2 bold"
+                                        type="button"
+                                    >
+                                        ขอคำปรึกษา
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="box-review">
+                        <div>
+                            <p className="textHead-review">
+                                ยืนยันผลลัพธ์ว่าทำเเล้วเห็นผลได้จริง
+                            </p>
+                            <p className="text-review">
+                                จากเสียงตอบรับส่วนหนึ่งในผู้ที่เคยทานผลิตภัณฑ์
+                            </p>
+                            <p className="text-review">เเละร่วมสนุกกิจกรรมจาก FITTO</p>
+                        </div>
+                        <div className="review-boxImage">
+                            {this.state.carousel === 0 ?
+                                <img src={frame6} alt="vector" className="review-image" />
+                                :
+                                this.state.carousel === 1 ?
+                                    <img src={frame5} alt="vector" className="review-image" />
+                                    :
+                                    this.state.carousel === 2 ?
+                                        <img src={frame1} alt="vector" className="review-image" />
+                                        :
+                                        this.state.carousel === 3 ?
+                                            <img src={frame2} alt="vector" className="review-image" />
+                                            :
+                                            this.state.carousel === 4 ?
+                                                <img src={frame3} alt="vector" className="review-image" />
+                                                :
+                                                <img src={frame4} alt="vector" className="review-image" />
+                            }
+                            <img src={rectangle} alt="vector" className="rectangle-image" />
+                        </div>
+                        <div className="buttons-howDot">
+                            <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(0)}></button>
+                            <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(1)}></button>
+                            <button className={this.state.carousel === 2 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(2)}></button>
+                            <button className={this.state.carousel === 3 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(3)}></button>
+                            <button className={this.state.carousel === 4 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(4)}></button>
+                            <button className={this.state.carousel === 5 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(5)}></button>
+                        </div>
+                    </div>
+                    <img src={part13} alt="vector" className="home-image" />
+                    <div className="part16">
+                        <img src={price} alt="vector" className="home-image part16-1" />
+                        <a
+                            onClick={() => this.props.history.push("/programPackage")}
+                            className="btn  bold button-pinkLogin2 col-4 col-sm-4  col-md-4 col-lg-4"
+                            type="button"
+                        >
+                            สมัคร
+                        </a>
+                    </div>
+                    <div className="box-countdown">
+                        <p className="text-progress bold">
+                            มีคนสนใจเข้าร่วมแคมเปญมาแล้วทั้งหมด
+                        </p>
+                        <div className="progress-bar">
+                            <div className="progress">
+                                <div className="progress-done" id="progress-done">
+                                    <div
+                                        className="progress-text-start bold"
+                                        id="progress-text-start"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p className="text-end">จำกัด 75 คน</p>
+                    </div>
+                    <div className="part16">
+                        <img src={part16} alt="vector" className="home-image part16-1" />
+                        <a
+                            href="https://fittowhey.com/8week/complete"
+                            className="btn  bold button-pinkLogin col-4 col-sm-4  col-md-4 col-lg-4"
+                            type="button"
+                        >
+                            คลิก
+                        </a>
                     </div>
                 </div>
 
