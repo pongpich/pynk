@@ -1013,6 +1013,11 @@ body {
   height: 90px;
 }
 
+.information-box-row2 {
+  background-color: #FFE2EE !important;
+  height: 56px;
+}
+
 [type="button"]:not(:disabled),
 [type="reset"]:not(:disabled),
 [type="submit"]:not(:disabled),

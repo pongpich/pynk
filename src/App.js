@@ -343,112 +343,136 @@ class App extends Component {
     const { user } = this.props;
 
     return (
-      <nav className="navbar navbar-expand-lg bg-light information-box  sticky-top">
-        <div className="container-fluid nav-left2">
-          <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
-            <img src={logo} alt="vector" />
-          </a>
+      <div>
+        <nav className="navbar navbar-expand-lg bg-light information-box  sticky-top">
+          <div className="container-fluid nav-left2">
+            <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
+              <img src={logo} alt="vector" />
+            </a>
 
-          {
+            {
 
-            (this.props.user !== null) ?
-              <>
-                <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse " id="navbarSupportedContent">
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+              (this.props.user !== null) ?
+                <>
+                  <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                  </button>
+                  <div className="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
 
-                    {
-                      (user && user.other_attributes) &&
-                      <>
-                        <li className="nav-item">
-                          <a id="videolist_btn" className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} ><IntlMessages id="navbarHome.exerciseprogram" /></a>
-                        </li>
-                        <li className="nav-item">
-                          <a id="food-supplement_btn" className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}><IntlMessages id="navbarHome.foodsupplements" /></a>
-                        </li>
-                      </>
-                    }
-                    <li className="nav-item">
-                    </li>
-                  </ul>
-                  <div>
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                      {/*         <li className="nav-item">
+                      {
+                        (user && user.other_attributes) &&
+                        <>
+                          <li className="nav-item">
+                            <a id="videolist_btn" className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} ><IntlMessages id="navbarHome.exerciseprogram" /></a>
+                          </li>
+                          <li className="nav-item">
+                            <a id="food-supplement_btn" className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}><IntlMessages id="navbarHome.foodsupplements" /></a>
+                          </li>
+                        </>
+                      }
+                      <li className="nav-item">
+                      </li>
+                    </ul>
+                    <div>
+                      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {/*         <li className="nav-item">
                       <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
                         ออกจากระบบ
                     </a>
                     </li> */}
-                      <div>
-                        {this.manuTH_EN()}
-                      </div>
-                      <li className="nav-item ">
-                        <a className="nav-link dropdown-toggle nav-linkHead" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                          <img src={user_circle} alt="vector" className="padding-rightIcon" />
-                          {this.props.user.email}
-                        </a>
-                        <ul className="dropdown-menu dropdown-menu-end">
-                          {
-                            this.props.user.authorization === "admin" ?
-                              <>
-                                <li className="nav-item">
-                                  <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/admin')}>
-                                    <IntlMessages id="navbarHome.admin" />
-                                  </a>
-                                </li>
-                                <li className="nav-item">
-                                  <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/dashboard')}>
-                                    Dashboard
-                                  </a>
-                                </li>
-                              </>
-                              : null
-                          }
+                        <div>
+                          {this.manuTH_EN()}
+                        </div>
+                        <li className="nav-item ">
+                          <a className="nav-link dropdown-toggle nav-linkHead" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            <img src={user_circle} alt="vector" className="padding-rightIcon" />
+                            {this.props.user.email}
+                          </a>
+                          <ul className="dropdown-menu dropdown-menu-end">
+                            {
+                              this.props.user.authorization === "admin" ?
+                                <>
+                                  <li className="nav-item">
+                                    <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/admin')}>
+                                      <IntlMessages id="navbarHome.admin" />
+                                    </a>
+                                  </li>
+                                  <li className="nav-item">
+                                    <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/dashboard')}>
+                                      Dashboard
+                                    </a>
+                                  </li>
+                                </>
+                                : null
+                            }
 
-                          <li className="nav-item">
-                            <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/profile')}>
-                              <IntlMessages id="navbarHome.profile" />
-                            </a>
-                          </li>
-                          <li>
-                            <a className="dropdown-item nav-linkHead pointer" onClick={() => this.onUserLogout()}>
-                              <IntlMessages id="navbarHome.logout" />
-                            </a>
-                          </li>
-                        </ul>
+                            <li className="nav-item">
+                              <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/profile')}>
+                                <IntlMessages id="navbarHome.profile" />
+                              </a>
+                            </li>
+                            <li>
+                              <a className="dropdown-item nav-linkHead pointer" onClick={() => this.onUserLogout()}>
+                                <IntlMessages id="navbarHome.logout" />
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </>
+                :
+                <>
+                  <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                  </button>
+                  <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+                      <li className="nav-item">
+
+                      </li>
+                      <li className="nav-item">
+
                       </li>
                     </ul>
+                    <button className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}><IntlMessages id="navbarHome.register"></IntlMessages></button>
+                    &nbsp; &nbsp;&nbsp;
+                    <a className="nav-link nav-linkHead3 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <img src={user_circle} alt="vector" className="padding-rightIcon" /><IntlMessages id="navbarHome.login" /></a>
+                    <div class="dropdown">
+                    </div>
                   </div>
-                </div>
-              </>
-              :
-              <>
-                <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
-                    <li className="nav-item">
 
-                    </li>
-                    <li className="nav-item">
-
-                    </li>
-                  </ul>
-                  <button className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}><IntlMessages id="navbarHome.register"></IntlMessages></button>
-                  &nbsp; &nbsp;&nbsp;
-                  <a className="nav-link nav-linkHead3 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <img src={user_circle} alt="vector" className="padding-rightIcon" /><IntlMessages id="navbarHome.login" /></a>
-                  <div class="dropdown">
-                  </div>
-                </div>
-
-              </>
-          }
-
-        </div>
-      </nav >
+                </>
+            }
+          </div>
+        </nav >
+        <nav className="navbar navbar-expand-lg bg-light information-box-row2 sticky-top" >
+          <div className="container-fluid nav-left2" style={{ display: "flex", justifyContent: "start", alignItems: "center" }}>
+            <a className="" href="/#" onClick={() => this.props.history.push('/')} style={{ cursor: "pointer" }}>
+              <h5 style={{ color: "#5A6E7B" }}><b>Online Training</b></h5>
+            </a>
+            <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>|</h2>
+            <a className="" href="/#" onClick={() => this.props.history.push('/')} style={{ cursor: "pointer" }}>
+              <h5 style={{ color: "#5A6E7B" }}><b>Stay Fit</b></h5>
+            </a>
+            <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>|</h2>
+            <a className="" href="/#" onClick={() => this.props.history.push('/')} style={{ cursor: "pointer" }}>
+              <h5 style={{ color: "#5A6E7B" }}><b>Exclusive Coaching</b></h5>
+            </a>
+            <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>|</h2>
+            <a className="" href="/#" onClick={() => this.props.history.push('/')} style={{ cursor: "pointer" }}>
+              <h5 style={{ color: "#5A6E7B" }}><b>ร้านค้า</b></h5>
+            </a>
+            <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>|</h2>
+            <a className="" href="/#" onClick={() => this.props.history.push('/')} style={{ cursor: "pointer" }}>
+              <h5 style={{ color: "#5A6E7B" }}><b>บทความ</b></h5>
+            </a>
+          </div>
+        </nav>
+      </div>
 
     )
   }
