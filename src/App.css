@@ -2,17 +2,17 @@
   font-family: "Light";
   font-style: normal;
   font-weight: normal;
-  src: url(./views/fonts/Prompt-Light.ttf);
+  src: url(./fonts/Prompt-Light.ttf);
 }
 
 @font-face {
   font-family: "BdCondHe";
-  src: url(./views/fonts/Prompt-Bold.ttf);
+  src: url(./fonts/Prompt-Bold.ttf);
 }
 
 @font-face {
   font-family: "Regular";
-  src: url(./views/fonts/Prompt-Regular.ttf);
+  src: url(./fonts/Prompt-Regular.ttf);
 }
 
 @media only screen and (max-width: 540px) {
