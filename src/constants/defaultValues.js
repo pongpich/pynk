@@ -23,12 +23,20 @@ const dev = {
   API: {
     endpoints: [
       {
-        name: "bebe",
-        endpoint: process.env.REACT_APP_STAGE === 'dev'
-          ? "https://api.planforfit.com/bebedev"
-          : "http://localhost:3003",
+        name: "bebe_platform",
+        endpoint:"http://localhost:3003",
         region: "ap-southeast-1"
-      }
+      },
+      {
+        name: "bebe_stay_fit",
+        endpoint:"http://localhost:3004",
+        region: "ap-southeast-1"
+      },
+      {
+        name: "pynk",
+        endpoint:"http://localhost:3005",
+        region: "ap-southeast-1"
+      },
     ]
   }
 }
@@ -49,10 +57,20 @@ const prod = {
   API: {
     endpoints: [
       {
-        name: "bebe",
+        name: "bebe_platform",
+        endpoint: "https://api.planforfit.com/bebe",
+        region: "ap-southeast-1"
+      },
+      {
+        name: "bebe_stay_fit",
         endpoint: "https://api.planforfit.com/bebefit",
         region: "ap-southeast-1"
-      }
+      },
+      {
+        name: "pynk",
+        endpoint: "https://api.planforfit.com/pynk",
+        region: "ap-southeast-1"
+      },
     ]
   }
 }
