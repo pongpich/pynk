@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { basicInFormation } from "../../../redux/basicInFormation";
-import { updateProfile } from "../../../redux/auth";
-import { getCheckDisplayName } from "../../../redux/get";
+import { basicInFormation } from "../../../redux/stay_fit/basicInFormation";
+import { updateProfile } from "../../../redux/stay_fit/auth";
+import { getCheckDisplayName } from "../../../redux/stay_fit/get";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { injectIntl } from 'react-intl';
 class Basic_Information extends React.Component {

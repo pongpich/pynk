@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { setPassword, resetStatusSetPassword } from "../../../redux/auth"
+import { setPassword, resetStatusSetPassword } from "../../../redux/stay_fit/auth"
 
 class new_password extends Component {
   constructor(props) {

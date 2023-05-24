@@ -8,8 +8,8 @@ import latte2 from "../../assets/img/latte2.png";
 import lfittocsachet5g from "../../assets/img/lfittocsachet5g.png";
 import shaker from "../../assets/img/shaker.png";
 import { connect } from "react-redux";
-import { loginUser } from "../../redux/auth";
-import { selectProgram, getAllProgram } from "../../redux/exerciseProgram";
+import { loginUser } from "../../redux/stay_fit/auth";
+import { selectProgram, getAllProgram } from "../../redux/stay_fit/exerciseProgram";
 import IntlMessages from "../../helpers/IntlMessages";
 
 class ProgramPackage extends React.Component {

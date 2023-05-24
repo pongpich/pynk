@@ -8,8 +8,8 @@ import mask1 from ".././images/mask1.png";
 import mask2 from ".././images/mask2.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { createUser } from "../../../redux/createUser";
-import { register } from "../../../redux/auth";
+import { createUser } from "../../../redux/stay_fit/createUser";
+import { register } from "../../../redux/stay_fit/auth";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { injectIntl } from 'react-intl';
 

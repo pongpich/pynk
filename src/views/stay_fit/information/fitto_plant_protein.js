@@ -5,8 +5,8 @@ import ellipse_078 from "../../../assets/img/ellipse_078.png";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getUserProgram } from "../../../redux/exerciseProgram"
-import { selectProducts, clearSelectProducts } from "../../../redux/shippingAddress"
+import { getUserProgram } from "../../../redux/stay_fit/exerciseProgram"
+import { selectProducts, clearSelectProducts } from "../../../redux/stay_fit/shippingAddress"
 
 
 class Fitto_Plant_Protein extends React.Component {

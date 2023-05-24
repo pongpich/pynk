@@ -210,7 +210,7 @@ const addOrderInZortSagaAsync = async (
   customerEmail
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/addOrderInZort", {
+    const apiResult = await API.post("bebe_stay_fit", "/addOrderInZort", {
       body: {
         customerEmail
       }
@@ -230,7 +230,7 @@ const updateProfileSagaAsync = async (
   is_beginner
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/updateStayFitProfile", {
+    const apiResult = await API.post("bebe_stay_fit", "/updateStayFitProfile", {
       body: {
         user_id,
         other_attributes,
@@ -250,7 +250,7 @@ const checkUserSagaAsync = async (
   email
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/check_user", {
+    const apiResult = await API.get("bebe_stay_fit", "/check_user", {
       queryStringParameters: {
         email: email
       }
@@ -267,7 +267,7 @@ const setPasswordSagaAsync = async (
   password
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/setPassword", {
+    const apiResult = await API.put("bebe_stay_fit", "/setPassword", {
       body: {
         email: email,
         password: password,
@@ -283,7 +283,7 @@ const trialPackageSagaAsync = async (
   email
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/trialPackage", {
+    const apiResult = await API.put("bebe_stay_fit", "/trialPackage", {
       body: {
         email: email,
       }
@@ -300,7 +300,7 @@ const importMembersSagaAsync = async (
   expire_date
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/import_members", {
+    const apiResult = await API.post("bebe_stay_fit", "/import_members", {
       body: {
         members,
         start_date,
@@ -319,7 +319,7 @@ const registerSagaAsync = async (
   phone
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/registerBebeStayFit", {
+    const apiResult = await API.post("bebe_stay_fit", "/registerBebeStayFit", {
       body: {
         email: email,
         password: password,
@@ -340,7 +340,7 @@ const signupUserSagaAsync = async (
   phone
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/signup", {
+    const apiResult = await API.post("bebe_stay_fit", "/signup", {
       body: {
         email: email,
         password: password,
@@ -359,7 +359,7 @@ const getExpireDateSagaAsync = async (
   email
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getExpireDate", {
+    const apiResult = await API.get("bebe_stay_fit", "/getExpireDate", {
       queryStringParameters: {
         email
       }
@@ -375,7 +375,7 @@ const changeEmailSagaAsync = async (
   new_email
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/changeEmail", {
+    const apiResult = await API.put("bebe_stay_fit", "/changeEmail", {
       body: {
         email,
         new_email
@@ -391,7 +391,7 @@ const checkUpdateMaxFriendsSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/checkUpdateMaxFriends", {
+    const apiResult = await API.put("bebe_stay_fit", "/checkUpdateMaxFriends", {
       body: {
         user_id
       }
@@ -406,7 +406,7 @@ const cancelRecurringSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/cancelRecurring", {
+    const apiResult = await API.post("bebe_stay_fit", "/cancelRecurring", {
       body: {
         user_id
       }
@@ -421,7 +421,7 @@ const getGroupIDSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getGroupID", {
+    const apiResult = await API.get("bebe_stay_fit", "/getGroupID", {
       queryStringParameters: {
         user_id
       }
@@ -436,7 +436,7 @@ const testPostServiceSagaAsync = async (
 
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/testPostService", {
+    const apiResult = await API.post("bebe_stay_fit", "/testPostService", {
       body: {
 
       }
@@ -453,7 +453,7 @@ const resetPasswordSagaAsync = async (
   expire_time
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/resetPassword", {
+    const apiResult = await API.put("bebe_stay_fit", "/resetPassword", {
       body: {
         email,
         user_id,
@@ -470,7 +470,7 @@ const forgotPasswordSagaAsync = async (
   email
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/forgotPasswordStayfit", {
+    const apiResult = await API.get("bebe_stay_fit", "/forgotPasswordStayfit", {
       queryStringParameters: {
         email
       }
@@ -486,7 +486,7 @@ const loginUserSagaAsync = async (
   password
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/loginStayfit", {
+    const apiResult = await API.get("bebe_stay_fit", "/loginStayfit", {
       queryStringParameters: {
         email: email,
         password: password

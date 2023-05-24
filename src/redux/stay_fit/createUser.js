@@ -49,7 +49,7 @@ const insertSubscriptionProductsSagaAsync = async (
   receipt_address
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/insertSubscriptionProducts", {
+    const apiResult = await API.post("bebe_stay_fit", "/insertSubscriptionProducts", {
       body: {
         email,
         products_list,

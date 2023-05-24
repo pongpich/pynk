@@ -5,7 +5,7 @@ import vector_check from "../../../assets/img/vector_check.png";
 import group_check from "../../../assets/img/group_check.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getRegister_log } from "../../../redux/get";
+import { getRegister_log } from "../../../redux/stay_fit/get";
 import IntlMessages from "../../../helpers/IntlMessages";
 
 class Billing_history extends React.Component {

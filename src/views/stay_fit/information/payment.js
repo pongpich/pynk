@@ -4,8 +4,8 @@ import ellipse_078 from "../../../assets/img/ellipse_078.png";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getUserProgram } from "../../../redux/exerciseProgram";
-import { insertSubscriptionProducts } from "../../../redux/createUser";
+import { getUserProgram } from "../../../redux/stay_fit/exerciseProgram";
+import { insertSubscriptionProducts } from "../../../redux/stay_fit/createUser";
 import { injectIntl } from 'react-intl';
 
 import axios from 'axios';

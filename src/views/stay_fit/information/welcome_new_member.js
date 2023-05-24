@@ -4,8 +4,8 @@ import maskgroup from "../images/maskgroup.png";
 import mask from "../images/mask.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getUserProgram } from "../../../redux/exerciseProgram";
-import { loginUser } from "../../../redux/auth";
+import { getUserProgram } from "../../../redux/stay_fit/exerciseProgram";
+import { loginUser } from "../../../redux/stay_fit/auth";
 import IntlMessages from "../../../helpers/IntlMessages";
 
 class Welcome_NewMember extends React.Component {

@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 
- import { getGamification, clearGamification, getChallengeEvent } from "../../redux/dashboard";
+ import { getGamification, clearGamification, getChallengeEvent } from "../../redux/stay_fit/dashboard";
 
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 

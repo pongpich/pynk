@@ -87,7 +87,7 @@ const getGamificationSagaAsync = async (
   season
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getGamification", {
+    const apiResult = await API.get("bebe_stay_fit", "/getGamification", {
       queryStringParameters: {
         season
       }
@@ -102,7 +102,7 @@ const getMemberInSeasonSagaAsync = async (
   season
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getMemberInSeason", {
+    const apiResult = await API.get("bebe_stay_fit", "/getMemberInSeason", {
       queryStringParameters: {
         season
       }
@@ -116,7 +116,7 @@ const getMemberInSeasonSagaAsync = async (
 const getBestClipInSeasonSagaAsync = async (
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getBestClipInSeason", {
+    const apiResult = await API.get("bebe_stay_fit", "/getBestClipInSeason", {
       queryStringParameters: {
       }
     });
@@ -130,7 +130,7 @@ const getBestClipInSeasonSagaAsync = async (
 const getWorstClipInSeasonSagaAsync = async (
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getWorstClipInSeason", {
+    const apiResult = await API.get("bebe_stay_fit", "/getWorstClipInSeason", {
       queryStringParameters: {
       }
     });
@@ -145,7 +145,7 @@ const getDateOfJoiningChallengeSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getDateOfJoiningChallenge", {
+    const apiResult = await API.get("bebe_stay_fit", "/getDateOfJoiningChallenge", {
       queryStringParameters: {
         user_id
       }
@@ -160,7 +160,7 @@ const getChallengeEventSagaAsync = async (
   
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getChallengeEvent", {
+    const apiResult = await API.get("bebe_stay_fit", "/getChallengeEvent", {
       queryStringParameters: {
       }
     });
@@ -174,7 +174,7 @@ const getMembersEachWeekInSeasonSagaAsync = async (
   
   ) => {
     try {
-      const apiResult = await API.get("bebe", "/getMembersEachWeekInSeason", {
+      const apiResult = await API.get("bebe_stay_fit", "/getMembersEachWeekInSeason", {
         queryStringParameters: {
         }
       });

@@ -352,7 +352,7 @@ const getFriendListSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getFriendList", {
+    const apiResult = await API.get("bebe_stay_fit", "/getFriendList", {
       queryStringParameters: {
         user_id
       }
@@ -368,7 +368,7 @@ const getFriendRequestSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getFriendRequest", {
+    const apiResult = await API.get("bebe_stay_fit", "/getFriendRequest", {
       queryStringParameters: {
         user_id
       }
@@ -384,7 +384,7 @@ const getFriendRequestSentSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getFriendRequestSent", {
+    const apiResult = await API.get("bebe_stay_fit", "/getFriendRequestSent", {
       queryStringParameters: {
         user_id
       }
@@ -400,7 +400,7 @@ const getTeamInviteSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getTeamInvite", {
+    const apiResult = await API.get("bebe_stay_fit", "/getTeamInvite", {
       queryStringParameters: {
         user_id
       }
@@ -416,7 +416,7 @@ const getFriendsRankSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getFriendsRank", {
+    const apiResult = await API.get("bebe_stay_fit", "/getFriendsRank", {
       queryStringParameters: {
         user_id
       }
@@ -432,7 +432,7 @@ const getMaxFriendsSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getMaxFriends", {
+    const apiResult = await API.get("bebe_stay_fit", "/getMaxFriends", {
       queryStringParameters: {
         user_id
       }
@@ -448,7 +448,7 @@ const getAchievementLogSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getAchievementLog", {
+    const apiResult = await API.get("bebe_stay_fit", "/getAchievementLog", {
       queryStringParameters: {
         user_id
       }
@@ -465,7 +465,7 @@ const updateAchievementLogSagaAsync = async (
   achievement_name
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/updateAchievementLog", {
+    const apiResult = await API.post("bebe_stay_fit", "/updateAchievementLog", {
       body: {
         user_id,
         achievement_name
@@ -482,7 +482,7 @@ const checkAllMissionCompleteSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/checkAllMissionCompelete", {
+    const apiResult = await API.post("bebe_stay_fit", "/checkAllMissionCompelete", {
       body: {
         user_id
       }
@@ -500,7 +500,7 @@ const acceptFriendSagaAsync = async (
   log_id
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/acceptFriend", {
+    const apiResult = await API.put("bebe_stay_fit", "/acceptFriend", {
       body: {
         user_id,
         sender_id,
@@ -520,7 +520,7 @@ const acceptTeamInviteSagaAsync = async (
   log_id
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/acceptTeamInvite", {
+    const apiResult = await API.put("bebe_stay_fit", "/acceptTeamInvite", {
       body: {
         user_id,
         group_id,
@@ -538,7 +538,7 @@ const rejectFriendSagaAsync = async (
   log_id
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/rejectFriend", {
+    const apiResult = await API.put("bebe_stay_fit", "/rejectFriend", {
       body: {
         log_id
       }
@@ -554,7 +554,7 @@ const rejectTeamInviteSagaAsync = async (
   log_id
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/rejectTeamInvite", {
+    const apiResult = await API.put("bebe_stay_fit", "/rejectTeamInvite", {
       body: {
         log_id
       }
@@ -571,7 +571,7 @@ const deleteFriendSagaAsync = async (
   friend_email
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/deleteFriend", {
+    const apiResult = await API.put("bebe_stay_fit", "/deleteFriend", {
       body: {
         user_id,
         friend_email
@@ -589,7 +589,7 @@ const getRankSagaAsync = async (
   start_date
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getRank", {
+    const apiResult = await API.get("bebe_stay_fit", "/getRank", {
       queryStringParameters: {
         user_id,
         start_date
@@ -606,7 +606,7 @@ const getLogWeightSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getLogWeight", {
+    const apiResult = await API.get("bebe_stay_fit", "/getLogWeight", {
       queryStringParameters: {
         user_id
       }
@@ -621,7 +621,7 @@ const getLogWeightSagaAsync = async (
 const getNumberOfTeamNotFullSagaAsync = async (
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getNumberOfTeamNotFull", {
+    const apiResult = await API.get("bebe_stay_fit", "/getNumberOfTeamNotFull", {
       queryStringParameters: {
 
       }
@@ -637,7 +637,7 @@ const getLeaderboardSagaAsync = async (
 
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getLeaderboard", {
+    const apiResult = await API.get("bebe_stay_fit", "/getLeaderboard", {
       queryStringParameters: {
       }
     });
@@ -652,7 +652,7 @@ const getChallengePeriodSagaAsync = async (
 
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getChallengePeriod", {
+    const apiResult = await API.get("bebe_stay_fit", "/getChallengePeriod", {
       queryStringParameters: {
       }
     });
@@ -667,7 +667,7 @@ const getLogWeightTeamSagaAsync = async (
   group_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getLogWeightTeam", {
+    const apiResult = await API.get("bebe_stay_fit", "/getLogWeightTeam", {
       queryStringParameters: {
         group_id
       }
@@ -683,7 +683,7 @@ const getIsReducedWeightSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getIsReducedWeight", {
+    const apiResult = await API.get("bebe_stay_fit", "/getIsReducedWeight", {
       queryStringParameters: {
         user_id
       }
@@ -699,7 +699,7 @@ const selectMemberEventLogSagaAsync = async (
   email
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/selectMemberEventLog", {
+    const apiResult = await API.get("bebe_stay_fit", "/selectMemberEventLog", {
       queryStringParameters: {
         email
       }
@@ -715,7 +715,7 @@ const getDailyWeighChallengeSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getDailyWeighChallenge", {
+    const apiResult = await API.get("bebe_stay_fit", "/getDailyWeighChallenge", {
       queryStringParameters: {
         user_id
       }
@@ -732,7 +732,7 @@ const postDailyWeighChallengeSagaAsync = async (
   weight
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/daily_weight_score", {
+    const apiResult = await API.post("bebe_stay_fit", "/daily_weight_score", {
       body: {
         user_id,
         weight
@@ -750,7 +750,7 @@ const assignGroupToMemberSagaAsync = async (
   start_date
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/assignGroupToMember", {
+    const apiResult = await API.post("bebe_stay_fit", "/assignGroupToMember", {
       body: {
         user_id,
         start_date
@@ -769,7 +769,7 @@ const createChallengeGroupSagaAsync = async (
   start_date
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/createChallengeGroup", {
+    const apiResult = await API.post("bebe_stay_fit", "/createChallengeGroup", {
       body: {
         user_id,
         group_name,
@@ -788,7 +788,7 @@ const sendFriendRequestSagaAsync = async (
   to
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/sendFriendRequest", {
+    const apiResult = await API.post("bebe_stay_fit", "/sendFriendRequest", {
       body: {
         user_id,
         to
@@ -806,7 +806,7 @@ const sendTeamInviteSagaAsync = async (
   to
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/sendTeamInvite", {
+    const apiResult = await API.post("bebe_stay_fit", "/sendTeamInvite", {
       body: {
         user_id,
         to
@@ -824,7 +824,7 @@ const cancelFriendRequestSagaAsync = async (
   receiver_id
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/cancelFriendRequest", {
+    const apiResult = await API.put("bebe_stay_fit", "/cancelFriendRequest", {
       body: {
         sender_id,
         receiver_id
@@ -841,7 +841,7 @@ const leaveTeamSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/leaveTeam", {
+    const apiResult = await API.post("bebe_stay_fit", "/leaveTeam", {
       body: {
         user_id
       }
@@ -858,7 +858,7 @@ const getMembersAndRankSagaAsync = async (
   start_date
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getMembersAndRank", {
+    const apiResult = await API.get("bebe_stay_fit", "/getMembersAndRank", {
       queryStringParameters: {
         group_id,
         start_date
@@ -875,7 +875,7 @@ const getGroupNameSagaAsync = async (
   group_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getGroupName", {
+    const apiResult = await API.get("bebe_stay_fit", "/getGroupName", {
       queryStringParameters: {
         group_id
       }
@@ -891,7 +891,7 @@ const getScoreOfTeamSagaAsync = async (
   group_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getScoreOfTeam", {
+    const apiResult = await API.get("bebe_stay_fit", "/getScoreOfTeam", {
       queryStringParameters: {
         group_id
       }
@@ -907,7 +907,7 @@ const getDailyTeamWeightBonusSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getDailyTeamWeightBonus", {
+    const apiResult = await API.get("bebe_stay_fit", "/getDailyTeamWeightBonus", {
       queryStringParameters: {
         user_id
       }

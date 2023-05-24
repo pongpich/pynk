@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
-import { getGamification, clearGamification, getChallengeEvent, getMemberInSeason, getDateOfJoiningChallenge } from "../../redux/dashboard";
+import { getGamification, clearGamification, getChallengeEvent, getMemberInSeason, getDateOfJoiningChallenge } from "../../redux/stay_fit/dashboard";
 class ChallengesDashboard5 extends Component {
   constructor(props) {
     super(props);

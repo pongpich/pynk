@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
-import { getMembersEachWeekInSeason } from "../../redux/dashboard";
+import { getMembersEachWeekInSeason } from "../../redux/stay_fit/dashboard";
 let max_length = [];
 let index = [];
 let numberMax = null;

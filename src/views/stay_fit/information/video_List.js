@@ -35,10 +35,10 @@ import union from "../images/union.png";
 import vector4 from "../images/vector4.png";
 import { loadingLogo } from "aws-amplify";
 import { connect } from "react-redux";
-import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo } from "../../../redux/exerciseVideos"
-import { getExpireDate, checkUpdateMaxFriends } from "../../../redux/auth"
-import { getRegister_log } from "../../../redux/get"
-import { getDailyWeighChallenge, postDailyWeighChallenge } from "../../../redux/challenges"
+import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo } from "../../../redux/stay_fit/exerciseVideos"
+import { getExpireDate, checkUpdateMaxFriends } from "../../../redux/stay_fit/auth"
+import { getRegister_log } from "../../../redux/stay_fit/get"
+import { getDailyWeighChallenge, postDailyWeighChallenge } from "../../../redux/stay_fit/challenges"
 import { convertFormatTime, convertSecondsToMinutes } from "../../../helpers/utils"
 import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../../constants/defaultValues";
 import backgroundImag from '../../../assets/img/bgintro_lg.d22ae02a.png';

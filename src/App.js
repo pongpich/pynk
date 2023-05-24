@@ -48,10 +48,10 @@ import {
 //import Home from '../views/home';Welcome_NewMember
 
 import { connect } from "react-redux";
-import { logoutUser } from "./redux/auth";
-import { clearCreateUser } from "./redux/createUser";
-import { clearProgram } from "./redux/exerciseProgram";
-import { getRegister_log } from "./redux/get";
+import { logoutUser } from "./redux/stay_fit/auth";
+import { clearCreateUser } from "./redux/stay_fit/createUser";
+import { clearProgram } from "./redux/stay_fit/exerciseProgram";
+import { getRegister_log } from "./redux/stay_fit/get";
 
 import moment from 'moment';
 

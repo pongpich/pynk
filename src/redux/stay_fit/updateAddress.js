@@ -27,7 +27,7 @@ export const putSubscriptionAddress = (user_id,data) => ({
     data
   ) => {
     try {
-      const apiResult = await API.post("bebe", "/updateDeliveryAddress", {
+      const apiResult = await API.post("bebe_stay_fit", "/updateDeliveryAddress", {
         body: {
           user_id,
           data

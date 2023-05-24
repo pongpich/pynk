@@ -3,7 +3,7 @@ import ellipse17 from "../../../assets/img/ellipse17_2.png";
 import user_circle from "../../../assets/img/user_circle.svg";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getSubscriptionProducts, getRegister_log,getMemberInfo } from "../../../redux/get";
+import { getSubscriptionProducts, getRegister_log,getMemberInfo } from "../../../redux/stay_fit/get";
 import IntlMessages from "../../../helpers/IntlMessages";
 
 class Profile extends React.Component {

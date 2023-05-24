@@ -55,7 +55,7 @@ const getSubscriptionProductsSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getSubscriptionProducts", {
+    const apiResult = await API.get("bebe_stay_fit", "/getSubscriptionProducts", {
       queryStringParameters: {
         user_id
       }
@@ -69,7 +69,7 @@ const getMemberInfoSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getMemberInfo", {
+    const apiResult = await API.get("bebe_stay_fit", "/getMemberInfo", {
       queryStringParameters: {
         user_id
       }
@@ -85,7 +85,7 @@ const getRegister_logSagaAsync = async (
   user_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getRegister_log", {
+    const apiResult = await API.get("bebe_stay_fit", "/getRegister_log", {
       queryStringParameters: {
         user_id
       }
@@ -100,7 +100,7 @@ const getCheckDisplayNameSagaAsync = async (
   display_name
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/checkDisplayName", {
+    const apiResult = await API.get("bebe_stay_fit", "/checkDisplayName", {
       queryStringParameters: {
         display_name
       }
@@ -115,7 +115,7 @@ const getAllMemberStayFitSagaAsync = async (
   
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getAllMemberStayFit", {
+    const apiResult = await API.get("bebe_stay_fit", "/getAllMemberStayFit", {
       queryStringParameters: {
         
       }

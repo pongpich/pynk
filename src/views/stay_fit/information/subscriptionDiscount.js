@@ -10,10 +10,10 @@ import ellipse_078 from "../../../assets/img/ellipse_078.png";
 import { Link } from 'react-router-dom';
 import IntlMessages from "../../../helpers/IntlMessages";
 import { connect } from "react-redux";
-import { getUserProgram } from "../../../redux/exerciseProgram"
-import { insertSubscriptionProducts } from "../../../redux/createUser"
-import { getSubscriptionProducts } from "../../../redux/get"
-import { cancelRecurring } from "../../../redux/auth";
+import { getUserProgram } from "../../../redux/stay_fit/exerciseProgram"
+import { insertSubscriptionProducts } from "../../../redux/stay_fit/createUser"
+import { getSubscriptionProducts } from "../../../redux/stay_fit/get"
+import { cancelRecurring } from "../../../redux/stay_fit/auth";
 
 import axios from 'axios';
 import moment from 'moment';

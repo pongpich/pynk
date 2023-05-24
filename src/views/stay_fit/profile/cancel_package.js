@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import user_circle from "../../../assets/img/user_circle.svg";
 import { connect } from "react-redux";
-import { cancelRecurring } from "../../../redux/auth";
+import { cancelRecurring } from "../../../redux/stay_fit/auth";
 
 
 class CancelPackage extends React.Component {

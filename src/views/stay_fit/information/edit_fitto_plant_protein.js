@@ -5,9 +5,9 @@ import ellipse_078 from "../../../assets/img/ellipse_078.png";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getUserProgram } from "../../../redux/exerciseProgram";
+import { getUserProgram } from "../../../redux/stay_fit/exerciseProgram";
 /* import { selectProducts, clearSelectProducts } from "../../../redux/shippingAddress" */
-import { updateFittoPlant } from "../../../redux/update";
+import { updateFittoPlant } from "../../../redux/stay_fit/update";
 
 
 class Fitto_Plant_Protein extends React.Component {

@@ -150,7 +150,7 @@ const videoListForUserLastWeekSagaAsync = async (
   offset
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/videoListForUserLastWeek", {
+    const apiResult = await API.get("bebe_stay_fit", "/videoListForUserLastWeek", {
       queryStringParameters: {
         user_id,
         weight,
@@ -173,7 +173,7 @@ const updatePlaylistSagaAsync = async (
   playlist
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/playlist", {
+    const apiResult = await API.put("bebe_stay_fit", "/playlist", {
       body: {
         user_id,
         start_date,
@@ -193,7 +193,7 @@ const selectChangeVideoSagaAsync = async (
   type
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/selectChangeVideo", {
+    const apiResult = await API.get("bebe_stay_fit", "/selectChangeVideo", {
       queryStringParameters: {
         video_id,
         category,
@@ -212,7 +212,7 @@ const randomVideoSagaAsync = async (
   type
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/randomVideo", {
+    const apiResult = await API.get("bebe_stay_fit", "/randomVideo", {
       queryStringParameters: {
         video_id,
         category,
@@ -233,7 +233,7 @@ const videoListForUserSagaAsync = async (
   offset
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/videoListForUser", {
+    const apiResult = await API.get("bebe_stay_fit", "/videoListForUser", {
       queryStringParameters: {
         user_id,
         weight,
@@ -256,7 +256,7 @@ const updateBodyInfoSagaAsync = async (
   other_attributes
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/updateBodyInfo", {
+    const apiResult = await API.post("bebe_stay_fit", "/updateBodyInfo", {
       body: {
         user_id,
         start_date,
@@ -280,7 +280,7 @@ const updatePlaytimeSagaAsync = async (
   duration
 ) => {
   try {
-    const apiResult = await API.put("bebe", "/play_time", {
+    const apiResult = await API.put("bebe_stay_fit", "/play_time", {
       body: {
         user_id,
         start_date,
@@ -303,7 +303,7 @@ const createWeeklyStayfitProgramSagaAsync = async (
   expire_date
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/createWeeklyStayfitProgram", {
+    const apiResult = await API.post("bebe_stay_fit", "/createWeeklyStayfitProgram", {
       body: {
         user_id,
         start_date,
@@ -322,7 +322,7 @@ const selectMemberInfoSagaAsync = async (
   email
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/selectMemberInfo", {
+    const apiResult = await API.get("bebe_stay_fit", "/selectMemberInfo", {
       queryStringParameters: {
         email
       }

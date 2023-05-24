@@ -9,7 +9,7 @@ import rectangle471 from "../../../assets/img/rectangle471.png";
 import rectangle472 from "../../../assets/img/rectangle472.png";
 import rectangle473 from "../../../assets/img/rectangle473.png";
 import { connect } from "react-redux";
-import { cancelRecurring } from "../../../redux/auth";
+import { cancelRecurring } from "../../../redux/stay_fit/auth";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { injectIntl } from 'react-intl';
 

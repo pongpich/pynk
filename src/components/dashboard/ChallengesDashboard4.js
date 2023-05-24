@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 
-import { getWorstClipInSeason } from "../../redux/dashboard";
+import { getWorstClipInSeason } from "../../redux/stay_fit/dashboard";
 
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 

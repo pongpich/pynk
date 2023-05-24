@@ -44,7 +44,7 @@ const selectProgramSagaAsync = async (
   program_id
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/selectProgram", {
+    const apiResult = await API.get("bebe_stay_fit", "/selectProgram", {
       queryStringParameters: {
         program_id
       }
@@ -59,7 +59,7 @@ const getUserProgramSagaAsync = async (
   email
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getUserProgram", {
+    const apiResult = await API.get("bebe_stay_fit", "/getUserProgram", {
       queryStringParameters: {
         email
       }
@@ -74,7 +74,7 @@ const getAllProgramSagaAsync = async (
 
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/getAllProgram", {
+    const apiResult = await API.get("bebe_stay_fit", "/getAllProgram", {
       queryStringParameters: {
 
       }

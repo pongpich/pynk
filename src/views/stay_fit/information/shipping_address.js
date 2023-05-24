@@ -7,8 +7,8 @@ import ellipse_078 from "../../../assets/img/ellipse_078.png";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { injectIntl } from 'react-intl';
 import { connect } from "react-redux";
-import { shippingAddress, clearSelectDeliveryAddress, selectDeliveryAddress, clearSelectReceiptAddress, selectReceiptAddress } from "../../../redux/shippingAddress";
-import { getUserProgram } from "../../../redux/exerciseProgram"
+import { shippingAddress, clearSelectDeliveryAddress, selectDeliveryAddress, clearSelectReceiptAddress, selectReceiptAddress } from "../../../redux/stay_fit/shippingAddress";
+import { getUserProgram } from "../../../redux/stay_fit/exerciseProgram"
 
 
 class Shipping_Address extends React.Component {

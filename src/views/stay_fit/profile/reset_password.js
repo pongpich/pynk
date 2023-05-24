@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { forgotPassword, resetStatusSetPassword } from "../../../redux/auth";
-import { getSubscriptionProducts } from "../../../redux/get";
+import { forgotPassword, resetStatusSetPassword } from "../../../redux/stay_fit/auth";
+import { getSubscriptionProducts } from "../../../redux/stay_fit/get";
 import IntlMessages from "../../../helpers/IntlMessages";
 
 

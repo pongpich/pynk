@@ -4,9 +4,9 @@ import ellipse17_2 from "../../../assets/img/ellipse17_2.png";
 
 import user_circle from "../../../assets/img/user_circle.svg";
 import { connect } from "react-redux";
-import { getSubscriptionProducts,getCheckDisplayName } from "../../../redux/get";
-import { putSubscriptionAddress, clearSubscriptionAddress } from "../../../redux/updateAddress";
-import { updateDisplayName } from "../../../redux/update";
+import { getSubscriptionProducts,getCheckDisplayName } from "../../../redux/stay_fit/get";
+import { putSubscriptionAddress, clearSubscriptionAddress } from "../../../redux/stay_fit/updateAddress";
+import { updateDisplayName } from "../../../redux/stay_fit/update";
 import InputAddress from 'react-thailand-address-autocomplete';
 import IntlMessages from "../../../helpers/IntlMessages";
 

@@ -45,7 +45,7 @@ const updateFittoPlantSagaAsync = async (
   data
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/updateFittoPlant", {
+    const apiResult = await API.post("bebe_stay_fit", "/updateFittoPlant", {
       body: {
         user_id,
         data
@@ -61,7 +61,7 @@ const updateAddressSagaAsync = async (
   data
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/updateAddress", {
+    const apiResult = await API.post("bebe_stay_fit", "/updateAddress", {
       body: {
         user_id,
         data
@@ -77,7 +77,7 @@ const updateDisplayNameSagaAsync = async (
   display_name
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/updateDisplayName", {
+    const apiResult = await API.post("bebe_stay_fit", "/updateDisplayName", {
       body: {
         user_id,
         display_name

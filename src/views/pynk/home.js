@@ -1,8 +1,8 @@
 import React, { Component, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getUserProgram } from "../../redux/exerciseProgram";
-import { loginUser, resetStatusSetPassword } from "../../redux/auth";
+import { getUserProgram } from "../../redux/stay_fit/exerciseProgram";
+import { loginUser, resetStatusSetPassword } from "../../redux/stay_fit/auth";
 import IntlMessages from "../../helpers/IntlMessages";
 import { injectIntl } from 'react-intl';
 import backgroundImag from "../../assets/img/mainbg.jpeg";

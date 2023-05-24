@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { selectMemberInfo } from "../../../redux/exerciseVideos";
-import { changeEmail ,addOrderInZort} from "../../../redux/auth";
-import { selectMemberEventLog } from "../../../redux/challenges";
+import { selectMemberInfo } from "../../../redux/stay_fit/exerciseVideos";
+import { changeEmail ,addOrderInZort} from "../../../redux/stay_fit/auth";
+import { selectMemberEventLog } from "../../../redux/stay_fit/challenges";
 
 class Index extends Component {
     constructor(props) {
