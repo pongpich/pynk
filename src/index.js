@@ -15,11 +15,11 @@ const { store, persister } = configureStore();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <HashRouter>
+    <BrowserRouter>
       <PersistGate persistor={persister}>
         <Route path="/" component={App} />
       </PersistGate>
-    </HashRouter>
+    </BrowserRouter>
   </Provider>
 );
 
