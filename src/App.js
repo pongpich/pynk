@@ -65,7 +65,7 @@ import {
 import Amplify from 'aws-amplify';
 import { awsConfig } from "./constants/defaultValues";
 import { BrowserRouter } from 'react-router-dom';
-import user_circle from "./assets/img/user_circle.svg";
+import user_circle from "./assets/img/user_circle1.svg";
 import TagManager from 'react-gtm-module';
 
 Amplify.configure(awsConfig);
@@ -188,7 +188,7 @@ class App extends Component {
             Launch demo modal
           </button>
         </div>
-        <div className="modal fade" id="modalExpire" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="modalExpire" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
@@ -206,7 +206,7 @@ class App extends Component {
                 <div className="btn-expire">
                   <button
                     type="button"
-                    class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
+                    className="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
                     data-bs-dismiss="modal"
                     onClick={() => this.props.history.push('/subscription_payment')}
                   >
@@ -233,7 +233,7 @@ class App extends Component {
             Launch demo modal
           </button>
         </div>
-        <div className="modal fade" id="modalBeforeXdays" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="modalBeforeXdays" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
@@ -263,7 +263,7 @@ class App extends Component {
                     <div className="btn-expire">
                       <button
                         type="button"
-                        class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
+                        className="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
                         data-bs-dismiss="modal"
                         onClick={() => document.getElementById("modalBeforeXdaysClick").click()}
                       >
@@ -274,7 +274,7 @@ class App extends Component {
                     <div className="btn-expire">
                       <button
                         type="button"
-                        class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
+                        className="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
                         data-bs-dismiss="modal"
                         onClick={() => this.props.history.push('/subscription_payment')}
                       >
@@ -438,11 +438,9 @@ class App extends Component {
                       </li>
                     </ul>
                     <button className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}><IntlMessages id="navbarHome.register"></IntlMessages></button>
-                    &nbsp; &nbsp;&nbsp;
+                    <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16, fontWeight: 10, height: 30}}>|</h2>
                     <a className="nav-link nav-linkHead3 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
                       <img src={user_circle} alt="vector" className="padding-rightIcon" /><IntlMessages id="navbarHome.login" /></a>
-                    <div class="dropdown">
-                    </div>
                   </div>
 
                 </>
@@ -455,7 +453,7 @@ class App extends Component {
               <h5 style={{ color: "#5A6E7B" }}><b>Online Training</b></h5>
             </a>
             <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>|</h2>
-            <a className=""  onClick={() => this.props.history.push("/stay_fit_home")} style={{ cursor: "pointer" }}>
+            <a className="" onClick={() => this.props.history.push("/stay_fit_home")} style={{ cursor: "pointer" }}>
               <h5 style={{ color: "#5A6E7B" }}><b>Stay Fit</b></h5>
             </a>
             <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>|</h2>
