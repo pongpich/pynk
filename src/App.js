@@ -457,7 +457,7 @@ class App extends Component {
         </nav >
         <nav className="navbar navbar-expand-lg bg-light information-box-row2 sticky-top" >
           <div className="container-fluid nav-left2" style={{ display: "flex", justifyContent: "start", alignItems: "center" }}>
-            <a className="" href="https://platform.bebefitroutine.com/#/login" target="_blank" style={{ cursor: "pointer" }}>
+            <a className=""onClick={() => this.props.history.push("/platfrom_home")} style={{ cursor: "pointer" }}>
               <h5 style={{ color: "#5A6E7B" }}><b>Online Training</b></h5>
             </a>
             <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>|</h2>
