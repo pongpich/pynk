@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.4d75189e.css",
-    "main.js": "/static/js/main.71edff3d.js",
+    "main.css": "/static/css/main.199b9b37.css",
+    "main.js": "/static/js/main.7ddef181.js",
     "static/media/slide1.png": "/static/media/slide1.409f7f9cb1a7403253a8.png",
     "static/media/slide4.png": "/static/media/slide4.50aa3598a723e4926dd3.png",
     "static/media/slide3.png": "/static/media/slide3.05e7092c16f4bc0b5e5a.png",
@@ -9,11 +9,15 @@
     "static/media/part13.png": "/static/media/part13.9336e04be8fbc4d958e0.png",
     "static/media/studio_session_1.png": "/static/media/studio_session_1.d7d6b4d35563573ece22.png",
     "static/media/part13512.png": "/static/media/part13512.233f200597451a4f1a39.png",
+    "static/media/home_2.png": "/static/media/home_2.9a34c9864795c78ba15a.png",
     "static/media/vegan_nutrition_program.jpg": "/static/media/vegan_nutrition_program.7fe4a1281626c85e47ec.jpg",
     "static/media/mainbg.jpeg": "/static/media/mainbg.5f2a0dfbc4c4d5af2092.jpeg",
+    "static/media/mainbg.jpg": "/static/media/mainbg.5f2a0dfbc4c4d5af2092.jpg",
     "static/media/based-butrition-program.jpg": "/static/media/based-butrition-program.2774a2edfa6f7810fc83.jpg",
+    "static/media/home2_1.png": "/static/media/home2_1.ce82ea74f59ed149d499.png",
     "static/media/lemonade.png": "/static/media/lemonade.3a92d5b56940d4612a7e.png",
     "static/media/latte2.png": "/static/media/latte2.23a71c511b47522ec080.png",
+    "static/media/home2_2.png": "/static/media/home2_2.6af5ec768f491edc0381.png",
     "static/media/shutterstock_5.png": "/static/media/shutterstock_5.4134a95f07a7aa6267b4.png",
     "static/media/shutterstock_6.png": "/static/media/shutterstock_6.4fff87ec73fd1e4f1513.png",
     "static/media/frame_7.png": "/static/media/frame_7.6c5a6f01995f325af659.png",
@@ -111,11 +115,11 @@
     "static/media/user_circle.svg": "/static/media/user_circle.b6c0c7101742ef99049a6d69c15d34e5.svg",
     "static/media/user_circle1.svg": "/static/media/user_circle1.004bce47e3a6d6f80e1c30ee4dbe3119.svg",
     "static/media/check.svg": "/static/media/check.b83dbc0561a4c196d78020d0af6b528b.svg",
-    "main.4d75189e.css.map": "/static/css/main.4d75189e.css.map",
-    "main.71edff3d.js.map": "/static/js/main.71edff3d.js.map"
+    "main.199b9b37.css.map": "/static/css/main.199b9b37.css.map",
+    "main.7ddef181.js.map": "/static/js/main.7ddef181.js.map"
   },
   "entrypoints": [
-    "static/css/main.4d75189e.css",
-    "static/js/main.71edff3d.js"
+    "static/css/main.199b9b37.css",
+    "static/js/main.7ddef181.js"
   ]
 }
