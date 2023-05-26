@@ -1013,14 +1013,15 @@ body {
 
 .navigation-manual {
   position: absolute;
-  width: 800px;
-  margin-top: -40px;
+  width: 300px;
+  top: 30%;
+  left: 3%;
   display: flex;
   justify-content: center;
 }
 
 .manual-btn {
-  border: 2px solid pink;
+  border: 0px solid #F7ABCE;
   padding: 5px;
   border-radius: 10px;
   cursor: pointer;
@@ -1028,11 +1029,11 @@ body {
 }
 
 .manual-btn:not(:last-child) {
-  margin-right: 40px;
+  margin-right: 5%;
 }
 
 .manual-btn:hover {
-  background: pink;
+  background: #960051;
 }
 
 #radio1:checked~.first {
@@ -1054,36 +1055,68 @@ body {
 .navigation-auto {
   position: absolute;
   display: flex;
-  width: 800px;
+  width: 300px;
   justify-content: center;
-  margin-top: 460px;
+  top: 30%;
+  left: 3%;
 }
 
 .navigation-auto div {
-  border: 2px solid pink;
+  background-color: #F7ABCE;
   padding: 5px;
   border-radius: 10px;
   transition: 1s;
 }
 
 .navigation-auto div:not(:last-child) {
-  margin-right: 40px;
+  margin-right: 5%;
 }
 
 #radio1:checked~.navigation-auto .auto-btn1 {
-  background: pink;
+  background: #960051;
 }
 
 #radio2:checked~.navigation-auto .auto-btn2 {
-  background: pink;
+  background: #960051;
 }
 
 #radio3:checked~.navigation-auto .auto-btn3 {
-  background: pink;
+  background: #960051;
 }
 
 #radio4:checked~.navigation-auto .auto-btn4 {
-  background: pink;
+  background: #960051;
+}
+
+.box-text-home1 {
+  height: 13%;
+  width: 35%;
+  top: 16%;
+  left: 9%;
+  position: absolute;
+}
+
+.text-home1-48px {
+  font-size: 48px;
+  font-weight: 600;
+  color: #4A4A4A;
+  margin-bottom: 0px;
+}
+.text-home1-24px {
+  font-size: 24px;
+  font-weight: 600;
+  color: #4A4A4A;
+  margin-top: 10px;
+}
+.button-home1 {
+  position: absolute;
+  background-color: #EF60A3;
+  color: #fff;
+  width: 36%;
+  height: 20%;
+  top: 67%;
+  border-radius: 50px;
+  text-align: center;
 }
 
 .home2 {

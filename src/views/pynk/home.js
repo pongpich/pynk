@@ -76,6 +76,18 @@ class Home extends Component {
                             <div className="auto-btn3"></div>
                             <div className="auto-btn4"></div>
                         </div>
+                        <div className="box-text-home1">
+                            <p className="text-home1-48px">เริ่มต้นฟิต</p>
+                            <p className="text-home1-48px">พิชิตหุ่นในฝัน</p>
+                            <p className="text-home1-24px">Daily Fit For a Better Life</p>
+                            <a
+                                href="https://fittowhey.com/8week/complete"
+                                className="btn  bold button-home1 col-10 col-sm-10"
+                                type="button"
+                            >
+                                <p style={{ width: "100%",top: "30%",left: "0%",position: "absolute" }}>เริ่มฟิตไปด้วยกัน</p>
+                            </a>
+                        </div>
                     </div>
                     <div className="navigation-manual">
                         <label htmlFor="radio1" className="manual-btn"></label>
@@ -83,6 +95,7 @@ class Home extends Component {
                         <label htmlFor="radio3" className="manual-btn"></label>
                         <label htmlFor="radio4" className="manual-btn"></label>
                     </div>
+
                 </div>
 
                 <div className="home2">
