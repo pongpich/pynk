@@ -1,7 +1,10 @@
 import './App.css';
 import React, { Component } from 'react';
+
+//---------------------------------------Pynk---------------------------------------
 import Home from '../src/views/pynk/home';
 
+//-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from '../src/views/stay_fit/information/home';
 import Buy_program from '../src/views/stay_fit/information/buy_program';
 import Register from '../src/views/stay_fit/information/register';
@@ -36,6 +39,11 @@ import Dashboard from './views/stay_fit/information/dashboard';
 import Challenge from './views/stay_fit/information/challenge';
 import Exercise_method from './views/stay_fit/information/exercise_method';
 import Admin from './views/stay_fit/admin/admin';
+
+//-------------------------------------Platform-------------------------------------
+import HomePlatfrom from '../src/views/platform/login';
+
+
 import { IntlProvider } from "react-intl";
 import AppLocale from "./lang";
 import IntlMessages from "../src/helpers/IntlMessages";
@@ -438,7 +446,7 @@ class App extends Component {
                       </li>
                     </ul>
                     <button className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}><IntlMessages id="navbarHome.register"></IntlMessages></button>
-                    <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16, fontWeight: 10, height: 30}}>|</h2>
+                    <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16, fontWeight: 10, height: 30 }}>|</h2>
                     <a className="nav-link nav-linkHead3 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
                       <img src={user_circle} alt="vector" className="padding-rightIcon" /><IntlMessages id="navbarHome.login" /></a>
                   </div>
@@ -500,8 +508,8 @@ class App extends Component {
                   <Redirect to="/home" />
                 </Route>
                 <Route path='/home' component={Home} />
-                <Route path='/stay_fit_home' component={HomeStayFit} />
 
+                <Route path='/stay_fit_home' component={HomeStayFit} />
                 <Route path='/information_calculate' component={InformationCalculate} />
                 <Route path='/buy_program' component={Buy_program} />
                 <Route path='/register' component={Register} />
@@ -541,7 +549,6 @@ class App extends Component {
                 <Route path='/dashboard' component={Dashboard} />
                 <Route path='/challenge' component={Challenge} />
                 <Route path='/exercise_method' component={Exercise_method} />
-
                 {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url  scrollspy*/}
                 <Route path='/generalFood' component={Food_supplement} />
                 <Route path='/vegetarianFood' component={Food_supplement} />
@@ -555,6 +562,8 @@ class App extends Component {
                 <Route path='/vegetarian_food_eat_foodPprogram' component={Food_supplement} />
                 <Route path='/vegetarian_food_recommendedApproach' component={Food_supplement} />
                 <Route path='/vegetarian_food_AdditionalAdvice' component={Food_supplement} />
+
+                <Route path='/platfrom_home' component={HomePlatfrom} />
               </Switch>
             </header>
           </div>

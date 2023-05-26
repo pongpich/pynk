@@ -49,7 +49,7 @@ const reducers = combineReducers({
   updateAddress,
   challenges,
   dashboard,
-
+  
   //ของ Bebe Platform
   authPlatform,
   exerciseVideosPlatform,
