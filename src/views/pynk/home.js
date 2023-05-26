@@ -90,16 +90,19 @@ class Home extends Component {
                         <p className="text48">บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน</p>
                     </div>
 
-                    <div className="bebe_bubble" style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }} /* style={componentStyle} */>
-
-
-                        {/* <img src={home2} alt="vector" className="home-image " /> */}
-
-                        <p className="text-bubble">คอร์สสอนออกกำลังกายสุดปังจากวงการเบเบ้ ที่จะพาคุณมาอัปเกรดความฟิต ด้วยโปรแกรม 8 สัปดาห์ ที่เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ พร้อมการันตีความสนุก และผลลัพธ์ของการเปลี่ยนแปลง มาแล้วมากกว่าสิบรุ่น!</p>
-
-                    </div>
 
                 </div>
+                <div className="bebe_bubble" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */>
+
+                    <div className="background_Image" style={{ backgroundImage: `url(${home2})`, backgroundSize: '1295px 589px' }} >
+
+                        <div className="box-text-bubble">
+                            <p className="text-bubble">คอร์สสอนออกกำลังกายสุดปังจากวงการเบเบ้ ที่จะพาคุณมาอัปเกรดความฟิต ด้วยโปรแกรม 8 สัปดาห์ ที่เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ พร้อมการันตีความสนุก และผลลัพธ์ของการเปลี่ยนแปลง มาแล้วมากกว่าสิบรุ่น!</p>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div className="home2_1">
                     <div className="home2_1_img">
                         <img src={home2_1} alt="vector" className="home2-img " />
