@@ -44,10 +44,13 @@ class Home extends Component {
         }
     }
 
+
+
     render() {
         this.autoSlide()
+
         return (
-            <div className="win-541">
+            <>
                 <div className="slider">
                     <div className="slides">
                         <input type="radio" name="radio-btn" id="radio1" />
@@ -84,19 +87,27 @@ class Home extends Component {
 
                 <div className="home2">
                     <div className="box-text-48">
-                    <p className="text48">บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน</p>
+                        <p className="text48">บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน</p>
                     </div>
-                
-                    <div className="bebe_bubble">
-                        <img src={home2} alt="vector" className="home-image " />
+
+                    <div className="bebe_bubble" style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }} /* style={componentStyle} */>
+
+
+                        {/* <img src={home2} alt="vector" className="home-image " /> */}
+
                         <p className="text-bubble">คอร์สสอนออกกำลังกายสุดปังจากวงการเบเบ้ ที่จะพาคุณมาอัปเกรดความฟิต ด้วยโปรแกรม 8 สัปดาห์ ที่เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ พร้อมการันตีความสนุก และผลลัพธ์ของการเปลี่ยนแปลง มาแล้วมากกว่าสิบรุ่น!</p>
+
                     </div>
-                    <div className="home2_1">
-                        {/* <img src={home2_1} alt="vector" className="home2-img " />
-                        <img src={home2_2} alt="vector" className="home2-img1 " /> */}
-                    </div>
+
                 </div>
-            </div>
+                <div className="home2_1">
+                    <div className="home2_1_img">
+                        <img src={home2_1} alt="vector" className="home2-img " />
+                        <img src={home2_2} alt="vector" className="home2-img1 " />
+                    </div>
+
+                </div>
+            </>
         )
     }
 
