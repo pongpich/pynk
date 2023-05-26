@@ -3,6 +3,9 @@ import slide1 from "../../assets/img/home/slide1.png";
 import slide2 from "../../assets/img/home/slide2.png";
 import slide3 from "../../assets/img/home/slide3.png";
 import slide4 from "../../assets/img/home/slide4.png";
+import home2 from "../../assets/img/home/home_2.png";
+import home2_1 from "../../assets/img/home/home2_1.png";
+import home2_2 from "../../assets/img/home/home2_2.png";
 
 class Home extends Component {
     constructor(props) {
@@ -13,26 +16,26 @@ class Home extends Component {
     }
 
     componentDidUpdate(prevState) {
-        const {counter} = this.state
+        const { counter } = this.state
         if (prevState.counter !== counter) {
-            if(document.getElementById('radio' + counter)){
+            if (document.getElementById('radio' + counter)) {
                 document.getElementById('radio' + counter).checked = true;
             }
         }
     }
 
-    autoSlide(){
-        const {counter} = this.state
-        
-        if(counter == 4){
+    autoSlide() {
+        const { counter } = this.state
+
+        if (counter == 4) {
             setTimeout(() => {
                 this.setState({
                     counter: 1
                 })
 
             }, 5000);
-            
-        }else if(counter < 5){
+
+        } else if (counter < 5) {
             setTimeout(() => {
                 this.setState({
                     counter: counter + 1
@@ -44,39 +47,55 @@ class Home extends Component {
     render() {
         this.autoSlide()
         return (
-            <div className="slider">
-                <div className="slides">
-                    <input type="radio" name="radio-btn" id="radio1" />
-                    <input type="radio" name="radio-btn" id="radio2" />
-                    <input type="radio" name="radio-btn" id="radio3" />
-                    <input type="radio" name="radio-btn" id="radio4" />
+            <div className="win-541">
+                <div className="slider">
+                    <div className="slides">
+                        <input type="radio" name="radio-btn" id="radio1" />
+                        <input type="radio" name="radio-btn" id="radio2" />
+                        <input type="radio" name="radio-btn" id="radio3" />
+                        <input type="radio" name="radio-btn" id="radio4" />
 
-                    <div className="slide first">
-                        <img src={slide1} alt="" />
+                        <div className="slide first">
+                            <img src={slide1} alt="" />
+                        </div>
+                        <div className="slide">
+                            <img src={slide2} alt="" />
+                        </div>
+                        <div className="slide">
+                            <img src={slide3} alt="" />
+                        </div>
+                        <div className="slide">
+                            <img src={slide4} alt="" />
+                        </div>
+                        <div className="navigation-auto">
+                            <div className="auto-btn1"></div>
+                            <div className="auto-btn2"></div>
+                            <div className="auto-btn3"></div>
+                            <div className="auto-btn4"></div>
+                        </div>
                     </div>
-                    <div className="slide">
-                        <img src={slide2} alt="" />
-                    </div>
-                    <div className="slide">
-                        <img src={slide3} alt="" />
-                    </div>
-                    <div className="slide">
-                        <img src={slide4} alt="" />
-                    </div>
-                    <div className="navigation-auto">
-                        <div className="auto-btn1"></div>
-                        <div className="auto-btn2"></div>
-                        <div className="auto-btn3"></div>
-                        <div className="auto-btn4"></div>
+                    <div className="navigation-manual">
+                        <label htmlFor="radio1" className="manual-btn"></label>
+                        <label htmlFor="radio2" className="manual-btn"></label>
+                        <label htmlFor="radio3" className="manual-btn"></label>
+                        <label htmlFor="radio4" className="manual-btn"></label>
                     </div>
                 </div>
-                <div className="navigation-manual">
-                    <label htmlFor="radio1" className="manual-btn"></label>
-                    <label htmlFor="radio2" className="manual-btn"></label>
-                    <label htmlFor="radio3" className="manual-btn"></label>
-                    <label htmlFor="radio4" className="manual-btn"></label>
-                </div>
 
+                <div className="home2">
+                    <div className="box-text-48">
+                    <p className="text48">บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน</p>
+                    </div>
+                
+                    <div className="bebe_bubble">
+                        <img src={home2} alt="vector" className="home-image " />
+                        <p className="text-bubble">คอร์สสอนออกกำลังกายสุดปังจากวงการเบเบ้ ที่จะพาคุณมาอัปเกรดความฟิต ด้วยโปรแกรม 8 สัปดาห์ ที่เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ พร้อมการันตีความสนุก และผลลัพธ์ของการเปลี่ยนแปลง มาแล้วมากกว่าสิบรุ่น!</p>
+                    </div>
+                    <div className="home2_1">
+                        {/* <img src={home2_1} alt="vector" className="home2-img " />
+                        <img src={home2_2} alt="vector" className="home2-img1 " /> */}
+                    </div>
+                </div>
             </div>
         )
     }
