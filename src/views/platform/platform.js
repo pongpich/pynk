@@ -7,9 +7,9 @@ import {
   Input,
   Button
 } from "reactstrap";
-import { register, checkUser, logoutUser, loginUser, getExpireDate } from "../redux/auth";
-import { clearVideoList } from "../redux/exerciseVideos";
-import { selectProgram, clearProgram } from "../redux/exerciseProgram";
+import { register, checkUser, logoutUser, loginUser, getExpireDate } from "../../redux/platform/auth";
+import { clearVideoList } from "../../redux/platform/exerciseVideos";
+import { selectProgram, clearProgram } from "../../redux/platform/exerciseProgram";
 import backgroundImg from "../assets/img/mainbg.jpg";
 
 
@@ -297,9 +297,9 @@ class Platform extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, exerciseProgram, payment }) => {
-  const { user, status, statusRegister } = authUser;
-  const { program } = exerciseProgram;
+const mapStateToProps = ({ authPlatform, exerciseProgramPlatform, paymentPlatform }) => {
+  const { user, status, statusRegister } = authPlatform;
+  const { program } = exerciseProgramPlatform;
   return { user, status, program, statusRegister };
 };
 

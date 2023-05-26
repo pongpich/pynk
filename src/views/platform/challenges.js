@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { cancelTeamInvite, cancelFriendRequest, getFriendRequestSent, getTeamInviteSent, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, getMaxFriends, sendFriendRequest, getFriendRequest, rejectFriend, acceptFriend, deleteFriend, getFriendsRank, sendTeamInvite, getTeamInvite, acceptTeamInvite, rejectTeamInvite, getAchievementLog, updateAchievementLog, checkAllMissionComplete } from "../redux/challenges";
-import { getGroupID, checkUpdateMaxFriends } from "../redux/auth";
-import { getAllMemberStayFit } from "../redux/get";
+import { cancelTeamInvite, cancelFriendRequest, getFriendRequestSent, getTeamInviteSent, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, getMaxFriends, sendFriendRequest, getFriendRequest, rejectFriend, acceptFriend, deleteFriend, getFriendsRank, sendTeamInvite, getTeamInvite, acceptTeamInvite, rejectTeamInvite, getAchievementLog, updateAchievementLog, checkAllMissionComplete } from "../../redux/platform/challenges";
+import { getGroupID, checkUpdateMaxFriends } from "../../redux/platform/auth";
+import { getAllMemberStayFit } from "../../redux/platform/get";
 import "./challenges.scss";
 import { FacebookShareButton, TwitterShareButton, FacebookMessengerShareButton, LineShareButton, WhatsappShareButton } from "react-share";
 import moment from "moment";
@@ -3031,11 +3031,11 @@ class Challenges extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, challenges, exerciseVideos, get }) => {
-  const { user } = authUser;
-  const { exerciseVideo, statusVideoList } = exerciseVideos;
-  const { allMemberStayFit } = get;
-  const { friend_request_sent, statusGetFriendRequestSent, statusCancelFriendRequest, rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, teamRank, individualRank, statusCreateTeam, challengePeriod, friend_list, statusGetFriendList, max_friends, statusGetMaxFriends, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, friendsRank, statusGetFriendsRank, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusAcceptTeamInvite, statusRejectTeamInvite, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete, statusGetLeaderBoard, statusGetTeamInviteSent, team_invite_sent, statusCancelTeamInvite } = challenges;
+const mapStateToProps = ({ authPlatform, challengesPlatform, exerciseVideosPlatform, getPlatform }) => {
+  const { user } = authPlatform;
+  const { exerciseVideo, statusVideoList } = exerciseVideosPlatform;
+  const { allMemberStayFit } = getPlatform;
+  const { friend_request_sent, statusGetFriendRequestSent, statusCancelFriendRequest, rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, teamRank, individualRank, statusCreateTeam, challengePeriod, friend_list, statusGetFriendList, max_friends, statusGetMaxFriends, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, friendsRank, statusGetFriendsRank, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusAcceptTeamInvite, statusRejectTeamInvite, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete, statusGetLeaderBoard, statusGetTeamInviteSent, team_invite_sent, statusCancelTeamInvite } = challengesPlatform;
   return { user, rank, logWeightCount, exerciseVideo, statusVideoList, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, teamRank, individualRank, statusCreateTeam, challengePeriod, friend_list, statusGetFriendList, max_friends, statusGetMaxFriends, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, friendsRank, statusGetFriendsRank, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusAcceptTeamInvite, statusRejectTeamInvite, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete, statusGetLeaderBoard, allMemberStayFit, friend_request_sent, statusGetFriendRequestSent, statusCancelFriendRequest, statusGetTeamInviteSent, team_invite_sent, statusCancelTeamInvite };
 };
 

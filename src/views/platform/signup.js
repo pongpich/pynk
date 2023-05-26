@@ -9,7 +9,7 @@ import {
 
 import { connect } from "react-redux";
 
-import { signupUser, checkUser } from "../redux/auth";
+import { signupUser, checkUser } from "../../redux/platform/auth";
 import "./signup.scss";
 
 class Signup extends Component {
@@ -160,8 +160,8 @@ class Signup extends Component {
     );
   }
 }
-const mapStateToProps = ({ authUser }) => {
-  const { user } = authUser;
+const mapStateToProps = ({ authPlatform }) => {
+  const { user } = authPlatform;
   return { user };
 };
 

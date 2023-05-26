@@ -9,7 +9,7 @@ import {
 
 import { connect } from "react-redux";
 
-import { register, checkUser, loginUser, forgotPassword, resetPassword, setPassword } from "../redux/auth";
+import { register, checkUser, loginUser, forgotPassword, resetPassword, setPassword } from "../../redux/platform/auth";
 import "./forgotPassword.scss";
 
 class ForgotPassword extends Component {
@@ -284,8 +284,8 @@ class ForgotPassword extends Component {
     );
   }
 }
-const mapStateToProps = ({ authUser }) => {
-  const { user, statusRegister, status, statusResetPassword } = authUser;
+const mapStateToProps = ({ authPlatform }) => {
+  const { user, statusRegister, status, statusResetPassword } = authPlatform;
   return { user, statusRegister, status, statusResetPassword };
 };
 

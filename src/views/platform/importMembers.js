@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { importMembers, changeEmail } from "../redux/auth";
-import { updateStatusLowImpact, updateProgramLevel } from "../redux/update";
-import { selectProgramInWeek, deleteProgramInWeek, selectMemberInfo, selectBodyInfo } from "../redux/exerciseVideos";
-import { selectMemberEventLog } from "../redux/challenges";
+import { importMembers, changeEmail } from "../../redux/platform/auth";
+import { updateStatusLowImpact, updateProgramLevel } from "../../redux/platform/update";
+import { selectProgramInWeek, deleteProgramInWeek, selectMemberInfo, selectBodyInfo } from "../../redux/platform/exerciseVideos";
+import { selectMemberEventLog } from "../../redux/platform/challenges";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./importMembers.scss";
@@ -822,11 +822,11 @@ class ImportMembers extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, exerciseVideos, challenges, update }) => {
-  const { user, status, statusChangeEmail } = authUser;
-  const { programInWeek, memberInfo, bodyInfo } = exerciseVideos;
-  const { memberEventLog } = challenges;
-  const { statusUpdateLowImpact, statusUpdateProgramLevel } = update;
+const mapStateToProps = ({ authPlatform, exerciseVideosPlatform, challengesPlatform, updatePlatform }) => {
+  const { user, status, statusChangeEmail } = authPlatform;
+  const { programInWeek, memberInfo, bodyInfo } = exerciseVideosPlatform;
+  const { memberEventLog } = challengesPlatform;
+  const { statusUpdateLowImpact, statusUpdateProgramLevel } = updatePlatform;
   return { user, status, programInWeek, memberInfo, bodyInfo, statusChangeEmail, memberEventLog, statusUpdateLowImpact, statusUpdateProgramLevel };
 };
 

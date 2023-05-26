@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./package.scss";
-import { trialPackage, logoutUser } from "../redux/auth";
-import { clearVideoList } from "../redux/exerciseVideos";
-import { getTreepayHash, clearPayment, createOrder } from "../redux/payment";
+import { trialPackage, logoutUser } from "../../redux/platform/auth";
+import { clearVideoList } from "../../redux/platform/exerciseVideos";
+import { getTreepayHash, clearPayment, createOrder } from "../../redux/platform/payment";
 import moment from 'moment';
 import { s3Upload } from "../helpers/awsLib";
 
@@ -526,10 +526,10 @@ class Package extends Component {
 
 }
 
-const mapStateToProps = ({ authUser, exerciseProgram, payment }) => {
-  const { user } = authUser;
-  const { program } = exerciseProgram;
-  const { hash_data, site_cd } = payment;
+const mapStateToProps = ({ authPlatform, exerciseProgramPlatform, paymentPlatform }) => {
+  const { user } = authPlatform;
+  const { program } = exerciseProgramPlatform;
+  const { hash_data, site_cd } = paymentPlatform;
   return { user, program, hash_data, site_cd };
 };
 

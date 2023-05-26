@@ -8,7 +8,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 
-import { loginUser } from "../redux/auth";
+import { loginUser } from "../../redux/platform/auth";
 import "./login.scss";
 
 
@@ -144,8 +144,8 @@ class Login extends Component {
     );
   }
 }
-const mapStateToProps = ({ authUser }) => {
-  const { user, status } = authUser;
+const mapStateToProps = ({ authPlatform }) => {
+  const { user, status } = authPlatform;
   return { user, status };
 };
 

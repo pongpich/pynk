@@ -43,8 +43,8 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser }) => {
-  const { user } = authUser;
+const mapStateToProps = ({ authPlatform }) => {
+  const { user } = authPlatform;
   return { user };
 };
 

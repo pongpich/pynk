@@ -4,13 +4,13 @@ import {
   Button
 } from "reactstrap";
 import { connect } from "react-redux";
-import { updateProfile, logoutUser, checkUpdateMaxFriends } from "../redux/auth";
-import { getCheckDisplayName, getMemberInfo, check4WeeksPrompt, checkRenewPrompt } from "../redux/get";
-import { updateDisplayName, updateProgramPromptLog, checkProgramLevel } from "../redux/update";
-import { getDailyWeighChallenge, postDailyWeighChallenge } from "../redux/challenges";
-import { createCustomWeekForUser, videoListForUser, updatePlaytime, updatePlaylist, randomVideo, selectChangeVideo, resetStatus, clearVideoList, videoListForUserLastWeek, updateBodyInfo, updatePlaytimeLastWeek } from "../redux/exerciseVideos";
-import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../constants/defaultValues";
-import { convertSecondsToMinutes, convertFormatTime, calculateWeekInProgram } from "../helpers/utils";
+import { updateProfile, logoutUser, checkUpdateMaxFriends } from "../../redux/platform/auth";
+import { getCheckDisplayName, getMemberInfo, check4WeeksPrompt, checkRenewPrompt } from "../../redux/platform/get";
+import { updateDisplayName, updateProgramPromptLog, checkProgramLevel } from "../../redux/platform/update";
+import { getDailyWeighChallenge, postDailyWeighChallenge } from "../../redux/platform/challenges";
+import { createCustomWeekForUser, videoListForUser, updatePlaytime, updatePlaylist, randomVideo, selectChangeVideo, resetStatus, clearVideoList, videoListForUserLastWeek, updateBodyInfo, updatePlaytimeLastWeek } from "../../redux/platform/exerciseVideos";
+import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
+import { convertSecondsToMinutes, convertFormatTime, calculateWeekInProgram } from "../../helpers/utils";
 import "./videoList.scss";
 import moment from 'moment';
 
@@ -2195,12 +2195,12 @@ class VideoList extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, exerciseVideos, challenges, get, update }) => {
-  const { user } = authUser;
-  const { statusDisplayName, statusGetMemberInfo, member_info, statusCheck4WeeksPrompt, statusGetCheck4WeeksPrompt, statusCheckRenewPrompt, statusGetCheckRenewPrompt } = get;
-  const { statusUpdateDisplayName, statusUpdateProgramPromptLog } = update;
-  const { dailyWeighChallenge, statusPostDailyWeighChallenge } = challenges;
-  const { exerciseVideo, exerciseVideoLastWeek, isFirstWeek, status, video, videos, statusVideoList, statusUpdateBodyInfo, week, lastweek } = exerciseVideos;
+const mapStateToProps = ({ authPlatform, exerciseVideosPlatform, challengesPlatform, getPlatform, updatePlatform }) => {
+  const { user } = authPlatform;
+  const { statusDisplayName, statusGetMemberInfo, member_info, statusCheck4WeeksPrompt, statusGetCheck4WeeksPrompt, statusCheckRenewPrompt, statusGetCheckRenewPrompt } = getPlatform;
+  const { statusUpdateDisplayName, statusUpdateProgramPromptLog } = updatePlatform;
+  const { dailyWeighChallenge, statusPostDailyWeighChallenge } = challengesPlatform;
+  const { exerciseVideo, exerciseVideoLastWeek, isFirstWeek, status, video, videos, statusVideoList, statusUpdateBodyInfo, week, lastweek } = exerciseVideosPlatform;
   return { user, exerciseVideo, exerciseVideoLastWeek, isFirstWeek, status, video, videos, statusVideoList, statusUpdateBodyInfo, week, lastweek, dailyWeighChallenge, statusPostDailyWeighChallenge, statusDisplayName, statusGetMemberInfo, statusUpdateDisplayName, member_info, statusCheck4WeeksPrompt, statusGetCheck4WeeksPrompt, statusUpdateProgramPromptLog, statusCheckRenewPrompt, statusGetCheckRenewPrompt };
 };
 

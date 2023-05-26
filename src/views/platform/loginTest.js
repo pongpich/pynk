@@ -8,7 +8,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 
-import { loginUser, signupUser, setPassword } from "../redux/auth";
+import { loginUser, signupUser, setPassword } from "../../redux/platform/auth";
 //import IntlMessages from "../helpers/IntlMessages";
 //import "./login.scss";
 
@@ -316,8 +316,8 @@ class LoginTest extends Component {
     );
   }
 }
-const mapStateToProps = ({ authUser }) => {
-  const { user, status } = authUser;
+const mapStateToProps = ({ authPlatform }) => {
+  const { user, status } = authPlatform;
   return { user, status };
 };
 
