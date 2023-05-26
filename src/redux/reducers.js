@@ -4,6 +4,8 @@ import storage from 'redux-persist/lib/storage';
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
 
 import settings from './settings/reducer';
+
+//ของ Bebe Stay Fit
 import { reducer as authUser} from './stay_fit/auth';
 import { reducer as createUser} from './stay_fit/createUser';
 import { reducer as exerciseProgram} from './stay_fit/exerciseProgram';
@@ -16,6 +18,16 @@ import { reducer as updateAddress} from './stay_fit/updateAddress';
 import { reducer as challenges} from './stay_fit/challenges';
 import { reducer as dashboard} from './stay_fit/dashboard';
 
+//ของ Bebe Platform
+import { reducer as authPlatform } from './platform/auth';
+import { reducer as exerciseVideosPlatform } from './platform/exerciseVideos';
+import { reducer as exerciseProgramPlatform } from './platform/exerciseProgram';
+import { reducer as paymentPlatform } from './platform/payment';
+import { reducer as challengesPlatform } from './platform/challenges';
+import { reducer as dashboardPlatform } from './platform/dashboard';
+import { reducer as getPlatform } from './platform/get';
+import { reducer as updatePlatform } from './platform/update';
+
 
 const persistConfig = {
   key: 'root',
@@ -24,6 +36,7 @@ const persistConfig = {
 };
 
 const reducers = combineReducers({
+  //ของ Bebe Stay Fit
   authUser,
   settings,
   createUser,
@@ -35,7 +48,19 @@ const reducers = combineReducers({
   exerciseVideos,
   updateAddress,
   challenges,
-  dashboard
+  dashboard,
+
+  //ของ Bebe Platform
+  authPlatform,
+  exerciseVideosPlatform,
+  exerciseProgramPlatform,
+  paymentPlatform,
+  challengesPlatform,
+  dashboardPlatform,
+  getPlatform,
+  updatePlatform,
+
+  //ของ Pynk
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers)
