@@ -41,21 +41,19 @@ export function* watchPostTestSaga() {
   yield takeEvery(types.POSTTEST, postTestSaga);
 }
 export function* saga() {
-  yield all([
-    fork(watchPostTestSaga),
-  ]);
+  yield all([fork(watchPostTestSaga)]);
 }
 
 const INIT_STATE = {
-  statusPostTest: "default",
+  status_post_test: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
     case types.POSTTEST:
-      return { ...state, statusPostTest: "loading" };
+      return { ...state, status_post_test: "loading" };
     case types.POSTTEST_SUCCESS:
-      return { ...state, statusPostTest: "success" };
+      return { ...state, status_post_test: "success" };
     default:
       return { ...state };
   }

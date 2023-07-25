@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { postTest } from "../../../redux/pynk/post";
-import { connect } from 'react-redux'
+
+import { connect } from "react-redux";
 
 class DashboardPynk extends Component {
   constructor(props) {
@@ -16,15 +17,16 @@ class DashboardPynk extends Component {
     });
   }
   render() {
-    const {title,description} = this.state;
+    const { title, description } = this.state;
+
     return (
       <>
         <div>
           <label htmlFor="field1">Field 1:</label>
           <input
             type="text"
-            id="field1"
-            name="field1"
+            id="title"
+            name="title"
             placeholder="Enter value for field 1"
             value={this.state.title}
             onChange={(event) => this.handleChange(event)}
@@ -33,13 +35,18 @@ class DashboardPynk extends Component {
           <label htmlFor="field2">Field 2:</label>
           <input
             type="text"
-            id="field2"
-            name="field2"
+            id="description"
+            name="description"
             placeholder="Enter value for field 2"
             value={this.state.description}
             onChange={(event) => this.handleChange(event)}
           />
-          <button className="btn btn-success" onClick={() => this.props.postTest(title,description)}>กดเลย</button>
+          <button
+            className="btn btn-success"
+            onClick={() => this.props.postTest(title, description)}
+          >
+            กดเลย
+          </button>
         </div>
       </>
     );
@@ -47,10 +54,12 @@ class DashboardPynk extends Component {
 }
 
 const mapStateToProps = ({ dashboardPynk }) => {
-  const { statusPostTest } = dashboardPynk;
-  return { statusPostTest };
+  const { status_post_test } = dashboardPynk;
+  return { status_post_test };
 };
 
-const mapActionsToProps = { postTest };
+const mapActionsToProps = {
+  postTest,
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(DashboardPynk);
