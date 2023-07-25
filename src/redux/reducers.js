@@ -5,6 +5,9 @@ import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
 
 import settings from './settings/reducer';
 
+//ของ Pynk
+import { reducer as dashboardPynk} from './pynk/post'
+
 //ของ Bebe Stay Fit
 import { reducer as authUser} from './stay_fit/auth';
 import { reducer as createUser} from './stay_fit/createUser';
@@ -61,6 +64,7 @@ const reducers = combineReducers({
   updatePlatform,
 
   //ของ Pynk
+  dashboardPynk,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers)

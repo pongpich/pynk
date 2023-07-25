@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 //---------------------------------------Pynk---------------------------------------
 import Home from '../src/views/pynk/home';
+import DashboardPynk from './views/pynk/admin/dashboard';
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from '../src/views/stay_fit/information/home';
@@ -508,6 +509,7 @@ class App extends Component {
                   <Redirect to="/home" />
                 </Route>
                 <Route path='/home' component={Home} />
+                <Route path='/dashboard' component={DashboardPynk} />
 
                 <Route path='/stay_fit_home' component={HomeStayFit} />
                 <Route path='/information_calculate' component={InformationCalculate} />
@@ -546,7 +548,7 @@ class App extends Component {
                 <Route path='/reset_password_succeed' component={Reset_password_succeed} />
                 <Route path='/new_password' component={New_password} />
                 <Route path='/admin' component={Admin} />
-                <Route path='/dashboard' component={Dashboard} />
+                <Route path='/dashboard_stayfit' component={Dashboard} />
                 <Route path='/challenge' component={Challenge} />
                 <Route path='/exercise_method' component={Exercise_method} />
                 {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url  scrollspy*/}
