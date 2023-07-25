@@ -107,12 +107,12 @@ class Home extends Component {
                 </div>
                 <div className="bebe_bubble" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */>
 
-                    <div className="background_Image" style={{ backgroundImage: `url(${home2})`, backgroundSize: '1295px 589px' }} >
+                    {/* <div className="background_Image" style={{ backgroundImage: `url(${home2})`, backgroundSize: '1295px 589px' }} >
 
                         <div className="box-text-bubble">
                             <p className="text-bubble">คอร์สสอนออกกำลังกายสุดปังจากวงการเบเบ้ ที่จะพาคุณมาอัปเกรดความฟิต ด้วยโปรแกรม 8 สัปดาห์ ที่เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ พร้อมการันตีความสนุก และผลลัพธ์ของการเปลี่ยนแปลง มาแล้วมากกว่าสิบรุ่น!</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
 
