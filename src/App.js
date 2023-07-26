@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 //---------------------------------------Pynk---------------------------------------
 import Home from '../src/views/pynk/home';
 import DashboardPynk from './views/pynk/admin/dashboard';
+import ShopPynk from './views/pynk/shop';
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from '../src/views/stay_fit/information/home';
@@ -510,6 +511,7 @@ class App extends Component {
                 </Route>
                 <Route path='/home' component={Home} />
                 <Route path='/dashboard' component={DashboardPynk} />
+                <Route path='/shop' component={ShopPynk} />
 
                 <Route path='/stay_fit_home' component={HomeStayFit} />
                 <Route path='/information_calculate' component={InformationCalculate} />
