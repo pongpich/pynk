@@ -1,15 +1,3 @@
-@font-face {
-    font-family: 'typography';
-    src: url('../font/typographyTimes-RgRW.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  .header {
-    font-family: 'typography';
-    font-size: 48pt;
-  }
-
 @media only screen and (max-width: 576px){
     .head-shop{
         display: none;

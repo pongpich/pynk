@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import colors from "./colors";
 import home_shop from "../../assets/img/pynk/shop/home_shop.jpg";
 import icon_kg from "../../assets/img/pynk/shop/icon_kg.png";
@@ -10,7 +11,7 @@ import icon_other from "../../assets/img/pynk/shop/icon_other.png";
 
 import "./css/shop.css";
 
-export default class ShopPynk extends Component {
+class ShopPynk extends Component {
   render() {
     return (
       <div>
@@ -32,23 +33,26 @@ export default class ShopPynk extends Component {
             Special Offer Discount 20%
           </h1>
         </div>
+
         <div className="head-shop">
-          <img height={355} width={"100%"} src={home_shop}></img>
+          <img height={355} width={"100%"} src={home_shop} />
         </div>
+
         <div
           className="row gap-5 mt-5"
           style={{
             justifyContent: "center",
             display: "flex",
+            margin: 0
           }}
         >
           <div
             className="row d-flex justify-content-center align-items-center"
             style={{
               backgroundColor: colors.primary2,
-              width: "180px",
+              width: "150px",
               height: "180px",
-              borderRadius: 50,
+              borderRadius: 50
             }}
           >
             <div className="row">
@@ -68,7 +72,6 @@ export default class ShopPynk extends Component {
               <span className="d-flex justify-content-center">ออกกำลังกาย</span>
             </div>
           </div>
-
 
           <div
             className="row d-flex justify-content-center align-items-center"
@@ -93,10 +96,11 @@ export default class ShopPynk extends Component {
               <span className="d-flex justify-content-center">
                 Fitto <br />
               </span>
-              <span className="d-flex justify-content-center">Plant Protein</span>
+              <span className="d-flex justify-content-center">
+                Plant Protein
+              </span>
             </div>
           </div>
-
 
           <div
             className="row d-flex justify-content-center align-items-center"
@@ -105,7 +109,7 @@ export default class ShopPynk extends Component {
               width: "180px",
               height: "180px",
               borderRadius: 50,
-              padding: 0
+              padding: 0,
             }}
           >
             <div>
@@ -120,12 +124,13 @@ export default class ShopPynk extends Component {
                 <img width={50} height={92} src={icon_burner} />
               </div>
               <span className="d-flex justify-content-center">
-              Fitto Pre-Work Out
+                Fitto Pre-Work Out
               </span>
-              <span className="d-flex justify-content-center">& Fat Burner</span>
+              <span className="d-flex justify-content-center">
+                & Fat Burner
+              </span>
             </div>
           </div>
-
 
           <div
             className="row d-flex justify-content-center align-items-center"
@@ -147,14 +152,16 @@ export default class ShopPynk extends Component {
               >
                 <img width={62} height={91} src={icon_cup} />
               </div>
-              <span className="d-flex justify-content-center align-items-center" style={{
-                height: 48
-              }}>
+              <span
+                className="d-flex justify-content-center align-items-center"
+                style={{
+                  height: 48,
+                }}
+              >
                 Fitto Drink
               </span>
             </div>
           </div>
-
 
           <div
             className="row d-flex justify-content-center align-items-center"
@@ -176,14 +183,16 @@ export default class ShopPynk extends Component {
               >
                 <img width={98} height={88} src={icon_supplement} />
               </div>
-              <span className="d-flex justify-content-center align-items-center" style={{
-                height: 48
-              }}>
+              <span
+                className="d-flex justify-content-center align-items-center"
+                style={{
+                  height: 48,
+                }}
+              >
                 อาหารเสริม
               </span>
             </div>
           </div>
-
 
           <div
             className="row d-flex justify-content-center align-items-center"
@@ -191,7 +200,7 @@ export default class ShopPynk extends Component {
               backgroundColor: colors.primary2,
               width: "180px",
               height: "180px",
-              borderRadius: 50
+              borderRadius: 50,
             }}
           >
             <div className="row">
@@ -201,20 +210,53 @@ export default class ShopPynk extends Component {
                   alignItems: "center",
                   justifyContent: "center",
                   display: "flex",
-                  marginTop:  15
+                  marginTop: 15,
                 }}
               >
                 <img width={74} height={74} src={icon_other} />
               </div>
-              <span className="d-flex justify-content-center align-items-center" style={{
-                height: 48
-              }}>
+              <span
+                className="d-flex justify-content-center align-items-center"
+                style={{
+                  height: 48,
+                }}
+              >
                 อื่นๆ
               </span>
             </div>
           </div>
         </div>
+
+        {/* ส่วนของสินค้า */}
+
+        <div
+          className="row gap-5 mt-5"
+          style={{
+            justifyContent: "center",
+            display: "flex",
+            backgroundColor: "yellow",
+            position: "relative",
+            margin: 0
+          }}
+        >
+          <div style={{
+            backgroundColor: "green",
+            width: "50%",
+            position: "absolute"
+          }}>
+            test
+          </div>
+
+        </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = ({}) => {
+  return {};
+};
+
+const mapActionsToProps = {};
+
+export default connect(mapStateToProps, mapActionsToProps)(ShopPynk);
