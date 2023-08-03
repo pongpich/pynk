@@ -3,3 +3,23 @@
         display: none;
     }
 }
+
+.product {
+    border: 2px solid #E8E8E8;
+    transition: all;
+}
+
+.product:hover {
+    border: 2px solid #EF60A3;
+    transition: all;
+}
+
+.product button {
+    display: none;
+    transition: all;
+}
+
+.product:hover button {
+    display: block;
+    transition: all;
+}
