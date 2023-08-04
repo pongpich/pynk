@@ -4,12 +4,24 @@
     }
 }
 
-.product {
+.product .img_product{
+    border: 2px solid #E8E8E8;
+    border-bottom: 0;
+    transition: all;
+}
+
+.product:hover .img_product{
+    border: 2px solid #EF60A3;
+    border-bottom: 0;
+    transition: all;
+}
+
+.product .detail_product{
     border: 2px solid #E8E8E8;
     transition: all;
 }
 
-.product:hover {
+.product:hover .detail_product{
     border: 2px solid #EF60A3;
     transition: all;
 }
@@ -20,6 +32,6 @@
 }
 
 .product:hover button {
-    display: block;
+    display: flex;
     transition: all;
 }
