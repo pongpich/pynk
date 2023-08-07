@@ -6,6 +6,7 @@ import Home from "../src/views/pynk/home";
 import DashboardPynk from "./views/pynk/admin/dashboard";
 import ShopPynk from "./views/pynk/shop";
 import ShopDetailsPynk from "./views/pynk/admin/shop_details";
+import Popup_login from './components/Popup_login';
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -90,6 +91,7 @@ class App extends Component {
       colorVideo: "nav-link pointer color1",
       thEn: null,
       inBeforeXdays: 7,
+      isPopupLoginOpen: false
     };
   }
 
@@ -190,158 +192,6 @@ class App extends Component {
     }
   }
 
-  renderExpired() {
-    return (
-      <>
-        <div style={{ display: "none" }}>
-          <button
-            type="button"
-            className="btn btn-primary"
-            id="modalExpireClick"
-            data-bs-toggle="modal"
-            data-bs-target="#modalExpire"
-          >
-            Launch demo modal
-          </button>
-        </div>
-        <div
-          className="modal fade"
-          id="modalExpire"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-bodyExpire">
-                <p className="headText-expire bold">
-                  Bebe Stay Fit ของคุณ
-                  <br />
-                  หมดอายุแล้ว
-                </p>
-                <p className="boxText-expire">
-                  หากคุณต้องการต้องการเข้าร่วมโปรแกรม Bebe Stay Fit ต่อ <br />{" "}
-                  กรุณาคลิกชำระเงินด้านล่าง
-                </p>
-                <div className="btn-expire">
-                  <button
-                    type="button"
-                    className="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
-                    data-bs-dismiss="modal"
-                    onClick={() =>
-                      this.props.history.push("/subscription_payment")
-                    }
-                  >
-                    ชำระเงิน
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-  renderBeforeXdays() {
-    const { inBeforeXdays } = this.state;
-    const { register_log } = this.props;
-    const currRound = register_log && register_log[register_log.length - 1];
-
-    return (
-      <>
-        <div style={{ display: "none" }}>
-          <button
-            type="button"
-            className="btn btn-primary"
-            id="modalBeforeXdaysClick"
-            data-bs-toggle="modal"
-            data-bs-target="#modalBeforeXdays"
-          >
-            Launch demo modal
-          </button>
-        </div>
-        <div
-          className="modal fade"
-          id="modalBeforeXdays"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-bodyExpire">
-                <p className="headText-expire bold">
-                  สิทธิ์การใช้งาน BebeStayFit
-                  <br />
-                  จะหมดอายุในอีก {inBeforeXdays} วัน
-                </p>
-                {currRound &&
-                currRound.round > 1 &&
-                currRound.payment_type === "credit_card" ? (
-                  <p className="boxText-expire">
-                    หลังสิทธิ์การใช้งาน Bebe stay fit หมดอายุ <br />
-                    จะมีการเรียกเก็บเงินตามช่องทางที่คุณได้เลือกไว้
-                  </p>
-                ) : (
-                  <p className="boxText-expire">
-                    หากคุณต้องการต้องการเข้าร่วมโปรแกรม <br />
-                    Bebe Stay Fit ต่อ <br />
-                    กรุณาคลิกชำระเงินด้านล่าง
-                  </p>
-                )}
-
-                {currRound &&
-                currRound.round > 1 &&
-                currRound.payment_type === "credit_card" ? (
-                  <div className="btn-expire">
-                    <button
-                      type="button"
-                      className="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
-                      data-bs-dismiss="modal"
-                      onClick={() =>
-                        document.getElementById("modalBeforeXdaysClick").click()
-                      }
-                    >
-                      ปิด
-                    </button>
-                  </div>
-                ) : (
-                  <div className="btn-expire">
-                    <button
-                      type="button"
-                      className="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
-                      data-bs-dismiss="modal"
-                      onClick={() =>
-                        this.props.history.push("/subscription_payment")
-                      }
-                    >
-                      ชำระเงิน
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
   manuTH_EN() {
     const { thEn } = this.state;
     return (
@@ -591,6 +441,7 @@ class App extends Component {
                     className="nav-link nav-linkHead3 pointer bold"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
+                    onClick={() => this.openPopup()}
                   >
                     <img
                       src={user_circle}
@@ -679,12 +530,17 @@ class App extends Component {
     );
   }
 
+  openPopup() {
+    this.setState({ isPopupLoginOpen: true })
+  };
+  closePopup() {
+    this.setState({ isPopupLoginOpen: false })
+  };
+
+
   render() {
     const { locale } = this.props;
     const currentAppLocale = AppLocale[locale];
-
-    /*   const currentAppLocale = AppLocale[locale];
-  locale */
 
     return (
       <div>
@@ -694,8 +550,7 @@ class App extends Component {
         >
           <div className="App">
             {this.renderNavbar()}
-            {this.renderExpired()}
-            {this.renderBeforeXdays()}
+            <Popup_login isOpen={this.state.isPopupLoginOpen} onClose={() => this.closePopup()} />
 
             <header className="App-header ">
               <Switch>
