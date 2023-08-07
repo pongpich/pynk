@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import slide1 from "../../assets/img/home/slide1.png";
 import slide2 from "../../assets/img/home/slide2.png";
 import slide3 from "../../assets/img/home/slide3.png";
@@ -9,28 +9,52 @@ import home2_2 from "../../assets/img/home/home2_2.png";
 
 const Home = () => {
     const [count, setCount] = useState(0);
-    const [counter, setCounter] = useState(1);
+    const [counter, setCounter] = useState(3);
 
-    const increase = () => {
-        setCount(count + 1);
+    // const increase = () => {
+    //     setCount(count + 1);
+    // }
+
+    // componentDidUpdate(prevState) {
+    //     const { counter } = this.state
+    //     if (prevState.counter !== counter) {
+    //         if (document.getElementById('radio' + counter)) {
+    //             document.getElementById('radio' + counter).checked = true;
+    //         }
+    //     }
+    // }
+    const componentDidUpdate = () => {
+        // if (.counter !== counter) {
+        if (document.getElementById('radio' + counter)) {
+            document.getElementById('radio' + counter).checked = true;
+        }
+        // }
     }
-
-
     const autoSlide = () => {
 
         if (counter == 4) {
+            console.log('bbbbb');
             setTimeout(() => {
                 setCounter(1);
             }, 5000);
 
         } else if (counter < 5) {
+            console.log('xxx');
+            // document.getElementById('radio' + counter);
             setTimeout(() => {
                 setCounter(counter + 1);
+                
             }, 5000);
         }
 
     }
+    useEffect(() => {
+        componentDidUpdate();
+        autoSlide();
+        // onChange();
+    }, []);
 
+    const onChange = ({ target }) => setCounter(target.counter);
     return (
         <div>
             <div className="slider">
@@ -39,6 +63,7 @@ const Home = () => {
                     <input type="radio" name="radio-btn" id="radio2" />
                     <input type="radio" name="radio-btn" id="radio3" />
                     <input type="radio" name="radio-btn" id="radio4" />
+                    {/* <input type="radio" name="radio-btn" id={counter} /> */}
 
                     <div className="slide first">
                         <img src={slide1} alt="" />
