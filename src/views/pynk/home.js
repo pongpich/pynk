@@ -6,6 +6,22 @@ import slide4 from "../../assets/img/home/slide4.png";
 import home2 from "../../assets/img/home/home_2.png";
 import home2_1 from "../../assets/img/home/home2_1.png";
 import home2_2 from "../../assets/img/home/home2_2.png";
+import frame37407 from "../../assets/img/home/frame37407.png";
+import frame37408 from "../../assets/img/home/frame37408.png";
+import frame37409 from "../../assets/img/home/frame37409.png";
+import frame37410 from "../../assets/img/home/frame37410.png";
+import frame37545 from "../../assets/img/home/frame37545.png";
+import frame37399 from "../../assets/img/home/frame37399.png";
+import frame37547 from "../../assets/img/home/frame37547.png";
+import frame37549 from "../../assets/img/home/frame37549.png";
+import footer from "../../assets/img/home/footer.png";
+import pinklogo from "../../assets/img/home/pinklogo.png";
+import phonelogo from "../../assets/img/home/phonelogo.png";
+import emaillogo from "../../assets/img/home/emaillogo.png";
+import social from "../../assets/img/home/social.png";
+import footer51 from "../../assets/img/home/footer51.png";
+import "./css/home.css";
+
 
 const Home = () => {
     const [count, setCount] = useState(0);
@@ -43,7 +59,7 @@ const Home = () => {
             // document.getElementById('radio' + counter);
             setTimeout(() => {
                 setCounter(counter + 1);
-                
+
             }, 5000);
         }
 
@@ -83,7 +99,7 @@ const Home = () => {
                         <div className="auto-btn3"></div>
                         <div className="auto-btn4"></div>
                     </div>
-                    <div className="box-text-home1">
+                    <div className="box_text_home1">
                         <p className="text-home1-48px">เริ่มต้นฟิต</p>
                         <p className="text-home1-48px">พิชิตหุ่นในฝัน</p>
                         <p className="text-home1-24px">Daily Fit For a Better Life</p>
@@ -105,31 +121,57 @@ const Home = () => {
 
             </div>
 
-            <div className="home2">
-                <div className="box-text-48">
-                    <p className="text48">บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน</p>
+            {/* <div className="home2"> */}
+            <img src={frame37407} alt="" className="frame37407" />
+            {/* <p className="text48">บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน</p> */}
+            <img src={frame37408} alt="" className="frame37408" />
+
+            <div class="stayfit_item_grid">
+                <div class="grid-item"> <img src={frame37409} className="frame37409" alt="" /></div>
+                <div class="grid-item"><img src={frame37410} className="frame37410" alt="" /></div>
+            </div>
+            {/* <div class="stayfit_item">
+                <div class="column" >
+                    <img src={frame37409} alt="" className="frame37409" />
                 </div>
-
-
-            </div>
-            <div className="bebe_bubble" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */>
-
-                {/* <div className="background_Image" style={{ backgroundImage: `url(${home2})`, backgroundSize: '1295px 589px' }} >
-
-                        <div className="box-text-bubble">
-                            <p className="text-bubble">คอร์สสอนออกกำลังกายสุดปังจากวงการเบเบ้ ที่จะพาคุณมาอัปเกรดความฟิต ด้วยโปรแกรม 8 สัปดาห์ ที่เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ พร้อมการันตีความสนุก และผลลัพธ์ของการเปลี่ยนแปลง มาแล้วมากกว่าสิบรุ่น!</p>
-                        </div>
-                    </div> */}
-            </div>
-
-
-            <div className="home2_1">
-                <div className="home2_1_img">
-                    <img src={home2_1} alt="vector" className="home2-img " />
-                    <img src={home2_2} alt="vector" className="home2-img1 " />
+                <div class="column" >
+                    <img src={frame37410} alt="" className="frame37410" />
                 </div>
+            </div> */}
+            {/* </div> */}
 
+            <div className="bubble" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */>
+                <img src={frame37545} alt="" className="frame37545" />
             </div>
+            <div className="background37399" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */>
+                <img src={frame37547} alt="" className="frame37547" />
+            </div>
+
+            <img src={frame37549} alt="" className="frame37549" />
+            <div className="footerbackground" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */>
+                <div class="footer-grid-container">
+                    <div class="footer-grid-item" style={{ textAlign: 'left' }} >
+                        <img src={pinklogo} style={{ width: '30%', marginBottom: '40px' }} />
+                        <p style={{ fontWeight: 'bold' }}>บริษัท บีบีพีเอฟ จำกัด (สำนักงานใหญ่)</p>
+                        <p style={{ fontSize: '18px' }}>เลขที่ 429/129 ถนนสรงประภา แขวงดอนเมือง เขตดอนเมือง กรุงเทพมหานคร 10210</p>
+                    </div>
+                    <div class="footer-grid-item" style={{ textAlign: 'left' }} >
+
+                        <p style={{ fontWeight: 'bold', fontSize: '20px' }}>ติดต่อเรา</p>
+                        <hr className="hr_class" />
+                        <p style={{ fontSize: '18px' }}><img src={phonelogo} style={{ marginRight: '5px' }} />093-883-2339</p>
+                        <p style={{ fontSize: '18px' }}><img src={emaillogo} style={{ width: '5%', marginRight: '5px' }} />contact@pynk.co</p>
+                    </div>
+                    <div class="footer-grid-item" style={{ textAlign: 'left' }} >
+
+                        <p style={{ fontWeight: 'bold', fontSize: '20px' }}>Social Media</p>
+                        <hr className="hr_class" />
+                        <img src={social} style={{ width: '50%' }} />
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     )
 }
