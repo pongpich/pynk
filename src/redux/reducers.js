@@ -7,6 +7,7 @@ import settings from './settings/reducer';
 
 //ของ Pynk
 import { reducer as dashboardPynk} from './pynk/post'
+import { reducer as auth} from './pynk/auth'
 
 //ของ Bebe Stay Fit
 import { reducer as authUser} from './stay_fit/auth';
@@ -65,6 +66,7 @@ const reducers = combineReducers({
 
   //ของ Pynk
   dashboardPynk,
+  auth,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers)
