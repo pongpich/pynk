@@ -9,8 +9,8 @@ const Popup_login = ({ isOpen, onClose, children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const dispatch = useDispatch();
-  const user = useSelector(({ auth }) => (auth.user));
-  const statusLogin = useSelector(({ auth }) => (auth.statusLogin));
+  const user = useSelector(({ auth }) => (auth ? auth.user : ""));
+  const statusLogin = useSelector(({ auth }) => (auth ? auth.statusLogin : ""));
 
 
   const handleEmailChange = (event) => {
