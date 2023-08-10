@@ -148,28 +148,7 @@ const Home = () => {
             </div>
 
             <img src={frame37549} alt="" className="frame37549" />
-            <div className="footerbackground" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */>
-                <div class="footer-grid-container">
-                    <div class="footer-grid-item" style={{ textAlign: 'left' }} >
-                        <img src={pinklogo} style={{ width: '30%', marginBottom: '40px' }} />
-                        <p style={{ fontWeight: 'bold' }}>บริษัท บีบีพีเอฟ จำกัด (สำนักงานใหญ่)</p>
-                        <p style={{ fontSize: '18px' }}>เลขที่ 429/129 ถนนสรงประภา แขวงดอนเมือง เขตดอนเมือง กรุงเทพมหานคร 10210</p>
-                    </div>
-                    <div class="footer-grid-item" style={{ textAlign: 'left' }} >
-
-                        <p style={{ fontWeight: 'bold', fontSize: '20px' }}>ติดต่อเรา</p>
-                        <hr className="hr_class" />
-                        <p style={{ fontSize: '18px' }}><img src={phonelogo} style={{ marginRight: '5px' }} />093-883-2339</p>
-                        <p style={{ fontSize: '18px' }}><img src={emaillogo} style={{ width: '5%', marginRight: '5px' }} />contact@pynk.co</p>
-                    </div>
-                    <div class="footer-grid-item" style={{ textAlign: 'left' }} >
-
-                        <p style={{ fontWeight: 'bold', fontSize: '20px' }}>Social Media</p>
-                        <hr className="hr_class" />
-                        <img src={social} style={{ width: '50%' }} />
-                    </div>
-                </div>
-            </div>
+            
 
 
         </div>

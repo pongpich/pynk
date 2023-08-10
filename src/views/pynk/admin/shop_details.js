@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-
+import Footer from "../footer";
 import "../css/shopDetails.css";
 import picture01 from "../../../assets/img/pynk/shop/group-37546.png";
 import picture02 from "../../../assets/img/pynk/shop/product-picture02.png";
@@ -11,18 +11,19 @@ import vector1 from "../../../assets/img/pynk/shop/vector-1.png";
 import mask_group from "../../../assets/img/pynk/shop/mask-group.png";
 import mask_group_1 from "../../../assets/img/pynk/shop/mask-group-1.png";
 import kaew from "../../../assets/img/pynk/shop/kaew.png";
+import image_product from "../../../assets/img/pynk/shop/image-product.png";
+import icon_circle from "../../../assets/img/pynk/shop/icon-circle.png";
 
 import { flush } from "redux-saga/effects";
-
 let slidesToShow = 4;
+
 const PreviousBtn = (props) => {
-  console.log(props);
   const { className, onClick, currentSlide } = props;
   return (
     <>
       {currentSlide !== 0 && (
-        <div className={className} onClick={onClick}>
-          <button>PreviousBtn</button>
+        <div className={`previous-btn`} onClick={onClick}>
+          <img src={icon_circle} className="icon-previous-btn" />
         </div>
       )}
     </>
@@ -34,8 +35,8 @@ const NextBtn = (props) => {
   return (
     <>
       {currentSlide !== slideCount - slidesToShow && (
-        <div className={className} onClick={onClick}>
-          <button>NextBtn</button>
+        <div className={`next-btn`} onClick={onClick}>
+          <img src={icon_circle} className="icon-next-btn" />
         </div>
       )}
     </>
@@ -46,20 +47,22 @@ const carouselProperties = {
   nextArrow: <NextBtn />,
   slidesToShow: slidesToShow,
   slidesToScroll: 2,
-  infinite: false,
+  infinite: true,
+  autoplay: true, // ให้ Slider หมุนเอง
+  autoplaySpeed: 9000, // ตั้งค่าให้หมุนทุก ๆ 30 วินาที
   // slidesToScroll={3}
   responsive: [
     {
-      breakpoint: 426,
+      breakpoint: 576,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
         centerMode: false,
       },
     },
     {
       breakpoint: 769,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
         centerMode: false,
       },
     },
@@ -67,7 +70,7 @@ const carouselProperties = {
       breakpoint: 1025,
       settings: {
         slidesToShow: 4,
-        centerMode: false,
+        centerMode: true,
         slidesToScroll: 2,
       },
     },
@@ -80,18 +83,6 @@ const Shop_details = () => {
   const [plusNumber, setPlusNumber] = useState(1);
   const [more_details, setMoreDetails] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [translateValue, setTranslateValue] = useState(0);
-
-  const items = [
-    "Item 1",
-    "Item 2",
-    "Item 3",
-    "Item 4",
-    "Item 5",
-    "Item 6",
-    "Item 7",
-  ];
 
   useEffect(() => {
     const handleResize = () => {
@@ -323,95 +314,127 @@ const Shop_details = () => {
       </div>
       <div className="carousel box-product">
         <div className="between">
-          <p>คุณอาจสนใจสิ่งนี้</p>
-          <p>ดูทั้งหมด</p>
+          <p className="may-interested">คุณอาจสนใจสิ่งนี้</p>
+          <p className="interested-all">ดูทั้งหมด</p>
         </div>
-        <Slider {...carouselProperties}>
-          <div>
-            <h3>Item 1</h3>
-          </div>
-          <div>
-            <h3>Item 2</h3>
-          </div>
-          <div>
-            <h3>Item 3</h3>
-          </div>
-          <div>
-            <h3>Item 4</h3>
-          </div>
-          <div>
-            <h3>Item 5</h3>
-          </div>
-          <div>
-            <h3>Item 6</h3>
-          </div>
-          <div>
-            <h3>Item 7</h3>
-          </div>
-          <div>
-            <h3>Item 8</h3>
-          </div>
-          <div>
-            <h3>Item 9</h3>
-          </div>
-          <div>
-            <h3>Item 10</h3>
-          </div>
-        </Slider>
+        <div>
+          <Slider {...carouselProperties}>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+            <div className="box-item cursor-pointer">
+              <img src={image_product} className="image-slider" />
+              <div className="slider-hr" />
+              <p className="text-center text-head-slider">
+                BEBE FIT ROUTINE MAT
+              </p>
+              <p className="text-center text-slider">
+                ฿99 <span className="slide-span">฿199 </span>
+              </p>
+            </div>
+          </Slider>
+        </div>
       </div>
 
-      {/*  <div className="box-product">
-        <div className="between">
-          <p>คุณอาจสนใจสิ่งนี้</p>
-          <p>ดูทั้งหมด</p>
-        </div>
-        <div className="align-items">
-          <button onClick={prevSlide}>Prev</button>
-          <div className="carousel-container">
-            <div
-              className="carousel-slide"
-               style={{
-                transform: `translateX(-${
-                  currentIndex * (100 / itemsPerSlide)
-                }%)`,
-              }}
-            >
-              {items.map((item) => (
-                <div key={item} className="carousel-item">
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-          <button onClick={nextSlide}>Next</button>
-        </div>
-      </div> */}
+      <Footer />
     </>
-  );
-};
-
-const Card = ({ item }) => {
-  return (
-    <div style={{ textAlign: "center" }}>
-      <img
-        className="multi__image"
-        src={item}
-        alt=""
-        style={{
-          width: "100%",
-          height: "170px",
-          objectFit: "contain",
-          marginBottom: "10px",
-        }}
-      />
-      <p style={{ fontSize: "14px", padding: "5px 0" }}>TOP TRNDING TVs</p>
-      <p style={{ fontSize: "16px", padding: "5px 0", color: "green" }}>
-        From ₹ 7,000
-      </p>
-      <p style={{ fontSize: "14px", padding: "5px 0", color: "gray" }}>
-        Up To ₹ 5,000 Off on HDFC
-      </p>
-    </div>
   );
 };
 

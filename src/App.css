@@ -1,3 +1,37 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+
+:root {
+  --lightest-pink-white: #FFF8FB;
+  --lightest-pink: #FCDEEC;
+  --light-pink: #F7ABCE;
+  --normal-pink: #EF60A3;
+  --darkest-pink: #960051;
+  --white: #FFFFFF;
+  --lightest-BG: #E8E8E8;
+  --disabled-BG: #DDDDDD;
+  --placeholder: #ACACAC;
+  --disabled-text: #7A7A7A;
+  --border: #4A4A4A;
+  --main-text: #000;
+  --lightest-red: #FBE6E9;
+  --light-red: #F12D3E;
+  --normal-red: #DC061E;
+  --darkest-red: #B00B13;
+  --lightest-orange: #FCEDE0;
+  --light-orange: #FC9849;
+  --normal-orange: #E76600;
+  --darkest-orange: #D74800;
+  --lightest-green: #E6F6F0;
+  --light-green: #1ACD64;
+  --normal-green: #09A969;
+  --darkest-green: #059669;
+
+  /* ... */
+}
+
+
 @font-face {
   font-family: "Light";
   font-style: normal;
@@ -14,6 +48,18 @@
   font-family: "Regular";
   src: url(./fonts/Prompt-Regular.ttf);
 }
+
+
+@font-face {
+  font-family: "Medium";
+  src: url(./fonts/Prompt-Medium.ttf);
+}
+
+@font-face {
+  font-family: "SemiBold";
+  src: url(./fonts/Prompt-SemiBold.ttf);
+}
+
 
 @media only screen and (max-width: 540px) {
   .bottom-searchRight {
@@ -1102,12 +1148,14 @@ body {
   color: #4A4A4A;
   margin-bottom: 0px;
 }
+
 .text-home1-24px {
   font-size: 24px;
   font-weight: 600;
   color: #4A4A4A;
   margin-top: 10px;
 }
+
 .button-home1 {
   position: absolute;
   background-color: #EF60A3;
