@@ -1,0 +1,14 @@
+.login_background {
+    /*   position: relative;
+    flex-direction: row;
+    width: 100%;
+    height: 500px;
+    padding: 0 10% 0 15%; */
+    /* background-color: aqua; */
+    padding: 120px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    /* height: 600px; */
+    background-image: url("../../../assets/img/login_background.png");
+}

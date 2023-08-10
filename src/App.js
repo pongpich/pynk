@@ -7,7 +7,7 @@ import DashboardPynk from "./views/pynk/admin/dashboard";
 import ShopPynk from "./views/pynk/shop";
 import ShopDetailsPynk from "./views/pynk/admin/shop_details";
 import Popup_login from './components/Popup_login';
-
+import Login from "../src/views/pynk/login";
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
 import Buy_program from "../src/views/stay_fit/information/buy_program";
@@ -561,7 +561,7 @@ class App extends Component {
                 <Route path="/dashboard" component={DashboardPynk} />
                 <Route path="/shop" component={ShopPynk} />
                 <Route path="/shop_details" component={ShopDetailsPynk} />
-
+                <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />
                 <Route
                   path="/information_calculate"
