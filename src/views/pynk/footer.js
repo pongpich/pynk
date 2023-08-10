@@ -2,42 +2,64 @@ import React from "react";
 import pinklogo from "../../assets/img/home/pinklogo.png";
 import phonelogo from "../../assets/img/home/phonelogo.png";
 import emaillogo from "../../assets/img/home/emaillogo.png";
-import social from "../../assets/img/home/social.png";
+import fb from "../../assets/img/home/fb.png";
+import instagram from "../../assets/img/home/Instagram.png";
+import te from "../../assets/img/home/te.png";
+import line from "../../assets/img/home/line.png";
 import "./css/home.css";
 
 export default function footer() {
   return (
     <div
-      className="footer-background " /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */
+      className="footer-background" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */
     >
-      <div className="row">
+      <div className="row  justify-content-md-center">
         <div class="col-12 col-md-4" style={{ textAlign: "left" }}>
-          <img src={pinklogo} style={{ width: "30%", marginBottom: "40px" }} />
-          <p className="bbpf-company">
-            บริษัท บีบีพีเอฟ จำกัด (สำนักงานใหญ่)
-          </p>
-          <p style={{ fontSize: "18px" }}>
+          <img src={pinklogo} style={{ marginBottom: "40px" }} />
+          <p className="bbpf-company">บริษัท บีบีพีเอฟ จำกัด (สำนักงานใหญ่)</p>
+          <p className="bbpf-address">
             เลขที่ 429/129 ถนนสรงประภา แขวงดอนเมือง เขตดอนเมือง กรุงเทพมหานคร
             10210
           </p>
         </div>
-        <div class="col-12 col-md-4" style={{ textAlign: "left" }}>
-          <p style={{ fontWeight: "bold", fontSize: "20px" }}>ติดต่อเรา</p>
-          <hr className="hr_class" />
-          <p style={{ fontSize: "18px" }}>
-            <img src={phonelogo} style={{ marginRight: "5px" }} />
-            093-883-2339
-          </p>
-          <p style={{ fontSize: "18px" }}>
-            <img src={emaillogo} style={{ width: "5%", marginRight: "5px" }} />
-            contact@pynk.co
-          </p>
+        <div class="col-12 col-md-4 center-content-icon">
+          <div style={{ textAlign: "left" }}>
+            <p className="contact-us">ติดต่อเรา</p>
+            <hr className="hr_class" />
+            <p className="bbpf-address ">
+              <img src={phonelogo} style={{ marginRight: "5px" }} />
+              093-883-2339
+            </p>
+            <p className="bbpf-address">
+              <img
+                src={emaillogo}
+                style={{ width: "5%", marginRight: "5px" }}
+              />
+              contact@pynk.co
+            </p>
+          </div>
         </div>
-        <div class="col-12 col-md-4" style={{ textAlign: "left" }}>
-          <p style={{ fontWeight: "bold", fontSize: "20px" }}>Social Media</p>
-          <hr className="hr_class" />
-          <img src={social} style={{ width: "50%" }} />
+        <div class="col-12 col-md-4 center-content-icon">
+          <div style={{ textAlign: "left" }}>
+            <p className="contact-us">Social Media</p>
+            <hr className="hr_class" />
+            <div className="row">
+              <img src={fb} className="img-icon" />
+              <img src={instagram} className="img-icon" />
+              <img src={te} className="img-icon" />
+              <img src={line} className="img-icon" />
+            </div>
+          </div>
         </div>
+      </div>
+      <div className="box-bbpf-rights">
+        <p className="bbpf-rights">© 2022 BBPF RIGHTS RESERVED</p>
+        <div className="hr-height" />
+        <p className="bbpf-rights">Privacy Policy</p>
+        <div className="hr-height" />
+        <p className="bbpf-rights">Cookies Policy</p>
+        <div className="hr-height" />
+        <p className="bbpf-rights">Cookies Setting</p>
       </div>
     </div>
   );
