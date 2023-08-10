@@ -110,7 +110,55 @@
 
     }
 
+    .padding-more-details {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
 
+    .animated-slideDown {
+        padding-left: 8px !important;
+        margin-top: 12px !important;
+        padding-right: 8px !important;
+    }
+
+    .kaew-bubble {
+        width: 132px !important;
+        height: 151px !important;
+        margin-right: 8px !important;
+    }
+
+    .box-kaew {
+        width: 132px !important;
+        border-radius: 23px !important;
+        padding-top: 19px !important;
+        padding-bottom: 18px !important;
+    }
+
+    .bubble-radius {
+        width: 24px !important;
+        height: 24px !important;
+        margin-left: 55px !important;
+        margin-top: 20px !important;
+        font-size: 15px !important;
+    }
+
+    .mask-group-too {
+        margin-top: -67px;
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 502px;
+    }
+
+    .image-kaew {
+        width: 34px !important;
+        height: 49px !important;
+    }
+
+    .text-kaew {
+        margin: 10px 17px 0px 17px !important;
+        font-size: 8px !important;
+    }
 
 }
 
@@ -136,12 +184,23 @@
         margin-right: 24px;
     }
 
+    .mask-group {
+        height: 950px !important;
+    }
+}
 
-
+.justify-content {
+    justify-content: center !important;
+    display: flex !important;
 }
 
 .text-center {
     text-align: center;
+}
+
+.align-items {
+    display: flex;
+    align-items: center;
 }
 
 .between {
@@ -368,7 +427,7 @@
 }
 
 .more-detail-hr {
-
+    margin-top: 40px;
     border-bottom: 1px solid var(--placeholder);
 
 }
@@ -406,9 +465,145 @@
     }
 }
 
+.box-how-drink {
+    position: relative;
+    z-index: 1;
+}
+
+
 .how-drink {
     margin-top: 64px;
     background-color: var(--lightest-pink);
     width: 100%;
-    height: 500px;
+    padding-top: 67px;
+    padding-bottom: 67px;
+    height: auto;
+}
+
+.text-how-drink {
+    z-index: 1;
+    text-align: center;
+    font-family: SemiBold;
+    font-size: 20px;
+    color: var(--main-text);
+}
+
+.mask-group {
+    margin-top: -67px;
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 602px;
+}
+
+.kaew-bubble {
+    width: 280px;
+    height: 323px;
+    margin-right: 26px;
+    margin-bottom: 40px;
+}
+
+
+
+.box-kaew {
+    margin-top: 40px;
+    width: 280px;
+    height: auto;
+    border-radius: 48px;
+    background-color: var(--light-pink);
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+}
+
+.bubble-radius {
+    width: 50px;
+    height: 50px;
+    background-color: var(--white);
+    border-radius: 100%;
+    box-shadow: inset 0px 0px 1px 0px rgba(247, 171, 206, 0),
+        inset 0px 0px 1px 0px rgba(247, 171, 206, 0.0),
+        0px 2px 4px 0px rgba(239, 96, 163, 1);
+    /* เงาลงมาข้างล่าง */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin-left: 115px;
+    font-size: 32px;
+    color: var(--normal-pink);
+    font-family: Medium;
+}
+
+.image-kaew {
+    width: 71px;
+    height: 105px;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.text-kaew {
+    margin: 23px 34px 0px 34px;
+    font-family: Regular;
+    font-size: 16px;
+    color: var(--main-text);
+}
+
+.box-product {
+    margin-top: 44px;
+    padding: 0px 116px 120px 116px;
+    background-color: var(--white);
+    height: 404px;
+}
+
+.box-item {
+    width: 280px;
+    height: 358px;
+    margin-right: 28px;
+    background-color: #000;
+    border-radius: 16px;
+}
+
+
+
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #000;
+}
+
+.carousel-slide {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    flex: 1;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carousel-item {
+    flex: 1;
+    display: flex;
+
+    width: 280px;
+    height: 358px;
+    border: 1px solid black;
+    background-color: #059669;
+    box-sizing: border-box;
+    margin-right: 20px;
+    min-width: 33.33%;
+    flex: 0 0 calc(100% / 3);
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+.slick-slider {
+    padding-left: 40px;
 }

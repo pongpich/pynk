@@ -1,27 +1,30 @@
-@media only screen and (max-width: 576px){
-    .head-shop{
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+@media only screen and (max-width: 576px) {
+    .head-shop {
         display: none;
     }
 }
 
-.product .img_product{
+.product .img_product {
     border: 2px solid #E8E8E8;
     border-bottom: 0;
     transition: all;
 }
 
-.product:hover .img_product{
+.product:hover .img_product {
     border: 2px solid #EF60A3;
     border-bottom: 0;
     transition: all;
 }
 
-.product .detail_product{
+.product .detail_product {
     border: 2px solid #E8E8E8;
     transition: all;
 }
 
-.product:hover .detail_product{
+.product:hover .detail_product {
     border: 2px solid #EF60A3;
     transition: all;
 }

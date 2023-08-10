@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Slider from "react-slick";
+
 import "../css/shopDetails.css";
 import picture01 from "../../../assets/img/pynk/shop/group-37546.png";
 import picture02 from "../../../assets/img/pynk/shop/product-picture02.png";
@@ -6,13 +8,98 @@ import picture03 from "../../../assets/img/pynk/shop/product-picture03.png";
 import picture04 from "../../../assets/img/pynk/shop/product-picture04.png";
 import vector from "../../../assets/img/pynk/shop/vector.png";
 import vector1 from "../../../assets/img/pynk/shop/vector-1.png";
+import mask_group from "../../../assets/img/pynk/shop/mask-group.png";
+import mask_group_1 from "../../../assets/img/pynk/shop/mask-group-1.png";
+import kaew from "../../../assets/img/pynk/shop/kaew.png";
+
 import { flush } from "redux-saga/effects";
+
+let slidesToShow = 4;
+const PreviousBtn = (props) => {
+  console.log(props);
+  const { className, onClick, currentSlide } = props;
+  return (
+    <>
+      {currentSlide !== 0 && (
+        <div className={className} onClick={onClick}>
+          <button>PreviousBtn</button>
+        </div>
+      )}
+    </>
+  );
+};
+const NextBtn = (props) => {
+  const { className, onClick, slideCount, currentSlide } = props;
+  console.log(props);
+  return (
+    <>
+      {currentSlide !== slideCount - slidesToShow && (
+        <div className={className} onClick={onClick}>
+          <button>NextBtn</button>
+        </div>
+      )}
+    </>
+  );
+};
+const carouselProperties = {
+  prevArrow: <PreviousBtn />,
+  nextArrow: <NextBtn />,
+  slidesToShow: slidesToShow,
+  slidesToScroll: 2,
+  infinite: false,
+  // slidesToScroll={3}
+  responsive: [
+    {
+      breakpoint: 426,
+      settings: {
+        slidesToShow: 1,
+        centerMode: false,
+      },
+    },
+    {
+      breakpoint: 769,
+      settings: {
+        slidesToShow: 3,
+        centerMode: false,
+      },
+    },
+    {
+      breakpoint: 1025,
+      settings: {
+        slidesToShow: 4,
+        centerMode: false,
+        slidesToScroll: 2,
+      },
+    },
+  ],
+};
 
 const Shop_details = () => {
   const [mainImage, setMainImage] = useState(picture01);
   const [activeImage, setActiveImage] = useState(picture01);
   const [plusNumber, setPlusNumber] = useState(1);
   const [more_details, setMoreDetails] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [translateValue, setTranslateValue] = useState(0);
+
+  const items = [
+    "Item 1",
+    "Item 2",
+    "Item 3",
+    "Item 4",
+    "Item 5",
+    "Item 6",
+    "Item 7",
+  ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleImageClick = (image) => {
     setMainImage(image);
@@ -183,9 +270,148 @@ const Shop_details = () => {
         </div>
       </div>
       <div className="how-drink">
-        <p>HOW TO DRINK ?</p>
+        <img
+          src={windowWidth < 568 ? mask_group_1 : mask_group}
+          className={windowWidth < 568 ? "mask-group-too" : "mask-group"}
+        />
+        <div className="box-how-drink">
+          <p className="text-how-drink">HOW TO DRINK ?</p>
+
+          <div className="justify-content row">
+            <div className="kaew-bubble">
+              <div className="bubble-radius">1</div>
+              <div className="box-kaew">
+                <img src={kaew} className="image-kaew" />
+                <p className="text-kaew">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry
+                </p>
+              </div>
+            </div>
+            <div className="kaew-bubble ">
+              <div className="bubble-radius">2</div>
+              <div className="box-kaew">
+                <img src={kaew} className="image-kaew" />
+                <p className="text-kaew">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry
+                </p>
+              </div>
+            </div>
+            <div className="kaew-bubble">
+              <div className="bubble-radius">3</div>
+              <div className="box-kaew ">
+                <img src={kaew} className="image-kaew" />
+                <p className="text-kaew">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry
+                </p>
+              </div>
+            </div>
+            <div className="kaew-bubble">
+              <div className="bubble-radius">4</div>
+              <div className="box-kaew">
+                <img src={kaew} className="image-kaew" />
+                <p className="text-kaew">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div className="carousel box-product">
+        <div className="between">
+          <p>คุณอาจสนใจสิ่งนี้</p>
+          <p>ดูทั้งหมด</p>
+        </div>
+        <Slider {...carouselProperties}>
+          <div>
+            <h3>Item 1</h3>
+          </div>
+          <div>
+            <h3>Item 2</h3>
+          </div>
+          <div>
+            <h3>Item 3</h3>
+          </div>
+          <div>
+            <h3>Item 4</h3>
+          </div>
+          <div>
+            <h3>Item 5</h3>
+          </div>
+          <div>
+            <h3>Item 6</h3>
+          </div>
+          <div>
+            <h3>Item 7</h3>
+          </div>
+          <div>
+            <h3>Item 8</h3>
+          </div>
+          <div>
+            <h3>Item 9</h3>
+          </div>
+          <div>
+            <h3>Item 10</h3>
+          </div>
+        </Slider>
+      </div>
+
+      {/*  <div className="box-product">
+        <div className="between">
+          <p>คุณอาจสนใจสิ่งนี้</p>
+          <p>ดูทั้งหมด</p>
+        </div>
+        <div className="align-items">
+          <button onClick={prevSlide}>Prev</button>
+          <div className="carousel-container">
+            <div
+              className="carousel-slide"
+               style={{
+                transform: `translateX(-${
+                  currentIndex * (100 / itemsPerSlide)
+                }%)`,
+              }}
+            >
+              {items.map((item) => (
+                <div key={item} className="carousel-item">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+          <button onClick={nextSlide}>Next</button>
+        </div>
+      </div> */}
     </>
+  );
+};
+
+const Card = ({ item }) => {
+  return (
+    <div style={{ textAlign: "center" }}>
+      <img
+        className="multi__image"
+        src={item}
+        alt=""
+        style={{
+          width: "100%",
+          height: "170px",
+          objectFit: "contain",
+          marginBottom: "10px",
+        }}
+      />
+      <p style={{ fontSize: "14px", padding: "5px 0" }}>TOP TRNDING TVs</p>
+      <p style={{ fontSize: "16px", padding: "5px 0", color: "green" }}>
+        From ₹ 7,000
+      </p>
+      <p style={{ fontSize: "14px", padding: "5px 0", color: "gray" }}>
+        Up To ₹ 5,000 Off on HDFC
+      </p>
+    </div>
   );
 };
 
