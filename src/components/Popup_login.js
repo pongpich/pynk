@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../redux/pynk/auth"
 import './Popup_login.css';
 
 const Popup_login = ({ isOpen, onClose, children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const dispatch = useDispatch();
+  const user = useSelector(({ auth }) => (auth ? auth.user : ""));
+  const statusLogin = useSelector(({ auth }) => (auth ? auth.statusLogin : ""));
+
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -15,12 +22,17 @@ const Popup_login = ({ isOpen, onClose, children }) => {
   };
 
   const handleLogin = () => {
-    // ตรวจสอบข้อมูลผู้ใช้งานและรหัสผ่านที่ถูกกรอก
-    // ในสถานการณ์จริงคุณควรเชื่อมต่อกับเซิร์ฟเวอร์และตรวจสอบข้อมูลที่เป็นไปได้
-    if (email === 'user@gmail.com' && password === 'password') {
-      setLoggedIn(true);
-    }
+    dispatch(login(email, password))
   };
+
+  useEffect(() => {
+    if (statusLogin === "success") {
+      //setLoggedIn(true);
+    }
+    if (statusLogin === "fail") {
+      //setLoggedIn(false);
+    }
+  }, [statusLogin]);
 
   if (!isOpen) return null;
 
@@ -49,7 +61,8 @@ const Popup_login = ({ isOpen, onClose, children }) => {
         <div className='d-flex justify-content-center'>
           <button onClick={handleLogin}>เข้าสู่ระบบ</button>
         </div>
-        {loggedIn && <p className="success-message">เข้าสู่ระบบสำเร็จ!</p>}
+        {(statusLogin === "success") && <p className="success-message">เข้าสู่ระบบสำเร็จ!</p>}
+        {(statusLogin === "fail") && <p >เข้าสู่ระบบไม่สำเร็จ!</p>}
 
       </div>
     </div >

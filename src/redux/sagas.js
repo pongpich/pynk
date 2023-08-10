@@ -24,7 +24,8 @@ import { saga as getPlatform } from './platform/get';
 import { saga as updatePlatform } from './platform/update';
 
 //ของ Pynk
-import { saga as dashboardPynk} from './pynk/post'
+import { saga as dashboardPynk } from './pynk/post'
+import { saga as auth } from './pynk/auth'
 
 export default function* rootSaga(getState) {
   yield all([
@@ -53,6 +54,6 @@ export default function* rootSaga(getState) {
 
     //ของ Pynk
     dashboardPynk(),
-
+    auth(),
   ]);
 }
