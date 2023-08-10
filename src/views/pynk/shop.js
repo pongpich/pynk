@@ -13,22 +13,62 @@ import bfr_rope from "../../assets/img/pynk/shop/bfr_rope.png";
 import bfr_coupon from "../../assets/img/pynk/shop/bfr_coupon.png";
 import icon_cart_white from "../../assets/img/pynk/shop/icon_cart_white.png";
 
+
 import "./css/shop.css";
 
 function ShopPynk() {
-
   const [promotionalProduct, setPromotionalProduct] = useState([
-    { name: "BEBE FIT ROUTINE BALL", price: 199, discount_price: 99, img: bfr_ball },
-    { name: "BEBE FIT ROUTINE BALL 2", price: 299, discount_price: 199, img: bfr_ball },
-    { name: "BEBE FIT ROUTINE BALL 3", price: 399, discount_price: 299, img: bfr_ball },
-    { name: "BEBE FIT ROUTINE BALL 4", price: 499, discount_price: 399, img: bfr_ball },
+    {
+      name: "BEBE FIT ROUTINE BALL",
+      price: 199,
+      discount_price: 99,
+      img: bfr_ball,
+    },
+    {
+      name: "BEBE FIT ROUTINE BALL 2",
+      price: 299,
+      discount_price: 199,
+      img: bfr_ball,
+    },
+    {
+      name: "BEBE FIT ROUTINE BALL 3",
+      price: 399,
+      discount_price: 299,
+      img: bfr_ball,
+    },
+    {
+      name: "BEBE FIT ROUTINE BALL 4",
+      price: 499,
+      discount_price: 399,
+      img: bfr_ball,
+    },
   ]);
 
   const [newProduct, setNewProduct] = useState([
-    { name: "BEBE FIT ROUTINE ROPE", price: 456, discount_price: 123, img: bfr_rope },
-    { name: "BEBE FIT ROUTINE ROPE 2", price: 400, discount_price: 300, img: bfr_rope },
-    { name: "BEBE FIT ROUTINE ROPE 3", price: 320, discount_price: 250, img: bfr_rope },
-    { name: "BEBE FIT ROUTINE ROPE 4", price: 1000, discount_price: 770, img: bfr_rope },
+    {
+      name: "BEBE FIT ROUTINE ROPE",
+      price: 456,
+      discount_price: 123,
+      img: bfr_rope,
+    },
+    {
+      name: "BEBE FIT ROUTINE ROPE 2",
+      price: 400,
+      discount_price: 300,
+      img: bfr_rope,
+    },
+    {
+      name: "BEBE FIT ROUTINE ROPE 3",
+      price: 320,
+      discount_price: 250,
+      img: bfr_rope,
+    },
+    {
+      name: "BEBE FIT ROUTINE ROPE 4",
+      price: 1000,
+      discount_price: 770,
+      img: bfr_rope,
+    },
   ]);
 
   return (
@@ -61,10 +101,9 @@ function ShopPynk() {
         style={{
           justifyContent: "center",
           display: "flex",
-          margin: 0
+          margin: 0,
         }}
       >
-
         <div
           className="row d-flex justify-content-center align-items-center"
           style={{
@@ -88,9 +127,7 @@ function ShopPynk() {
             <span className="d-flex justify-content-center">
               อุปกรณ์ <br />
             </span>
-            <span className="d-flex justify-content-center">
-              ออกกำลังกาย
-            </span>
+            <span className="d-flex justify-content-center">ออกกำลังกาย</span>
           </div>
         </div>
 
@@ -117,9 +154,7 @@ function ShopPynk() {
             <span className="d-flex justify-content-center">
               Fitto <br />
             </span>
-            <span className="d-flex justify-content-center">
-              Plant Protein
-            </span>
+            <span className="d-flex justify-content-center">Plant Protein</span>
           </div>
         </div>
 
@@ -147,9 +182,7 @@ function ShopPynk() {
             <span className="d-flex justify-content-center">
               Fitto Pre-Work Out
             </span>
-            <span className="d-flex justify-content-center">
-              & Fat Burner
-            </span>
+            <span className="d-flex justify-content-center">& Fat Burner</span>
           </div>
         </div>
 
@@ -248,97 +281,209 @@ function ShopPynk() {
         </div>
       </div>
 
-
       <div style={{ marginTop: 70, marginBottom: 108, cursor: "pointer" }}>
         <div>
-
-          <div className="d-flex justify-content-between" style={{ paddingLeft: "10%", paddingRight: "10%", marginBottom: 16 }}>
-            <span className="fw-bold" style={{ color: "#4F4F4F", fontSize: 20 }} >สินค้าดีมีโปร</span>
-            <span className="text-decoration-underline" style={{ color: colors.primary4, fontSize: 14 }} >ดูทั้งหมด</span>
+          <div
+            className="d-flex justify-content-between"
+            style={{
+              paddingLeft: "10%",
+              paddingRight: "10%",
+              marginBottom: 16,
+            }}
+          >
+            <span
+              className="fw-bold"
+              style={{ color: "#4F4F4F", fontSize: 20 }}
+            >
+              สินค้าดีมีโปร
+            </span>
+            <span
+              className="text-decoration-underline"
+              style={{ color: colors.primary4, fontSize: 14 }}
+            >
+              ดูทั้งหมด
+            </span>
           </div>
 
-          <div className="row d-flex justify-content-center" style={{ gap: 30 }}>
-
+          <div
+            className="row d-flex justify-content-center"
+            style={{ gap: 30 }}
+          >
             {promotionalProduct.map((item) => (
               <div className="product" style={{ width: 275, padding: 0 }}>
                 <div
                   className="d-flex flex-column justify-content-center align-items-center"
-                  style={{ width: 51, height: 30, position: "absolute", marginTop: 8, marginLeft: 2, backgroundColor: "#FF4858", color: "white", borderRadius: 2 }}
+                  style={{
+                    width: 51,
+                    height: 30,
+                    position: "absolute",
+                    marginTop: 8,
+                    marginLeft: 2,
+                    backgroundColor: "#FF4858",
+                    color: "white",
+                    borderRadius: 2,
+                  }}
                 >
                   HOT
                 </div>
 
-                <div className="d-flex  justify-content-center align-items-center img_product" style={{ height: 250 }}>
+                <div
+                  className="d-flex  justify-content-center align-items-center img_product"
+                  style={{ height: 250 }}
+                >
                   <img width={275} height={250} src={item.img} />
                 </div>
 
-                <div className=" d-flex flex-column justify-content-center align-items-center detail_product" style={{ paddingTop: 23, paddingBottom: 31 }}>
-                  <div className="fw-bold" style={{ fontSize: 15, color: colors.neutral6 }}>{item.name}</div>
-                  <div className="fw-bold" style={{ fontSize: 22, color: colors.primary4 }}>
-                    {`฿${item.discount_price}`}{` `}
-                    <span className="fw-light text-decoration-line-through" style={{ fontSize: 15, color: "#9098B1" }}>
+                <div
+                  className=" d-flex flex-column justify-content-center align-items-center detail_product"
+                  style={{ paddingTop: 23, paddingBottom: 31 }}
+                >
+                  <div
+                    className="fw-bold"
+                    style={{ fontSize: 15, color: colors.neutral6 }}
+                  >
+                    {item.name}
+                  </div>
+                  <div
+                    className="fw-bold"
+                    style={{ fontSize: 22, color: colors.primary4 }}
+                  >
+                    {`฿${item.discount_price}`}
+                    {` `}
+                    <span
+                      className="fw-light text-decoration-line-through"
+                      style={{ fontSize: 15, color: "#9098B1" }}
+                    >
                       {`฿${item.price}`}
                     </span>
                   </div>
-                  <button type="button" className="btn justify-content-center align-items-center" style={{ backgroundColor: colors.primary4, width: 237, height: 46, borderRadius: 46, gap: 7, marginTop: 15, border: 0 }}>
+                  <button
+                    type="button"
+                    className="btn justify-content-center align-items-center"
+                    style={{
+                      backgroundColor: colors.primary4,
+                      width: 237,
+                      height: 46,
+                      borderRadius: 46,
+                      gap: 7,
+                      marginTop: 15,
+                      border: 0,
+                    }}
+                  >
                     <img width={18} height={18} src={icon_cart_white} />
-                    <span style={{ color: "white", fontSize: 18 }}>เพิ่มลงถุงช้อปปิ้ง</span>
+                    <span style={{ color: "white", fontSize: 18 }}>
+                      เพิ่มลงถุงช้อปปิ้ง
+                    </span>
                   </button>
                 </div>
               </div>
             ))}
-
           </div>
-
         </div>
       </div>
 
       <div style={{ marginTop: 70, marginBottom: 108, cursor: "pointer" }}>
-
-        <div className="d-flex justify-content-between" style={{ paddingLeft: "10%", paddingRight: "10%", marginBottom: 16 }}>
-          <span className="fw-bold" style={{ color: "#4F4F4F", fontSize: 20 }} >แนะนำสินค้าใหม่</span>
-          <span className="text-decoration-underline" style={{ color: colors.primary4, fontSize: 14 }} >ดูทั้งหมด</span>
+        <div
+          className="d-flex justify-content-between"
+          style={{ paddingLeft: "10%", paddingRight: "10%", marginBottom: 16 }}
+        >
+          <span className="fw-bold" style={{ color: "#4F4F4F", fontSize: 20 }}>
+            แนะนำสินค้าใหม่
+          </span>
+          <span
+            className="text-decoration-underline"
+            style={{ color: colors.primary4, fontSize: 14 }}
+          >
+            ดูทั้งหมด
+          </span>
         </div>
 
         <div className="row d-flex justify-content-center" style={{ gap: 30 }}>
-
           {newProduct.map((item) => (
             <div className="product" style={{ width: 275, padding: 0 }}>
               <div
                 className="d-flex flex-column justify-content-center align-items-center"
-                style={{ width: 51, height: 30, position: "absolute", marginTop: 8, marginLeft: 2, backgroundColor: "#FF4858", color: "white", borderRadius: 2 }}
+                style={{
+                  width: 51,
+                  height: 30,
+                  position: "absolute",
+                  marginTop: 8,
+                  marginLeft: 2,
+                  backgroundColor: "#FF4858",
+                  color: "white",
+                  borderRadius: 2,
+                }}
               >
                 HOT
               </div>
 
-              <div className="d-flex  justify-content-center align-items-center img_product" style={{ height: 250 }}>
+              <div
+                className="d-flex  justify-content-center align-items-center img_product"
+                style={{ height: 250 }}
+              >
                 <img width={275} height={250} src={item.img} />
               </div>
 
-              <div className="d-flex flex-column justify-content-center align-items-center detail_product" style={{ paddingTop: 23, paddingBottom: 31 }}>
-                <div className="fw-bold" style={{ fontSize: 15, color: colors.neutral6 }}>{item.name}</div>
-                <div className="fw-bold" style={{ fontSize: 22, color: colors.primary4 }}>
-                  {`฿${item.discount_price}`}{` `}
-                  <span className="fw-light text-decoration-line-through" style={{ fontSize: 15, color: "#9098B1" }}>
+              <div
+                className="d-flex flex-column justify-content-center align-items-center detail_product"
+                style={{ paddingTop: 23, paddingBottom: 31 }}
+              >
+                <div
+                  className="fw-bold"
+                  style={{ fontSize: 15, color: colors.neutral6 }}
+                >
+                  {item.name}
+                </div>
+                <div
+                  className="fw-bold"
+                  style={{ fontSize: 22, color: colors.primary4 }}
+                >
+                  {`฿${item.discount_price}`}
+                  {` `}
+                  <span
+                    className="fw-light text-decoration-line-through"
+                    style={{ fontSize: 15, color: "#9098B1" }}
+                  >
                     {`฿${item.price}`}
                   </span>
                 </div>
-                <button type="button" className="btn justify-content-center align-items-center" style={{ backgroundColor: colors.primary4, width: 237, height: 46, borderRadius: 46, gap: 7, marginTop: 15, border: 0 }}>
+                <button
+                  type="button"
+                  className="btn justify-content-center align-items-center"
+                  style={{
+                    backgroundColor: colors.primary4,
+                    width: 237,
+                    height: 46,
+                    borderRadius: 46,
+                    gap: 7,
+                    marginTop: 15,
+                    border: 0,
+                  }}
+                >
                   <img width={18} height={18} src={icon_cart_white} />
-                  <span style={{ color: "white", fontSize: 18 }}>เพิ่มลงถุงช้อปปิ้ง</span>
+                  <span style={{ color: "white", fontSize: 18 }}>
+                    เพิ่มลงถุงช้อปปิ้ง
+                  </span>
                 </button>
               </div>
             </div>
           ))}
-
         </div>
       </div>
 
-      <div className="d-flex justify-content-center" style={{ paddingLeft: 121, paddingRight: 121, marginTop: 70, marginBottom: 108, gap: 30 }}>
+      <div
+        className="d-flex justify-content-center"
+        style={{
+          paddingLeft: 121,
+          paddingRight: 121,
+          marginTop: 70,
+          marginBottom: 108,
+          gap: 30,
+        }}
+      >
         <img width={584} height={292} src={bfr_coupon} />
         <img width={584} height={292} src={bfr_coupon} />
       </div>
-
     </div>
   );
 }
