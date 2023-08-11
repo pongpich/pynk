@@ -67,9 +67,33 @@ const carouselProperties = {
       },
     },
     {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2,
+        centerMode: true,
+        slidesToScroll: 2,
+      },
+    },
+    {
       breakpoint: 1025,
       settings: {
-        slidesToShow: 4,
+        slidesToShow: 2,
+        centerMode: true,
+        slidesToScroll: 2,
+      },
+    },
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 3,
+        centerMode: true,
+        slidesToScroll: 2,
+      },
+    },
+    {
+      breakpoint: 1400,
+      settings: {
+        slidesToShow: 3,
         centerMode: true,
         slidesToScroll: 2,
       },
@@ -199,7 +223,13 @@ const Shop_details = () => {
             เหลือสินค้าอยู่ 33 ชิ้น
           </p>
           <div className="row justify-content-576">
-            <button className="shopping-bag">เพิ่มลงถุงช้อปปิ้ง</button>
+            <button
+              className="shopping-bag"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              เพิ่มลงถุงช้อปปิ้ง
+            </button>
             <button className="buy-now">ซื้อเลย</button>
           </div>
           <div className="row more-details">
@@ -434,6 +464,43 @@ const Shop_details = () => {
       </div>
 
       <Footer />
+
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-right">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
+                Modal title
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">...</div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" className="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
