@@ -13,6 +13,7 @@ import mask_group_1 from "../../../assets/img/pynk/shop/mask-group-1.png";
 import kaew from "../../../assets/img/pynk/shop/kaew.png";
 import image_product from "../../../assets/img/pynk/shop/image-product.png";
 import icon_circle from "../../../assets/img/pynk/shop/icon-circle.png";
+import delete_bin_line from "../../../assets/img/pynk/shop/delete-bin-line.png";
 
 import { flush } from "redux-saga/effects";
 let slidesToShow = 4;
@@ -292,8 +293,8 @@ const Shop_details = () => {
       </div>
       <div className="how-drink">
         <img
-          src={windowWidth < 568 ? mask_group_1 : mask_group}
-          className={windowWidth < 568 ? "mask-group-too" : "mask-group"}
+          src={windowWidth < 577 ? mask_group_1 : mask_group}
+          className={windowWidth < 577 ? "mask-group-too" : "mask-group"}
         />
         <div className="box-how-drink">
           <p className="text-how-drink">HOW TO DRINK ?</p>
@@ -472,11 +473,18 @@ const Shop_details = () => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-right">
+        <div
+          className={
+            windowWidth < 577 ? "modal-dialog" : "modal-dialog  modal-right"
+          }
+        >
           <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Modal title
+            <div className="modal-header-shop-details">
+              <h1
+                className="modal-title-shop-details fs-5"
+                id="exampleModalLabel"
+              >
+                ตะกร้าสินค้า
               </h1>
               <button
                 type="button"
@@ -485,18 +493,44 @@ const Shop_details = () => {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body">...</div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
-              </button>
+            <div className="modal-body-shop-details  row">
+              <div className="col-3">
+                <img src={picture01} className="model-image-slider" />
+              </div>
+              <div className="col-9">
+                <p className="fitto-shop">
+                  FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
+                </p>
+                <div className="plus-minus-box row">
+                  <p className="plus-minus back-g  col-6">
+                    <button
+                      className="minus back-g-btn"
+                      onClick={() => plusMinus("minus")}
+                    >
+                      {"-"}
+                    </button>
+                    <span className="plus-minus-number">{plusNumber}</span>
+                    <button
+                      className="plus back-g-btn"
+                      onClick={() => plusMinus("plus")}
+                    >
+                      {"+"}
+                    </button>
+                  </p>
+                  <img
+                    src={delete_bin_line}
+                    className="delete_bin_line col-3"
+                  />
+                  <p className="fitto-shop price-ml col-3">990 บาท</p>
+                </div>
+              </div>
+            </div>
+            <div className="modal-footer-shop-details">
+              <p className="fitto-shop between">
+                จำนวน 1 รายการ
+                <span>900 บาท</span>
+              </p>
+              <button className="model-buy-now">คิดเงิน</button>
             </div>
           </div>
         </div>

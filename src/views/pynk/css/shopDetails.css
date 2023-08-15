@@ -128,6 +128,8 @@
     .slide-span {
         font-size: 6px !important;
     }
+
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -351,7 +353,7 @@
 
 .plus-minus-number {
     position: absolute;
-    margin-top: 10px;
+    margin-top: 20px;
     color: var(--main-text);
     font-size: 16px;
     font-family: Regular;
@@ -669,4 +671,88 @@ button {
     margin-right: -1px !important;
     top: -31px !important;
     transform: translateY(-50%);
+}
+
+.modal-header-shop-details {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--bs-modal-header-padding);
+    border-bottom: none;
+}
+
+.modal-title-shop-details {
+    font-size: 20px;
+    color: var(--main-text);
+    font-family: SemiBold;
+}
+
+.model-image-slider {
+    width: 97px;
+    height: 96px;
+    border-radius: 8px;
+}
+
+.modal-body-shop-details {
+    padding-left: 20px;
+    padding-bottom: 94px;
+    padding-right: 20px;
+}
+
+.fitto-shop {
+    font-size: 16px;
+    color: var(--main-text);
+    font-family: SemiBold;
+}
+
+.plus-minus-box {
+    margin-top: -20px;
+}
+
+.back-g {
+    background-color: var(--lightest-pink-white);
+    width: 110px;
+}
+
+.back-g-btn {
+    background-color: var(--lightest-pink-white) !important;
+
+}
+
+.delete_bin_line {
+    margin-left: 16px;
+    margin-top: 45px;
+    width: 21px;
+    height: 21px;
+}
+
+.price-ml {
+    margin-top: 45px;
+    margin-left: 64px;
+}
+
+.modal-footer-shop-details {
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0px 20px 0px 20px;
+    padding: calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * .5);
+    background-color: var(--bs-modal-footer-bg);
+    border-top: var(--bs-modal-footer-border-width) solid var(--bs-modal-footer-border-color);
+    border-bottom-right-radius: var(--bs-modal-inner-border-radius);
+    border-bottom-left-radius: var(--bs-modal-inner-border-radius);
+}
+
+.model-buy-now {
+    background-color: var(--normal-pink);
+    border: 1px solid var(--normal-pink);
+    width: 100%;
+    margin-left: 0px;
+    height: 50px;
+    border-radius: 50px;
+    color: var(--white);
+    font-size: 18px;
+    font-family: SemiBold;
+    margin-bottom: 16px;
 }
