@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 import Footer from "../footer";
 import "../css/shopDetails.css";
 import picture01 from "../../../assets/img/pynk/shop/group-37546.png";
@@ -231,6 +232,7 @@ const Shop_details = () => {
             >
               เพิ่มลงถุงช้อปปิ้ง
             </button>
+
             <button className="buy-now">ซื้อเลย</button>
           </div>
           <div className="row more-details">
@@ -530,7 +532,15 @@ const Shop_details = () => {
                 จำนวน 1 รายการ
                 <span>900 บาท</span>
               </p>
-              <button className="model-buy-now">คิดเงิน</button>
+              <Link to="shop-order-summary">
+                <button
+                  className="model-buy-now"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  คิดเงิน
+                </button>
+              </Link>
             </div>
           </div>
         </div>
