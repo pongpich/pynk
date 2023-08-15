@@ -478,7 +478,7 @@ const Shop_details = () => {
             windowWidth < 577 ? "modal-dialog" : "modal-dialog  modal-right"
           }
         >
-          <div className="modal-content">
+          <div className="modal-content-shop-details">
             <div className="modal-header-shop-details">
               <h1
                 className="modal-title-shop-details fs-5"
