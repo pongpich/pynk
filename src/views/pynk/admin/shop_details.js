@@ -353,6 +353,7 @@ const Shop_details = () => {
         <div>
           <Slider {...carouselProperties}>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
@@ -363,6 +364,7 @@ const Shop_details = () => {
               </p>
             </div>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
@@ -373,6 +375,7 @@ const Shop_details = () => {
               </p>
             </div>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
@@ -383,6 +386,7 @@ const Shop_details = () => {
               </p>
             </div>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
@@ -393,6 +397,7 @@ const Shop_details = () => {
               </p>
             </div>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
@@ -403,6 +408,7 @@ const Shop_details = () => {
               </p>
             </div>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
@@ -413,6 +419,7 @@ const Shop_details = () => {
               </p>
             </div>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
@@ -423,6 +430,7 @@ const Shop_details = () => {
               </p>
             </div>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
@@ -433,6 +441,7 @@ const Shop_details = () => {
               </p>
             </div>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
@@ -443,6 +452,7 @@ const Shop_details = () => {
               </p>
             </div>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
@@ -453,6 +463,7 @@ const Shop_details = () => {
               </p>
             </div>
             <div className="box-item cursor-pointer">
+              <p className="hot-shop-details">HOT</p>
               <img src={image_product} className="image-slider" />
               <div className="slider-hr" />
               <p className="text-center text-head-slider">
