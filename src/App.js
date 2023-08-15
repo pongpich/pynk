@@ -6,7 +6,8 @@ import Home from "../src/views/pynk/home";
 import DashboardPynk from "./views/pynk/admin/dashboard";
 import ShopPynk from "./views/pynk/shop";
 import ShopDetailsPynk from "./views/pynk/admin/shop_details";
-import Popup_login from './components/Popup_login';
+import ShopChargePynk from "./views/pynk/admin/shop_charge";
+import Popup_login from "./components/Popup_login";
 import Login from "../src/views/pynk/login";
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -91,7 +92,7 @@ class App extends Component {
       colorVideo: "nav-link pointer color1",
       thEn: null,
       inBeforeXdays: 7,
-      isPopupLoginOpen: false
+      isPopupLoginOpen: false,
     };
   }
 
@@ -531,12 +532,11 @@ class App extends Component {
   }
 
   openPopup() {
-    this.setState({ isPopupLoginOpen: true })
-  };
+    this.setState({ isPopupLoginOpen: true });
+  }
   closePopup() {
-    this.setState({ isPopupLoginOpen: false })
-  };
-
+    this.setState({ isPopupLoginOpen: false });
+  }
 
   render() {
     const { locale } = this.props;
@@ -550,7 +550,10 @@ class App extends Component {
         >
           <div className="App">
             {this.renderNavbar()}
-            <Popup_login isOpen={this.state.isPopupLoginOpen} onClose={() => this.closePopup()} />
+            <Popup_login
+              isOpen={this.state.isPopupLoginOpen}
+              onClose={() => this.closePopup()}
+            />
 
             <header className="App-header ">
               <Switch>
@@ -561,6 +564,7 @@ class App extends Component {
                 <Route path="/dashboard" component={DashboardPynk} />
                 <Route path="/shop" component={ShopPynk} />
                 <Route path="/shop_details" component={ShopDetailsPynk} />
+                <Route path="/shop_charge" component={ShopChargePynk} />
                 <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />
                 <Route
