@@ -129,6 +129,17 @@
         font-size: 6px !important;
     }
 
+    .price-ml {
+        margin-left: 10px !important;
+    }
+
+    .delete_bin_line {
+        margin-left: 10px !important;
+    }
+
+    .plus-minus-box {
+        margin-right: -50px !important;
+    }
 
 }
 

@@ -494,10 +494,10 @@ const Shop_details = () => {
               ></button>
             </div>
             <div className="modal-body-shop-details  row">
-              <div className="col-3">
+              <div className="col-4 col-md-3">
                 <img src={picture01} className="model-image-slider" />
               </div>
-              <div className="col-9">
+              <div className="col-8 col-md-9">
                 <p className="fitto-shop">
                   FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
                 </p>
