@@ -26,7 +26,7 @@ const Shop_order_summary = () => {
                 <p className="text-head-order-summary">สรุปรายการสั่งซื้อ</p>
                 <div className="modal-body-shop-details  row">
                   <div className="col-3">
-                    <img src={picture01} className="image-product" />
+                    <img src={picture01} className="image-product-order" />
                   </div>
                   <div className="col-7"></div>
                   <div className="col-2">999 บาท</div>
