@@ -14,5 +14,31 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 701px;
+    min-height: 701px;
+}
+
+.order-summary {
+    margin-top: 60px;
+    width: 714px;
+    min-height: 396px;
+    background-color: rgba(255, 255, 255, 0.54);
+    border-radius: 16px;
+    border: 2px solid var(--white);
+    padding: 42px 22px 42px 22px;
+
+}
+
+.order {
+    border: 2px solid var(--white);
+}
+
+.text-head-order-summary {
+    color: var(--main-text);
+    font-size: 24px;
+    font-family: SemiBold;
+}
+
+.image-product {
+    width: 100px;
+    height: 99px;
 }

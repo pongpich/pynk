@@ -511,21 +511,23 @@ const Shop_details = () => {
                   FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
                 </p>
                 <div className="plus-minus-box row">
-                  <p className="plus-minus back-g  col-6">
-                    <button
-                      className="minus back-g-btn"
-                      onClick={() => plusMinus("minus")}
-                    >
-                      {"-"}
-                    </button>
-                    <span className="plus-minus-number">{plusNumber}</span>
-                    <button
-                      className="plus back-g-btn"
-                      onClick={() => plusMinus("plus")}
-                    >
-                      {"+"}
-                    </button>
-                  </p>
+                  <div className="plus-minus-model back-g  col-6">
+                    <div className="mt-model">
+                      <button
+                        className="minus-model back-g-btn"
+                        onClick={() => plusMinus("minus")}
+                      >
+                        <span className="minus-span">-</span>
+                      </button>
+                      <span className="plus-minus-number">{plusNumber}</span>
+                      <button
+                        className="plus-model back-g-btn"
+                        onClick={() => plusMinus("plus")}
+                      >
+                        <span className="minus-span">+</span>
+                      </button>
+                    </div>
+                  </div>
                   <img
                     src={delete_bin_line}
                     className="delete_bin_line col-3"
