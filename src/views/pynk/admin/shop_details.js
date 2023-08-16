@@ -293,15 +293,11 @@ const Shop_details = () => {
           </div>
         </div>
       </div>
-      <div className="how-drink">
-        <img
-          src={windowWidth < 577 ? mask_group_1 : mask_group}
-          className={windowWidth < 577 ? "mask-group-too" : "mask-group"}
-        />
+      <div className="how-drink background-shop-details">
         <div className="box-how-drink">
           <p className="text-how-drink">HOW TO DRINK ?</p>
 
-          <div className="justify-content row">
+          <div className="justify-content margin-top row">
             <div className="kaew-bubble">
               <div className="bubble-radius">1</div>
               <div className="box-kaew">

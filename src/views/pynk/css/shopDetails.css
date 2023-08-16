@@ -66,23 +66,21 @@
     }
 
     .kaew-bubble {
-        width: 132px !important;
+        width: 160px !important;
         height: 151px !important;
         margin-right: 8px !important;
     }
 
     .box-kaew {
-        width: 132px !important;
         border-radius: 23px !important;
         padding-top: 19px !important;
         padding-bottom: 18px !important;
+        margin-top: 20px !important;
     }
 
     .bubble-radius {
         width: 24px !important;
         height: 24px !important;
-        margin-left: 55px !important;
-        margin-top: 20px !important;
         font-size: 15px !important;
     }
 
@@ -141,6 +139,12 @@
         margin-right: -50px !important;
     }
 
+
+    .how-drink {
+
+        height: 602px !important;
+    }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -187,12 +191,24 @@
         font-size: 6px !important;
         border-radius: 0px 2px 2px 0px !important;
     }
+
+    .background-shop-details {
+
+        background-position: inherit !important;
+
+    }
+}
+
+.margin-top {
+    margin-top: 30px;
 }
 
 .justify-content {
-    justify-content: center !important;
-    display: flex !important;
+    justify-content: center;
+    display: flex;
 }
+
+
 
 .text-center {
     text-align: center;
@@ -474,6 +490,7 @@
 .box-how-drink {
     position: relative;
     z-index: 1;
+    padding: 67px 0px 67px 0px;
 }
 
 
@@ -481,8 +498,7 @@
     margin-top: 64px;
     background-color: var(--lightest-pink);
     width: 100%;
-    padding-top: 67px;
-    padding-bottom: 67px;
+
     height: auto;
 }
 
@@ -507,13 +523,15 @@
     height: 323px;
     margin-right: 26px;
     margin-bottom: 40px;
+    justify-content: center;
+    position: relative;
 }
 
 
 
 .box-kaew {
     margin-top: 40px;
-    width: 280px;
+    width: 100%;
     height: auto;
     border-radius: 48px;
     background-color: var(--light-pink);
@@ -535,7 +553,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    margin-left: 115px;
+    left: 50%;
+    transform: translate(-50%);
     font-size: 32px;
     color: var(--normal-pink);
     font-family: Medium;
@@ -553,6 +572,7 @@
     margin: 23px 34px 0px 34px;
     font-family: Regular;
     font-size: 16px;
+    text-align: center;
     color: var(--main-text);
 }
 
@@ -805,4 +825,12 @@ button {
     font-size: 14px;
     font-family: Regular;
     border-radius: 0px 4px 4px 0px;
+}
+
+.background-shop-details {
+    background-image: url('../../../assets/img/pynk/shop/mask-group.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
