@@ -21,6 +21,10 @@
         padding-left: 10px !important;
         padding-right: 0 !important;
     }
+
+    .box-button-login {
+        padding: 0 !important;
+    }
 }
 
 @media only screen and (min-width: 577px) and (max-width: 768px) {
@@ -54,6 +58,10 @@
 .between {
     justify-content: space-between;
     display: flex;
+}
+
+.mt-16 {
+    margin-top: 16px !important;
 }
 
 .mt-32 {
@@ -213,4 +221,61 @@
     width: 141px;
     height: 32px;
     margin-bottom: 8px;
+}
+
+.modal-body-payment {
+    height: auto;
+}
+
+.modal-content-payment {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--width) solid var(--width);
+    border-radius: 0;
+    outline: 0;
+    padding: 0px 32px 53px 32px;
+}
+
+.want-login {
+    text-align: center;
+    color: var(--main-text);
+    font-size: 24px;
+    font-family: SemiBold;
+}
+
+.btn-want-login {
+    background-color: var(--white);
+    width: 100%;
+    padding: 9px 22px 9px 22px !important;
+    border: 1px solid var(--normal-pink);
+    color: var(--main-text);
+    border-radius: 50px;
+    font-size: 20px;
+    font-family: Regular;
+    margin-left: 0 !important;
+
+}
+
+.or-login {
+    text-align: center;
+    color: var(--disabled-text);
+    font-size: 20px;
+    font-family: Regular;
+}
+
+.box-button-login {
+    padding: 0 25px 0 25px;
+}
+
+.icon-login-model {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
 }

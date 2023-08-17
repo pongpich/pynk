@@ -10,6 +10,10 @@ import Logo_payment_2 from "../../../assets/img/pynk/shop/Logo-payment-2.png";
 import Logo_payment_3 from "../../../assets/img/pynk/shop/Logo-payment-3.png";
 import Logo_payment_4 from "../../../assets/img/pynk/shop/Logo-payment-4.png";
 import Logo_payment_5 from "../../../assets/img/pynk/shop/Logo-payment-5.png";
+import icon_Email from "../../../assets/img/pynk/shop/icon-Email.png";
+import icon_Google from "../../../assets/img/pynk/shop/icon-Google.png";
+import icon_facebook from "../../../assets/img/pynk/shop/icon-facebook.png";
+import icon_line from "../../../assets/img/pynk/shop/icon-line.png";
 
 const Shop_order_summary = () => {
   const [plusNumber, setPlusNumber] = useState(1);
@@ -120,7 +124,7 @@ const Shop_order_summary = () => {
                 <div className="input-code">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="exampleFormControlInput1"
                     placeholder="ใส่รหัสส่วนลด"
                   />
@@ -136,7 +140,13 @@ const Shop_order_summary = () => {
                 <p className="text-price-order between text-pink">
                   ยอดที่ต้องชำระ<span>1,030 บาท</span>
                 </p>
-                <button className="btn-buy-payment">ดำเนินการชำระเงิน</button>
+                <button
+                  className="btn-buy-payment"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModalPayment"
+                >
+                  ดำเนินการชำระเงิน
+                </button>
               </div>
 
               <p className="text-price-order mt-32">รับชำระด้วย</p>
@@ -150,6 +160,54 @@ const Shop_order_summary = () => {
         </div>
         {/*         //Logo_payment_1 */}
         <Footer />
+      </div>
+
+      <div
+        className="modal fade"
+        id="exampleModalPayment"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content-payment">
+            <div className="modal-header">
+              <button
+                type="button"
+                className="btn-close mt-16"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body-payment justify-content">
+              <div className="box-button-login">
+                <p className="want-login">
+                  ต้องการเข้าสู่ระบบ/ ลงทะเบียนของเราหรือไม่?
+                </p>
+                <button className="btn-want-login">
+                  <img src={icon_Email} className="icon-login-model" />
+                  เข้าใช้งานด้วย Email
+                </button>
+                <button className="btn-want-login">
+                  <img src={icon_Google} className="icon-login-model" />
+                  เข้าใช้งานด้วย Google
+                </button>
+                <button className="btn-want-login">
+                  <img src={icon_facebook} className="icon-login-model" />
+                  เข้าใช้งานด้วย Facebook
+                </button>
+                <button className="btn-want-login">
+                  <img src={icon_line} className="icon-login-model" />
+                  เข้าใช้งานด้วย Line
+                </button>
+                <p className="or-login"> หรือ</p>
+                <button className="btn-want-login">
+                  สั่งซื้อโดยไม่ได้เป็นสมาชิก
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
