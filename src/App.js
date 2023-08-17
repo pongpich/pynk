@@ -9,6 +9,7 @@ import ShopDetailsPynk from "./views/pynk/admin/shop_details";
 import ShopOrderSummaryPynk from "./views/pynk/admin/shop_order_summary";
 import Popup_login from "./components/Popup_login";
 import Login from "../src/views/pynk/login";
+import Questionare from "../src/views/pynk/questionare";
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
 import Buy_program from "../src/views/stay_fit/information/buy_program";
@@ -418,8 +419,6 @@ class App extends Component {
                   id="navbarSupportedContent"
                 >
                   <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
-                    <li className="nav-item"></li>
-                    <li className="nav-item"></li>
                   </ul>
                   <button
                     className="nav-link nav-linkHead2 pointer bold"
@@ -564,6 +563,7 @@ class App extends Component {
                 <Route path="/dashboard" component={DashboardPynk} />
                 <Route path="/shop" component={ShopPynk} />
                 <Route path="/shop_details" component={ShopDetailsPynk} />
+                <Route path="/questionare" component={Questionare} />
                 <Route
                   path="/shop-order-summary"
                   component={ShopOrderSummaryPynk}
