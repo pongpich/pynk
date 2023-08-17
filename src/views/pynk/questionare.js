@@ -3,7 +3,7 @@ import "./css/questionare.css";
 
 const Questionare = () => {
   const [showFinalResults, setFinalResults] = useState(false);
-  const [currentQuestions, setCurrentQuestions] = useState(0);
+  const [currentQuestions, setCurrentQuestions] = useState(3);
 
   const questions = [
     {
@@ -36,7 +36,10 @@ const Questionare = () => {
       text: "4.เพื่อเป้าหมายแล้ว คุณสนใจที่จะปรับพฤติกรรมด้านสุขภาพอย่างไร",
       options: [
         { id: 0, text: "พร้อมที่จะทำทุกอย่าง ถ้าได้ผลลัพธ์ตามเป้าหมาย" },
-        { id: 1, text: "จะพยายามอย่างเต็มที่ แต่ต้องไม่กระทบกับไลฟ์สไตล์ในปัจจุบัน" },
+        {
+          id: 1,
+          text: "จะพยายามอย่างเต็มที่ แต่ต้องไม่กระทบกับไลฟ์สไตล์ในปัจจุบัน",
+        },
         { id: 2, text: "สนใจดูแลสุขภาพ ในแบบที่ไม่ต้องออกกำลังกาย" },
         { id: 3, text: "ยังไม่มีแผนเลย" },
       ],
@@ -72,15 +75,23 @@ const Questionare = () => {
         ) : (
           <div className="frame">
             <div className="questionare-container">
-              <div className="progress-bar">Progress-bar</div>
+              <div className="progress-bar-container">
+                <div
+                  className="progress-bar"
+                  style={{ width: `${(currentQuestions+1)/questions.length*100}%` }}
+                >
+                </div>
+              </div>
+              <div className="lower-progress-bar">
+                  <p style={{textAlign:"left"}}> ย้อนกลับ </p>
+                  <p style={{textAlign:"end"}}> {currentQuestions+1 + "/" + questions.length} </p>
+                </div>
               <div className="questionare-card">
-                <h2>1. เป้าหมายในการดูแลสุขภาพของคุณคืออะไร</h2>
+                <h2>{questions[currentQuestions].text}</h2>
 
                 <ul>
                   {questions[currentQuestions].options.map((option) => {
-                    return (
-                    <li key={option.id}>{option.text}</li>
-                    );
+                    return <li key={option.id}>{option.text}</li>;
                   })}
                 </ul>
               </div>
