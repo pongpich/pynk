@@ -7,6 +7,27 @@ const Questionare = () => {
 
   const [data, setData] = useState([]);
 
+  const [isChecked1, setIsChecked1] = useState(false);
+  const [isChecked2, setIsChecked2] = useState(false);
+  const [isChecked3, setIsChecked3] = useState(false);
+  const [isChecked4, setIsChecked4] = useState(false);
+  const [isChecked5, setIsChecked5] = useState(false);
+  const [isChecked6, setIsChecked6] = useState(false);
+
+  function handleCheckboxChange(id) {
+    id === 0
+      ? setIsChecked1(!isChecked1)
+      : id === 1
+      ? setIsChecked2(!isChecked2)
+      : id === 2
+      ? setIsChecked3(!isChecked3)
+      : id === 3
+      ? setIsChecked4(!isChecked4)
+      : id === 4
+      ? setIsChecked5(!isChecked5)
+      : setIsChecked6(!isChecked6);
+  }
+
   function selectCoice(index, questions, type, choice) {
     const selectedUser = {
       index: index,
@@ -15,12 +36,15 @@ const Questionare = () => {
       selected_choice: choice,
     };
     setData([...data, selectedUser]);
-    setCurrentQuestions(currentQuestions + 1);
+    if (type === "multi choice") {
+    } else {
+      setCurrentQuestions(currentQuestions + 1);
+    }
   }
 
   useEffect(() => {
-    console.log("data",data);
-  }, [data])
+    console.log("data", data);
+  }, [data]);
 
   const questions = [
     {
@@ -146,29 +170,41 @@ const Questionare = () => {
 
                 <ul>
                   {options.map((option) => {
-                    return (
-                      {type === "multi choice" ?
-                      (<li
+                    return type === "multi choice" ? (
+                      <li
                         onClick={() => {
                           selectCoice(index, question, type, option);
                         }}
                         key={option.id}
                       >
-                        adbjo
+                        <input
+                          type="checkbox"
+                          checked={
+                            option.id === 0
+                              ? isChecked1
+                              : option.id === 1
+                              ? isChecked2
+                              : option.id === 2
+                              ? isChecked3
+                              : option.id === 3
+                              ? isChecked4
+                              : option.id === 4
+                              ? isChecked5
+                              : isChecked6
+                          }
+                          onChange={() => handleCheckboxChange(option.id)}
+                        />
                         {option.text}
-                      </li>)
-
-                       :
-                       (<li
+                      </li>
+                    ) : (
+                      <li
                         onClick={() => {
                           selectCoice(index, question, type, option);
                         }}
                         key={option.id}
                       >
                         {option.text}
-                      </li>)
-                      }
-                      
+                      </li>
                     );
                   })}
                 </ul>
