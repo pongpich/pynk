@@ -7,6 +7,7 @@ import DashboardPynk from "./views/pynk/admin/dashboard";
 import ShopPynk from "./views/pynk/shop";
 import ShopDetailsPynk from "./views/pynk/admin/shop_details";
 import ShopOrderSummaryPynk from "./views/pynk/admin/shop_order_summary";
+import ShopPaymentPynk from "./views/pynk/admin/shop_payment";
 import Popup_login from "./components/Popup_login";
 import Login from "../src/views/pynk/login";
 import Questionare from "../src/views/pynk/questionare";
@@ -567,6 +568,7 @@ class App extends Component {
                   path="/shop-order-summary"
                   component={ShopOrderSummaryPynk}
                 />
+                <Route path="/shop-payment" component={ShopPaymentPynk} />
                 <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />
                 <Route
@@ -734,7 +736,7 @@ class App extends Component {
 }
 
 const mapStateToProps = ({ authUser, get, settings }) => {
-   const { register_log } = get;
+  const { register_log } = get;
   const { user, statusGetExpireDate } = authUser;
   let locale;
   if (settings) {
