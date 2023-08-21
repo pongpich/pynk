@@ -362,7 +362,9 @@
     font-size: 16px;
     font-family: Regular;
 }
-
+.cursor-pointer {
+    cursor: pointer;
+}
 .forgot-password {
     color: #0094FF;
     font-size: 18px;

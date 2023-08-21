@@ -45,7 +45,10 @@ const Shop_order_summary = () => {
               <p className="want-login">
                 ต้องการเข้าสู่ระบบ/ ลงทะเบียนของเราหรือไม่?
               </p>
-              <button className="btn-want-login">
+              <button
+                className="btn-want-login"
+                onClick={() => setStatusLogin(1)}
+              >
                 <img src={icon_Email} className="icon-login-model" />
                 เข้าใช้งานด้วย Email
               </button>
@@ -77,7 +80,11 @@ const Shop_order_summary = () => {
       <>
         <div className="modal-content-payment-form">
           <div className="modal-header">
-            <img src={arrow_left_line} className="arrow-left-line-form" />
+            <img
+              src={arrow_left_line}
+              className="arrow-left-line-form cursor-pointer"
+              onClick={() => setStatusLogin(0)}
+            />
           </div>
           <div className="modal-body-payment ">
             <div className="box-button-login">
