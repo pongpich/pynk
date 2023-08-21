@@ -17,6 +17,8 @@ import icon_line from "../../../assets/img/pynk/shop/icon-line.png";
 
 const Shop_order_summary = () => {
   const [plusNumber, setPlusNumber] = useState(1);
+  const [statusLogin, setStatusLogin] = useState(1);
+  const [statusContinue, setStatusContinue] = useState(0);
 
   const plusMinus = (type) => {
     if (type === "plus") {
@@ -24,6 +26,107 @@ const Shop_order_summary = () => {
     } else if (plusNumber > 1) {
       setPlusNumber((prevNumber) => prevNumber - 1);
     }
+  };
+
+  const selectLogin = () => {
+    return (
+      <>
+        <div className="modal-content-payment">
+          <div className="modal-header">
+            <button
+              type="button"
+              className="btn-close mt-16"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div className="modal-body-payment justify-content">
+            <div className="box-button-login">
+              <p className="want-login">
+                ต้องการเข้าสู่ระบบ/ ลงทะเบียนของเราหรือไม่?
+              </p>
+              <button className="btn-want-login">
+                <img src={icon_Email} className="icon-login-model" />
+                เข้าใช้งานด้วย Email
+              </button>
+              <button className="btn-want-login">
+                <img src={icon_Google} className="icon-login-model" />
+                เข้าใช้งานด้วย Google
+              </button>
+              <button className="btn-want-login">
+                <img src={icon_facebook} className="icon-login-model" />
+                เข้าใช้งานด้วย Facebook
+              </button>
+              <button className="btn-want-login">
+                <img src={icon_line} className="icon-login-model" />
+                เข้าใช้งานด้วย Line
+              </button>
+              <p className="or-login"> หรือ</p>
+              <button className="btn-want-login">
+                สั่งซื้อโดยไม่ได้เป็นสมาชิก
+              </button>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const formLogin = () => {
+    return (
+      <>
+        <div className="modal-content-payment-form">
+          <div className="modal-header">
+            <img src={arrow_left_line} className="arrow-left-line-form" />
+          </div>
+          <div className="modal-body-payment ">
+            <div className="box-button-login">
+              <p className="want-login want-to">เข้าใช้งานด้วยอีเมล</p>
+              <div className="box-input">
+                <form>
+                  <p className="text-login-payment">
+                    อีเมลเข้าใช้งาน{" "}
+                    <span className="login-payment-span">*</span>
+                  </p>
+                  <input
+                    type="text"
+                    className="input-form-login"
+                    placeholder="example@mail.com"
+                  />
+                  <p className="text-login-payment">
+                    รหัสผ่าน <span className="login-payment-span">*</span>
+                  </p>
+                  <div className="input-password">
+                    <input
+                      type="text"
+                      className="input-form-login"
+                      placeholder="กรุณาระบุรหัสผ่าน"
+                    />
+                    <span className="show-pass">แสดง</span>
+                  </div>
+                </form>
+                <a className="forgot-password">ลืมรหัสผ่าน?</a>
+                <button
+                  className={
+                    statusContinue == 0
+                      ? "btn-continue-payment"
+                      : "btn-buy-payment"
+                  }
+                >
+                  ดำเนินการต่อ
+                </button>
+                <p className="or-access">หรือเข้าใช้งานด้วย</p>
+                <div className="justify-content">
+                  <img src={icon_Google} className="icon-login" />
+                  <img src={icon_facebook} className="icon-login" />
+                  <img src={icon_line} className="icon-login" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
   };
 
   return (
@@ -170,43 +273,7 @@ const Shop_order_summary = () => {
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content-payment">
-            <div className="modal-header">
-              <button
-                type="button"
-                className="btn-close mt-16"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body-payment justify-content">
-              <div className="box-button-login">
-                <p className="want-login">
-                  ต้องการเข้าสู่ระบบ/ ลงทะเบียนของเราหรือไม่?
-                </p>
-                <button className="btn-want-login">
-                  <img src={icon_Email} className="icon-login-model" />
-                  เข้าใช้งานด้วย Email
-                </button>
-                <button className="btn-want-login">
-                  <img src={icon_Google} className="icon-login-model" />
-                  เข้าใช้งานด้วย Google
-                </button>
-                <button className="btn-want-login">
-                  <img src={icon_facebook} className="icon-login-model" />
-                  เข้าใช้งานด้วย Facebook
-                </button>
-                <button className="btn-want-login">
-                  <img src={icon_line} className="icon-login-model" />
-                  เข้าใช้งานด้วย Line
-                </button>
-                <p className="or-login"> หรือ</p>
-                <button className="btn-want-login">
-                  สั่งซื้อโดยไม่ได้เป็นสมาชิก
-                </button>
-              </div>
-            </div>
-          </div>
+          {statusLogin == 0 ? selectLogin() : formLogin()}
         </div>
       </div>
     </>

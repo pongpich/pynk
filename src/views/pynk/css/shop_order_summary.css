@@ -160,6 +160,11 @@
     margin-right: 8px;
 }
 
+.arrow-left-line-form {
+    width: 24px;
+    height: 24px;
+}
+
 .box-proceed-payment {
     margin-top: 60px;
     width: 454px;
@@ -192,6 +197,20 @@
 .btn-buy-payment {
     background-color: var(--normal-pink);
     border: 1px solid var(--normal-pink);
+    width: 100%;
+    margin-left: 0px;
+    height: 50px;
+    border-radius: 50px;
+    color: var(--white);
+    font-size: 18px;
+    font-family: SemiBold;
+    margin-bottom: 16px;
+    margin-top: 35px;
+}
+
+.btn-continue-payment {
+    background-color: var(--disabled-BG);
+    border: 1px solid var(--disabled-BG);
     width: 100%;
     margin-left: 0px;
     height: 50px;
@@ -238,9 +257,25 @@
     background-color: var(--bs-modal-bg);
     background-clip: padding-box;
     border: var(--width) solid var(--width);
-    border-radius: 0;
+    border-radius: 16px;
     outline: 0;
     padding: 0px 32px 53px 32px;
+}
+
+.modal-content-payment-form {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+    border: var(--width) solid var(--width);
+    border-radius: 16px;
+    outline: 0;
+    padding: 0px 0px 53px 0px;
 }
 
 .want-login {
@@ -248,6 +283,10 @@
     color: var(--main-text);
     font-size: 24px;
     font-family: SemiBold;
+}
+
+.want-to {
+    margin-top: -16px;
 }
 
 .btn-want-login {
@@ -278,4 +317,64 @@
     width: 20px;
     height: 20px;
     margin-right: 6px;
+}
+
+.icon-login {
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+    margin-left: 16px;
+}
+
+.text-login-payment {
+    color: var(--main-text);
+    font-size: 16px;
+    font-family: Regular;
+}
+
+.login-payment-span {
+    color: var(--normal-red);
+}
+
+.box-input {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.input-form-login {
+    margin-top: 0px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.input-password {
+    position: relative;
+}
+
+.show-pass {
+    position: absolute;
+    display: flex;
+    right: 0;
+    margin-top: -50px;
+    margin-right: 16px;
+    color: var(--disabled-text);
+    font-size: 16px;
+    font-family: Regular;
+}
+
+.forgot-password {
+    color: #0094FF;
+    font-size: 18px;
+    font-family: Regular;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.or-access {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 16px;
+    font-family: Regular;
+    color: #4F4F4F;
 }

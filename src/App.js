@@ -418,8 +418,7 @@ class App extends Component {
                   className="collapse navbar-collapse padding-left3"
                   id="navbarSupportedContent"
                 >
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
-                  </ul>
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold"></ul>
                   <button
                     className="nav-link nav-linkHead2 pointer bold"
                     onClick={() => this.props.history.push("/programPackage")}
@@ -735,7 +734,7 @@ class App extends Component {
 }
 
 const mapStateToProps = ({ authUser, get, settings }) => {
-  const { register_log } = get;
+   const { register_log } = get;
   const { user, statusGetExpireDate } = authUser;
   let locale;
   if (settings) {
