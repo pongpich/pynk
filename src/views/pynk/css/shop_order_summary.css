@@ -25,6 +25,37 @@
     .box-button-login {
         padding: 0 !important;
     }
+
+
+
+    .box-form-payment {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        background-color: rgba(232, 232, 232, 1) !important;
+        border: 2px solid rgba(232, 232, 232, 1) !important;
+        border-radius: 0 !important;
+        padding: 39px 16px 85px 16px !important;
+    }
+
+    .box-line-placeholder {
+        margin-left: -20px !important;
+        width: 66px !important;
+    }
+
+    .box-line-pink {
+        width: 33px !important;
+    }
+
+    .circle-p {
+        font-size: 11px !important;
+    }
+
+    .mt-32-576 {
+        margin-top: 32px;
+        padding-right: 0px !important;
+    }
+
+
 }
 
 @media only screen and (min-width: 577px) and (max-width: 768px) {
@@ -48,6 +79,10 @@
     .back-g {
         margin-left: 20px !important;
         margin-top: -5px !important;
+    }
+
+    .box-form-payment {
+        padding: 39px 16px 85px 16px !important;
     }
 }
 
@@ -111,6 +146,12 @@
 .text-price-order {
     color: var(--main-text);
     font-size: 20px;
+    font-family: SemiBold;
+}
+
+.text-order {
+    color: var(--main-text);
+    font-size: 16px;
     font-family: SemiBold;
 }
 
@@ -205,7 +246,7 @@
     font-size: 18px;
     font-family: SemiBold;
     margin-bottom: 16px;
-    margin-top: 35px;
+    margin-top: 32px;
 }
 
 .btn-continue-payment {
@@ -219,8 +260,9 @@
     font-size: 18px;
     font-family: SemiBold;
     margin-bottom: 16px;
-    margin-top: 35px;
+    margin-top: 32px;
 }
+
 
 .logo-payment-1 {
     width: 32px;
@@ -352,6 +394,10 @@
     position: relative;
 }
 
+.position-relative {
+    position: relative;
+}
+
 .show-pass {
     position: absolute;
     display: flex;
@@ -362,9 +408,11 @@
     font-size: 16px;
     font-family: Regular;
 }
+
 .cursor-pointer {
     cursor: pointer;
 }
+
 .forgot-password {
     color: #0094FF;
     font-size: 18px;
@@ -379,4 +427,278 @@
     font-size: 16px;
     font-family: Regular;
     color: #4F4F4F;
+}
+
+.box-form-payment {
+    position: relative;
+    margin-top: 68px;
+    width: 100%;
+    height: 1465px;
+    background-color: rgba(232, 232, 232, 1);
+    border: 2px solid var(--white);
+    border-radius: 52px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 39px 77px 85px 77px;
+    display: flex;
+    justify-content: center;
+}
+
+.box-circle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.circle-number {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+    background-color: var(--normal-pink);
+
+}
+
+.circle-number-darkest {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+    background-color: var(--darkest-pink);
+
+}
+
+.box-row {
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+
+.circle-number-bg {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+    background-color: var(--disabled-BG);
+}
+
+.circle-p {
+    margin-top: 41px;
+    z-index: 0;
+    color: #4A4A4A;
+    font-size: 16px;
+    font-family: Regular;
+}
+
+.circle-p-none {
+    color: var(--placeholder) !important;
+
+}
+
+.circle-span {
+    color: var(--white);
+    font-size: 16px;
+    font-family: SemiBold;
+}
+
+.circle-span-disabled {
+    color: var(--disabled-text) !important;
+    font-size: 16px;
+    font-family: SemiBold;
+}
+
+
+
+.text-center {
+    text-align: center;
+}
+
+.box-line-placeholder {
+    position: relative;
+    margin-top: -45px;
+    margin-left: -40px;
+    margin-right: 5px;
+    left: 0;
+    right: 0;
+    background-color: var(--placeholder);
+    width: 100px;
+    height: 7px;
+    border-radius: 50px;
+}
+
+.box-line-pink {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 5px;
+    left: 0;
+    right: 0;
+    background-color: var(--normal-pink);
+    width: 50px;
+    height: 7px;
+    border-radius: 50px;
+}
+
+.box-line-pink-max {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 5px;
+    left: 0;
+    right: 0;
+    background-color: var(--normal-pink);
+    width: 100px;
+    height: 7px;
+    border-radius: 50px;
+}
+
+.line-mr {
+    margin-left: 5px !important;
+}
+
+.mt-col {
+    top: 0;
+    margin-top: 127px;
+}
+
+.hr-line-white {
+    top: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border: none;
+    position: absolute;
+    margin-top: 134px;
+    margin-bottom: 32px;
+
+}
+
+
+
+.form-payment {
+    margin-top: 0px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    height: 64px;
+    background-color: var(--white);
+    margin-bottom: 16px;
+}
+
+
+.show-payment {
+    position: absolute;
+    display: flex;
+    right: 0;
+    margin-top: -37px;
+    margin-right: 16px;
+    flex-direction: row;
+}
+
+.show-payment img {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+}
+
+.show-payment img:last-child {
+    margin-right: 0;
+}
+
+
+
+.form-check-input2 {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #4A4A4A;
+    border-radius: 50%;
+    background-color: white;
+    position: relative;
+    cursor: pointer;
+
+}
+
+.form-check-input2:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--normal-pink);
+}
+
+.form-check {
+    margin-top: 18px;
+    position: relative !important;
+}
+
+.form-check-label {
+    position: absolute;
+    margin-top: 0;
+    margin-left: 10px;
+    color: #000000;
+    font-size: 18px;
+    font-family: Regular;
+}
+
+.check-image {
+    width: 24px;
+    height: 24px;
+}
+
+.mt-32 .input-password button {
+    margin-top: 16px !important;
+}
+
+.order-details {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--placeholder);
+    border-radius: 16px;
+    padding: 34px 24px 34px 24px;
+}
+
+.mt-32-576 {
+    padding-right: 24px;
+}
+
+.edit-order {
+    color: var(--normal-pink);
+    font-size: 18px;
+    font-family: Regular;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 24px;
+}
+
+.line-hr-order {
+    position: relative;
+    margin: 32px 0px 32px;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.amount-be-paid {
+    color: var(--normal-pink);
+    font-size: 24px;
+    font-family: SemiBold;
+}
+
+.amount-be-paid span {
+    font-size: 32px ;
 }
