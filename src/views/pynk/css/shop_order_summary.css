@@ -55,6 +55,17 @@
         padding-right: 0px !important;
     }
 
+    .customer-first-child-l {
+        margin-left: 0 !important;
+    }
+
+    .customer-first-child-r {
+        margin-right: 0 !important;
+    }
+
+    .customer-mt {
+        margin-top: 16px !important;
+    }
 
 }
 
@@ -384,7 +395,7 @@
 }
 
 .input-form-login {
-    margin-top: 0px;
+    margin-top: -8px;
     margin-bottom: 16px;
     border-radius: 8px;
     border: 1px solid var(--border);
@@ -575,7 +586,7 @@
 .hr-line-white {
     top: 0;
     width: 100%;
-    height: 3px;
+    height: 2px;
     background-color: #ffffff;
     border: none;
     position: absolute;
@@ -701,4 +712,33 @@
 
 .amount-be-paid span {
     font-size: 32px;
+}
+
+.customer-first-child-l {
+    margin-left: 16px;
+}
+
+.customer-first-child-r {
+    margin-right: 16px;
+}
+
+.customer-mt {
+    margin-top: 48px;
+}
+
+.error-from {
+    margin-top: -10px;
+    color: red;
+}
+
+.col-12 .col-md-6>div>div>div {
+    display: block !important;
+}
+
+.condition {
+    margin-left: 16px;
+}
+
+.condition-span {
+    color: #128BFB;
 }
