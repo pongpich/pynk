@@ -37,6 +37,13 @@
         padding: 39px 16px 85px 16px !important;
     }
 
+    .box-promptPay {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        border-radius: 0 !important;
+        padding: 39px 16px 85px 16px !important;
+    }
+
     .box-line-placeholder {
         margin-left: -20px !important;
         width: 66px !important;
@@ -67,6 +74,10 @@
         margin-top: 16px !important;
     }
 
+    .mb-32-576 {
+        margin-bottom: 32px;
+    }
+
 }
 
 @media only screen and (min-width: 577px) and (max-width: 768px) {
@@ -94,6 +105,11 @@
 
     .box-form-payment {
         padding: 39px 16px 85px 16px !important;
+    }
+
+    .box-promptPay {
+        padding: 39px 16px 85px 16px !important;
+        margin-top: 0px !important;
     }
 }
 
@@ -714,6 +730,10 @@
     font-size: 32px;
 }
 
+.baht-promptPay {
+    font-size: 32px !important;
+}
+
 .customer-first-child-l {
     margin-left: 16px;
 }
@@ -741,4 +761,31 @@
 
 .condition-span {
     color: #128BFB;
+}
+
+.box-promptPay {
+    position: relative;
+    margin-top: 64px;
+    width: 100%;
+    height: auto;
+    border-radius: 52px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 39px 77px 85px 77px;
+    display: flex;
+    justify-content: center;
+}
+
+.background-promptPay {
+    background-color: var(--white);
+}
+
+.padding-left-right {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.qrcode-pay-image {
+    width: 320px;
+    height: 430px;
 }

@@ -8,10 +8,11 @@ import promptPay from "../../../assets/img/pynk/shop/promptPay.png";
 import Visa from "../../../assets/img/pynk/shop/Visa.png";
 import Mastercard from "../../../assets/img/pynk/shop/Mastercard.png";
 import check from "../../../assets/img/pynk/shop/check.png";
+import qrcode_pay from "../../../assets/img/pynk/shop/qrcode-pay.png";
 
 const Shop_payment = () => {
   const [statusContinue, setStatusContinue] = useState(0);
-  const [statusStep, setStatusStep] = useState(0);
+  const [statusStep, setStatusStep] = useState(2);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -613,12 +614,73 @@ const Shop_payment = () => {
     );
   };
 
+  const promptPay = () => {
+    return (
+      <div className="box-promptPay">
+        <div className="col-12">
+          <div class="row">
+            <div class="col-12 col-md-7  order-1 order-md-1  mt-32-576 mb-32-576">
+              <div className="order-details  background-promptPay">
+                <div className="padding-left-right">
+                  <p className="text-head-order-summary between">
+                    เหลือเวลาชำระเงิน{" "}
+                    <span className="text-pink">14:59 นาที</span>
+                  </p>
+                  <div className="justify-content">
+                    <img src={qrcode_pay} className="qrcode-pay-image " />
+                  </div>
+                  <p className="text-head-order-summary between">
+                    Corporate Name{" "}
+                    <span className="text-pink baht-promptPay">990 บาท</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-5 order-2 order-md-2">
+              <div className="order-details background-promptPay">
+                <p className="text-head-order-summary  between">
+                  รายละเอียดการสั่งซื้อ{" "}
+                  <span className="edit-order">แก้ไข</span>
+                </p>
+                <p className="text-order">ชื่อจริง นามสกุล</p>
+                <p className="text-order">
+                  เลขที่ 2533 ถนนสุขุมวิท แขวงบางจาก เขตพระโขนง จังหวัด
+                  กรุงเทพมหานคร รหัสไปรษณีย์ 10260
+                </p>
+                <p className="text-order">090-900-9000</p>
+                <div className="line-hr-order" />
+                <p className="text-head-order-summary">สรุปรายการสั่งซื้อ</p>
+                <div className="text-order between">
+                  <p className="col-8">
+                    x1 FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
+                  </p>
+                  <p>900 บาท</p>
+                </div>
+                <p className="text-order between">
+                  ค่าจัดส่ง <span className="text-head-order-summary">ฟรี</span>
+                </p>
+                <div className="line-hr-order" />
+                <p className="amount-be-paid between">
+                  ยอดที่ต้องชำระ <span>900 บาท</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="box-order-summary">
         <div className="background-order-summary row">
           <div className="position-relative justify-content">
-            {statusStep == 0 ? customerInformation() : orderOetails()}
+            {statusStep == 0
+              ? customerInformation()
+              : statusStep == 1
+              ? orderOetails()
+              : promptPay()}
           </div>
         </div>
 
