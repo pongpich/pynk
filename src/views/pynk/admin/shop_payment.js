@@ -622,14 +622,14 @@ const Shop_payment = () => {
             <div class="col-12 col-md-7  order-1 order-md-1  mt-32-576 mb-32-576">
               <div className="order-details  background-promptPay">
                 <div className="padding-left-right">
-                  <p className="text-head-order-summary between">
+                  <p className="text-qrcode-qrcode between">
                     เหลือเวลาชำระเงิน{" "}
                     <span className="text-pink">14:59 นาที</span>
                   </p>
                   <div className="justify-content">
                     <img src={qrcode_pay} className="qrcode-pay-image " />
                   </div>
-                  <p className="text-head-order-summary between">
+                  <p className="text-qrcode-qrcode between">
                     Corporate Name{" "}
                     <span className="text-pink baht-promptPay">990 บาท</span>
                   </p>

@@ -78,6 +78,13 @@
         margin-bottom: 32px;
     }
 
+    .text-qrcode-qrcode {
+        font-size: 16px !important;
+    }
+
+    .baht-promptPay {
+        font-size: 16px !important;
+    }
 }
 
 @media only screen and (min-width: 577px) and (max-width: 768px) {
@@ -111,6 +118,19 @@
         padding: 39px 16px 85px 16px !important;
         margin-top: 0px !important;
     }
+
+    .text-qrcode-qrcode {
+        font-size: 16px !important;
+    }
+
+    .baht-promptPay {
+        font-size: 16px !important;
+    }
+}
+
+
+.baht-promptPay {
+    font-size: 32px;
 }
 
 .text-pink {
@@ -730,9 +750,7 @@
     font-size: 32px;
 }
 
-.baht-promptPay {
-    font-size: 32px !important;
-}
+
 
 .customer-first-child-l {
     margin-left: 16px;
@@ -788,4 +806,10 @@
 .qrcode-pay-image {
     width: 320px;
     height: 430px;
+}
+
+.text-qrcode-qrcode {
+    color: var(--main-text);
+    font-size: 24px;
+    font-family: SemiBold;
 }
