@@ -8,6 +8,7 @@ import ShopPynk from "./views/pynk/shop";
 import ShopDetailsPynk from "./views/pynk/admin/shop_details";
 import ShopOrderSummaryPynk from "./views/pynk/admin/shop_order_summary";
 import ShopPaymentPynk from "./views/pynk/admin/shop_payment";
+import ShopSuccessfulPaymentPynk from "./views/pynk/admin/shop_successful_payment";
 import Popup_login from "./components/Popup_login";
 import Login from "../src/views/pynk/login";
 import Questionare from "../src/views/pynk/questionare";
@@ -569,6 +570,10 @@ class App extends Component {
                   component={ShopOrderSummaryPynk}
                 />
                 <Route path="/shop-payment" component={ShopPaymentPynk} />
+                <Route
+                  path="/successful-payment"
+                  component={ShopSuccessfulPaymentPynk}
+                />
                 <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />
                 <Route
