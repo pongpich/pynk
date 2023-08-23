@@ -813,3 +813,27 @@
     font-size: 24px;
     font-family: SemiBold;
 }
+
+
+
+.check-success-img {
+    margin-top: 12px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+}
+
+.order-number {
+    margin-top: -8px;
+    color: #5A6E7B;
+    font-size: 20px;
+    font-family: Regular;
+    margin-bottom: 32px;
+}
+
+.please-contact {
+    margin-top: 32px;
+    color: #4F4F4F;
+    font-size: 16px;
+    font-family: SemiBold;
+}
