@@ -1,4 +1,6 @@
 import { React, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { create_order } from "../../../redux/pynk/orders"
 import "../css/shop_order_summary.css";
 import Footer from "../footer";
 import InputAddress from "react-thailand-address-autocomplete";
@@ -12,7 +14,9 @@ import qrcode_pay from "../../../assets/img/pynk/shop/qrcode-pay.png";
 
 const Shop_payment = () => {
   const [statusContinue, setStatusContinue] = useState(0);
-  const [statusStep, setStatusStep] = useState(2);
+  const [statusStep, setStatusStep] = useState(0);
+
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -24,6 +28,7 @@ const Shop_payment = () => {
     district: "",
     province: "",
     zipcode: "",
+    order_notes: "",
     checked: false,
   });
 
@@ -40,6 +45,8 @@ const Shop_payment = () => {
     order_notes: "",
     checked: false,
   });
+
+  const status_create_order = useSelector(({ orders }) => (orders ? orders.status_create_order : ""));
 
   const validate = () => {
     let isValid = true;
@@ -121,7 +128,6 @@ const Shop_payment = () => {
   const handleAddressChange = (value) => {
     setFormData({
       ...formData,
-      address: value.address,
       subdistrict: value.subdistrict,
       district: value.district,
       province: value.province,
@@ -137,8 +143,41 @@ const Shop_payment = () => {
     }
   };
 
+  function onSubmit() {
+    console.log("formData :", formData);
+
+    const product_list = [
+      { "sku": "240220202006", "name": "Fitto Plant Protein Classic Malt", "number": 1, "pricepernumber": 990, "discount": "990", "totalprice": 0 },
+      { "sku": "240220302001", "name": "Fitto Plant Protein Milk Tea Flavour", "number": 1, "pricepernumber": 990, "discount": "990", "totalprice": 0 },
+      { "sku": "240220602002", "name": "Fitto Plant Protein Double Choco Fudge", "number": 1, "pricepernumber": 990, "discount": "990", "totalprice": 0 }
+    ];
+
+    const customer_data = {
+      "name": formData.username,
+      "last_name": formData.surname,
+      "phone_number": formData.phone_number,
+      "email": formData.email
+    }
+
+    const shipping_address = {
+      "address": formData.address,
+      "province": formData.province,
+      "district": formData.district,
+      "subdistrict": formData.subdistrict,
+      "zipcode": formData.zipcode,
+    }
+
+    dispatch(create_order(
+      "test_01", //user_id,
+      product_list, //product_list,
+      1, //total_amount,
+      customer_data, //customer_data,
+      shipping_address, //shipping_address,
+      formData.order_notes //note
+    ))
+  }
+
   const customerInformation = () => {
-    console.log("formData.checkbox", formData.checkbox);
     return (
       <div className="box-form-payment">
         <div className="box-row">
@@ -399,7 +438,7 @@ const Shop_payment = () => {
                         placeholder="หมายเหตุเกี่ยวกับการสั่งซื้อของคุณ เช่น ต้องการห่อของขวัญ  เป็นต้น"
                         rows="10"
                         id="order_notes"
-                        name="phone_number"
+                        name="order_notes"
                         value={formData.order_notes}
                         onChange={handleChange}
                       ></textarea>
@@ -429,7 +468,7 @@ const Shop_payment = () => {
                   {errors.checked && (
                     <div className="error-from mt-1">{errors.checked}</div>
                   )}
-                  <button type="submit" className="btn-buy-payment">
+                  <button onClick={() => onSubmit()} /* type="submit" */ className="btn-buy-payment">
                     ชำระเงิน
                   </button>
                   <p className="text-login-payment">
@@ -679,8 +718,8 @@ const Shop_payment = () => {
             {statusStep == 0
               ? customerInformation()
               : statusStep == 1
-              ? orderOetails()
-              : promptPay()}
+                ? orderOetails()
+                : promptPay()}
           </div>
         </div>
 
