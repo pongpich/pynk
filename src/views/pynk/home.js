@@ -22,9 +22,12 @@ import social from "../../assets/img/home/social.png";
 import footer51 from "../../assets/img/home/footer51.png";
 import "./css/home.css";
 import Footer from "./footer";
+import { useHistory } from "react-router-dom";
 
 
 const Home = () => {
+    const history = useHistory();
+
     const [count, setCount] = useState(0);
     const [counter, setCounter] = useState(3);
 
@@ -105,7 +108,8 @@ const Home = () => {
                         <p className="text-home1-48px">พิชิตหุ่นในฝัน</p>
                         <p className="text-home1-24px">Daily Fit For a Better Life</p>
                         <a
-                            href="https://fittowhey.com/8week/complete"
+                            // href="https://fittowhey.com/8week/complete"
+                            onClick={() => history.push("/questionare")}
                             className="btn  bold button-home1 col-10 col-sm-10"
                             type="button"
                         >
