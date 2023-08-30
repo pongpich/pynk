@@ -11,6 +11,8 @@ import ShopPaymentPynk from "./views/pynk/admin/shop_payment";
 import ShopSuccessfulPaymentPynk from "./views/pynk/admin/shop_successful_payment";
 import Popup_login from "./components/Popup_login";
 import Login from "../src/views/pynk/login";
+// import Shop from "../src/views/pynk/shop";
+import HomePlatfrom from "../src/views/platform/login";
 import Questionare from "../src/views/pynk/questionare";
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -49,7 +51,7 @@ import Exercise_method from "./views/stay_fit/information/exercise_method";
 import Admin from "./views/stay_fit/admin/admin";
 
 //-------------------------------------Platform-------------------------------------
-import HomePlatfrom from "../src/views/platform/login";
+
 
 import { IntlProvider } from "react-intl";
 import AppLocale from "./lang";
@@ -442,14 +444,15 @@ class App extends Component {
                     className="nav-link nav-linkHead3 pointer bold"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
-                    onClick={() => this.openPopup()}
+                    // onClick={() => this.openPopup()}
+                    onClick={() => this.props.history.push("/login")}
                   >
                     <img
                       src={user_circle}
                       alt="vector"
                       className="padding-rightIcon"
                     />
-                    <IntlMessages id="navbarHome.login" />
+                     <IntlMessages id="navbarHome.login" />
                   </a>
                 </div>
               </>
@@ -467,7 +470,8 @@ class App extends Component {
           >
             <a
               className=""
-              onClick={() => this.props.history.push("/platfrom_home")}
+              href="https://platform.bebefitroutine.com"
+              // onClick={() => this.props.history.push("/platfrom_home")}
               style={{ cursor: "pointer" }}
             >
               <h5 style={{ color: "#5A6E7B" }}>
@@ -479,7 +483,8 @@ class App extends Component {
             </h2>
             <a
               className=""
-              onClick={() => this.props.history.push("/stay_fit_home")}
+              href="https://fit.bebefitroutine.com"
+              // onClick={() => this.props.history.push("/stay_fit_home")}
               style={{ cursor: "pointer" }}
             >
               <h5 style={{ color: "#5A6E7B" }}>
@@ -504,8 +509,8 @@ class App extends Component {
             </h2>
             <a
               className=""
-              href="/#"
-              onClick={() => this.props.history.push("/")}
+              // href="/#"
+              onClick={() => this.props.history.push("/shop")}
               style={{ cursor: "pointer" }}
             >
               <h5 style={{ color: "#5A6E7B" }}>

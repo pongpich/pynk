@@ -21,6 +21,7 @@ import emaillogo from "../../assets/img/home/emaillogo.png";
 import social from "../../assets/img/home/social.png";
 import footer51 from "../../assets/img/home/footer51.png";
 import "./css/home.css";
+import Footer from "./footer";
 
 
 const Home = () => {
@@ -55,7 +56,7 @@ const Home = () => {
             }, 5000);
 
         } else if (counter < 5) {
-            console.log('xxx');
+            // console.log('xxx');
             // document.getElementById('radio' + counter);
             setTimeout(() => {
                 setCounter(counter + 1);
@@ -150,8 +151,9 @@ const Home = () => {
             <img src={frame37549} alt="" className="frame37549" />
             
 
-
+            <Footer />
         </div>
+        
     )
 }
 

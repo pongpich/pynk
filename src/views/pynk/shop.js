@@ -12,11 +12,14 @@ import bfr_ball from "../../assets/img/pynk/shop/bfr_ball.png";
 import bfr_rope from "../../assets/img/pynk/shop/bfr_rope.png";
 import bfr_coupon from "../../assets/img/pynk/shop/bfr_coupon.png";
 import icon_cart_white from "../../assets/img/pynk/shop/icon_cart_white.png";
+import { useHistory } from "react-router-dom";
+import Footer from "./footer";
 
 
 import "./css/shop.css";
 
 function ShopPynk() {
+  const history = useHistory();
   const [promotionalProduct, setPromotionalProduct] = useState([
     {
       name: "BEBE FIT ROUTINE BALL",
@@ -310,7 +313,9 @@ function ShopPynk() {
             style={{ gap: 30 }}
           >
             {promotionalProduct.map((item) => (
-              <div className="product" style={{ width: 275, padding: 0 }}>
+              <div className="product" style={{ width: 275, padding: 0 }}
+                onClick={() => history.push("/shop_details")}
+              >
                 <div
                   className="d-flex flex-column justify-content-center align-items-center"
                   style={{
@@ -400,7 +405,8 @@ function ShopPynk() {
 
         <div className="row d-flex justify-content-center" style={{ gap: 30 }}>
           {newProduct.map((item) => (
-            <div className="product" style={{ width: 275, padding: 0 }}>
+            <div className="product" style={{ width: 275, padding: 0 }}
+            onClick={() => history.push("/shop_details")}>
               <div
                 className="d-flex flex-column justify-content-center align-items-center"
                 style={{
@@ -484,6 +490,7 @@ function ShopPynk() {
         <img width={584} height={292} src={bfr_coupon} />
         <img width={584} height={292} src={bfr_coupon} />
       </div>
+      <Footer />
     </div>
   );
 }
