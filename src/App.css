@@ -334,15 +334,24 @@
     margin-left: -40px !important;
     margin-right: -40px !important;
   }
+
+
 }
 
-/* @media only screen and (max-width: 767px) {
-  .emblem-box {
-    margin-top: 50px !important;
-    width: auto !important;
-
+@media only screen and (max-width: 576px) {
+  .display-none {
+    display: none !important;
   }
-} */
+
+}
+
+@media only screen and (min-width: 577px) {
+  .user-line {
+    display: none !important;
+  }
+}
+
+
 
 @media only screen and (max-width: 767px) {
   .rectangle472 {
@@ -1297,15 +1306,37 @@ body {
 }
 
 .information-box {
+  display: flex;
+
+
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 16px 0px 16px;
   background-color: #ffffff !important;
   border: 1px solid #ffffff;
-  box-shadow: 1px -1px 9px #c4c4c4;
+  /*  box-shadow: 1px -1px 9px #c4c4c4; */
   height: 90px;
 }
 
 .information-box-row2 {
+  display: flex;
+  align-items: center;
+  padding: 0px 16px 0px 16px;
   background-color: #FFE2EE !important;
   height: 56px;
+}
+
+.information-box-row3 {
+  display: flex;
+  align-items: center;
+  padding: 0px 0px 0px 0px;
+  background-color: #ffffff;
+  height: 73px;
+}
+
+.information-nav {
+  display: block;
+  padding-bottom: 0px;
 }
 
 [type="button"]:not(:disabled),
@@ -5517,4 +5548,81 @@ tr:last-child td:last-child {
   font-size: 24px;
   font-weight: bold;
   font-family: BdCondHe;
+}
+
+.image-logo {
+  /* justify-content: space-between; */
+}
+
+.navbar-pyak {
+  z-index: 20;
+  margin-bottom: 90px;
+}
+
+.custom-input {
+  position: relative;
+  margin-left: 32px;
+  width: auto;
+  max-width: 292px;
+}
+
+.custom-input2 {
+  position: relative;
+  margin-left: 16px;
+  width: 100%;
+}
+
+.form-search {
+  height: 56px !important;
+  border-radius: 50px !important;
+  padding-left: 53px !important;
+}
+
+.form-search2 {
+  height: 49px !important;
+  border-radius: 50px !important;
+  padding-left: 53px !important;
+}
+
+.search-img-icon {
+  margin-top: 15px;
+  margin-left: 16px;
+  width: 21px;
+  height: 21px;
+  position: absolute !important;
+}
+
+.truck-line-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.search_line {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: -11px;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  /* แนวตั้งตรงกลาง */
+  gap: 10px;
+  /* ระยะห่างระหว่างองค์ประกอบ */
+}
+
+.order-status {
+  margin-top: 15px;
+  font-size: 18px;
+  color: var(--main-text);
+  font-family: SemiBold;
+}
+
+.close_line-icon {
+  margin-top: -10px;
+  margin-left: 8px;
+  width: 34px;
+  height: 34px;
+  margin-right: 16px;
 }

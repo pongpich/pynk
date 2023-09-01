@@ -2,6 +2,14 @@ import "./App.css";
 import React, { Component } from "react";
 
 //---------------------------------------Pynk---------------------------------------
+// image
+import search_line from "./assets/img/home/search-line.png";
+import truck_line from "./assets/img/home/truck-line.png";
+import shopping_bag_line from "./assets/img/home/shopping-bag-line.png";
+import user_line from "./assets/img/home/user-3-line.png";
+import close_line from "./assets/img/home/close-line.png";
+/* search-line.png */
+// route
 import Home from "../src/views/pynk/home";
 import DashboardPynk from "./views/pynk/admin/dashboard";
 import ShopPynk from "./views/pynk/shop";
@@ -98,6 +106,8 @@ class App extends Component {
       thEn: null,
       inBeforeXdays: 7,
       isPopupLoginOpen: false,
+      searchStatus:0,
+      windowWidth: window.innerWidth
     };
   }
 
@@ -135,6 +145,13 @@ class App extends Component {
     }
     document.getElementById("navbar-toggler").click();
   }
+  updateWindowWidth = () => {
+    this.setState({
+      windowWidth: window.innerWidth
+    });
+    
+  };
+
 
   componentDidMount() {
     const { user, locale } = this.props;
@@ -148,9 +165,15 @@ class App extends Component {
         thEn: "English",
       });
     }
+
+    window.addEventListener('resize', this.updateWindowWidth);
+
   }
 
-  componentDidUpdate(prevProps) {
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowWidth);
+  }
+  componentDidUpdate(prevProps,prevState) {
     const { user, statusGetExpireDate } = this.props;
     if (
       prevProps.statusGetExpireDate !== statusGetExpireDate &&
@@ -196,7 +219,17 @@ class App extends Component {
         document.getElementById("modalBeforeXdaysClick").click();
       }
     }
+
+
+
+    const {windowWidth,searchStatus} = this.state;
+      console.log("searchStatus",windowWidth);
+    if( prevState.windowWidth != windowWidth && windowWidth > 576) {
+      this.setState({searchStatus:0})
+    }
   }
+
+
 
   manuTH_EN() {
     const { thEn } = this.state;
@@ -269,17 +302,90 @@ class App extends Component {
     );
   }
 
+  clikSearchStatus  (e) {
+    const {searchStatus} = this.state;
+    this.setState({ searchStatus: e });
+  }
   renderNavbar() {
     const pagePath = this.props.location.pathname;
     const { user } = this.props;
+    const {searchStatus} = this.state;
 
+    console.log("searchStatus",searchStatus);
     return (
-      <div>
-        <nav className="navbar navbar-expand-lg bg-light information-box  sticky-top">
+      <div className="navbar-pyak">
+        <nav className="navbar navbar-expand-lg bg-light information-nav fixed-top">
+          <div className="information-box">
+           <div className="flex-container">
+           <img src={logo} alt="vector" />
+            <div className="custom-input ">
+              <img src={search_line}  className="search-img-icon display-none" alt="vector" />
+              <input type="text" className="form-control form-search  display-none" placeholder="ค้นหาสินค้า"/>
+            </div>
+            <img src={search_line}  className="search_line user-line"onClick={() => this.clikSearchStatus(1)} alt="vector" />
+
+           </div>
+          <div>
+          <div className="flex-container">
+          <img src={user_line}  className="truck-line-icon user-line" alt="vector" />
+            <button
+                    className="nav-link nav-linkHead2 pointer bold  display-none"
+                    onClick={() => this.props.history.push("/programPackage")}
+                  >
+                    เข้าสู่ระบบ/ลงทะเบียน
+                  </button>
+                  <h2
+                    style={{
+                      color: "#BCCCD6",
+                     /*  marginRight: 16, */
+                     /*  marginLeft: 16, */
+                      fontWeight: 10,
+                      height: 30,
+                    }}
+                  >
+                    |
+                  </h2>
+                  <img src={truck_line}  className="truck-line-icon" alt="vector" />
+                  <p className="order-status display-none">สถานะคำสั่งซื้อ</p>
+                  <h2
+                    style={{
+                      color: "#BCCCD6",
+                     /*  marginRight: 16, */
+                     /*  marginLeft: 16, */
+                      fontWeight: 10,
+                      height: 30,
+                    }}
+                  >
+                    |
+                  </h2>
+                  <img src={shopping_bag_line}  className="truck-line-icon" alt="vector" />
+            </div>
+          </div>
+          </div>
+          {
+            searchStatus == 0 ? (
+              <div className="information-box-row2">
+              <p>asdasd</p>
+            </div>
+            ): (
+              <div className="information-box-row3">
+                <div className="custom-input2">
+                  <img src={search_line}  className="search-img-icon" alt="vector" />
+                  <input type="text" className="form-control form-search2" placeholder="ค้นหาสินค้า"/>
+                </div>
+                <img src={close_line}  className="close_line-icon" onClick={() => this.clikSearchStatus(0)} alt="vector" />
+                
+            </div>
+            )
+          }
+         
+        </nav>
+
+     {/* <nav className="navbar navbar-expand-lg bg-light information-box  sticky-top">
           <div className="container-fluid nav-left2">
             <a
               className="navbar-brand"
-              href="/#"
+              href="/#" 
               onClick={() => this.props.history.push("/")}
               style={{ color: "white", cursor: "pointer" }}
             >
@@ -333,11 +439,11 @@ class App extends Component {
                   </ul>
                   <div>
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                      {/*         <li className="nav-item">
-                      <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
-                        ออกจากระบบ
-                    </a>
-                    </li> */}
+                      <li className="nav-item">
+                     // <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
+                       // ออกจากระบบ
+                    //</a>
+                    </li>
                       <div>{this.manuTH_EN()}</div>
                       <li className="nav-item ">
                         <a
@@ -458,8 +564,8 @@ class App extends Component {
               </>
             )}
           </div>
-        </nav>
-        <nav className="navbar navbar-expand-lg bg-light information-box-row2 sticky-top">
+        </nav> */}
+       {/*  <nav className="navbar navbar-expand-lg bg-light information-box-row2 sticky-top">
           <div
             className="container-fluid nav-left2"
             style={{
@@ -531,7 +637,7 @@ class App extends Component {
               </h5>
             </a>
           </div>
-        </nav>
+        </nav> */}
       </div>
     );
   }
