@@ -336,7 +336,7 @@
   }
 
   .navbarNav-ul {
-    margin-top: 16px;
+    margin-top: 12px;
     background-color: #ffffff;
     padding: 16px 16px 0px 16px !important;
 
@@ -5650,8 +5650,8 @@ tr:last-child td:last-child {
 
 .group-icon {
   margin-top: 20px;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 }
 

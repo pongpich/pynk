@@ -399,7 +399,7 @@ class App extends Component {
                   <img
                     src={group}
                     alt="vector"
-                    className="group-icon "
+                    className="group-icon"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarNav"
                     aria-controls="navbarNav"
