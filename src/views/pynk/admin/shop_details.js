@@ -24,7 +24,7 @@ const PreviousBtn = (props) => {
   return (
     <>
       {currentSlide !== 0 && (
-        <div className={`previous-btn`} onClick={onClick}>
+        <div className={`previous-btn head-shop`} onClick={onClick}>
           <img src={icon_circle} className="icon-previous-btn" />
         </div>
       )}
@@ -37,7 +37,7 @@ const NextBtn = (props) => {
   return (
     <>
       {currentSlide !== slideCount - slidesToShow && (
-        <div className={`next-btn`} onClick={onClick}>
+        <div className={`next-btn head-shop`} onClick={onClick}>
           <img src={icon_circle} className="icon-next-btn" />
         </div>
       )}
@@ -57,15 +57,15 @@ const carouselProperties = {
     {
       breakpoint: 576,
       settings: {
-        slidesToShow: 2,
-        centerMode: false,
+        slidesToShow: 1.8,
+        centerMode: true,
       },
     },
     {
       breakpoint: 769,
       settings: {
-        slidesToShow: 2,
-        centerMode: false,
+        slidesToShow: 1.85,
+        centerMode: true,
       },
     },
     {
@@ -73,7 +73,6 @@ const carouselProperties = {
       settings: {
         slidesToShow: 2,
         centerMode: true,
-        slidesToScroll: 2,
       },
     },
     {
@@ -81,7 +80,6 @@ const carouselProperties = {
       settings: {
         slidesToShow: 2,
         centerMode: true,
-        slidesToScroll: 2,
       },
     },
     {
@@ -89,7 +87,6 @@ const carouselProperties = {
       settings: {
         slidesToShow: 3,
         centerMode: true,
-        slidesToScroll: 2,
       },
     },
     {
@@ -97,7 +94,6 @@ const carouselProperties = {
       settings: {
         slidesToShow: 3,
         centerMode: true,
-        slidesToScroll: 2,
       },
     },
   ],

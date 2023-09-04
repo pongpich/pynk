@@ -1,22 +1,109 @@
 import React, { Component, useState, useEffect } from "react";
 import { connect } from "react-redux";
+import Slider from "react-slick";
 import colors from "./colors";
 import home_shop from "../../assets/img/pynk/shop/home_shop.jpg";
-import icon_kg from "../../assets/img/pynk/shop/icon_kg.png";
-import icon_fitto from "../../assets/img/pynk/shop/icon_fitto.png";
-import icon_burner from "../../assets/img/pynk/shop/icon_burner.png";
-import icon_cup from "../../assets/img/pynk/shop/icon_cup.png";
-import icon_supplement from "../../assets/img/pynk/shop/icon_supplement.png";
+import icon_kg from "../../assets/img/pynk/shop/Group37558.png";
+import icon_fitto from "../../assets/img/pynk/shop/Group37559.png";
+import icon_burner from "../../assets/img/pynk/shop/FITTO_prework_Mixberry.png";
+import icon_cup from "../../assets/img/pynk/shop/18072.png";
+import icon_supplement from "../../assets/img/pynk/shop/18071.png";
 import icon_other from "../../assets/img/pynk/shop/icon_other.png";
 import bfr_ball from "../../assets/img/pynk/shop/bfr_ball.png";
 import bfr_rope from "../../assets/img/pynk/shop/bfr_rope.png";
+import image_product from "../../assets/img/pynk/shop/image-product.png";
 import bfr_coupon from "../../assets/img/pynk/shop/bfr_coupon.png";
+import icon_circle from "../../assets/img/pynk/shop/icon-circle.png";
 import icon_cart_white from "../../assets/img/pynk/shop/icon_cart_white.png";
 import { useHistory } from "react-router-dom";
 import Footer from "./footer";
 
-
 import "./css/shop.css";
+
+let slidesToShow = 4;
+
+const PreviousBtn = (props) => {
+  const { className, onClick, currentSlide } = props;
+  return (
+    <>
+      {currentSlide !== 0 && (
+        <div className={`previous-btn`} onClick={onClick}>
+          <img src={icon_circle} className="icon-previous-btn" />
+        </div>
+      )}
+    </>
+  );
+};
+const NextBtn = (props) => {
+  const { className, onClick, slideCount, currentSlide } = props;
+  console.log(props);
+  return (
+    <>
+      {currentSlide !== slideCount - slidesToShow && (
+        <div className={`next-btn next-btn2`} onClick={onClick}>
+          <img src={icon_circle} className="icon-next-btn" />
+        </div>
+      )}
+    </>
+  );
+};
+
+const carouselProperties = {
+  prevArrow: <PreviousBtn />,
+  nextArrow: <NextBtn />,
+  slidesToShow: slidesToShow,
+  slidesToScroll: 3,
+  infinite: true,
+  autoplay: true, // ให้ Slider หมุนเอง
+  autoplaySpeed: 9000, // ตั้งค่าให้หมุนทุก ๆ 30 วินาที
+  // slidesToScroll={3}
+  responsive: [
+    {
+      breakpoint: 576,
+      settings: {
+        slidesToShow: 2,
+        centerMode: true,
+        slidesToScroll: 3,
+      },
+    },
+    {
+      breakpoint: 769,
+      settings: {
+        slidesToShow: 2,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2,
+        centerMode: true,
+        slidesToScroll: 2,
+      },
+    },
+    {
+      breakpoint: 1025,
+      settings: {
+        slidesToShow: 3,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 3,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1400,
+      settings: {
+        slidesToShow: 3,
+        centerMode: true,
+      },
+    },
+  ],
+};
 
 function ShopPynk() {
   const history = useHistory();
@@ -113,7 +200,7 @@ function ShopPynk() {
             backgroundColor: colors.primary2,
             width: "180px",
             height: "180px",
-            borderRadius: 50,
+            borderRadius: 8,
           }}
         >
           <div className="row">
@@ -125,12 +212,14 @@ function ShopPynk() {
                 display: "flex",
               }}
             >
-              <img width={70} height={90} src={icon_kg} />
+              <img width={156} height={135} src={icon_kg} className="icon-kg" />
             </div>
-            <span className="d-flex justify-content-center">
-              อุปกรณ์ <br />
-            </span>
-            <span className="d-flex justify-content-center">ออกกำลังกาย</span>
+            <div className="icon-kg-text">
+              <span className="d-flex justify-content-center">
+                อุปกรณ์ <br />
+                ออกกำลังกาย
+              </span>
+            </div>
           </div>
         </div>
 
@@ -140,7 +229,7 @@ function ShopPynk() {
             backgroundColor: colors.primary2,
             width: "180px",
             height: "180px",
-            borderRadius: 50,
+            borderRadius: 8,
           }}
         >
           <div className="row">
@@ -152,12 +241,19 @@ function ShopPynk() {
                 display: "flex",
               }}
             >
-              <img width={70} height={90} src={icon_fitto} />
+              <img
+                width={155}
+                height={131}
+                src={icon_fitto}
+                className="icon-kg"
+              />
             </div>
-            <span className="d-flex justify-content-center">
-              Fitto <br />
-            </span>
-            <span className="d-flex justify-content-center">Plant Protein</span>
+            <div className="icon-kg-text">
+              <span className="d-flex justify-content-center">
+                Fitto <br />
+                Plant Protein
+              </span>
+            </div>
           </div>
         </div>
 
@@ -167,7 +263,7 @@ function ShopPynk() {
             backgroundColor: colors.primary2,
             width: "180px",
             height: "180px",
-            borderRadius: 50,
+            borderRadius: 8,
             padding: 0,
           }}
         >
@@ -180,12 +276,18 @@ function ShopPynk() {
                 display: "flex",
               }}
             >
-              <img width={50} height={92} src={icon_burner} />
+              <img
+                width={67}
+                height={132}
+                src={icon_burner}
+                className="icon-kg"
+              />
             </div>
-            <span className="d-flex justify-content-center">
-              Fitto Pre-Work Out
-            </span>
-            <span className="d-flex justify-content-center">& Fat Burner</span>
+            <div className="icon-kg-text">
+              <span className="d-flex justify-content-center">
+                Fitto Pre-Work Out <br />& Fat Burner
+              </span>
+            </div>
           </div>
         </div>
 
@@ -195,7 +297,7 @@ function ShopPynk() {
             backgroundColor: colors.primary2,
             width: "180px",
             height: "180px",
-            borderRadius: 50,
+            borderRadius: 8,
           }}
         >
           <div className="row">
@@ -207,16 +309,12 @@ function ShopPynk() {
                 display: "flex",
               }}
             >
-              <img width={62} height={91} src={icon_cup} />
+              <img width={92} height={152} src={icon_cup} className="icon-kg" />
             </div>
-            <span
-              className="d-flex justify-content-center align-items-center"
-              style={{
-                height: 48,
-              }}
-            >
-              Fitto Drink
-            </span>
+
+            <div className="icon-kg-text">
+              <span className="d-flex justify-content-center">Fitto Drink</span>
+            </div>
           </div>
         </div>
 
@@ -226,7 +324,7 @@ function ShopPynk() {
             backgroundColor: colors.primary2,
             width: "180px",
             height: "180px",
-            borderRadius: 50,
+            borderRadius: 8,
           }}
         >
           <div className="row">
@@ -238,16 +336,24 @@ function ShopPynk() {
                 display: "flex",
               }}
             >
-              <img width={98} height={88} src={icon_supplement} />
+              <img
+                width={92}
+                height={151}
+                src={icon_supplement}
+                className="icon-kg"
+              />
             </div>
-            <span
+            {/*  <span
               className="d-flex justify-content-center align-items-center"
               style={{
                 height: 48,
               }}
             >
               อาหารเสริม
-            </span>
+            </span> */}
+            <div className="icon-kg-text">
+              <span className="d-flex justify-content-center">อาหารเสริม</span>
+            </div>
           </div>
         </div>
 
@@ -257,7 +363,7 @@ function ShopPynk() {
             backgroundColor: colors.primary2,
             width: "180px",
             height: "180px",
-            borderRadius: 50,
+            borderRadius: 8,
           }}
         >
           <div className="row">
@@ -273,7 +379,7 @@ function ShopPynk() {
               <img width={74} height={74} src={icon_other} />
             </div>
             <span
-              className="d-flex justify-content-center align-items-center"
+              className="d-flex justify-content-center align-items-center icon_other-text"
               style={{
                 height: 48,
               }}
@@ -307,13 +413,139 @@ function ShopPynk() {
               ดูทั้งหมด
             </span>
           </div>
-
-          <div
+          <div className="slider-div">
+            <Slider {...carouselProperties}>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+              <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div>
+            </Slider>
+          </div>
+          {/* <div
             className="row d-flex justify-content-center"
             style={{ gap: 30 }}
           >
             {promotionalProduct.map((item) => (
-              <div className="product" style={{ width: 275, padding: 0 }}
+              <div
+                className="product"
+                style={{ width: 275, padding: 0 }}
                 onClick={() => history.push("/shop_details")}
               >
                 <div
@@ -383,11 +615,11 @@ function ShopPynk() {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
 
-      <div style={{ marginTop: 70, marginBottom: 108, cursor: "pointer" }}>
+      {/* <div style={{ marginTop: 70, marginBottom: 108, cursor: "pointer" }}>
         <div
           className="d-flex justify-content-between"
           style={{ paddingLeft: "10%", paddingRight: "10%", marginBottom: 16 }}
@@ -405,8 +637,11 @@ function ShopPynk() {
 
         <div className="row d-flex justify-content-center" style={{ gap: 30 }}>
           {newProduct.map((item) => (
-            <div className="product" style={{ width: 275, padding: 0 }}
-            onClick={() => history.push("/shop_details")}>
+            <div
+              className="product"
+              style={{ width: 275, padding: 0 }}
+              onClick={() => history.push("/shop_details")}
+            >
               <div
                 className="d-flex flex-column justify-content-center align-items-center"
                 style={{
@@ -475,9 +710,9 @@ function ShopPynk() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
-      <div
+      {/* <div
         className="d-flex justify-content-center"
         style={{
           paddingLeft: 121,
@@ -489,7 +724,7 @@ function ShopPynk() {
       >
         <img width={584} height={292} src={bfr_coupon} />
         <img width={584} height={292} src={bfr_coupon} />
-      </div>
+      </div> */}
       <Footer />
     </div>
   );

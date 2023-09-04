@@ -1,8 +1,10 @@
-
-
 @media only screen and (max-width: 576px) {
     .head-shop {
-        display: none;
+        display: none !important;
+    }
+
+    .gap-5 {
+        gap: 1rem !important;
     }
 }
 
@@ -36,4 +38,37 @@
 .product:hover button {
     display: flex;
     transition: all;
+}
+
+.icon-kg {
+    position: absolute;
+    z-index: 0;
+    margin-top: 50px;
+}
+
+.icon-kg-text {
+    margin-top: 100px;
+    text-align: center;
+    color: #2C2E2F;
+    font-family: Regular;
+}
+
+.icon_other-text {
+    text-align: center;
+    color: #2C2E2F;
+    font-family: Regular;
+}
+
+.slider-div {
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+.next-btn2 {
+    right: 0px !important;
+
+}
+
+.box-item.cursor-pointer {
+    margin-right: 16px !important;
 }

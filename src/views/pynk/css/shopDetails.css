@@ -5,6 +5,11 @@
 }
 
 @media only screen and (max-width: 576px) {
+    .slick-slider {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
     .box-img {
         width: 54px !important;
         height: 54px !important;
@@ -874,3 +879,7 @@ button {
 
 }
 
+/* div.box-item.cursor-pointer {
+    background-color: blue !important;
+    margin-right: 26px !important;
+} */
