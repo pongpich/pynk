@@ -6,6 +6,11 @@
     .gap-5 {
         gap: 1rem !important;
     }
+
+    .slider-div {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
 }
 
 .product .img_product {

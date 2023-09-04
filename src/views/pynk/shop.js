@@ -27,7 +27,7 @@ const PreviousBtn = (props) => {
   return (
     <>
       {currentSlide !== 0 && (
-        <div className={`previous-btn`} onClick={onClick}>
+        <div className={`previous-btn head-shop`} onClick={onClick}>
           <img src={icon_circle} className="icon-previous-btn" />
         </div>
       )}
@@ -40,7 +40,7 @@ const NextBtn = (props) => {
   return (
     <>
       {currentSlide !== slideCount - slidesToShow && (
-        <div className={`next-btn next-btn2`} onClick={onClick}>
+        <div className={`next-btn head-shop`} onClick={onClick}>
           <img src={icon_circle} className="icon-next-btn" />
         </div>
       )}
@@ -63,13 +63,12 @@ const carouselProperties = {
       settings: {
         slidesToShow: 2,
         centerMode: true,
-        slidesToScroll: 3,
       },
     },
     {
       breakpoint: 769,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 1.8,
         centerMode: true,
       },
     },
@@ -78,13 +77,12 @@ const carouselProperties = {
       settings: {
         slidesToShow: 2,
         centerMode: true,
-        slidesToScroll: 2,
       },
     },
     {
       breakpoint: 1025,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
         centerMode: true,
       },
     },
@@ -98,7 +96,7 @@ const carouselProperties = {
     {
       breakpoint: 1400,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 4,
         centerMode: true,
       },
     },
@@ -395,8 +393,8 @@ function ShopPynk() {
           <div
             className="d-flex justify-content-between"
             style={{
-              paddingLeft: "10%",
-              paddingRight: "10%",
+              paddingLeft: "2%",
+              paddingRight: "2%",
               marginBottom: 16,
             }}
           >
