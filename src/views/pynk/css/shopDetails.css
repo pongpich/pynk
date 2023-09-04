@@ -163,8 +163,8 @@
     .hot-shop-details {
         width: 25px !important;
         height: 13px !important;
-        margin-top: 6px !important;
-        margin-left: -5px !important;
+        margin-top: 7px !important;
+        margin-left: -3px !important;
         font-size: 6px !important;
         border-radius: 0px 2px 2px 0px !important;
     }
@@ -672,6 +672,10 @@ button {
 .image-slider {
     width: 100%;
     height: auto;
+    max-height: 252px;
+    /* border-radius: 12px; */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
 
@@ -888,7 +892,7 @@ button {
     background-color: var(--light-red);
     position: absolute;
     margin-top: 12px;
-    margin-left: -5px;
+    margin-left: -3px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -918,10 +922,10 @@ button {
     display: block;
 }
 
-.box-item-hover:hover .image-slider {
+/* .box-item-hover:hover .image-slider {
     transform: scale(1.1);
     transition: 500ms;
-}
+} */
 
 
 .add-shopping-bag {

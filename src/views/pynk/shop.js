@@ -17,6 +17,8 @@ import icon_circle from "../../assets/img/pynk/shop/icon-circle.png";
 import icon_cart_white from "../../assets/img/pynk/shop/icon_cart_white.png";
 import { useHistory } from "react-router-dom";
 import Footer from "./footer";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../../redux/pynk/get";
 
 import "./css/shop.css";
 
@@ -162,60 +164,28 @@ const data = [1, 2, 3, 4, 5, 6];
 
 function ShopPynk() {
   const history = useHistory();
-  const [promotionalProduct, setPromotionalProduct] = useState([
-    {
-      name: "BEBE FIT ROUTINE BALL",
-      price: 199,
-      discount_price: 99,
-      img: bfr_ball,
-    },
-    {
-      name: "BEBE FIT ROUTINE BALL 2",
-      price: 299,
-      discount_price: 199,
-      img: bfr_ball,
-    },
-    {
-      name: "BEBE FIT ROUTINE BALL 3",
-      price: 399,
-      discount_price: 299,
-      img: bfr_ball,
-    },
-    {
-      name: "BEBE FIT ROUTINE BALL 4",
-      price: 499,
-      discount_price: 399,
-      img: bfr_ball,
-    },
-  ]);
+  const dispatch = useDispatch();
+  const { products_pynk, status_products_pynk } = useSelector(
+    (state) => state.getPynk
+  );
+  const [promotionalProduct, setPromotionalProduct] = useState(products_pynk);
+  const [statusPromotionalProduct, setStatusPromotionalProduct] =
+    useState(status_products_pynk);
 
-  const [newProduct, setNewProduct] = useState([
-    {
-      name: "BEBE FIT ROUTINE ROPE",
-      price: 456,
-      discount_price: 123,
-      img: bfr_rope,
-    },
-    {
-      name: "BEBE FIT ROUTINE ROPE 2",
-      price: 400,
-      discount_price: 300,
-      img: bfr_rope,
-    },
-    {
-      name: "BEBE FIT ROUTINE ROPE 3",
-      price: 320,
-      discount_price: 250,
-      img: bfr_rope,
-    },
-    {
-      name: "BEBE FIT ROUTINE ROPE 4",
-      price: 1000,
-      discount_price: 770,
-      img: bfr_rope,
-    },
-  ]);
+  const [newProduct, setNewProduct] = useState(products_pynk);
+  const [statusNewProduct, setStatusNewProduct] =
+    useState(status_products_pynk);
 
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+
+  useEffect(() => {
+    setPromotionalProduct(products_pynk);
+    setStatusPromotionalProduct(status_products_pynk);
+  }, [products_pynk]);
+
+  console.log("promotionalProduct", promotionalProduct);
   return (
     <div>
       <div
@@ -471,51 +441,52 @@ function ShopPynk() {
           </div>
           <div className="slider-div">
             <Slider {...carouselProperties}>
-              {data.map((item, index) => (
-                <div className="box-item-hover cursor-pointer">
-                  <p className="hot-shop-details">HOT</p>
-                  <img src={image_product} className="image-slider" />
-                  <div className="slider-hr" />
-                  <p className="text-center text-head-slider">
-                    BEBE FIT ROUTINE MAT
-                  </p>
-                  <p className="text-center text-slider-hover">
-                    ฿99 <span className="slide-span">฿199 </span>
-                  </p>
-                  <button
-                    type="button"
-                    className="btn  add-shopping-bag justify-content-center align-items-center"
-                    style={{
-                      backgroundColor: colors.primary4,
-                      width: "100%",
-                      maxWidth: 237,
-                      height: 46,
-                      borderRadius: 46,
-                      marginTop: 0,
-                      marginBottom: 32,
-                      marginLeft: 16,
-                      border: 0,
-                    }}
-                  >
-                    <span className="span-div">
-                      <span
-                        style={{
-                          color: "white",
-                          fontSize: 18,
-                        }}
-                      >
-                        <img
-                          width={18}
-                          height={18}
-                          src={icon_cart_white}
-                          className="icon-cart-white"
-                        />
-                        เพิ่มลงถุงช้อปปิ้ง
+              {promotionalProduct &&
+                promotionalProduct.map((item, index) => (
+                  <div className="box-item-hover cursor-pointer">
+                    <p className="hot-shop-details">HOT</p>
+                    <img src={item.image_url} className="image-slider" />
+                    <div className="slider-hr" />
+                    <p className="text-center text-head-slider">
+                      {item.product_name}
+                    </p>
+                    <p className="text-center text-slider-hover">
+                      ฿{item.price} <span className="slide-span">฿199 </span>
+                    </p>
+                    <button
+                      type="button"
+                      className="btn  add-shopping-bag justify-content-center align-items-center"
+                      style={{
+                        backgroundColor: colors.primary4,
+                        width: "100%",
+                        maxWidth: 237,
+                        height: 46,
+                        borderRadius: 46,
+                        marginTop: 0,
+                        marginBottom: 32,
+                        marginLeft: 16,
+                        border: 0,
+                      }}
+                    >
+                      <span className="span-div">
+                        <span
+                          style={{
+                            color: "white",
+                            fontSize: 18,
+                          }}
+                        >
+                          <img
+                            width={18}
+                            height={18}
+                            src={icon_cart_white}
+                            className="icon-cart-white"
+                          />
+                          เพิ่มลงถุงช้อปปิ้ง
+                        </span>
                       </span>
-                    </span>
-                  </button>
-                </div>
-              ))}
+                    </button>
+                  </div>
+                ))}
             </Slider>
           </div>
         </div>
@@ -546,51 +517,53 @@ function ShopPynk() {
           </div>
           <div className="slider-div">
             <Slider {...carouselProperties2}>
-              {data.map((item, index) => (
-                <div className="box-item-hover cursor-pointer">
-                  <p className="hot-shop-details">HOT</p>
-                  <img src={image_product} className="image-slider" />
-                  <div className="slider-hr" />
-                  <p className="text-center text-head-slider">
-                    BEBE FIT ROUTINE MAT
-                  </p>
-                  <p className="text-center text-slider-hover">
-                    ฿99 <span className="slide-span">฿199 </span>
-                  </p>
-                  <button
-                    type="button"
-                    className="btn  add-shopping-bag justify-content-center align-items-center"
-                    style={{
-                      backgroundColor: colors.primary4,
-                      width: "100%",
-                      maxWidth: 237,
-                      height: 46,
-                      borderRadius: 46,
-                      marginTop: 0,
-                      marginBottom: 32,
-                      marginLeft: 16,
-                      border: 0,
-                    }}
-                  >
-                    <span className="span-div">
-                      <span
-                        style={{
-                          color: "white",
-                          fontSize: 18,
-                        }}
-                      >
-                        <img
-                          width={18}
-                          height={18}
-                          src={icon_cart_white}
-                          className="icon-cart-white"
-                        />
-                        เพิ่มลงถุงช้อปปิ้ง
+              {promotionalProduct &&
+                promotionalProduct.map((item, index) => (
+                  <div className="box-item-hover cursor-pointer">
+                    <p className="hot-shop-details">HOT</p>
+                    <img src={item.image_url} className="image-slider" />
+                    <div className="slider-hr" />
+                    <p className="text-center text-head-slider">
+                      {item.product_name}
+                    </p>
+                    <p className="text-center text-slider-hover">
+                      ฿{item.price}
+                      <span className="slide-span">฿199 </span>
+                    </p>
+                    <button
+                      type="button"
+                      className="btn  add-shopping-bag justify-content-center align-items-center"
+                      style={{
+                        backgroundColor: colors.primary4,
+                        width: "100%",
+                        maxWidth: 237,
+                        height: 46,
+                        borderRadius: 46,
+                        marginTop: 0,
+                        marginBottom: 32,
+                        marginLeft: 16,
+                        border: 0,
+                      }}
+                    >
+                      <span className="span-div">
+                        <span
+                          style={{
+                            color: "white",
+                            fontSize: 18,
+                          }}
+                        >
+                          <img
+                            width={18}
+                            height={18}
+                            src={icon_cart_white}
+                            className="icon-cart-white"
+                          />
+                          เพิ่มลงถุงช้อปปิ้ง
+                        </span>
                       </span>
-                    </span>
-                  </button>
-                </div>
-              ))}
+                    </button>
+                  </div>
+                ))}
             </Slider>
           </div>
         </div>
