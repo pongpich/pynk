@@ -103,6 +103,61 @@ const carouselProperties = {
   ],
 };
 
+const carouselProperties2 = {
+  prevArrow: <PreviousBtn />,
+  nextArrow: <NextBtn />,
+  slidesToShow: slidesToShow,
+  slidesToScroll: 3,
+  infinite: true,
+  autoplay: true, // ให้ Slider หมุนเอง
+  autoplaySpeed: 9000, // ตั้งค่าให้หมุนทุก ๆ 30 วินาที
+  // slidesToScroll={3}
+  responsive: [
+    {
+      breakpoint: 576,
+      settings: {
+        slidesToShow: 2,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 769,
+      settings: {
+        slidesToShow: 1.8,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1025,
+      settings: {
+        slidesToShow: 2,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 3,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1400,
+      settings: {
+        slidesToShow: 4,
+        centerMode: true,
+      },
+    },
+  ],
+};
+
 const data = [1, 2, 3, 4, 5, 6];
 
 function ShopPynk() {
@@ -390,19 +445,20 @@ function ShopPynk() {
         </div>
       </div>
 
-      <div style={{ marginTop: 70, marginBottom: 108, cursor: "pointer" }}>
+      <div className="height-box-slider">
         <div>
           <div
             className="d-flex justify-content-between"
             style={{
-              paddingLeft: "2%",
-              paddingRight: "2%",
+              paddingLeft: "3%",
+              paddingRight: "3%",
               marginBottom: 16,
             }}
           >
             <span
               className="fw-bold"
               style={{ color: "#4F4F4F", fontSize: 20 }}
+              π
             >
               สินค้าดีมีโปร
             </span>
@@ -462,193 +518,97 @@ function ShopPynk() {
               ))}
             </Slider>
           </div>
-          {/* <div
-            className="row d-flex justify-content-center"
-            style={{ gap: 30 }}
+        </div>
+      </div>
+      <div className="height-box-slider">
+        <div>
+          <div
+            className="d-flex justify-content-between"
+            style={{
+              paddingLeft: "3%",
+              paddingRight: "3%",
+              marginBottom: 16,
+            }}
           >
-            {promotionalProduct.map((item) => (
-              <div
-                className="product"
-                style={{ width: 275, padding: 0 }}
-                onClick={() => history.push("/shop_details")}
-              >
-                <div
-                  className="d-flex flex-column justify-content-center align-items-center"
-                  style={{
-                    width: 51,
-                    height: 30,
-                    position: "absolute",
-                    marginTop: 8,
-                    marginLeft: 2,
-                    backgroundColor: "#FF4858",
-                    color: "white",
-                    borderRadius: 2,
-                  }}
-                >
-                  HOT
-                </div>
-
-                <div
-                  className="d-flex  justify-content-center align-items-center img_product"
-                  style={{ height: 250 }}
-                >
-                  <img width={275} height={250} src={item.img} />
-                </div>
-
-                <div
-                  className=" d-flex flex-column justify-content-center align-items-center detail_product"
-                  style={{ paddingTop: 23, paddingBottom: 31 }}
-                >
-                  <div
-                    className="fw-bold"
-                    style={{ fontSize: 15, color: colors.neutral6 }}
-                  >
-                    {item.name}
-                  </div>
-                  <div
-                    className="fw-bold"
-                    style={{ fontSize: 22, color: colors.primary4 }}
-                  >
-                    {`฿${item.discount_price}`}
-                    {` `}
-                    <span
-                      className="fw-light text-decoration-line-through"
-                      style={{ fontSize: 15, color: "#9098B1" }}
-                    >
-                      {`฿${item.price}`}
-                    </span>
-                  </div>
+            <span
+              className="fw-bold"
+              style={{ color: "#4F4F4F", fontSize: 20 }}
+              π
+            >
+              แนะนำสินค้าใหม่
+            </span>
+            <span
+              className="text-decoration-underline"
+              style={{ color: colors.primary4, fontSize: 14 }}
+            >
+              ดูทั้งหมด
+            </span>
+          </div>
+          <div className="slider-div">
+            <Slider {...carouselProperties2}>
+              {data.map((item, index) => (
+                <div className="box-item-hover cursor-pointer">
+                  <p className="hot-shop-details">HOT</p>
+                  <img src={image_product} className="image-slider" />
+                  <div className="slider-hr" />
+                  <p className="text-center text-head-slider">
+                    BEBE FIT ROUTINE MAT
+                  </p>
+                  <p className="text-center text-slider-hover">
+                    ฿99 <span className="slide-span">฿199 </span>
+                  </p>
                   <button
                     type="button"
-                    className="btn justify-content-center align-items-center"
+                    className="btn  add-shopping-bag justify-content-center align-items-center"
                     style={{
                       backgroundColor: colors.primary4,
-                      width: 237,
+                      width: "100%",
+                      maxWidth: 237,
                       height: 46,
                       borderRadius: 46,
-                      gap: 7,
-                      marginTop: 15,
+                      marginTop: 0,
+                      marginBottom: 32,
+                      marginLeft: 16,
                       border: 0,
                     }}
                   >
-                    <img width={18} height={18} src={icon_cart_white} />
-                    <span style={{ color: "white", fontSize: 18 }}>
-                      เพิ่มลงถุงช้อปปิ้ง
+                    <span className="span-div">
+                      <span
+                        style={{
+                          color: "white",
+                          fontSize: 18,
+                        }}
+                      >
+                        <img
+                          width={18}
+                          height={18}
+                          src={icon_cart_white}
+                          className="icon-cart-white"
+                        />
+                        เพิ่มลงถุงช้อปปิ้ง
+                      </span>
                     </span>
                   </button>
                 </div>
-              </div>
-            ))}
-          </div> */}
+              ))}
+            </Slider>
+          </div>
         </div>
       </div>
 
-      {/* <div style={{ marginTop: 70, marginBottom: 108, cursor: "pointer" }}>
-        <div
-          className="d-flex justify-content-between"
-          style={{ paddingLeft: "10%", paddingRight: "10%", marginBottom: 16 }}
-        >
-          <span className="fw-bold" style={{ color: "#4F4F4F", fontSize: 20 }}>
-            แนะนำสินค้าใหม่
-          </span>
-          <span
-            className="text-decoration-underline"
-            style={{ color: colors.primary4, fontSize: 14 }}
-          >
-            ดูทั้งหมด
-          </span>
-        </div>
-
-        <div className="row d-flex justify-content-center" style={{ gap: 30 }}>
-          {newProduct.map((item) => (
-            <div
-              className="product"
-              style={{ width: 275, padding: 0 }}
-              onClick={() => history.push("/shop_details")}
-            >
-              <div
-                className="d-flex flex-column justify-content-center align-items-center"
-                style={{
-                  width: 51,
-                  height: 30,
-                  position: "absolute",
-                  marginTop: 8,
-                  marginLeft: 2,
-                  backgroundColor: "#FF4858",
-                  color: "white",
-                  borderRadius: 2,
-                }}
-              >
-                HOT
-              </div>
-
-              <div
-                className="d-flex  justify-content-center align-items-center img_product"
-                style={{ height: 250 }}
-              >
-                <img width={275} height={250} src={item.img} />
-              </div>
-
-              <div
-                className="d-flex flex-column justify-content-center align-items-center detail_product"
-                style={{ paddingTop: 23, paddingBottom: 31 }}
-              >
-                <div
-                  className="fw-bold"
-                  style={{ fontSize: 15, color: colors.neutral6 }}
-                >
-                  {item.name}
-                </div>
-                <div
-                  className="fw-bold"
-                  style={{ fontSize: 22, color: colors.primary4 }}
-                >
-                  {`฿${item.discount_price}`}
-                  {` `}
-                  <span
-                    className="fw-light text-decoration-line-through"
-                    style={{ fontSize: 15, color: "#9098B1" }}
-                  >
-                    {`฿${item.price}`}
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  className="btn justify-content-center align-items-center"
-                  style={{
-                    backgroundColor: colors.primary4,
-                    width: 237,
-                    height: 46,
-                    borderRadius: 46,
-                    gap: 7,
-                    marginTop: 15,
-                    border: 0,
-                  }}
-                >
-                  <img width={18} height={18} src={icon_cart_white} />
-                  <span style={{ color: "white", fontSize: 18 }}>
-                    เพิ่มลงถุงช้อปปิ้ง
-                  </span>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
-
-      {/* <div
-        className="d-flex justify-content-center"
+      <div
+        className="d-flex box-bfr_coupon "
         style={{
-          paddingLeft: 121,
-          paddingRight: 121,
-          marginTop: 70,
-          marginBottom: 108,
+          paddingLeft: "3%",
+          paddingRight: "3%",
           gap: 30,
+          overflowX: "auto",
+          width: "100%",
         }}
       >
-        <img width={584} height={292} src={bfr_coupon} />
-        <img width={584} height={292} src={bfr_coupon} />
-      </div> */}
+        <img src={bfr_coupon} className="bfr-coupon" />
+        <img src={bfr_coupon} className="bfr-coupon" />
+      </div>
       <Footer />
     </div>
   );

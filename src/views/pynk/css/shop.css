@@ -11,6 +11,27 @@
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
+
+    .height-box-slider {
+        height: 300px !important;
+    }
+
+    .bfr-coupon {
+        width: 254px !important;
+        height: 127px !important;
+    }
+
+    .box-bfr_coupon {
+        justify-content: normal !important;
+        margin-top: 32px !important;
+        margin-bottom: 64px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .d-flex {
+        overflow-x: hidden;
+    }
 }
 
 .product .img_product {
@@ -81,4 +102,30 @@
 .span-div {
     margin-top: -40px;
     margin-left: 30px;
+}
+
+.height-box-slider {
+    margin-top: 70px;
+    height: 500px;
+}
+
+.bfr-coupon {
+    width: 584px;
+    height: 292px;
+}
+
+
+
+.d-flex::-webkit-scrollbar {
+    width: 768px;
+}
+
+.d-flex::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+.box-bfr_coupon {
+    justify-content: center;
+    margin-top: 64px;
+    margin-bottom: 195px;
 }
