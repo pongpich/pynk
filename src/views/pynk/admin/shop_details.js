@@ -15,6 +15,8 @@ import kaew from "../../../assets/img/pynk/shop/kaew.png";
 import image_product from "../../../assets/img/pynk/shop/image-product.png";
 import icon_circle from "../../../assets/img/pynk/shop/icon-circle.png";
 import delete_bin_line from "../../../assets/img/pynk/shop/delete-bin-line.png";
+import icon_cart_white from "../../../assets/img/pynk/shop/icon_cart_white.png";
+import colors from ".././colors";
 
 import { flush } from "redux-saga/effects";
 let slidesToShow = 4;
@@ -126,6 +128,7 @@ const Shop_details = () => {
       setPlusNumber((prevNumber) => prevNumber - 1);
     }
   };
+  const data = [1, 2, 3, 4, 5, 6];
 
   return (
     <>
@@ -344,127 +347,62 @@ const Shop_details = () => {
         </div>
         <div>
           <Slider {...carouselProperties}>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
-            <div className="box-item cursor-pointer">
-              <p className="hot-shop-details">HOT</p>
-              <img src={image_product} className="image-slider" />
-              <div className="slider-hr" />
-              <p className="text-center text-head-slider">
-                BEBE FIT ROUTINE MAT
-              </p>
-              <p className="text-center text-slider">
-                ฿99 <span className="slide-span">฿199 </span>
-              </p>
-            </div>
+            {data.map((item, index) => (
+              /*  <div className="box-item cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+              </div> */
+              <div className="box-item-hover cursor-pointer">
+                <p className="hot-shop-details">HOT</p>
+                <img src={image_product} className="image-slider" />
+                <div className="slider-hr" />
+                <p className="text-center text-head-slider">
+                  BEBE FIT ROUTINE MAT
+                </p>
+                <p className="text-center text-slider-hover">
+                  ฿99 <span className="slide-span">฿199 </span>
+                </p>
+                <button
+                  type="button"
+                  className="btn  add-shopping-bag justify-content-center align-items-center"
+                  style={{
+                    backgroundColor: colors.primary4,
+                    width: "100%",
+                    maxWidth: 237,
+                    height: 46,
+                    borderRadius: 46,
+                    marginTop: 0,
+                    marginBottom: 32,
+                    marginLeft: 16,
+                    border: 0,
+                  }}
+                >
+                  <span className="span-div">
+                    <span
+                      style={{
+                        color: "white",
+                        fontSize: 18,
+                      }}
+                    >
+                      <img
+                        width={18}
+                        height={18}
+                        src={icon_cart_white}
+                        className="icon-cart-white"
+                      />
+                      เพิ่มลงถุงช้อปปิ้ง
+                    </span>
+                  </span>
+                </button>
+              </div>
+            ))}
           </Slider>
         </div>
       </div>
