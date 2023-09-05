@@ -340,7 +340,7 @@ class App extends Component {
                 />
                 <button
                   className="nav-link nav-linkHead2 pointer bold  display-none"
-                  onClick={() => this.props.history.push("/programPackage")}
+                  onClick={() => this.props.history.push("/login")}
                 >
                   เข้าสู่ระบบ/ลงทะเบียน
                 </button>
@@ -418,12 +418,14 @@ class App extends Component {
                   <a
                     class="nav-link  link-pynk active2"
                     href="https://platform.bebefitroutine.com"
+                    target="_blank"
                   >
                     Online Training
                   </a>
                   <a
                     class="nav-link link-pynk"
                     href="https://fit.bebefitroutine.com"
+                    target="_blank"
                   >
                     Stay Fit
                   </a>
@@ -437,7 +439,6 @@ class App extends Component {
                   </a>
                   <a
                     class="nav-link link-pynk"
-                    href="#"
                     onClick={() => this.props.history.push("/shop")}
                   >
                     ร้านค้า

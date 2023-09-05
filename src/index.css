@@ -20,3 +20,7 @@ code {
   display: inline;
 padding-left: 20px;
 }
+
+a {
+  cursor: pointer !important;
+}
