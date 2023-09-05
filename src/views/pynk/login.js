@@ -53,10 +53,7 @@ const Login = () => {
 
     return (
         <div>
-
-
-
-            <div className="login_background">
+            {/*  <div className="login_background">
                 <ThemeProvider theme={defaultTheme}>
                     <Container component="main" maxWidth="xs">
                         <CssBaseline />
@@ -74,7 +71,6 @@ const Login = () => {
                             <Typography component="h1" variant="h5">
                                 Sign in
                             </Typography>
-                            {/* <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}> */}
                             <Box component="form" noValidate sx={{ mt: 1 }}>
 
                                 <TextField
@@ -123,13 +119,33 @@ const Login = () => {
                                 </Grid>
                             </Box>
                         </Box>
-                        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
                     </Container>
                 </ThemeProvider>
             </div>
+ */}
 
-            
-           
+            <div>,</div>
+            <div>,</div>
+            <div>,</div>
+            <div>,</div>
+            <div>,</div>
+            <div>,</div>
+
+            <div>อีเมล</div>
+            <input
+                type="text"
+                placeholder="อีเมล"
+            />
+            <div>รหัสผ่าน</div>
+            <input
+                type="password"
+                placeholder="รหัสผ่าน"
+            />
+
+            <div className='d-flex justify-content-center'>
+                <button >เข้าสู่ระบบ</button>
+            </div>
+
 
 
         </div>
