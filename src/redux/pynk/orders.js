@@ -5,8 +5,13 @@ import { API } from "aws-amplify";
 
 export const types = {
     CREATE_ORDER: "CREATE_ORDER",
-    CREATE_ORDER_SUCCESS: "CREATE_ORDER_SUCCESS"
+    CREATE_ORDER_SUCCESS: "CREATE_ORDER_SUCCESS",
+    CLEAR_STATUS: "CLEAR_STATUS"
 }
+
+export const clear_status = () => ({
+    type: types.CLEAR_STATUS
+})
 
 export const create_order = (
     user_id,
@@ -114,6 +119,11 @@ export function reducer(state = INIT_STATE, action) {
             return {
                 ...state,
                 status_create_order: "success"
+            }
+        case types.CLEAR_STATUS:
+            return {
+                ...state,
+                status_create_order: "default"
             }
         default:
             return { ...state };

@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { create_order } from "../../../redux/pynk/orders"
+import { useHistory } from "react-router-dom";
+import { create_order, clear_status } from "../../../redux/pynk/orders"
 import "../css/shop_order_summary.css";
 import Footer from "../footer";
 import InputAddress from "react-thailand-address-autocomplete";
@@ -13,8 +14,10 @@ import check from "../../../assets/img/pynk/shop/check.png";
 import qrcode_pay from "../../../assets/img/pynk/shop/qrcode-pay.png";
 
 const Shop_payment = () => {
-  const [statusContinue, setStatusContinue] = useState(0);
+  const history = useHistory();
+  const [statusContinue, setStatusContinue] = useState(1);
   const [statusStep, setStatusStep] = useState(0);
+  const [pageUrl, setPageUrl] = useState(window.location.href);
 
   const dispatch = useDispatch();
 
@@ -46,7 +49,41 @@ const Shop_payment = () => {
     checked: false,
   });
 
+  const [selectedPaymentMethod, setselectedPaymentMethod] = useState('');
+
+  // ฟังก์ชันที่จะเรียกเมื่อ radio button ถูกเลือก
+  const handleRadioChange = (event) => {
+    setselectedPaymentMethod(event.target.value);
+
+    console.log("selectedPaymentMethod :", selectedPaymentMethod);
+  };
+
   const status_create_order = useSelector(({ orders }) => (orders ? orders.status_create_order : ""));
+
+  useEffect(() => {
+    //สั่ง clear_status ทุกครั้งเมื่อเริ่มเปิดหน้านี้มา
+    dispatch(clear_status())
+  }, []);
+
+  useEffect(() => {
+    if (status_create_order === "default") {
+      setStatusStep(0)
+    }
+
+    //เช็คว่า create_order เสร็จ
+    if (status_create_order === "success") {
+      //สั่งเปลี่ยน render เป็นหน้าให้เลือก payment_method
+      setStatusStep(1)
+
+      //setค่าต่างๆของสินค้า ใน localStorage เพื่อไปเรียกใช้ที่หน้าจ่ายเงิน
+      window.localStorage.setItem('price', 1);
+      window.localStorage.setItem('productName', "pynk");
+      window.localStorage.setItem('name', "Akkewach Yodsomboon");
+      window.localStorage.setItem('email', "akkewach@planforfit.com");
+      window.localStorage.setItem('phone', "0840045946");
+      window.localStorage.setItem('order_id', "17");
+    }
+  }, [status_create_order]);
 
   const validate = () => {
     let isValid = true;
@@ -143,13 +180,17 @@ const Shop_payment = () => {
     }
   };
 
+  function onPayment() {
+    history.push("/shop_details")
+  }
+
   function onSubmit() {
     console.log("formData :", formData);
 
     const product_list = [
-      { "sku": "240220202006", "name": "Fitto Plant Protein Classic Malt", "number": 1, "pricepernumber": 990, "discount": "990", "totalprice": 0 },
-      { "sku": "240220302001", "name": "Fitto Plant Protein Milk Tea Flavour", "number": 1, "pricepernumber": 990, "discount": "990", "totalprice": 0 },
-      { "sku": "240220602002", "name": "Fitto Plant Protein Double Choco Fudge", "number": 1, "pricepernumber": 990, "discount": "990", "totalprice": 0 }
+      { "sku": "240220202006", "name": "Fitto Plant Protein Classic Malt", "number": 1, "pricepernumber": 990, "discount": "0", "totalprice": 990 },
+      { "sku": "240220302001", "name": "Fitto Plant Protein Milk Tea Flavour", "number": 1, "pricepernumber": 990, "discount": "0", "totalprice": 990 },
+      { "sku": "240220602002", "name": "Fitto Plant Protein Double Choco Fudge", "number": 1, "pricepernumber": 990, "discount": "0", "totalprice": 990 }
     ];
 
     const customer_data = {
@@ -168,13 +209,14 @@ const Shop_payment = () => {
     }
 
     dispatch(create_order(
-      "test_01", //user_id,
+      "test_01", //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
       product_list, //product_list,
       1, //total_amount,
       customer_data, //customer_data,
       shipping_address, //shipping_address,
       formData.order_notes //note
     ))
+
   }
 
   const customerInformation = () => {
@@ -551,8 +593,10 @@ const Shop_payment = () => {
                       <input
                         class="form-check-input2"
                         type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
+                        name="payment_method"
+                        value="qr_code"
+                        checked={selectedPaymentMethod === 'qr_code'} // ตรวจสอบค่าถูกเลือก
+                        onChange={handleRadioChange}
                       />
                       <label class="form-check-label" for="flexRadioDefault1">
                         QR Code/พร้อมเพย์
@@ -568,8 +612,10 @@ const Shop_payment = () => {
                       <input
                         class="form-check-input2"
                         type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
+                        name="payment_method"
+                        value="credit_card"
+                        checked={selectedPaymentMethod === 'credit_card'} // ตรวจสอบค่าถูกเลือก
+                        onChange={handleRadioChange}
                       />
                       <label class="form-check-label" for="flexRadioDefault1">
                         บัตรเครดิต
@@ -580,7 +626,7 @@ const Shop_payment = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="form-payment">
+                  {/* <div className="form-payment">
                     <div class="form-check">
                       <input
                         class="form-check-input2"
@@ -592,8 +638,8 @@ const Shop_payment = () => {
                         ผ่อนชำระ 0%
                       </label>
                     </div>
-                  </div>
-                  <div className="form-payment">
+                  </div> */}
+                  {/*  <div className="form-payment">
                     <div class="form-check">
                       <input
                         class="form-check-input2"
@@ -605,13 +651,14 @@ const Shop_payment = () => {
                         เก็บเงินปลายทาง
                       </label>
                     </div>
-                  </div>
+                  </div> */}
                   <button
                     className={
                       statusContinue == 0
                         ? "btn-continue-payment"
                         : "btn-buy-payment"
                     }
+                    onClick={() => history.push("/qr_checkout_pynk")}
                   >
                     ชำระเงิน
                   </button>

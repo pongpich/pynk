@@ -780,6 +780,12 @@ class App extends Component {
                 />
                 <Route path="/shop-payment" component={ShopPaymentPynk} />
                 <Route
+                  path="/qr_checkout_pynk"
+                  render={() => {
+                    window.location.href = "qr_checkout_pynk.html";
+                  }}
+                />
+                <Route
                   path="/successful-payment"
                   component={ShopSuccessfulPaymentPynk}
                 />

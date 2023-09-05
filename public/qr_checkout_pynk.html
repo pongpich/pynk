@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KLDH7S5');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./qr_checkout.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Checkout</title>
+</head>
+
+<body style="background-color: black;">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLDH7S5" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="page">
+    <div class="checkout-form">
+      <div class="flex-column flex-center">
+        <iframe name="dummyframe" id="dummyframe"
+          style="height:700px;width:500px;border:none;overflow:hidden;"></iframe>
+        <h3 id="result_text" style="text-align: center;display: none; color: white;">ได้รับเงินเรียบร้อยแล้ว</h3>
+        <button id="btnRefresh" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-refresh"></span> Refresh
+        </button>
+        <div class="horizontalLine"></div>
+        <form id="qr_form" action=https://api.gbprimepay.com/gbp/gateway/qrcode method="POST" target="dummyframe">
+          <input id="qr_token" type="hidden" name="token">
+          <input id="qr_refNo" type="hidden" name="referenceNo">
+          <input id="qr_bgUrl" type="hidden" name="backgroundUrl">
+          <input id="qr_amount" type="hidden" name="amount">
+          <input id="qr_detail" type="hidden" name="detail">
+          <input id="qr_name" type="hidden" name="customerName">
+          <input id="qr_email" type="hidden" name="customerEmail">
+          <input id="qr_phone" type="hidden" name="customerTelephone">
+          <input id="qr_order_id" type="hidden" name="merchantDefined1">
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <script src="../js/axios.min.js"></script>
+  <script>
+    const merchantID = "23xlw1vxcVi8OKGjTqE2sbQbOXHyzNaGN9XK5ALvRrYtdt7J/kL0ROmE59mzRhDhzICLvm6LF9i45eI8EiyFisGPGloHPKnrp7Ma+JH6O+CBVLZfS/NemVtmxm1J4yQ0cLFNTQUnGvhUO+w8/wvlJI3kw8LPuYpF2960XDgMvZA0R9i5";
+    let price = localStorage.getItem('price');
+    const productName = localStorage.getItem('productName');
+    const refNo = Date.now();
+    const publickey = "HZUfYchqY3T49pWGoookdeS9eelqfOo7";
+    const email = localStorage.getItem('email');
+    const name = localStorage.getItem('name');
+    const baseURL = 'https://api.planforfit.com/pynk';
+    const backgroundUrl = `${baseURL}/gb_response`;
+    const phone = localStorage.getItem('phone');
+    const order_id = localStorage.getItem('order_id');
+    const rhythm = 2000; //หน่วยเป็น ms
+    const qrTimeOut = 180; //หน่วยเป็นวินาที
+    var pageUrl = window.location.href;
+    var thankyouPageUrl;
+    if (pageUrl.includes("localhost") || pageUrl.includes("127.0.0.1")) {
+      thankyouPageUrl = 'http://localhost:3000/#/successful-payment' //สำหรับเทส
+    } else {
+      thankyouPageUrl = 'https://pynk.co/#/successful-payment' //สำหรับใช้จริง
+    }
+
+    document.getElementById('dummyframe').style.display = "block";
+    document.getElementById('result_text').style.display = "none";
+    document.getElementById('btnRefresh').style.display = "none";
+
+    document.getElementById("qr_token").value = merchantID;
+    document.getElementById("qr_refNo").value = refNo;
+    document.getElementById("qr_bgUrl").value = backgroundUrl;
+    document.getElementById("qr_amount").value = price;
+    document.getElementById("qr_detail").value = productName;
+    document.getElementById("qr_name").value = name;
+    document.getElementById("qr_email").value = email;
+    document.getElementById("qr_phone").value = phone;
+    document.getElementById("qr_order_id").value = order_id;
+
+    const data = {
+      customerEmail: email,
+      status: 'default'
+    };
+
+    let intervalId;
+
+    axios
+      .post(`${baseURL}/set_qr`, data)
+      .then(function (response) {
+        document.getElementById("qr_form").submit();
+        intervalId = window.setInterval(getQRStatus, rhythm)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    // getQRStatus ยังมีปัญหาไม่ส่งไปหน้า success
+    function getQRStatus() {
+      const getURL = `${baseURL}/check_qr?email=${email}`;
+      console.log(".");
+      axios
+        .get(getURL, { params: { email } })
+        .then(function (response) {
+          const results = response.data.results;
+
+          if ((results.length > 0) && (results[0].status == "success")) {
+            console.log("inside getQRStatus:", results);
+            window.location.href = thankyouPageUrl;
+            clearInterval(intervalId);
+            document.getElementById('dummyframe').style.display = "none";
+            document.getElementById('result_text').style.display = "block";
+            document.getElementById('btnRefresh').style.display = "none";
+          }
+        });
+    }
+
+    let startTime = Math.floor(Date.now() / 1000); //Get the starting time (right now) in seconds
+
+    function startTimeCounter() {
+      const now = Math.floor(Date.now() / 1000); // get the time now
+      const diff = now - startTime; // diff in seconds between now and start
+      console.log("time passed:", diff);
+      const timeout = setTimeout(startTimeCounter, rhythm); // set a timeout to update the timer
+      checkTime(diff, timeout); // add a leading zero if it's single digit
+    }
+
+    function checkTime(diffInSeconds, timeout) {
+      if (diffInSeconds >= qrTimeOut) {
+        clearTimeout(timeout);
+        clearInterval(intervalId);
+        document.getElementById('dummyframe').style.display = "none";
+        document.getElementById('result_text').style.display = "none";
+        document.getElementById('btnRefresh').style.display = "block";
+      }
+    }
+
+    document.getElementById("btnRefresh").addEventListener("click", function () { window.location.reload(); })
+
+    startTimeCounter();
+
+
+  </script>
+</body>
+
+</html>
