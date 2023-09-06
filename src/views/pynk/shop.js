@@ -63,7 +63,7 @@ const carouselProperties = {
     {
       breakpoint: 576,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 1.8,
         centerMode: true,
       },
     },
@@ -118,7 +118,7 @@ const carouselProperties2 = {
     {
       breakpoint: 576,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 1.8,
         centerMode: true,
       },
     },
@@ -459,22 +459,14 @@ function ShopPynk() {
                       style={{
                         backgroundColor: colors.primary4,
                         width: "100%",
-                        maxWidth: 237,
-                        height: 46,
                         borderRadius: 46,
                         marginTop: 0,
                         marginBottom: 32,
-                        marginLeft: 16,
                         border: 0,
                       }}
                     >
                       <span className="span-div">
-                        <span
-                          style={{
-                            color: "white",
-                            fontSize: 18,
-                          }}
-                        >
+                        <span className="add_shop-test_span">
                           <img
                             width={18}
                             height={18}
@@ -536,22 +528,15 @@ function ShopPynk() {
                       style={{
                         backgroundColor: colors.primary4,
                         width: "100%",
-                        maxWidth: 237,
-                        height: 46,
+
                         borderRadius: 46,
                         marginTop: 0,
                         marginBottom: 32,
-                        marginLeft: 16,
                         border: 0,
                       }}
                     >
                       <span className="span-div">
-                        <span
-                          style={{
-                            color: "white",
-                            fontSize: 18,
-                          }}
-                        >
+                        <span className="add_shop-test_span">
                           <img
                             width={18}
                             height={18}
