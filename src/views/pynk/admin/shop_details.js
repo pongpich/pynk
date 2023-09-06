@@ -17,7 +17,7 @@ import icon_circle from "../../../assets/img/pynk/shop/icon-circle.png";
 import delete_bin_line from "../../../assets/img/pynk/shop/delete-bin-line.png";
 import icon_cart_white from "../../../assets/img/pynk/shop/icon_cart_white.png";
 import colors from ".././colors";
-
+import { useLocation } from "react-router-dom";
 import { flush } from "redux-saga/effects";
 let slidesToShow = 4;
 
@@ -108,6 +108,12 @@ const Shop_details = () => {
   const [more_details, setMoreDetails] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // คำสั่งนี้จะเลื่อนหน้าไปที่ด้านบนสุดของหน้า
+  }, [pathname]);
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -132,13 +138,13 @@ const Shop_details = () => {
 
   return (
     <>
-      <p className="url-product">
+      <div className="url-product">
         <a href="/">สินค้า</a> {"> "}
         <a href="/categories">หมวดหมู่</a> {"> "}
         <a href="/categories/Fitto-Plant-Protein">
           <span>Fitto Plant Protein</span>
         </a>
-      </p>
+      </div>
       <div className="product-details row">
         <div className="col-12  col-sm-6 col-md-5 col-lg-5 ">
           <div className="image-center">

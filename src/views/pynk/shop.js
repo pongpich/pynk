@@ -19,6 +19,7 @@ import { useHistory } from "react-router-dom";
 import Footer from "./footer";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../redux/pynk/get";
+import { Link } from "react-router-dom";
 
 import "./css/shop.css";
 
@@ -453,30 +454,32 @@ function ShopPynk() {
                     <p className="text-center text-slider-hover">
                       ฿{item.price} <span className="slide-span">฿199 </span>
                     </p>
-                    <button
-                      type="button"
-                      className="btn  add-shopping-bag justify-content-center align-items-center"
-                      style={{
-                        backgroundColor: colors.primary4,
-                        width: "100%",
-                        borderRadius: 46,
-                        marginTop: 0,
-                        marginBottom: 32,
-                        border: 0,
-                      }}
-                    >
-                      <span className="span-div">
-                        <span className="add_shop-test_span">
-                          <img
-                            width={18}
-                            height={18}
-                            src={icon_cart_white}
-                            className="icon-cart-white"
-                          />
-                          เพิ่มลงถุงช้อปปิ้ง
+                    <Link to="/shop_details">
+                      <button
+                        type="button"
+                        className="btn  add-shopping-bag justify-content-center align-items-center"
+                        style={{
+                          backgroundColor: colors.primary4,
+                          width: "100%",
+                          borderRadius: 46,
+                          marginTop: 0,
+                          marginBottom: 32,
+                          border: 0,
+                        }}
+                      >
+                        <span className="span-div">
+                          <span className="add_shop-test_span">
+                            <img
+                              width={18}
+                              height={18}
+                              src={icon_cart_white}
+                              className="icon-cart-white"
+                            />
+                            เพิ่มลงถุงช้อปปิ้ง
+                          </span>
                         </span>
-                      </span>
-                    </button>
+                      </button>
+                    </Link>
                   </div>
                 ))}
             </Slider>
@@ -522,31 +525,33 @@ function ShopPynk() {
                       ฿{item.price}
                       <span className="slide-span">฿199 </span>
                     </p>
-                    <button
-                      type="button"
-                      className="btn  add-shopping-bag justify-content-center align-items-center"
-                      style={{
-                        backgroundColor: colors.primary4,
-                        width: "100%",
+                    <Link to="/shop_details">
+                      <button
+                        type="button"
+                        className="btn  add-shopping-bag justify-content-center align-items-center"
+                        style={{
+                          backgroundColor: colors.primary4,
+                          width: "100%",
 
-                        borderRadius: 46,
-                        marginTop: 0,
-                        marginBottom: 32,
-                        border: 0,
-                      }}
-                    >
-                      <span className="span-div">
-                        <span className="add_shop-test_span">
-                          <img
-                            width={18}
-                            height={18}
-                            src={icon_cart_white}
-                            className="icon-cart-white"
-                          />
-                          เพิ่มลงถุงช้อปปิ้ง
+                          borderRadius: 46,
+                          marginTop: 0,
+                          marginBottom: 32,
+                          border: 0,
+                        }}
+                      >
+                        <span className="span-div">
+                          <span className="add_shop-test_span">
+                            <img
+                              width={18}
+                              height={18}
+                              src={icon_cart_white}
+                              className="icon-cart-white"
+                            />
+                            เพิ่มลงถุงช้อปปิ้ง
+                          </span>
                         </span>
-                      </span>
-                    </button>
+                      </button>
+                    </Link>
                   </div>
                 ))}
             </Slider>

@@ -189,6 +189,9 @@
     .icon-cart-white {
         margin-left: 10px;
     }
+    .url-product {
+        margin-left: 16px !important;
+    }
 
 }
 
@@ -198,8 +201,7 @@
     }
 
     .url-product {
-        margin: 64px 0px 0px 0px !important;
-        padding-left: 16px;
+        margin-left: 16px !important;
     }
 
     .box-img {
@@ -277,7 +279,8 @@
 }
 
 .url-product {
-    margin: 64px 123px 0px 119px;
+
+    margin: 204px 0px 0px 119px;
 
 }
 
