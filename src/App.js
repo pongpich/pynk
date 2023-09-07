@@ -773,7 +773,7 @@ class App extends Component {
                 <Route path="/home" component={Home} />
                 <Route path="/dashboard" component={DashboardPynk} />
                 <Route path="/shop" component={ShopPynk} />
-                <Route path="/shop_details" component={ShopDetailsPynk} />
+                <Route path="/shop_details/:id" component={ShopDetailsPynk} />
                 <Route path="/questionare" component={Questionare} />
                 <Route
                   path="/shop-order-summary"
