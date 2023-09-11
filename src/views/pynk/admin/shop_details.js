@@ -118,6 +118,7 @@ const Shop_details = ({ match }) => {
   );
   const [product, setProduct] = useState(products_pynk);
   const [productId, setProductId] = useState(null);
+  const [product_cookies, setProduct_cookies] = useState(null);
 
   const { id } = match.params; // รับ ID จาก URL
 
@@ -179,16 +180,24 @@ const Shop_details = ({ match }) => {
         array.push(productId);
 
         Cookies.set("product_name", JSON.stringify(array), { expires: 7 });
+      } else {
+        console.log("ให้ add จำนวน สินค้าเพิ่ม");
       }
     } else {
       Cookies.set("product_name", JSON.stringify(productId), { expires: 7 });
     }
     const product_name1 = Cookies.get("product_name");
-
-    console.log("Username: 1 ", product_name1 && JSON.parse(product_name1));
+    setProduct_cookies(product_name1 && JSON.parse(product_name1));
+    showMinus();
+  };
+  const showMinus = (action) => {
+    document.getElementById("modalAchievement1Btn") &&
+      document.getElementById("modalAchievement1Btn").click();
   };
   /* 
   /*  const selectedProductData = [1, 2, 3, 4, 5, 6]; */
+
+  console.log("cookies_product", product_cookies);
 
   return (
     <>
@@ -282,12 +291,7 @@ const Shop_details = ({ match }) => {
             เหลือสินค้าอยู่ 33 ชิ้น
           </p>
           <div className="row justify-content-576">
-            <button
-              onClick={() => clickSelected()}
-              className="shopping-bag"
-              /*  data-bs-toggle="modal"
-              data-bs-target="#exampleModal" */
-            >
+            <button onClick={() => clickSelected()} className="shopping-bag">
               เพิ่มลงถุงช้อปปิ้ง
             </button>
 
@@ -450,8 +454,19 @@ const Shop_details = ({ match }) => {
 
       <Footer />
 
+      <button
+        style={{ display: "none" }}
+        type="button"
+        id="modalAchievement1Btn"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Launch demo modal
+      </button>
+
       <div
-        className="modal fade"
+        class="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
@@ -463,7 +478,7 @@ const Shop_details = ({ match }) => {
           }
         >
           <div className="modal-content-shop-details">
-            <div className="modal-header-shop-details">
+            <div className="modal-header-shop-details mt-3">
               <h1
                 className="modal-title-shop-details fs-5"
                 id="exampleModalLabel"
@@ -477,54 +492,184 @@ const Shop_details = ({ match }) => {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body-shop-details  row">
-              <div className="col-4 col-md-3">
-                <img src={picture01} className="model-image-slider" />
-              </div>
-              <div className="col-8 col-md-9">
-                <p className="fitto-shop">
-                  FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
-                </p>
-                <div className="plus-minus-box row">
-                  <div className="plus-minus-model back-g  col-6">
-                    <div className="mt-model">
-                      <button
-                        className="minus-model back-g-btn"
-                        onClick={() => plusMinus("minus")}
-                      >
-                        <span className="minus-span">-</span>
-                      </button>
-                      <span className="plus-minus-number">{plusNumber}</span>
-                      <button
-                        className="plus-model back-g-btn"
-                        onClick={() => plusMinus("plus")}
-                      >
-                        <span className="minus-span">+</span>
-                      </button>
+            <div>
+              <div className="modal-body-shop-details  row">
+                <div className="col-4 col-md-3 mb-3">
+                  <img src={picture01} className="model-image-slider" />
+                </div>
+                <div className="col-8 col-md-9  mb-3">
+                  <p className="fitto-shop">
+                    FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
+                  </p>
+                  <div className="plus-minus-box row">
+                    <div className="plus-minus-model back-g  col-6">
+                      <div className="mt-model">
+                        <button
+                          className="minus-model back-g-btn"
+                          onClick={() => plusMinus("minus")}
+                        >
+                          <span className="minus-span">-</span>
+                        </button>
+                        <span className="plus-minus-number">{plusNumber}</span>
+                        <button
+                          className="plus-model back-g-btn"
+                          onClick={() => plusMinus("plus")}
+                        >
+                          <span className="minus-span">+</span>
+                        </button>
+                      </div>
                     </div>
+                    <img
+                      src={delete_bin_line}
+                      className="delete_bin_line col-3"
+                    />
+                    <p className="fitto-shop price-ml col-3">990 บาท</p>
                   </div>
-                  <img
-                    src={delete_bin_line}
-                    className="delete_bin_line col-3"
-                  />
-                  <p className="fitto-shop price-ml col-3">990 บาท</p>
+                </div>
+                <div className="col-4 col-md-3 mb-3">
+                  <img src={picture01} className="model-image-slider" />
+                </div>
+                <div className="col-8 col-md-9  mb-3">
+                  <p className="fitto-shop">
+                    FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
+                  </p>
+                  <div className="plus-minus-box row">
+                    <div className="plus-minus-model back-g  col-6">
+                      <div className="mt-model">
+                        <button
+                          className="minus-model back-g-btn"
+                          onClick={() => plusMinus("minus")}
+                        >
+                          <span className="minus-span">-</span>
+                        </button>
+                        <span className="plus-minus-number">{plusNumber}</span>
+                        <button
+                          className="plus-model back-g-btn"
+                          onClick={() => plusMinus("plus")}
+                        >
+                          <span className="minus-span">+</span>
+                        </button>
+                      </div>
+                    </div>
+                    <img
+                      src={delete_bin_line}
+                      className="delete_bin_line col-3"
+                    />
+                    <p className="fitto-shop price-ml col-3">990 บาท</p>
+                  </div>
+                </div>
+                <div className="col-4 col-md-3 mb-3">
+                  <img src={picture01} className="model-image-slider" />
+                </div>
+                <div className="col-8 col-md-9  mb-3">
+                  <p className="fitto-shop">
+                    FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
+                  </p>
+                  <div className="plus-minus-box row">
+                    <div className="plus-minus-model back-g  col-6">
+                      <div className="mt-model">
+                        <button
+                          className="minus-model back-g-btn"
+                          onClick={() => plusMinus("minus")}
+                        >
+                          <span className="minus-span">-</span>
+                        </button>
+                        <span className="plus-minus-number">{plusNumber}</span>
+                        <button
+                          className="plus-model back-g-btn"
+                          onClick={() => plusMinus("plus")}
+                        >
+                          <span className="minus-span">+</span>
+                        </button>
+                      </div>
+                    </div>
+                    <img
+                      src={delete_bin_line}
+                      className="delete_bin_line col-3"
+                    />
+                    <p className="fitto-shop price-ml col-3">990 บาท</p>
+                  </div>
+                </div>
+                <div className="col-4 col-md-3 mb-3">
+                  <img src={picture01} className="model-image-slider" />
+                </div>
+                <div className="col-8 col-md-9  mb-3">
+                  <p className="fitto-shop">
+                    FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
+                  </p>
+                  <div className="plus-minus-box row">
+                    <div className="plus-minus-model back-g  col-6">
+                      <div className="mt-model">
+                        <button
+                          className="minus-model back-g-btn"
+                          onClick={() => plusMinus("minus")}
+                        >
+                          <span className="minus-span">-</span>
+                        </button>
+                        <span className="plus-minus-number">{plusNumber}</span>
+                        <button
+                          className="plus-model back-g-btn"
+                          onClick={() => plusMinus("plus")}
+                        >
+                          <span className="minus-span">+</span>
+                        </button>
+                      </div>
+                    </div>
+                    <img
+                      src={delete_bin_line}
+                      className="delete_bin_line col-3"
+                    />
+                    <p className="fitto-shop price-ml col-3">990 บาท</p>
+                  </div>
+                </div>
+                <div className="col-4 col-md-3 mb-3">
+                  <img src={picture01} className="model-image-slider" />
+                </div>
+                <div className="col-8 col-md-9  mb-3">
+                  <p className="fitto-shop">
+                    FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
+                  </p>
+                  <div className="plus-minus-box row">
+                    <div className="plus-minus-model back-g  col-6">
+                      <div className="mt-model">
+                        <button
+                          className="minus-model back-g-btn"
+                          onClick={() => plusMinus("minus")}
+                        >
+                          <span className="minus-span">-</span>
+                        </button>
+                        <span className="plus-minus-number">{plusNumber}</span>
+                        <button
+                          className="plus-model back-g-btn"
+                          onClick={() => plusMinus("plus")}
+                        >
+                          <span className="minus-span">+</span>
+                        </button>
+                      </div>
+                    </div>
+                    <img
+                      src={delete_bin_line}
+                      className="delete_bin_line col-3"
+                    />
+                    <p className="fitto-shop price-ml col-3">990 บาท</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="modal-footer-shop-details">
-              <p className="fitto-shop between">
-                จำนวน 1 รายการ
-                <span>900 บาท</span>
-              </p>
-              <Link to="shop-order-summary">
-                <button
-                  className="model-buy-now"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                >
-                  คิดเงิน
-                </button>
-              </Link>
+              <div className="modal-footer-shop-details">
+                <p className="fitto-shop between">
+                  จำนวน 1 รายการ
+                  <span>900 บาท</span>
+                </p>
+                <Link to="shop-order-summary">
+                  <button
+                    className="model-buy-now"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    คิดเงิน
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
