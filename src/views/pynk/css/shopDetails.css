@@ -189,6 +189,7 @@
     .icon-cart-white {
         margin-left: 10px;
     }
+
     .url-product {
         margin-left: 16px !important;
     }
@@ -513,7 +514,7 @@
     padding-top: 56px;
     padding-bottom: 40px;
     margin-bottom: 18px;
-
+    margin-right: 16px;
 }
 
 .more-detail-hr {

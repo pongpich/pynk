@@ -186,7 +186,7 @@ function ShopPynk() {
     setStatusPromotionalProduct(status_products_pynk);
   }, [products_pynk]);
 
-  console.log("promotionalProduct", promotionalProduct);
+  // console.log("promotionalProduct", promotionalProduct);
   return (
     <div>
       <div
@@ -454,7 +454,7 @@ function ShopPynk() {
                     <p className="text-center text-slider-hover">
                       ฿{item.price} <span className="slide-span">฿199 </span>
                     </p>
-                    <Link to="/shop_details">
+                    <Link to={`/shop_details/${item.product_id}`}>
                       <button
                         type="button"
                         className="btn  add-shopping-bag justify-content-center align-items-center"
@@ -525,7 +525,7 @@ function ShopPynk() {
                       ฿{item.price}
                       <span className="slide-span">฿199 </span>
                     </p>
-                    <Link to="/shop_details">
+                    <Link to={`/shop_details/${item.product_id}`}>
                       <button
                         type="button"
                         className="btn  add-shopping-bag justify-content-center align-items-center"

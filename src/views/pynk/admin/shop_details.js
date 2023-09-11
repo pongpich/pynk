@@ -19,6 +19,10 @@ import icon_cart_white from "../../../assets/img/pynk/shop/icon_cart_white.png";
 import colors from ".././colors";
 import { useLocation } from "react-router-dom";
 import { flush } from "redux-saga/effects";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../../../redux/pynk/get";
+import Cookies from "js-cookie";
+
 let slidesToShow = 4;
 
 const PreviousBtn = (props) => {
@@ -35,7 +39,7 @@ const PreviousBtn = (props) => {
 };
 const NextBtn = (props) => {
   const { className, onClick, slideCount, currentSlide } = props;
-  console.log(props);
+  //  console.log(props);
   return (
     <>
       {currentSlide !== slideCount - slidesToShow && (
@@ -101,12 +105,21 @@ const carouselProperties = {
   ],
 };
 
-const Shop_details = () => {
+const Shop_details = ({ match }) => {
+  const dispatch = useDispatch();
+
   const [mainImage, setMainImage] = useState(picture01);
   const [activeImage, setActiveImage] = useState(picture01);
   const [plusNumber, setPlusNumber] = useState(1);
   const [more_details, setMoreDetails] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const { products_pynk, status_products_pynk } = useSelector(
+    (state) => state.getPynk
+  );
+  const [product, setProduct] = useState(products_pynk);
+  const [productId, setProductId] = useState(null);
+
+  const { id } = match.params; // รับ ID จาก URL
 
   const { pathname } = useLocation();
 
@@ -134,7 +147,48 @@ const Shop_details = () => {
       setPlusNumber((prevNumber) => prevNumber - 1);
     }
   };
-  const data = [1, 2, 3, 4, 5, 6];
+  useEffect(() => {
+    setProduct(products_pynk);
+  }, [products_pynk]);
+
+  useEffect(() => {
+    setProductId(
+      products_pynk && products_pynk.find((status) => status.product_id === id)
+    );
+  }, [products_pynk]);
+
+  /* console.log("product_id", id);
+  console.log("productId", productId); */
+  /*   const selectedProducts = useSelector((state) => state.selectedProducts); */
+
+  const clickSelected = () => {
+    const product_name = Cookies.get("product_name");
+    if (product_name && product_name != "undefined") {
+      const productArray = product_name && JSON.parse(product_name);
+      /*  console.log("productArray", productArray); */
+      const foundProduct =
+        Array.isArray(productArray) &&
+        productArray.find(
+          (product) => product.product_id == productId.product_id
+        );
+
+      if (!foundProduct) {
+        const array = Array.isArray(productArray)
+          ? productArray
+          : [productArray];
+        array.push(productId);
+
+        Cookies.set("product_name", JSON.stringify(array), { expires: 7 });
+      }
+    } else {
+      Cookies.set("product_name", JSON.stringify(productId), { expires: 7 });
+    }
+    const product_name1 = Cookies.get("product_name");
+
+    console.log("Username: 1 ", product_name1 && JSON.parse(product_name1));
+  };
+  /* 
+  /*  const selectedProductData = [1, 2, 3, 4, 5, 6]; */
 
   return (
     <>
@@ -183,11 +237,9 @@ const Shop_details = () => {
         </div>
         <div className="box-image col-12 col-sm-6  col-md-7  col-lg-7">
           <div className="box-details">
-            <p className="text-head">
-              FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
-            </p>
+            <p className="text-head">{productId && productId.product_name}</p>
             <p className="text-name">ธัญพืชรสชานม</p>
-            <p className="text-price">฿990</p>
+            <p className="text-price">฿{productId && productId.price}</p>
             <p className="text-span-price">฿1,990 </p>
             <p className="text-span">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -231,9 +283,10 @@ const Shop_details = () => {
           </p>
           <div className="row justify-content-576">
             <button
+              onClick={() => clickSelected()}
               className="shopping-bag"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              /*  data-bs-toggle="modal"
+              data-bs-target="#exampleModal" */
             >
               เพิ่มลงถุงช้อปปิ้ง
             </button>
@@ -353,17 +406,17 @@ const Shop_details = () => {
         </div>
         <div>
           <Slider {...carouselProperties}>
-            {data &&
-              data.map((item, index) => (
-                <div className="box-item-hover cursor-pointer">
+            {product &&
+              product.map((item, index) => (
+                <div key={index} className="box-item-hover cursor-pointer">
                   <p className="hot-shop-details">HOT</p>
-                  <img src={image_product} className="image-slider" />
+                  <img src={item.image_url} className="image-slider" />
                   <div className="slider-hr" />
                   <p className="text-center text-head-slider">
-                    BEBE FIT ROUTINE MAT ROUTINE MAT
+                    {item.product_name}
                   </p>
                   <p className="text-center text-slider-hover">
-                    ฿99 <span className="slide-span">฿199 </span>
+                    ฿{item.price} <span className="slide-span">฿199 </span>
                   </p>
                   <button
                     type="button"
