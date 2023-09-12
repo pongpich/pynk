@@ -161,6 +161,7 @@ const Shop_details = ({ match }) => {
   const clickSelected = () => {
     const product_name = Cookies.get("product_name");
     if (product_name && product_name != "undefined") {
+      // มีสินค้า
       const productArray = product_name && JSON.parse(product_name);
 
       const foundProduct =
@@ -168,6 +169,7 @@ const Shop_details = ({ match }) => {
         productArray.find((product) => product.sku == productId.product_id);
 
       if (!foundProduct) {
+        // product_id สินค้าไม่ซ้ำกัน
         const array = Array.isArray(productArray)
           ? productArray
           : [productArray];
@@ -183,6 +185,7 @@ const Shop_details = ({ match }) => {
         array.push(product_list);
         Cookies.set("product_name", JSON.stringify(array), { expires: 7 });
       } else {
+        // product_id สินค้าซ้ำกัน
         const foundProductIndex =
           Array.isArray(productArray) &&
           productArray.findIndex(
@@ -204,6 +207,7 @@ const Shop_details = ({ match }) => {
         }
       }
     } else {
+      // ยังไม่มีสินค้า
       const product_list = [
         {
           image: productId.image_url,
