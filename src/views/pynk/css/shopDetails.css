@@ -864,6 +864,7 @@ button {
     margin-top: 22px;
     width: 21px;
     height: 21px;
+    cursor: pointer;
 }
 
 .price-ml {

@@ -39,7 +39,6 @@ const PreviousBtn = (props) => {
 };
 const NextBtn = (props) => {
   const { className, onClick, slideCount, currentSlide } = props;
-  //  console.log(props);
   return (
     <>
       {currentSlide !== slideCount - slidesToShow && (
@@ -112,6 +111,7 @@ const Shop_details = ({ match }) => {
   const [activeImage, setActiveImage] = useState(picture01);
   const [number, setNumber] = useState(1);
   const [more_details, setMoreDetails] = useState(false);
+  const [expires_cookies, setExpires_cookies] = useState(7);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { products_pynk, status_products_pynk } = useSelector(
     (state) => state.getPynk
@@ -183,7 +183,9 @@ const Shop_details = ({ match }) => {
           totalprice: parseInt(productId.price) * parseInt(number),
         };
         array.push(product_list);
-        Cookies.set("product_name", JSON.stringify(array), { expires: 7 });
+        Cookies.set("product_name", JSON.stringify(array), {
+          expires: expires_cookies,
+        });
       } else {
         // product_id สินค้าซ้ำกัน
         const foundProductIndex =
@@ -201,7 +203,7 @@ const Shop_details = ({ match }) => {
             parseInt(productArray[foundProductIndex].number);
 
           Cookies.set("product_name", JSON.stringify(productArray), {
-            expires: 7,
+            expires: expires_cookies,
           });
           setNumber(1);
         }
@@ -219,7 +221,9 @@ const Shop_details = ({ match }) => {
           totalprice: parseInt(productId.price) * parseInt(number),
         },
       ];
-      Cookies.set("product_name", JSON.stringify(product_list), { expires: 7 });
+      Cookies.set("product_name", JSON.stringify(product_list), {
+        expires: expires_cookies,
+      });
     }
     const product_name1 = Cookies.get("product_name");
     setProduct_cookies(product_name1 && JSON.parse(product_name1));
@@ -229,11 +233,66 @@ const Shop_details = ({ match }) => {
     document.getElementById("modalAchievement1Btn") &&
       document.getElementById("modalAchievement1Btn").click();
   };
+
+  //เเก้จำนวนสินค้า ใน model && Cookies
+  const plusMinusCookies = (e, id) => {
+    const product_name = Cookies.get("product_name");
+    if (product_name && product_name != "undefined") {
+      const productArray = product_name && JSON.parse(product_name);
+      const foundProductIndex =
+        Array.isArray(productArray) &&
+        productArray.findIndex((product) => product.sku == id);
+
+      if (foundProductIndex !== -1) {
+        if (e == "plus") {
+          productArray[foundProductIndex].number =
+            parseInt(productArray[foundProductIndex].number) + 1;
+          productArray[foundProductIndex].totalprice =
+            parseInt(productArray[foundProductIndex].pricepernumber) *
+            parseInt(productArray[foundProductIndex].number);
+
+          Cookies.set("product_name", JSON.stringify(productArray), {
+            expires: expires_cookies,
+          });
+        } else {
+          // ลบ ค่า ได้ถึงเเค่ 1
+          if (parseInt(productArray[foundProductIndex].number) > 1) {
+            productArray[foundProductIndex].number =
+              parseInt(productArray[foundProductIndex].number) - 1;
+            productArray[foundProductIndex].totalprice =
+              parseInt(productArray[foundProductIndex].pricepernumber) *
+              parseInt(productArray[foundProductIndex].number);
+
+            Cookies.set("product_name", JSON.stringify(productArray), {
+              expires: expires_cookies,
+            });
+          }
+        }
+        const product_name1 = Cookies.get("product_name");
+        setProduct_cookies(product_name1 && JSON.parse(product_name1));
+      }
+    }
+  };
+  // ลบ ค้า  cookies
+  const deleteArrayCookies = (id) => {
+    const product_name = Cookies.get("product_name");
+    if (product_name && product_name != "undefined") {
+      let productArray = product_name && JSON.parse(product_name);
+
+      productArray =
+        productArray && productArray.filter((product) => product.sku != id);
+      Cookies.set("product_name", JSON.stringify(productArray), {
+        expires: expires_cookies,
+      });
+      const product_name1 = Cookies.get("product_name");
+      setProduct_cookies(product_name1 && JSON.parse(product_name1));
+    }
+  };
+  // คำนวน ราคา ทั้งหมด
   const totalSum =
     product_cookies &&
     product_cookies.reduce((acc, product) => acc + product.totalprice, 0);
 
-  console.log("cookies_product", product_cookies);
 
   return (
     <>
@@ -250,30 +309,34 @@ const Shop_details = ({ match }) => {
             <img src={mainImage} className="image-product" />
           </div>
           <div className="row box-image">
-            <div className="box-img">
+            <div className="box-img mb-3">
               <img
                 src={productId && productId.image_url}
                 className={`image ${
-                  activeImage === productId.image_url ? "active" : ""
+                  activeImage === productId && productId.image_url
+                    ? "active"
+                    : ""
                 }`}
-                onClick={() => handleImageClick(productId.image_url)}
+                onClick={() =>
+                  handleImageClick(productId && productId.image_url)
+                }
               />
             </div>
-            <div className="box-img">
+            <div className="box-img mb-3">
               <img
                 src={picture02}
                 className={`image ${activeImage === picture02 ? "active" : ""}`}
                 onClick={() => handleImageClick(picture02)}
               />
             </div>
-            <div className="box-img">
+            <div className="box-img mb-3">
               <img
                 src={picture03}
                 className={`image ${activeImage === picture03 ? "active" : ""}`}
                 onClick={() => handleImageClick(picture03)}
               />
             </div>
-            <div className="box-img">
+            <div className="box-img mb-3">
               <img
                 src={picture04}
                 className={`image ${activeImage === picture04 ? "active" : ""}`}
@@ -295,18 +358,18 @@ const Shop_details = ({ match }) => {
               type and scrambled it to make a type{" "}
             </p>
             <div className="row">
-              <div className="amount">
+              <div className="amount mb-3">
                 <p className="text-amount text-center">พลังงาน</p>
                 <p className="text-amount-number text-center">120</p>
                 <p className="text-amount-power text-center"> แคลอรี่</p>
               </div>
-              <div className="amount">
+              <div className="amount mb-3">
                 <p className="text-amount text-center">พลังงาน</p>
                 <p className="text-amount-number text-center">120</p>
                 <p className="text-amount-power text-center"> แคลอรี่</p>
               </div>
-              <div className="amount">
-                <p className="text-amount text-center">พลังงาน</p>
+              <div className="amount mb-3">
+                <p className="text-amount text-center ">พลังงาน</p>
                 <p className="text-amount-number text-center">120</p>
                 <p className="text-amount-power text-center"> แคลอรี่</p>
               </div>
@@ -548,7 +611,9 @@ const Shop_details = ({ match }) => {
                             <div className="mt-model">
                               <button
                                 className="minus-model back-g-btn"
-                                onClick={() => plusMinus("minus")}
+                                onClick={() =>
+                                  plusMinusCookies("minus", product.sku)
+                                }
                               >
                                 <span className="minus-span">-</span>
                               </button>
@@ -557,7 +622,9 @@ const Shop_details = ({ match }) => {
                               </span>
                               <button
                                 className="plus-model back-g-btn"
-                                onClick={() => plusMinus("plus")}
+                                onClick={() =>
+                                  plusMinusCookies("plus", product.sku)
+                                }
                               >
                                 <span className="minus-span">+</span>
                               </button>
@@ -565,6 +632,7 @@ const Shop_details = ({ match }) => {
                           </div>
                           <img
                             src={delete_bin_line}
+                            onClick={() => deleteArrayCookies(product.sku)}
                             className="delete_bin_line col-3"
                           />
                           <p className="fitto-shop price-ml col-3">
