@@ -148,7 +148,7 @@ const Shop_order_summary = () => {
       <div className="box-order-summary">
         <div className="background-order-summary row">
           <div className="col-12 col-md-7 justify-content">
-            <div>
+            <div className="customer-first-child-r">
               <div className="order-summary">
                 <div className="order">
                   <p className="text-head-order-summary">สรุปรายการสั่งซื้อ</p>
