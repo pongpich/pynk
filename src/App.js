@@ -203,7 +203,6 @@ class App extends Component {
         const before3daysEnd = new Date(before3days).getTime();
         inBefore3days =
           currentDate >= before3daysStart && currentDate <= before3daysEnd; //เช็คว่าอยู่ในช่วงวันที่3 ก่อนที่จะหมดอายุ
-        console.log("inBefore3days :", inBefore3days);
       }
       if (expired) {
         document.getElementById("modalExpireClick").click();
@@ -219,7 +218,7 @@ class App extends Component {
     }
 
     const { windowWidth, searchStatus } = this.state;
-    console.log("searchStatus", windowWidth);
+
     if (prevState.windowWidth != windowWidth && windowWidth > 576) {
       this.setState({ searchStatus: 0 });
     }
@@ -305,7 +304,6 @@ class App extends Component {
     const { user } = this.props;
     const { searchStatus, group_image } = this.state;
 
-    console.log("searchStatus", searchStatus);
     return (
       <div className="navbar-pyak">
         <nav className="navbar navbar-expand-sm bg-light information-nav fixed-top">
