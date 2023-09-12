@@ -158,20 +158,14 @@ const Shop_details = ({ match }) => {
     );
   }, [products_pynk]);
 
-  /* console.log("product_id", id);
-  console.log("productId", productId); */
-  /*   const selectedProducts = useSelector((state) => state.selectedProducts); */
-
   const clickSelected = () => {
     const product_name = Cookies.get("product_name");
     if (product_name && product_name != "undefined") {
       const productArray = product_name && JSON.parse(product_name);
-      /*  console.log("productArray", productArray); */
+
       const foundProduct =
         Array.isArray(productArray) &&
-        productArray.find(
-          (product) => product.product_id == productId.product_id
-        );
+        productArray.find((product) => product.sku == productId.product_id);
 
       if (!foundProduct) {
         const array = Array.isArray(productArray)
@@ -192,7 +186,25 @@ const Shop_details = ({ match }) => {
 
         Cookies.set("product_name", JSON.stringify(array), { expires: 7 });
       } else {
-        console.log("ให้ add จำนวน สินค้าเพิ่ม");
+        const foundProductIndex =
+          Array.isArray(productArray) &&
+          productArray.findIndex(
+            (product) => product.sku === productId.product_id
+          );
+
+        if (foundProductIndex !== -1) {
+          productArray[foundProductIndex].number =
+            parseInt(productArray[foundProductIndex].number) + parseInt(number);
+
+          productArray[foundProductIndex].totalprice =
+            parseInt(productArray[foundProductIndex].pricepernumber) *
+            parseInt(productArray[foundProductIndex].number);
+
+          Cookies.set("product_name", JSON.stringify(productArray), {
+            expires: 7,
+          });
+          setNumber(1);
+        }
       }
     } else {
       const product_list = [
