@@ -293,7 +293,6 @@ const Shop_details = ({ match }) => {
     product_cookies &&
     product_cookies.reduce((acc, product) => acc + product.totalprice, 0);
 
-
   return (
     <>
       <div className="url-product">
@@ -648,7 +647,7 @@ const Shop_details = ({ match }) => {
                   จำนวน {product_cookies && product_cookies.length} รายการ
                   <span>{totalSum && totalSum.toLocaleString()} บาท</span>
                 </p>
-                <Link to="shop-order-summary">
+                <Link to="/shop-order-summary">
                   <button
                     className="model-buy-now"
                     data-bs-dismiss="modal"

@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import "../css/shop_order_summary.css";
 import Footer from "../footer";
+import { useLocation } from "react-router-dom";
 
 import picture01 from "../../../assets/img/pynk/shop/group-37546.png";
 import arrow_left_line from "../../../assets/img/pynk/shop/arrow-left-s-line.png";
@@ -19,6 +20,12 @@ const Shop_order_summary = () => {
   const [plusNumber, setPlusNumber] = useState(1);
   const [statusLogin, setStatusLogin] = useState(1);
   const [statusContinue, setStatusContinue] = useState(0);
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // คำสั่งนี้จะเลื่อนหน้าไปที่ด้านบนสุดของหน้า
+  }, [pathname]);
 
   const plusMinus = (type) => {
     if (type === "plus") {
