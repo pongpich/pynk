@@ -110,7 +110,7 @@ const Shop_details = ({ match }) => {
 
   const [mainImage, setMainImage] = useState(picture01);
   const [activeImage, setActiveImage] = useState(picture01);
-  const [plusNumber, setPlusNumber] = useState(1);
+  const [number, setNumber] = useState(1);
   const [more_details, setMoreDetails] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { products_pynk, status_products_pynk } = useSelector(
@@ -143,9 +143,9 @@ const Shop_details = ({ match }) => {
 
   const plusMinus = (type) => {
     if (type === "plus") {
-      setPlusNumber((prevNumber) => prevNumber + 1);
-    } else if (plusNumber > 1) {
-      setPlusNumber((prevNumber) => prevNumber - 1);
+      setNumber((prevNumber) => prevNumber + 1);
+    } else if (number > 1) {
+      setNumber((prevNumber) => prevNumber - 1);
     }
   };
   useEffect(() => {
@@ -177,14 +177,36 @@ const Shop_details = ({ match }) => {
         const array = Array.isArray(productArray)
           ? productArray
           : [productArray];
-        array.push(productId);
+
+        const product_list = {
+          image: productId.image_url,
+          sku: productId.product_id,
+          name: productId.product_name,
+          number: number,
+          pricepernumber: productId.price,
+          discount: "0",
+          totalprice: parseInt(productId.price) * parseInt(number),
+        };
+
+        array.push(product_list);
 
         Cookies.set("product_name", JSON.stringify(array), { expires: 7 });
       } else {
         console.log("ให้ add จำนวน สินค้าเพิ่ม");
       }
     } else {
-      Cookies.set("product_name", JSON.stringify(productId), { expires: 7 });
+      const product_list = [
+        {
+          image: productId.image_url,
+          sku: productId.product_id,
+          name: productId.product_name,
+          number: number,
+          pricepernumber: productId.price,
+          discount: "0",
+          totalprice: parseInt(productId.price) * parseInt(number),
+        },
+      ];
+      Cookies.set("product_name", JSON.stringify(product_list), { expires: 7 });
     }
     const product_name1 = Cookies.get("product_name");
     setProduct_cookies(product_name1 && JSON.parse(product_name1));
@@ -278,7 +300,7 @@ const Shop_details = ({ match }) => {
             <button className="minus" onClick={() => plusMinus("minus")}>
               {"-"}
             </button>
-            <span className="plus-minus-number">{plusNumber}</span>
+            <span className="plus-minus-number">{number}</span>
             <button className="plus" onClick={() => plusMinus("plus")}>
               {"+"}
             </button>
@@ -510,7 +532,7 @@ const Shop_details = ({ match }) => {
                         >
                           <span className="minus-span">-</span>
                         </button>
-                        <span className="plus-minus-number">{plusNumber}</span>
+                        <span className="plus-minus-number">{number}</span>
                         <button
                           className="plus-model back-g-btn"
                           onClick={() => plusMinus("plus")}
@@ -542,7 +564,7 @@ const Shop_details = ({ match }) => {
                         >
                           <span className="minus-span">-</span>
                         </button>
-                        <span className="plus-minus-number">{plusNumber}</span>
+                        <span className="plus-minus-number">{number}</span>
                         <button
                           className="plus-model back-g-btn"
                           onClick={() => plusMinus("plus")}
@@ -574,7 +596,7 @@ const Shop_details = ({ match }) => {
                         >
                           <span className="minus-span">-</span>
                         </button>
-                        <span className="plus-minus-number">{plusNumber}</span>
+                        <span className="plus-minus-number">{number}</span>
                         <button
                           className="plus-model back-g-btn"
                           onClick={() => plusMinus("plus")}
@@ -606,7 +628,7 @@ const Shop_details = ({ match }) => {
                         >
                           <span className="minus-span">-</span>
                         </button>
-                        <span className="plus-minus-number">{plusNumber}</span>
+                        <span className="plus-minus-number">{number}</span>
                         <button
                           className="plus-model back-g-btn"
                           onClick={() => plusMinus("plus")}
@@ -638,7 +660,7 @@ const Shop_details = ({ match }) => {
                         >
                           <span className="minus-span">-</span>
                         </button>
-                        <span className="plus-minus-number">{plusNumber}</span>
+                        <span className="plus-minus-number">{number}</span>
                         <button
                           className="plus-model back-g-btn"
                           onClick={() => plusMinus("plus")}
