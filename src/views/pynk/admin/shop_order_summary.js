@@ -3,6 +3,7 @@ import "../css/shop_order_summary.css";
 import Footer from "../footer";
 import { useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 import picture01 from "../../../assets/img/pynk/shop/group-37546.png";
 import arrow_left_line from "../../../assets/img/pynk/shop/arrow-left-s-line.png";
@@ -79,6 +80,21 @@ const Shop_order_summary = () => {
         const product_name1 = Cookies.get("product_name");
         setProduct_cookies(product_name1 && JSON.parse(product_name1));
       }
+    }
+  };
+  // ลบ ค้า  cookies
+  const deleteArrayCookies = (id) => {
+    const product_name = Cookies.get("product_name");
+    if (product_name && product_name != "undefined") {
+      let productArray = product_name && JSON.parse(product_name);
+
+      productArray =
+        productArray && productArray.filter((product) => product.sku != id);
+      Cookies.set("product_name", JSON.stringify(productArray), {
+        expires: expires_cookies,
+      });
+      const product_name1 = Cookies.get("product_name");
+      setProduct_cookies(product_name1 && JSON.parse(product_name1));
     }
   };
 
@@ -242,6 +258,9 @@ const Shop_order_summary = () => {
                                   <span className="minus-span">+</span>
                                 </button>
                                 <img
+                                  onClick={() =>
+                                    deleteArrayCookies(product.sku)
+                                  }
                                   src={delete_bin_line}
                                   className="delete_bin_line-order"
                                 />
@@ -261,19 +280,19 @@ const Shop_order_summary = () => {
                     ))}
                 </div>
               </div>
-              <button className="shop-more-products">
+              <Link to="/shop" className="shop-more-products">
                 <img src={arrow_left_line} className="arrow-left-line" />
                 เลือกซื้อสินค้าเพิ่มเติม
-              </button>
+              </Link>
             </div>
           </div>
-          <div className="col-12 col-md-5 justify-content-576">
+          <div className="col-12 col-md-5 justify-content">
             <div>
               <div className="box-proceed-payment">
                 <div className="input-code">
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input-height"
                     id="exampleFormControlInput1"
                     placeholder="ใส่รหัสส่วนลด"
                   />
