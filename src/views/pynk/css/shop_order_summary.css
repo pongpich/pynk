@@ -126,6 +126,11 @@
     .baht-promptPay {
         font-size: 16px !important;
     }
+
+    .justify-content-767 {
+        display: flex !important;
+        justify-content: center !important;
+    }
 }
 
 

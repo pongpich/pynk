@@ -20,7 +20,7 @@ import icon_line from "../../../assets/img/pynk/shop/icon-line.png";
 
 const Shop_order_summary = () => {
   const [plusNumber, setPlusNumber] = useState(1);
-  const [statusLogin, setStatusLogin] = useState(1);
+  const [statusLogin, setStatusLogin] = useState(0);
   const [statusContinue, setStatusContinue] = useState(0);
   const [product_cookies, setProduct_cookies] = useState(null);
   const [expires_cookies, setExpires_cookies] = useState(7);
@@ -135,9 +135,15 @@ const Shop_order_summary = () => {
                 เข้าใช้งานด้วย Line
               </button>
               <p className="or-login"> หรือ</p>
-              <button className="btn-want-login">
-                สั่งซื้อโดยไม่ได้เป็นสมาชิก
-              </button>
+              <Link to="/shop-payment">
+                <button
+                  className="btn-want-login"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  สั่งซื้อโดยไม่ได้เป็นสมาชิก
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -286,38 +292,36 @@ const Shop_order_summary = () => {
               </Link>
             </div>
           </div>
-          <div className="col-12 col-md-5 justify-content">
-            <div>
-              <div className="box-proceed-payment">
-                <div className="input-code">
-                  <input
-                    type="text"
-                    className="form-control input-height"
-                    id="exampleFormControlInput1"
-                    placeholder="ใส่รหัสส่วนลด"
-                  />
-                  <button className="button-use">ใช้</button>
-                </div>
-                <p className="text-price-order between mt-32">
-                  ค่าสินค้า{" "}
-                  <span>{totalSum && totalSum.toLocaleString()} บาท </span>
-                </p>
-                <p className="text-price-order between">
-                  ค่าจัดส่ง <span>ฟรี </span>
-                </p>
-                <hr className="line-order-bottom" />
-                <p className="text-price-order between text-pink">
-                  ยอดที่ต้องชำระ
-                  <span>{totalSum && totalSum.toLocaleString()} บาท</span>
-                </p>
-                <button
-                  className="btn-buy-payment"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModalPayment"
-                >
-                  ดำเนินการชำระเงิน
-                </button>
+          <div className="col-12 col-md-5 justify-content-767">
+            <div className="box-proceed-payment">
+              <div className="input-code">
+                <input
+                  type="text"
+                  className="form-control input-height"
+                  id="exampleFormControlInput1"
+                  placeholder="ใส่รหัสส่วนลด"
+                />
+                <button className="button-use">ใช้</button>
               </div>
+              <p className="text-price-order between mt-32">
+                ค่าสินค้า{" "}
+                <span>{totalSum && totalSum.toLocaleString()} บาท </span>
+              </p>
+              <p className="text-price-order between">
+                ค่าจัดส่ง <span>ฟรี </span>
+              </p>
+              <hr className="line-order-bottom" />
+              <p className="text-price-order between text-pink">
+                ยอดที่ต้องชำระ
+                <span>{totalSum && totalSum.toLocaleString()} บาท</span>
+              </p>
+              <button
+                className="btn-buy-payment"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModalPayment"
+              >
+                ดำเนินการชำระเงิน
+              </button>
 
               <p className="text-price-order mt-32">รับชำระด้วย</p>
               <img src={Logo_payment_1} className="logo-payment-1" />
