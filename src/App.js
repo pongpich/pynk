@@ -20,6 +20,7 @@ import ShopPaymentPynk from "./views/pynk/admin/shop_payment";
 import ShopSuccessfulPaymentPynk from "./views/pynk/admin/shop_successful_payment";
 import Popup_login from "./components/Popup_login";
 import Login from "../src/views/pynk/login";
+import ProductsManagement from "./views/pynk/admin/products_management";
 // import Shop from "../src/views/pynk/shop";
 import HomePlatfrom from "../src/views/platform/login";
 import Questionare from "../src/views/pynk/questionare";
@@ -770,6 +771,7 @@ class App extends Component {
                 </Route>
                 <Route path="/home" component={Home} />
                 <Route path="/dashboard" component={DashboardPynk} />
+                <Route path="/products_management" component={ProductsManagement} />
                 <Route path="/shop" component={ShopPynk} />
                 <Route path="/shop_details/:id" component={ShopDetailsPynk} />
                 <Route path="/questionare" component={Questionare} />
