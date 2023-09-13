@@ -107,7 +107,7 @@ const carouselProperties = {
 const Shop_details = ({ match }) => {
   const dispatch = useDispatch();
 
-  const [mainImage, setMainImage] = useState(picture01);
+  const [mainImage, setMainImage] = useState();
   const [activeImage, setActiveImage] = useState(picture01);
   const [number, setNumber] = useState(1);
   const [more_details, setMoreDetails] = useState(false);
@@ -233,6 +233,12 @@ const Shop_details = ({ match }) => {
     document.getElementById("modalAchievement1Btn") &&
       document.getElementById("modalAchievement1Btn").click();
   };
+  useEffect(() => {
+    if (productId) {
+      // productId && productId.image_url;
+      setMainImage(productId && productId.image_url);
+    }
+  }, [productId]);
 
   //เเก้จำนวนสินค้า ใน model && Cookies
   const plusMinusCookies = (e, id) => {
