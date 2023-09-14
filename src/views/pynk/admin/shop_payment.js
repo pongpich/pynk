@@ -164,7 +164,9 @@ const Shop_payment = () => {
   };
 
   const handleChange = (event) => {
+    console.log("999");
     const { name, type, checked, value } = event.target;
+    console.log("name", name);
     setFormData((prevState) => ({ ...prevState, [name]: value }));
     if (name == "checkbox") {
       setFormData((prevState) => ({
@@ -199,33 +201,7 @@ const Shop_payment = () => {
   function onSubmit() {
     console.log("formData :", formData);
 
-    const product_list = [
-      {
-        sku: "240220202006",
-        name: "Fitto Plant Protein Classic Malt",
-        number: 1,
-        pricepernumber: 990,
-        discount: "0",
-        totalprice: 990,
-      },
-      {
-        sku: "240220302001",
-        name: "Fitto Plant Protein Milk Tea Flavour",
-        number: 1,
-        pricepernumber: 990,
-        discount: "0",
-        totalprice: 990,
-      },
-      {
-        sku: "240220602002",
-        name: "Fitto Plant Protein Double Choco Fudge",
-        number: 1,
-        pricepernumber: 990,
-        discount: "0",
-        totalprice: 990,
-      },
-    ];
-
+    const product_list = order;
     const customer_data = {
       name: formData.username,
       last_name: formData.surname,
@@ -396,6 +372,62 @@ const Shop_payment = () => {
                     <div className="col-12 col-md-6">
                       <div className="customer-first-child-r">
                         <p className="text-login-payment">
+                          เเขวง/ตำบล{" "}
+                          <span className="login-payment-span">*</span>
+                        </p>
+
+                        <InputAddress
+                          address="subdistrict"
+                          style={{
+                            width: "100%",
+                            height: "42px",
+                            marginTop: "-8px",
+                            marginBottom: "16px",
+                            borderRadius: "8px",
+                            border: "1px solid #4A4A4A",
+                          }}
+                          value={formData.subdistrict}
+                          onChange={handleChange}
+                          onSelect={handleAddressChange}
+                          placeholder="Placeholder"
+                        />
+
+                        {errors.subdistrict && (
+                          <div className="error-from">{errors.subdistrict}</div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                      <div className="customer-first-child-l">
+                        <p className="text-login-payment">
+                          เขต/อำเภอ{" "}
+                          <span className="login-payment-span">*</span>
+                        </p>
+                        <InputAddress
+                          address="district"
+                          style={{
+                            width: "100%",
+                            height: "42px",
+                            marginTop: "-8px",
+                            marginBottom: "16px",
+                            borderRadius: "8px",
+                            border: "1px solid #4A4A4A",
+                          }}
+                          value={formData.district}
+                          onChange={handleChange}
+                          onSelect={handleAddressChange}
+                          placeholder="Placeholder"
+                        />
+                        {errors.district && (
+                          <div className="error-from">{errors.district}</div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <div className="col-12 col-md-6">
+                      <div className="customer-first-child-r">
+                        <p className="text-login-payment">
                           จังหวัด <span className="login-payment-span">*</span>
                         </p>
                         <InputAddress
@@ -421,67 +453,11 @@ const Shop_payment = () => {
                     <div className="col-12 col-md-6">
                       <div className="customer-first-child-l">
                         <p className="text-login-payment">
-                          เขต/อำเภอ{" "}
-                          <span className="login-payment-span">*</span>
-                        </p>
-                        <InputAddress
-                          address="province"
-                          style={{
-                            width: "100%",
-                            height: "42px",
-                            marginTop: "-8px",
-                            marginBottom: "16px",
-                            borderRadius: "8px",
-                            border: "1px solid #4A4A4A",
-                          }}
-                          value={formData.district}
-                          onChange={handleChange}
-                          onSelect={handleAddressChange}
-                          placeholder="Placeholder"
-                        />
-                        {errors.district && (
-                          <div className="error-from">{errors.district}</div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mb-3 row">
-                    <div className="col-12 col-md-6">
-                      <div className="customer-first-child-r">
-                        <p className="text-login-payment">
-                          เเขวง/ตำบล{" "}
-                          <span className="login-payment-span">*</span>
-                        </p>
-
-                        <InputAddress
-                          address="province"
-                          style={{
-                            width: "100%",
-                            height: "42px",
-                            marginTop: "-8px",
-                            marginBottom: "16px",
-                            borderRadius: "8px",
-                            border: "1px solid #4A4A4A",
-                          }}
-                          value={formData.subdistrict}
-                          onChange={handleChange}
-                          onSelect={handleAddressChange}
-                          placeholder="Placeholder"
-                        />
-
-                        {errors.subdistrict && (
-                          <div className="error-from">{errors.subdistrict}</div>
-                        )}
-                      </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                      <div className="customer-first-child-l">
-                        <p className="text-login-payment">
                           รหัสไปรษณีย์{" "}
                           <span className="login-payment-span">*</span>
                         </p>
                         <InputAddress
-                          address="province"
+                          address="zipcode"
                           style={{
                             width: "100%",
                             height: "42px",
@@ -804,7 +780,7 @@ const Shop_payment = () => {
 
   //   Cookies.remove('username'); ลบ Cookies;
 
-  console.log("order", order);
+  /* console.log("order", order); */
   return (
     <>
       <div className="box-order-summary">
