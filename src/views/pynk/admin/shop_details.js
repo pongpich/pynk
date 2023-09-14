@@ -154,9 +154,9 @@ const Shop_details = ({ match }) => {
 
   useEffect(() => {
     setProductId(
-      products_pynk && products_pynk.find((status) => status.product_id === id)
+      products_pynk && products_pynk.find((status) => status.product_id == id)
     );
-  }, [products_pynk]);
+  }, [id]);
 
   const clickSelected = () => {
     const product_name = Cookies.get("product_name");
@@ -518,41 +518,47 @@ const Shop_details = ({ match }) => {
           <Slider {...carouselProperties}>
             {product &&
               product.map((item, index) => (
-                <div key={index} className="box-item-hover cursor-pointer">
-                  <p className="hot-shop-details">HOT</p>
-                  <img src={item.image_url} className="image-slider" />
-                  <div className="slider-hr" />
-                  <p className="text-center text-head-slider">
-                    {item.product_name}
-                  </p>
-                  <p className="text-center text-slider-hover">
-                    ฿{item.price} <span className="slide-span">฿199 </span>
-                  </p>
-                  <button
-                    type="button"
-                    className="btn  add-shopping-bag justify-content-center align-items-center"
-                    style={{
-                      backgroundColor: colors.primary4,
-                      width: "100%",
-                      borderRadius: 46,
-                      marginTop: 0,
-                      marginBottom: 32,
-                      border: 0,
-                    }}
+                <Link to={`/shop_details/${item.product_id}`}>
+                  <div
+                    key={index}
+                    className="box-item-hover cursor-pointer"
+                    /*   onClick={() => seId_order(item.product_id)} */
                   >
-                    <span className="span-div">
-                      <span className="add_shop-test_span">
-                        <img
-                          width={18}
-                          height={18}
-                          src={icon_cart_white}
-                          className="icon-cart-white"
-                        />
-                        เพิ่มลงถุงช้อปปิ้ง
+                    <p className="hot-shop-details">HOT</p>
+                    <img src={item.image_url} className="image-slider" />
+                    <div className="slider-hr" />
+                    <p className="text-center text-head-slider">
+                      {item.product_name}
+                    </p>
+                    <p className="text-center text-slider-hover">
+                      ฿{item.price} <span className="slide-span">฿199 </span>
+                    </p>
+                    <button
+                      type="button"
+                      className="btn  add-shopping-bag justify-content-center align-items-center"
+                      style={{
+                        backgroundColor: colors.primary4,
+                        width: "100%",
+                        borderRadius: 46,
+                        marginTop: 0,
+                        marginBottom: 32,
+                        border: 0,
+                      }}
+                    >
+                      <span className="span-div">
+                        <span className="add_shop-test_span">
+                          <img
+                            width={18}
+                            height={18}
+                            src={icon_cart_white}
+                            className="icon-cart-white"
+                          />
+                          เพิ่มลงถุงช้อปปิ้ง
+                        </span>
                       </span>
-                    </span>
-                  </button>
-                </div>
+                    </button>
+                  </div>
+                </Link>
               ))}
           </Slider>
         </div>
@@ -603,48 +609,50 @@ const Shop_details = ({ match }) => {
                 {product_cookies &&
                   product_cookies.map((product, index) => (
                     <>
-                      <div className="col-4 col-md-3 mb-3">
-                        <img
-                          src={product.image}
-                          className="model-image-slider"
-                        />
-                      </div>
-                      <div className="col-8 col-md-9  mb-3">
-                        <p className="fitto-shop">{product.name}</p>
-                        <div className="plus-minus-box row">
-                          <div className="plus-minus-model back-g  col-6">
-                            <div className="mt-model">
-                              <button
-                                className="minus-model back-g-btn"
-                                onClick={() =>
-                                  plusMinusCookies("minus", product.sku)
-                                }
-                              >
-                                <span className="minus-span">-</span>
-                              </button>
-                              <span className="plus-minus-number">
-                                {product.number}
-                              </span>
-                              <button
-                                className="plus-model back-g-btn"
-                                onClick={() =>
-                                  plusMinusCookies("plus", product.sku)
-                                }
-                              >
-                                <span className="minus-span">+</span>
-                              </button>
-                            </div>
-                          </div>
+                      <Link to={`/shop_details/${product.product_id}`}>
+                        <div className="col-4 col-md-3 mb-3">
                           <img
-                            src={delete_bin_line}
-                            onClick={() => deleteArrayCookies(product.sku)}
-                            className="delete_bin_line col-3"
+                            src={product.image}
+                            className="model-image-slider"
                           />
-                          <p className="fitto-shop price-ml col-3">
-                            {product.totalprice.toLocaleString()} บาท
-                          </p>
                         </div>
-                      </div>
+                        <div className="col-8 col-md-9  mb-3">
+                          <p className="fitto-shop">{product.name}</p>
+                          <div className="plus-minus-box row">
+                            <div className="plus-minus-model back-g  col-6">
+                              <div className="mt-model">
+                                <button
+                                  className="minus-model back-g-btn"
+                                  onClick={() =>
+                                    plusMinusCookies("minus", product.sku)
+                                  }
+                                >
+                                  <span className="minus-span">-</span>
+                                </button>
+                                <span className="plus-minus-number">
+                                  {product.number}
+                                </span>
+                                <button
+                                  className="plus-model back-g-btn"
+                                  onClick={() =>
+                                    plusMinusCookies("plus", product.sku)
+                                  }
+                                >
+                                  <span className="minus-span">+</span>
+                                </button>
+                              </div>
+                            </div>
+                            <img
+                              src={delete_bin_line}
+                              onClick={() => deleteArrayCookies(product.sku)}
+                              className="delete_bin_line col-3"
+                            />
+                            <p className="fitto-shop price-ml col-3">
+                              {product.totalprice.toLocaleString()} บาท
+                            </p>
+                          </div>
+                        </div>
+                      </Link>
                     </>
                   ))}
               </div>

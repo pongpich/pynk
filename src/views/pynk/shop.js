@@ -444,17 +444,18 @@ function ShopPynk() {
             <Slider {...carouselProperties}>
               {promotionalProduct &&
                 promotionalProduct.map((item, index) => (
-                  <div className="box-item-hover cursor-pointer">
-                    <p className="hot-shop-details">HOT</p>
-                    <img src={item.image_url} className="image-slider" />
-                    <div className="slider-hr" />
-                    <p className="text-center text-head-slider">
-                      {item.product_name}
-                    </p>
-                    <p className="text-center text-slider-hover">
-                      ฿{item.price} <span className="slide-span">฿199 </span>
-                    </p>
-                    <Link to={`/shop_details/${item.product_id}`}>
+                  <Link to={`/shop_details/${item.product_id}`}>
+                    <div className="box-item-hover cursor-pointer">
+                      <p className="hot-shop-details">HOT</p>
+                      <img src={item.image_url} className="image-slider" />
+                      <div className="slider-hr" />
+                      <p className="text-center text-head-slider">
+                        {item.product_name}
+                      </p>
+                      <p className="text-center text-slider-hover">
+                        ฿{item.price} <span className="slide-span">฿199 </span>
+                      </p>
+
                       <button
                         type="button"
                         className="btn  add-shopping-bag justify-content-center align-items-center"
@@ -479,8 +480,8 @@ function ShopPynk() {
                           </span>
                         </span>
                       </button>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 ))}
             </Slider>
           </div>
@@ -514,18 +515,19 @@ function ShopPynk() {
             <Slider {...carouselProperties2}>
               {promotionalProduct &&
                 promotionalProduct.map((item, index) => (
-                  <div className="box-item-hover cursor-pointer">
-                    <p className="hot-shop-details">HOT</p>
-                    <img src={item.image_url} className="image-slider" />
-                    <div className="slider-hr" />
-                    <p className="text-center text-head-slider">
-                      {item.product_name}
-                    </p>
-                    <p className="text-center text-slider-hover">
-                      ฿{item.price}
-                      <span className="slide-span">฿199 </span>
-                    </p>
-                    <Link to={`/shop_details/${item.product_id}`}>
+                  <Link to={`/shop_details/${item.product_id}`}>
+                    <div className="box-item-hover cursor-pointer">
+                      <p className="hot-shop-details">HOT</p>
+                      <img src={item.image_url} className="image-slider" />
+                      <div className="slider-hr" />
+                      <p className="text-center text-head-slider">
+                        {item.product_name}
+                      </p>
+                      <p className="text-center text-slider-hover">
+                        ฿{item.price}
+                        <span className="slide-span">฿199 </span>
+                      </p>
+
                       <button
                         type="button"
                         className="btn  add-shopping-bag justify-content-center align-items-center"
@@ -551,8 +553,8 @@ function ShopPynk() {
                           </span>
                         </span>
                       </button>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 ))}
             </Slider>
           </div>
