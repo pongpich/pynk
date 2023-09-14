@@ -8,7 +8,7 @@ export const types = {
     LOGIN_SUCCESS: "LOGIN_SUCCESS",
     LOGIN_FAIL: "LOGIN_FAIL",
     LOGOUT: "LOGOUT",
-    REGISTER: "REGISTER",
+    REGISTER_PYNK: "REGISTER_PYNK",
     REGISTER_SUCCESS: "REGISTER_SUCCESS",
     REGISTER_FAIL: "REGISTER_FAIL",
 }
@@ -26,7 +26,7 @@ export const logout = () => ({
 });
 
 export const register = (email, password, first_name, last_name, phone) => ({
-    type: types.REGISTER,
+    type: types.REGISTER_PYNK,
     payload: {
         email,
         password,
@@ -119,7 +119,7 @@ function* registerSaga({ payload }) {
     } = payload
 
     try {
-        yield call(
+       const apiResult = yield call(
             registerSagaAsync,
             email,
             password,
@@ -127,13 +127,16 @@ function* registerSaga({ payload }) {
             last_name, 
             phone
         );
-        yield put({
-            type: types.REGISTER_SUCCESS
-        })
+        if (apiResult.results.message === "success") {
+            yield put({
+                type: types.REGISTER_SUCCESS
+            })
+        } else if (apiResult.results.message === "fail"){
+            yield put({
+                type: types.REGISTER_FAIL
+            })
+        }
     } catch (error) {
-        yield put({
-            type: types.REGISTER_FAIL
-        })
         console.log("error from register :", error);
     }
 }
@@ -143,7 +146,7 @@ export function* watchLogin() {
 }
 
 export function* watchRegister() {
-    yield takeEvery(types.REGISTER, registerSaga)
+    yield takeEvery(types.REGISTER_PYNK, registerSaga)
 }
 
 export function* saga() {
@@ -181,7 +184,7 @@ export function reducer(state = INIT_STATE, action) {
                 ...state,
                 statusLogin: "fail"
             };
-        case types.REGISTER:
+        case types.REGISTER_PYNK:
             return {
                 ...state,
                 statusRegister: "loading"
