@@ -764,7 +764,7 @@ class App extends Component {
               onClose={() => this.closePopup()}
             />
 
-            <header className="App-header ">
+            <header>
               <Switch>
                 <Route exact path="/">
                   <Redirect to="/home" />

@@ -31,7 +31,7 @@ const Login = () => {
     a.className += " pink-color";
   }
   return (
-    <div>
+    <>
       <div className="wrapper">
         <div className="two-col">
           <div className="one">
@@ -147,7 +147,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
