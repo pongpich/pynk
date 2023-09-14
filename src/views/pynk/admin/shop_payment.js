@@ -71,6 +71,9 @@ const Shop_payment = () => {
     orders ? orders.status_create_order : ""
   );
 
+  const current_order_id = useSelector(({ orders }) => (orders ? orders.current_order_id : ""));
+
+
   useEffect(() => {
     //สั่ง clear_status ทุกครั้งเมื่อเริ่มเปิดหน้านี้มา
     dispatch(clear_status());
@@ -100,7 +103,7 @@ const Shop_payment = () => {
       window.localStorage.setItem("name", "Akkewach Yodsomboon");
       window.localStorage.setItem("email", "akkewach@planforfit.com");
       window.localStorage.setItem("phone", "0840045946");
-      window.localStorage.setItem("order_id", "17");
+      window.localStorage.setItem("order_id", current_order_id);
     }
   }, [status_create_order]);
 
