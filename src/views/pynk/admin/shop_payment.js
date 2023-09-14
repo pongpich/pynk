@@ -93,7 +93,7 @@ const Shop_payment = () => {
       //สั่งเปลี่ยน render เป็นหน้าให้เลือก payment_method
       setStatusStep(1);
       window.scrollTo(0, 0);
-      Cookies.remove("product_name");
+      //Cookies.remove("product_name");
       //setค่าต่างๆของสินค้า ใน localStorage เพื่อไปเรียกใช้ที่หน้าจ่ายเงิน
       window.localStorage.setItem("price", 1);
       window.localStorage.setItem("productName", "pynk");

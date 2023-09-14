@@ -72,7 +72,7 @@ function* createOrderSaga({ payload }) {
     } = payload
 
     try {
-        yield call(
+        const apiResult = yield call(
             createOrderSagaAsync,
             user_id,
             product_list,
@@ -81,9 +81,15 @@ function* createOrderSaga({ payload }) {
             shipping_address,
             note
         );
-        yield put({
-            type: types.CREATE_ORDER_SUCCESS
-        })
+
+        if (apiResult.results.message === "success") {
+            yield put({
+                type: types.CREATE_ORDER_SUCCESS,
+                payload: apiResult.results.order_id
+            })
+        }
+
+       
     } catch (error) {
         console.log("error from createOrderSaga :", error);
     }
@@ -106,6 +112,7 @@ export function* saga() {
 
 const INIT_STATE = {
     status_create_order: "default",
+    current_order_id: null
 };
 
 export function reducer(state = INIT_STATE, action) {
@@ -118,7 +125,8 @@ export function reducer(state = INIT_STATE, action) {
         case types.CREATE_ORDER_SUCCESS:
             return {
                 ...state,
-                status_create_order: "success"
+                status_create_order: "success",
+                current_order_id: action.payload
             }
         case types.CLEAR_STATUS:
             return {
