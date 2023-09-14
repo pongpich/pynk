@@ -156,6 +156,7 @@ const Shop_details = ({ match }) => {
     setProductId(
       products_pynk && products_pynk.find((status) => status.product_id == id)
     );
+    setNumber(1);
   }, [id]);
 
   const clickSelected = () => {

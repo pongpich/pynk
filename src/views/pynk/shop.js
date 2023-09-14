@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Slider from "react-slick";
+import { useLocation } from "react-router-dom";
 import colors from "./colors";
 import home_shop from "../../assets/img/pynk/shop/home_shop.jpg";
 import icon_kg from "../../assets/img/pynk/shop/Group37558.png";
@@ -176,6 +177,7 @@ function ShopPynk() {
   const [newProduct, setNewProduct] = useState(products_pynk);
   const [statusNewProduct, setStatusNewProduct] =
     useState(status_products_pynk);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -185,6 +187,20 @@ function ShopPynk() {
     setPromotionalProduct(products_pynk);
     setStatusPromotionalProduct(status_products_pynk);
   }, [products_pynk]);
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // คำสั่งนี้จะเลื่อนหน้าไปที่ด้านบนสุดของหน้า
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // console.log("promotionalProduct", promotionalProduct);
   return (

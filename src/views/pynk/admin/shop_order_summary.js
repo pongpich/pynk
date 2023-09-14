@@ -286,9 +286,11 @@ const Shop_order_summary = () => {
                     ))}
                 </div>
               </div>
-              <Link to="/shop" className="shop-more-products">
-                <img src={arrow_left_line} className="arrow-left-line" />
-                เลือกซื้อสินค้าเพิ่มเติม
+              <Link to="/shop">
+                <button className="shop-more-products">
+                  <img src={arrow_left_line} className="arrow-left-line" />
+                  เลือกซื้อสินค้าเพิ่มเติม
+                </button>
               </Link>
             </div>
           </div>
