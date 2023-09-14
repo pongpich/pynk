@@ -42,7 +42,7 @@ const Shop_successful_payment = () => {
                 </p>
                 <p className="text-head-order-summary  between">
                   รายละเอียดการสั่งซื้อ{" "}
-                  <span className="edit-order">แก้ไข</span>
+                  {/*  <span className="edit-order">แก้ไข</span> */}
                 </p>
                 <p className="text-order">ชื่อจริง นามสกุล</p>
                 <p className="text-order">
