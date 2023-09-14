@@ -25,11 +25,14 @@ export const logout = () => ({
     type: types.LOGOUT,
 });
 
-export const register = (email, password) => ({
+export const register = (email, password, first_name, last_name, phone) => ({
     type: types.REGISTER,
     payload: {
         email,
-        password
+        password,
+        first_name, 
+        last_name, 
+        phone
     }
 });
 
@@ -39,13 +42,19 @@ export const register = (email, password) => ({
 
 const registerSagaAsync = async (
     email,
-    password
+    password,
+    first_name, 
+    last_name, 
+    phone
 ) => {
     try {
         const apiResult = await API.post("pynk", "/register", {
             body: {
                 email: email,
                 password: password,
+                first_name: first_name, 
+                last_name: last_name, 
+                phone: phone,
             }
         });
         return apiResult;
@@ -104,6 +113,9 @@ function* registerSaga({ payload }) {
     const {
         email,
         password,
+        first_name, 
+        last_name, 
+        phone
     } = payload
 
     try {
@@ -111,6 +123,9 @@ function* registerSaga({ payload }) {
             registerSagaAsync,
             email,
             password,
+            first_name, 
+            last_name, 
+            phone
         );
         yield put({
             type: types.REGISTER_SUCCESS
