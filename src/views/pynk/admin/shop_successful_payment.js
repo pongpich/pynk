@@ -2,8 +2,28 @@ import { React, useState, useEffect } from "react";
 import "../css/shop_order_summary.css";
 import Footer from "../footer";
 import checkGreen from "../../../assets/img/pynk/shop/check-green.png";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Shop_successful_payment = () => {
+  const product = Cookies.get("product_name");
+  const [order, setOrder] = useState(null);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setOrder(product && JSON.parse(product));
+    /* Cookies.remove("product_name"); */
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // คำสั่งนี้จะเลื่อนหน้าไปที่ด้านบนสุดของหน้า
+  }, [pathname]);
+  useEffect(() => {
+    //      Cookies.remove("product_name"); successful-payment
+  }, [order]);
+
+  console.log("order", order);
   return (
     <div className="box-order-summary">
       <div className="background-order-summary row">
@@ -54,9 +74,11 @@ const Shop_successful_payment = () => {
               </p>
               <div className="justify-content">
                 <div className="col-12 col-md-8">
-                  <button type="submit" className="btn-buy-payment">
-                    กลับหน้าแรก
-                  </button>
+                  <Link to="/shop">
+                    <button type="submit" className="btn-buy-payment">
+                      กลับหน้าแรก
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

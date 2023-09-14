@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { create_order, clear_status } from "../../../redux/pynk/orders";
 import "../css/shop_order_summary.css";
+import { useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import Footer from "../footer";
 import InputAddress from "react-thailand-address-autocomplete";
 
 import qrcode from "../../../assets/img/pynk/shop/qrcode.png";
-import promptPay from "../../../assets/img/pynk/shop/promptPay.png";
+import prompt_pay from "../../../assets/img/pynk/shop/promptPay.png";
 import Visa from "../../../assets/img/pynk/shop/Visa.png";
 import Mastercard from "../../../assets/img/pynk/shop/Mastercard.png";
 import check from "../../../assets/img/pynk/shop/check.png";
@@ -53,6 +54,11 @@ const Shop_payment = () => {
   });
 
   const [selectedPaymentMethod, setselectedPaymentMethod] = useState("");
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // คำสั่งนี้จะเลื่อนหน้าไปที่ด้านบนสุดของหน้า
+  }, [pathname]);
 
   // ฟังก์ชันที่จะเรียกเมื่อ radio button ถูกเลือก
   const handleRadioChange = (event) => {
@@ -86,7 +92,8 @@ const Shop_payment = () => {
     if (status_create_order === "success") {
       //สั่งเปลี่ยน render เป็นหน้าให้เลือก payment_method
       setStatusStep(1);
-
+      window.scrollTo(0, 0);
+      Cookies.remove("product_name");
       //setค่าต่างๆของสินค้า ใน localStorage เพื่อไปเรียกใช้ที่หน้าจ่ายเงิน
       window.localStorage.setItem("price", 1);
       window.localStorage.setItem("productName", "pynk");
@@ -164,15 +171,16 @@ const Shop_payment = () => {
   };
 
   const handleChange = (event) => {
-    console.log("999");
     const { name, type, checked, value } = event.target;
     console.log("name", name);
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
+
     if (name == "checkbox") {
       setFormData((prevState) => ({
         ...prevState,
-        [name]: type === "checkbox" ? checked : value,
+        [name]: type === "checkbox" ? checked : !value,
       }));
+    } else {
+      setFormData((prevState) => ({ ...prevState, [name]: value }));
     }
   };
 
@@ -199,8 +207,6 @@ const Shop_payment = () => {
   }
 
   function onSubmit() {
-    console.log("formData :", formData);
-
     const product_list = order;
     const customer_data = {
       name: formData.username,
@@ -619,12 +625,15 @@ const Shop_payment = () => {
                         checked={selectedPaymentMethod === "qr_code"} // ตรวจสอบค่าถูกเลือก
                         onChange={handleRadioChange}
                       />
-                      <label class="form-check-label" for="flexRadioDefault1">
+                      <label
+                        class="form-check-label label-prompt_pay"
+                        for="flexRadioDefault1"
+                      >
                         QR Code/พร้อมเพย์
                       </label>
                       <div className="show-payment">
                         <img src={qrcode} className="" />
-                        <img src={promptPay} className="" />
+                        <img src={prompt_pay} className="" />
                       </div>
                     </div>
                   </div>
@@ -638,7 +647,10 @@ const Shop_payment = () => {
                         checked={selectedPaymentMethod === "credit_card"} // ตรวจสอบค่าถูกเลือก
                         onChange={handleRadioChange}
                       />
-                      <label class="form-check-label" for="flexRadioDefault1">
+                      <label
+                        class="form-check-label label-prompt_pay"
+                        for="flexRadioDefault1"
+                      >
                         บัตรเครดิต
                       </label>
                       <div className="show-payment">

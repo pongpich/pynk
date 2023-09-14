@@ -855,3 +855,8 @@
 .input-height {
     height: 64px !important;
 }
+
+.label-prompt_pay {
+    margin-left: 20px !important;
+    margin-top: -40px !important;
+}
