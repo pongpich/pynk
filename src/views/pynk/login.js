@@ -1,10 +1,42 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
 import "./css/home.css";
 import "./css/login.css";
 
-import { login } from "../../redux/pynk/auth";
+import { login, logout } from "../../redux/pynk/auth";
 
 const Login = () => {
+  const history = useHistory();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+  const dispatch = useDispatch();
+  const user = useSelector(({ auth }) => (auth ? auth.user : ""));
+  const statusLogin = useSelector(({ auth }) => (auth ? auth.statusLogin : ""));
+
+  const handleLogin = () => {
+    dispatch(login(email, password))
+  };
+  const handleLogout = () => {
+    dispatch(logout())
+  };
+  
+  useEffect(() => {
+    if (statusLogin === "success") {
+      history.push('/shop');
+    }
+    if (statusLogin === "fail") {
+      //setLoggedIn(false);
+    }
+  }, [statusLogin]);
   // const handleSubmit = () => {
   //     event.preventDefault();
   //     const data = new FormData(event.currentTarget);
@@ -31,7 +63,7 @@ const Login = () => {
     a.className += " pink-color";
   }
   return (
-    <>
+    <div className="body-login">
       <div className="wrapper">
         <div className="two-col">
           <div className="one">
@@ -45,11 +77,12 @@ const Login = () => {
             </span>
           </div>
         </div>
+        <div style={{justifyContent:"center", display:"flex"}}>
         <div className="form-box">
           <div className="register-container" id="register">
             <div className="two-forms">
               <div className="input-box">
-                <label for="first-name">ชื่อ</label>
+                <label for="first-name">ชื่อ <span style={{color:"red"}}>*</span></label>
                 <input
                   type="text"
                   className="input-field"
@@ -58,7 +91,7 @@ const Login = () => {
               </div>
 
               <div className="input-box">
-              <label for="last-name">นามสกุล</label>
+              <label for="last-name">นามสกุล <span style={{color:"red"}}>*</span></label>
                 <input
                   type="text"
                   className="input-field"
@@ -69,7 +102,7 @@ const Login = () => {
 
             <div className="two-forms">
               <div className="input-box">
-              <label for="phone">เบอร์โทรศัพท์ที่ติดต่อได้</label>
+              <label for="phone">เบอร์โทรศัพท์ที่ติดต่อได้ <span style={{color:"red"}}>*</span></label>
                 <input
                   type="text"
                   className="input-field"
@@ -77,7 +110,7 @@ const Login = () => {
                 />
               </div>
               <div className="input-box">
-              <label for="email">อีเมลเข้าใช้งาน</label>
+              <label for="email">อีเมลเข้าใช้งาน <span style={{color:"red"}}>*</span></label>
                 <input
                   type="text"
                   className="input-field"
@@ -88,7 +121,7 @@ const Login = () => {
 
             <div className="two-forms">
               <div className="input-box">
-              <label for="password">รหัสผ่าน</label>
+              <label for="password">รหัสผ่าน <span style={{color:"red"}}>*</span></label>
                 <input
                   type="password"
                   className="input-field"
@@ -96,7 +129,7 @@ const Login = () => {
                 />
               </div>
               <div className="input-box">
-              <label for="confirm-password">ยืนยันรหัสผ่าน</label>
+              <label for="confirm-password">ยืนยันรหัสผ่าน <span style={{color:"red"}}>*</span></label>
                 <input
                   type="password"
                   className="input-field"
@@ -112,27 +145,33 @@ const Login = () => {
 
           <div className="login-container" id="login">
             <div className="input-box">
-            <label for="email">อีเมลเข้าใช้งาน</label>
+            <label for="email">อีเมลเข้าใช้งาน <span style={{color:"red"}}>*</span></label>
               <input
                 type="text"
                 className="input-field"
                 placeholder="example@mail.com"
+                value={email}
+                onChange={handleEmailChange}
               />
             </div>
             <div className="input-box">
-            <label for="password">รหัสผ่าน</label>
+            <label for="password">รหัสผ่าน <span style={{color:"red"}}>*</span></label>
               <input
                 type="password"
                 className="input-field"
                 placeholder="ระบุรหัสผ่าน"
+                value={password}
+                onChange={handlePasswordChange}
               />
             </div>
             <a href="#" className="forgot-password">
               ลืมรหัสผ่าน?
             </a>
             <div className="input-box">
-              <input type="submit" className="submit" value={"ดำเนินการต่อ"} />
+              <input type="submit" className="submit" value={"ดำเนินการต่อ"} onClick={handleLogin}/>
             </div>
+            <h3 onClick={handleLogout}>Log out</h3>
+            {(statusLogin === "fail") && <p >เข้าสู่ระบบไม่สำเร็จ!</p>}
             {/* <div className="two-col">
               <div className="one">
                 <input type="checkbox" id="login-check" />
@@ -146,8 +185,9 @@ const Login = () => {
             </div> */}
           </div>
         </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

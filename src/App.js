@@ -10,6 +10,9 @@ import user_line from "./assets/img/home/user-3-line.png";
 import close_line from "./assets/img/home/close-line.png";
 import group from "./assets/img/home/Group.png";
 /* search-line.png */
+// redux
+import {logout} from "./redux/pynk/auth";
+
 // route
 import Home from "../src/views/pynk/home";
 import DashboardPynk from "./views/pynk/admin/dashboard";
@@ -337,12 +340,16 @@ class App extends Component {
                   className="truck-line-icon user-line"
                   alt="vector"
                 />
-                <button
+                {this.props.user ? 
+                  <div className="pointer" onClick={() => this.props.logout()}>ออกจากระบบ</div> 
+                  :
+                  <button
                   className="nav-link nav-linkHead2 pointer bold  display-none"
                   onClick={() => this.props.history.push("/login")}
                 >
                   เข้าสู่ระบบ/ลงทะเบียน
-                </button>
+                </button>}
+                
                 <h2
                   style={{
                     color: "#BCCCD6",
@@ -764,7 +771,7 @@ class App extends Component {
               onClose={() => this.closePopup()}
             />
 
-            <header>
+            <header className="App-header ">
               <Switch>
                 <Route exact path="/">
                   <Redirect to="/home" />
@@ -956,16 +963,16 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, get, settings }) => {
+const mapStateToProps = ({ authUser, get, settings,auth }) => {
   const { register_log } = get;
-  const { user, statusGetExpireDate } = authUser;
+  const { user } = auth;
   let locale;
   if (settings) {
     locale = settings.locale;
   } else {
     locale = "th";
   }
-  return { user, statusGetExpireDate, register_log, locale };
+  return { user, register_log, locale };
 };
 
 const mapActionsToProps = {
@@ -974,6 +981,7 @@ const mapActionsToProps = {
   clearProgram,
   changeLocale,
   getRegister_log,
+  logout
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(App);
