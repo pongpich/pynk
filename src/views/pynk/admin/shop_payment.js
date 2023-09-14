@@ -1,8 +1,9 @@
 import { React, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { create_order, clear_status } from "../../../redux/pynk/orders"
+import { create_order, clear_status } from "../../../redux/pynk/orders";
 import "../css/shop_order_summary.css";
+import Cookies from "js-cookie";
 import Footer from "../footer";
 import InputAddress from "react-thailand-address-autocomplete";
 
@@ -18,6 +19,8 @@ const Shop_payment = () => {
   const [statusContinue, setStatusContinue] = useState(1);
   const [statusStep, setStatusStep] = useState(0);
   const [pageUrl, setPageUrl] = useState(window.location.href);
+  const product = Cookies.get("product_name");
+  const [order, setOrder] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -49,7 +52,7 @@ const Shop_payment = () => {
     checked: false,
   });
 
-  const [selectedPaymentMethod, setselectedPaymentMethod] = useState('');
+  const [selectedPaymentMethod, setselectedPaymentMethod] = useState("");
 
   // ฟังก์ชันที่จะเรียกเมื่อ radio button ถูกเลือก
   const handleRadioChange = (event) => {
@@ -58,30 +61,39 @@ const Shop_payment = () => {
     console.log("selectedPaymentMethod :", selectedPaymentMethod);
   };
 
-  const status_create_order = useSelector(({ orders }) => (orders ? orders.status_create_order : ""));
+  const status_create_order = useSelector(({ orders }) =>
+    orders ? orders.status_create_order : ""
+  );
 
   useEffect(() => {
     //สั่ง clear_status ทุกครั้งเมื่อเริ่มเปิดหน้านี้มา
-    dispatch(clear_status())
+    dispatch(clear_status());
+  }, []);
+  useEffect(() => {
+    setOrder(product && JSON.parse(product));
   }, []);
 
   useEffect(() => {
+    setOrder(product && JSON.parse(product));
+  }, [product]);
+
+  useEffect(() => {
     if (status_create_order === "default") {
-      setStatusStep(0)
+      setStatusStep(0);
     }
 
     //เช็คว่า create_order เสร็จ
     if (status_create_order === "success") {
       //สั่งเปลี่ยน render เป็นหน้าให้เลือก payment_method
-      setStatusStep(1)
+      setStatusStep(1);
 
       //setค่าต่างๆของสินค้า ใน localStorage เพื่อไปเรียกใช้ที่หน้าจ่ายเงิน
-      window.localStorage.setItem('price', 1);
-      window.localStorage.setItem('productName', "pynk");
-      window.localStorage.setItem('name', "Akkewach Yodsomboon");
-      window.localStorage.setItem('email', "akkewach@planforfit.com");
-      window.localStorage.setItem('phone', "0840045946");
-      window.localStorage.setItem('order_id', "17");
+      window.localStorage.setItem("price", 1);
+      window.localStorage.setItem("productName", "pynk");
+      window.localStorage.setItem("name", "Akkewach Yodsomboon");
+      window.localStorage.setItem("email", "akkewach@planforfit.com");
+      window.localStorage.setItem("phone", "0840045946");
+      window.localStorage.setItem("order_id", "17");
     }
   }, [status_create_order]);
 
@@ -181,45 +193,69 @@ const Shop_payment = () => {
   };
 
   function onPayment() {
-    history.push("/shop_details")
+    history.push("/shop_details");
   }
 
   function onSubmit() {
     console.log("formData :", formData);
 
     const product_list = [
-      { "sku": "240220202006", "name": "Fitto Plant Protein Classic Malt", "number": 1, "pricepernumber": 990, "discount": "0", "totalprice": 990 },
-      { "sku": "240220302001", "name": "Fitto Plant Protein Milk Tea Flavour", "number": 1, "pricepernumber": 990, "discount": "0", "totalprice": 990 },
-      { "sku": "240220602002", "name": "Fitto Plant Protein Double Choco Fudge", "number": 1, "pricepernumber": 990, "discount": "0", "totalprice": 990 }
+      {
+        sku: "240220202006",
+        name: "Fitto Plant Protein Classic Malt",
+        number: 1,
+        pricepernumber: 990,
+        discount: "0",
+        totalprice: 990,
+      },
+      {
+        sku: "240220302001",
+        name: "Fitto Plant Protein Milk Tea Flavour",
+        number: 1,
+        pricepernumber: 990,
+        discount: "0",
+        totalprice: 990,
+      },
+      {
+        sku: "240220602002",
+        name: "Fitto Plant Protein Double Choco Fudge",
+        number: 1,
+        pricepernumber: 990,
+        discount: "0",
+        totalprice: 990,
+      },
     ];
 
     const customer_data = {
-      "name": formData.username,
-      "last_name": formData.surname,
-      "phone_number": formData.phone_number,
-      "email": formData.email
-    }
+      name: formData.username,
+      last_name: formData.surname,
+      phone_number: formData.phone_number,
+      email: formData.email,
+    };
 
     const shipping_address = {
-      "address": formData.address,
-      "province": formData.province,
-      "district": formData.district,
-      "subdistrict": formData.subdistrict,
-      "zipcode": formData.zipcode,
-    }
+      address: formData.address,
+      province: formData.province,
+      district: formData.district,
+      subdistrict: formData.subdistrict,
+      zipcode: formData.zipcode,
+    };
 
-    dispatch(create_order(
-      "test_01", //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
-      product_list, //product_list,
-      1, //total_amount,
-      customer_data, //customer_data,
-      shipping_address, //shipping_address,
-      formData.order_notes //note
-    ))
-
+    dispatch(
+      create_order(
+        "test_01", //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
+        product_list, //product_list,
+        1, //total_amount,
+        customer_data, //customer_data,
+        shipping_address, //shipping_address,
+        formData.order_notes //note
+      )
+    );
   }
 
   const customerInformation = () => {
+    const totalSum =
+      order && order.reduce((acc, product) => acc + product.totalprice, 0);
     return (
       <div className="box-form-payment">
         <div className="box-row">
@@ -510,7 +546,10 @@ const Shop_payment = () => {
                   {errors.checked && (
                     <div className="error-from mt-1">{errors.checked}</div>
                   )}
-                  <button onClick={() => onSubmit()} /* type="submit" */ className="btn-buy-payment">
+                  <button
+                    onClick={() => onSubmit()}
+                    /* type="submit" */ className="btn-buy-payment"
+                  >
                     ชำระเงิน
                   </button>
                   <p className="text-login-payment">
@@ -531,18 +570,24 @@ const Shop_payment = () => {
             <div class="col-12 col-md-5 order-1 order-md-2">
               <div className="order-details">
                 <p className="text-head-order-summary">สรุปรายการสั่งซื้อ</p>
-                <div className="text-order between">
-                  <p className="col-8">
-                    x1 FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
-                  </p>
-                  <p>900 บาท</p>
-                </div>
+
+                {order &&
+                  order.map((item, index) => (
+                    <>
+                      <div className="text-order between">
+                        <p className="col-8">{item.name}</p>
+                        <p>{item.totalprice.toLocaleString()} บาท</p>
+                      </div>
+                    </>
+                  ))}
+
                 <p className="text-order between">
                   ค่าจัดส่ง <span className="text-head-order-summary">ฟรี</span>
                 </p>
                 <div className="line-hr-order" />
                 <p className="amount-be-paid between">
-                  ยอดที่ต้องชำระ <span>900 บาท</span>
+                  ยอดที่ต้องชำระ{" "}
+                  <span>{totalSum && totalSum.toLocaleString()} บาท</span>
                 </p>
               </div>
             </div>
@@ -595,7 +640,7 @@ const Shop_payment = () => {
                         type="radio"
                         name="payment_method"
                         value="qr_code"
-                        checked={selectedPaymentMethod === 'qr_code'} // ตรวจสอบค่าถูกเลือก
+                        checked={selectedPaymentMethod === "qr_code"} // ตรวจสอบค่าถูกเลือก
                         onChange={handleRadioChange}
                       />
                       <label class="form-check-label" for="flexRadioDefault1">
@@ -614,7 +659,7 @@ const Shop_payment = () => {
                         type="radio"
                         name="payment_method"
                         value="credit_card"
-                        checked={selectedPaymentMethod === 'credit_card'} // ตรวจสอบค่าถูกเลือก
+                        checked={selectedPaymentMethod === "credit_card"} // ตรวจสอบค่าถูกเลือก
                         onChange={handleRadioChange}
                       />
                       <label class="form-check-label" for="flexRadioDefault1">
@@ -757,6 +802,9 @@ const Shop_payment = () => {
     );
   };
 
+  //   Cookies.remove('username'); ลบ Cookies;
+
+  console.log("order", order);
   return (
     <>
       <div className="box-order-summary">
@@ -765,8 +813,8 @@ const Shop_payment = () => {
             {statusStep == 0
               ? customerInformation()
               : statusStep == 1
-                ? orderOetails()
-                : promptPay()}
+              ? orderOetails()
+              : promptPay()}
           </div>
         </div>
 
