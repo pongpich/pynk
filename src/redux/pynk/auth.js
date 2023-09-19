@@ -4,41 +4,41 @@ import { API } from "aws-amplify";
 /* ACTION Section */
 
 export const types = {
-    LOGIN: "LOGIN",
-    LOGIN_SUCCESS: "LOGIN_SUCCESS",
-    LOGIN_FAIL: "LOGIN_FAIL",
-    LOGOUT: "LOGOUT",
-    REGISTER_PYNK: "REGISTER_PYNK",
-    REGISTER_SUCCESS: "REGISTER_SUCCESS",
-    REGISTER_FAIL: "REGISTER_FAIL",
-    CLEAR_STATUS: "CLEAR_STATUS",
-}
+  LOGIN: "LOGIN",
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  LOGIN_FAIL: "LOGIN_FAIL",
+  LOGOUT: "LOGOUT",
+  REGISTER_PYNK: "REGISTER_PYNK",
+  REGISTER_SUCCESS: "REGISTER_SUCCESS",
+  REGISTER_FAIL: "REGISTER_FAIL",
+  CLEAR_STATUS: "CLEAR_STATUS",
+};
 
 export const login = (email, password) => ({
-    type: types.LOGIN,
-    payload: {
-        email,
-        password
-    }
+  type: types.LOGIN,
+  payload: {
+    email,
+    password,
+  },
 });
 
 export const clear_status = () => ({
-    type: types.CLEAR_STATUS,
+  type: types.CLEAR_STATUS,
 });
 
 export const logout = () => ({
-    type: types.LOGOUT,
+  type: types.LOGOUT,
 });
 
 export const register = (email, password, first_name, last_name, phone) => ({
-    type: types.REGISTER_PYNK,
-    payload: {
-        email,
-        password,
-        first_name, 
-        last_name, 
-        phone
-    }
+  type: types.REGISTER_PYNK,
+  payload: {
+    email,
+    password,
+    first_name,
+    last_name,
+    phone,
+  },
 });
 
 /* END OF ACTION Section */
@@ -46,119 +46,102 @@ export const register = (email, password, first_name, last_name, phone) => ({
 /* SAGA Section */
 
 const registerSagaAsync = async (
-    email,
-    password,
-    first_name, 
-    last_name, 
-    phone
+  email,
+  password,
+  first_name,
+  last_name,
+  phone
 ) => {
-    try {
-        const apiResult = await API.post("pynk", "/register", {
-            body: {
-                email: email,
-                password: password,
-                first_name: first_name, 
-                last_name: last_name, 
-                phone: phone,
-            }
-        });
-        return apiResult;
-    } catch (error) {
-        return { error, messsage: error.message };
-    }
+  try {
+    const apiResult = await API.post("pynk", "/register", {
+      body: {
+        email: email,
+        password: password,
+        first_name: first_name,
+        last_name: last_name,
+        phone: phone,
+      },
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
 };
 
-const loginSagaAsync = async (
-    email,
-    password
-) => {
-    try {
-        const apiResult = await API.get("pynk", "/login", {
-            queryStringParameters: {
-                email: email,
-                password: password
-            }
-        });
-        return apiResult
-    } catch (error) {
-        return { error, messsage: error.message };
-    }
+const loginSagaAsync = async (email, password) => {
+  try {
+    const apiResult = await API.get("pynk", "/login", {
+      queryStringParameters: {
+        email: email,
+        password: password,
+      },
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
 };
-
 
 function* loginSaga({ payload }) {
-    const {
-        email,
-        password
-    } = payload
+  const { email, password } = payload;
 
-    try {
-        const loginResult = yield call(
-            loginSagaAsync,
-            email,
-            password
-        );
+  try {
+    const loginResult = yield call(loginSagaAsync, email, password);
 
-        if (loginResult.results.message === "success") {
-            yield put({
-                type: types.LOGIN_SUCCESS,
-                payload: loginResult.results.user
-            })
-        } else if (loginResult.results.message === "fail" || loginResult.results.message === "no_user") {
-            yield put({
-                type: types.LOGIN_FAIL
-            })
-        }
-    } catch (error) {
-        console.log("error form login", error);
+    if (loginResult.results.message === "success") {
+      yield put({
+        type: types.LOGIN_SUCCESS,
+        payload: loginResult.results.user,
+      });
+    } else if (
+      loginResult.results.message === "fail" ||
+      loginResult.results.message === "no_user"
+    ) {
+      yield put({
+        type: types.LOGIN_FAIL,
+      });
     }
+  } catch (error) {
+    console.log("error form login", error);
+  }
 }
 
 function* registerSaga({ payload }) {
-    const {
-        email,
-        password,
-        first_name, 
-        last_name, 
-        phone
-    } = payload
+  const { email, password, first_name, last_name, phone } = payload;
 
-    try {
-       const apiResult = yield call(
-            registerSagaAsync,
-            email,
-            password,
-            first_name, 
-            last_name, 
-            phone
-        );
-        if (apiResult.results.message === "success") {
-            yield put({
-                type: types.REGISTER_SUCCESS
-            })
-        } else if (apiResult.results.message === "fail"){
-            yield put({
-                type: types.REGISTER_FAIL
-            })
-        }
-    } catch (error) {
-        console.log("error from register :", error);
+  try {
+    const apiResult = yield call(
+      registerSagaAsync,
+      email,
+      password,
+      first_name,
+      last_name,
+      phone
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.REGISTER_SUCCESS,
+      });
+    } else if (apiResult.results.message === "fail") {
+      yield put({
+        type: types.REGISTER_FAIL,
+      });
     }
+  } catch (error) {
+    console.log("error from register :", error);
+  }
 }
 
 export function* watchLogin() {
-    yield takeEvery(types.LOGIN, loginSaga)
+  yield takeEvery(types.LOGIN, loginSaga);
 }
 
 export function* watchRegister() {
-    yield takeEvery(types.REGISTER_PYNK, registerSaga)
+  yield takeEvery(types.REGISTER_PYNK, registerSaga);
 }
 
 export function* saga() {
-    yield all([
-        fork(watchLogin),
-        fork(watchRegister),
-    ]);
+  yield all([fork(watchLogin), fork(watchRegister)]);
 }
 
 /* END OF SAGA Section */
@@ -166,53 +149,53 @@ export function* saga() {
 /* REDUCER Section */
 
 const INIT_STATE = {
-    statusLogin: "default",
-    user: null,
-    statusRegister: "default",
+  statusLogin: "default",
+  user: null,
+  statusRegister: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
-    switch (action.type) {
-        case types.LOGIN:
-            return {
-                ...state,
-                statusLogin: "loading"
-            };
-        case types.LOGIN_SUCCESS:
-            return {
-                ...state,
-                user: action.payload,
-                statusLogin: "success"
-            };
-        case types.LOGIN_FAIL:
-            return {
-                ...state,
-                statusLogin: "fail"
-            };
-        case types.REGISTER_PYNK:
-            return {
-                ...state,
-                statusRegister: "loading"
-            }
-        case types.REGISTER_SUCCESS:
-            return {
-                ...state,
-                statusRegister: "success"
-            }
-        case types.REGISTER_FAIL:
-            return {
-                ...state,
-                statusRegister: "fail"
-            }
-        case types.CLEAR_STATUS:
-            return {
-                ...state,
-                statusLogin: "default",
-                statusRegister: "default"
-            }
-        case types.LOGOUT:
-            return INIT_STATE;
-        default:
-            return { ...state };
-    }
+  switch (action.type) {
+    case types.LOGIN:
+      return {
+        ...state,
+        statusLogin: "loading",
+      };
+    case types.LOGIN_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        statusLogin: "success",
+      };
+    case types.LOGIN_FAIL:
+      return {
+        ...state,
+        statusLogin: "fail",
+      };
+    case types.REGISTER_PYNK:
+      return {
+        ...state,
+        statusRegister: "loading",
+      };
+    case types.REGISTER_SUCCESS:
+      return {
+        ...state,
+        statusRegister: "success",
+      };
+    case types.REGISTER_FAIL:
+      return {
+        ...state,
+        statusRegister: "fail",
+      };
+    case types.CLEAR_STATUS:
+      return {
+        ...state,
+        statusLogin: "default",
+        statusRegister: "default",
+      };
+    case types.LOGOUT:
+      return INIT_STATE;
+    default:
+      return { ...state };
+  }
 }

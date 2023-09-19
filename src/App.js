@@ -420,16 +420,16 @@ class App extends Component {
                 className="collapse navbar-collapse navbarNav-ul"
                 id="navbarNav"
               >
-                <div class="navbar-nav">
+                <div className="navbar-nav">
                   <a
-                    class="nav-link  link-pynk active2"
+                    className="nav-link  link-pynk active2"
                     href="https://platform.bebefitroutine.com"
                     target="_blank"
                   >
                     Online Training
                   </a>
                   <a
-                    class="nav-link link-pynk"
+                    className="nav-link link-pynk"
                     href="https://fit.bebefitroutine.com"
                     target="_blank"
                   >
@@ -437,20 +437,20 @@ class App extends Component {
                   </a>
 
                   <a
-                    class="nav-link link-pynk"
+                    className="nav-link link-pynk"
                     href="/#"
                     onClick={() => this.props.history.push("/")}
                   >
                     Exclusive Coaching
                   </a>
                   <a
-                    class="nav-link link-pynk"
+                    className="nav-link link-pynk"
                     onClick={() => this.props.history.push("/shop")}
                   >
                     ร้านค้า
                   </a>
                   <a
-                    class="nav-link link-pynk"
+                    className="nav-link link-pynk"
                     href="/#"
                     onClick={() => this.props.history.push("/")}
                   >

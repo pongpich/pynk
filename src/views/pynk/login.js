@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { setLoading } from "../../redux/actions";
 import "./css/home.css";
 import "./css/login.css";
 
@@ -29,26 +30,22 @@ const Login = () => {
   const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
 
   const [isEmailError, setIsEmailError] = useState("default");
-  const [isPasswordError, setIsPasswordError] = useState("default");
+  const [isEmailRegisterError, setIsEmailRegisterError] = useState("default");
 
   const [isLoginError, setIsLoginError] = useState("default");
 
-  /* const handleBlur = (fieldName) => {
-    // ตรวจสอบความเต็มของช่องกรอก
-    const value = formData[fieldName];
-    if (!value) {
-      alert(กรุณากรอก ${fieldName});
-    }
-  };
-const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    // เพิ่มช่องกรอกเพิ่มเติมตามต้องการ
-  }); */
+  const [isConfirmPasswordMatch, setIsConfirmPasswordMatch] = useState(true);
+
+  const [showPasswordRegister, setShowPasswordRegister] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const [showPasswordLogin, setShowPasswordLogin] = useState(false);
+
+  const [isPasswordValid, setIsPasswordValid] = useState("default");
+  const [hasUpperCase, setHasUpperCase] = useState("default");
+  const [hasNumber, setHasNumber] = useState("default");
 
   const handleBlur = (event) => {
     var inputID = event.target.id;
-    console.log(inputID);
 
     switch (inputID) {
       case "firstName":
@@ -75,8 +72,16 @@ const [formData, setFormData] = useState({
       case "emailRegister":
         if (emailRegister.trim() === "") {
           setIsEmailRegisterEmpty(true);
+          setIsEmailRegisterError("default");
         } else {
           setIsEmailRegisterEmpty(false);
+          if (
+            !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailRegister)
+          ) {
+            setIsEmailRegisterError("formatEmail");
+          } else {
+            setIsEmailRegisterError("default");
+          }
         }
         break;
       case "passwordRegister":
@@ -85,12 +90,33 @@ const [formData, setFormData] = useState({
         } else {
           setIsPasswordRegisterEmpty(false);
         }
+        if (passwordRegister.length < 6) {
+          setIsPasswordValid("invalid");
+        } else {
+          setIsPasswordValid("valid");
+        }
+        if (!/[A-Z]/.test(passwordRegister)) {
+          setHasUpperCase("invalid");
+        } else {
+          setHasUpperCase("valid");
+        }
+        if (!/\d/.test(passwordRegister)) {
+          setHasNumber("invalid");
+        } else {
+          setHasNumber("valid");
+        }
         break;
       case "confirmPassword":
         if (confirmPassword.trim() === "") {
           setIsConfirmPasswordEmpty(true);
         } else {
           setIsConfirmPasswordEmpty(false);
+        }
+        console.log(passwordRegister, confirmPassword);
+        if (passwordRegister !== confirmPassword) {
+          setIsConfirmPasswordMatch(false);
+        } else {
+          setIsConfirmPasswordMatch(true);
         }
         break;
       case "email":
@@ -151,6 +177,24 @@ const [formData, setFormData] = useState({
     }
   };
 
+  const togglePasswordVisibility = (event) => {
+    var inputID = event.target.id;
+
+    switch (inputID) {
+      case "showPasswordButtonRegister":
+        setShowPasswordRegister(!showPasswordRegister);
+        break;
+      case "showPasswordButtonRegisterConfirm":
+        setShowPasswordConfirm(!showPasswordConfirm);
+        break;
+      case "showPasswordButtonLogin":
+        setShowPasswordLogin(!showPasswordLogin);
+        break;
+      default:
+        break;
+    }
+  };
+
   const dispatch = useDispatch();
   const user = useSelector(({ auth }) => (auth ? auth.user : ""));
   const statusLogin = useSelector(({ auth }) => (auth ? auth.statusLogin : ""));
@@ -165,7 +209,6 @@ const [formData, setFormData] = useState({
     dispatch(logout());
   };
   const handleRegister = () => {
-    console.log(handleRegister);
     if (statusRegister !== "loading") {
       dispatch(
         register(emailRegister, passwordRegister, firstName, lastName, phone)
@@ -192,6 +235,24 @@ const [formData, setFormData] = useState({
   useEffect(() => {
     dispatch(clear_status());
   }, []);
+
+  useEffect(() => {
+    if (passwordRegister.length >= 6) {
+      setIsPasswordValid("valid");
+    } else {
+      setIsPasswordValid("default");
+    }
+    if (/[A-Z]/.test(passwordRegister)) {
+      setHasUpperCase("valid");
+    } else {
+      setHasUpperCase("default");
+    }
+    if (/\d/.test(passwordRegister)) {
+      setHasNumber("valid");
+    } else {
+      setHasNumber("default");
+    }
+  }, [passwordRegister]);
 
   useEffect(() => {
     var x = document.getElementById("login");
@@ -257,12 +318,12 @@ const [formData, setFormData] = useState({
                     value={firstName}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={isFirstNameEmpty ? "empty-field" : "input-field"}
+                    className={
+                      isFirstNameEmpty ? "invalid-field" : "input-field"
+                    }
                   />
-                  {isFirstNameEmpty ? (
+                  {isFirstNameEmpty && (
                     <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
-                  ) : (
-                    ""
                   )}
                 </div>
 
@@ -277,12 +338,12 @@ const [formData, setFormData] = useState({
                     value={lastName}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={isLastNameEmpty ? "empty-field" : "input-field"}
+                    className={
+                      isLastNameEmpty ? "invalid-field" : "input-field"
+                    }
                   />
-                  {isLastNameEmpty ? (
+                  {isLastNameEmpty && (
                     <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
-                  ) : (
-                    ""
                   )}
                 </div>
               </div>
@@ -300,12 +361,10 @@ const [formData, setFormData] = useState({
                     value={phone}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={isPhoneEmpty ? "empty-field" : "input-field"}
+                    className={isPhoneEmpty ? "invalid-field" : "input-field"}
                   />
-                  {isPhoneEmpty ? (
+                  {isPhoneEmpty && (
                     <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
-                  ) : (
-                    ""
                   )}
                 </div>
                 <div className="input-box">
@@ -320,13 +379,16 @@ const [formData, setFormData] = useState({
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={
-                      isEmailRegisterEmpty ? "empty-field" : "input-field"
+                      isEmailRegisterEmpty || isEmailRegisterError !== "default"
+                        ? "invalid-field"
+                        : "input-field"
                     }
                   />
-                  {isEmailRegisterEmpty ? (
+                  {isEmailRegisterEmpty && (
                     <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
-                  ) : (
-                    ""
+                  )}
+                  {isEmailRegisterError === "formatEmail" && (
+                    <p style={{ color: "red" }}>รูปแบบอีเมลไม่ถูกต้อง</p>
                   )}
                 </div>
               </div>
@@ -337,41 +399,149 @@ const [formData, setFormData] = useState({
                     รหัสผ่าน <span style={{ color: "red" }}>*</span>
                   </label>
                   <input
-                    type="password"
+                    type={showPasswordRegister ? "text" : "password"}
                     placeholder="ระบุรหัสผ่าน"
                     id="passwordRegister"
                     value={passwordRegister}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={
-                      isPasswordRegisterEmpty ? "empty-field" : "input-field"
+                      isPasswordRegisterEmpty ? "invalid-field" : "input-field"
                     }
                   />
-                  {isPasswordRegisterEmpty ? (
+                  <button
+                    id="showPasswordButtonRegister"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPasswordRegister ? "ซ่อน" : "แสดง"}
+                  </button>
+                  {isPasswordRegisterEmpty && (
                     <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
-                  ) : (
-                    ""
                   )}
+                  <div style={{ textAlign: "left" }}>
+                    <div className="d-flex">
+                      <div
+                        className="check-icon-default"
+                        style={{
+                          backgroundColor:
+                            isPasswordValid === "valid"
+                              ? "#09A969"
+                              : isPasswordValid === "invalid"
+                              ? "#DC061E"
+                              : "#ACACAC",
+                        }}
+                      >
+                        {isPasswordValid === "invalid" ? (
+                          <i class="fa-solid fa-xmark"></i>
+                        ) : (
+                          <i class="fa-solid fa-check"></i>
+                        )}
+                      </div>
+                      <p
+                        className="check-text-password"
+                        style={{
+                          color:
+                            isPasswordValid === "invalid" ? "#DC061E" : "#000",
+                        }}
+                      >
+                        รหัสผ่านมีความยาวอย่างน้อย 6 ตัวอักษร
+                      </p>
+                    </div>
+                    <div style={{ textAlign: "left" }}>
+                      <div className="d-flex">
+                        <div
+                          className="check-icon-default"
+                          style={{
+                            backgroundColor:
+                              hasUpperCase === "valid"
+                                ? "#09A969"
+                                : hasUpperCase === "invalid"
+                                ? "#DC061E"
+                                : "#ACACAC",
+                          }}
+                        >
+                          {hasUpperCase === "invalid" ? (
+                            <i class="fa-solid fa-xmark"></i>
+                          ) : (
+                            <i class="fa-solid fa-check"></i>
+                          )}
+                        </div>
+                        <p
+                          className="check-text-password"
+                          style={{
+                            color:
+                              hasUpperCase === "invalid" ? "#DC061E" : "#000",
+                          }}
+                        >
+                          มีตัวอักษร A-Z อย่างน้อย 1 ตัว
+                        </p>
+                      </div>
+                    </div>
+                    <div style={{ textAlign: "left" }}>
+                      <div className="d-flex">
+                        <div
+                          className="check-icon-default"
+                          style={{
+                            backgroundColor:
+                              hasNumber === "valid"
+                                ? "#09A969"
+                                : hasNumber === "invalid"
+                                ? "#DC061E"
+                                : "#ACACAC",
+                          }}
+                        >
+                          {hasNumber === "invalid" ? (
+                            <i class="fa-solid fa-xmark"></i>
+                          ) : (
+                            <i class="fa-solid fa-check"></i>
+                          )}
+                        </div>
+                        <p
+                          className="check-text-password"
+                          style={{
+                            color: hasNumber === "invalid" ? "#DC061E" : "#000",
+                          }}
+                        >
+                          มีตัวเลข 0-9 อย่างน้อย 1 ตัว
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className="input-box">
                   <label for="confirm-password">
                     ยืนยันรหัสผ่าน <span style={{ color: "red" }}>*</span>
                   </label>
                   <input
-                    type="password"
+                    type={showPasswordConfirm ? "text" : "password"}
                     placeholder="ระบุรหัสผ่านอีกครั้ง"
                     id="confirmPassword"
                     value={confirmPassword}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={
-                      isConfirmPasswordEmpty ? "empty-field" : "input-field"
+                      isConfirmPasswordEmpty ? "invalid-field" : "input-field"
                     }
                   />
-                  {isConfirmPasswordEmpty ? (
+                  <button
+                    id="showPasswordButtonRegisterConfirm"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPasswordConfirm ? "ซ่อน" : "แสดง"}
+                  </button>
+                  {isConfirmPasswordEmpty && (
                     <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
-                  ) : (
-                    ""
+                  )}
+                  {!isConfirmPasswordMatch && (
+                    <p
+                      style={{
+                        color: "red",
+                        fontSize: "10px",
+                        textAlign: "left",
+                      }}
+                    >
+                      รหัสผ่านที่ตั้งไม่ตรงกัน กรุณาตรวจสอบความถูกต้อง
+                    </p>
                   )}
                 </div>
               </div>
@@ -400,7 +570,7 @@ const [formData, setFormData] = useState({
                   onBlur={handleBlur}
                   className={
                     isEmailEmpty || isEmailError !== "default"
-                      ? "empty-field"
+                      ? "invalid-field"
                       : "input-field"
                   }
                 />
@@ -420,14 +590,20 @@ const [formData, setFormData] = useState({
                   รหัสผ่าน <span style={{ color: "red" }}>*</span>
                 </label>
                 <input
-                  type="password"
+                  type={showPasswordLogin ? "text" : "password"}
                   placeholder="ระบุรหัสผ่าน"
                   id="password"
                   value={password}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={isPasswordEmpty ? "empty-field" : "input-field"}
+                  className={isPasswordEmpty ? "invalid-field" : "input-field"}
                 />
+                <button
+                  id="showPasswordButtonLogin"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPasswordLogin ? "ซ่อน" : "แสดง"}
+                </button>
                 {isPasswordEmpty ? (
                   <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
                 ) : (
@@ -437,14 +613,17 @@ const [formData, setFormData] = useState({
               <a href="#" className="forgot-password">
                 ลืมรหัสผ่าน?
               </a>
-              <div className="input-box">
-                <input
-                  type="submit"
-                  className="submit"
-                  value={"ดำเนินการต่อ"}
-                  onClick={handleLogin}
-                />
+              <div>
+                <div className="input-box">
+                  <input
+                    type="submit"
+                    className="submit"
+                    value={"ดำเนินการต่อ"}
+                    onClick={handleLogin}
+                  />
+                </div>
               </div>
+
               {isLoginError === "invalidLogin" && (
                 <p style={{ color: "red" }}>อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
               )}

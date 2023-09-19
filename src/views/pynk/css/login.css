@@ -73,12 +73,11 @@
 .input-field:hover, .input-field:focus{
     border: 1px solid #000;
 }
-.empty-field {
+.invalid-field {
     border: 1px solid red; /* สีขอบเมื่อ Email ว่าง */
-  }
+}
 ::-webkit-input-placeholder{
     color: #ACACAC;
-
 }
 .submit{
     font-size: 15px;
@@ -131,3 +130,53 @@ label{
     padding-left: 10px;
 }
 
+.check-icon-default {
+    width: 15px;
+    height: 15px;
+    border-radius: 90px;
+    color: white;
+    text-align:center;
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+.check-text-password{
+    position:absolute; 
+    margin-left: 20px;
+    font-size: 12px;
+}
+
+#showPasswordButtonRegister, #showPasswordButtonRegisterConfirm, #showPasswordButtonLogin{
+    color: #7A7A7A;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    
+    background-color: #fff;
+    font-size: 14px;
+}
+#showPasswordButtonRegister{
+    left: 38%;
+    top: 58%;
+}
+#showPasswordButtonRegisterConfirm{
+    left: 89%;
+    top: 58%;
+}
+#showPasswordButtonLogin{
+    left: 88%;
+    top: 51%;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #007bff; /* สีของสปินเนอร์ */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
