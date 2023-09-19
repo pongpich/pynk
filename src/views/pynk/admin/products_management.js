@@ -25,7 +25,9 @@ function ProductsManagement() {
 
     return (
         <div>
-            <h1>.</h1>
+            <h1 style={{ color: "white" }}>.</h1>
+            <h1 style={{ color: "white" }}>.</h1>
+
             <h1>เพิ่มรายการสินค้า</h1>
             <div className='d-flex' style={{ alignItems: "center" }}>
 
@@ -37,8 +39,20 @@ function ProductsManagement() {
                     onChange={handleInputChange} // เมื่อมีการเปลี่ยนแปลงใน input จะเรียกฟังก์ชั่น handleInputChange
                 />
                 <button style={{ height: 55, width: 100 }} onClick={handleSubmit}>ค้นหา</button>
-
             </div>
+    
+            {            
+                product_detail_zort.imageList.map((imageUrl, index) => (
+                    <img key={index} src={imageUrl} alt={`Image ${index}`} width={400} style={{ margin: 2}} />
+                ))
+            }
+            <div>name: {product_detail_zort.name}</div>
+            <div>price: {product_detail_zort.sellprice}</div>
+            <div>description: ไม่มีจาก Zort</div>
+            <div>สารอาหาร: ไม่มีจาก Zort</div>
+            <div>stock: {product_detail_zort.availablestock}</div>
+            <div>รายละเอียดสินค้า:ไม่มีจาก Zort</div>
+            <button style={{ height: 55, width: 100 }} onClick={handleSubmit}>เพิ่มสินค้า</button>
         </div>
     );
 }
