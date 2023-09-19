@@ -71,8 +71,9 @@ const Shop_payment = () => {
     orders ? orders.status_create_order : ""
   );
 
-  const current_order_id = useSelector(({ orders }) => (orders ? orders.current_order_id : ""));
-
+  const current_order_id = useSelector(({ orders }) =>
+    orders ? orders.current_order_id : ""
+  );
 
   useEffect(() => {
     //สั่ง clear_status ทุกครั้งเมื่อเริ่มเปิดหน้านี้มา
@@ -100,10 +101,16 @@ const Shop_payment = () => {
       //setค่าต่างๆของสินค้า ใน localStorage เพื่อไปเรียกใช้ที่หน้าจ่ายเงิน
       window.localStorage.setItem("price", 1);
       window.localStorage.setItem("productName", "pynk");
-      window.localStorage.setItem("name", "Akkewach Yodsomboon");
-      window.localStorage.setItem("email", "akkewach@planforfit.com");
-      window.localStorage.setItem("phone", "0840045946");
+      window.localStorage.setItem("username", formData.username);
+      window.localStorage.setItem("surname", formData.surname);
+      window.localStorage.setItem("email", formData.email);
+      window.localStorage.setItem("phone", formData.phone_number);
       window.localStorage.setItem("order_id", current_order_id);
+      window.localStorage.setItem("address", formData.address);
+      window.localStorage.setItem("subdistrict", formData.subdistrict);
+      window.localStorage.setItem("district", formData.district);
+      window.localStorage.setItem("province", formData.province);
+      window.localStorage.setItem("zipcode", formData.zipcode);
     }
   }, [status_create_order]);
 
