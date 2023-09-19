@@ -11,6 +11,7 @@ export const types = {
     REGISTER_PYNK: "REGISTER_PYNK",
     REGISTER_SUCCESS: "REGISTER_SUCCESS",
     REGISTER_FAIL: "REGISTER_FAIL",
+    CLEAR_STATUS: "CLEAR_STATUS",
 }
 
 export const login = (email, password) => ({
@@ -19,6 +20,10 @@ export const login = (email, password) => ({
         email,
         password
     }
+});
+
+export const clear_status = () => ({
+    type: types.CLEAR_STATUS,
 });
 
 export const logout = () => ({
@@ -198,6 +203,12 @@ export function reducer(state = INIT_STATE, action) {
             return {
                 ...state,
                 statusRegister: "fail"
+            }
+        case types.CLEAR_STATUS:
+            return {
+                ...state,
+                statusLogin: "default",
+                statusRegister: "default"
             }
         case types.LOGOUT:
             return INIT_STATE;

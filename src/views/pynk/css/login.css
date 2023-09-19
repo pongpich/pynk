@@ -71,8 +71,11 @@
     margin-bottom: 20px;
 }
 .input-field:hover, .input-field:focus{
-    border: 1px solid #EF60A3;
+    border: 1px solid #000;
 }
+.empty-field {
+    border: 1px solid red; /* สีขอบเมื่อ Email ว่าง */
+  }
 ::-webkit-input-placeholder{
     color: #ACACAC;
 
@@ -127,3 +130,4 @@ label{
     margin-bottom: 10px;
     padding-left: 10px;
 }
+
