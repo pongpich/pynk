@@ -8,6 +8,8 @@ import { login, logout, register, clear_status } from "../../redux/pynk/auth";
 
 const Login = () => {
   const history = useHistory();
+
+  const [renderName, setRenderName] = useState("register");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailRegister, setEmailRegister] = useState("");
@@ -97,7 +99,7 @@ const [formData, setFormData] = useState({
           setIsEmailError("default");
         } else {
           setIsEmailEmpty(false);
-          if(!(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email))){
+          if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
             setIsEmailError("formatEmail");
           } else {
             setIsEmailError("default");
@@ -189,25 +191,26 @@ const [formData, setFormData] = useState({
   //   };
   useEffect(() => {
     dispatch(clear_status());
-  },[])
+  }, []);
 
-  var x = document.getElementById("login");
-  var y = document.getElementById("register");
-  var a = document.getElementById("btn-register");
-  var b = document.getElementById("btn-login");
+  useEffect(() => {
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+    var a = document.getElementById("btn-register");
+    var b = document.getElementById("btn-login");
+    if (renderName === "register") {
+      x.style.right = "-520px";
+      y.style.left = "4px";
+      b.className = "btn-header";
+      a.className += " pink-color";
+    } else {
+      x.style.right = "4px";
+      y.style.left = "-520px";
+      b.className += " pink-color";
+      a.className = "btn-header";
+    }
+  }, [renderName]);
 
-  function loginSwap() {
-    x.style.right = "4px";
-    y.style.left = "-520px";
-    b.className += " pink-color";
-    a.className = "btn-header";
-  }
-  function registerSwap() {
-    x.style.right = "-520px";
-    y.style.left = "4px";
-    b.className = "btn-header";
-    a.className += " pink-color";
-  }
   return (
     <div className="body-login">
       <div className="wrapper">
@@ -215,7 +218,9 @@ const [formData, setFormData] = useState({
           <div className="one">
             <span>
               <a
-                onClick={registerSwap}
+                onClick={() => {
+                  setRenderName("register");
+                }}
                 className="btn-header pink-color"
                 id="btn-register"
               >
@@ -225,7 +230,13 @@ const [formData, setFormData] = useState({
           </div>
           <div className="two">
             <span>
-              <a onClick={loginSwap} className="btn-header" id="btn-login">
+              <a
+                onClick={() => {
+                  setRenderName("login");
+                }}
+                className="btn-header"
+                id="btn-login"
+              >
                 เข้าสู่ระบบ
               </a>
             </span>
@@ -387,14 +398,18 @@ const [formData, setFormData] = useState({
                   value={email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={isEmailEmpty || (isEmailError !== "default") ? "empty-field" : "input-field"}
+                  className={
+                    isEmailEmpty || isEmailError !== "default"
+                      ? "empty-field"
+                      : "input-field"
+                  }
                 />
                 {isEmailEmpty ? (
                   <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
                 ) : (
                   ""
                 )}
-                { isEmailError === "formatEmail" ? (
+                {isEmailError === "formatEmail" ? (
                   <p style={{ color: "red" }}>รูปแบบอีเมลไม่ถูกต้อง</p>
                 ) : (
                   ""
@@ -430,8 +445,9 @@ const [formData, setFormData] = useState({
                   onClick={handleLogin}
                 />
               </div>
-              <h3 onClick={handleLogout}>Log out</h3>
-              {isLoginError === "invalidLogin" && <p style={{ color: "red" }}>อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>}
+              {isLoginError === "invalidLogin" && (
+                <p style={{ color: "red" }}>อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
+              )}
               {/* <div className="two-col">
               <div className="one">
                 <input type="checkbox" id="login-check" />
