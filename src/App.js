@@ -128,6 +128,11 @@ class App extends Component {
     });
   };
 
+  showMinus2 = (action) => {
+    document.getElementById("modalAchievement1Btn_shopDetails") &&
+      document.getElementById("modalAchievement1Btn_shopDetails").click();
+  };
+
   onUserLogout(event) {
     this.props.logoutUser();
     this.props.clearCreateUser();
@@ -294,20 +299,22 @@ class App extends Component {
               <div className="flex-container">
                 <img
                   src={user_line}
+                  onClick={() => this.showMinus2()}
                   className="truck-line-icon user-line"
                   alt="vector"
                 />
-                {
-                  this.props.user ?
-                    <div className="pointer" onClick={() => this.props.logout()}>ออกจากระบบ</div>
-                    :
-                    <button
-                      className="nav-link nav-linkHead2 pointer bold  display-none"
-                      onClick={() => this.props.history.push("/login")}
-                    >
-                      เข้าสู่ระบบ/ลงทะเบียน
-                    </button>
-                }
+                {this.props.user ? (
+                  <div className="pointer" onClick={() => this.props.logout()}>
+                    ออกจากระบบ
+                  </div>
+                ) : (
+                  <button
+                    className="nav-link nav-linkHead2 pointer bold  display-none"
+                    onClick={() => this.props.history.push("/login")}
+                  >
+                    เข้าสู่ระบบ/ลงทะเบียน
+                  </button>
+                )}
 
                 <h2
                   style={{
@@ -322,6 +329,7 @@ class App extends Component {
                 </h2>
                 <img
                   src={truck_line}
+                  onClick={() => this.showMinus2()}
                   className="truck-line-icon"
                   alt="vector"
                 />
@@ -338,8 +346,9 @@ class App extends Component {
                   |
                 </h2>
                 <img
+                  onClick={() => this.showMinus2()}
                   src={shopping_bag_line}
-                  className="truck-line-icon"
+                  className="truck-line-icon pointer"
                   alt="vector"
                 />
               </div>
@@ -479,7 +488,10 @@ class App extends Component {
                 </Route>
                 <Route path="/home" component={Home} />
                 <Route path="/dashboard" component={DashboardPynk} />
-                <Route path="/products_management" component={ProductsManagement} />
+                <Route
+                  path="/products_management"
+                  component={ProductsManagement}
+                />
                 <Route path="/shop" component={ShopPynk} />
                 <Route path="/shop_details/:id" component={ShopDetailsPynk} />
                 <Route path="/questionare" component={Questionare} />
@@ -688,7 +700,7 @@ const mapActionsToProps = {
   clearProgram,
   changeLocale,
   getRegister_log,
-  logout
+  logout,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(App);

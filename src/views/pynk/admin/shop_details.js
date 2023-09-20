@@ -246,8 +246,8 @@ const Shop_details = ({ match }) => {
   };
 
   const showMinus = (action) => {
-    document.getElementById("modalAchievement1Btn") &&
-      document.getElementById("modalAchievement1Btn").click();
+    document.getElementById("modalAchievement1Btn_shopDetails") &&
+      document.getElementById("modalAchievement1Btn_shopDetails").click();
   };
 
   useEffect(() => {
@@ -577,7 +577,7 @@ const Shop_details = ({ match }) => {
       <button
         style={{ display: "none" }}
         type="button"
-        id="modalAchievement1Btn"
+        id="modalAchievement1Btn_shopDetails"
         class="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
