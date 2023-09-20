@@ -70,7 +70,7 @@ const Shop_successful_payment = (props) => {
                   ชำระเงินสำเร็จ
                 </p>
                 <p className="text-center order-number">
-                  หมายเลขคำสั่งซื้อ PYUK-{order_id && order_id}
+                  หมายเลขคำสั่งซื้อ PYNK-{order_id && order_id}
                 </p>
                 <p className="text-head-order-summary  between">
                   รายละเอียดการสั่งซื้อ{" "}
@@ -80,18 +80,15 @@ const Shop_successful_payment = (props) => {
                   ชื่อ {username && username} นามสกุล {surname && surname}
                 </p>
                 <p className="text-order">
-                  เลขที่ {address && address} ถนน ตำบล/แขวง{" "}
-                  {subdistrict && subdistrict} อำเภอ/เขต {district && district}{" "}
-                  จังหวัด {province && province} รหัสไปรษณีย์{" "}
-                  {zipcode && zipcode}
+                  ที่อยู่: {address && address} ตำบล/แขวง: {subdistrict && subdistrict} อำเภอ/เขต: {district && district} จังหวัด: {province && province} รหัสไปรษณีย์: {zipcode && zipcode}
                 </p>
                 <p className="text-order">
                   {phone &&
                     phone.slice(0, 3) +
-                      "-" +
-                      phone.slice(3, 6) +
-                      "-" +
-                      phone.slice(6)}
+                    "-" +
+                    phone.slice(3, 6) +
+                    "-" +
+                    phone.slice(6)}
                 </p>
                 <div className="line-hr-order" />
                 <p className="text-head-order-summary">สรุปรายการสั่งซื้อ</p>

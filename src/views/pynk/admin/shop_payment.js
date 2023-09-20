@@ -595,6 +595,8 @@ const Shop_payment = () => {
   };
 
   const orderOetails = () => {
+    const totalSum =
+      order && order.reduce((acc, product) => acc + product.totalprice, 0);
     return (
       <div className="box-form-payment">
         <div className="box-row">
@@ -717,28 +719,30 @@ const Shop_payment = () => {
               <div className="order-details">
                 <p className="text-head-order-summary  between">
                   รายละเอียดการสั่งซื้อ{" "}
-                  <span className="edit-order">แก้ไข</span>
+                  <span className="edit-order" onClick={() => setStatusStep(0)}>แก้ไข</span>
                 </p>
-                <p className="text-order">ชื่อจริง นามสกุล</p>
+                <p className="text-order">{formData.username} {formData.surname}</p>
                 <p className="text-order">
-                  เลขที่ 2533 ถนนสุขุมวิท แขวงบางจาก เขตพระโขนง จังหวัด
-                  กรุงเทพมหานคร รหัสไปรษณีย์ 10260
+                  ที่อยู่: {formData.address} ตำบล/แขวง: {formData.subdistrict} อำเภอ/เขต: {formData.district} จังหวัด: {formData.province} รหัสไปรษณีย์: {formData.zipcode}
                 </p>
-                <p className="text-order">090-900-9000</p>
+                <p className="text-order">{formData.phone_number}</p>
                 <div className="line-hr-order" />
                 <p className="text-head-order-summary">สรุปรายการสั่งซื้อ</p>
-                <div className="text-order between">
-                  <p className="col-8">
-                    x1 FITTO PLANT PROTEIN “ MILK TEA FLAVOUR ”
-                  </p>
-                  <p>900 บาท</p>
-                </div>
+                {order &&
+                  order.map((item, index) => (
+                    <>
+                      <div className="text-order between">
+                        <p className="col-8">{item.name}</p>
+                        <p>{item.totalprice.toLocaleString()} บาท</p>
+                      </div>
+                    </>
+                  ))}
                 <p className="text-order between">
                   ค่าจัดส่ง <span className="text-head-order-summary">ฟรี</span>
                 </p>
                 <div className="line-hr-order" />
                 <p className="amount-be-paid between">
-                  ยอดที่ต้องชำระ <span>900 บาท</span>
+                  ยอดที่ต้องชำระ <span>{totalSum && totalSum.toLocaleString()} บาท</span>
                 </p>
               </div>
             </div>
@@ -816,8 +820,8 @@ const Shop_payment = () => {
             {statusStep == 0
               ? customerInformation()
               : statusStep == 1
-              ? orderOetails()
-              : promptPay()}
+                ? orderOetails()
+                : promptPay()}
           </div>
         </div>
 

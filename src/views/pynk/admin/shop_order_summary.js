@@ -122,7 +122,7 @@ const Shop_order_summary = () => {
                 <img src={icon_Email} className="icon-login-model" />
                 เข้าใช้งานด้วย Email
               </button>
-              <button className="btn-want-login">
+             {/*  <button className="btn-want-login">
                 <img src={icon_Google} className="icon-login-model" />
                 เข้าใช้งานด้วย Google
               </button>
@@ -133,7 +133,7 @@ const Shop_order_summary = () => {
               <button className="btn-want-login">
                 <img src={icon_line} className="icon-login-model" />
                 เข้าใช้งานด้วย Line
-              </button>
+              </button> */}
               <p className="or-login"> หรือ</p>
               <Link to="/shop-payment">
                 <button
