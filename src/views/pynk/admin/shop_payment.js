@@ -171,7 +171,7 @@ const Shop_payment = () => {
       isValid = false;
     }
     // checked validation
-    if (!formData.checked) {
+    if (formData.checked != true) {
       newErrors.checked = "Checkbox must be checked";
       isValid = false;
     }
@@ -182,12 +182,12 @@ const Shop_payment = () => {
 
   const handleChange = (event) => {
     const { name, type, checked, value } = event.target;
-    console.log("name", name);
+    console.log("name", name, type, checked, value);
 
     if (name == "checkbox") {
       setFormData((prevState) => ({
         ...prevState,
-        [name]: type === "checkbox" ? checked : !value,
+        ["checked"]: type == "checkbox" ? checked : checked,
       }));
     } else {
       setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -216,34 +216,39 @@ const Shop_payment = () => {
     history.push("/shop_details");
   }
 
-  function onSubmit() {
-    const product_list = order;
-    const customer_data = {
-      name: formData.username,
-      last_name: formData.surname,
-      phone_number: formData.phone_number,
-      email: formData.email,
-    };
+  const onSubmit = async (event) => {
+    event.preventDefault();
 
-    const shipping_address = {
-      address: formData.address,
-      province: formData.province,
-      district: formData.district,
-      subdistrict: formData.subdistrict,
-      zipcode: formData.zipcode,
-    };
+    console.log("formData.checked", formData.checked);
+    if (validate()) {
+      const product_list = order;
+      const customer_data = {
+        name: formData.username,
+        last_name: formData.surname,
+        phone_number: formData.phone_number,
+        email: formData.email,
+      };
 
-    dispatch(
-      create_order(
-        "test_01", //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
-        product_list, //product_list,
-        1, //total_amount,
-        customer_data, //customer_data,
-        shipping_address, //shipping_address,
-        formData.order_notes //note
-      )
-    );
-  }
+      const shipping_address = {
+        address: formData.address,
+        province: formData.province,
+        district: formData.district,
+        subdistrict: formData.subdistrict,
+        zipcode: formData.zipcode,
+      };
+
+      dispatch(
+        create_order(
+          "test_01", //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
+          product_list, //product_list,
+          1, //total_amount,
+          customer_data, //customer_data,
+          shipping_address, //shipping_address,
+          formData.order_notes //note
+        )
+      );
+    }
+  };
 
   const customerInformation = () => {
     const totalSum =
@@ -279,7 +284,7 @@ const Shop_payment = () => {
           <div class="row">
             <div class="col-12 col-md-7 order-2 order-md-1 mt-32-576">
               <p className="text-head-order-summary">เลือกวิธีการชำระเงิน</p>
-              <form className="mt-32 " onSubmit={handleSubmit}>
+              <form className="mt-32 " /*  onSubmit={handleSubmit} */>
                 <div className="input-password">
                   <div class="mb-3 row">
                     <div className="col-12 col-md-6">
@@ -539,7 +544,7 @@ const Shop_payment = () => {
                     <div className="error-from mt-1">{errors.checked}</div>
                   )}
                   <button
-                    onClick={() => onSubmit()}
+                    onClick={onSubmit}
                     /* type="submit" */ className="btn-buy-payment"
                   >
                     ชำระเงิน
