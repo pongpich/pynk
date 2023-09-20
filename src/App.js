@@ -11,7 +11,7 @@ import close_line from "./assets/img/home/close-line.png";
 import group from "./assets/img/home/Group.png";
 /* search-line.png */
 // redux
-import {logout} from "./redux/pynk/auth";
+import { logout } from "./redux/pynk/auth";
 
 // route
 import Home from "../src/views/pynk/home";
@@ -177,49 +177,6 @@ class App extends Component {
   }
   componentDidUpdate(prevProps, prevState) {
     const { user, statusGetExpireDate } = this.props;
-    if (
-      prevProps.statusGetExpireDate !== statusGetExpireDate &&
-      statusGetExpireDate === "success" &&
-      this.props.location.pathname === "/videoList"
-    ) {
-      var expired = false;
-      var inBefore7days = false;
-      var inBefore3days = false;
-      if (user && user.expire_date) {
-        const currentDate = new Date().getTime();
-        const expireDate = new Date(user.expire_date).getTime();
-        expired = currentDate > expireDate; //เช็คว่าหมดอายุหรือยัง
-
-        var before7days = new Date(user.expire_date);
-        before7days.setDate(before7days.getDate() - 7);
-        before7days.setHours(0, 0, 0);
-        const before7daysStart = new Date(before7days).getTime();
-        before7days.setHours(23, 59, 59);
-        const before7daysEnd = new Date(before7days).getTime();
-        inBefore7days =
-          currentDate >= before7daysStart && currentDate <= before7daysEnd; //เช็คว่าอยู่ในช่วงวันที่7 ก่อนที่จะหมดอายุ
-
-        var before3days = new Date(user.expire_date);
-        before3days.setDate(before3days.getDate() - 3);
-        before3days.setHours(0, 0, 0);
-        const before3daysStart = new Date(before3days).getTime();
-        before3days.setHours(23, 59, 59);
-        const before3daysEnd = new Date(before3days).getTime();
-        inBefore3days =
-          currentDate >= before3daysStart && currentDate <= before3daysEnd; //เช็คว่าอยู่ในช่วงวันที่3 ก่อนที่จะหมดอายุ
-      }
-      if (expired) {
-        document.getElementById("modalExpireClick").click();
-      }
-      if (inBefore7days) {
-        this.setState({ inBeforeXdays: 7 });
-        document.getElementById("modalBeforeXdaysClick").click();
-      }
-      if (inBefore3days) {
-        this.setState({ inBeforeXdays: 3 });
-        document.getElementById("modalBeforeXdaysClick").click();
-      }
-    }
 
     const { windowWidth, searchStatus } = this.state;
 
@@ -340,16 +297,18 @@ class App extends Component {
                   className="truck-line-icon user-line"
                   alt="vector"
                 />
-                {this.props.user ? 
-                  <div className="pointer" onClick={() => this.props.logout()}>ออกจากระบบ</div> 
-                  :
-                  <button
-                  className="nav-link nav-linkHead2 pointer bold  display-none"
-                  onClick={() => this.props.history.push("/login")}
-                >
-                  เข้าสู่ระบบ/ลงทะเบียน
-                </button>}
-                
+                {
+                  this.props.user ?
+                    <div className="pointer" onClick={() => this.props.logout()}>ออกจากระบบ</div>
+                    :
+                    <button
+                      className="nav-link nav-linkHead2 pointer bold  display-none"
+                      onClick={() => this.props.history.push("/login")}
+                    >
+                      เข้าสู่ระบบ/ลงทะเบียน
+                    </button>
+                }
+
                 <h2
                   style={{
                     color: "#BCCCD6",
@@ -485,264 +444,6 @@ class App extends Component {
             </div>
           )}
         </nav>
-
-        {/* <nav className="navbar navbar-expand-lg bg-light information-box  sticky-top">
-          <div className="container-fluid nav-left2">
-            <a
-              className="navbar-brand"
-              href="/#" 
-              onClick={() => this.props.history.push("/")}
-              style={{ color: "white", cursor: "pointer" }}
-            >
-              <img src={logo} alt="vector" />
-            </a>
-
-            {this.props.user !== null ? (
-              <>
-                <button
-                  className="navbar-toggler"
-                  type="button"
-                  id="navbar-toggler"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span className="navbar-toggler-icon"></span>
-                </button>
-                <div
-                  className="collapse navbar-collapse "
-                  id="navbarSupportedContent"
-                >
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
-                    {user && user.other_attributes && (
-                      <>
-                        <li className="nav-item">
-                          <a
-                            id="videolist_btn"
-                            className={this.state.colorVideo}
-                            onClick={() => this.onClickNavbar("videoList")}
-                          >
-                            <IntlMessages id="navbarHome.exerciseprogram" />
-                          </a>
-                        </li>
-                        <li className="nav-item">
-                          <a
-                            id="food-supplement_btn"
-                            className={this.state.colorFood}
-                            onClick={() =>
-                              this.onClickNavbar("food_supplement")
-                            }
-                          >
-                            <IntlMessages id="navbarHome.foodsupplements" />
-                          </a>
-                        </li>
-                      </>
-                    )}
-                    <li className="nav-item"></li>
-                  </ul>
-                  <div>
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li className="nav-item">
-                     // <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
-                       // ออกจากระบบ
-                    //</a>
-                    </li>
-                      <div>{this.manuTH_EN()}</div>
-                      <li className="nav-item ">
-                        <a
-                          className="nav-link dropdown-toggle nav-linkHead"
-                          data-bs-toggle="dropdown"
-                          href="#"
-                          role="button"
-                          aria-expanded="false"
-                        >
-                          <img
-                            src={user_circle}
-                            alt="vector"
-                            className="padding-rightIcon"
-                          />
-                          {this.props.user.email}
-                        </a>
-                        <ul className="dropdown-menu dropdown-menu-end">
-                          {this.props.user.authorization === "admin" ? (
-                            <>
-                              <li className="nav-item">
-                                <a
-                                  className="dropdown-item nav-linkHead pointer"
-                                  onClick={() =>
-                                    this.props.history.push("/admin")
-                                  }
-                                >
-                                  <IntlMessages id="navbarHome.admin" />
-                                </a>
-                              </li>
-                              <li className="nav-item">
-                                <a
-                                  className="dropdown-item nav-linkHead pointer"
-                                  onClick={() =>
-                                    this.props.history.push("/dashboard")
-                                  }
-                                >
-                                  Dashboard
-                                </a>
-                              </li>
-                            </>
-                          ) : null}
-
-                          <li className="nav-item">
-                            <a
-                              className="dropdown-item nav-linkHead pointer"
-                              onClick={() =>
-                                this.props.history.push("/profile")
-                              }
-                            >
-                              <IntlMessages id="navbarHome.profile" />
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              className="dropdown-item nav-linkHead pointer"
-                              onClick={() => this.onUserLogout()}
-                            >
-                              <IntlMessages id="navbarHome.logout" />
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <button
-                  className="navbar-toggler"
-                  type="button"
-                  id="navbar-toggler"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span className="navbar-toggler-icon"></span>
-                </button>
-                <div
-                  className="collapse navbar-collapse padding-left3"
-                  id="navbarSupportedContent"
-                >
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold"></ul>
-                  <button
-                    className="nav-link nav-linkHead2 pointer bold"
-                    onClick={() => this.props.history.push("/programPackage")}
-                  >
-                    <IntlMessages id="navbarHome.register"></IntlMessages>
-                  </button>
-                  <h2
-                    style={{
-                      color: "#BCCCD6",
-                      marginRight: 16,
-                      marginLeft: 16,
-                      fontWeight: 10,
-                      height: 30,
-                    }}
-                  >
-                    |
-                  </h2>
-                  <a
-                    className="nav-link nav-linkHead3 pointer bold"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    // onClick={() => this.openPopup()}
-                    onClick={() => this.props.history.push("/login")}
-                  >
-                    <img
-                      src={user_circle}
-                      alt="vector"
-                      className="padding-rightIcon"
-                    />
-                     <IntlMessages id="navbarHome.login" />
-                  </a>
-                </div>
-              </>
-            )}
-          </div>
-        </nav> */}
-        {/* <nav className="navbar navbar-expand-lg bg-light information-box-row2 sticky-top">
-          <div
-            className="container-fluid nav-left2"
-            style={{
-              display: "flex",
-              justifyContent: "start",
-              alignItems: "center",
-            }}
-          >
-            <a
-              className=""
-              href="https://platform.bebefitroutine.com"
-              // onClick={() => this.props.history.push("/platfrom_home")}
-              style={{ cursor: "pointer" }}
-            >
-              <h5 style={{ color: "#5A6E7B" }}>
-                <b>Online Training</b>
-              </h5>
-            </a>
-            <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>
-              |
-            </h2>
-            <a
-              className=""
-              href="https://fit.bebefitroutine.com"
-              // onClick={() => this.props.history.push("/stay_fit_home")}
-              style={{ cursor: "pointer" }}
-            >
-              <h5 style={{ color: "#5A6E7B" }}>
-                <b>Stay Fit</b>
-              </h5>
-            </a>
-            <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>
-              |
-            </h2>
-            <a
-              className=""
-              href="/#"
-              onClick={() => this.props.history.push("/")}
-              style={{ cursor: "pointer" }}
-            >
-              <h5 style={{ color: "#5A6E7B" }}>
-                <b>Exclusive Coaching</b>
-              </h5>
-            </a>
-            <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>
-              |
-            </h2>
-            <a
-              className=""
-              // href="/#"
-              onClick={() => this.props.history.push("/shop")}
-              style={{ cursor: "pointer" }}
-            >
-              <h5 style={{ color: "#5A6E7B" }}>
-                <b>ร้านค้า</b>
-              </h5>
-            </a>
-            <h2 style={{ color: "#BCCCD6", marginRight: 16, marginLeft: 16 }}>
-              |
-            </h2>
-            <a
-              className=""
-              href="/#"
-              onClick={() => this.props.history.push("/")}
-              style={{ cursor: "pointer" }}
-            >
-              <h5 style={{ color: "#5A6E7B" }}>
-                <b>บทความ</b>
-              </h5>
-            </a>
-          </div>
-        </nav> */}
       </div>
     );
   }
@@ -963,9 +664,15 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, get, settings,auth }) => {
+const mapStateToProps = ({ get, settings, auth }) => {
   const { register_log } = get;
-  const { user } = auth;
+  let user;
+  if (auth) {
+    user = auth.user;
+  } else {
+    user = null;
+  }
+
   let locale;
   if (settings) {
     locale = settings.locale;
