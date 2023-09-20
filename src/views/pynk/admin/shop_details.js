@@ -327,8 +327,14 @@ const Shop_details = ({ match }) => {
   return (
     <>
       <div className="url-product">
-        <a href="/">สินค้า</a> {"> "}
-        <a href="/categories">หมวดหมู่</a> {"> "}
+        <Link to="/shop">
+          สินค้า
+        </Link>
+        <span style={{ fontWeight: "bold" }}>{" > "}</span>
+        <Link to="/shop">
+          หมวดหมู่
+        </Link>
+        <span style={{ fontWeight: "bold" }}>{" > "}</span>
         <a href="/categories/Fitto-Plant-Protein">
           <span>Fitto Plant Protein</span>
         </a>
