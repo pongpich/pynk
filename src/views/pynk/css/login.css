@@ -103,9 +103,10 @@
 }
 .two-col{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     color: #fff;
     padding: 30px 100px 30px 100px;
+    font-size: 24px;
 }
 .two-col .one{
     display: flex;
@@ -160,6 +161,9 @@ label{
     margin-left: 6px;
     margin-bottom: 0px;
     margin-top: -18px;
+}
+.hasEmail{
+    font-size: 10px;
 }
 
 #showPasswordButtonRegister, #showPasswordButtonRegisterConfirm, #showPasswordButtonLogin{

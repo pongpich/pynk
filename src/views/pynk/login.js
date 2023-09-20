@@ -399,6 +399,12 @@ const Login = () => {
                   {isEmailRegisterError === "formatEmail" && (
                     <p style={{ color: "red" }}>รูปแบบอีเมลไม่ถูกต้อง</p>
                   )}
+                  {isRegisterFail === "invalidRegister" && (
+                    <div className="empty-text hasEmail">
+                      <p style={{marginBottom:"0px"}}>มีข้อมูลอีเมลนี้ในระบบแล้ว</p>
+                      <p style={{marginBottom:"0px"}}>กรุณาสมัครใช้งานด้วยอีเมลอื่นหรือเลือกเข้าสู่ระบบ</p>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -564,6 +570,7 @@ const Login = () => {
                 emailRegister &&
                 passwordRegister &&
                 confirmPassword &&
+                isConfirmPasswordMatch &&
                 isPasswordValid === "valid" &&
                 hasUpperCase === "valid" &&
                 hasNumber === "valid" ? (
@@ -585,9 +592,6 @@ const Login = () => {
                   />
                 </div>
               )}
-              {isRegisterFail === "invalidRegister" && (
-                <p style={{ color: "red" }}>มีอีเมลนี้ในระบบอยู่แล้ว</p>
-              )}
             </div>
 
             <div className="login-container" id="login">
@@ -608,9 +612,7 @@ const Login = () => {
                       : "input-field"
                   }
                 />
-                {isEmailEmpty && (
-                  <p className="empty-text">กรุณาระบุข้อมูล</p>
-                )}
+                {isEmailEmpty && <p className="empty-text">กรุณาระบุข้อมูล</p>}
                 {isEmailError === "formatEmail" && (
                   <p style={{ color: "red" }}>รูปแบบอีเมลไม่ถูกต้อง</p>
                 )}
