@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setLoading } from "../../redux/actions";
 import "./css/home.css";
 import "./css/login.css";
 
@@ -33,6 +32,7 @@ const Login = () => {
   const [isEmailRegisterError, setIsEmailRegisterError] = useState("default");
 
   const [isLoginError, setIsLoginError] = useState("default");
+  const [isRegisterFail, setIsRegisterFail] = useState("default");
 
   const [isConfirmPasswordMatch, setIsConfirmPasswordMatch] = useState(true);
 
@@ -224,6 +224,15 @@ const Login = () => {
       setIsLoginError("invalidLogin");
     }
   }, [statusLogin]);
+
+  useEffect(() => {
+    if (statusRegister === "success") {
+      dispatch(login(emailRegister, passwordRegister));
+    }
+    if (statusRegister === "fail") {
+      setIsRegisterFail("invalidRegister");
+    }
+  }, [statusRegister]);
   // const handleSubmit = () => {
   //     event.preventDefault();
   //     const data = new FormData(event.currentTarget);
@@ -323,7 +332,7 @@ const Login = () => {
                     }
                   />
                   {isFirstNameEmpty && (
-                    <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
+                    <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                 </div>
 
@@ -343,7 +352,7 @@ const Login = () => {
                     }
                   />
                   {isLastNameEmpty && (
-                    <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
+                    <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                 </div>
               </div>
@@ -364,7 +373,7 @@ const Login = () => {
                     className={isPhoneEmpty ? "invalid-field" : "input-field"}
                   />
                   {isPhoneEmpty && (
-                    <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
+                    <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                 </div>
                 <div className="input-box">
@@ -385,7 +394,7 @@ const Login = () => {
                     }
                   />
                   {isEmailRegisterEmpty && (
-                    <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
+                    <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                   {isEmailRegisterError === "formatEmail" && (
                     <p style={{ color: "red" }}>รูปแบบอีเมลไม่ถูกต้อง</p>
@@ -416,7 +425,7 @@ const Login = () => {
                     {showPasswordRegister ? "ซ่อน" : "แสดง"}
                   </button>
                   {isPasswordRegisterEmpty && (
-                    <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
+                    <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                   <div style={{ textAlign: "left" }}>
                     <div className="d-flex">
@@ -530,7 +539,7 @@ const Login = () => {
                     {showPasswordConfirm ? "ซ่อน" : "แสดง"}
                   </button>
                   {isConfirmPasswordEmpty && (
-                    <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
+                    <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                   {!isConfirmPasswordMatch && (
                     <p
@@ -545,15 +554,40 @@ const Login = () => {
                   )}
                 </div>
               </div>
-
-              <div className="input-box">
-                <input
-                  onClick={handleRegister}
-                  type="submit"
-                  className="submit"
-                  value={"ดำเนินการต่อ"}
-                />
-              </div>
+              {statusRegister === "loading" ? (
+                <div className="spinner-box">
+                  <div className="spinner"></div>
+                </div>
+              ) : firstName &&
+                lastName &&
+                phone &&
+                emailRegister &&
+                passwordRegister &&
+                confirmPassword &&
+                isPasswordValid === "valid" &&
+                hasUpperCase === "valid" &&
+                hasNumber === "valid" ? (
+                <div className="input-box">
+                  <input
+                    onClick={handleRegister}
+                    type="submit"
+                    className="submit"
+                    value={"ดำเนินการต่อ"}
+                  />
+                </div>
+              ) : (
+                <div className="input-box">
+                  <input
+                    type="submit"
+                    className="submit"
+                    value={"ดำเนินการต่อ"}
+                    style={{ cursor: "default", backgroundColor: "#C3C3C3" }}
+                  />
+                </div>
+              )}
+              {isRegisterFail === "invalidRegister" && (
+                <p style={{ color: "red" }}>มีอีเมลนี้ในระบบอยู่แล้ว</p>
+              )}
             </div>
 
             <div className="login-container" id="login">
@@ -574,15 +608,11 @@ const Login = () => {
                       : "input-field"
                   }
                 />
-                {isEmailEmpty ? (
-                  <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
-                ) : (
-                  ""
+                {isEmailEmpty && (
+                  <p className="empty-text">กรุณาระบุข้อมูล</p>
                 )}
-                {isEmailError === "formatEmail" ? (
+                {isEmailError === "formatEmail" && (
                   <p style={{ color: "red" }}>รูปแบบอีเมลไม่ถูกต้อง</p>
-                ) : (
-                  ""
                 )}
               </div>
               <div className="input-box">
@@ -605,7 +635,7 @@ const Login = () => {
                   {showPasswordLogin ? "ซ่อน" : "แสดง"}
                 </button>
                 {isPasswordEmpty ? (
-                  <p style={{ color: "red" }}>กรุณาระบุข้อมูล</p>
+                  <p className="empty-text">กรุณาระบุข้อมูล</p>
                 ) : (
                   ""
                 )}
@@ -613,16 +643,30 @@ const Login = () => {
               <a href="#" className="forgot-password">
                 ลืมรหัสผ่าน?
               </a>
-              <div>
+
+              {statusLogin === "loading" ? (
+                <div className="spinner-box">
+                  <div className="spinner"></div>
+                </div>
+              ) : email && password ? (
+                <div className="input-box">
+                  <input
+                    onClick={handleLogin}
+                    type="submit"
+                    className="submit"
+                    value={"ดำเนินการต่อ"}
+                  />
+                </div>
+              ) : (
                 <div className="input-box">
                   <input
                     type="submit"
                     className="submit"
                     value={"ดำเนินการต่อ"}
-                    onClick={handleLogin}
+                    style={{ cursor: "default", backgroundColor: "#C3C3C3" }}
                   />
                 </div>
-              </div>
+              )}
 
               {isLoginError === "invalidLogin" && (
                 <p style={{ color: "red" }}>อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>

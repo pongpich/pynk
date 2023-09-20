@@ -75,6 +75,15 @@
 }
 .invalid-field {
     border: 1px solid red; /* สีขอบเมื่อ Email ว่าง */
+    font-size: 15px;
+    color: #000;
+    height: 50px;
+    width: 100%;
+    padding: 0 40px 0 15px;
+    border-radius: 10px;
+    outline: none;
+    transition: .2s ease;
+    margin-bottom: 20px;
 }
 ::-webkit-input-placeholder{
     color: #ACACAC;
@@ -144,6 +153,14 @@ label{
     margin-left: 20px;
     font-size: 12px;
 }
+.empty-text{
+    color: red;
+    font-size: 12px;
+    text-align: left;
+    margin-left: 6px;
+    margin-bottom: 0px;
+    margin-top: -18px;
+}
 
 #showPasswordButtonRegister, #showPasswordButtonRegisterConfirm, #showPasswordButtonLogin{
     color: #7A7A7A;
@@ -166,7 +183,10 @@ label{
     left: 88%;
     top: 51%;
 }
-
+.spinner-box{
+    display: flex;
+    justify-content: center;
+}
 .spinner {
     border: 4px solid rgba(255, 255, 255, 0.3);
     border-top: 4px solid #007bff; /* สีของสปินเนอร์ */
