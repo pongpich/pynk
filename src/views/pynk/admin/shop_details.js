@@ -22,6 +22,7 @@ import { flush } from "redux-saga/effects";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../redux/pynk/get";
 import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
 
 let slidesToShow = 4;
 
@@ -104,7 +105,8 @@ const carouselProperties = {
   ],
 };
 
-const Shop_details = ({ match, props }) => {
+const Shop_details = ({ match }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const [mainImage, setMainImage] = useState();
@@ -121,6 +123,7 @@ const Shop_details = ({ match, props }) => {
   const [product_cookies, setProduct_cookies] = useState(null);
 
   const { id } = match.params; // รับ ID จาก URL
+  //const [id, setId]= useState(match.params); //240230303013
 
   const { pathname } = useLocation();
 
@@ -238,7 +241,7 @@ const Shop_details = ({ match, props }) => {
   const buy_now = () => {
     dataCookies();
     if (product_cookies != null) {
-      props.history.push("/shop-order-summary"); // เปลี่ยนหน้าไปยัง '/shop'
+      history.push("/shop-order-summary");
     }
   };
 
@@ -313,6 +316,14 @@ const Shop_details = ({ match, props }) => {
     product_cookies &&
     product_cookies.reduce((acc, product) => acc + product.totalprice, 0);
 
+  const nutritional_value = productId ?
+    productId.nutritional_value ?
+      JSON.parse(productId.nutritional_value)
+      :
+      null
+    :
+    null;
+
   return (
     <>
       <div className="url-product">
@@ -331,11 +342,10 @@ const Shop_details = ({ match, props }) => {
             <div className="box-img mb-3">
               <img
                 src={productId && productId.image_url}
-                className={`image ${
-                  activeImage === productId && productId.image_url
-                    ? "active"
-                    : ""
-                }`}
+                className={`image ${activeImage === productId && productId.image_url
+                  ? "active"
+                  : ""
+                  }`}
                 onClick={() =>
                   handleImageClick(productId && productId.image_url)
                 }
@@ -367,33 +377,25 @@ const Shop_details = ({ match, props }) => {
         <div className="box-image col-12 col-sm-6  col-md-7  col-lg-7">
           <div className="box-details">
             <p className="text-head">{productId && productId.product_name}</p>
-            <p className="text-name">ธัญพืชรสชานม</p>
+            {/*      <p className="text-name">ธัญพืชรสชานม</p> */}
             <p className="text-price">
               ฿{productId && productId.price.toLocaleString()}
             </p>
-            <p className="text-span-price">฿1,990 </p>
+            {/* <p className="text-span-price">฿1,990 </p> */}
             <p className="text-span">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type{" "}
+              {productId && productId.description}
             </p>
             <div className="row">
-              <div className="amount mb-3">
-                <p className="text-amount text-center">พลังงาน</p>
-                <p className="text-amount-number text-center">120</p>
-                <p className="text-amount-power text-center"> แคลอรี่</p>
-              </div>
-              <div className="amount mb-3">
-                <p className="text-amount text-center">พลังงาน</p>
-                <p className="text-amount-number text-center">120</p>
-                <p className="text-amount-power text-center"> แคลอรี่</p>
-              </div>
-              <div className="amount mb-3">
-                <p className="text-amount text-center ">พลังงาน</p>
-                <p className="text-amount-number text-center">120</p>
-                <p className="text-amount-power text-center"> แคลอรี่</p>
-              </div>
+              {
+                nutritional_value &&
+                nutritional_value.map((item, index) => (
+                  <div className="amount mb-3">
+                    <p className="text-amount text-center">{item.nutrition_name}</p>
+                    <p className="text-amount-number text-center">{item.value}</p>
+                    <p className="text-amount-power text-center">{item.unit}</p>
+                  </div>
+                ))
+              }
             </div>
           </div>
           <p className="plus-minus">
@@ -410,16 +412,32 @@ const Shop_details = ({ match, props }) => {
               {" "}
               <img src={vector} className="vector-image" />
             </span>
-            เหลือสินค้าอยู่ 33 ชิ้น
+            เหลือสินค้าอยู่ {productId && productId.available_stock} ชิ้น
           </p>
           <div className="row justify-content-576">
-            <button onClick={() => clickSelected()} className="shopping-bag">
-              เพิ่มลงถุงช้อปปิ้ง
-            </button>
+            {
+              (productId && (productId.available_stock > 0)) ?
+                <>
+                  <button onClick={() => clickSelected()} className="shopping-bag">
+                    เพิ่มลงถุงช้อปปิ้ง
+                  </button>
+                  <button className="buy-now" onClick={() => buy_now()}>
+                    ซื้อเลย
+                  </button>
+                </>
+                :
+                <>
+                  <button className="shopping-bag" style={{ backgroundColor: "#D3D3D3", cursor: "none" }}>
+                    เพิ่มลงถุงช้อปปิ้ง
+                  </button>
+                  <button className="buy-now" style={{ backgroundColor: "#D3D3D3", cursor: "none" }} >
+                    ซื้อเลย
+                  </button>
+                </>
+            }
 
-            <button className="buy-now" onClick={() => buy_now()}>
-              ซื้อเลย
-            </button>
+
+
           </div>
           <div className="row more-details">
             <div className="between padding-more-details">
@@ -437,42 +455,7 @@ const Shop_details = ({ match, props }) => {
               <>
                 <div className="more-detail-hr" />
                 <p className="animated-slideDown">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
+                  {productId && productId.detail}
                 </p>
               </>
             )}
@@ -494,6 +477,7 @@ const Shop_details = ({ match, props }) => {
                 </p>
               </div>
             </div>
+
             <div className="kaew-bubble ">
               <div className="bubble-radius">2</div>
               <div className="box-kaew">
@@ -540,7 +524,7 @@ const Shop_details = ({ match, props }) => {
                   <div
                     key={index}
                     className="box-item-hover cursor-pointer"
-                    /*   onClick={() => seId_order(item.product_id)} */
+                  /*   onClick={() => seId_order(item.product_id)} */
                   >
                     <p className="hot-shop-details">HOT</p>
                     <img src={item.image_url} className="image-slider" />
@@ -627,50 +611,50 @@ const Shop_details = ({ match, props }) => {
                 {product_cookies &&
                   product_cookies.map((product, index) => (
                     <>
-                      <Link to={`/shop_details/${product.product_id}`}>
-                        <div className="col-4 col-md-3 mb-3">
-                          <img
-                            src={product.image}
-                            className="model-image-slider"
-                          />
-                        </div>
-                        <div className="col-8 col-md-9  mb-3">
-                          <p className="fitto-shop">{product.name}</p>
-                          <div className="plus-minus-box row">
-                            <div className="plus-minus-model back-g  col-6">
-                              <div className="mt-model">
-                                <button
-                                  className="minus-model back-g-btn"
-                                  onClick={() =>
-                                    plusMinusCookies("minus", product.sku)
-                                  }
-                                >
-                                  <span className="minus-span">-</span>
-                                </button>
-                                <span className="plus-minus-number">
-                                  {product.number}
-                                </span>
-                                <button
-                                  className="plus-model back-g-btn"
-                                  onClick={() =>
-                                    plusMinusCookies("plus", product.sku)
-                                  }
-                                >
-                                  <span className="minus-span">+</span>
-                                </button>
-                              </div>
+
+                      <div className="col-4 col-md-3 mb-3">
+                        <img
+                          src={product.image}
+                          className="model-image-slider"
+                        />
+                      </div>
+                      <div className="col-8 col-md-9  mb-3">
+                        <p className="fitto-shop">{product.name}</p>
+                        <div className="plus-minus-box row">
+                          <div className="plus-minus-model back-g  col-6">
+                            <div className="mt-model">
+                              <button
+                                className="minus-model back-g-btn"
+                                onClick={() =>
+                                  plusMinusCookies("minus", product.sku)
+                                }
+                              >
+                                <span className="minus-span">-</span>
+                              </button>
+                              <span className="plus-minus-number">
+                                {product.number}
+                              </span>
+                              <button
+                                className="plus-model back-g-btn"
+                                onClick={() =>
+                                  plusMinusCookies("plus", product.sku)
+                                }
+                              >
+                                <span className="minus-span">+</span>
+                              </button>
                             </div>
-                            <img
-                              src={delete_bin_line}
-                              onClick={() => deleteArrayCookies(product.sku)}
-                              className="delete_bin_line col-3"
-                            />
-                            <p className="fitto-shop price-ml col-3">
-                              {product.totalprice.toLocaleString()} บาท
-                            </p>
                           </div>
+                          <img
+                            src={delete_bin_line}
+                            onClick={() => deleteArrayCookies(product.sku)}
+                            className="delete_bin_line col-3"
+                          />
+                          <p className="fitto-shop price-ml col-3">
+                            {product.totalprice.toLocaleString()} บาท
+                          </p>
                         </div>
-                      </Link>
+                      </div>
+
                     </>
                   ))}
               </div>
@@ -679,15 +663,27 @@ const Shop_details = ({ match, props }) => {
                   จำนวน {product_cookies && product_cookies.length} รายการ
                   <span>{totalSum && totalSum.toLocaleString()} บาท</span>
                 </p>
-                <Link to="/shop-order-summary">
-                  <button
-                    className="model-buy-now"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    คิดเงิน
-                  </button>
-                </Link>
+                {
+                  (product_cookies && (product_cookies.length > 0)) ?
+                    <Link to="/shop-order-summary">
+                      <button
+                        className="model-buy-now"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        คิดเงิน
+                      </button>
+                    </Link>
+                    :
+                    <button
+                      className="model-buy-now"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      คิดเงิน
+                    </button>
+                }
+
               </div>
             </div>
           </div>
