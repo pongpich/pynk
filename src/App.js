@@ -24,6 +24,7 @@ import ShopSuccessfulPaymentPynk from "./views/pynk/admin/shop_successful_paymen
 import Popup_login from "./components/Popup_login";
 import Login from "../src/views/pynk/login";
 import ProductsManagement from "./views/pynk/admin/products_management";
+import Shop_category from "./views/pynk/admin/shop_category";
 // import Shop from "../src/views/pynk/shop";
 import HomePlatfrom from "../src/views/platform/login";
 import Questionare from "../src/views/pynk/questionare";
@@ -494,6 +495,7 @@ class App extends Component {
                 />
                 <Route path="/shop" component={ShopPynk} />
                 <Route path="/shop_details/:id" component={ShopDetailsPynk} />
+                <Route path="/shop-category/:name" component={Shop_category} />
                 <Route path="/questionare" component={Questionare} />
                 <Route
                   path="/shop-order-summary"

@@ -245,24 +245,32 @@ function ShopPynk() {
             borderRadius: 8,
           }}
         >
-          <div className="row">
-            <div
-              className="col-12"
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-              }}
-            >
-              <img width={156} height={135} src={icon_kg} className="icon-kg" />
+          <Link to="shop-category/exercise_equipment">
+            <div className="row">
+              <div
+                className="col-12"
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                <img
+                  width={156}
+                  height={135}
+                  src={icon_kg}
+                  className="icon-kg"
+                />
+              </div>
+
+              <div className="icon-kg-text">
+                <span className="d-flex justify-content-center">
+                  อุปกรณ์ <br />
+                  ออกกำลังกาย
+                </span>
+              </div>
             </div>
-            <div className="icon-kg-text">
-              <span className="d-flex justify-content-center">
-                อุปกรณ์ <br />
-                ออกกำลังกาย
-              </span>
-            </div>
-          </div>
+          </Link>
         </div>
 
         <div
@@ -274,29 +282,31 @@ function ShopPynk() {
             borderRadius: 8,
           }}
         >
-          <div className="row">
-            <div
-              className="col-12"
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-              }}
-            >
-              <img
-                width={155}
-                height={131}
-                src={icon_fitto}
-                className="icon-kg"
-              />
+          <Link to="shop-category/fitto_plant_protein">
+            <div className="row">
+              <div
+                className="col-12"
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                <img
+                  width={155}
+                  height={131}
+                  src={icon_fitto}
+                  className="icon-kg"
+                />
+              </div>
+              <div className="icon-kg-text">
+                <span className="d-flex justify-content-center">
+                  Fitto <br />
+                  Plant Protein
+                </span>
+              </div>
             </div>
-            <div className="icon-kg-text">
-              <span className="d-flex justify-content-center">
-                Fitto <br />
-                Plant Protein
-              </span>
-            </div>
-          </div>
+          </Link>
         </div>
 
         <div
@@ -309,28 +319,30 @@ function ShopPynk() {
             padding: 0,
           }}
         >
-          <div>
-            <div
-              className="col-12"
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-              }}
-            >
-              <img
-                width={67}
-                height={132}
-                src={icon_burner}
-                className="icon-kg"
-              />
+          <Link to="shop-category/fitto_pre_workout_fat_burner">
+            <div>
+              <div
+                className="col-12"
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                <img
+                  width={67}
+                  height={132}
+                  src={icon_burner}
+                  className="icon-kg"
+                />
+              </div>
+              <div className="icon-kg-text">
+                <span className="d-flex justify-content-center">
+                  Fitto Pre-Work Out <br />& Fat Burner
+                </span>
+              </div>
             </div>
-            <div className="icon-kg-text">
-              <span className="d-flex justify-content-center">
-                Fitto Pre-Work Out <br />& Fat Burner
-              </span>
-            </div>
-          </div>
+          </Link>
         </div>
 
         <div
@@ -342,22 +354,31 @@ function ShopPynk() {
             borderRadius: 8,
           }}
         >
-          <div className="row">
-            <div
-              className="col-12"
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-              }}
-            >
-              <img width={92} height={152} src={icon_cup} className="icon-kg" />
-            </div>
+          <Link to="shop-category/fitto_drink">
+            <div className="row">
+              <div
+                className="col-12"
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                <img
+                  width={92}
+                  height={152}
+                  src={icon_cup}
+                  className="icon-kg"
+                />
+              </div>
 
-            <div className="icon-kg-text">
-              <span className="d-flex justify-content-center">Fitto Drink</span>
+              <div className="icon-kg-text">
+                <span className="d-flex justify-content-center">
+                  Fitto Drink
+                </span>
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
 
         <div
@@ -369,23 +390,24 @@ function ShopPynk() {
             borderRadius: 8,
           }}
         >
-          <div className="row">
-            <div
-              className="col-12"
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-              }}
-            >
-              <img
-                width={92}
-                height={151}
-                src={icon_supplement}
-                className="icon-kg"
-              />
-            </div>
-            {/*  <span
+          <Link to="shop-category/fitto_drink">
+            <div className="row">
+              <div
+                className="col-12"
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                <img
+                  width={92}
+                  height={151}
+                  src={icon_supplement}
+                  className="icon-kg"
+                />
+              </div>
+              {/*  <span
               className="d-flex justify-content-center align-items-center"
               style={{
                 height: 48,
@@ -393,10 +415,13 @@ function ShopPynk() {
             >
               อาหารเสริม
             </span> */}
-            <div className="icon-kg-text">
-              <span className="d-flex justify-content-center">อาหารเสริม</span>
+              <div className="icon-kg-text">
+                <span className="d-flex justify-content-center">
+                  อาหารเสริม
+                </span>
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
 
         <div
@@ -408,27 +433,29 @@ function ShopPynk() {
             borderRadius: 8,
           }}
         >
-          <div className="row">
-            <div
-              className="col-12"
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-                marginTop: 15,
-              }}
-            >
-              <img width={74} height={74} src={icon_other} />
+          <Link to="shop-category/food_supplement">
+            <div className="row">
+              <div
+                className="col-12"
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  display: "flex",
+                  marginTop: 15,
+                }}
+              >
+                <img width={74} height={74} src={icon_other} />
+              </div>
+              <span
+                className="d-flex justify-content-center align-items-center icon_other-text"
+                style={{
+                  height: 48,
+                }}
+              >
+                อื่นๆ
+              </span>
             </div>
-            <span
-              className="d-flex justify-content-center align-items-center icon_other-text"
-              style={{
-                height: 48,
-              }}
-            >
-              อื่นๆ
-            </span>
-          </div>
+          </Link>
         </div>
       </div>
 
@@ -469,7 +496,8 @@ function ShopPynk() {
                         {item.product_name}
                       </p>
                       <p className="text-center text-slider-hover">
-                        ฿{item.price} {/* <span className="slide-span">฿199 </span> */}
+                        ฿{item.price}{" "}
+                        {/* <span className="slide-span">฿199 </span> */}
                       </p>
 
                       <button
