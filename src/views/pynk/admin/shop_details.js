@@ -104,7 +104,7 @@ const carouselProperties = {
   ],
 };
 
-const Shop_details = ({ match }) => {
+const Shop_details = ({ match, props }) => {
   const dispatch = useDispatch();
 
   const [mainImage, setMainImage] = useState();
@@ -159,7 +159,7 @@ const Shop_details = ({ match }) => {
     setNumber(1);
   }, [id]);
 
-  const clickSelected = () => {
+  const dataCookies = () => {
     const product_name = Cookies.get("product_name");
     if (product_name && product_name != "undefined") {
       // มีสินค้า
@@ -228,12 +228,25 @@ const Shop_details = ({ match }) => {
     }
     const product_name1 = Cookies.get("product_name");
     setProduct_cookies(product_name1 && JSON.parse(product_name1));
+  };
+
+  const clickSelected = () => {
+    dataCookies();
     showMinus();
   };
+
+  const buy_now = () => {
+    dataCookies();
+    if (product_cookies != null) {
+      props.history.push("/shop-order-summary"); // เปลี่ยนหน้าไปยัง '/shop'
+    }
+  };
+
   const showMinus = (action) => {
     document.getElementById("modalAchievement1Btn") &&
       document.getElementById("modalAchievement1Btn").click();
   };
+
   useEffect(() => {
     if (productId) {
       // productId && productId.image_url;
@@ -404,7 +417,9 @@ const Shop_details = ({ match }) => {
               เพิ่มลงถุงช้อปปิ้ง
             </button>
 
-            <button className="buy-now">ซื้อเลย</button>
+            <button className="buy-now" onClick={() => buy_now()}>
+              ซื้อเลย
+            </button>
           </div>
           <div className="row more-details">
             <div className="between padding-more-details">
