@@ -94,10 +94,6 @@ const Shop_payment = () => {
 
     //เช็คว่า create_order เสร็จ
     if (status_create_order === "success") {
-      //สั่งเปลี่ยน render เป็นหน้าให้เลือก payment_method
-      setStatusStep(1);
-      window.scrollTo(0, 0);
-      //Cookies.remove("product_name");
       //setค่าต่างๆของสินค้า ใน localStorage เพื่อไปเรียกใช้ที่หน้าจ่ายเงิน
       window.localStorage.setItem("price", 1);
       window.localStorage.setItem("productName", "pynk");
@@ -111,6 +107,7 @@ const Shop_payment = () => {
       window.localStorage.setItem("district", formData.district);
       window.localStorage.setItem("province", formData.province);
       window.localStorage.setItem("zipcode", formData.zipcode);
+      history.push("/qr_checkout_pynk");
     }
   }, [status_create_order]);
 
@@ -206,10 +203,33 @@ const Shop_payment = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("47444");
+    const product_list = order;
+    const customer_data = {
+      name: formData.username,
+      last_name: formData.surname,
+      phone_number: formData.phone_number,
+      email: formData.email,
+    };
 
-    if (validate()) {
-      console.log("เงื่อนไงผ่าน");
-    }
+    const shipping_address = {
+      address: formData.address,
+      province: formData.province,
+      district: formData.district,
+      subdistrict: formData.subdistrict,
+      zipcode: formData.zipcode,
+    };
+
+    dispatch(
+      create_order(
+        "test_01", //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
+        product_list, //product_list,
+        1, //total_amount,
+        customer_data, //customer_data,
+        shipping_address, //shipping_address,
+        formData.order_notes //note
+      )
+    );
   };
 
   function onPayment() {
@@ -218,35 +238,9 @@ const Shop_payment = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
-    console.log("formData.checked", formData.checked);
     if (validate()) {
-      const product_list = order;
-      const customer_data = {
-        name: formData.username,
-        last_name: formData.surname,
-        phone_number: formData.phone_number,
-        email: formData.email,
-      };
-
-      const shipping_address = {
-        address: formData.address,
-        province: formData.province,
-        district: formData.district,
-        subdistrict: formData.subdistrict,
-        zipcode: formData.zipcode,
-      };
-
-      dispatch(
-        create_order(
-          "test_01", //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
-          product_list, //product_list,
-          1, //total_amount,
-          customer_data, //customer_data,
-          shipping_address, //shipping_address,
-          formData.order_notes //note
-        )
-      );
+      setStatusStep(1);
+      window.scrollTo(0, 0);
     }
   };
 
@@ -708,7 +702,7 @@ const Shop_payment = () => {
                         ? "btn-continue-payment"
                         : "btn-buy-payment"
                     }
-                    onClick={() => history.push("/qr_checkout_pynk")}
+                    onClick={handleSubmit}
                   >
                     ชำระเงิน
                   </button>
@@ -719,11 +713,17 @@ const Shop_payment = () => {
               <div className="order-details">
                 <p className="text-head-order-summary  between">
                   รายละเอียดการสั่งซื้อ{" "}
-                  <span className="edit-order" onClick={() => setStatusStep(0)}>แก้ไข</span>
+                  <span className="edit-order" onClick={() => setStatusStep(0)}>
+                    แก้ไข
+                  </span>
                 </p>
-                <p className="text-order">{formData.username} {formData.surname}</p>
                 <p className="text-order">
-                  ที่อยู่: {formData.address} ตำบล/แขวง: {formData.subdistrict} อำเภอ/เขต: {formData.district} จังหวัด: {formData.province} รหัสไปรษณีย์: {formData.zipcode}
+                  {formData.username} {formData.surname}
+                </p>
+                <p className="text-order">
+                  ที่อยู่: {formData.address} ตำบล/แขวง: {formData.subdistrict}{" "}
+                  อำเภอ/เขต: {formData.district} จังหวัด: {formData.province}{" "}
+                  รหัสไปรษณีย์: {formData.zipcode}
                 </p>
                 <p className="text-order">{formData.phone_number}</p>
                 <div className="line-hr-order" />
@@ -742,7 +742,8 @@ const Shop_payment = () => {
                 </p>
                 <div className="line-hr-order" />
                 <p className="amount-be-paid between">
-                  ยอดที่ต้องชำระ <span>{totalSum && totalSum.toLocaleString()} บาท</span>
+                  ยอดที่ต้องชำระ{" "}
+                  <span>{totalSum && totalSum.toLocaleString()} บาท</span>
                 </p>
               </div>
             </div>
@@ -820,8 +821,8 @@ const Shop_payment = () => {
             {statusStep == 0
               ? customerInformation()
               : statusStep == 1
-                ? orderOetails()
-                : promptPay()}
+              ? orderOetails()
+              : promptPay()}
           </div>
         </div>
 
