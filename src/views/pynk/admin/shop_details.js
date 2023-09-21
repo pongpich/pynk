@@ -240,9 +240,7 @@ const Shop_details = ({ match }) => {
 
   const buy_now = () => {
     dataCookies();
-    if (product_cookies != null) {
-      history.push("/shop-order-summary");
-    }
+    history.push("/shop-order-summary");
   };
 
   const showMinus = (action) => {
@@ -257,83 +255,23 @@ const Shop_details = ({ match }) => {
     }
   }, [productId]);
 
-  //เเก้จำนวนสินค้า ใน model && Cookies
-  const plusMinusCookies = (e, id) => {
-    const product_name = Cookies.get("product_name");
-    if (product_name && product_name != "undefined") {
-      const productArray = product_name && JSON.parse(product_name);
-      const foundProductIndex =
-        Array.isArray(productArray) &&
-        productArray.findIndex((product) => product.sku == id);
-
-      if (foundProductIndex !== -1) {
-        if (e == "plus") {
-          productArray[foundProductIndex].number =
-            parseInt(productArray[foundProductIndex].number) + 1;
-          productArray[foundProductIndex].totalprice =
-            parseInt(productArray[foundProductIndex].pricepernumber) *
-            parseInt(productArray[foundProductIndex].number);
-
-          Cookies.set("product_name", JSON.stringify(productArray), {
-            expires: expires_cookies,
-          });
-        } else {
-          // ลบ ค่า ได้ถึงเเค่ 1
-          if (parseInt(productArray[foundProductIndex].number) > 1) {
-            productArray[foundProductIndex].number =
-              parseInt(productArray[foundProductIndex].number) - 1;
-            productArray[foundProductIndex].totalprice =
-              parseInt(productArray[foundProductIndex].pricepernumber) *
-              parseInt(productArray[foundProductIndex].number);
-
-            Cookies.set("product_name", JSON.stringify(productArray), {
-              expires: expires_cookies,
-            });
-          }
-        }
-        const product_name1 = Cookies.get("product_name");
-        setProduct_cookies(product_name1 && JSON.parse(product_name1));
-      }
-    }
-  };
-  // ลบ ค้า  cookies
-  const deleteArrayCookies = (id) => {
-    const product_name = Cookies.get("product_name");
-    if (product_name && product_name != "undefined") {
-      let productArray = product_name && JSON.parse(product_name);
-
-      productArray =
-        productArray && productArray.filter((product) => product.sku != id);
-      Cookies.set("product_name", JSON.stringify(productArray), {
-        expires: expires_cookies,
-      });
-      const product_name1 = Cookies.get("product_name");
-      setProduct_cookies(product_name1 && JSON.parse(product_name1));
-    }
-  };
   // คำนวน ราคา ทั้งหมด
   const totalSum =
     product_cookies &&
     product_cookies.reduce((acc, product) => acc + product.totalprice, 0);
 
-  const nutritional_value = productId ?
-    productId.nutritional_value ?
-      JSON.parse(productId.nutritional_value)
-      :
-      null
-    :
-    null;
+  const nutritional_value = productId
+    ? productId.nutritional_value
+      ? JSON.parse(productId.nutritional_value)
+      : null
+    : null;
 
   return (
     <>
       <div className="url-product">
-        <Link to="/shop">
-          สินค้า
-        </Link>
+        <Link to="/shop">สินค้า</Link>
         <span style={{ fontWeight: "bold" }}>{" > "}</span>
-        <Link to="/shop">
-          หมวดหมู่
-        </Link>
+        <Link to="/shop">หมวดหมู่</Link>
         <span style={{ fontWeight: "bold" }}>{" > "}</span>
         <a href="/categories/Fitto-Plant-Protein">
           <span>Fitto Plant Protein</span>
@@ -348,10 +286,11 @@ const Shop_details = ({ match }) => {
             <div className="box-img mb-3">
               <img
                 src={productId && productId.image_url}
-                className={`image ${activeImage === productId && productId.image_url
-                  ? "active"
-                  : ""
-                  }`}
+                className={`image ${
+                  activeImage === productId && productId.image_url
+                    ? "active"
+                    : ""
+                }`}
                 onClick={() =>
                   handleImageClick(productId && productId.image_url)
                 }
@@ -388,20 +327,20 @@ const Shop_details = ({ match }) => {
               ฿{productId && productId.price.toLocaleString()}
             </p>
             {/* <p className="text-span-price">฿1,990 </p> */}
-            <p className="text-span">
-              {productId && productId.description}
-            </p>
+            <p className="text-span">{productId && productId.description}</p>
             <div className="row">
-              {
-                nutritional_value &&
+              {nutritional_value &&
                 nutritional_value.map((item, index) => (
                   <div className="amount mb-3">
-                    <p className="text-amount text-center">{item.nutrition_name}</p>
-                    <p className="text-amount-number text-center">{item.value}</p>
+                    <p className="text-amount text-center">
+                      {item.nutrition_name}
+                    </p>
+                    <p className="text-amount-number text-center">
+                      {item.value}
+                    </p>
                     <p className="text-amount-power text-center">{item.unit}</p>
                   </div>
-                ))
-              }
+                ))}
             </div>
           </div>
           <p className="plus-minus">
@@ -421,29 +360,34 @@ const Shop_details = ({ match }) => {
             เหลือสินค้าอยู่ {productId && productId.available_stock} ชิ้น
           </p>
           <div className="row justify-content-576">
-            {
-              (productId && (productId.available_stock > 0)) ?
-                <>
-                  <button onClick={() => clickSelected()} className="shopping-bag">
-                    เพิ่มลงถุงช้อปปิ้ง
-                  </button>
-                  <button className="buy-now" onClick={() => buy_now()}>
-                    ซื้อเลย
-                  </button>
-                </>
-                :
-                <>
-                  <button className="shopping-bag" style={{ backgroundColor: "#D3D3D3", cursor: "none" }}>
-                    เพิ่มลงถุงช้อปปิ้ง
-                  </button>
-                  <button className="buy-now" style={{ backgroundColor: "#D3D3D3", cursor: "none" }} >
-                    ซื้อเลย
-                  </button>
-                </>
-            }
-
-
-
+            {productId && productId.available_stock > 0 ? (
+              <>
+                <button
+                  onClick={() => clickSelected()}
+                  className="shopping-bag"
+                >
+                  เพิ่มลงถุงช้อปปิ้ง
+                </button>
+                <button className="buy-now" onClick={() => buy_now()}>
+                  ซื้อเลย
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className="shopping-bag"
+                  style={{ backgroundColor: "#D3D3D3", cursor: "none" }}
+                >
+                  เพิ่มลงถุงช้อปปิ้ง
+                </button>
+                <button
+                  className="buy-now"
+                  style={{ backgroundColor: "#D3D3D3", cursor: "none" }}
+                >
+                  ซื้อเลย
+                </button>
+              </>
+            )}
           </div>
           <div className="row more-details">
             <div className="between padding-more-details">
@@ -530,7 +474,7 @@ const Shop_details = ({ match }) => {
                   <div
                     key={index}
                     className="box-item-hover cursor-pointer"
-                  /*   onClick={() => seId_order(item.product_id)} */
+                    /*   onClick={() => seId_order(item.product_id)} */
                   >
                     <p className="hot-shop-details">HOT</p>
                     <img src={item.image_url} className="image-slider" />
@@ -573,128 +517,6 @@ const Shop_details = ({ match }) => {
       </div>
 
       <Footer />
-
-      <button
-        style={{ display: "none" }}
-        type="button"
-        id="modalAchievement1Btn_shopDetails"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        Launch demo modal
-      </button>
-
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div
-          className={
-            windowWidth < 577 ? "modal-dialog" : "modal-dialog  modal-right"
-          }
-        >
-          <div className="modal-content-shop-details">
-            <div className="modal-header-shop-details mt-3">
-              <h1
-                className="modal-title-shop-details fs-5"
-                id="exampleModalLabel"
-              >
-                ตะกร้าสินค้า
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div>
-              <div className="modal-body-shop-details  row">
-                {product_cookies &&
-                  product_cookies.map((product, index) => (
-                    <>
-
-                      <div className="col-4 col-md-3 mb-3">
-                        <img
-                          src={product.image}
-                          className="model-image-slider"
-                        />
-                      </div>
-                      <div className="col-8 col-md-9  mb-3">
-                        <p className="fitto-shop">{product.name}</p>
-                        <div className="plus-minus-box row">
-                          <div className="plus-minus-model back-g  col-6">
-                            <div className="mt-model">
-                              <button
-                                className="minus-model back-g-btn"
-                                onClick={() =>
-                                  plusMinusCookies("minus", product.sku)
-                                }
-                              >
-                                <span className="minus-span">-</span>
-                              </button>
-                              <span className="plus-minus-number">
-                                {product.number}
-                              </span>
-                              <button
-                                className="plus-model back-g-btn"
-                                onClick={() =>
-                                  plusMinusCookies("plus", product.sku)
-                                }
-                              >
-                                <span className="minus-span">+</span>
-                              </button>
-                            </div>
-                          </div>
-                          <img
-                            src={delete_bin_line}
-                            onClick={() => deleteArrayCookies(product.sku)}
-                            className="delete_bin_line col-3"
-                          />
-                          <p className="fitto-shop price-ml col-3">
-                            {product.totalprice.toLocaleString()} บาท
-                          </p>
-                        </div>
-                      </div>
-
-                    </>
-                  ))}
-              </div>
-              <div className="modal-footer-shop-details">
-                <p className="fitto-shop between">
-                  จำนวน {product_cookies && product_cookies.length} รายการ
-                  <span>{totalSum && totalSum.toLocaleString()} บาท</span>
-                </p>
-                {
-                  (product_cookies && (product_cookies.length > 0)) ?
-                    <Link to="/shop-order-summary">
-                      <button
-                        className="model-buy-now"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      >
-                        คิดเงิน
-                      </button>
-                    </Link>
-                    :
-                    <button
-                      className="model-buy-now"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      คิดเงิน
-                    </button>
-                }
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 };

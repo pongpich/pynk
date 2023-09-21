@@ -1,6 +1,8 @@
 import "./App.css";
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import delete_bin_line from "./assets/img/pynk/shop/delete-bin-line.png";
 //---------------------------------------Pynk---------------------------------------
 // image
 import search_line from "./assets/img/home/search-line.png";
@@ -114,6 +116,8 @@ class App extends Component {
       searchStatus: 0,
       windowWidth: window.innerWidth,
       group_image: false,
+      expires_cookies: 7,
+      product_cookies: null,
     };
   }
 
@@ -130,6 +134,10 @@ class App extends Component {
   };
 
   showMinus2 = (action) => {
+    const product_name1 = Cookies.get("product_name");
+    this.setState({
+      product_cookies: product_name1 ? JSON.parse(product_name1) : null,
+    });
     document.getElementById("modalAchievement1Btn_shopDetails") &&
       document.getElementById("modalAchievement1Btn_shopDetails").click();
   };
@@ -184,7 +192,7 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { user, statusGetExpireDate } = this.props;
 
-    const { windowWidth, searchStatus } = this.state;
+    const { windowWidth, searchStatus, product_cookies } = this.state;
 
     if (prevState.windowWidth != windowWidth && windowWidth > 576) {
       this.setState({ searchStatus: 0 });
@@ -465,9 +473,73 @@ class App extends Component {
     this.setState({ isPopupLoginOpen: false });
   }
 
+  //เเก้จำนวนสินค้า ใน model && Cookies
+  plusMinusCookies(e, id) {
+    const product_name = Cookies.get("product_name");
+    if (product_name && product_name != "undefined") {
+      const productArray = product_name && JSON.parse(product_name);
+      const foundProductIndex =
+        Array.isArray(productArray) &&
+        productArray.findIndex((product) => product.sku == id);
+
+      if (foundProductIndex !== -1) {
+        if (e == "plus") {
+          productArray[foundProductIndex].number =
+            parseInt(productArray[foundProductIndex].number) + 1;
+          productArray[foundProductIndex].totalprice =
+            parseInt(productArray[foundProductIndex].pricepernumber) *
+            parseInt(productArray[foundProductIndex].number);
+
+          Cookies.set("product_name", JSON.stringify(productArray), {
+            expires: this.state.expires_cookies,
+          });
+        } else {
+          // ลบ ค่า ได้ถึงเเค่ 1
+          if (parseInt(productArray[foundProductIndex].number) > 1) {
+            productArray[foundProductIndex].number =
+              parseInt(productArray[foundProductIndex].number) - 1;
+            productArray[foundProductIndex].totalprice =
+              parseInt(productArray[foundProductIndex].pricepernumber) *
+              parseInt(productArray[foundProductIndex].number);
+
+            Cookies.set("product_name", JSON.stringify(productArray), {
+              expires: this.state.expires_cookies,
+            });
+          }
+        }
+        const product_name1 = Cookies.get("product_name");
+        this.setState({
+          product_cookies: product_name1 && JSON.parse(product_name1),
+        });
+      }
+    }
+  }
+  // ลบ ค้า  cookies
+  deleteArrayCookies(id) {
+    const product_name = Cookies.get("product_name");
+    if (product_name && product_name != "undefined") {
+      let productArray = product_name && JSON.parse(product_name);
+
+      productArray =
+        productArray && productArray.filter((product) => product.sku != id);
+      Cookies.set("product_name", JSON.stringify(productArray), {
+        expires: this.state.expires_cookies,
+      });
+      const product_name1 = Cookies.get("product_name");
+      this.setState({
+        product_cookies: product_name1 && JSON.parse(product_name1),
+      });
+    }
+  }
+
   render() {
     const { locale } = this.props;
     const currentAppLocale = AppLocale[locale];
+
+    const { product_cookies } = this.state;
+    const totalSum =
+      product_cookies &&
+      product_cookies.reduce((acc, product) => acc + product.totalprice, 0);
 
     return (
       <div>
@@ -673,6 +745,128 @@ class App extends Component {
             </header>
           </div>
         </IntlProvider>
+
+        <button
+          style={{ display: "none" }}
+          type="button"
+          id="modalAchievement1Btn_shopDetails"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Launch demo modal
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div
+            className={
+              this.state.windowWidth < 577
+                ? "modal-dialog"
+                : "modal-dialog  modal-right"
+            }
+          >
+            <div className="modal-content-shop-details">
+              <div className="modal-header-shop-details mt-3">
+                <h1
+                  className="modal-title-shop-details fs-5"
+                  id="exampleModalLabel"
+                >
+                  ตะกร้าสินค้า
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div>
+                <div className="modal-body-shop-details  row">
+                  {product_cookies &&
+                    product_cookies.map((product, index) => (
+                      <>
+                        <div className="col-4 col-md-3 mb-3">
+                          <img
+                            src={product.image}
+                            className="model-image-slider"
+                          />
+                        </div>
+                        <div className="col-8 col-md-9  mb-3">
+                          <p className="fitto-shop">{product.name}</p>
+                          <div className="plus-minus-box row">
+                            <div className="plus-minus-model back-g  col-6">
+                              <div className="mt-model">
+                                <button
+                                  className="minus-model back-g-btn"
+                                  onClick={() =>
+                                    this.plusMinusCookies("minus", product.sku)
+                                  }
+                                >
+                                  <span className="minus-span">-</span>
+                                </button>
+                                <span className="plus-minus-number">
+                                  {product.number}
+                                </span>
+                                <button
+                                  className="plus-model back-g-btn"
+                                  onClick={() =>
+                                    this.plusMinusCookies("plus", product.sku)
+                                  }
+                                >
+                                  <span className="minus-span">+</span>
+                                </button>
+                              </div>
+                            </div>
+                            <img
+                              src={delete_bin_line}
+                              onClick={() =>
+                                this.deleteArrayCookies(product.sku)
+                              }
+                              className="delete_bin_line col-3"
+                            />
+                            <p className="fitto-shop price-ml col-3">
+                              {product.totalprice.toLocaleString()} บาท
+                            </p>
+                          </div>
+                        </div>
+                      </>
+                    ))}
+                </div>
+                <div className="modal-footer-shop-details">
+                  <p className="fitto-shop between">
+                    จำนวน {product_cookies && product_cookies.length} รายการ
+                    <span>{totalSum && totalSum.toLocaleString()} บาท</span>
+                  </p>
+                  {product_cookies && product_cookies.length > 0 ? (
+                    <Link to="/shop-order-summary">
+                      <button
+                        className="model-buy-now"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        คิดเงิน
+                      </button>
+                    </Link>
+                  ) : (
+                    <button
+                      className="model-buy-now"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      คิดเงิน
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
