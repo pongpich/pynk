@@ -167,9 +167,14 @@ const data = [1, 2, 3, 4, 5, 6];
 function ShopPynk() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { products_pynk, status_products_pynk } = useSelector(
+  /*   const { products_pynk, status_products_pynk } = useSelector(
     (state) => state.getPynk
+  ); */
+  const { products_pynk, status_products_pynk } = useSelector(
+    (state) =>
+      state.getPynk || { products_pynk: null, status_products_pynk: null } // ใส่การสร้าง object ว่าง {} ถ้า state.getPynk ไม่มีค่า
   );
+
   const [promotionalProduct, setPromotionalProduct] = useState(products_pynk);
   const [statusPromotionalProduct, setStatusPromotionalProduct] =
     useState(status_products_pynk);
