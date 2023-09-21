@@ -24,6 +24,8 @@ import { getProducts } from "../../../redux/pynk/get";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 
+import { update_status_cart} from "../../../redux/pynk/orders";
+
 let slidesToShow = 4;
 
 const PreviousBtn = (props) => {
@@ -118,7 +120,7 @@ const Shop_details = ({ match }) => {
   const { products_pynk, status_products_pynk } = useSelector(
     (state) => state.getPynk
   );
-  const [product, setProduct] = useState(products_pynk);
+ const [product, setProduct] = useState(products_pynk);
   const [productId, setProductId] = useState(null);
   const [product_cookies, setProduct_cookies] = useState(null);
 
@@ -235,7 +237,8 @@ const Shop_details = ({ match }) => {
 
   const clickSelected = () => {
     dataCookies();
-    showMinus();
+    //showMinus();
+    dispatch(update_status_cart("success"));
   };
 
   const buy_now = () => {

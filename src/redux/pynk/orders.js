@@ -6,8 +6,14 @@ import { API } from "aws-amplify";
 export const types = {
     CREATE_ORDER: "CREATE_ORDER",
     CREATE_ORDER_SUCCESS: "CREATE_ORDER_SUCCESS",
-    CLEAR_STATUS: "CLEAR_STATUS"
+    CLEAR_STATUS: "CLEAR_STATUS",
+    UPDATE_STATUS_CART: "UPDATE_STATUS_CART"
 }
+
+export const update_status_cart = (status) => ({
+    type: types.UPDATE_STATUS_CART,
+    payload: status
+})
 
 export const clear_status = () => ({
     type: types.CLEAR_STATUS
@@ -89,7 +95,7 @@ function* createOrderSaga({ payload }) {
             })
         }
 
-       
+
     } catch (error) {
         console.log("error from createOrderSaga :", error);
     }
@@ -112,6 +118,7 @@ export function* saga() {
 
 const INIT_STATE = {
     status_create_order: "default",
+    status_cart: "default",
     current_order_id: null
 };
 
@@ -131,7 +138,13 @@ export function reducer(state = INIT_STATE, action) {
         case types.CLEAR_STATUS:
             return {
                 ...state,
-                status_create_order: "default"
+                status_create_order: "default",
+
+            }
+        case types.UPDATE_STATUS_CART:
+            return {
+                ...state,
+                status_cart: action.payload,
             }
         default:
             return { ...state };

@@ -14,6 +14,7 @@ import group from "./assets/img/home/Group.png";
 /* search-line.png */
 // redux
 import { logout } from "./redux/pynk/auth";
+import { update_status_cart } from "./redux/pynk/orders";
 
 // route
 import Home from "../src/views/pynk/home";
@@ -182,7 +183,7 @@ class App extends Component {
         thEn: "English",
       });
     }
-
+   
     window.addEventListener("resize", this.updateWindowWidth);
   }
 
@@ -190,12 +191,19 @@ class App extends Component {
     window.removeEventListener("resize", this.updateWindowWidth);
   }
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusGetExpireDate } = this.props;
+    const { user, statusGetExpireDate, status_cart } = this.props;
 
     const { windowWidth, searchStatus, product_cookies } = this.state;
 
     if (prevState.windowWidth != windowWidth && windowWidth > 576) {
       this.setState({ searchStatus: 0 });
+    }
+
+    if ((prevProps.status_cart !== status_cart) && (status_cart === "success")) {
+      console.log("กดใส่ถุงจ้า!!");
+      this.showMinus2()
+
+      this.props.update_status_cart("default");
     }
   }
 
@@ -872,13 +880,20 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ get, settings, auth }) => {
+const mapStateToProps = ({ get, settings, auth, orders }) => {
   const { register_log } = get;
   let user;
   if (auth) {
     user = auth.user;
   } else {
     user = null;
+  }
+  
+  let status_cart;
+  if (orders) {
+    status_cart = orders.status_cart;
+  } else {
+    status_cart = "default";
   }
 
   let locale;
@@ -887,7 +902,7 @@ const mapStateToProps = ({ get, settings, auth }) => {
   } else {
     locale = "th";
   }
-  return { user, register_log, locale };
+  return { user, register_log, locale, status_cart };
 };
 
 const mapActionsToProps = {
@@ -897,6 +912,7 @@ const mapActionsToProps = {
   changeLocale,
   getRegister_log,
   logout,
+  update_status_cart
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(App);
