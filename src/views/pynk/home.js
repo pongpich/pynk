@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import slide1 from "../../assets/img/home/slide1.png";
 import slide2 from "../../assets/img/home/slide2.png";
 import slide3 from "../../assets/img/home/slide3.png";
-import slide4 from "../../assets/img/home/slide4.png";
+// import slide4 from "../../assets/img/home/slide4.png";
 import home2 from "../../assets/img/home/home_2.png";
 import home2_1 from "../../assets/img/home/home2_1.png";
 import home2_2 from "../../assets/img/home/home2_2.png";
@@ -69,8 +69,8 @@ const Home = () => {
 
     }
     useEffect(() => {
-        componentDidUpdate();
-        autoSlide();
+        // componentDidUpdate();
+        // autoSlide();
         // onChange();
     }, []);
 
@@ -82,7 +82,7 @@ const Home = () => {
                     <input type="radio" name="radio-btn" id="radio1" />
                     <input type="radio" name="radio-btn" id="radio2" />
                     <input type="radio" name="radio-btn" id="radio3" />
-                    <input type="radio" name="radio-btn" id="radio4" />
+                    {/* <input type="radio" name="radio-btn" id="radio4" /> */}
                     {/* <input type="radio" name="radio-btn" id={counter} /> */}
 
                     <div className="slide first">
@@ -94,9 +94,9 @@ const Home = () => {
                     <div className="slide">
                         <img src={slide3} alt="" />
                     </div>
-                    <div className="slide">
+                    {/* <div className="slide">
                         <img src={slide4} alt="" />
-                    </div>
+                    </div> */}
                     <div className="navigation-auto">
                         <div className="auto-btn1"></div>
                         <div className="auto-btn2"></div>
@@ -104,9 +104,10 @@ const Home = () => {
                         <div className="auto-btn4"></div>
                     </div>
                     <div className="box_text_home1">
-                        <p className="text-home1-48px">เริ่มต้นฟิต</p>
-                        <p className="text-home1-48px">พิชิตหุ่นในฝัน</p>
-                        <p className="text-home1-24px">Daily Fit For a Better Life</p>
+                        <p className="text-home1-48px-2">Stay fit with Bebe</p>
+                        <p className="text-home1-24px">คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตี</p>
+                        <p className="text-home1-24px">ความสำเร็จจากนักเรียนกว่าสิบรุ่น</p>
+
                         <a
                             // href="https://fittowhey.com/8week/complete"
                             onClick={() => history.push("/questionare")}

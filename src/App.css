@@ -1081,22 +1081,7 @@ body {
   height: 100%;
 }
 
-.navigation-manual {
-  position: absolute;
-  width: 300px;
-  top: 30%;
-  left: 3%;
-  display: flex;
-  justify-content: center;
-}
 
-.manual-btn {
-  border: 0px solid #F7ABCE;
-  padding: 5px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 1s;
-}
 
 .manual-btn:not(:last-child) {
   margin-right: 5%;
