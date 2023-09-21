@@ -183,7 +183,7 @@ class App extends Component {
         thEn: "English",
       });
     }
-   
+
     window.addEventListener("resize", this.updateWindowWidth);
   }
 
@@ -292,7 +292,9 @@ class App extends Component {
         <nav className="navbar navbar-expand-sm bg-light information-nav fixed-top">
           <div className="information-box">
             <div className="flex-container">
-              <img src={logo} alt="vector" />
+              <Link to='home'>
+                <img src={logo} alt="vector" />
+              </Link>
               <div className="custom-input ">
                 <img
                   src={search_line}
@@ -888,7 +890,7 @@ const mapStateToProps = ({ get, settings, auth, orders }) => {
   } else {
     user = null;
   }
-  
+
   let status_cart;
   if (orders) {
     status_cart = orders.status_cart;
