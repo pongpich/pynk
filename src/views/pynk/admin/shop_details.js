@@ -24,7 +24,7 @@ import { getProducts } from "../../../redux/pynk/get";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 
-import { update_status_cart} from "../../../redux/pynk/orders";
+import { update_status_cart } from "../../../redux/pynk/orders";
 
 let slidesToShow = 4;
 
@@ -120,7 +120,7 @@ const Shop_details = ({ match }) => {
   const { products_pynk, status_products_pynk } = useSelector(
     (state) => state.getPynk
   );
- const [product, setProduct] = useState(products_pynk);
+  const [product, setProduct] = useState(products_pynk);
   const [productId, setProductId] = useState(null);
   const [product_cookies, setProduct_cookies] = useState(null);
 
@@ -289,11 +289,10 @@ const Shop_details = ({ match }) => {
             <div className="box-img mb-3">
               <img
                 src={productId && productId.image_url}
-                className={`image ${
-                  activeImage === productId && productId.image_url
+                className={`image ${activeImage === productId && productId.image_url
                     ? "active"
                     : ""
-                }`}
+                  }`}
                 onClick={() =>
                   handleImageClick(productId && productId.image_url)
                 }
@@ -379,13 +378,13 @@ const Shop_details = ({ match }) => {
               <>
                 <button
                   className="shopping-bag"
-                  style={{ backgroundColor: "#D3D3D3", cursor: "none" }}
+                  style={{ backgroundColor: "#D3D3D3", cursor: "default" }}
                 >
                   เพิ่มลงถุงช้อปปิ้ง
                 </button>
                 <button
                   className="buy-now"
-                  style={{ backgroundColor: "#D3D3D3", cursor: "none" }}
+                  style={{ backgroundColor: "#D3D3D3", cursor: "default" }}
                 >
                   ซื้อเลย
                 </button>
@@ -477,7 +476,7 @@ const Shop_details = ({ match }) => {
                   <div
                     key={index}
                     className="box-item-hover cursor-pointer"
-                    /*   onClick={() => seId_order(item.product_id)} */
+                  /*   onClick={() => seId_order(item.product_id)} */
                   >
                     <p className="hot-shop-details">HOT</p>
                     <img src={item.image_url} className="image-slider" />

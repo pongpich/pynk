@@ -25,11 +25,13 @@ const Shop_payment = () => {
 
   const dispatch = useDispatch();
 
+  const user = useSelector(({ auth }) => (auth ? auth.user : ""));
+
   const [formData, setFormData] = useState({
-    username: "",
-    surname: "",
-    phone_number: "",
-    email: "",
+    username: user ? user.first_name : "",
+    surname: user ? user.last_name : "",
+    phone_number: user ? user.phone : "",
+    email: user ? user.email : "",
     address: "",
     subdistrict: "",
     district: "",
@@ -821,8 +823,8 @@ const Shop_payment = () => {
             {statusStep == 0
               ? customerInformation()
               : statusStep == 1
-              ? orderOetails()
-              : promptPay()}
+                ? orderOetails()
+                : promptPay()}
           </div>
         </div>
 

@@ -3,7 +3,8 @@ import "../css/shop_order_summary.css";
 import Footer from "../footer";
 import { useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
 
 import picture01 from "../../../assets/img/pynk/shop/group-37546.png";
 import arrow_left_line from "../../../assets/img/pynk/shop/arrow-left-s-line.png";
@@ -17,14 +18,34 @@ import icon_Email from "../../../assets/img/pynk/shop/icon-Email.png";
 import icon_Google from "../../../assets/img/pynk/shop/icon-Google.png";
 import icon_facebook from "../../../assets/img/pynk/shop/icon-facebook.png";
 import icon_line from "../../../assets/img/pynk/shop/icon-line.png";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../../../redux/pynk/auth";
+
 
 const Shop_order_summary = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [plusNumber, setPlusNumber] = useState(1);
   const [statusLogin, setStatusLogin] = useState(0);
   const [statusContinue, setStatusContinue] = useState(0);
+  const [emailLogin, setEmailLogin] = useState("");
+  const [passwordLogin, setPasswordLogin] = useState("");
   const [product_cookies, setProduct_cookies] = useState(null);
   const [expires_cookies, setExpires_cookies] = useState(7);
   const { pathname } = useLocation();
+  const user = useSelector(({ auth }) => (auth ? auth.user : ""));
+  const statusLogin2 = useSelector(({ auth }) => (auth ? auth.statusLogin : ""));
+
+  useEffect(() => {
+    if (statusLogin2 === "success") {
+      //ต้องสั่งปิด Popup Login
+
+      console.log("login สำเร็จ!!");
+/* 
+      document.getElementById("btn-close-login-modal") &&
+        document.getElementById("btn-close-login-modal").click(); */
+    }
+  }, [statusLogin2])
 
   useEffect(() => {
     window.scrollTo(0, 0); // คำสั่งนี้จะเลื่อนหน้าไปที่ด้านบนสุดของหน้า
@@ -98,6 +119,13 @@ const Shop_order_summary = () => {
     }
   };
 
+  const onSubmit = () => {
+    //เช็คว่า login หรือยัง
+    if (user) {
+      history.push("/shop-payment");
+    }
+  }
+
   const selectLogin = () => {
     return (
       <>
@@ -105,6 +133,7 @@ const Shop_order_summary = () => {
           <div className="modal-header">
             <button
               type="button"
+              id="btn-close-login-modal"
               className="btn-close mt-16"
               data-bs-dismiss="modal"
               aria-label="Close"
@@ -122,7 +151,7 @@ const Shop_order_summary = () => {
                 <img src={icon_Email} className="icon-login-model" />
                 เข้าใช้งานด้วย Email
               </button>
-             {/*  <button className="btn-want-login">
+              {/*  <button className="btn-want-login">
                 <img src={icon_Google} className="icon-login-model" />
                 เข้าใช้งานด้วย Google
               </button>
@@ -151,6 +180,21 @@ const Shop_order_summary = () => {
     );
   };
 
+  const handleChange = (event) => {
+    var inputID = event.target.id;
+
+    switch (inputID) {
+      case "emailLogin":
+        setEmailLogin(event.target.value);
+        break;
+      case "passwordLogin":
+        setPasswordLogin(event.target.value);
+        break;
+      default:
+        break;
+    }
+  }
+
   const formLogin = () => {
     return (
       <>
@@ -173,6 +217,9 @@ const Shop_order_summary = () => {
                   </p>
                   <input
                     type="text"
+                    value={emailLogin}
+                    id="emailLogin"
+                    onChange={handleChange}
                     className="input-form-login"
                     placeholder="example@mail.com"
                   />
@@ -181,7 +228,10 @@ const Shop_order_summary = () => {
                   </p>
                   <div className="input-password">
                     <input
-                      type="text"
+                      type="password"
+                      value={passwordLogin}
+                      id="passwordLogin"
+                      onChange={handleChange}
                       className="input-form-login"
                       placeholder="กรุณาระบุรหัสผ่าน"
                     />
@@ -191,19 +241,26 @@ const Shop_order_summary = () => {
                 <a className="forgot-password">ลืมรหัสผ่าน?</a>
                 <button
                   className={
-                    statusContinue == 0
-                      ? "btn-continue-payment"
-                      : "btn-buy-payment"
+                    (emailLogin && passwordLogin) ?
+                      "btn-buy-payment"
+                      :
+                      "btn-continue-payment"
                   }
+                  onClick={() => dispatch(login(emailLogin, passwordLogin))}
                 >
                   ดำเนินการต่อ
                 </button>
-                <p className="or-access">หรือเข้าใช้งานด้วย</p>
+                {
+                  (statusLogin2 === "fail") &&
+                  <p style={{ color: "red" }}>อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
+                }
+
+                {/*   <p className="or-access">หรือเข้าใช้งานด้วย</p>
                 <div className="justify-content">
                   <img src={icon_Google} className="icon-login" />
                   <img src={icon_facebook} className="icon-login" />
                   <img src={icon_line} className="icon-login" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -317,10 +374,12 @@ const Shop_order_summary = () => {
                 ยอดที่ต้องชำระ
                 <span>{totalSum && totalSum.toLocaleString()} บาท</span>
               </p>
+
               <button
                 className="btn-buy-payment"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModalPayment"
+                data-bs-toggle={user ? "" : "modal"}
+                data-bs-target={user ? "" : "#exampleModalPayment"}
+                onClick={onSubmit}
               >
                 ดำเนินการชำระเงิน
               </button>
