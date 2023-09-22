@@ -38,12 +38,9 @@ const Shop_order_summary = () => {
 
   useEffect(() => {
     if (statusLogin2 === "success") {
-      //ต้องสั่งปิด Popup Login
-
-      console.log("login สำเร็จ!!");
-/* 
+      //สั่งปิด Popup Login
       document.getElementById("btn-close-login-modal") &&
-        document.getElementById("btn-close-login-modal").click(); */
+        document.getElementById("btn-close-login-modal").click();
     }
   }, [statusLogin2])
 
@@ -133,7 +130,7 @@ const Shop_order_summary = () => {
           <div className="modal-header">
             <button
               type="button"
-              id="btn-close-login-modal"
+              /* id="btn-close-login-modal" */
               className="btn-close mt-16"
               data-bs-dismiss="modal"
               aria-label="Close"
@@ -208,6 +205,14 @@ const Shop_order_summary = () => {
           </div>
           <div className="modal-body-payment ">
             <div className="box-button-login">
+              <button
+                type="button"
+                id="btn-close-login-modal"
+                className="btn-close mt-16"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                style={{ display: "none" }}
+              ></button>
               <p className="want-login want-to">เข้าใช้งานด้วยอีเมล</p>
               <div className="box-input">
                 <form>
