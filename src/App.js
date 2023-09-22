@@ -17,6 +17,7 @@ import { logout } from "./redux/pynk/auth";
 import { update_status_cart } from "./redux/pynk/orders";
 
 // route
+import AdminPynk from "./views/pynk/admin/admin";
 import Home from "../src/views/pynk/home";
 import DashboardPynk from "./views/pynk/admin/dashboard";
 import ShopPynk from "./views/pynk/shop";
@@ -28,7 +29,6 @@ import Popup_login from "./components/Popup_login";
 import Login from "../src/views/pynk/login";
 import ProductsManagement from "./views/pynk/admin/products_management";
 import Shop_category from "./views/pynk/admin/shop_category";
-// import Shop from "../src/views/pynk/shop";
 import HomePlatfrom from "../src/views/platform/login";
 import Questionare from "../src/views/pynk/questionare";
 //-------------------------------------Stay Fit-------------------------------------
@@ -572,6 +572,10 @@ class App extends Component {
                 <Route path="/home" component={Home} />
                 <Route path="/dashboard" component={DashboardPynk} />
                 <Route
+                  path="/admin"
+                  component={AdminPynk}
+                />
+                <Route
                   path="/products_management"
                   component={ProductsManagement}
                 />
@@ -702,7 +706,7 @@ class App extends Component {
                   component={Reset_password_succeed}
                 />
                 <Route path="/new_password" component={New_password} />
-                <Route path="/admin" component={Admin} />
+                <Route path="/admin_stayfit" component={Admin} />
                 <Route path="/dashboard_stayfit" component={Dashboard} />
                 <Route path="/challenge" component={Challenge} />
                 <Route path="/exercise_method" component={Exercise_method} />
