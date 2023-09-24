@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Slider from "react-slick";
 import { useLocation } from "react-router-dom";
@@ -395,7 +395,7 @@ function ShopPynk() {
             borderRadius: 8,
           }}
         >
-          <Link to="shop-category/fitto_drink">
+          <Link to="shop-category/food_supplement">
             <div className="row">
               <div
                 className="col-12"
@@ -438,7 +438,7 @@ function ShopPynk() {
             borderRadius: 8,
           }}
         >
-          <Link to="shop-category/food_supplement">
+          <Link to="shop-category/another">
             <div className="row">
               <div
                 className="col-12"
