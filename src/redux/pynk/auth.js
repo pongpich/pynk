@@ -136,7 +136,7 @@ function* loginAdminSaga({ payload }) {
 
   try {
     const loginResult = yield call(loginAdminSagaAsync, email, password);
-
+    
     if (loginResult.results.message === "success") {
       yield put({
         type: types.LOGIN_ADMIN_SUCCESS,
@@ -194,7 +194,11 @@ export function* watchRegister() {
 }
 
 export function* saga() {
-  yield all([fork(watchLogin), fork(watchRegister)]);
+  yield all([
+    fork(watchLogin), 
+    fork(watchRegister),
+    fork(watchLoginAdmin)
+  ]);
 }
 
 /* END OF SAGA Section */
