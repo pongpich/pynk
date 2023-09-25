@@ -38,7 +38,7 @@ const Shop_category = ({ match }) => {
     const currentItems = product && product.slice(startIndex, endIndex);
     setProductSlice(currentItems);
     console.log("pageNumbers", startIndex, endIndex, currentItems, pageNumbers);
-  }, [product]);
+  }, [product, currentPage]);
 
   useEffect(() => {
     setProduct(
@@ -81,6 +81,8 @@ const Shop_category = ({ match }) => {
     pageNumbers.push(i);
   }
 
+  console.log("pageNumbers", pageNumbers.length);
+
   return (
     <div className="shop-category">
       <div className="image-background-head">
@@ -114,8 +116,8 @@ const Shop_category = ({ match }) => {
             </select>
           </div>
         </div>
-        {product &&
-          product.map((item, index) => (
+        {productSlice &&
+          productSlice.map((item, index) => (
             <Link to={`/shop_details/${item.product_id}`}>
               <div className="product-category" key={index}>
                 <div className="box-item-hover cursor-pointer">
@@ -158,17 +160,24 @@ const Shop_category = ({ match }) => {
             </Link>
           ))}
       </div>
-      {/*     <div className="pagination">
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            onClick={() => handlePageChange(number)}
-            className={currentPage === number ? "active" : ""}
-          >
-            {number}
-          </button>
+      <div className="pagination">
+        {pageNumbers.map((number, index) => (
+          <React.Fragment key={index}>
+            <button
+              onClick={() => handlePageChange(number)}
+              className={currentPage === number ? "active-pagination" : ""}
+            >
+              {number}
+            </button>
+            {index === pageNumbers.length - 2 &&
+              currentPage < pageNumbers.length - 1 && (
+                <div className="page-item disabled" key={`ellipsis-${index}`}>
+                  <span className="page-item-span">...</span>
+                </div>
+              )}
+          </React.Fragment>
         ))}
-      </div> */}
+      </div>
 
       <Footer />
     </div>

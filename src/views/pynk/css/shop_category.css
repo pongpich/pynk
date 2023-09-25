@@ -63,3 +63,32 @@
     margin-left: 0px;
     margin-right: 8px;
 }
+
+.pagination button {
+    background-color: white;
+    color: var(--normal-pink);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: SemiBold;
+    font-size: 18px
+}
+
+.active-pagination {
+    background-color: var(--normal-pink) !important;
+    color: white !important;
+    width: 32px;
+    height: 32px;
+    border-radius: 100px !important;
+}
+
+.page-item {
+    margin-top: 15px !important;
+    color: var(--normal-pink);
+    font-size: 18px;
+    margin-left: 8px;
+    margin-right: 8px;
+    font-family: SemiBold;
+
+}
