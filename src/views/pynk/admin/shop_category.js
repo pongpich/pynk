@@ -14,7 +14,11 @@ const Shop_category = ({ match }) => {
       state.getPynk || { products_pynk: null, status_products_pynk: null } // ใส่การสร้าง object ว่าง {} ถ้า state.getPynk ไม่มีค่า
   );
   const [product, setProduct] = useState(null);
+  const [productSlice, setProductSlice] = useState(null);
   const [category_name, setCategory_name] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 1; // จำนวนรายการต่อหน้า
+
   const dataSelect = [
     { category: "exercise_equipment", name: "อุปกรณ์ ออกกำลังกาย" },
     { category: "fitto_plant_protein", name: "Fitto Plant Protein" },
@@ -26,6 +30,15 @@ const Shop_category = ({ match }) => {
     { category: "food_supplement", name: "อาหารเสริม" },
     { category: "another", name: "อื่นๆ" },
   ];
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentItems = product && product.slice(startIndex, endIndex);
+    setProductSlice(currentItems);
+    console.log("pageNumbers", startIndex, endIndex, currentItems, pageNumbers);
+  }, [product]);
+
   useEffect(() => {
     setProduct(
       products_pynk && products_pynk.filter((status) => status.category == name)
@@ -53,6 +66,19 @@ const Shop_category = ({ match }) => {
         products_pynk.filter((status) => status.category == value)
     );
   };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const pageNumbers = [];
+  for (
+    let i = 1;
+    i <= Math.ceil(product && product.length / itemsPerPage);
+    i++
+  ) {
+    pageNumbers.push(i);
+  }
 
   return (
     <div className="shop-category">
@@ -92,11 +118,14 @@ const Shop_category = ({ match }) => {
             <div className="product-category" key={index}>
               <div className="box-item-hover cursor-pointer">
                 <p className="hot-shop-details">HOT</p>
-                <img src={image_product} className="image-slider" />
+                <img src={item.image_url} className="image-slider" />
                 <div className="slider-hr" />
-                <p className="text-center text-head-slider">5555</p>
+                <p className="text-center text-head-slider">
+                  {item.product_name}
+                </p>
                 <p className="text-center text-slider-hover">
-                  ฿990 <span className="slide-span">฿199 </span>
+                  ฿{item.price.toLocaleString()}{" "}
+                  <span className="slide-span">฿199 </span>
                 </p>
 
                 <button
@@ -109,6 +138,7 @@ const Shop_category = ({ match }) => {
                     marginTop: 0,
                     marginBottom: 32,
                     border: 0,
+                    position: "relative",
                   }}
                 >
                   <span className="add_shop-test_span ">
@@ -125,6 +155,18 @@ const Shop_category = ({ match }) => {
             </div>
           ))}
       </div>
+      {/*     <div className="pagination">
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => handlePageChange(number)}
+            className={currentPage === number ? "active" : ""}
+          >
+            {number}
+          </button>
+        ))}
+      </div> */}
+
       <Footer />
     </div>
   );

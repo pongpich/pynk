@@ -501,7 +501,7 @@ function ShopPynk() {
                         {item.product_name}
                       </p>
                       <p className="text-center text-slider-hover">
-                        ฿{item.price}{" "}
+                        ฿{item.price.toLocaleString()}{" "}
                         {/* <span className="slide-span">฿199 </span> */}
                       </p>
 
