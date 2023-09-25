@@ -6,7 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import icon_cart_white from "../../../assets/img/pynk/shop/icon_cart_white.png";
-import image_product from "../../../assets/img/pynk/shop/image-product.png";
+import chevron_left_default from "../../../assets/img/pynk/shop/chevron-left-default.png";
+import chevron_left from "../../../assets/img/pynk/shop/chevron-left.png";
+import chevron_right_default from "../../../assets/img/pynk/shop/chevron-right-default.png";
+import chevron_right from "../../../assets/img/pynk/shop/chevron-right.png";
 
 const Shop_category = ({ match }) => {
   const { name } = match.params; // รับ ID จาก URL
@@ -18,7 +21,7 @@ const Shop_category = ({ match }) => {
   const [productSlice, setProductSlice] = useState(null);
   const [category_name, setCategory_name] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 1; // จำนวนรายการต่อหน้า
+  const itemsPerPage = 16; // จำนวนรายการต่อหน้า
 
   const dataSelect = [
     { category: "exercise_equipment", name: "อุปกรณ์ ออกกำลังกาย" },
@@ -37,7 +40,7 @@ const Shop_category = ({ match }) => {
     const endIndex = startIndex + itemsPerPage;
     const currentItems = product && product.slice(startIndex, endIndex);
     setProductSlice(currentItems);
-    console.log("pageNumbers", startIndex, endIndex, currentItems, pageNumbers);
+    console.log("currentItems", endIndex);
   }, [product, currentPage]);
 
   useEffect(() => {
@@ -80,8 +83,6 @@ const Shop_category = ({ match }) => {
   ) {
     pageNumbers.push(i);
   }
-
-  console.log("pageNumbers", pageNumbers.length);
 
   return (
     <div className="shop-category">
@@ -159,24 +160,65 @@ const Shop_category = ({ match }) => {
               </div>
             </Link>
           ))}
-      </div>
-      <div className="pagination">
-        {pageNumbers.map((number, index) => (
-          <React.Fragment key={index}>
-            <button
-              onClick={() => handlePageChange(number)}
-              className={currentPage === number ? "active-pagination" : ""}
-            >
-              {number}
-            </button>
-            {index === pageNumbers.length - 2 &&
-              currentPage < pageNumbers.length - 1 && (
-                <div className="page-item disabled" key={`ellipsis-${index}`}>
-                  <span className="page-item-span">...</span>
-                </div>
-              )}
-          </React.Fragment>
-        ))}
+        {pageNumbers && pageNumbers.length > 1 && (
+          <div className="box-pagination">
+            <div className="pagination">
+              <img
+                src={currentPage == 1 ? chevron_left_default : chevron_left}
+                className={
+                  currentPage != 1
+                    ? "chevron-left cursor-pointer"
+                    : "chevron-left"
+                }
+                onClick={() =>
+                  handlePageChange(
+                    currentPage == 1 ? currentPage : currentPage - 1
+                  )
+                }
+              />
+              {pageNumbers.map((number, index) => (
+                <React.Fragment key={index}>
+                  <button
+                    onClick={() => handlePageChange(number)}
+                    className={
+                      currentPage === number ? "active-pagination" : ""
+                    }
+                  >
+                    {number}
+                  </button>
+                  {index === pageNumbers.length - 2 &&
+                    currentPage < pageNumbers.length - 1 && (
+                      <div
+                        className="page-item disabled"
+                        key={`ellipsis-${index}`}
+                      >
+                        <span className="page-item-span">...</span>
+                      </div>
+                    )}
+                </React.Fragment>
+              ))}
+              <img
+                src={
+                  currentPage == pageNumbers.length
+                    ? chevron_right_default
+                    : chevron_right
+                }
+                className={
+                  currentPage != pageNumbers.length
+                    ? "chevron-right cursor-pointer"
+                    : "chevron-right"
+                }
+                onClick={() =>
+                  handlePageChange(
+                    currentPage == pageNumbers.length
+                      ? currentPage
+                      : currentPage + 1
+                  )
+                }
+              />
+            </div>
+          </div>
+        )}
       </div>
 
       <Footer />
