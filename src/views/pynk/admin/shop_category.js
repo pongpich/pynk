@@ -3,6 +3,7 @@ import "../css/shop_category.css";
 import colors from "../colors";
 import Footer from "../footer";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import icon_cart_white from "../../../assets/img/pynk/shop/icon_cart_white.png";
 import image_product from "../../../assets/img/pynk/shop/image-product.png";
@@ -115,44 +116,46 @@ const Shop_category = ({ match }) => {
         </div>
         {product &&
           product.map((item, index) => (
-            <div className="product-category" key={index}>
-              <div className="box-item-hover cursor-pointer">
-                <p className="hot-shop-details">HOT</p>
-                <img src={item.image_url} className="image-slider" />
-                <div className="slider-hr" />
-                <p className="text-center text-head-slider">
-                  {item.product_name}
-                </p>
-                <p className="text-center text-slider-hover">
-                  ฿{item.price.toLocaleString()}{" "}
-                  <span className="slide-span">฿199 </span>
-                </p>
+            <Link to={`/shop_details/${item.product_id}`}>
+              <div className="product-category" key={index}>
+                <div className="box-item-hover cursor-pointer">
+                  <p className="hot-shop-details">HOT</p>
+                  <img src={item.image_url} className="image-slider" />
+                  <div className="slider-hr" />
+                  <p className="text-center text-head-slider">
+                    {item.product_name}
+                  </p>
+                  <p className="text-center text-slider-hover">
+                    ฿{item.price.toLocaleString()}{" "}
+                    <span className="slide-span">฿199 </span>
+                  </p>
 
-                <button
-                  type="button"
-                  className="btn  add-shopping-bag "
-                  style={{
-                    backgroundColor: colors.primary4,
-                    width: "100%",
-                    borderRadius: 46,
-                    marginTop: 0,
-                    marginBottom: 32,
-                    border: 0,
-                    position: "relative",
-                  }}
-                >
-                  <span className="add_shop-test_span ">
-                    <img
-                      width={18}
-                      height={18}
-                      src={icon_cart_white}
-                      className="span-img-category"
-                    />
-                    เพิ่มลงถุงช้อปปิ้ง
-                  </span>
-                </button>
+                  <button
+                    type="button"
+                    className="btn  add-shopping-bag "
+                    style={{
+                      backgroundColor: colors.primary4,
+                      width: "100%",
+                      borderRadius: 46,
+                      marginTop: 0,
+                      marginBottom: 32,
+                      border: 0,
+                      position: "relative",
+                    }}
+                  >
+                    <span className="add_shop-test_span ">
+                      <img
+                        width={18}
+                        height={18}
+                        src={icon_cart_white}
+                        className="span-img-category"
+                      />
+                      เพิ่มลงถุงช้อปปิ้ง
+                    </span>
+                  </button>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
       </div>
       {/*     <div className="pagination">
