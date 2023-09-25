@@ -7,6 +7,9 @@ export const types = {
   LOGIN: "LOGIN",
   LOGIN_SUCCESS: "LOGIN_SUCCESS",
   LOGIN_FAIL: "LOGIN_FAIL",
+  LOGIN_ADMIN: "LOGIN_ADMIN",
+  LOGIN_ADMIN_SUCCESS: "LOGIN_ADMIN_SUCCESS",
+  LOGIN_ADMIN_FAIL: "LOGIN_ADMIN_FAIL",
   LOGOUT: "LOGOUT",
   REGISTER_PYNK: "REGISTER_PYNK",
   REGISTER_SUCCESS: "REGISTER_SUCCESS",
@@ -16,6 +19,14 @@ export const types = {
 
 export const login = (email, password) => ({
   type: types.LOGIN,
+  payload: {
+    email,
+    password,
+  },
+});
+
+export const login_admin = (email, password) => ({
+  type: types.LOGIN_ADMIN,
   payload: {
     email,
     password,
@@ -82,6 +93,20 @@ const loginSagaAsync = async (email, password) => {
   }
 };
 
+const loginAdminSagaAsync = async (email, password) => {
+  try {
+    const apiResult = await API.get("pynk", "/login_admin", {
+      queryStringParameters: {
+        email: email,
+        password: password,
+      },
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+};
+
 function* loginSaga({ payload }) {
   const { email, password } = payload;
 
@@ -99,6 +124,30 @@ function* loginSaga({ payload }) {
     ) {
       yield put({
         type: types.LOGIN_FAIL,
+      });
+    }
+  } catch (error) {
+    console.log("error form login", error);
+  }
+}
+
+function* loginAdminSaga({ payload }) {
+  const { email, password } = payload;
+
+  try {
+    const loginResult = yield call(loginAdminSagaAsync, email, password);
+
+    if (loginResult.results.message === "success") {
+      yield put({
+        type: types.LOGIN_ADMIN_SUCCESS,
+        payload: loginResult.results.user,
+      });
+    } else if (
+      loginResult.results.message === "fail" ||
+      loginResult.results.message === "no_user"
+    ) {
+      yield put({
+        type: types.LOGIN_ADMIN_FAIL,
       });
     }
   } catch (error) {
@@ -136,6 +185,10 @@ export function* watchLogin() {
   yield takeEvery(types.LOGIN, loginSaga);
 }
 
+export function* watchLoginAdmin() {
+  yield takeEvery(types.LOGIN_ADMIN, loginAdminSaga);
+}
+
 export function* watchRegister() {
   yield takeEvery(types.REGISTER_PYNK, registerSaga);
 }
@@ -150,6 +203,7 @@ export function* saga() {
 
 const INIT_STATE = {
   statusLogin: "default",
+  statusLoginAdmin: "default",
   user: null,
   statusRegister: "default",
 };
@@ -172,6 +226,22 @@ export function reducer(state = INIT_STATE, action) {
         ...state,
         statusLogin: "fail",
       };
+    case types.LOGIN_ADMIN:
+      return {
+        ...state,
+        statusLoginAdmin: "loading",
+      };
+    case types.LOGIN_ADMIN_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        statusLoginAdmin: "success",
+      };
+    case types.LOGIN_ADMIN_FAIL:
+      return {
+        ...state,
+        statusLoginAdmin: "fail",
+      };
     case types.REGISTER_PYNK:
       return {
         ...state,
@@ -191,6 +261,7 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         statusLogin: "default",
+        statusLoginAdmin: "default",
         statusRegister: "default",
       };
     case types.LOGOUT:
