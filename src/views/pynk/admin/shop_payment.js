@@ -109,7 +109,14 @@ const Shop_payment = () => {
       window.localStorage.setItem("district", formData.district);
       window.localStorage.setItem("province", formData.province);
       window.localStorage.setItem("zipcode", formData.zipcode);
-      history.push("/qr_checkout_pynk");
+
+      //เช็คช่องทางการจ่ายเงินที่ผู้ใช้เลือก
+      if (selectedPaymentMethod === "qr_code") {
+        history.push("/qr_checkout_pynk");
+      }
+      if (selectedPaymentMethod === "credit_card") {
+
+      }
     }
   }, [status_create_order]);
 
