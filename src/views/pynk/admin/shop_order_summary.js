@@ -358,7 +358,7 @@ const Shop_order_summary = () => {
           </div>
           <div className="col-12 col-md-5 justify-content-767">
             <div className="box-proceed-payment">
-              <div className="input-code">
+              {/* <div className="input-code">
                 <input
                   type="text"
                   className="form-control input-height"
@@ -366,7 +366,7 @@ const Shop_order_summary = () => {
                   placeholder="ใส่รหัสส่วนลด"
                 />
                 <button className="button-use">ใช้</button>
-              </div>
+              </div> */}
               <p className="text-price-order between mt-32">
                 ค่าสินค้า{" "}
                 <span>{totalSum && totalSum.toLocaleString()} บาท </span>
@@ -393,8 +393,8 @@ const Shop_order_summary = () => {
               <img src={Logo_payment_1} className="logo-payment-1" />
               <img src={Logo_payment_2} className="logo-payment-1" />
               <img src={Logo_payment_3} className="logo-payment-1" />
-              <img src={Logo_payment_4} className="logo-payment-4" />
-              <img src={Logo_payment_5} className="logo-payment-5" />
+              {/* <img src={Logo_payment_4} className="logo-payment-4" />
+              <img src={Logo_payment_5} className="logo-payment-5" /> */}
             </div>
           </div>
         </div>
