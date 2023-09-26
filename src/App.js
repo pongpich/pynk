@@ -595,6 +595,24 @@ class App extends Component {
                   }}
                 />
                 <Route
+                  path="/cc_checkout_pynk"
+                  render={() => {
+                    window.location.href = "cc_checkout_pynk.html";
+                  }}
+                />
+                <Route
+                  path="/cc_token_pynk"
+                  render={() => {
+                    window.location.href = "cc_token_pynk.html";
+                  }}
+                />
+                <Route
+                  path="/cc_preotp_pynk"
+                  render={() => {
+                    window.location.href = "cc_preotp_pynk.html";
+                  }}
+                />
+                <Route
                   path="/successful-payment"
                   component={ShopSuccessfulPaymentPynk}
                 />
