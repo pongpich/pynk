@@ -1,3 +1,35 @@
+@media only screen and (max-width: 576px) {
+    .product-category {
+        margin-left: 8px !important;
+        margin-right: 8px !important;
+
+    }
+
+    .box-category {
+        padding-left: 32px !important;
+        padding-right: 16px !important;
+    }
+
+
+}
+
+@media only screen and (max-width: 576px) {
+    .product-category {
+        margin-left: 8px !important;
+        margin-right: 8px !important;
+
+    }
+
+    .box-category {
+        padding-left: 32px !important;
+        padding-right: 16px !important;
+    }
+
+
+}
+
+
+
 .shop-category {
     margin-top: 150px;
 }
@@ -31,17 +63,34 @@
 
 .box-category {
     width: 100%;
-    padding-left: 32px;
+    padding-left: 64px;
     padding-right: 32px;
     padding-bottom: 120px;
 }
 
-.product-category {
+.product-center {
+    /* text-align: center; */
+}
 
-    margin-right: 32px;
-    display: -webkit-inline-box;
+.product-center2 {
+    display: block !important;
+    text-align: center;
+}
+
+.product-left {
+    display: contents;
+    text-align: left;
+
+}
+
+
+
+.product-category {
+    margin-left: 16px;
+    margin-right: 16px;
+    display: inline-flex;
     margin-bottom: 32px;
-    height: 470px;
+    height: 100%;
 }
 
 
@@ -79,6 +128,10 @@
     background-color: var(--normal-pink) !important;
     color: white !important;
     width: 32px;
+    padding: 0px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 32px;
     border-radius: 100px !important;
 }
@@ -95,8 +148,8 @@
 .chevron-left {
     margin-right: 8px;
     margin-top: 15px;
-    width: 24px;
-    height: 24px;
+    width: 24px !important;
+    height: 24px !important;
 }
 
 .chevron-right {
@@ -109,4 +162,24 @@
 .box-pagination {
     display: flex;
     justify-content: center;
+}
+
+.pagination {
+    margin-top: 15px !important;
+    color: var(--normal-pink);
+    font-size: 18px;
+    margin-left: 8px;
+    margin-right: 8px;
+    font-family: SemiBold;
+    border-radius: 100px !important;
+
+}
+
+.pagination li {
+    background-color: white;
+    padding: 0px 16px 0px 16px;
+    border: none !important;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-top: 10px;
 }

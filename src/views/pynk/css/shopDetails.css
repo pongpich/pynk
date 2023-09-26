@@ -947,17 +947,17 @@ button {
 
 
 .box-item-hover:hover .add-shopping-bag {
-    display: none;
+
     /* ให้เริ่มต้นเป็น display: none; */
     max-width: 250px;
     height: 46px;
-    transition: display 0.9s;
+    transition-delay: 0.3s;
+    /* กำหนดเวลาดีเลย์ 0.3 วินาที */
+    display: block;
+    /* ทำให้แสดงออกมาหลังจากการดีเลย์ */
 }
 
-.box-item-hover:hover .add-shopping-bag {
-    display: block;
-    /* แสดงเมื่อ hover */
-}
+
 
 /* .box-item-hover:hover .image-slider {
     transform: scale(1.1);
