@@ -79,9 +79,7 @@ const Shop_category = ({ match }) => {
   }, [product, itemOffset]);
   const handlePageClick = (event) => {
     const newOffset = event.selected * itemsPerPage;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+
     setItemOffset(newOffset);
   };
 
@@ -113,6 +111,9 @@ const Shop_category = ({ match }) => {
       />
     );
   };
+
+  const text = "Bebe Fit Routine Dumbbell Set Mickey And Friend Collection แถม";
+  console.log("text", text.length);
 
   return (
     <div className="shop-category">
@@ -157,7 +158,7 @@ const Shop_category = ({ match }) => {
                       <p className="hot-shop-details">HOT</p>
                       <img src={item.image_url} className="image-slider" />
                       <div className="slider-hr" />
-                      <p className="text-center text-head-slider">
+                      <p className="text-center text-head-slider white-space-ellipsis">
                         {item.product_name}
                       </p>
                       <p className="text-center text-slider-hover">

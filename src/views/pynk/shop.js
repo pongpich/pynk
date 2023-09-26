@@ -497,7 +497,7 @@ function ShopPynk() {
                       <p className="hot-shop-details">HOT</p>
                       <img src={item.image_url} className="image-slider" />
                       <div className="slider-hr" />
-                      <p className="text-center text-head-slider">
+                      <p className="text-center text-head-slider white-space-ellipsis">
                         {item.product_name}
                       </p>
                       <p className="text-center text-slider-hover">
@@ -569,7 +569,7 @@ function ShopPynk() {
                       <p className="hot-shop-details">HOT</p>
                       <img src={item.image_url} className="image-slider" />
                       <div className="slider-hr" />
-                      <p className="text-center text-head-slider">
+                      <p className="text-center text-head-slider white-space-ellipsis">
                         {item.product_name}
                       </p>
                       <p className="text-center text-slider-hover">

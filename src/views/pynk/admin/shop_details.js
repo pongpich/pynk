@@ -289,10 +289,11 @@ const Shop_details = ({ match }) => {
             <div className="box-img mb-3">
               <img
                 src={productId && productId.image_url}
-                className={`image ${activeImage === productId && productId.image_url
+                className={`image ${
+                  activeImage === productId && productId.image_url
                     ? "active"
                     : ""
-                  }`}
+                }`}
                 onClick={() =>
                   handleImageClick(productId && productId.image_url)
                 }
@@ -476,12 +477,12 @@ const Shop_details = ({ match }) => {
                   <div
                     key={index}
                     className="box-item-hover cursor-pointer"
-                  /*   onClick={() => seId_order(item.product_id)} */
+                    /*   onClick={() => seId_order(item.product_id)} */
                   >
                     <p className="hot-shop-details">HOT</p>
                     <img src={item.image_url} className="image-slider" />
                     <div className="slider-hr" />
-                    <p className="text-center text-head-slider">
+                    <p className="text-center text-head-slider white-space-ellipsis">
                       {item.product_name}
                     </p>
                     <p className="text-center text-slider-hover">

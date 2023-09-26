@@ -183,3 +183,18 @@
     font-size: 20px;
     margin-top: 10px;
 }
+
+.white-space-ellipsis {
+    padding-left: 8px;
+    padding-right: 8px;
+
+    overflow: hidden;
+    /* ข้อความที่เกินจะถูกซ่อน */
+    text-overflow: ellipsis;
+    /* เพิ่ม ellipsis (...) หากข้อความเกิน */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* จำกัดให้แสดงได้แค่ 2 บรรทัด */
+    -webkit-box-orient: vertical;
+
+}
