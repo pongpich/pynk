@@ -61,7 +61,7 @@
     const email = localStorage.getItem('email');
     const phone = localStorage.getItem('phone');
     const order_id = localStorage.getItem('order_id');
-    var pageUrl = window.location.href;
+
     const bodyFormData = {
       amount: price,
       referenceNo: Date.now(),
@@ -69,14 +69,13 @@
       customerName: name,
       customerEmail: email,
       customerTelephone: phone,
-      merchantDefined1: order_id,
       card: {
         token: gbToken
       },
       otp: "Y",
-      responseUrl: `${serviceUrl}/thankyou`,
+      responseUrl: `${serviceUrl}/thankyou`, //ตอนแรกใช้เป็น `${serviceUrl}/thankyou` เพื่อ call Api แล้วสั่ง redirect ไปที่หน้า แต่ยังไม่สำเร็จเลยกำลังปรับเพื่อทดลองอยู่
       backgroundUrl: `${serviceUrl}/gb_response`,
-      merchantDefined1: program_id
+      merchantDefined1: order_id
     };
     axios({
       method: 'post',
