@@ -288,7 +288,7 @@ class App extends Component {
     const { searchStatus, group_image } = this.state;
 
     return (
-      <div className="navbar-pyak">
+      <div className="navbar-pynk">
         <nav className="navbar navbar-expand-sm bg-light information-nav fixed-top">
           <div className="information-box">
             <div className="flex-container">
