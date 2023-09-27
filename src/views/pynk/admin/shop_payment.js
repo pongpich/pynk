@@ -96,8 +96,10 @@ const Shop_payment = () => {
 
     //เช็คว่า create_order เสร็จ
     if (status_create_order === "success") {
+      const totalSum = order && order.reduce((acc, product) => acc + product.totalprice, 0);
+
       //setค่าต่างๆของสินค้า ใน localStorage เพื่อไปเรียกใช้ที่หน้าจ่ายเงิน
-      window.localStorage.setItem("price", 1);
+      window.localStorage.setItem("price", (totalSum && totalSum.toLocaleString()));
       window.localStorage.setItem("productName", "pynk");
       window.localStorage.setItem("username", formData.username);
       window.localStorage.setItem("surname", formData.surname);
@@ -212,8 +214,9 @@ const Shop_payment = () => {
   };
 
   const handleSubmit = async (event) => {
+    const totalSum = order && order.reduce((acc, product) => acc + product.totalprice, 0);
+
     event.preventDefault();
-    console.log("47444");
     const product_list = order;
     const customer_data = {
       name: formData.username,
@@ -232,9 +235,9 @@ const Shop_payment = () => {
 
     dispatch(
       create_order(
-        "test_01", //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
+        user ? user.user_id : null, //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
         product_list, //product_list,
-        1, //total_amount,
+        (totalSum && totalSum.toLocaleString()), //total_amount,
         customer_data, //customer_data,
         shipping_address, //shipping_address,
         formData.order_notes, //note
