@@ -25,7 +25,8 @@ export const create_order = (
     total_amount,
     customer_data,
     shipping_address,
-    note
+    note,
+    payment_method
 ) => ({
     type: types.CREATE_ORDER,
     payload: {
@@ -34,7 +35,8 @@ export const create_order = (
         total_amount,
         customer_data,
         shipping_address,
-        note
+        note,
+        payment_method
     }
 });
 
@@ -48,7 +50,8 @@ const createOrderSagaAsync = async (
     total_amount,
     customer_data,
     shipping_address,
-    note
+    note,
+    payment_method
 ) => {
     try {
         const apiResult = await API.post("pynk", "/create_order", {
@@ -58,7 +61,8 @@ const createOrderSagaAsync = async (
                 total_amount,
                 customer_data,
                 shipping_address,
-                note
+                note,
+                payment_method
             }
         });
         return apiResult;
@@ -74,7 +78,8 @@ function* createOrderSaga({ payload }) {
         total_amount,
         customer_data,
         shipping_address,
-        note
+        note,
+        payment_method
     } = payload
 
     try {
@@ -85,7 +90,8 @@ function* createOrderSaga({ payload }) {
             total_amount,
             customer_data,
             shipping_address,
-            note
+            note,
+            payment_method
         );
 
         if (apiResult.results.message === "success") {

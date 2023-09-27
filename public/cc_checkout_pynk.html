@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <link rel="icon" href="./bebeStayFit_Logo.png" type="image/x-icon" />
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
@@ -46,7 +47,7 @@
   <script src="./js/axios.min.js"></script>
   <script>
 
-    var serviceUrl = 'https://api.planforfit.com/bebefit';
+    var serviceUrl = 'https://api.planforfit.com/pynk';
     var base_url = window.location.origin;
     var url_string = window.location.href;
     var url = new URL(url_string);
@@ -59,6 +60,7 @@
     const name = localStorage.getItem('name');
     const email = localStorage.getItem('email');
     const phone = localStorage.getItem('phone');
+    const order_id = localStorage.getItem('order_id');
     var pageUrl = window.location.href;
     const bodyFormData = {
       amount: price,
@@ -67,12 +69,13 @@
       customerName: name,
       customerEmail: email,
       customerTelephone: phone,
+      merchantDefined1: order_id,
       card: {
         token: gbToken
       },
       otp: "Y",
       responseUrl: `${serviceUrl}/thankyou`,
-      backgroundUrl: `${serviceUrl}/gbqr`,
+      backgroundUrl: `${serviceUrl}/gb_response`,
       merchantDefined1: program_id
     };
     axios({
@@ -86,7 +89,7 @@
         console.log(response.data);
         const gbpReferenceNo = response.data && response.data.gbpReferenceNo ? response.data.gbpReferenceNo : "";
         window.localStorage.setItem('gbpReferenceNo', gbpReferenceNo);
-        window.location = "./cc_preotp.html";
+        window.location = "./cc_preotp_pynk.html";
       })
       .catch(function (response) {
         //handle error

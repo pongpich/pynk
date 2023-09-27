@@ -115,7 +115,7 @@ const Shop_payment = () => {
         history.push("/qr_checkout_pynk");
       }
       if (selectedPaymentMethod === "credit_card") {
-
+        history.push("/cc_token_pynk");
       }
     }
   }, [status_create_order]);
@@ -236,7 +236,8 @@ const Shop_payment = () => {
         1, //total_amount,
         customer_data, //customer_data,
         shipping_address, //shipping_address,
-        formData.order_notes //note
+        formData.order_notes, //note
+        selectedPaymentMethod, //payment_method
       )
     );
   };
