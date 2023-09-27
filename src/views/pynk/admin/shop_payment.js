@@ -103,6 +103,7 @@ const Shop_payment = () => {
       window.localStorage.setItem("productName", "pynk");
       window.localStorage.setItem("username", formData.username);
       window.localStorage.setItem("surname", formData.surname);
+      window.localStorage.setItem("name", `${formData.username} ${formData.surname}`);
       window.localStorage.setItem("email", formData.email);
       window.localStorage.setItem("phone", formData.phone_number);
       window.localStorage.setItem("order_id", current_order_id);
