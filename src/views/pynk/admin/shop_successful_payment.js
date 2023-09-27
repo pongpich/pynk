@@ -18,6 +18,7 @@ const Shop_successful_payment = (props) => {
   const [province, setProvince] = useState(null);
   const [zipcode, setZipcode] = useState(null);
   const [phone, setPhone] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState(null);
   const { pathname } = useLocation(null);
 
   useEffect(() => {
@@ -33,6 +34,8 @@ const Shop_successful_payment = (props) => {
     setProvince(window.localStorage.getItem("province"));
     setZipcode(window.localStorage.getItem("zipcode"));
     setPhone(window.localStorage.getItem("phone"));
+    setPaymentMethod(window.localStorage.getItem("payment_method"));
+
     /*   const surname = ;
     const email = window.localStorage.getItem("email");
     const phone = window.localStorage.getItem("phone");
@@ -108,7 +111,9 @@ const Shop_successful_payment = (props) => {
                 </p>
                 <div className="line-hr-order" />
                 <p className="between text-order">
-                  วิธีชำระเงิน <span>QR Code</span>
+                  วิธีชำระเงิน
+                  {(paymentMethod === "qr_code") && <span>QR Code</span>}
+                  {(paymentMethod === "credit_card") && <span>Credit Card</span>}
                 </p>
                 <p className="amount-be-paid between">
                   ยอดที่ต้องชำระ{" "}

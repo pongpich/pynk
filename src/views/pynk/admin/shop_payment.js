@@ -109,6 +109,7 @@ const Shop_payment = () => {
       window.localStorage.setItem("district", formData.district);
       window.localStorage.setItem("province", formData.province);
       window.localStorage.setItem("zipcode", formData.zipcode);
+      window.localStorage.setItem("payment_method", selectedPaymentMethod);
 
       //เช็คช่องทางการจ่ายเงินที่ผู้ใช้เลือก
       if (selectedPaymentMethod === "qr_code") {
