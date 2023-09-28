@@ -21,8 +21,7 @@ const Home = () => {
 
   const autoSlideIntervalRef = useRef(null);
 
-  const handleRadioChange = (event) => {
-    const newIndex = parseInt(event.target.value, 10);
+  const handleRadioChange = (newIndex) => {
     setCurrentIndex(newIndex);
     clearInterval(autoSlideIntervalRef.current);
     startAutoSlide();
@@ -57,15 +56,16 @@ const Home = () => {
           ))}
           <div className="radio-buttons">
             {images.map((_, index) => (
-              <input
+              <div
                 className={
-                  index === currentIndex ? "radio-check" : "none-check"
+                  index === currentIndex
+                    ? "button-carousel-active"
+                    : "button-carousel"
                 }
-                type="radio"
-                key={index}
-                value={index}
-                checked={index === currentIndex}
-                onChange={handleRadioChange}
+                aria-current="true"
+                aria-label="Slide 1"
+                checked={index == currentIndex}
+                onClick={() => handleRadioChange(index)}
               />
             ))}
           </div>
