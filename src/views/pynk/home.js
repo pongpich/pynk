@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import slide1 from "../../assets/img/home/slide1.png";
 import slide2 from "../../assets/img/home/slide2.png";
 import slide3 from "../../assets/img/home/slide3.png";
-// import slide4 from "../../assets/img/home/slide4.png";
-import home2 from "../../assets/img/home/home_2.png";
-import home2_1 from "../../assets/img/home/home2_1.png";
-import home2_2 from "../../assets/img/home/home2_2.png";
 import frame37407 from "../../assets/img/home/frame37407.png";
 import frame37408 from "../../assets/img/home/frame37408.png";
 import frame37409 from "../../assets/img/home/frame37409.png";
 import frame37410 from "../../assets/img/home/frame37410.png";
 import frame37545 from "../../assets/img/home/frame37545.png";
-import frame37399 from "../../assets/img/home/frame37399.png";
 import frame37547 from "../../assets/img/home/frame37547.png";
 import frame37549 from "../../assets/img/home/frame37549.png";
-import footer from "../../assets/img/home/footer.png";
-import pinklogo from "../../assets/img/home/pinklogo.png";
-import phonelogo from "../../assets/img/home/phonelogo.png";
-import emaillogo from "../../assets/img/home/emaillogo.png";
-import social from "../../assets/img/home/social.png";
-import footer51 from "../../assets/img/home/footer51.png";
 import "./css/home.css";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
@@ -27,106 +16,134 @@ import { useHistory } from "react-router-dom";
 const Home = () => {
   const history = useHistory();
 
-  const [count, setCount] = useState(0);
-  const [counter, setCounter] = useState(3);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const images = [slide1, slide2, slide3];
 
-  // const increase = () => {
-  //     setCount(count + 1);
-  // }
+  const autoSlideIntervalRef = useRef(null);
 
-  // componentDidUpdate(prevState) {
-  //     const { counter } = this.state
-  //     if (prevState.counter !== counter) {
-  //         if (document.getElementById('radio' + counter)) {
-  //             document.getElementById('radio' + counter).checked = true;
-  //         }
-  //     }
-  // }
-  const componentDidUpdate = () => {
-    // if (.counter !== counter) {
-    if (document.getElementById("radio" + counter)) {
-      document.getElementById("radio" + counter).checked = true;
-    }
-    // }
+  const handleRadioChange = (event) => {
+    const newIndex = parseInt(event.target.value, 10);
+    setCurrentIndex(newIndex);
+    clearInterval(autoSlideIntervalRef.current);
+    startAutoSlide();
   };
-  const autoSlide = () => {
-    if (counter == 4) {
-      console.log("bbbbb");
-      setTimeout(() => {
-        setCounter(1);
-      }, 5000);
-    } else if (counter < 5) {
-      // console.log('xxx');
-      // document.getElementById('radio' + counter);
-      setTimeout(() => {
-        setCounter(counter + 1);
-      }, 5000);
-    }
+
+  const startAutoSlide = () => {
+    autoSlideIntervalRef.current = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000);
   };
+
   useEffect(() => {
-    // componentDidUpdate();
-    // autoSlide();
-    // onChange();
+    startAutoSlide();
+    return () => {
+      clearInterval(autoSlideIntervalRef.current);
+    };
   }, []);
 
-  const onChange = ({ target }) => setCounter(target.counter);
   return (
-    <div>
-      <div className="slider">
-        <div className="slides">
-          <input type="radio" name="radio-btn" id="radio1" />
-          <input type="radio" name="radio-btn" id="radio2" />
-          <input type="radio" name="radio-btn" id="radio3" />
-          {/* <input type="radio" name="radio-btn" id="radio4" /> */}
-          {/* <input type="radio" name="radio-btn" id={counter} /> */}
-
-          <div className="slide first">
-            <img src={slide1} alt="" />
+    <>
+      <div className="slider-container">
+        <div className="slider">
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`slide ${index === currentIndex ? "active_home" : ""}`}
+              style={{
+                backgroundImage: `url(${image})`,
+                transform: `translateX(${100 * (index - currentIndex)}%)`,
+              }}
+            ></div>
+          ))}
+          <div className="radio-buttons">
+            {images.map((_, index) => (
+              <input
+                className={
+                  index === currentIndex ? "radio-check" : "none-check"
+                }
+                type="radio"
+                key={index}
+                value={index}
+                checked={index === currentIndex}
+                onChange={handleRadioChange}
+              />
+            ))}
           </div>
-          <div className="slide">
-            <img src={slide2} alt="" />
-          </div>
-          <div className="slide">
-            <img src={slide3} alt="" />
-          </div>
-          {/* <div className="slide">
-                        <img src={slide4} alt="" />
-                    </div> */}
-          <div className="navigation-auto">
-            <div className="auto-btn1"></div>
-            <div className="auto-btn2"></div>
-            <div className="auto-btn3"></div>
-          </div>
-          <div className="box_text_home1">
-            <p className="text-home1-48px-2">Stay fit with Bebe</p>
-            <p className="text-home1-24px">
-              คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตี
-            </p>
-            <p className="text-home1-24px">ความสำเร็จจากนักเรียนกว่าสิบรุ่น</p>
-
-            <a
-              // href="https://fittowhey.com/8week/complete"
-              onClick={() => history.push("/questionare")}
-              className="btn  bold button-home1 col-10 col-sm-10"
-              type="button"
-            >
-              <p
-                style={{
-                  width: "100%",
-                  top: "30%",
-                  left: "0%",
-                  position: "absolute",
-                }}
-              >
-                เริ่มฟิตไปด้วยกัน
+          {currentIndex === 0 ? (
+            <div className="box_text_home1">
+              <p className="text-home1-48px-2">Stay fit with Bebe</p>
+              <p className="text-home1-24px">
+                คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตี
               </p>
-            </a>
-          </div>
-        </div>
-        <div className="navigation-manual">
-          <label htmlFor="radio1" className="manual-btn"></label>
-          <label htmlFor="radio2" className="manual-btn"></label>
-          <label htmlFor="radio3" className="manual-btn"></label>
+              <p className="text-home1-24px">
+                ความสำเร็จจากนักเรียนกว่าสิบรุ่น
+              </p>
+
+              <button
+                onClick={() => history.push("/questionare")}
+                className="btn  bold button-home1 col-10 col-sm-10"
+              >
+                <p
+                  style={{
+                    width: "100%",
+                    top: "25%",
+                    left: "0%",
+                    position: "absolute",
+                  }}
+                >
+                  เริ่มฟิตไปด้วยกัน
+                </p>
+              </button>
+            </div>
+          ) : currentIndex === 1 ? (
+            <div className="box_text_home1">
+              <p className="text-home1-48px-2">Let’s Challenge</p>
+              <p className="text-home1-24px">
+                ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝัน
+              </p>
+              <p className="text-home1-24px">
+                ได้กับไอเทมฮอตฮิตจาก bebe fit routine
+              </p>
+
+              <button
+                onClick={() => history.push("/questionare")}
+                className="btn  bold button-home1 col-10 col-sm-10"
+              >
+                <p
+                  style={{
+                    width: "100%",
+                    top: "30%",
+                    left: "0%",
+                    position: "absolute",
+                  }}
+                >
+                  เริ่มฟิตไปด้วยกัน
+                </p>
+              </button>
+            </div>
+          ) : (
+            <div className="box_text_home1">
+              <p className="text-home1-48px-2">Shop สุดฟิน!!!</p>
+              <p className="text-home1-24px">รวมดีลเด็ดที่คุณต้องไม่พลาด</p>
+              <p className="text-home1-24px">ช้อปเลย!</p>
+
+              <button
+                onClick={() => history.push("/questionare")}
+                className="btn  bold button-home1 col-10 col-sm-10"
+              >
+                <p
+                  style={{
+                    width: "100%",
+                    top: "30%",
+                    left: "0%",
+                    position: "absolute",
+                  }}
+                >
+                  เริ่มฟิตไปด้วยกัน
+                </p>
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -168,7 +185,7 @@ const Home = () => {
       <img src={frame37549} alt="" className="frame37549" />
 
       <Footer />
-    </div>
+    </>
   );
 };
 
