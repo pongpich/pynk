@@ -24,119 +24,127 @@ import "./css/home.css";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
-
 const Home = () => {
-    const history = useHistory();
+  const history = useHistory();
 
-    const [count, setCount] = useState(0);
-    const [counter, setCounter] = useState(3);
+  const [count, setCount] = useState(0);
+  const [counter, setCounter] = useState(3);
 
-    // const increase = () => {
-    //     setCount(count + 1);
-    // }
+  // const increase = () => {
+  //     setCount(count + 1);
+  // }
 
-    // componentDidUpdate(prevState) {
-    //     const { counter } = this.state
-    //     if (prevState.counter !== counter) {
-    //         if (document.getElementById('radio' + counter)) {
-    //             document.getElementById('radio' + counter).checked = true;
-    //         }
-    //     }
-    // }
-    const componentDidUpdate = () => {
-        // if (.counter !== counter) {
-        if (document.getElementById('radio' + counter)) {
-            document.getElementById('radio' + counter).checked = true;
-        }
-        // }
+  // componentDidUpdate(prevState) {
+  //     const { counter } = this.state
+  //     if (prevState.counter !== counter) {
+  //         if (document.getElementById('radio' + counter)) {
+  //             document.getElementById('radio' + counter).checked = true;
+  //         }
+  //     }
+  // }
+  const componentDidUpdate = () => {
+    // if (.counter !== counter) {
+    if (document.getElementById("radio" + counter)) {
+      document.getElementById("radio" + counter).checked = true;
     }
-    const autoSlide = () => {
-
-        if (counter == 4) {
-            console.log('bbbbb');
-            setTimeout(() => {
-                setCounter(1);
-            }, 5000);
-
-        } else if (counter < 5) {
-            // console.log('xxx');
-            // document.getElementById('radio' + counter);
-            setTimeout(() => {
-                setCounter(counter + 1);
-
-            }, 5000);
-        }
-
+    // }
+  };
+  const autoSlide = () => {
+    if (counter == 4) {
+      console.log("bbbbb");
+      setTimeout(() => {
+        setCounter(1);
+      }, 5000);
+    } else if (counter < 5) {
+      // console.log('xxx');
+      // document.getElementById('radio' + counter);
+      setTimeout(() => {
+        setCounter(counter + 1);
+      }, 5000);
     }
-    useEffect(() => {
-        // componentDidUpdate();
-        // autoSlide();
-        // onChange();
-    }, []);
+  };
+  useEffect(() => {
+    // componentDidUpdate();
+    // autoSlide();
+    // onChange();
+  }, []);
 
-    const onChange = ({ target }) => setCounter(target.counter);
-    return (
-        <div>
-            <div className="slider">
-                <div className="slides">
-                    <input type="radio" name="radio-btn" id="radio1" />
-                    <input type="radio" name="radio-btn" id="radio2" />
-                    <input type="radio" name="radio-btn" id="radio3" />
-                    {/* <input type="radio" name="radio-btn" id="radio4" /> */}
-                    {/* <input type="radio" name="radio-btn" id={counter} /> */}
+  const onChange = ({ target }) => setCounter(target.counter);
+  return (
+    <div>
+      <div className="slider">
+        <div className="slides">
+          <input type="radio" name="radio-btn" id="radio1" />
+          <input type="radio" name="radio-btn" id="radio2" />
+          <input type="radio" name="radio-btn" id="radio3" />
+          {/* <input type="radio" name="radio-btn" id="radio4" /> */}
+          {/* <input type="radio" name="radio-btn" id={counter} /> */}
 
-                    <div className="slide first">
-                        <img src={slide1} alt="" />
-                    </div>
-                    <div className="slide">
-                        <img src={slide2} alt="" />
-                    </div>
-                    <div className="slide">
-                        <img src={slide3} alt="" />
-                    </div>
-                    {/* <div className="slide">
+          <div className="slide first">
+            <img src={slide1} alt="" />
+          </div>
+          <div className="slide">
+            <img src={slide2} alt="" />
+          </div>
+          <div className="slide">
+            <img src={slide3} alt="" />
+          </div>
+          {/* <div className="slide">
                         <img src={slide4} alt="" />
                     </div> */}
-                    <div className="navigation-auto">
-                        <div className="auto-btn1"></div>
-                        <div className="auto-btn2"></div>
-                        <div className="auto-btn3"></div>
-                        <div className="auto-btn4"></div>
-                    </div>
-                    <div className="box_text_home1">
-                        <p className="text-home1-48px-2">Stay fit with Bebe</p>
-                        <p className="text-home1-24px">คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตี</p>
-                        <p className="text-home1-24px">ความสำเร็จจากนักเรียนกว่าสิบรุ่น</p>
+          <div className="navigation-auto">
+            <div className="auto-btn1"></div>
+            <div className="auto-btn2"></div>
+            <div className="auto-btn3"></div>
+          </div>
+          <div className="box_text_home1">
+            <p className="text-home1-48px-2">Stay fit with Bebe</p>
+            <p className="text-home1-24px">
+              คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตี
+            </p>
+            <p className="text-home1-24px">ความสำเร็จจากนักเรียนกว่าสิบรุ่น</p>
 
-                        <a
-                            // href="https://fittowhey.com/8week/complete"
-                            onClick={() => history.push("/questionare")}
-                            className="btn  bold button-home1 col-10 col-sm-10"
-                            type="button"
-                        >
-                            <p style={{ width: "100%", top: "30%", left: "0%", position: "absolute" }}>เริ่มฟิตไปด้วยกัน</p>
-                        </a>
-                    </div>
-                </div>
-                <div className="navigation-manual">
-                    <label htmlFor="radio1" className="manual-btn"></label>
-                    <label htmlFor="radio2" className="manual-btn"></label>
-                    <label htmlFor="radio3" className="manual-btn"></label>
-                    <label htmlFor="radio4" className="manual-btn"></label>
-                </div>
+            <a
+              // href="https://fittowhey.com/8week/complete"
+              onClick={() => history.push("/questionare")}
+              className="btn  bold button-home1 col-10 col-sm-10"
+              type="button"
+            >
+              <p
+                style={{
+                  width: "100%",
+                  top: "30%",
+                  left: "0%",
+                  position: "absolute",
+                }}
+              >
+                เริ่มฟิตไปด้วยกัน
+              </p>
+            </a>
+          </div>
+        </div>
+        <div className="navigation-manual">
+          <label htmlFor="radio1" className="manual-btn"></label>
+          <label htmlFor="radio2" className="manual-btn"></label>
+          <label htmlFor="radio3" className="manual-btn"></label>
+        </div>
+      </div>
 
-            </div>
+      {/* <div className="home2"> */}
+      <img src={frame37407} alt="" className="frame37407" />
+      {/* <p className="text48">บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน</p> */}
+      <img src={frame37408} alt="" className="frame37408" />
 
-            {/* <div className="home2"> */}
-            <img src={frame37407} alt="" className="frame37407" />
-            {/* <p className="text48">บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน</p> */}
-            <img src={frame37408} alt="" className="frame37408" />
-
-            <div class="stayfit_item_grid">
-                <div class="grid-item"> <img src={frame37409} className="frame37409" alt="" /></div>
-                <div class="grid-item"><img src={frame37410} className="frame37410" alt="" /></div>
-            </div>
-            {/* <div class="stayfit_item">
+      <div class="stayfit_item_grid">
+        <div class="grid-item">
+          {" "}
+          <img src={frame37409} className="frame37409" alt="" />
+        </div>
+        <div class="grid-item">
+          <img src={frame37410} className="frame37410" alt="" />
+        </div>
+      </div>
+      {/* <div class="stayfit_item">
                 <div class="column" >
                     <img src={frame37409} alt="" className="frame37409" />
                 </div>
@@ -144,22 +152,24 @@ const Home = () => {
                     <img src={frame37410} alt="" className="frame37410" />
                 </div>
             </div> */}
-            {/* </div> */}
+      {/* </div> */}
 
-            <div className="bubble" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */>
-                <img src={frame37545} alt="" className="frame37545" />
-            </div>
-            <div className="background37399" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */>
-                <img src={frame37547} alt="" className="frame37547" />
-            </div>
+      <div
+        className="bubble" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */
+      >
+        <img src={frame37545} alt="" className="frame37545" />
+      </div>
+      <div
+        className="background37399" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */
+      >
+        <img src={frame37547} alt="" className="frame37547" />
+      </div>
 
-            <img src={frame37549} alt="" className="frame37549" />
-            
+      <img src={frame37549} alt="" className="frame37549" />
 
-            <Footer />
-        </div>
-        
-    )
-}
+      <Footer />
+    </div>
+  );
+};
 
 export default Home;
