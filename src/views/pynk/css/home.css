@@ -41,6 +41,18 @@
     margin-right: 25px !important;
   }
 }
+.regular{
+  font-weight: 400;
+}
+.medium{
+  font-weight: 500;
+}
+.semi-bold{
+  font-weight: 600;
+}
+.bold{
+  font-weight: 700;
+}
 
 .frame37407 {
   padding-top: 70px;
@@ -131,21 +143,6 @@
   font-size: 18px;
   text-align: center;
   /* width: 400px; */
-}
-
-.bubble {
-  /*   position: relative;
-    flex-direction: row;
-    width: 100%;
-    height: 500px;
-    padding: 0 10% 0 15%; */
-  /* background-color: aqua; */
-  padding: 120px;
-  width: 100%;
-  justify-content: center;
-  display: flex;
-  /* height: 600px; */
-  background-image: url("../../../assets/img/home/background4373.png");
 }
 
 .footer-background {
@@ -272,9 +269,9 @@
   margin-left: 0px;
 }
 .button-home2 {
-    background-color: #fff;
-    color: #EF60A3;
-  }
+  background-color: #fff;
+  color: #ef60a3;
+}
 
 .text-home1-48px-2 {
   font-size: 48px;
@@ -304,16 +301,6 @@
   color: #4a4a4a;
 }
 
-.home2 {
-  background-color: #fff;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: grid;
-  z-index: 0;
-  align-items: center !important;
-}
-
 .background_Image {
   width: 1295px;
   height: 589px;
@@ -328,34 +315,23 @@
   padding: 100px 22% 0 22%;
 }
 
+.text128 {
+  font-size: 128px;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 0px;
+}
 .text48 {
   font-size: 48px;
-  font-weight: 600;
+  font-weight: 400;
+  text-align: center;
+}
+.text32 {
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
 }
 
-.bebe_bubble {
-  /*   position: relative;
-    flex-direction: row;
-    width: 100%;
-    height: 500px;
-    padding: 0 10% 0 15%; */
-  background-color: aqua;
-  width: 100%;
-  justify-content: center;
-  display: flex;
-  height: 600px;
-}
-
-.box-text-bubble {
-  height: 500px;
-  width: 500px;
-  background-color: #007cff;
-}
-
-.text-bubble {
-  font-size: 24px;
-  z-index: 1;
-}
 
 .home2_1 {
   background-color: #007cff;
@@ -438,7 +414,6 @@
   border-radius: 100px;
 }
 
-
 .button-carousel {
   background-color: #f7abce;
   width: 11px;
@@ -450,4 +425,147 @@
 
 .button-carousel:hover {
   background-color: #960051;
+}
+
+.home2 {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  z-index: 1;
+  align-items: center;
+}
+.head-home2 {
+  width: 58%;
+  position: relative;
+  margin-top: 120px;
+  margin-left: 21%;
+}
+.bounce-container{
+  width: 100%;
+  height: 600px;
+  background-color: #fff;
+  display: grid;
+  place-items: center;
+  margin-top: 22px;
+}
+.background-container-bounce{
+  width: 1200px;
+  height: 528px;
+  background-color: #FCDEEC;
+  z-index: 1;
+  border-radius: 52px;
+}
+.content-home2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 100%;
+}
+.first-content-bubble {
+  position: relative;
+  top: -6%;
+  left: 0%;
+}
+.second-content-bubble {
+  width: 94%;
+  text-align: left;
+  position: relative;
+  top: 7%;
+  height: 75%;
+}
+.text-home2-128px {
+  font-size: 128px;
+  color: #EF60A3;
+  margin-bottom: 0px;
+}
+.text-home2-48px {
+  font-size: 48px;
+  color: #EF60A3;
+  margin-bottom: 32px;
+  margin-top: -60px;
+}
+.text-home2-24px{
+  font-size: 24px;
+  color: #2C2E2F;
+  margin-bottom: 0px;
+}
+.bubble {
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at left top, #fff, #DCD8E9);
+  left: 80%;
+  top: 22%;
+  animation: animate 8s ease-in-out infinite;
+  z-index: 1;
+}
+.bubble1 {
+  position: absolute;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at left top, #fff, #DCD8E9);
+  left: 85%;
+  top: 33%;
+  animation: animate 8s ease-in-out infinite;
+  animation-delay: -4s;
+  z-index: 1;
+}
+.bubble2 {
+  position: absolute;
+  width: 131px;
+  height: 131px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at left top, #fff, #DCD8E9);
+  left: 81%;
+  top: 46%;
+  animation: animate 8s ease-in-out infinite;
+  animation-delay: -2s;
+  z-index: 0;
+}
+.bubble3 {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at left top, #fff, #DCD8E9);
+  left: 18%;
+  top: 52%;
+  animation: animate 8s ease-in-out infinite;
+  z-index: 1;
+}
+.bubble4 {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at left top, #fff, #DCD8E9);
+  left: 12%;
+  top: 43%;
+  animation: animate 8s ease-in-out infinite;
+  z-index: 1;
+  animation-delay: 3s;
+}
+.bubble5 {
+  position: absolute;
+  width: 143px;
+  height: 143px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at left top, #fff, #DCD8E9);
+  left: 12%;
+  top: 24%;
+  animation: animate 8s ease-in-out infinite;
+  z-index: 0;
+  animation-delay: -5s;
+}
+@keyframes animate{
+  0%,100%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(-40px);
+  }
 }

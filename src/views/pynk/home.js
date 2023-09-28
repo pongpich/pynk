@@ -2,11 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import slide1 from "../../assets/img/home/slide1.png";
 import slide2 from "../../assets/img/home/slide2.png";
 import slide3 from "../../assets/img/home/slide3.png";
-import frame37407 from "../../assets/img/home/frame37407.png";
-import frame37408 from "../../assets/img/home/frame37408.png";
+import bebe_bubble from "../../assets/img/home/bebe-bubble.png";
 import frame37409 from "../../assets/img/home/frame37409.png";
 import frame37410 from "../../assets/img/home/frame37410.png";
-import frame37545 from "../../assets/img/home/frame37545.png";
 import frame37547 from "../../assets/img/home/frame37547.png";
 import frame37549 from "../../assets/img/home/frame37549.png";
 import "./css/home.css";
@@ -38,7 +36,7 @@ const Home = () => {
     return () => {
       clearInterval(autoSlideIntervalRef.current);
     };
-  }, []);
+  });
 
   return (
     <>
@@ -88,7 +86,7 @@ const Home = () => {
                     width: "100%",
                     top: "25%",
                     left: "0%",
-                    marginBottom:"0px",
+                    marginBottom: "0px",
                     position: "absolute",
                   }}
                 >
@@ -98,7 +96,7 @@ const Home = () => {
             </div>
           ) : currentIndex === 1 ? (
             <div className="box_text_home1">
-              <p className="text-home1-48px-2">Let’s Challenge</p>
+              <p className="text-home1-48px-2">Let's Challenge</p>
               <p className="text-home1-24px">
                 ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝัน
               </p>
@@ -115,7 +113,7 @@ const Home = () => {
                     width: "100%",
                     top: "25%",
                     left: "0%",
-                    marginBottom:"0px",
+                    marginBottom: "0px",
                     position: "absolute",
                   }}
                 >
@@ -138,7 +136,7 @@ const Home = () => {
                     width: "100%",
                     top: "25%",
                     left: "0%",
-                    marginBottom:"0px",
+                    marginBottom: "0px",
                     position: "absolute",
                   }}
                 >
@@ -150,21 +148,58 @@ const Home = () => {
         </div>
       </div>
 
-      {/* <div className="home2"> */}
-      <img src={frame37407} alt="" className="frame37407" />
-      {/* <p className="text48">บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน</p> */}
-      <img src={frame37408} alt="" className="frame37408" />
+      <div className="home2">
+        <div className="head-home2">
+          <p className="text48">
+            บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
+            และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
+          </p>
+          <p className="text32">
+            “ไม่ใช่แค่หุ่นดี แต่มันคือการรักตัวเองอย่างมีความสุข”
+          </p>
+        </div>
 
-      <div class="stayfit_item_grid">
-        <div class="grid-item">
-          {" "}
-          <img src={frame37409} className="frame37409" alt="" />
+        <div className="bounce-container">
+          <div className="background-container-bounce">
+            <div className="content-home2">
+              <div className="first-content-bubble">
+                <picture>
+                  <source media="(max-width: 480px)" srcset={bebe_bubble} />
+                  <img src={bebe_bubble} width={640} height={600} alt="" />
+                </picture>
+              </div>
+              <div className="second-content-bubble">
+                <p className="text-home2-128px regular">STAY FIT</p>
+                <p className="text-home2-48px medium">WITH BEBE</p>
+                <p className="text-home2-24px semi-bold">
+                  คอร์สสอนออกกำลังกายสุดปังจากวงการเบเบ้
+                  ที่จะพาคุณมาอัปเกรดความฟิต ด้วยโปรแกรม 8 สัปดาห์
+                </p>
+                <p className="text-home2-24px regular">
+                  ที่เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ พร้อมการันตีความสนุก
+                  และผลลัพธ์ของการเปลี่ยนแปลง มาแล้วมากกว่าสิบรุ่น!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="bubble"></div>
+            <div className="bubble1"></div>
+            <div className="bubble2"></div>
+            <div className="bubble3"></div>
+            <div className="bubble4"></div>
+            <div className="bubble5"></div>
         </div>
-        <div class="grid-item">
-          <img src={frame37410} className="frame37410" alt="" />
+
+        <div class="stayfit_item_grid">
+          <div class="grid-item">
+            {" "}
+            <img src={frame37409} className="frame37409" alt="" />
+          </div>
+          <div class="grid-item">
+            <img src={frame37410} className="frame37410" alt="" />
+          </div>
         </div>
-      </div>
-      {/* <div class="stayfit_item">
+        {/* <div class="stayfit_item">
                 <div class="column" >
                     <img src={frame37409} alt="" className="frame37409" />
                 </div>
@@ -172,12 +207,7 @@ const Home = () => {
                     <img src={frame37410} alt="" className="frame37410" />
                 </div>
             </div> */}
-      {/* </div> */}
-
-      <div
-        className="bubble" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */
-      >
-        <img src={frame37545} alt="" className="frame37545" />
+        {/* </div> */}
       </div>
       <div
         className="background37399" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */
