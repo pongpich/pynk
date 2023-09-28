@@ -64,7 +64,7 @@ const Home = () => {
                 }
                 aria-current="true"
                 aria-label="Slide 1"
-                checked={index == currentIndex}
+                checked={index === currentIndex}
                 onClick={() => handleRadioChange(index)}
               />
             ))}
@@ -88,6 +88,7 @@ const Home = () => {
                     width: "100%",
                     top: "25%",
                     left: "0%",
+                    marginBottom:"0px",
                     position: "absolute",
                   }}
                 >
@@ -107,13 +108,14 @@ const Home = () => {
 
               <button
                 onClick={() => history.push("/questionare")}
-                className="btn  bold button-home1 col-10 col-sm-10"
+                className="btn  bold button-home1 button-home2 col-10 col-sm-10"
               >
                 <p
                   style={{
                     width: "100%",
-                    top: "30%",
+                    top: "25%",
                     left: "0%",
+                    marginBottom:"0px",
                     position: "absolute",
                   }}
                 >
@@ -134,8 +136,9 @@ const Home = () => {
                 <p
                   style={{
                     width: "100%",
-                    top: "30%",
+                    top: "25%",
                     left: "0%",
+                    marginBottom:"0px",
                     position: "absolute",
                   }}
                 >
