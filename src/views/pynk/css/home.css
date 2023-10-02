@@ -444,7 +444,7 @@
   margin-left: 21%;
   opacity: 0;
 }
-.animateTextHome2{
+.animate-text-home2{
   animation: animate-text-home2 1s ease-out;
   opacity: 1;
 }
@@ -456,12 +456,6 @@
     transform: scale(1);
   }
 }
-
-.bebe_bubble{
-  display: inline-block;
-}
-
-
 .bounce-container{
   width: 100%;
   height: 600px;
@@ -469,7 +463,144 @@
   display: grid;
   place-items: center;
   margin-top: 22px;
+  opacity: 0;
 }
+.animate-bounce-container{
+  animation: animate-bounce-container .7s ease-out;
+  opacity: 1;
+}
+@keyframes animate-bounce-container {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bebe-bubble{
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+}
+.animate-bebe-bubble{
+  animation: animate-bebe-bubble 1s ease-in;
+  animation-delay: .7s;
+  opacity: 1;
+}
+@keyframes animate-bebe-bubble {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1) translateY(50px);
+    animation: ease-out;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.bubble6 {
+  position: absolute;
+  width: 183px;
+  height: 183px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at left top, #fff, #DCD8E9);
+  left: 16%;
+  top: 54%;
+  z-index: 0;
+  opacity: 0;
+}
+.animate-bubble6{
+  animation: animate-bubble6 1s ease-in;
+  animation-delay: .7s;
+  opacity: 1;
+}
+@keyframes animate-bubble6 {
+  0%,100% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translate(134px, 96px);
+  }
+}
+.bubble7 {
+  position: absolute;
+  width: 238px;
+  height: 238px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at left top, #fff, #DCD8E9);
+  left: 45%;
+  top: 15%;
+  z-index: 0;
+  opacity: 0;
+}
+.animate-bubble7{
+  animation: animate-bubble7 1s ease-in;
+  animation-delay: .7s;
+  opacity: 1;
+}
+@keyframes animate-bubble7 {
+  0%,100% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translateY(110px);
+  }
+}
+.bubble8 {
+  position: absolute;
+  width: 51px;
+  height: 51px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at left top, #fff, #DCD8E9);
+  left: 86%;
+  top: 34%;
+  z-index: 0;
+  opacity: 0;
+}
+.animate-bubble8{
+  animation: animate-bubble8 1s ease-in;
+  animation-delay: .7s;
+  opacity: 1;
+}
+@keyframes animate-bubble8 {
+  0%,100% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translate(34px, 126px);
+  }
+}
+.bubble9 {
+  position: absolute;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at left top, #fff, #DCD8E9);
+  left: 86%;
+  top: 6%;
+  z-index: 0;
+  opacity: 0;
+}
+.animate-bubble9{
+  animation: animate-bubble9 1s ease-in;
+  animation-delay: .7s;
+  opacity: 1;
+}
+@keyframes animate-bubble9 {
+  0%,100% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translate(-114px, -15px);
+  }
+}
+
+
+
+
 .background-container-bounce{
   width: 1200px;
   height: 528px;

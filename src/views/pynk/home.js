@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
-
 import slide1 from "../../assets/img/home/slide1.png";
 import slide2 from "../../assets/img/home/slide2.png";
 import slide3 from "../../assets/img/home/slide3.png";
@@ -13,14 +12,16 @@ import frame37549 from "../../assets/img/home/frame37549.png";
 import "./css/home.css";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
+import { container } from "aws-amplify";
 
 const Home = () => {
   const history = useHistory();
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const {ref: textHome2, inView: textHome2ISVisible} = useInView();
-  const {ref: bebeBubble, inView: bebeBubbleISVisible} = useInView();
+  const { ref: textHome2, inView: textHome2ISVisible } = useInView();
+  const { ref: bounceContainer, inView: bounceContainerISVisible } =
+    useInView();
 
   const images = [slide1, slide2, slide3];
 
@@ -37,7 +38,6 @@ const Home = () => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000);
   };
-
 
   useEffect(() => {
     startAutoSlide();
@@ -157,7 +157,10 @@ const Home = () => {
       </div>
 
       <div className="home2">
-        <div ref={textHome2} className={`head-home2 ${textHome2ISVisible ? "animateTextHome2" : ''}`}>
+        <div
+          ref={textHome2}
+          className={`head-home2 ${textHome2ISVisible && "animate-text-home2"}`}
+        >
           <p className="text48">
             บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
             และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
@@ -167,14 +170,48 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="bounce-container">
+        <div
+          ref={bounceContainer}
+          className={`bounce-container ${
+            bounceContainerISVisible && "animate-bounce-container"
+          }`}
+        >
           <div className="background-container-bounce">
             <div className="content-home2">
               <div className="first-content-bubble">
-                <picture className={`bebe-buble ${bebeBubbleISVisible ? "animateBebeBubble" : ''}`}>
+                <picture
+                  ref={bounceContainer}
+                  className={`bebe-bubble ${
+                    bounceContainerISVisible && "animate-bebe-bubble"
+                  }`}
+                >
                   <source media="(max-width: 480px)" srcset={bebe_bubble} />
                   <img src={bebe_bubble} width={640} height={600} alt="" />
                 </picture>
+                <div
+                  ref={bounceContainer}
+                  className={`bubble6 ${
+                    bounceContainerISVisible && "animate-bubble6"
+                  }`}
+                ></div>
+                <div
+                  ref={bounceContainer}
+                  className={`bubble7 ${
+                    bounceContainerISVisible && "animate-bubble7"
+                  }`}
+                ></div>
+                <div
+                  ref={bounceContainer}
+                  className={`bubble8 ${
+                    bounceContainerISVisible && "animate-bubble8"
+                  }`}
+                ></div>
+                <div
+                  ref={bounceContainer}
+                  className={`bubble9 ${
+                    bounceContainerISVisible && "animate-bubble9"
+                  }`}
+                ></div>
               </div>
               <div className="second-content-bubble">
                 <p className="text-home2-128px regular">STAY FIT</p>
@@ -191,11 +228,11 @@ const Home = () => {
             </div>
           </div>
           <div className="bubble"></div>
-            <div className="bubble1"></div>
-            <div className="bubble2"></div>
-            <div className="bubble3"></div>
-            <div className="bubble4"></div>
-            <div className="bubble5"></div>
+          <div className="bubble1"></div>
+          <div className="bubble2"></div>
+          <div className="bubble3"></div>
+          <div className="bubble4"></div>
+          <div className="bubble5"></div>
         </div>
 
         <div class="stayfit_item_grid">
