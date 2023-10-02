@@ -194,19 +194,19 @@
 .text-head-order-summary {
     color: var(--main-text);
     font-size: 24px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 .text-price-order {
     color: var(--main-text);
     font-size: 20px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 .text-order {
     color: var(--main-text);
     font-size: 16px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 .image-product-order {
@@ -246,7 +246,7 @@
     color: var(--main-text);
     border-radius: 50px;
     font-size: 18px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 
 }
 
@@ -301,7 +301,7 @@
     border-radius: 50px;
     color: var(--white);
     font-size: 18px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     margin-bottom: 16px;
     margin-top: 32px;
 }
@@ -315,7 +315,7 @@
     border-radius: 50px;
     color: var(--white);
     font-size: 18px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     margin-bottom: 16px;
     margin-top: 32px;
 }
@@ -381,7 +381,7 @@
     text-align: center;
     color: var(--main-text);
     font-size: 24px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 .want-to {
@@ -396,7 +396,7 @@
     color: var(--main-text);
     border-radius: 50px;
     font-size: 20px;
-    font-family: Regular;
+    font-family: RegularPynk;
     margin-left: 0 !important;
 
 }
@@ -405,7 +405,7 @@
     text-align: center;
     color: var(--disabled-text);
     font-size: 20px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .box-button-login {
@@ -428,7 +428,7 @@
 .text-login-payment {
     color: var(--main-text);
     font-size: 16px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .login-payment-span {
@@ -463,7 +463,7 @@
     margin-right: 16px;
     color: var(--disabled-text);
     font-size: 16px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .cursor-pointer {
@@ -473,7 +473,7 @@
 .forgot-password {
     color: #0094FF;
     font-size: 18px;
-    font-family: Regular;
+    font-family: RegularPynk;
     cursor: pointer;
     text-decoration: underline;
 }
@@ -482,7 +482,7 @@
     margin-top: 16px;
     text-align: center;
     font-size: 16px;
-    font-family: Regular;
+    font-family: RegularPynk;
     color: #4F4F4F;
 }
 
@@ -557,7 +557,7 @@
     z-index: 0;
     color: #4A4A4A;
     font-size: 16px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .circle-p-none {
@@ -568,13 +568,13 @@
 .circle-span {
     color: var(--white);
     font-size: 16px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 .circle-span-disabled {
     color: var(--disabled-text) !important;
     font-size: 16px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 
@@ -709,7 +709,7 @@
     margin-left: 10px;
     color: #000000;
     font-size: 18px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .check-image {
@@ -736,7 +736,7 @@
 .edit-order {
     color: var(--normal-pink);
     font-size: 18px;
-    font-family: Regular;
+    font-family: RegularPynk;
     text-decoration: underline;
     cursor: pointer;
     margin-left: 24px;
@@ -753,7 +753,7 @@
 .amount-be-paid {
     color: var(--normal-pink);
     font-size: 24px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 .amount-be-paid span {
@@ -821,7 +821,7 @@
 .text-qrcode-qrcode {
     color: var(--main-text);
     font-size: 24px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 
@@ -837,7 +837,7 @@
     margin-top: -8px;
     color: #5A6E7B;
     font-size: 20px;
-    font-family: Regular;
+    font-family: RegularPynk;
     margin-bottom: 32px;
 }
 
@@ -845,7 +845,7 @@
     margin-top: 32px;
     color: #4F4F4F;
     font-size: 16px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 .text-left-order {

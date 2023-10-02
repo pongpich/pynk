@@ -286,7 +286,7 @@
 }
 
 .url-product a {
-    font-family: BdCondHe;
+    font-family: ThinPynk;
     font-size: 12px;
     color: var(--main-text);
 }
@@ -350,33 +350,33 @@
 .text-head {
     color: var(--main-text);
     font-size: 24px;
-    font-family: BdCondHe;
+    font-family: ThinPynk;
 }
 
 .text-name {
     color: var(--main-text);
     font-size: 24px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .text-price {
     color: var(--normal-pink);
     font-size: 24px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .text-span-price {
     margin-top: -16px;
     color: var(--main-text);
     font-size: 14px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .text-span {
     margin-top: -8px;
     color: var(--main-text);
     font-size: 16px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .amount {
@@ -392,7 +392,7 @@
 .text-amount {
     color: var(--main-text);
     font-size: 16px;
-    font-family: Medium;
+    font-family: MediumPynk;
 
 }
 
@@ -400,27 +400,27 @@
     margin-top: -16px;
     color: var(--main-text);
     font-size: 20px;
-    font-family: Medium;
+    font-family: MediumPynk;
 }
 
 .text-amount-power {
     margin-top: -16px;
     color: var(--main-text);
     font-size: 12px;
-    font-family: Medium;
+    font-family: MediumPynk;
 }
 
 .plus-minus {
     margin-left: 25px;
     margin-top: 24px;
     font-size: 28px;
-    font-family: Medium;
+    font-family: MediumPynk;
     color: var(--normal-pink);
 }
 
 .plus-minus-model {
     font-size: 28px;
-    font-family: Medium;
+    font-family: MediumPynk;
     color: var(--normal-pink);
 }
 
@@ -467,13 +467,13 @@
     margin-top: 20px;
     color: var(--main-text);
     font-size: 16px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .stock-left {
     color: var(--placeholder);
     font-size: 14px;
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .vector-image {
@@ -491,7 +491,7 @@
     border-radius: 50px;
     color: var(--normal-pink);
     font-size: 18px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     margin-bottom: 16px;
     margin-right: 16px;
 }
@@ -504,7 +504,7 @@
     border-radius: 50px;
     color: var(--white);
     font-size: 18px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     margin-bottom: 16px;
 }
 
@@ -537,7 +537,7 @@
 .text-more-details {
     font-size: 16px;
     color: var(--main-text);
-    font-family: Regular;
+    font-family: RegularPynk;
 }
 
 .animated-slideDown {
@@ -580,7 +580,7 @@
 .text-how-drink {
     z-index: 1;
     text-align: center;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     font-size: 20px;
     color: var(--main-text);
 }
@@ -632,7 +632,7 @@
     transform: translate(-50%);
     font-size: 32px;
     color: var(--normal-pink);
-    font-family: Medium;
+    font-family: MediumPynk;
 }
 
 .image-kaew {
@@ -645,7 +645,7 @@
 
 .text-kaew {
     margin: 23px 34px 0px 34px;
-    font-family: Regular;
+    font-family: RegularPynk;
     font-size: 16px;
     text-align: center;
     color: var(--main-text);
@@ -708,14 +708,14 @@ button {
 
 
 .text-head-slider {
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     font-size: 15px;
     color: var(--main-text);
 }
 
 .text-slider {
     margin-top: -8px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     font-size: 22px;
     color: var(--normal-pink);
     margin-bottom: 32px;
@@ -723,13 +723,13 @@ button {
 
 .text-slider-hover {
     margin-top: -8px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     font-size: 22px;
     color: var(--normal-pink);
 }
 
 .slide-span {
-    font-family: Regular !important;
+    font-family: RegularPynk !important;
     font-size: 15px !important;
     color: #9098B1 !important;
     text-decoration: line-through;
@@ -780,13 +780,13 @@ button {
 }
 
 .may-interested {
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     font-size: 20px;
     color: var(--main-text);
 }
 
 .interested-all {
-    font-family: Regular;
+    font-family: RegularPynk;
     font-size: 14px;
     color: var(--normal-pink);
     text-decoration: underline;
@@ -817,7 +817,7 @@ button {
 .modal-title-shop-details {
     font-size: 20px;
     color: var(--main-text);
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 .model-image-slider {
@@ -835,7 +835,7 @@ button {
 .fitto-shop {
     font-size: 16px;
     color: var(--main-text);
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 .plus-minus-box {
@@ -895,7 +895,7 @@ button {
     border-radius: 50px;
     color: var(--white);
     font-size: 18px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     margin-bottom: 16px;
 }
 
@@ -925,7 +925,7 @@ button {
     justify-content: center;
     align-items: center;
     font-size: 14px;
-    font-family: Regular;
+    font-family: RegularPynk;
     border-radius: 0px 4px 4px 0px;
 }
 

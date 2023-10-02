@@ -51,7 +51,7 @@
 }
 
 .category-name {
-    font-family: Medium;
+    font-family: MediumPynk;
     color: var(--normal-pink);
     font-size: 32px;
 }
@@ -97,13 +97,13 @@
 
 .text-category-number {
     font-size: 12px !important;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     color: var(--main-text);
 }
 
 .text-category-select {
     font-size: 16px !important;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     color: var(--main-text);
 }
 
@@ -120,7 +120,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     font-size: 18px
 }
 
@@ -142,7 +142,7 @@
     font-size: 18px;
     margin-left: 8px;
     margin-right: 8px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
 }
 
 .chevron-left {
@@ -170,7 +170,7 @@
     font-size: 18px;
     margin-left: 8px;
     margin-right: 8px;
-    font-family: SemiBold;
+    font-family: SemiBoldPynk;
     border-radius: 100px !important;
 
 }
