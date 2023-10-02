@@ -25,12 +25,14 @@ import ShopDetailsPynk from "./views/pynk/admin/shop_details";
 import ShopOrderSummaryPynk from "./views/pynk/admin/shop_order_summary";
 import ShopPaymentPynk from "./views/pynk/admin/shop_payment";
 import ShopSuccessfulPaymentPynk from "./views/pynk/admin/shop_successful_payment";
+import ShopErrorPaymentPynk from "./views/pynk/admin/shop_error_payment";
 import Popup_login from "./components/Popup_login";
 import Login from "../src/views/pynk/login";
 import ProductsManagement from "./views/pynk/admin/products_management";
 import Shop_category from "./views/pynk/admin/shop_category";
 import HomePlatfrom from "../src/views/platform/login";
 import Questionare from "../src/views/pynk/questionare";
+
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
 import Buy_program from "../src/views/stay_fit/information/buy_program";
@@ -199,9 +201,9 @@ class App extends Component {
       this.setState({ searchStatus: 0 });
     }
 
-    if ((prevProps.status_cart !== status_cart) && (status_cart === "success")) {
+    if (prevProps.status_cart !== status_cart && status_cart === "success") {
       console.log("กดใส่ถุงจ้า!!");
-      this.showMinus2()
+      this.showMinus2();
 
       this.props.update_status_cart("default");
     }
@@ -292,7 +294,7 @@ class App extends Component {
         <nav className="navbar navbar-expand-sm bg-light information-nav fixed-top">
           <div className="information-box">
             <div className="flex-container">
-              <Link to='home'>
+              <Link to="home">
                 <img src={logo} alt="vector" />
               </Link>
               <div className="custom-input ">
@@ -571,10 +573,7 @@ class App extends Component {
                 </Route>
                 <Route path="/home" component={Home} />
                 <Route path="/dashboard" component={DashboardPynk} />
-                <Route
-                  path="/admin"
-                  component={AdminPynk}
-                />
+                <Route path="/admin" component={AdminPynk} />
                 <Route
                   path="/products_management"
                   component={ProductsManagement}
@@ -616,6 +615,7 @@ class App extends Component {
                   path="/successful-payment"
                   component={ShopSuccessfulPaymentPynk}
                 />
+                <Route path="/error-payment" component={ShopErrorPaymentPynk} />
                 <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />
                 <Route
@@ -936,7 +936,7 @@ const mapActionsToProps = {
   changeLocale,
   getRegister_log,
   logout,
-  update_status_cart
+  update_status_cart,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(App);
