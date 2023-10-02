@@ -12,7 +12,6 @@ import frame37549 from "../../assets/img/home/frame37549.png";
 import "./css/home.css";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
-import { container } from "aws-amplify";
 
 const Home = () => {
   const history = useHistory();

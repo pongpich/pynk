@@ -1,3 +1,37 @@
+@font-face {
+  font-family: "LightPynk";
+  font-style: normal;
+  font-weight: normal;
+  src: url(../../../fontsPynk/NotoSansThai-Light.ttf);
+}
+
+@font-face {
+  /* font-family: "BdCondHe"; */
+  font-family: "ThinPynk";
+  src: url(../../../fontsPynk/NotoSansThai-Thin.ttf);
+}
+
+@font-face {
+  /* font-family: "Regular"; */
+  font-family: "RegularPynk";
+  src: url(../../../fontsPynk/NotoSansThai-Regular.ttf);
+}
+
+
+@font-face {
+  /* font-family: "Medium"; */
+  font-family: "MediumPynk";
+  src: url(../../../fontsPynk/NotoSansThai-Medium.ttf);
+}
+
+@font-face {
+  /* font-family: "SemiBold"; */
+  font-family: "SemiBoldPynk";
+  src: url(../../../fontsPynk/NotoSansThai-SemiBold.ttf);
+}
+
+
+
 @media screen and (max-width: 320px) {
   #image-section {
     width: 100%;
@@ -274,8 +308,8 @@
 }
 
 .text-home1-48px-2 {
+  font-family: SemiBoldPynk;
   font-size: 48px;
-  font-weight: 600;
   color: #ef60a3;
   margin-bottom: 10px;
 }
@@ -296,8 +330,8 @@
 }
 
 .text-home1-24px {
+  font-family: SemiBoldPynk;
   font-size: 24px;
-  font-weight: 600;
   color: #4a4a4a;
 }
 
@@ -495,7 +529,6 @@
   }
   50% {
     transform: scale(1.1) translateY(50px);
-    animation: ease-out;
   }
   100% {
     transform: scale(1);
