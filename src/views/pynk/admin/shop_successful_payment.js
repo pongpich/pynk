@@ -36,14 +36,7 @@ const Shop_successful_payment = (props) => {
     setPhone(window.localStorage.getItem("phone"));
     setPaymentMethod(window.localStorage.getItem("payment_method"));
 
-    /*   const surname = ;
-    const email = window.localStorage.getItem("email");
-    const phone = window.localStorage.getItem("phone");
-    const order_id = window.localStorage.getItem("order_id");
-
-
-    const province = window.localStorage.getItem("province");
-    const zipcode = window.localStorage.getItem("zipcode"); */
+    Cookies.remove("product_name");
   }, []);
 
   useEffect(() => {
@@ -51,7 +44,6 @@ const Shop_successful_payment = (props) => {
   }, [pathname]);
 
   const goBack = () => {
-    Cookies.remove("product_name");
     props.history.push("/shop"); // เปลี่ยนหน้าไปยัง '/shop'
   };
   console.log("username", username);
@@ -83,15 +75,18 @@ const Shop_successful_payment = (props) => {
                   ชื่อ {username && username} นามสกุล {surname && surname}
                 </p>
                 <p className="text-order">
-                  ที่อยู่: {address && address} ตำบล/แขวง: {subdistrict && subdistrict} อำเภอ/เขต: {district && district} จังหวัด: {province && province} รหัสไปรษณีย์: {zipcode && zipcode}
+                  ที่อยู่: {address && address} ตำบล/แขวง:{" "}
+                  {subdistrict && subdistrict} อำเภอ/เขต: {district && district}{" "}
+                  จังหวัด: {province && province} รหัสไปรษณีย์:{" "}
+                  {zipcode && zipcode}
                 </p>
                 <p className="text-order">
                   {phone &&
                     phone.slice(0, 3) +
-                    "-" +
-                    phone.slice(3, 6) +
-                    "-" +
-                    phone.slice(6)}
+                      "-" +
+                      phone.slice(3, 6) +
+                      "-" +
+                      phone.slice(6)}
                 </p>
                 <div className="line-hr-order" />
                 <p className="text-head-order-summary">สรุปรายการสั่งซื้อ</p>
@@ -112,8 +107,8 @@ const Shop_successful_payment = (props) => {
                 <div className="line-hr-order" />
                 <p className="between text-order">
                   วิธีชำระเงิน
-                  {(paymentMethod === "qr_code") && <span>QR Code</span>}
-                  {(paymentMethod === "credit_card") && <span>Credit Card</span>}
+                  {paymentMethod === "qr_code" && <span>QR Code</span>}
+                  {paymentMethod === "credit_card" && <span>Credit Card</span>}
                 </p>
                 <p className="amount-be-paid between">
                   ยอดที่ต้องชำระ{" "}
