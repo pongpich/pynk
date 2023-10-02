@@ -9,7 +9,6 @@ import frame37409 from "../../assets/img/home/frame37409.png";
 import frame37410 from "../../assets/img/home/frame37410.png";
 import frame37547 from "../../assets/img/home/frame37547.png";
 import frame37549 from "../../assets/img/home/frame37549.png";
-import "./css/home.css";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
@@ -21,6 +20,7 @@ const Home = () => {
   const { ref: textHome2, inView: textHome2ISVisible } = useInView();
   const { ref: bounceContainer, inView: bounceContainerISVisible } =
     useInView();
+  const { ref: stayfitItem, inView: statfitItemISVisible } = useInView();
 
   const images = [slide1, slide2, slide3];
 
@@ -46,7 +46,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="page">
       <div className="slider-container">
         <div className="slider">
           {images.map((image, index) => (
@@ -95,6 +95,8 @@ const Home = () => {
                     left: "0%",
                     marginBottom: "0px",
                     position: "absolute",
+                    fontFamily: "SemiBoldPynk",
+                    fontSize: "18px",
                   }}
                 >
                   เริ่มฟิตไปด้วยกัน
@@ -122,6 +124,8 @@ const Home = () => {
                     left: "0%",
                     marginBottom: "0px",
                     position: "absolute",
+                    fontFamily: "SemiBoldPynk",
+                    fontSize: "18px",
                   }}
                 >
                   เริ่มฟิตไปด้วยกัน
@@ -145,6 +149,8 @@ const Home = () => {
                     left: "0%",
                     marginBottom: "0px",
                     position: "absolute",
+                    fontFamily: "SemiBoldPynk",
+                    fontSize: "18px",
                   }}
                 >
                   เริ่มฟิตไปด้วยกัน
@@ -160,11 +166,11 @@ const Home = () => {
           ref={textHome2}
           className={`head-home2 ${textHome2ISVisible && "animate-text-home2"}`}
         >
-          <p className="text48">
+          <p className="text48 text-align-center SemiBoldPynk">
             บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
             และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
           </p>
-          <p className="text32">
+          <p className="text32 text-align-center MediumPynk">
             “ไม่ใช่แค่หุ่นดี แต่มันคือการรักตัวเองอย่างมีความสุข”
           </p>
         </div>
@@ -213,13 +219,13 @@ const Home = () => {
                 ></div>
               </div>
               <div className="second-content-bubble">
-                <p className="text-home2-128px regular">STAY FIT</p>
-                <p className="text-home2-48px medium">WITH BEBE</p>
-                <p className="text-home2-24px semi-bold">
+                <p className="text-home2-128px LightPynk">STAY FIT</p>
+                <p className="text-home2-48px LightPynk">WITH BEBE</p>
+                <p className="text-home2-24px SemiBoldPynk">
                   คอร์สสอนออกกำลังกายสุดปังจากวงการเบเบ้
                   ที่จะพาคุณมาอัปเกรดความฟิต ด้วยโปรแกรม 8 สัปดาห์
                 </p>
-                <p className="text-home2-24px regular">
+                <p className="text-home2-24px RegularPynk">
                   ที่เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ พร้อมการันตีความสนุก
                   และผลลัพธ์ของการเปลี่ยนแปลง มาแล้วมากกว่าสิบรุ่น!
                 </p>
@@ -234,24 +240,40 @@ const Home = () => {
           <div className="bubble5"></div>
         </div>
 
-        <div class="stayfit_item_grid">
+        <div ref={stayfitItem}
+          className={`stayfit-item-home2 ${statfitItemISVisible && "animate-stayfit-item"}`}>
           <div class="grid-item">
-            {" "}
-            <img src={frame37409} className="frame37409" alt="" />
+            <img src={frame37409} alt="" />
+            <div className="first-content-stayfit">
+              <p className="text48 LightPynk">FIT ITEMS</p>
+              <p className="text24 RegularPynk">
+                ให้เรื่องการออกกำลังกายเป็นเรื่องที่ ง่าย และใกล้ตัว ด้วยอุปกรณ์
+                ออกกำลังกายสไตล์เบเบ้ที่พร้อมตอบโจทย์
+                ทุกไลฟ์สไตล์ของสายฟิตที่ไม่ว่าคุณจะเป็นสายฟิตมือใหม่
+                หรือสายฟิตมือโปรก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
+              </p>
+            </div>
           </div>
           <div class="grid-item">
-            <img src={frame37410} className="frame37410" alt="" />
+            <img src={frame37410} style={{ marginLeft: "50px" }} alt="" />
+            <div className="second-content-stayfit">
+              <p className="text48 LightPynk" style={{ marginBottom: "0" }}>
+                FITTO
+              </p>
+              <p
+                className="text48 LightPynk"
+                style={{ marginBottom: "16px", marginTop: "-16px" }}
+              >
+                ปั้นหุ่นสวยได้ทุกไลฟ์สไตล์
+              </p>
+              <p className="text24 RegularPynk">
+                ตัวช่วยสร้างทางลัดฉบับสายฟิตที่ทำให้ภารกิจพิชิตหุ่นในฝัน ของคุณ
+                เป็นไปได้ และมีสุขภาพที่ดีขึ้นอย่างยั่งยืน ตอบโจทย์ ทุกไลฟ์สไตล์
+                พร้อมพาคุณไปสู่เป้าหมายได้เร็ว ง่าย แบบไร้กังวล!
+              </p>
+            </div>
           </div>
         </div>
-        {/* <div class="stayfit_item">
-                <div class="column" >
-                    <img src={frame37409} alt="" className="frame37409" />
-                </div>
-                <div class="column" >
-                    <img src={frame37410} alt="" className="frame37410" />
-                </div>
-            </div> */}
-        {/* </div> */}
       </div>
       <div
         className="background37399" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */
@@ -262,7 +284,7 @@ const Home = () => {
       <img src={frame37549} alt="" className="frame37549" />
 
       <Footer />
-    </>
+    </div>
   );
 };
 
