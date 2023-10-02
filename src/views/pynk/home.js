@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+
+
 import slide1 from "../../assets/img/home/slide1.png";
 import slide2 from "../../assets/img/home/slide2.png";
 import slide3 from "../../assets/img/home/slide3.png";
@@ -15,6 +18,10 @@ const Home = () => {
   const history = useHistory();
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const {ref: textHome2, inView: textHome2ISVisible} = useInView();
+  const {ref: bebeBubble, inView: bebeBubbleISVisible} = useInView();
+
   const images = [slide1, slide2, slide3];
 
   const autoSlideIntervalRef = useRef(null);
@@ -31,12 +38,13 @@ const Home = () => {
     }, 5000);
   };
 
+
   useEffect(() => {
     startAutoSlide();
     return () => {
       clearInterval(autoSlideIntervalRef.current);
     };
-  });
+  }, []);
 
   return (
     <>
@@ -149,7 +157,7 @@ const Home = () => {
       </div>
 
       <div className="home2">
-        <div className="head-home2">
+        <div ref={textHome2} className={`head-home2 ${textHome2ISVisible ? "animateTextHome2" : ''}`}>
           <p className="text48">
             บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
             และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
@@ -163,7 +171,7 @@ const Home = () => {
           <div className="background-container-bounce">
             <div className="content-home2">
               <div className="first-content-bubble">
-                <picture>
+                <picture className={`bebe-buble ${bebeBubbleISVisible ? "animateBebeBubble" : ''}`}>
                   <source media="(max-width: 480px)" srcset={bebe_bubble} />
                   <img src={bebe_bubble} width={640} height={600} alt="" />
                 </picture>
