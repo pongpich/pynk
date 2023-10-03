@@ -3,6 +3,14 @@
         display: none !important;
     }
 
+    .head-shop-background {
+        display: none
+    }
+
+    .mt-shop {
+        margin-top: 222px !important;
+    }
+
     .gap-5 {
         gap: 1rem !important;
     }
@@ -128,4 +136,10 @@
     justify-content: center;
     margin-top: 64px;
     margin-bottom: 195px;
+}
+
+.head-shop-background {
+    height: 355px;
+    width: 100%;
+    background: linear-gradient(to right, #C5086E, #EF60A3, #F7ABCE, #F7ABCE);
 }

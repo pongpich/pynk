@@ -218,6 +218,7 @@ function ShopPynk() {
           alignItems: "center",
           height: 54,
         }}
+        className="head-shop"
       >
         <h1
           style={{
@@ -229,12 +230,12 @@ function ShopPynk() {
         </h1>
       </div>
 
-      <div className="head-shop">
-        <img height={355} width={"100%"} src={home_shop} />
+      <div className="head-shop-background">
+        {/*  <img height={355} width={"100%"} src={home_shop} /> */}
       </div>
 
       <div
-        className="row gap-5 mt-5"
+        className="row gap-5 mt-5 mt-shop"
         style={{
           justifyContent: "center",
           display: "flex",
