@@ -26,7 +26,7 @@ import { useHistory } from "react-router-dom";
 
 import { update_status_cart } from "../../../redux/pynk/orders";
 
-let slidesToShow = 4;
+let slidesToShow = 5.2;
 
 const PreviousBtn = (props) => {
   const { className, onClick, currentSlide } = props;
@@ -65,35 +65,35 @@ const carouselProperties = {
     {
       breakpoint: 576,
       settings: {
-        slidesToShow: 1.5,
+        slidesToShow: 1.6,
         centerMode: true,
       },
     },
     {
       breakpoint: 769,
       settings: {
-        slidesToShow: 1.85,
+        slidesToShow: 1.8,
         centerMode: true,
       },
     },
     {
       breakpoint: 992,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 2.2,
         centerMode: true,
       },
     },
     {
       breakpoint: 1025,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 2.5,
         centerMode: true,
       },
     },
     {
       breakpoint: 1200,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2.9,
         centerMode: true,
       },
     },
@@ -101,6 +101,20 @@ const carouselProperties = {
       breakpoint: 1400,
       settings: {
         slidesToShow: 3,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1600,
+      settings: {
+        slidesToShow: 3.6,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1800,
+      settings: {
+        slidesToShow: 4,
         centerMode: true,
       },
     },

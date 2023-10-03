@@ -194,6 +194,9 @@
         margin-left: 16px !important;
     }
 
+    .box-product {
+        margin-right: 0px !important;
+    }
 }
 
 @media only screen and (min-width: 577px) and (max-width: 768px) {
@@ -211,6 +214,13 @@
         border-radius: 8px;
         margin-left: 8px !important;
     }
+
+    .box-product {
+
+        margin-right: 32px !important;
+
+    }
+
 
     .more-details {
 
@@ -654,7 +664,8 @@
 .box-product {
     margin-top: 44px;
 
-    padding: 0px 5% 120px 5%;
+    padding: 0px 3% 120px 2%;
+    margin-right: 64px;
 
 }
 
