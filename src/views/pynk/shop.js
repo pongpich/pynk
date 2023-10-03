@@ -27,7 +27,7 @@ import { Link } from "react-router-dom";
 
 import "./css/shop.css";
 
-let slidesToShow = 4;
+let slidesToShow = 6;
 
 const PreviousBtn = (props) => {
   const { className, onClick, currentSlide } = props;
@@ -82,14 +82,14 @@ const carouselProperties = {
     {
       breakpoint: 992,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 2.2,
         centerMode: true,
       },
     },
     {
       breakpoint: 1025,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 2.5,
         centerMode: true,
       },
     },
@@ -102,6 +102,13 @@ const carouselProperties = {
     },
     {
       breakpoint: 1400,
+      settings: {
+        slidesToShow: 3,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1600,
       settings: {
         slidesToShow: 4,
         centerMode: true,
@@ -137,14 +144,14 @@ const carouselProperties2 = {
     {
       breakpoint: 992,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 2.2,
         centerMode: true,
       },
     },
     {
       breakpoint: 1025,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 2.5,
         centerMode: true,
       },
     },
@@ -157,6 +164,13 @@ const carouselProperties2 = {
     },
     {
       breakpoint: 1400,
+      settings: {
+        slidesToShow: 3,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1600,
       settings: {
         slidesToShow: 4,
         centerMode: true,
