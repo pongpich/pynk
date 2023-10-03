@@ -5,6 +5,9 @@ import slide1 from "../../assets/img/home/slide1.png";
 import slide2 from "../../assets/img/home/slide2.png";
 import slide3 from "../../assets/img/home/slide3.png";
 import bebe_bubble from "../../assets/img/home/bebe-bubble.png";
+import fitto4week from "../../assets/img/home/fitto4week.png";
+import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
+import bikini_body_challenge from "../../assets/img/home/bikini_body_challenge.png";
 import frame37409 from "../../assets/img/home/frame37409.png";
 import frame37410 from "../../assets/img/home/frame37410.png";
 import frame37547 from "../../assets/img/home/frame37547.png";
@@ -16,11 +19,19 @@ const Home = () => {
   const history = useHistory();
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isActive, setIsActive] = useState(false);
 
   const { ref: textHome2, inView: textHome2ISVisible } = useInView();
   const { ref: bounceContainer, inView: bounceContainerISVisible } =
     useInView();
   const { ref: stayfitItem, inView: statfitItemISVisible } = useInView();
+
+  const handleHover = () => {
+    setIsActive(true);
+  };
+  const handleMouseLeave = () => {
+    setIsActive(false);
+  };
 
   const images = [slide1, slide2, slide3];
 
@@ -240,8 +251,12 @@ const Home = () => {
           <div className="bubble5"></div>
         </div>
 
-        <div ref={stayfitItem}
-          className={`stayfit-item-home2 ${statfitItemISVisible && "animate-stayfit-item"}`}>
+        <div
+          ref={stayfitItem}
+          className={`stayfit-item-home2 ${
+            statfitItemISVisible && "animate-stayfit-item"
+          }`}
+        >
           <div class="grid-item">
             <img src={frame37409} alt="" />
             <div className="first-content-stayfit">
@@ -275,9 +290,54 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div
-        className="background37399" /*  style={{ backgroundImage: `url(${home2})`, backgroundSize: '500px 500px', }}  */
-      >
+      <div className="home3">
+        <div
+          className="text48 SemiBoldPynk white text-align-center"
+          style={{ marginBottom: "100px" }}
+        >
+          คอร์สแนะนำที่อยากบอกต่อ
+        </div>
+        <div className="card-item-container">
+          <div
+            className={`card-item-course ${isActive ? "active" : ""}`}
+            onMouseEnter={handleHover}
+            onMouseLeave={handleMouseLeave}
+          >
+            <img
+              className="card-image"
+              src={fitto4week}
+              width={273}
+              height={263}
+              alt=""
+            />
+          </div>
+          <div
+            className={`card-item-course ${isActive ? "active" : ""}`}
+          >
+            <img
+              className="card-image"
+              src={stayfit_with_bebe}
+              width={273}
+              height={263}
+              alt=""
+            />
+          </div>
+          <div
+            className={`card-item-course ${isActive ? "active" : ""}`}
+            onMouseEnter={handleHover}
+            onMouseLeave={handleMouseLeave}
+          >
+            <img
+              className="card-image"
+              src={bikini_body_challenge}
+              width={273}
+              height={263}
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div className="background37399">
         <img src={frame37547} alt="" className="frame37547" />
       </div>
 
