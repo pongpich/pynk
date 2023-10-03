@@ -1022,7 +1022,7 @@
 
 .nav-linkHead2 {
   color: #fff;
-  font-family: Regular;
+  font-family: SemiBoldPynk !important;
   font-size: 18px !important;
   background-color: #EF60A3;
   border: none;
@@ -5410,7 +5410,7 @@ tr:last-child td:last-child {
   margin-top: 15px;
   font-size: 18px;
   color: var(--main-text);
-  font-family: SemiBold;
+  font-family: SemiBoldPynk;
 }
 
 .close_line-icon {
@@ -5449,7 +5449,7 @@ tr:last-child td:last-child {
 .link-pynk {
   color: var(--disabled-text) !important;
   font-size: 16px !important;
-  font-family: SemiBold !important;
+  font-family: SemiBoldPynk !important;
 }
 
 .link-pynk:hover {
