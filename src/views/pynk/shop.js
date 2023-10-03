@@ -4,6 +4,9 @@ import Slider from "react-slick";
 import { useLocation } from "react-router-dom";
 import colors from "./colors";
 import home_shop from "../../assets/img/pynk/shop/home_shop.jpg";
+import number40 from "../../assets/img/pynk/shop/number40.png";
+import pro_1 from "../../assets/img/pynk/shop/pro_1.png";
+import textTitle from "../../assets/img/pynk/shop/text-Title.png";
 import icon_kg from "../../assets/img/pynk/shop/Group37558.png";
 import icon_fitto from "../../assets/img/pynk/shop/Group37559.png";
 import icon_burner from "../../assets/img/pynk/shop/FITTO_prework_Mixberry.png";
@@ -231,7 +234,15 @@ function ShopPynk() {
       </div>
 
       <div className="head-shop-background">
-        {/*  <img height={355} width={"100%"} src={home_shop} /> */}
+        <div className="shop-image-background">
+          <div className="number40-column">
+            <img className="text-title" src={textTitle} />
+            <img className="number-40" src={number40} />
+          </div>
+          <div>
+            <img className="pro-1" src={pro_1} />
+          </div>
+        </div>
       </div>
 
       <div

@@ -139,7 +139,55 @@
 }
 
 .head-shop-background {
-    height: 355px;
+    max-height: 355px;
     width: 100%;
     background: linear-gradient(to right, #C5086E, #EF60A3, #F7ABCE, #F7ABCE);
+
+}
+
+.text-title {
+    width: 100%;
+    height: auto;
+    max-width: 375px;
+    max-height: 62px;
+
+}
+
+.shop-image-background {
+
+    background-image: url('../../../../src/assets/img/pynk/shop/FrameLink.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-left: 10.9%;
+    /* 149px */
+    padding-top: 58px;
+    padding-bottom: 32px;
+}
+
+.number40-column {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.pro-1 {
+    margin-top: -10%;
+    width: 100%;
+    height: auto;
+    max-width: 804px;
+    max-height: 475px;
+}
+
+
+.number-40 {
+
+    width: 100%;
+    height: auto;
+    max-width: 389px;
+    max-height: 182px;
 }
