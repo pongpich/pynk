@@ -4,70 +4,87 @@
   font-weight: normal;
   src: url(../../../fontsPynk/NotoSansThai-Light.ttf);
 }
+
 @font-face {
   /* font-family: "BdCondHe"; */
   font-family: "ThinPynk";
   src: url(../../../fontsPynk/NotoSansThai-Thin.ttf);
 }
+
 @font-face {
   /* font-family: "Regular"; */
   font-family: "RegularPynk";
   src: url(../../../fontsPynk/NotoSansThai-Regular.ttf);
 }
+
 @font-face {
   /* font-family: "Medium"; */
   font-family: "MediumPynk";
   src: url(../../../fontsPynk/NotoSansThai-Medium.ttf);
 }
+
 @font-face {
   /* font-family: "SemiBold"; */
   font-family: "SemiBoldPynk";
   src: url(../../../fontsPynk/NotoSansThai-SemiBold.ttf);
 }
+
 @font-face {
   /* font-family: "SemiBold"; */
   font-family: "BoldPynk";
   src: url(../../../fontsPynk/NotoSansThai-Bold.ttf);
 }
 
-.LightPynk{
+.LightPynk {
   font-family: "LightPynk";
 }
-.ThinPynk{
+
+.ThinPynk {
   font-family: "ThinPynk";
 }
-.RegularPynk{
+
+.RegularPynk {
   font-family: "RegularPynk";
 }
-.MediumPynk{
+
+.MediumPynk {
   font-family: "MediumPynk";
 }
-.SemiBoldPynk{
+
+.SemiBoldPynk {
   font-family: "SemiBoldPynk";
 }
-.BoldPynk{
+
+.BoldPynk {
   font-family: "BoldPynk";
 }
+
 .text128 {
   font-size: 128px;
   text-align: left;
   margin-bottom: 0px;
 }
+
 .text48 {
   font-size: 48px;
 }
+
 .text32 {
   font-size: 32px;
 }
+
 .text24 {
   font-size: 24px;
 }
-.text-align-center{
+
+.text-align-center {
   text-align: center;
 }
-.white{
+
+.white {
   color: #fff;
 }
+
 @media only screen and (min-width: 1680px) {
   .page {
     width: 1680px;
@@ -164,17 +181,17 @@
 
 .bbpf-company {
   font-size: 32px;
-  font-family: Medium;
+  font-family: MediumPynk;
 }
 
 .bbpf-address {
   font-size: 20px;
-  font-family: Regular;
+  font-family: RegularPynk;
 }
 
 .contact-us {
   font-size: 22px;
-  font-family: SemiBold;
+  font-family: SemiBoldPynk;
 }
 
 .center-content-icon {
@@ -257,7 +274,7 @@
 
 .bbpf-rights {
   font-size: 12px;
-  font-family: SemiBold;
+  font-family: SemiBoldPynk;
 }
 
 .box_text_home1 {
@@ -279,6 +296,7 @@
   text-align: center;
   margin-left: 0px;
 }
+
 .button-home2 {
   background-color: #fff;
   color: #ef60a3;
@@ -325,6 +343,7 @@
   text-align: center;
   padding: 100px 22% 0 22%;
 }
+
 .home2_1 {
   background-color: #007cff;
   width: 100%;
@@ -428,6 +447,7 @@
   z-index: 1;
   align-items: center;
 }
+
 .head-home2 {
   display: inline-block;
   width: 58%;
@@ -436,19 +456,23 @@
   margin-left: 21%;
   opacity: 0;
 }
-.animate-text-home2{
+
+.animate-text-home2 {
   animation: animate-text-home2 1s ease-out;
   opacity: 1;
 }
+
 @keyframes animate-text-home2 {
   0% {
     transform: scale(0);
   }
+
   100% {
     transform: scale(1);
   }
 }
-.bounce-container{
+
+.bounce-container {
   width: 100%;
   height: 600px;
   background-color: #fff;
@@ -457,41 +481,49 @@
   margin-top: 22px;
   opacity: 0;
 }
-.animate-bounce-container{
+
+.animate-bounce-container {
   animation: animate-bounce-container .7s ease-out;
   opacity: 1;
 }
+
 @keyframes animate-bounce-container {
   0% {
     transform: scale(0);
   }
+
   100% {
     transform: scale(1);
   }
 }
 
-.bebe-bubble{
+.bebe-bubble {
   display: inline-block;
   position: relative;
   z-index: 10;
   opacity: 0;
 }
-.animate-bebe-bubble{
+
+.animate-bebe-bubble {
   animation: animate-bebe-bubble 1s ease-in;
   animation-delay: .7s;
   opacity: 1;
 }
+
 @keyframes animate-bebe-bubble {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1) translateY(50px);
   }
+
   100% {
     transform: scale(1);
   }
 }
+
 .bubble6 {
   position: absolute;
   width: 183px;
@@ -503,19 +535,25 @@
   z-index: 0;
   opacity: 0;
 }
-.animate-bubble6{
+
+.animate-bubble6 {
   animation: animate-bubble6 1s ease-in;
   animation-delay: .7s;
   opacity: 1;
 }
+
 @keyframes animate-bubble6 {
-  0%,100% {
+
+  0%,
+  100% {
     transform: translate(0);
   }
+
   50% {
     transform: translate(134px, 96px);
   }
 }
+
 .bubble7 {
   position: absolute;
   width: 238px;
@@ -527,19 +565,25 @@
   z-index: 0;
   opacity: 0;
 }
-.animate-bubble7{
+
+.animate-bubble7 {
   animation: animate-bubble7 1s ease-in;
   animation-delay: .7s;
   opacity: 1;
 }
+
 @keyframes animate-bubble7 {
-  0%,100% {
+
+  0%,
+  100% {
     transform: translate(0);
   }
+
   50% {
     transform: translateY(110px);
   }
 }
+
 .bubble8 {
   position: absolute;
   width: 51px;
@@ -551,19 +595,25 @@
   z-index: 0;
   opacity: 0;
 }
-.animate-bubble8{
+
+.animate-bubble8 {
   animation: animate-bubble8 1s ease-in;
   animation-delay: .7s;
   opacity: 1;
 }
+
 @keyframes animate-bubble8 {
-  0%,100% {
+
+  0%,
+  100% {
     transform: translate(0);
   }
+
   50% {
     transform: translate(34px, 126px);
   }
 }
+
 .bubble9 {
   position: absolute;
   width: 88px;
@@ -575,38 +625,46 @@
   z-index: 0;
   opacity: 0;
 }
-.animate-bubble9{
+
+.animate-bubble9 {
   animation: animate-bubble9 1s ease-in;
   animation-delay: .7s;
   opacity: 1;
 }
+
 @keyframes animate-bubble9 {
-  0%,100% {
+
+  0%,
+  100% {
     transform: translate(0);
   }
+
   50% {
     transform: translate(-114px, -15px);
   }
 }
 
-.background-container-bounce{
+.background-container-bounce {
   width: 1200px;
   height: 528px;
   background-color: #FCDEEC;
   z-index: 1;
   border-radius: 52px;
 }
-.content-home2{
+
+.content-home2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   height: 100%;
 }
+
 .first-content-bubble {
   position: relative;
   top: -6%;
   left: 0%;
 }
+
 .second-content-bubble {
   width: 94%;
   text-align: left;
@@ -614,22 +672,26 @@
   top: 7%;
   height: 75%;
 }
+
 .text-home2-128px {
   font-size: 128px;
   color: #EF60A3;
   margin-bottom: 0px;
 }
+
 .text-home2-48px {
   font-size: 48px;
   color: #EF60A3;
   margin-bottom: 32px;
   margin-top: -60px;
 }
-.text-home2-24px{
+
+.text-home2-24px {
   font-size: 24px;
   color: #2C2E2F;
   margin-bottom: 0px;
 }
+
 .bubble {
   position: absolute;
   width: 128px;
@@ -641,6 +703,7 @@
   animation: animate-bubble 5s ease-in-out infinite;
   z-index: 1;
 }
+
 .bubble1 {
   position: absolute;
   width: 74px;
@@ -653,6 +716,7 @@
   animation-delay: -4s;
   z-index: 1;
 }
+
 .bubble2 {
   position: absolute;
   width: 131px;
@@ -665,6 +729,7 @@
   animation-delay: -2s;
   z-index: 0;
 }
+
 .bubble3 {
   position: absolute;
   width: 40px;
@@ -676,6 +741,7 @@
   animation: animate-bubble 5s ease-in-out infinite;
   z-index: 1;
 }
+
 .bubble4 {
   position: absolute;
   width: 70px;
@@ -688,6 +754,7 @@
   z-index: 1;
   animation-delay: 3s;
 }
+
 .bubble5 {
   position: absolute;
   width: 143px;
@@ -700,11 +767,15 @@
   z-index: 0;
   animation-delay: -5s;
 }
-@keyframes animate-bubble{
-  0%,100%{
+
+@keyframes animate-bubble {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
-  50%{
+
+  50% {
     transform: translateY(-40px);
   }
 }
@@ -718,33 +789,38 @@
   grid-template-columns: auto auto;
   opacity: 0;
 }
-.animate-stayfit-item{
+
+.animate-stayfit-item {
   animation: animate-stayfit-item .7s ease-in;
   opacity: 1;
 }
+
 @keyframes animate-stayfit-item {
   0% {
     transform: scale(0);
   }
+
   100% {
     transform: scale(1);
   }
 }
 
-.grid-item{
+.grid-item {
   width: 580px;
   height: 650px;
   display: flex;
   position: relative;
   text-align: left;
 }
-.first-content-stayfit{
+
+.first-content-stayfit {
   position: absolute;
   width: 90%;
   height: 42%;
   top: 50%;
   left: 10%;
 }
+
 .second-content-stayfit {
   position: absolute;
   width: 90%;
@@ -753,7 +829,7 @@
   left: 14%;
 }
 
-.home3{
+.home3 {
   display: grid;
   grid-template-rows: 1fr 6fr;
   background-size: cover;
@@ -764,32 +840,37 @@
   background-image: url("../../../assets/img/home/background-home3.png");
   padding-top: 120px;
 }
-.card-item-container{
+
+.card-item-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
 }
-.card-item-course{
+
+.card-item-course {
   position: relative;
   width: 390px;
   height: 558px;
   border: 1px solid white;
-  background: linear-gradient(to left top,#fff,#F4A7BC,#fff);
+  background: linear-gradient(to left top, #fff, #F4A7BC, #fff);
   border-radius: 16px;
   margin-left: 40px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
 .card-image {
   position: absolute;
   top: 5%;
   left: 15%;
 }
+
 .card-item-course:nth-child(-n+1):hover {
   transform: scale(1.14);
   background: white;
-  
+
 }
+
 .card-item-course.active {
   transform: scale(1.14);
   background: white;
