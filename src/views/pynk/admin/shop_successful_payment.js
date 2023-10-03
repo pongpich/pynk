@@ -24,6 +24,7 @@ const Shop_successful_payment = (props) => {
   useEffect(() => {
     setOrder(product && JSON.parse(product));
   }, []);
+
   useEffect(() => {
     setOrder_id(window.localStorage.getItem("order_id"));
     setUsername(window.localStorage.getItem("username"));
@@ -35,9 +36,11 @@ const Shop_successful_payment = (props) => {
     setZipcode(window.localStorage.getItem("zipcode"));
     setPhone(window.localStorage.getItem("phone"));
     setPaymentMethod(window.localStorage.getItem("payment_method"));
-
-    Cookies.remove("product_name");
   }, []);
+
+  useEffect(() => {
+    Cookies.remove("product_name");
+  }, [order]);
 
   useEffect(() => {
     window.scrollTo(0, 0); // คำสั่งนี้จะเลื่อนหน้าไปที่ด้านบนสุดของหน้า
