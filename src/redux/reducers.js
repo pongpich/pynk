@@ -10,6 +10,7 @@ import { reducer as dashboardPynk } from "./pynk/post";
 import { reducer as auth } from "./pynk/auth";
 import { reducer as orders } from "./pynk/orders";
 import { reducer as getPynk } from "./pynk/get";
+import { reducer as admin } from "./pynk/admin";
 
 //ของ Bebe Stay Fit
 import { reducer as authUser } from "./stay_fit/auth";
@@ -70,6 +71,7 @@ const reducers = combineReducers({
   getPynk,
   auth,
   orders,
+  admin
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

@@ -28,6 +28,7 @@ import { saga as dashboardPynk } from "./pynk/post";
 import { saga as auth } from "./pynk/auth";
 import { saga as orders } from "./pynk/orders";
 import { saga as getPynk } from "./pynk/get";
+import { saga as admin } from "./pynk/admin";
 
 export default function* rootSaga(getState) {
   yield all([
@@ -59,5 +60,6 @@ export default function* rootSaga(getState) {
     auth(),
     getPynk(),
     orders(),
+    admin()
   ]);
 }

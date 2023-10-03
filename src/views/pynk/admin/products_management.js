@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getProductDetail } from "../../../redux/pynk/get"
+import { getProductDetail } from "../../../redux/pynk/admin"
 
 function ProductsManagement() {
     const dispatch = useDispatch();
-    const status_get_product_detail_zort = useSelector(({ getPynk }) => (getPynk ? getPynk.status_get_product_detail_zort : ""));
-    const product_detail_zort = useSelector(({ getPynk }) => (getPynk ? getPynk.product_detail_zort : ""));
+    const status_get_product_detail_zort = useSelector(({ admin }) => (admin ? admin.status_get_product_detail_zort : ""));
+    const product_detail_zort = useSelector(({ admin }) => (admin ? admin.product_detail_zort : ""));
 
 
     // สร้าง state สำหรับเก็บค่าของ input
