@@ -17,6 +17,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>GB</title>
+  <style>
+    .btn-primary {
+      background-color: #EF60A3;
+    width: 150px !important;
+    margin-left: 45%;
+    /* height: 50px; */
+    border-radius: 50px;
+    color: var(--white);
+    font-size: 18px;
+    font-family: SemiBoldPynk;
+    margin-bottom: 16px;
+    color: #ffff;
+    padding: 12px 64px 12px 64px;
+    text-decoration: none; 
+    }
+    </style>
 </head>
 
 <body>
@@ -27,6 +43,9 @@
   <form id="checkout-form" action="./cc_checkout_pynk.html">
     <div id="gb-form" style="height: 600px;"></div>
   </form>
+  <br>
+  <br>
+  <a  href="/#/shop-payment" class="btn btn-primary" style="">ย้อนกลับ  </a>
   <script src="./js/GBPrimePay.js"></script>
   <script>
     const price = localStorage.getItem('price');
