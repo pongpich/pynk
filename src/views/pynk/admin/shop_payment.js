@@ -64,7 +64,8 @@ const Shop_payment = () => {
 
   // ฟังก์ชันที่จะเรียกเมื่อ radio button ถูกเลือก
   const handleRadioChange = (event) => {
-    setselectedPaymentMethod(event.target.value);
+    /* setselectedPaymentMethod(event.target.value); */
+    setselectedPaymentMethod(event);
 
     console.log("selectedPaymentMethod :", selectedPaymentMethod);
   };
@@ -96,14 +97,21 @@ const Shop_payment = () => {
 
     //เช็คว่า create_order เสร็จ
     if (status_create_order === "success") {
-      const totalSum = order && order.reduce((acc, product) => acc + product.totalprice, 0);
+      const totalSum =
+        order && order.reduce((acc, product) => acc + product.totalprice, 0);
 
       //setค่าต่างๆของสินค้า ใน localStorage เพื่อไปเรียกใช้ที่หน้าจ่ายเงิน
-      window.localStorage.setItem("price", (totalSum && totalSum.toLocaleString()));
+      window.localStorage.setItem(
+        "price",
+        totalSum && totalSum.toLocaleString()
+      );
       window.localStorage.setItem("productName", "pynk");
       window.localStorage.setItem("username", formData.username);
       window.localStorage.setItem("surname", formData.surname);
-      window.localStorage.setItem("name", `${formData.username} ${formData.surname}`);
+      window.localStorage.setItem(
+        "name",
+        `${formData.username} ${formData.surname}`
+      );
       window.localStorage.setItem("email", formData.email);
       window.localStorage.setItem("phone", formData.phone_number);
       window.localStorage.setItem("order_id", current_order_id);
@@ -115,12 +123,13 @@ const Shop_payment = () => {
       window.localStorage.setItem("payment_method", selectedPaymentMethod);
 
       //เช็คช่องทางการจ่ายเงินที่ผู้ใช้เลือก
-      if (selectedPaymentMethod === "qr_code") {
+      if (selectedPaymentMethod == "qr_code") {
         history.push("/qr_checkout_pynk");
       }
-      if (selectedPaymentMethod === "credit_card") {
+      if (selectedPaymentMethod == "credit_card") {
         history.push("/cc_token_pynk");
       }
+      console.log("555");
     }
   }, [status_create_order]);
 
@@ -215,7 +224,8 @@ const Shop_payment = () => {
   };
 
   const handleSubmit = async (event) => {
-    const totalSum = order && order.reduce((acc, product) => acc + product.totalprice, 0);
+    const totalSum =
+      order && order.reduce((acc, product) => acc + product.totalprice, 0);
 
     event.preventDefault();
     const product_list = order;
@@ -238,11 +248,11 @@ const Shop_payment = () => {
       create_order(
         user ? user.user_id : null, //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
         product_list, //product_list,
-        (totalSum && totalSum.toLocaleString()), //total_amount,
+        totalSum && totalSum.toLocaleString(), //total_amount,
         customer_data, //customer_data,
         shipping_address, //shipping_address,
         formData.order_notes, //note
-        selectedPaymentMethod, //payment_method
+        selectedPaymentMethod //payment_method
       )
     );
   };
@@ -641,7 +651,10 @@ const Shop_payment = () => {
               <p className="text-head-order-summary">เลือกวิธีการชำระเงิน</p>
               <div className="mt-32 ">
                 <div className="input-password">
-                  <div className="form-payment">
+                  <div
+                    className="form-payment cursor-pointer"
+                    onClick={() => handleRadioChange("qr_code")}
+                  >
                     <div class="form-check">
                       <input
                         class="form-check-input2"
@@ -649,7 +662,7 @@ const Shop_payment = () => {
                         name="payment_method"
                         value="qr_code"
                         checked={selectedPaymentMethod === "qr_code"} // ตรวจสอบค่าถูกเลือก
-                        onChange={handleRadioChange}
+                        /*  onChange={handleRadioChange} */
                       />
                       <label
                         class="form-check-label label-prompt_pay"
@@ -663,7 +676,10 @@ const Shop_payment = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="form-payment">
+                  <div
+                    className="form-payment cursor-pointer"
+                    onClick={() => handleRadioChange("credit_card")}
+                  >
                     <div class="form-check">
                       <input
                         class="form-check-input2"
@@ -671,7 +687,7 @@ const Shop_payment = () => {
                         name="payment_method"
                         value="credit_card"
                         checked={selectedPaymentMethod === "credit_card"} // ตรวจสอบค่าถูกเลือก
-                        onChange={handleRadioChange}
+                        /*  onChange={handleRadioChange} */
                       />
                       <label
                         class="form-check-label label-prompt_pay"
@@ -836,8 +852,8 @@ const Shop_payment = () => {
             {statusStep == 0
               ? customerInformation()
               : statusStep == 1
-                ? orderOetails()
-                : promptPay()}
+              ? orderOetails()
+              : promptPay()}
           </div>
         </div>
 
