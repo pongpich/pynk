@@ -4,14 +4,12 @@ import { useInView } from "react-intersection-observer";
 import slide1 from "../../assets/img/home/slide1.png";
 import slide2 from "../../assets/img/home/slide2.png";
 import slide3 from "../../assets/img/home/slide3.png";
-import bebe_bubble from "../../assets/img/home/bebe-bubble.png";
+import bebe_bubble from "../../assets/img/home/bebe_bubble.png";
 import fitto4week from "../../assets/img/home/fitto4week.png";
 import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
 import bikini_body_challenge from "../../assets/img/home/bikini_body_challenge.png";
-import frame37409 from "../../assets/img/home/frame37409.png";
-import frame37410 from "../../assets/img/home/frame37410.png";
-import frame37547 from "../../assets/img/home/frame37547.png";
-import frame37549 from "../../assets/img/home/frame37549.png";
+import fit_item from "../../assets/img/home/fit_item.png";
+import fitto_item from "../../assets/img/home/fitto_item.png";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
@@ -19,19 +17,13 @@ const Home = () => {
   const history = useHistory();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isActive, setIsActive] = useState(false);
+  const [hoveredButton, setHoveredButton] = useState(2);
 
   const { ref: textHome2, inView: textHome2ISVisible } = useInView();
   const { ref: bounceContainer, inView: bounceContainerISVisible } =
     useInView();
   const { ref: stayfitItem, inView: statfitItemISVisible } = useInView();
-
-  const handleHover = () => {
-    setIsActive(true);
-  };
-  const handleMouseLeave = () => {
-    setIsActive(false);
-  };
+  const { ref: home3, inView: Home3ISVisible } = useInView();
 
   const images = [slide1, slide2, slide3];
 
@@ -47,6 +39,14 @@ const Home = () => {
     autoSlideIntervalRef.current = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000);
+  };
+
+  const handleButtonHover = (buttonId) => {
+    setHoveredButton(buttonId);
+  };
+
+  const resetHoveredButton = () => {
+    setHoveredButton(2);
   };
 
   useEffect(() => {
@@ -86,12 +86,12 @@ const Home = () => {
             ))}
           </div>
           {currentIndex === 0 ? (
-            <div className="box_text_home1">
-              <p className="text-home1-48px-2">Stay fit with Bebe</p>
-              <p className="text-home1-24px">
+            <div className="box-text-home1">
+              <p className="text48 SemiBoldPynk ef60a3 mb-10px">Stay fit with Bebe</p>
+              <p className="text24 SemiBoldPynk color-4a4a4a">
                 คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตี
               </p>
-              <p className="text-home1-24px">
+              <p className="text24 SemiBoldPynk color-4a4a4a">
                 ความสำเร็จจากนักเรียนกว่าสิบรุ่น
               </p>
 
@@ -115,12 +115,12 @@ const Home = () => {
               </button>
             </div>
           ) : currentIndex === 1 ? (
-            <div className="box_text_home1">
-              <p className="text-home1-48px-2">Let's Challenge</p>
-              <p className="text-home1-24px">
+            <div className="box-text-home1">
+              <p className="text48 SemiBoldPynk ef60a3 mb-10px">Let's Challenge</p>
+              <p className="text24 SemiBoldPynk color-4a4a4a">
                 ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝัน
               </p>
-              <p className="text-home1-24px">
+              <p className="text24 SemiBoldPynk color-4a4a4a">
                 ได้กับไอเทมฮอตฮิตจาก bebe fit routine
               </p>
 
@@ -144,10 +144,10 @@ const Home = () => {
               </button>
             </div>
           ) : (
-            <div className="box_text_home1">
-              <p className="text-home1-48px-2">Shop สุดฟิน!!!</p>
-              <p className="text-home1-24px">รวมดีลเด็ดที่คุณต้องไม่พลาด</p>
-              <p className="text-home1-24px">ช้อปเลย!</p>
+            <div className="box-text-home1">
+              <p className="text48 SemiBoldPynk ef60a3 mb-10px">Shop สุดฟิน!!!</p>
+              <p className="text24 SemiBoldPynk color-4a4a4a">รวมดีลเด็ดที่คุณต้องไม่พลาด</p>
+              <p className="text24 SemiBoldPynk color-4a4a4a">ช้อปเลย!</p>
 
               <button
                 onClick={() => history.push("/questionare")}
@@ -175,7 +175,7 @@ const Home = () => {
       <div className="home2">
         <div
           ref={textHome2}
-          className={`head-home2 ${textHome2ISVisible && "animate-text-home2"}`}
+          className={`head-home2 ${textHome2ISVisible && "animate-open-div"}`}
         >
           <p className="text48 text-align-center SemiBoldPynk">
             บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
@@ -258,7 +258,7 @@ const Home = () => {
           }`}
         >
           <div class="grid-item">
-            <img src={frame37409} alt="" />
+            <img src={fit_item} alt="" />
             <div className="first-content-stayfit">
               <p className="text48 LightPynk">FIT ITEMS</p>
               <p className="text24 RegularPynk">
@@ -270,7 +270,7 @@ const Home = () => {
             </div>
           </div>
           <div class="grid-item">
-            <img src={frame37410} style={{ marginLeft: "50px" }} alt="" />
+            <img src={fitto_item} style={{ marginLeft: "50px" }} alt="" />
             <div className="second-content-stayfit">
               <p className="text48 LightPynk" style={{ marginBottom: "0" }}>
                 FITTO
@@ -290,59 +290,89 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="home3">
+      <div ref={home3} className="home3">
         <div
-          className="text48 SemiBoldPynk white text-align-center"
-          style={{ marginBottom: "100px" }}
+          className={`home3-container ${
+            Home3ISVisible && "animate-open-home3"
+          }`}
         >
-          คอร์สแนะนำที่อยากบอกต่อ
-        </div>
-        <div className="card-item-container">
           <div
-            className={`card-item-course ${isActive ? "active" : ""}`}
-            onMouseEnter={handleHover}
-            onMouseLeave={handleMouseLeave}
+            className="text48 SemiBoldPynk white text-align-center"
+            style={{ marginBottom: "100px" }}
           >
-            <img
-              className="card-image"
-              src={fitto4week}
-              width={273}
-              height={263}
-              alt=""
-            />
+            คอร์สแนะนำที่อยากบอกต่อ
           </div>
-          <div
-            className={`card-item-course ${isActive ? "active" : ""}`}
-          >
-            <img
-              className="card-image"
-              src={stayfit_with_bebe}
-              width={273}
-              height={263}
-              alt=""
-            />
-          </div>
-          <div
-            className={`card-item-course ${isActive ? "active" : ""}`}
-            onMouseEnter={handleHover}
-            onMouseLeave={handleMouseLeave}
-          >
-            <img
-              className="card-image"
-              src={bikini_body_challenge}
-              width={273}
-              height={263}
-              alt=""
-            />
+          <div className="card-item-container">
+            <div
+              className={`card-item-course ${hoveredButton === 1 && "hovered"}`}
+              onMouseEnter={() => handleButtonHover(1)}
+              onMouseLeave={resetHoveredButton}
+            >
+              <img
+                className="card-image"
+                src={fitto4week}
+                width={273}
+                height={263}
+                alt=""
+              />
+              <div className="card-text-box">
+                <p className="SemiBoldPynk text24">
+                  Fitto 4 Week Starter Program
+                </p>
+                <p className="RegularPynk text20">
+                  “Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.
+                </p>
+              </div>
+              <i class={`fa-solid fa-arrow-right fa-xl ${hoveredButton === 1 && "hovered"}`}></i>
+            </div>
+            <div
+              className={`card-item-course ${hoveredButton === 2 && "hovered"}`}
+              onMouseEnter={() => handleButtonHover(2)}
+              onMouseLeave={resetHoveredButton}
+            >
+              <div className="suggestion text24 SemiBoldPynk white">
+                แนะนำ
+              </div>
+              <img
+                className="card-image"
+                src={stayfit_with_bebe}
+                width={273}
+                height={263}
+                alt=""
+              />
+              <div className="card-text-box">
+                <p className="SemiBoldPynk text24">STAY FIT WITH BEBE</p>
+                <p className="RegularPynk text20">
+                  โปรแกรมออกกำลังกาย 8 สัปดาห์ที่ เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ
+                </p>
+              </div>
+              <i class={`fa-solid fa-arrow-right fa-xl ${hoveredButton === 2 && "hovered"}`}></i>
+            </div>
+            <div
+              className={`card-item-course ${hoveredButton === 3 && "hovered"}`}
+              onMouseEnter={() => handleButtonHover(3)}
+              onMouseLeave={resetHoveredButton}
+            >
+              <img
+                className="card-image"
+                src={bikini_body_challenge}
+                width={273}
+                height={263}
+                alt=""
+              />
+              <div className="card-text-box">
+                <p className="SemiBoldPynk text24">Bikini Body Challenge</p>
+                <p className="RegularPynk text20">
+                  “Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.
+                </p>
+              </div>
+              <i class={`fa-solid fa-arrow-right fa-xl ${hoveredButton === 3 && "hovered"}`}></i>
+            </div>
           </div>
         </div>
       </div>
-      <div className="background37399">
-        <img src={frame37547} alt="" className="frame37547" />
-      </div>
-
-      <img src={frame37549} alt="" className="frame37549" />
-
       <Footer />
     </div>
   );
