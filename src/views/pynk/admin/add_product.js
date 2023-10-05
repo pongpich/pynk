@@ -213,6 +213,7 @@ function AddProduct() {
 
                                     <div className='d-flex align-items-center gap-2'>
                                         <input
+                                            className='form-check-input2'
                                             type="radio"
                                             id="no"
                                             name="nutritionalInfo"
@@ -224,6 +225,7 @@ function AddProduct() {
                                     </div>
                                     <div className='d-flex  align-items-center gap-2'>
                                         <input
+                                            className='form-check-input2'
                                             type="radio"
                                             id="yes"
                                             name="nutritionalInfo"
@@ -270,30 +272,38 @@ function AddProduct() {
                                         </tbody>
 
                                         {nutritionalInfoList.map((info, index) => (
-                                            <div key={index}>
+                                            <div key={index} className='mt-3'>
                                                 {`${index + 1}. `}
                                                 <input
+                                                    style={{ width: "auto" }}
                                                     type="text"
                                                     placeholder="ชื่อสารอาหาร"
                                                     value={info.nutrition_name}
                                                     onChange={(event) => handleNutritionalInfoChange(event, index, 'nutrition_name')}
                                                 />
                                                 <input
+                                                    style={{ width: "auto" }}
                                                     type="text"
                                                     placeholder="ปริมาณ"
                                                     value={info.value}
                                                     onChange={(event) => handleNutritionalInfoChange(event, index, 'value')}
                                                 />
                                                 <input
+                                                    style={{ width: "auto" }}
                                                     type="text"
                                                     placeholder="หน่วย"
                                                     value={info.unit}
                                                     onChange={(event) => handleNutritionalInfoChange(event, index, 'unit')}
                                                 />
-                                                <button className='' style={{ width: 80 }} onClick={() => handleRemoveRow(index)}>ลบ</button>
+                                                <button className='btn btn-light' style={{ width: 80, borderWidth: 2, borderColor: "black" }} onClick={() => handleRemoveRow(index)}><i class="fa-solid fa-trash"></i> ลบ</button>
                                             </div>
                                         ))}
-                                        <button className='text-24' style={{ width: 150 }} onClick={handleAddRow}>+ เพิ่มรายการ</button>
+                                        <button
+                                            className='btn btn-light' style={{ width: 150, borderWidth: 2, borderColor: "black" }}
+                                            onClick={handleAddRow}
+                                        >
+                                            <i class="fa-solid fa-plus"></i> เพิ่มรายการ
+                                        </button>
                                     </div>
                                 )}
                             </div>
