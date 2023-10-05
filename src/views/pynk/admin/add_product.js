@@ -135,10 +135,7 @@ function AddProduct() {
     const renderAddProduct = () => {
         return (
             <div>
-                <h1 style={{ color: "white" }}>.</h1>
-                <h1 style={{ color: "white" }}>.</h1>
-
-                <div className='pointer bold text-primary'>{`< สินค้า`}</div>
+                <div className='pointer bold text-primary' onClick={() => history.push("products_management")}>{`< สินค้า`}</div>
                 <h2 className='mb-5'>เพิ่มสินค้าใหม่</h2>
 
                 <div className='text-danger'>** กรอกรหัสสินค้าจากเว็บไซต์ Zort **</div>
@@ -156,7 +153,7 @@ function AddProduct() {
                     msgGetProductFail &&
                     <div>
                         <h1 className='text-danger'><i class="fa-solid fa-xmark"></i> ไม่พบสินค้า</h1>
-                        <div className='text-danger'>โปรดตัวสอบรหัสสินค้าให้ถูกต้อง</div>
+                        <div className='text-danger'>โปรดตรวจสอบรหัสสินค้าให้ถูกต้อง</div>
                     </div>
                 }
 
@@ -293,10 +290,10 @@ function AddProduct() {
                                                     value={info.unit}
                                                     onChange={(event) => handleNutritionalInfoChange(event, index, 'unit')}
                                                 />
-                                                <button className='buy-now' style={{ width: 80 }} onClick={() => handleRemoveRow(index)}>ลบ</button>
+                                                <button className='' style={{ width: 80 }} onClick={() => handleRemoveRow(index)}>ลบ</button>
                                             </div>
                                         ))}
-                                        <button className='buy-now' style={{ width: 150 }} onClick={handleAddRow}>+ เพิ่มชุดใหม่</button>
+                                        <button className='text-24' style={{ width: 150 }} onClick={handleAddRow}>+ เพิ่มรายการ</button>
                                     </div>
                                 )}
                             </div>
@@ -345,7 +342,7 @@ function AddProduct() {
     }
 
     return (
-        <div style={{ padding: 20 }}>
+        <div style={{ padding: 30 }}>
             {renderAddProduct()}
         </div>
     );
