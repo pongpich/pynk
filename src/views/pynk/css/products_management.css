@@ -1,0 +1,31 @@
+.product-table-admin {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .product-table-admin th,
+  .product-table-admin td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .product-table-admin th {
+    background-color: #f2f2f2;
+  }
+  
+  .product-table-admin tbody tr:hover {
+    background-color: #f5f5f5; /* เมื่อชี้ (hover) แถว */
+    cursor: pointer;
+  }
+
+  /* เริ่มต้นด้วยการกำหนดคลาสสำหรับรูปภาพ */
+.image-with-border {
+  border: 2px solid transparent; /* กำหนดขอบเริ่มต้นโปร่งแสง */
+  transition: border-color 0.3s; /* เพื่อทำการเปลี่ยนสีขอบอย่างนุ่มๆ */
+}
+
+/* ใช้ :hover เพื่อกำหนดสไตล์เมื่อชี้ที่รูปภาพ */
+.image-with-border:hover {
+  border-color: pink; /* กำหนดสีขอบเมื่อชี้ที่รูปภาพ */
+}
