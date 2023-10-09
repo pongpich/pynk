@@ -10,6 +10,16 @@ import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
 import bikini_body_challenge from "../../assets/img/home/bikini_body_challenge.png";
 import fit_item from "../../assets/img/home/fit_item.png";
 import fitto_item from "../../assets/img/home/fitto_item.png";
+import star from "../../assets/img/home/star.png";
+import comment1 from "../../assets/img/home/comment1.png";
+import comment2 from "../../assets/img/home/comment2.png";
+import comment3 from "../../assets/img/home/comment3.png";
+import comment4 from "../../assets/img/home/comment4.png";
+import comment5 from "../../assets/img/home/comment5.png";
+import comment6 from "../../assets/img/home/comment6.png";
+import content1 from "../../assets/img/home/content1.png";
+import content2 from "../../assets/img/home/content2.png";
+import content3 from "../../assets/img/home/content3.png";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
@@ -24,6 +34,7 @@ const Home = () => {
     useInView();
   const { ref: stayfitItem, inView: statfitItemISVisible } = useInView();
   const { ref: home3, inView: Home3ISVisible } = useInView();
+  const { ref: home4, inView: Home4ISVisible } = useInView();
 
   const images = [slide1, slide2, slide3];
 
@@ -87,7 +98,9 @@ const Home = () => {
           </div>
           {currentIndex === 0 ? (
             <div className="box-text-home1">
-              <p className="text48 SemiBoldPynk ef60a3 mb-10px">Stay fit with Bebe</p>
+              <p className="text48 SemiBoldPynk ef60a3 mb-10px">
+                Stay fit with Bebe
+              </p>
               <p className="text24 SemiBoldPynk color-4a4a4a">
                 คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตี
               </p>
@@ -116,7 +129,9 @@ const Home = () => {
             </div>
           ) : currentIndex === 1 ? (
             <div className="box-text-home1">
-              <p className="text48 SemiBoldPynk ef60a3 mb-10px">Let's Challenge</p>
+              <p className="text48 SemiBoldPynk ef60a3 mb-10px">
+                Let's Challenge
+              </p>
               <p className="text24 SemiBoldPynk color-4a4a4a">
                 ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝัน
               </p>
@@ -145,8 +160,12 @@ const Home = () => {
             </div>
           ) : (
             <div className="box-text-home1">
-              <p className="text48 SemiBoldPynk ef60a3 mb-10px">Shop สุดฟิน!!!</p>
-              <p className="text24 SemiBoldPynk color-4a4a4a">รวมดีลเด็ดที่คุณต้องไม่พลาด</p>
+              <p className="text48 SemiBoldPynk ef60a3 mb-10px">
+                Shop สุดฟิน!!!
+              </p>
+              <p className="text24 SemiBoldPynk color-4a4a4a">
+                รวมดีลเด็ดที่คุณต้องไม่พลาด
+              </p>
               <p className="text24 SemiBoldPynk color-4a4a4a">ช้อปเลย!</p>
 
               <button
@@ -324,16 +343,18 @@ const Home = () => {
                   typesetting industry.
                 </p>
               </div>
-              <i class={`fa-solid fa-arrow-right fa-xl ${hoveredButton === 1 && "hovered"}`}></i>
+              <i
+                class={`fa-solid fa-arrow-right fa-xl ${
+                  hoveredButton === 1 && "hovered"
+                }`}
+              ></i>
             </div>
             <div
               className={`card-item-course ${hoveredButton === 2 && "hovered"}`}
               onMouseEnter={() => handleButtonHover(2)}
               onMouseLeave={resetHoveredButton}
             >
-              <div className="suggestion text24 SemiBoldPynk white">
-                แนะนำ
-              </div>
+              <div className="suggestion text24 SemiBoldPynk white">แนะนำ</div>
               <img
                 className="card-image"
                 src={stayfit_with_bebe}
@@ -347,7 +368,11 @@ const Home = () => {
                   โปรแกรมออกกำลังกาย 8 สัปดาห์ที่ เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ
                 </p>
               </div>
-              <i class={`fa-solid fa-arrow-right fa-xl ${hoveredButton === 2 && "hovered"}`}></i>
+              <i
+                class={`fa-solid fa-arrow-right fa-xl ${
+                  hoveredButton === 2 && "hovered"
+                }`}
+              ></i>
             </div>
             <div
               className={`card-item-course ${hoveredButton === 3 && "hovered"}`}
@@ -368,8 +393,104 @@ const Home = () => {
                   typesetting industry.
                 </p>
               </div>
-              <i class={`fa-solid fa-arrow-right fa-xl ${hoveredButton === 3 && "hovered"}`}></i>
+              <i
+                class={`fa-solid fa-arrow-right fa-xl ${
+                  hoveredButton === 3 && "hovered"
+                }`}
+              ></i>
             </div>
+          </div>
+        </div>
+      </div>
+      <div ref={home4} className="home4">
+        <div className="home4-container">
+          <div
+            className={`text48 SemiBoldPynk text-align-center ${
+              Home4ISVisible && "animate-open-home4"
+            }`}
+          >
+            เสียงตอบรับจากผู้ใช้บริการ
+            <div className="home-star">
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+            </div>
+          </div>
+
+          <div className="comment-item-container">
+            <div className={Home4ISVisible && "card-comment1"}>
+              <picture>
+                <img src={comment1} alt="" />
+              </picture>
+            </div>
+            <div className={Home4ISVisible && "card-comment2"}>
+              <picture>
+                <img src={comment2} alt="" />
+              </picture>
+            </div>
+            <div className={Home4ISVisible && "card-comment3"}>
+              <picture>
+                <img src={comment3} alt="" />
+              </picture>
+            </div>
+            <div className={Home4ISVisible && "card-comment4"}>
+              <picture>
+                <img src={comment4} alt="" />
+              </picture>
+            </div>
+            <div className={Home4ISVisible && "card-comment5"}>
+              <picture>
+                <img src={comment5} alt="" />
+              </picture>
+            </div>
+            <div className={Home4ISVisible && "card-comment6"}>
+              <picture>
+                <img src={comment6} alt="" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="home5">
+        <div className="text-home5">
+          <p className="text48 SemiBoldPynk mb-0px">
+            เคล็ด (ไม่) ลับ ฉบับอยากแชร์
+          </p>
+          <button
+            className="text18 SemiBoldPynk ef60a3"
+            style={{ alignSelf: "center", backgroundColor: "#fff" }}
+          >
+            ดูเพิ่มเติม
+          </button>
+        </div>
+        <div className="card-container-home5">
+          <div className="card-content-home5">
+            <img src={content1} width={376} height={251} style={{marginBottom:"32px"}} alt=""/>
+            <p className="text24 SemiBoldPynk">Content</p>
+            <p className="text20 RegularPynk">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the </p>
+          </div>
+          <div className="card-content-home5">
+            <img src={content2} width={376} height={251} style={{marginBottom:"32px"}} alt=""/>
+            <p className="text24 SemiBoldPynk">Content</p>
+            <p className="text20 RegularPynk">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the </p>
+          </div>
+          <div className="card-content-home5">
+            <img src={content3} width={376} height={251} style={{marginBottom:"32px"}} alt=""/>
+            <p className="text24 SemiBoldPynk">Content</p>
+            <p className="text20 RegularPynk">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the </p>
           </div>
         </div>
       </div>
