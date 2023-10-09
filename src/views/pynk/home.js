@@ -29,12 +29,21 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredButton, setHoveredButton] = useState(2);
 
-  const { ref: textHome2, inView: textHome2ISVisible } = useInView();
-  const { ref: bounceContainer, inView: bounceContainerISVisible } =
-    useInView();
-  const { ref: stayfitItem, inView: statfitItemISVisible } = useInView();
-  const { ref: home3, inView: Home3ISVisible } = useInView();
-  const { ref: home4, inView: Home4ISVisible } = useInView();
+  const { ref: textHome2, inView: textHome2ISVisible } = useInView({
+    triggerOnce: true,
+  });
+  const { ref: bounceContainer, inView: bounceContainerISVisible } = useInView({
+    triggerOnce: true,
+  });
+  const { ref: stayfitItem, inView: statfitItemISVisible } = useInView({
+    triggerOnce: true,
+  });
+  const { ref: home3, inView: Home3ISVisible } = useInView({
+    triggerOnce: true,
+  });
+  const { ref: home4, inView: Home4ISVisible } = useInView({
+    triggerOnce: true,
+  });
 
   const images = [slide1, slide2, slide3];
 
@@ -478,19 +487,46 @@ const Home = () => {
         </div>
         <div className="card-container-home5">
           <div className="card-content-home5">
-            <img src={content1} width={376} height={251} style={{marginBottom:"32px"}} alt=""/>
+            <img
+              src={content1}
+              width={376}
+              height={251}
+              style={{ marginBottom: "32px" }}
+              alt=""
+            />
             <p className="text24 SemiBoldPynk">Content</p>
-            <p className="text20 RegularPynk">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the </p>
+            <p className="text20 RegularPynk">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the{" "}
+            </p>
           </div>
           <div className="card-content-home5">
-            <img src={content2} width={376} height={251} style={{marginBottom:"32px"}} alt=""/>
+            <img
+              src={content2}
+              width={376}
+              height={251}
+              style={{ marginBottom: "32px" }}
+              alt=""
+            />
             <p className="text24 SemiBoldPynk">Content</p>
-            <p className="text20 RegularPynk">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the </p>
+            <p className="text20 RegularPynk">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the{" "}
+            </p>
           </div>
           <div className="card-content-home5">
-            <img src={content3} width={376} height={251} style={{marginBottom:"32px"}} alt=""/>
+            <img
+              src={content3}
+              width={376}
+              height={251}
+              style={{ marginBottom: "32px" }}
+              alt=""
+            />
             <p className="text24 SemiBoldPynk">Content</p>
-            <p className="text20 RegularPynk">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the </p>
+            <p className="text20 RegularPynk">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the{" "}
+            </p>
           </div>
         </div>
       </div>
