@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../redux/pynk/get"
+import { delete_product } from "../../../redux/pynk/admin"
+
 import "../css/products_management.css";
 
 function ProductsManagement() {
@@ -10,10 +12,36 @@ function ProductsManagement() {
 
     const user = useSelector(({ auth }) => (auth ? auth.user : ""));
     const products_pynk = useSelector(({ getPynk }) => (getPynk ? getPynk.products_pynk : ""));
+    const status_delete_product = useSelector(({ admin }) => (admin ? admin.status_delete_product : ""));
 
     const [productDetailPage, setProductDetailPage] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [focusImg, setFocusImg] = useState(null);
+
+    const [isPopupVisible, setPopupVisible] = useState(false);
+    const showPopup = () => {
+        setPopupVisible(true);
+    };
+
+    const hidePopup = () => {
+        setPopupVisible(false);
+    };
+
+    const handleDelete = () => {
+        // ทำการลบสินค้าที่คุณต้องการที่นี่
+        console.log('ลบสินค้าแล้ว');
+        hidePopup();
+        dispatch(delete_product(
+            selectedProduct.product_id
+        ));
+    };
+
+    useEffect(() => {
+        if (status_delete_product === "success") {
+            dispatch(getProducts());
+            setProductDetailPage(false);
+        }
+    }, [status_delete_product]);
 
     useEffect(() => {
         //เช็คว่าถ้าไม่ใช่ admin ให้เตะออกจากหน้านี้
@@ -83,12 +111,62 @@ function ProductsManagement() {
         );
     };
 
+    const popupConfirmDelete = () => {
+        return (
+            <div className="confirm-delete-product-popup">
+                <div className="confirm-delete-product-popup-content d-flex flex-column">
+                    <div
+                        className="d-flex justify-content-end align-items-center pointer"
+                        style={{ backgroundColor: "#EF60A3", height: 30, paddingRight: 10 }}
+                        onClick={hidePopup}
+                    >
+                        <i style={{ fontSize: 20 }} class="fa-regular fa-circle-xmark"></i>
+                    </div>
+                    <div style={{ padding: 40 }}>
+                        <div className='bold'>คุณแน่ใจหรือไม่ว่าต้องการลบสินค้านี้?</div>
+                    </div>
+
+                    <div className='d-flex justify-content-center  mb-2'>
+                        <button
+                            className='btn btn-light'
+                            style={{ width: 80, height: 40, borderWidth: 1, borderColor: "LightGray", borderRadius: 50 }}
+                            onClick={hidePopup}
+                        >
+                            ยกเลิก
+                        </button>
+                        <button
+                            className='btn'
+                            style={{ width: 80, height: 40, borderWidth: 1, borderColor: "LightGray", backgroundColor: "#EF60A3", borderRadius: 50, color: "white" }}
+                            onClick={handleDelete}
+                        >
+                            ยืนยัน
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     const renderProductDetail = () => {
         const imageList = JSON.parse(selectedProduct && selectedProduct.image_list);
         return (
             <div>
                 <div className='pointer bold text-primary' onClick={() => setProductDetailPage(false)}>{`< สินค้า`}</div>
                 <h2 className='mb-5'>รายละเอียดสินค้า {selectedProduct.product_name}</h2>
+
+                <button
+                    className='btn btn-light'
+                    style={{ width: 80, height: 40, borderWidth: 1, borderColor: "LightGray" }}
+                >
+                    <i class="fa-regular fa-pen-to-square"></i> แก้ไข
+                </button>
+                <button
+                    className='btn btn-light'
+                    style={{ width: 80, height: 40, borderWidth: 1, borderColor: "LightGray" }}
+                    onClick={showPopup}
+                >
+                    <i class="fa-solid fa-trash"></i> ลบ
+                </button>
                 <div className='card'>
                     <div className="d-flex p-3 gap-3">
                         <div style={{}}>
@@ -152,7 +230,7 @@ function ProductsManagement() {
 
     return (
         <div style={{ padding: 30 }}>
-
+            {isPopupVisible && popupConfirmDelete()}
             {
                 productDetailPage ?
                     renderProductDetail()

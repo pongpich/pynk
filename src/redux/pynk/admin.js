@@ -9,9 +9,18 @@ export const types = {
     ADD_PRODUCT: "ADD_PRODUCT",
     ADD_PRODUCT_SUCCESS: "ADD_PRODUCT_SUCCESS",
     ADD_PRODUCT_FAIL: "ADD_PRODUCT_FAIL",
+    DELETE_PRODUCT: "DELETE_PRODUCT",
+    DELETE_PRODUCT_SUCCESS: "DELETE_PRODUCT_SUCCESS",
+    DELETE_PRODUCT_FAIL: "DELETE_PRODUCT_FAIL",
 };
 
-/* ADD_PRODUCT */
+export const getProductDetail = (sku) => ({
+    type: types.GET_PRODUCT_DETAIL,
+    payload: {
+        sku
+    }
+});
+
 export const add_product = (
     product_id,
     product_name,
@@ -36,6 +45,56 @@ export const add_product = (
         detail
     }
 });
+
+export const delete_product = (
+    product_id
+) => ({
+    type: types.DELETE_PRODUCT,
+    payload: {
+        product_id
+    }
+});
+
+
+const deleteProductSagaAsync = async (
+    product_id
+) => {
+    try {
+        const apiResult = await API.post("pynk", "/delete_product", {
+            body: {
+                product_id
+            },
+        });
+        return apiResult;
+    } catch (error) {
+        return { error, messsage: error.message };
+    }
+};
+
+function* deleteProductSaga({ payload }) {
+    const {
+        product_id
+    } = payload;
+
+    try {
+        const apiResult = yield call(
+            deleteProductSagaAsync,
+            product_id
+        );
+
+        if (apiResult.results.message === "success") {
+            yield put({
+                type: types.DELETE_PRODUCT_SUCCESS
+            })
+        }
+    } catch (error) {
+
+        yield put({
+            type: types.DELETE_PRODUCT_FAIL
+        })
+        console.log("error from deleteProductSaga :", error);
+    }
+};
 
 const addProductSagaAsync = async (
     product_id,
@@ -101,25 +160,13 @@ function* addProductSaga({ payload }) {
             })
         }
     } catch (error) {
-        
+
         yield put({
             type: types.ADD_PRODUCT_FAIL
         })
         console.log("error from addProductSaga :", error);
     }
 };
-
-export function* watchAddProductSaga() {
-    yield takeEvery(types.ADD_PRODUCT, addProductSaga);
-};
-
-/* GET_PRODUCT_DETAIL  */
-export const getProductDetail = (sku) => ({
-    type: types.GET_PRODUCT_DETAIL,
-    payload: {
-        sku
-    }
-});
 
 const getProductDetailSagaAsync = async (
     sku
@@ -163,15 +210,25 @@ function* getProductDetailSaga({ payload }) {
     }
 };
 
+
+/* takeEvery Section*/
 export function* watchGetProductDetailSaga() {
     yield takeEvery(types.GET_PRODUCT_DETAIL, getProductDetailSaga);
 };
 
-/* FORK  Section */
+export function* watchAddProductSaga() {
+    yield takeEvery(types.ADD_PRODUCT, addProductSaga);
+};
+
+export function* watchDeleteProductSaga() {
+    yield takeEvery(types.DELETE_PRODUCT, deleteProductSaga);
+};
+
 export function* saga() {
     yield all([
         fork(watchGetProductDetailSaga),
         fork(watchAddProductSaga),
+        fork(watchDeleteProductSaga),
     ]);
 }
 
@@ -180,10 +237,26 @@ const INIT_STATE = {
     product_detail_zort: null,
     status_get_product_detail_zort: "default",
     status_add_product: "default",
+    status_delete_product: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
     switch (action.type) {
+        case types.DELETE_PRODUCT:
+            return {
+                ...state,
+                status_delete_product: "loading",
+            };
+        case types.DELETE_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                status_delete_product: "success",
+            };
+        case types.DELETE_PRODUCT_FAIL:
+            return {
+                ...state,
+                status_delete_product: "fail",
+            };
         case types.ADD_PRODUCT:
             return {
                 ...state,
