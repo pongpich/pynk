@@ -62,6 +62,9 @@ function Admin() {
   const statusLoginAdmin = useSelector(({ auth }) =>
     auth ? auth.statusLoginAdmin : ""
   );
+  const user = useSelector(({ auth }) =>
+    auth ? auth.user : ""
+  );
   
 
   const handleLoginAdmin = () => {
@@ -70,6 +73,15 @@ function Admin() {
 
   useEffect(() => {
     dispatch(clear_status());
+
+    if(user && (user.authorization === "admin")) {
+      history.push("/products_management");
+    }
+
+    if(user && (user.authorization !== "admin")) {
+      history.push("/home");
+    }
+
   }, []);
 
   useEffect(() => {

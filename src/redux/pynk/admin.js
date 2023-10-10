@@ -12,6 +12,9 @@ export const types = {
     DELETE_PRODUCT: "DELETE_PRODUCT",
     DELETE_PRODUCT_SUCCESS: "DELETE_PRODUCT_SUCCESS",
     DELETE_PRODUCT_FAIL: "DELETE_PRODUCT_FAIL",
+    UPDATE_PRODUCT: "UPDATE_PRODUCT",//update_product
+    UPDATE_PRODUCT_SUCCESS: "UPDATE_PRODUCT_SUCCESS",
+    UPDATE_PRODUCT_FAIL: "UPDATE_PRODUCT_FAIL",
 };
 
 export const getProductDetail = (sku) => ({
@@ -54,6 +57,96 @@ export const delete_product = (
         product_id
     }
 });
+
+export const update_product = (
+    product_id,
+    product_name,
+    category,
+    available_stock,
+    image_list,
+    description,
+    nutritional_value,
+    detail
+) => ({
+    type: types.UPDATE_PRODUCT,
+    payload: {
+        product_id,
+        product_name,
+        category,
+        available_stock,
+        image_list,
+        description,
+        nutritional_value,
+        detail
+    }
+});
+
+const updateProductSagaAsync = async (
+    product_id,
+    product_name,
+    category,
+    available_stock,
+    image_list,
+    description,
+    nutritional_value,
+    detail
+) => {
+    try {
+        const apiResult = await API.put("pynk", "/update_product", {
+            body: {
+                product_id,
+                product_name,
+                category,
+                available_stock,
+                image_list,
+                description,
+                nutritional_value,
+                detail
+            },
+        });
+        return apiResult;
+    } catch (error) {
+        return { error, messsage: error.message };
+    }
+};
+
+function* updateProductSaga({ payload }) {
+    const {
+        product_id,
+        product_name,
+        category,
+        available_stock,
+        image_list,
+        description,
+        nutritional_value,
+        detail
+    } = payload;
+
+    try {
+        const apiResult = yield call(
+            updateProductSagaAsync,
+            product_id,
+            product_name,
+            category,
+            available_stock,
+            image_list,
+            description,
+            nutritional_value,
+            detail
+        );
+
+        if (apiResult.results.message === "success") {
+            yield put({
+                type: types.UPDATE_PRODUCT_SUCCESS
+            })
+        }
+    } catch (error) {
+        yield put({
+            type: types.UPDATE_PRODUCT_FAIL
+        })
+        console.log("error from updateProductSaga :", error);
+    }
+};
 
 
 const deleteProductSagaAsync = async (
@@ -224,11 +317,16 @@ export function* watchDeleteProductSaga() {
     yield takeEvery(types.DELETE_PRODUCT, deleteProductSaga);
 };
 
+export function* watchUpdateProductSaga() {
+    yield takeEvery(types.UPDATE_PRODUCT, updateProductSaga);
+};
+
 export function* saga() {
     yield all([
         fork(watchGetProductDetailSaga),
         fork(watchAddProductSaga),
         fork(watchDeleteProductSaga),
+        fork(watchUpdateProductSaga),
     ]);
 }
 
@@ -238,10 +336,26 @@ const INIT_STATE = {
     status_get_product_detail_zort: "default",
     status_add_product: "default",
     status_delete_product: "default",
+    status_update_product: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
     switch (action.type) {
+        case types.UPDATE_PRODUCT:
+            return {
+                ...state,
+                status_update_product: "loading",
+            };
+        case types.UPDATE_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                status_update_product: "success",
+            };
+        case types.UPDATE_PRODUCT_FAIL:
+            return {
+                ...state,
+                status_update_product: "fail",
+            };
         case types.DELETE_PRODUCT:
             return {
                 ...state,
