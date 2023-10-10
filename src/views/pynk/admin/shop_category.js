@@ -163,7 +163,7 @@ const Shop_category = ({ match }) => {
                       </p>
                       <p className="text-center text-slider-hover">
                         ฿{item.price.toLocaleString()}{" "}
-                        <span className="slide-span">฿199 </span>
+                        {/* <span className="slide-span">฿199 </span> */}
                       </p>
 
                       <button
