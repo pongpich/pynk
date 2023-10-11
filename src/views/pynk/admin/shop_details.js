@@ -283,7 +283,10 @@ const Shop_details = ({ match }) => {
       : null
     : null;
 
+  const imageList = JSON.parse(productId && productId.image_list);
+
   return (
+
     <>
       <div className="url-product">
         <Link to="/shop">สินค้า</Link>
@@ -300,40 +303,36 @@ const Shop_details = ({ match }) => {
             <img src={mainImage} className="image-product" />
           </div>
           <div className="row box-image">
-            <div className="box-img mb-3">
-              <img
-                src={productId && productId.image_url}
-                className={`image ${
-                  activeImage === productId && productId.image_url
-                    ? "active"
-                    : ""
-                }`}
-                onClick={() =>
-                  handleImageClick(productId && productId.image_url)
-                }
-              />
-            </div>
-            <div className="box-img mb-3">
-              <img
-                src={picture02}
-                className={`image ${activeImage === picture02 ? "active" : ""}`}
-                onClick={() => handleImageClick(picture02)}
-              />
-            </div>
-            <div className="box-img mb-3">
-              <img
-                src={picture03}
-                className={`image ${activeImage === picture03 ? "active" : ""}`}
-                onClick={() => handleImageClick(picture03)}
-              />
-            </div>
-            <div className="box-img mb-3">
-              <img
-                src={picture04}
-                className={`image ${activeImage === picture04 ? "active" : ""}`}
-                onClick={() => handleImageClick(picture04)}
-              />
-            </div>
+            {
+              (imageList) ?
+                imageList.map((imageUrl, index) => (
+                  <div className="box-img mb-3">
+                    <img
+                      key={index}
+                      alt={`Image ${index}`}
+                      src={imageUrl}
+                      className={`image ${activeImage === productId && productId.image_url ? "active" : ""
+                        }`}
+                      onClick={() =>
+                        handleImageClick(imageUrl)
+                      }
+                    />
+                  </div>
+                ))
+                :
+                <div className="box-img mb-3">
+                  <img
+                    src={productId && productId.image_url}
+                    className={`image ${activeImage === productId && productId.image_url
+                      ? "active"
+                      : ""
+                      }`}
+                    onClick={() =>
+                      handleImageClick(productId && productId.image_url)
+                    }
+                  />
+                </div>
+            }
           </div>
         </div>
         <div className="box-image col-12 col-sm-6  col-md-7  col-lg-7">
@@ -491,7 +490,7 @@ const Shop_details = ({ match }) => {
                   <div
                     key={index}
                     className="box-item-hover cursor-pointer"
-                    /*   onClick={() => seId_order(item.product_id)} */
+                  /*   onClick={() => seId_order(item.product_id)} */
                   >
                     <p className="hot-shop-details">HOT</p>
                     <img src={item.image_url} className="image-slider" />
