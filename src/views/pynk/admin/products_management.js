@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../redux/pynk/get"
 import { delete_product, update_product, clear_status } from "../../../redux/pynk/admin"
+import no_img from "../../../assets/img/pynk/no_image_icon.png"
 
 import "../css/products_management.css";
 
@@ -139,13 +140,13 @@ function ProductsManagement() {
     }
 
     const editPageBackToDeatailPage = () => {
-            //สั่งอัพเดทค่าในหน้ารายละเอียดสินค้า
-            const targetProductId = selectedProduct.product_id;
-            const filteredProduct = products_pynk.filter(product => product.product_id === targetProductId);
-            setSelectedProduct(filteredProduct[0]);
+        //สั่งอัพเดทค่าในหน้ารายละเอียดสินค้า
+        const targetProductId = selectedProduct.product_id;
+        const filteredProduct = products_pynk.filter(product => product.product_id === targetProductId);
+        setSelectedProduct(filteredProduct[0]);
 
-            //สั่งกลับหน้า Detail
-            setEditDetail(false)
+        //สั่งกลับหน้า Detail
+        setEditDetail(false)
     };
 
     useEffect(() => {
@@ -182,9 +183,18 @@ function ProductsManagement() {
                             {
                                 products_pynk &&
                                 products_pynk.map((product, index) => (
+
                                     <tr key={product.product_id} onClick={() => onSelectedProduct(product.product_id)}>
                                         <td>{product.product_id}</td>
-                                        <td>{product.product_name}</td>
+                                        <td>
+                                            {
+                                            product.image_url?
+                                            <img src={product.image_url} width={50} height={50} />  
+                                            :
+                                            <img src={no_img} width={50} height={50} />  
+                                            }
+                                            {` `}{product.product_name}
+                                        </td>
                                         <td>{product.category}</td>
                                         <td>{product.price}</td>
                                         <td>{product.available_stock}</td>
