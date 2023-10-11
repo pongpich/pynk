@@ -3,6 +3,7 @@ import { API } from "aws-amplify";
 
 /* ACTION Section */
 export const types = {
+    CLEAR_STATUS_PRODUCT_MANAGEMENT: "CLEAR_STATUS_PRODUCT_MANAGEMENT",
     GET_PRODUCT_DETAIL: "GET_PRODUCT_DETAIL",
     GET_PRODUCT_DETAIL_SUCCESS: "GET_PRODUCT_DETAIL_SUCCESS",
     GET_PRODUCT_DETAIL_FAIL: "GET_PRODUCT_DETAIL_FAIL",
@@ -16,6 +17,10 @@ export const types = {
     UPDATE_PRODUCT_SUCCESS: "UPDATE_PRODUCT_SUCCESS",
     UPDATE_PRODUCT_FAIL: "UPDATE_PRODUCT_FAIL",
 };
+
+export const clear_status = () => ({
+    type: types.CLEAR_STATUS_PRODUCT_MANAGEMENT
+})
 
 export const getProductDetail = (sku) => ({
     type: types.GET_PRODUCT_DETAIL,
@@ -401,6 +406,10 @@ export function reducer(state = INIT_STATE, action) {
             return {
                 ...state,
                 status_get_product_detail_zort: "fail",
+            };
+        case types.CLEAR_STATUS_PRODUCT_MANAGEMENT:
+            return {
+                INIT_STATE
             };
         default:
             return { ...state };
