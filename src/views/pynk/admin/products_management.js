@@ -174,7 +174,7 @@ function ProductsManagement() {
                             <tr>
                                 <th>รหัสสินค้า</th>
                                 <th>ชื่อสินค้า</th>
-                                <th>ประเภท</th>
+                                <th>หมวดหมู่สินค้า</th>
                                 <th>ราคา</th>
                                 <th>จำนวนสินค้า</th>
                             </tr>
@@ -188,14 +188,21 @@ function ProductsManagement() {
                                         <td>{product.product_id}</td>
                                         <td>
                                             {
-                                            product.image_url?
-                                            <img src={product.image_url} width={50} height={50} />  
-                                            :
-                                            <img src={no_img} width={50} height={50} />  
+                                                product.image_url ?
+                                                    <img src={product.image_url} width={50} height={50} />
+                                                    :
+                                                    <img src={no_img} width={50} height={50} />
                                             }
                                             {` `}{product.product_name}
                                         </td>
-                                        <td>{product.category}</td>
+                                        <td>
+                                            {(product.category === "food_supplement") && "อาหารเสริม"}
+                                            {(product.category === "exercise_equipment") && "อุปกรณ์ออกกำลังกาย"}
+                                            {(product.category === "fitto_plant_protein") && "Fitto Plant Protein"}
+                                            {(product.category === "fitto_pre_workout_fat_burner") && "Fitto Pre-Work Out & Fat Burner"}
+                                            {(product.category === "fitto_drink") && "Fitto Drink"}
+                                            {(product.category === "another") && "อื่นๆ"}
+                                        </td>
                                         <td>{product.price}</td>
                                         <td>{product.available_stock}</td>
                                     </tr>
@@ -309,7 +316,14 @@ function ProductsManagement() {
                             </div>
                             <div className='mb-2'>
                                 <div>หมวดหมู่:</div>
-                                <div className='bold fs-5'>{selectedProduct.category}</div>
+                                <div className='bold fs-5'>
+                                    {(selectedProduct.category === "food_supplement") && "อาหารเสริม"}
+                                    {(selectedProduct.category === "exercise_equipment") && "อุปกรณ์ออกกำลังกาย"}
+                                    {(selectedProduct.category === "fitto_plant_protein") && "Fitto Plant Protein"}
+                                    {(selectedProduct.category === "fitto_pre_workout_fat_burner") && "Fitto Pre-Work Out & Fat Burner"}
+                                    {(selectedProduct.category === "fitto_drink") && "Fitto Drink"}
+                                    {(selectedProduct.category === "another") && "อื่นๆ"}
+                                </div>
                             </div>
                             <div className='mb-2'>
                                 <div>คำอธิบาย:</div>
