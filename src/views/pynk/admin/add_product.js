@@ -99,7 +99,7 @@ function AddProduct() {
     useEffect(() => {
         //เช็คว่าถ้าไม่ใช่ admin ให้เตะออกจากหน้านี้
         if (!user || (user && user.authorization !== "admin")) {
-            history.push("/home");
+            history.push("/admin");
         }
 
         //สั่งคืนค่าป้องกันค่าค้าง

@@ -19,7 +19,7 @@ function ProductsManagement() {
     useEffect(() => {
         //เช็คว่าถ้าไม่ใช่ admin ให้เตะออกจากหน้านี้
         if (!user || (user && user.authorization !== "admin")) {
-            history.push("/home");
+            history.push("/admin");
         }
 
         //สั่งเคลีย status ต่างๆ
@@ -171,7 +171,9 @@ function ProductsManagement() {
     };
 
     useEffect(() => {
-        handleSearch();
+        if (products_pynk) {
+            handleSearch();
+        }
     }, [searchTerm])
 
     const renderProductList = () => {
@@ -209,8 +211,7 @@ function ProductsManagement() {
                         </thead>
                         <tbody>
                             {
-                                products_pynk &&
-                                    (filteredProducts.length > 0) ?
+                                (filteredProducts.length > 0) ?
                                     filteredProducts.map((product, index) => (
 
                                         <tr key={product.product_id} onClick={() => onSelectedProduct(product.product_id)}>
@@ -237,6 +238,7 @@ function ProductsManagement() {
                                         </tr>
                                     ))
                                     :
+                                    products_pynk &&
                                     products_pynk.map((product, index) => (
 
                                         <tr key={product.product_id} onClick={() => onSelectedProduct(product.product_id)}>

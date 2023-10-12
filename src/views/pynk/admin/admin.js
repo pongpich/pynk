@@ -65,7 +65,7 @@ function Admin() {
   const user = useSelector(({ auth }) =>
     auth ? auth.user : ""
   );
-  
+
 
   const handleLoginAdmin = () => {
     dispatch(login_admin(emailAdmin, passwordAdmin));
@@ -74,11 +74,11 @@ function Admin() {
   useEffect(() => {
     dispatch(clear_status());
 
-    if(user && (user.authorization === "admin")) {
+    if (user && (user.authorization === "admin")) {
       history.push("/products_management");
     }
 
-    if(user && (user.authorization !== "admin")) {
+    if (user && (user.authorization !== "admin")) {
       history.push("/home");
     }
 
@@ -96,6 +96,7 @@ function Admin() {
   return (
     <div>
       <div className="login-admin-container">
+        <div className="bold mb-3 card text24 bg-dark text-white">Admin Login</div>
         <div className="input-box">
           <label for="email">
             อีเมลเข้าใช้งาน <span style={{ color: "red" }}>*</span>
