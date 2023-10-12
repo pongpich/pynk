@@ -157,6 +157,23 @@ function ProductsManagement() {
         }
     }, [productDetailPage]);
 
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState([]);
+
+    // ฟังก์ชันค้นหารายการสินค้า
+    const handleSearch = () => {
+        const filtered = products_pynk.filter(
+            product =>
+                product.product_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredProducts(filtered);
+    };
+
+    useEffect(() => {
+        handleSearch();
+    }, [searchTerm])
+
     const renderProductList = () => {
         return (
             <div>
@@ -164,9 +181,20 @@ function ProductsManagement() {
                     <div>
                         <h2 className='bold'>สินค้า</h2>
                         <div>จำนวน {products_pynk ? products_pynk.length : 0} รายการ</div>
+                        <div className='d-flex align-items-center  justify-content-center'>
+                            <input
+                                type="text"
+                                placeholder="ค้นหารายการสินค้า (รหัสสินค้า หรือ ชื่อสินค้า)"
+                                value={searchTerm}
+                                onChange={e => setSearchTerm(e.target.value)}
+                                style={{ width: 500, height: 40 }}
+                            />
+                            <button onClick={handleSearch} className='buy-now' style={{ width: 100 }} ><i class="fa-solid fa-magnifying-glass"></i> ค้นหา</button>
+                        </div>
                     </div>
-                    <button className='buy-now' style={{ width: 150 }} onClick={() => history.push("add_product")}>เพิ่มสินค้าใหม่</button>
+                    <button className='buy-now' style={{ width: 150 }} onClick={() => history.push("add_product")}><i class="fa-solid fa-plus"></i> เพิ่มสินค้าใหม่</button>
                 </div>
+
 
                 <div className='card'>
                     <table class="product-table-admin">
@@ -182,31 +210,58 @@ function ProductsManagement() {
                         <tbody>
                             {
                                 products_pynk &&
-                                products_pynk.map((product, index) => (
+                                    (filteredProducts.length > 0) ?
+                                    filteredProducts.map((product, index) => (
 
-                                    <tr key={product.product_id} onClick={() => onSelectedProduct(product.product_id)}>
-                                        <td>{product.product_id}</td>
-                                        <td>
-                                            {
-                                                product.image_url ?
-                                                    <img src={product.image_url} width={50} height={50} />
-                                                    :
-                                                    <img src={no_img} width={50} height={50} />
-                                            }
-                                            {` `}{product.product_name}
-                                        </td>
-                                        <td>
-                                            {(product.category === "food_supplement") && "อาหารเสริม"}
-                                            {(product.category === "exercise_equipment") && "อุปกรณ์ออกกำลังกาย"}
-                                            {(product.category === "fitto_plant_protein") && "Fitto Plant Protein"}
-                                            {(product.category === "fitto_pre_workout_fat_burner") && "Fitto Pre-Work Out & Fat Burner"}
-                                            {(product.category === "fitto_drink") && "Fitto Drink"}
-                                            {(product.category === "another") && "อื่นๆ"}
-                                        </td>
-                                        <td>{product.price}</td>
-                                        <td>{product.available_stock}</td>
-                                    </tr>
-                                ))
+                                        <tr key={product.product_id} onClick={() => onSelectedProduct(product.product_id)}>
+                                            <td>{product.product_id}</td>
+                                            <td>
+                                                {
+                                                    product.image_url ?
+                                                        <img src={product.image_url} width={50} height={50} />
+                                                        :
+                                                        <img src={no_img} width={50} height={50} />
+                                                }
+                                                {` `}{product.product_name}
+                                            </td>
+                                            <td>
+                                                {(product.category === "food_supplement") && "อาหารเสริม"}
+                                                {(product.category === "exercise_equipment") && "อุปกรณ์ออกกำลังกาย"}
+                                                {(product.category === "fitto_plant_protein") && "Fitto Plant Protein"}
+                                                {(product.category === "fitto_pre_workout_fat_burner") && "Fitto Pre-Work Out & Fat Burner"}
+                                                {(product.category === "fitto_drink") && "Fitto Drink"}
+                                                {(product.category === "another") && "อื่นๆ"}
+                                            </td>
+                                            <td>{product.price}</td>
+                                            <td>{product.available_stock}</td>
+                                        </tr>
+                                    ))
+                                    :
+                                    products_pynk.map((product, index) => (
+
+                                        <tr key={product.product_id} onClick={() => onSelectedProduct(product.product_id)}>
+                                            <td>{product.product_id}</td>
+                                            <td>
+                                                {
+                                                    product.image_url ?
+                                                        <img src={product.image_url} width={50} height={50} />
+                                                        :
+                                                        <img src={no_img} width={50} height={50} />
+                                                }
+                                                {` `}{product.product_name}
+                                            </td>
+                                            <td>
+                                                {(product.category === "food_supplement") && "อาหารเสริม"}
+                                                {(product.category === "exercise_equipment") && "อุปกรณ์ออกกำลังกาย"}
+                                                {(product.category === "fitto_plant_protein") && "Fitto Plant Protein"}
+                                                {(product.category === "fitto_pre_workout_fat_burner") && "Fitto Pre-Work Out & Fat Burner"}
+                                                {(product.category === "fitto_drink") && "Fitto Drink"}
+                                                {(product.category === "another") && "อื่นๆ"}
+                                            </td>
+                                            <td>{product.price}</td>
+                                            <td>{product.available_stock}</td>
+                                        </tr>
+                                    ))
                             }
                         </tbody>
                     </table>

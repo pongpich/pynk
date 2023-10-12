@@ -147,7 +147,7 @@ function AddProduct() {
                         value={inputValue} // ใช้ค่า state เป็นค่า value ของ input
                         onChange={handleInputChange} // เมื่อมีการเปลี่ยนแปลงใน input จะเรียกฟังก์ชั่น handleInputChange
                     />
-                    <button className='buy-now' style={{ height: 50, width: 100, borderRadius: 10 }} onClick={handleSearch}>ค้นหา</button>
+                    <button className='buy-now' style={{ width: 100 }} onClick={handleSearch}><i class="fa-solid fa-magnifying-glass"></i> ค้นหา</button>
                 </div>
                 {
                     msgGetProductFail &&
@@ -318,7 +318,7 @@ function AddProduct() {
                         (status_add_product !== "loading") &&
                         <button
                             className='buy-now'
-                            style={{ height: 55, width: 100, borderRadius: 10 }}
+                            style={{ width: 150 }}
                             onClick={() => onAddProduct(
                                 product_detail_zort.sku, //product_id,
                                 product_detail_zort.name, //product_name,
