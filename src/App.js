@@ -33,6 +33,7 @@ import AddProduct from "./views/pynk/admin/add_product";
 import Shop_category from "./views/pynk/admin/shop_category";
 import HomePlatfrom from "../src/views/platform/login";
 import Questionare from "../src/views/pynk/questionare";
+import profilePynk from "../src/views/pynk/profile";
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -298,7 +299,7 @@ class App extends Component {
               <Link to="home">
                 <img src={logo} alt="vector" />
               </Link>
-              <div className="custom-input ">
+              {/*       <div className="custom-input ">
                 <img
                   src={search_line}
                   className="search-img-icon display-none"
@@ -315,7 +316,7 @@ class App extends Component {
                 className="search_line user-line"
                 onClick={() => this.clikSearchStatus(1)}
                 alt="vector"
-              />
+              /> */}
             </div>
             <div>
               <div className="flex-container">
@@ -347,7 +348,7 @@ class App extends Component {
                     height: 30,
                   }}
                 >
-                  |
+                  {/*     |
                 </h2>
                 <img
                   src={truck_line}
@@ -359,12 +360,10 @@ class App extends Component {
                 <h2
                   style={{
                     color: "#BCCCD6",
-                    /*  marginRight: 16, */
-                    /*  marginLeft: 16, */
                     fontWeight: 10,
                     height: 30,
                   }}
-                >
+                > */}
                   |
                 </h2>
                 <img
@@ -426,26 +425,26 @@ class App extends Component {
                     Stay Fit
                   </a>
 
-                  <a
+                  {/*   <a
                     className="nav-link link-pynk"
                     href="/#"
                     onClick={() => this.props.history.push("/")}
                   >
                     Exclusive Coaching
-                  </a>
+                  </a> */}
                   <a
                     className="nav-link link-pynk"
                     onClick={() => this.props.history.push("/shop")}
                   >
                     ร้านค้า
                   </a>
-                  <a
+                  {/*   <a
                     className="nav-link link-pynk"
                     href="/#"
                     onClick={() => this.props.history.push("/")}
                   >
                     บทความ
-                  </a>
+                  </a> */}
                   {/*  <a class="nav-link" href="#">
                     Disabled
                   </a> */}
@@ -453,7 +452,8 @@ class App extends Component {
               </div>
             </div>
           ) : (
-            <div className="information-box-row3">
+            <></>
+            /*         <div className="information-box-row3">
               <div className="custom-input2">
                 <img
                   src={search_line}
@@ -466,13 +466,14 @@ class App extends Component {
                   placeholder="ค้นหาสินค้า"
                 />
               </div>
+             
               <img
                 src={close_line}
                 className="close_line-icon"
                 onClick={() => this.clikSearchStatus(0)}
                 alt="vector"
               />
-            </div>
+            </div>  */
           )}
         </nav>
       </div>
@@ -579,10 +580,7 @@ class App extends Component {
                   path="/products_management"
                   component={ProductsManagement}
                 />
-                <Route
-                  path="/add_product"
-                  component={AddProduct}
-                />
+                <Route path="/add_product" component={AddProduct} />
                 <Route path="/shop" component={ShopPynk} />
                 <Route path="/shop_details/:id" component={ShopDetailsPynk} />
                 <Route path="/shop-category/:name" component={Shop_category} />
@@ -621,6 +619,7 @@ class App extends Component {
                   component={ShopSuccessfulPaymentPynk}
                 />
                 <Route path="/error-payment" component={ShopErrorPaymentPynk} />
+                <Route path="/profile-pynk" component={profilePynk} />
                 <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />
                 <Route
