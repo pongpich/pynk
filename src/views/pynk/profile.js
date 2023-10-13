@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import colors from "./colors";
 import icon_profile from "../../assets/img/pynk/shop/profile.png";
 import icon_edit from "../../assets/img/pynk/shop/edit.png";
 import icon_exit from "../../assets/img/pynk/shop/exit.png";
 import "./css/profile.css";
 
-export default function profile() {
+const Profile = () => {
+  const [statusManu, setStatusManu] = useState(0);
+  const menuItems = [
+    "ภาพรวมของคุณ",
+    "ภารกิจของคุณ",
+    "แพ็กเกจรายเดือน",
+    "คำสั่งซื้อของฉัน",
+  ];
+
   return (
     <div className="div-profile">
       <div className="head-profile">
@@ -45,10 +53,18 @@ export default function profile() {
 
             <div className="ex3">
               <div className="manu-profile">
-                <p className="manu-name name-active">ภาพรวมของคุณ</p>
-                <p className="manu-name">ภารกิจของคุณ</p>
-                <p className="manu-name">แพ็กเกจรายเดือน</p>
-                <p className="manu-name manu-padding-right">คำสั่งซื้อของฉัน</p>
+                {menuItems &&
+                  menuItems.map((item, index) => (
+                    <p
+                      key={index}
+                      className={`manu-name ${
+                        statusManu === index ? "name-active" : ""
+                      }`}
+                      onClick={() => setStatusManu(index)}
+                    >
+                      {item}
+                    </p>
+                  ))}
               </div>
             </div>
           </div>
@@ -56,4 +72,6 @@ export default function profile() {
       </div>
     </div>
   );
-}
+};
+
+export default Profile;
