@@ -1,0 +1,269 @@
+@media only screen and (max-width: 576px) {
+    .box-profile {
+        margin-top: -165px !important;
+        padding: 0px !important;
+
+    }
+
+    .profile-name {
+        border-radius: 0px !important;
+        padding: 14px 0px 0px 24px !important;
+    }
+
+    .icon-profile {
+        width: 34px !important;
+        height: 34px !important;
+        margin-right: 16px;
+    }
+
+    .btn-profile {
+        display: none;
+    }
+
+    .btn-icon-profile {
+        width: 184px;
+        height: 50px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+    }
+
+    .ex3 {
+        margin-top: 62px !important;
+    }
+
+    .box-profile {
+        margin-top: -165px !important;
+        padding: 0px !important;
+
+    }
+
+    .profile-name {
+        border-radius: 0px !important;
+        padding: 14px 0px 0px 24px !important;
+    }
+
+
+    .bebe-fit {
+        margin-top: 8px;
+        font-size: 16px;
+        font-family: SemiBoldPynk;
+        color: #000000;
+    }
+
+    .username {
+        margin-top: -18px;
+        font-size: 12px;
+        font-family: RegularPynk;
+        color: var(--border);
+    }
+
+    .lv {
+        font-size: 14px;
+        font-family: SemiBoldPynk;
+        color: var(--border);
+    }
+
+    .ex3::-webkit-scrollbar {
+        width: 0.1em;
+    }
+
+    .ex3::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .ex3::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+
+}
+
+
+
+@media only screen and (min-width: 577px) and (max-width: 768px) {
+    .box-profile {
+        margin-top: -129px;
+        width: 100%;
+        padding: 0 4% !important;
+        height: 226px;
+    }
+
+
+
+    .profile-name {
+        padding: 44px 0px 32px 16px !important;
+    }
+
+    .btn-margin-right {
+        margin-right: 8px !important;
+    }
+
+    .btn-margin-right-64 {
+        position: absolute;
+        right: 0;
+        margin-right: 64px;
+        padding-right: 0 !important;
+    }
+
+
+}
+
+@media only screen and (min-width: 577px) {
+    .icon-profile {
+        width: 64px;
+        height: 64px;
+        margin-right: 16px;
+    }
+
+    .bebe-fit {
+        font-size: 32px;
+        font-family: SemiBoldPynk;
+        color: #000000;
+    }
+
+    .username {
+        margin-top: -18px;
+        font-size: 20px;
+        font-family: RegularPynk;
+        color: var(--border);
+    }
+
+    .lv {
+        font-size: 20px;
+        font-family: SemiBoldPynk;
+        color: var(--border);
+    }
+
+    .btn-profile {
+        width: 184px;
+        height: 50px;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--normal-pink);
+        font-size: 16px;
+        font-family: SemiBoldPynk;
+        color: var(--normal-pink);
+    }
+
+    .btn-margin-right-64 {
+        position: absolute;
+        right: 0;
+        margin-right: 64px;
+        padding-right: 24px;
+    }
+
+    .btn-icon-profile {
+        display: none;
+    }
+
+    .manu-profile {
+
+        margin-top: 32px;
+    }
+
+
+}
+
+
+
+
+.div-profile {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(to right, #FFFFFF, #DDDDDD);
+}
+
+.head-profile {
+    height: 200px;
+    width: 100%;
+    /* background: linear-gradient(to right, #FFFFFF, #DDDDDD); */
+    background-color: #FFFFFF;
+    position: relative;
+
+}
+
+.image-head {
+    background-image: url('../../../../src/assets/img/pynk/shop/pynk_Logo_Direction.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.profile-name {
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    padding: 44px 0px 32px 54px;
+}
+
+.box-profile {
+    margin-top: -129px;
+    width: 100%;
+    padding: 0 5%;
+    height: 226px;
+}
+
+.box-image-profile {
+    width: 100%;
+    height: 111px;
+    display: flex;
+
+
+
+}
+
+.div-btn {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.btn-margin-right {
+    margin-right: 16px;
+}
+
+
+
+.icon-edit {
+    width: 24px !important;
+    height: auto;
+    margin-right: 8px;
+}
+
+.manu-name {
+    font-size: 20px;
+    font-family: RegularPynk;
+    color: #ACACAC;
+    margin-right: 32px;
+
+}
+
+.name-active {
+    color: #000000;
+    text-decoration: none;
+    border-bottom: 5px solid #EF60A3;
+    padding-bottom: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.ex3 {
+    width: 93%;
+    overflow-x: auto;
+}
+
+.manu-profile {
+    display: flex;
+    white-space: nowrap;
+}
+
+.manu-padding-right {
+    padding-right: 32px;
+}
