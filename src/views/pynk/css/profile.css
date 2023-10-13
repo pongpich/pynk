@@ -30,7 +30,7 @@
     }
 
     .ex3 {
-        margin-top: 62px !important;
+        margin-top: 30px !important;
     }
 
     .box-profile {
@@ -75,6 +75,10 @@
 
     .ex3::-webkit-scrollbar-thumb {
         background: transparent;
+    }
+
+    .box-profile {
+        height: 195px !important;
     }
 
 }
