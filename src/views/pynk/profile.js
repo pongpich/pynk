@@ -69,13 +69,13 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="box-content row">
-          <div className="col-md-6">
-            <p>ภารกิจชวนพิชิต</p>
-          </div>
-          <div className="col-md-6">
-            <p>เพื่อนของคุณ</p>
-          </div>
+      </div>
+      <div className="box-content row">
+        <div className="col-md-6">
+          <p>ภารกิจชวนพิชิต</p>
+        </div>
+        <div className="col-md-6">
+          <p>เพื่อนของคุณ</p>
         </div>
       </div>
     </div>
