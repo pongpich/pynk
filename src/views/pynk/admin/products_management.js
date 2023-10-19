@@ -14,6 +14,7 @@ function ProductsManagement() {
 
     const user = useSelector(({ auth }) => (auth ? auth.user : ""));
     const products_pynk = useSelector(({ getPynk }) => (getPynk ? getPynk.products_pynk : ""));
+    const status_products_pynk = useSelector(({ getPynk }) => (getPynk ? getPynk.status_products_pynk : ""));
     const status_delete_product = useSelector(({ admin }) => (admin ? admin.status_delete_product : ""));
     const status_update_product = useSelector(({ admin }) => (admin ? admin.status_update_product : ""));
 
@@ -28,6 +29,17 @@ function ProductsManagement() {
 
         dispatch(getProducts());
     }, []);
+
+    useEffect(() => {
+        if (status_products_pynk) {
+            const filtered = products_pynk.filter(
+                product =>
+                    product.product_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    product.product_name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            setFilteredProducts(filtered);
+        }
+    }, [status_products_pynk]);
 
     const [isNutritionalInfoProvided, setIsNutritionalInfoProvided] = useState(false);
     const [nutritionalInfoList, setNutritionalInfoList] = useState([

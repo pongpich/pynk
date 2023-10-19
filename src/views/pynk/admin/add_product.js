@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getProductDetail, add_product } from "../../../redux/pynk/admin"
+import { getProducts } from "../../../redux/pynk/get";
+import { getProductDetail, add_product } from "../../../redux/pynk/admin";
 import { s3Upload } from "../../../helpers/awsLib";
-import no_img from "../../../assets/img/pynk/no_image_icon.png"
+import no_img from "../../../assets/img/pynk/no_image_icon.png";
 import "../css/add_product.css";
 
 function AddProduct() {
@@ -220,6 +221,7 @@ function AddProduct() {
             setShowProductDetail(false);
             setMsgAddProductSuccess(true);
             setMsgAddProductFail2(false);
+            dispatch(getProducts());
         }
         if (status_add_product === "fail") {
             setShowProductDetail(false);
