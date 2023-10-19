@@ -31,7 +31,7 @@ function ProductsManagement() {
     }, []);
 
     useEffect(() => {
-        if (status_products_pynk) {
+        if (status_products_pynk && products_pynk) {
             const filtered = products_pynk.filter(
                 product =>
                     product.product_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
