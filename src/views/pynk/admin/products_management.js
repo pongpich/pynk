@@ -3,7 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../redux/pynk/get"
 import { delete_product, update_product, clear_status } from "../../../redux/pynk/admin"
-import no_img from "../../../assets/img/pynk/no_image_icon.png"
+import no_img from "../../../assets/img/pynk/no_image_icon.png";
+import { s3Upload } from "../../../helpers/awsLib";
 
 import "../css/products_management.css";
 
@@ -58,6 +59,116 @@ function ProductsManagement() {
     const [productDetailPage, setProductDetailPage] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [focusImg, setFocusImg] = useState(null);
+    const initialImages = [
+        { name: 'รูปสินค้าหลัก', img: null },
+        { name: 'รูปภาพ 1', img: null },
+        { name: 'รูปภาพ 2', img: null },
+        { name: 'รูปภาพ 3', img: null },
+        { name: 'รูปภาพ 4', img: null },
+        { name: 'รูปภาพ 5', img: null },
+        { name: 'รูปภาพ 6', img: null },
+        { name: 'รูปภาพ 7', img: null },
+        { name: 'รูปภาพ 8', img: null },
+    ];
+    const [btnUpload, setBtnUpload] = useState(initialImages);
+    const [statusS3Upload, setStatusS3Upload] = useState('default');
+    const [statusDelUpload, setStatusDelUpload] = useState('default');
+
+    const handleImageChange = (e) => {
+        const selectedImages = e.target.files[0];
+
+        var today = new Date();
+        var time = today.getTime();
+        var addPrefix = time;
+        const customPrefixName = `images/pynk_product_thumbnail/${selectedProduct.sku}/${addPrefix}.png`;
+        const urlProductImg = `https://bebe-platform.s3-ap-southeast-1.amazonaws.com/public/${customPrefixName}`;
+        const btnID = e.target.id;
+        setStatusS3Upload("default");
+        onUploadImg(selectedImages, customPrefixName, urlProductImg, btnID);
+    };
+
+    async function onUploadImg(file, customPrefixName, urlProductImg, btnID) {
+        await s3Upload(file, customPrefixName);
+
+        switch (btnID) {
+            case "btnImgUpload0":
+                btnUpload[0].img = urlProductImg;
+                break;
+            case "btnImgUpload1":
+                btnUpload[1].img = urlProductImg;
+                break;
+            case "btnImgUpload2":
+                btnUpload[2].img = urlProductImg;
+                break;
+            case "btnImgUpload3":
+                btnUpload[3].img = urlProductImg;
+                break;
+            case "btnImgUpload4":
+                btnUpload[4].img = urlProductImg;
+                break;
+            case "btnImgUpload5":
+                btnUpload[5].img = urlProductImg;
+                break;
+            case "btnImgUpload6":
+                btnUpload[6].img = urlProductImg;
+                break;
+            case "btnImgUpload7":
+                btnUpload[7].img = urlProductImg;
+                break;
+            case "btnImgUpload8":
+                btnUpload[8].img = urlProductImg;
+                break;
+        }
+
+        setStatusS3Upload("success");
+    }
+
+    useEffect(() => {
+        console.log("statusS3Upload update:", statusS3Upload);
+        console.log("btnUpload:", btnUpload);
+    }, [statusS3Upload]);
+
+
+    function onDeleteImg(index) {
+        console.log("onDeleteImg !!!");
+
+        switch (index) {
+            case 0:
+                btnUpload[0].img = null;
+                break;
+            case 1:
+                btnUpload[1].img = null;
+                break;
+            case 2:
+                btnUpload[2].img = null;
+                break;
+            case 3:
+                btnUpload[3].img = null;
+                break;
+            case 4:
+                btnUpload[4].img = null;
+                break;
+            case 5:
+                btnUpload[5].img = null;
+                break;
+            case 6:
+                btnUpload[6].img = null;
+                break;
+            case 7:
+                btnUpload[7].img = null;
+                break;
+            case 8:
+                btnUpload[8].img = null;
+                break;
+        }
+
+        setStatusDelUpload("success");
+    }
+
+    useEffect(() => {
+        console.log("statusDelUpload update:", statusDelUpload);
+        console.log("btnUpload:", btnUpload);
+    }, [statusDelUpload]);
 
     const [editDetail, setEditDetail] = useState(false);
     const [editDetailForm, setEditDetailForm] = useState({
@@ -308,6 +419,21 @@ function ProductsManagement() {
         )
     }
 
+    async function fetchImages() {
+        const imageUrls = JSON.parse(selectedProduct.image_list);
+        console.log("za selectedProduct :", selectedProduct);
+        let updatedImages = []
+
+        for (let i = 0; i < initialImages.length; i++) {
+            const name = initialImages[i].name;
+            const url = imageUrls[i] ? imageUrls[i] : null;
+            updatedImages.push({ name: name, img: url })
+        }
+
+        console.log("za updatedImages:", updatedImages);
+        setBtnUpload(updatedImages);
+    }
+
     const renderProductDetail = () => {
         const imageList = JSON.parse(selectedProduct && selectedProduct.image_list);
         return (
@@ -318,7 +444,10 @@ function ProductsManagement() {
                 <button
                     className='btn btn-light'
                     style={{ width: 80, height: 40, borderWidth: 1, borderColor: "LightGray" }}
-                    onClick={() => setEditDetail(true)}
+                    onClick={() => {
+                        setEditDetail(true);
+                        fetchImages();
+                    }}
                 >
                     <i class="fa-regular fa-pen-to-square"></i> แก้ไข
                 </button>
@@ -403,20 +532,24 @@ function ProductsManagement() {
         product_name,
         category,
         available_stock,
-        image_list,
         description,
         nutritional_value,
         detail
     ) {
 
-        console.log("image_list :", image_list);
+        let image_list = [];
+        btnUpload.map((item, index) => {
+            if (item.img) {
+                image_list.push(item.img)
+            }
+        });
 
         dispatch(update_product(
             product_id,
             product_name,
             category,
             available_stock,
-            JSON.parse(image_list),
+            image_list,
             description,
             nutritional_value,
             detail
@@ -454,8 +587,8 @@ function ProductsManagement() {
                 <h2 className='mb-5'>แก้ไข - {selectedProduct.product_name}</h2>
 
                 <div className='card'>
-                    <div className="d-flex p-3 gap-3">
-                        <div style={{}}>
+                    <div className="p-3 gap-3">
+                        {/* <div style={{}}>
                             {
                                 (focusImg) ?
                                     <img src={focusImg} width={400} style={{ margin: 2 }} />
@@ -480,6 +613,73 @@ function ProductsManagement() {
                                         <></>
                                 }
                             </div>
+                        </div> */}
+
+                        <p className='text-danger' style={{ position: "absolute" }}>โปรดใส่อย่างน้อย 1 รูป เพื่อใช้เป็นรูปสินค้าหลัก</p>
+                        <div className='d-flex mt-5 gap-3 flex-wrap' style={{}}>
+                            {
+                                btnUpload &&
+                                btnUpload.map((item, index) => (
+                                    <div className="parent-div d-flex flex-column ">
+                                        {
+                                            item.img ?
+                                                <div className="d-flex flex-row-reverse" style={{ position: "relative", top: 20, right: 5 }} >
+                                                    <i className="fa-solid fa-trash pointer" onClick={() => onDeleteImg(index)}></i>
+                                                </div>
+                                                :
+                                                <div className="d-flex flex-row-reverse" style={{ position: "relative", top: 20, right: 5, color: "white" }} >
+                                                    <i className="fa-solid fa-trash" ></i>
+                                                </div>
+                                        }
+
+                                        <div className="top-div border d-flex align-items-center align-items-center justify-content-center" style={{ width: 200 }} >
+                                            {
+                                                item.img ?
+                                                    <img key={index} src={item.img} alt={`Image ${index}`} width={200} />
+                                                    :
+                                                    <img key={index} src={no_img} alt={`Image ${index}`} width={200} />
+                                            }
+                                        </div>
+                                        <div className="bottom-div border d-flex flex-column align-items-center  justify-content-center" style={{ width: 200 }} >
+                                            <p>{item.name}</p>
+                                        </div>
+                                        <input type="file" id={`btnImgUpload${index}`} /* multiple */ onChange={handleImageChange} accept="image" style={{ display: "none" }} />
+                                        {
+                                            (index > 0) ?
+                                                btnUpload[index - 1].img ?
+                                                    <div
+                                                        class="file-upload"
+                                                        onClick={() => {
+                                                            document.getElementById(`btnImgUpload${index}`).click();
+                                                        }}
+                                                    >
+                                                        <label for="myFile center" style={{ width: 200 }}>
+                                                            <i class="fas fa-cloud-upload-alt"></i> เลือกไฟล์
+                                                        </label>
+                                                    </div>
+                                                    :
+                                                    <div
+                                                        class="file-upload"
+                                                    >
+                                                        <label for="myFile center" style={{ width: 200, backgroundColor: "gray", cursor: "auto" }}>
+                                                            <i class="fas fa-cloud-upload-alt"></i> เลือกไฟล์
+                                                        </label>
+                                                    </div>
+                                                :
+                                                <div
+                                                    class="file-upload"
+                                                    onClick={() => {
+                                                        document.getElementById(`btnImgUpload${index}`).click();
+                                                    }}
+                                                >
+                                                    <label for="myFile center" style={{ width: 200 }}>
+                                                        <i class="fas fa-cloud-upload-alt"></i> เลือกไฟล์
+                                                    </label>
+                                                </div>
+                                        }
+                                    </div>
+                                ))
+                            }
                         </div>
                         <div style={{}}>
                             <div className='mb-2'>
@@ -658,7 +858,6 @@ function ProductsManagement() {
                                 editDetailForm.product_name,
                                 editDetailForm.category,
                                 selectedProduct.available_stock,
-                                selectedProduct.image_list,
                                 editDetailForm.description,
                                 nutritionalInfoList,
                                 editDetailForm.detail
