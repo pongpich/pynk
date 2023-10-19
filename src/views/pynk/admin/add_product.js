@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductDetail, add_product } from "../../../redux/pynk/admin"
+import { s3Upload } from "../../../helpers/awsLib";
+import no_img from "../../../assets/img/pynk/no_image_icon.png"
+import "../css/add_product.css";
 
 function AddProduct() {
     const history = useHistory();
@@ -19,7 +22,119 @@ function AddProduct() {
     const [showProductDetail, setShowProductDetail] = useState(false);
     const [msgAddProductSuccess, setMsgAddProductSuccess] = useState(false);
     const [msgAddProductFail, setMsgAddProductFail] = useState(false);
+    const [msgAddProductFail2, setMsgAddProductFail2] = useState(false);
     const [msgGetProductFail, setMsgGetProductFail] = useState(false);
+
+    const initialImages = [
+        { name: 'รูปสินค้าหลัก', img: null },
+        { name: 'รูปภาพ 1', img: null },
+        { name: 'รูปภาพ 2', img: null },
+        { name: 'รูปภาพ 3', img: null },
+        { name: 'รูปภาพ 4', img: null },
+        { name: 'รูปภาพ 5', img: null },
+        { name: 'รูปภาพ 6', img: null },
+        { name: 'รูปภาพ 7', img: null },
+        { name: 'รูปภาพ 8', img: null },
+    ];
+    const [btnUpload, setBtnUpload] = useState(initialImages);
+    const [statusS3Upload, setStatusS3Upload] = useState('default');
+    const [statusDelUpload, setStatusDelUpload] = useState('default');
+
+    const handleImageChange = (e) => {
+        const selectedImages = e.target.files[0];
+
+        var today = new Date();
+        var time = today.getTime();
+        var addPrefix = time;
+        const customPrefixName = `images/pynk_product_thumbnail/${product_detail_zort.sku}/${addPrefix}.png`;
+        const urlProductImg = `https://bebe-platform.s3-ap-southeast-1.amazonaws.com/public/${customPrefixName}`;
+        const btnID = e.target.id;
+        setStatusS3Upload("default");
+        onUploadImg(selectedImages, customPrefixName, urlProductImg, btnID);
+    };
+
+    async function onUploadImg(file, customPrefixName, urlProductImg, btnID) {
+        await s3Upload(file, customPrefixName);
+
+        switch (btnID) {
+            case "btnImgUpload0":
+                btnUpload[0].img = urlProductImg;
+                break;
+            case "btnImgUpload1":
+                btnUpload[1].img = urlProductImg;
+                break;
+            case "btnImgUpload2":
+                btnUpload[2].img = urlProductImg;
+                break;
+            case "btnImgUpload3":
+                btnUpload[3].img = urlProductImg;
+                break;
+            case "btnImgUpload4":
+                btnUpload[4].img = urlProductImg;
+                break;
+            case "btnImgUpload5":
+                btnUpload[5].img = urlProductImg;
+                break;
+            case "btnImgUpload6":
+                btnUpload[6].img = urlProductImg;
+                break;
+            case "btnImgUpload7":
+                btnUpload[7].img = urlProductImg;
+                break;
+            case "btnImgUpload8":
+                btnUpload[8].img = urlProductImg;
+                break;
+        }
+
+        setStatusS3Upload("success");
+    }
+
+    useEffect(() => {
+        console.log("statusS3Upload update:", statusS3Upload);
+        console.log("btnUpload:", btnUpload);
+    }, [statusS3Upload]);
+
+
+    function onDeleteImg(index) {
+        console.log("onDeleteImg !!!");
+
+        switch (index) {
+            case 0:
+                btnUpload[0].img = null;
+                break;
+            case 1:
+                btnUpload[1].img = null;
+                break;
+            case 2:
+                btnUpload[2].img = null;
+                break;
+            case 3:
+                btnUpload[3].img = null;
+                break;
+            case 4:
+                btnUpload[4].img = null;
+                break;
+            case 5:
+                btnUpload[5].img = null;
+                break;
+            case 6:
+                btnUpload[6].img = null;
+                break;
+            case 7:
+                btnUpload[7].img = null;
+                break;
+            case 8:
+                btnUpload[8].img = null;
+                break;
+        }
+
+        setStatusDelUpload("success");
+    }
+
+    useEffect(() => {
+        console.log("statusDelUpload update:", statusDelUpload);
+        console.log("btnUpload:", btnUpload);
+    }, [statusDelUpload]);
 
     const [nutritionalInfoList, setNutritionalInfoList] = useState([
         { nutrition_name: '', value: '', unit: '' },
@@ -67,16 +182,31 @@ function AddProduct() {
         //สั่งเคลียค่า status ต่างๆ ตอนจังหวะกำลังค้นหาข้อมูล
         setMsgAddProductSuccess(false);
         setMsgAddProductFail(false);
+        setMsgAddProductFail2(false);
         setMsgGetProductFail(false);
 
         //เรียกใช้ API
         dispatch(getProductDetail(inputValue));
     };
 
+    async function fetchImages() {
+        const imageUrls = product_detail_zort && product_detail_zort.imageList;
+        let updatedImages = []
+
+        for (let i = 0; i < initialImages.length; i++) {
+            const name = initialImages[i].name;
+            const url = imageUrls[i] ? imageUrls[i] : null;
+            updatedImages.push({ name: name, img: url })
+        }
+
+        setBtnUpload(updatedImages);
+    }
+
     useEffect(() => {
         //ถ้าดึงข้อมูลสินค้าจาก Zort สำเร็จให้โชว์รายละเอียดสินค้า
         if (status_get_product_detail_zort === "success") {
             setShowProductDetail(true);
+            fetchImages();
         }
         //ถ้าดึงข้อมูลสินค้าจาก Zort ไม่สำเร็จให้โชว์ข้อความ Error
         if (status_get_product_detail_zort === "fail") {
@@ -89,6 +219,7 @@ function AddProduct() {
         if (status_add_product === "success") {
             setShowProductDetail(false);
             setMsgAddProductSuccess(true);
+            setMsgAddProductFail2(false);
         }
         if (status_add_product === "fail") {
             setShowProductDetail(false);
@@ -106,6 +237,7 @@ function AddProduct() {
         setShowProductDetail(false);
         setMsgAddProductSuccess(false);
         setMsgAddProductFail(false);
+        setMsgAddProductFail2(false);
     }, []);
 
     function onAddProduct(
@@ -114,25 +246,38 @@ function AddProduct() {
         category,
         price,
         available_stock,
-        image_list,
         description,
         nutritional_value,
         detail
     ) {
-        dispatch(add_product(
-            product_id,
-            product_name,
-            category,
-            price,
-            available_stock,
-            image_list,
-            description,
-            nutritional_value,
-            detail
-        ));
+
+        let image_list = [];
+        btnUpload.map((item, index) => {
+            if (item.img) {
+                image_list.push(item.img)
+            }
+        });
+
+        if (image_list.length > 0) {
+            dispatch(add_product(
+                product_id,
+                product_name,
+                category,
+                price,
+                available_stock,
+                image_list,
+                description,
+                nutritional_value,
+                detail
+            ));
+        } else {
+            console.log("fail Add");
+            setMsgAddProductFail2(true);
+        }
     };
 
     const renderAddProduct = () => {
+
         return (
             <div>
                 <div className='pointer bold text-primary' onClick={() => history.push("products_management")}>{`< สินค้า`}</div>
@@ -147,7 +292,10 @@ function AddProduct() {
                         value={inputValue} // ใช้ค่า state เป็นค่า value ของ input
                         onChange={handleInputChange} // เมื่อมีการเปลี่ยนแปลงใน input จะเรียกฟังก์ชั่น handleInputChange
                     />
-                    <button className='buy-now' style={{ width: 100 }} onClick={handleSearch}><i class="fa-solid fa-magnifying-glass"></i> ค้นหา</button>
+                    {
+                        (status_get_product_detail_zort !== "loading") &&
+                        <button className='buy-now' style={{ width: 100 }} onClick={handleSearch}><i class="fa-solid fa-magnifying-glass"></i> ค้นหา</button>
+                    }
                 </div>
                 {
                     msgGetProductFail &&
@@ -160,16 +308,74 @@ function AddProduct() {
                 {
                     showProductDetail ?
                         <div className='card' style={{ padding: 20 }}>
-                            <div className='d-flex mt-5 gap-3'>
+
+                            <div className='text-danger'>โปรดใส่อย่างน้อย 1 รูป เพื่อใช้เป็นรูปสินค้าหลัก</div>
+                            <div className='d-flex mt-5 gap-3 flex-wrap'>
                                 {
-                                    (product_detail_zort && product_detail_zort.imageList) ?
-                                        product_detail_zort.imageList.map((imageUrl, index) => (
-                                            <img key={index} src={imageUrl} alt={`Image ${index}`} width={200} style={{ margin: 2 }} />
-                                        ))
-                                        :
-                                        <></>
+                                    btnUpload &&
+                                    btnUpload.map((item, index) => (
+                                        <div className="parent-div d-flex flex-column ">
+                                            {
+                                                item.img ?
+                                                    <div className="d-flex flex-row-reverse" style={{ position: "relative", top: 20, right: 5 }} >
+                                                        <i className="fa-solid fa-trash pointer" onClick={() => onDeleteImg(index)}></i>
+                                                    </div>
+                                                    :
+                                                    <div className="d-flex flex-row-reverse" style={{ position: "relative", top: 20, right: 5, color: "white" }} >
+                                                        <i className="fa-solid fa-trash" ></i>
+                                                    </div>
+                                            }
+
+                                            <div className="top-div border d-flex align-items-center align-items-center justify-content-center" style={{ width: 200 }} >
+                                                {
+                                                    item.img ?
+                                                        <img key={index} src={item.img} alt={`Image ${index}`} width={200} />
+                                                        :
+                                                        <img key={index} src={no_img} alt={`Image ${index}`} width={200} />
+                                                }
+                                            </div>
+                                            <div className="bottom-div border d-flex flex-column align-items-center  justify-content-center" style={{ width: 200 }} >
+                                                <p>{item.name}</p>
+                                            </div>
+                                            <input type="file" id={`btnImgUpload${index}`} /* multiple */ onChange={handleImageChange} accept="image" style={{ display: "none" }} />
+                                            {
+                                                (index > 0) ?
+                                                    btnUpload[index - 1].img ?
+                                                        <div
+                                                            class="file-upload"
+                                                            onClick={() => {
+                                                                document.getElementById(`btnImgUpload${index}`).click();
+                                                            }}
+                                                        >
+                                                            <label for="myFile center" style={{ width: 200 }}>
+                                                                <i class="fas fa-cloud-upload-alt"></i> เลือกไฟล์
+                                                            </label>
+                                                        </div>
+                                                        :
+                                                        <div
+                                                            class="file-upload"
+                                                        >
+                                                            <label for="myFile center" style={{ width: 200, backgroundColor: "gray", cursor: "auto" }}>
+                                                                <i class="fas fa-cloud-upload-alt"></i> เลือกไฟล์
+                                                            </label>
+                                                        </div>
+                                                    :
+                                                    <div
+                                                        class="file-upload"
+                                                        onClick={() => {
+                                                            document.getElementById(`btnImgUpload${index}`).click();
+                                                        }}
+                                                    >
+                                                        <label for="myFile center" style={{ width: 200 }}>
+                                                            <i class="fas fa-cloud-upload-alt"></i> เลือกไฟล์
+                                                        </label>
+                                                    </div>
+                                            }
+                                        </div>
+                                    ))
                                 }
                             </div>
+
                             <div className='mt-5'><span className='bold'>ชื่อสินค้า:</span> {product_detail_zort && product_detail_zort.name}</div>
                             <div><span className='bold'>ราคา:</span> {product_detail_zort && product_detail_zort.sellprice} บาท</div>
                             <div><span className='bold'>จำนวนคงเหลือ:</span> {product_detail_zort && product_detail_zort.availablestock}</div>
@@ -325,7 +531,6 @@ function AddProduct() {
                                 selectedCategory, //category,
                                 product_detail_zort.sellprice, //price,
                                 product_detail_zort.availablestock, //available_stock,
-                                product_detail_zort.imageList, //image_list,
                                 description, //description,
                                 nutritionalInfoList, //nutritional_value,
                                 detail, //detail
@@ -345,6 +550,13 @@ function AddProduct() {
                     <div>
                         <h1 className='text-danger'><i class="fa-solid fa-xmark"></i> เพิ่มสินค้าไม่สำเร็จ</h1>
                         <div className='text-danger'>หากมีรหัสสินค้านี้อยู่แล้วในระบบ ไม่สามารถเพิ่มสินค้าซ้ำได้</div>
+                    </div>
+                }
+                {
+                    msgAddProductFail2 &&
+                    <div>
+                        <h1 className='text-danger'><i class="fa-solid fa-xmark"></i> เพิ่มสินค้าไม่สำเร็จ</h1>
+                        <div className='text-danger'>กรุณาใส่รูปภาพสินค้าอย่างน้อย 1 รูป</div>
                     </div>
                 }
             </div>
