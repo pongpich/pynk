@@ -6,6 +6,8 @@ import icon_exit from "../../assets/img/pynk/shop/exit.png";
 import rectangle_86 from "../../assets/img/pynk/shop/Rectangle-86.png";
 import rectangle_87 from "../../assets/img/pynk/shop/Rectangle-87.png";
 import rectangle_88 from "../../assets/img/pynk/shop/Rectangle-88.png";
+import arrowRight from "../../assets/img/pynk/shop/arrow-right-s-line.png";
+import Group from "../../assets/img/pynk/shop/Group.png";
 import "./css/profile.css";
 
 const Profile = () => {
@@ -169,6 +171,20 @@ const Profile = () => {
             </p>
             <div className="box-image-friend">
               <button className="btn-content-participate">เพิ่มเพื่อน</button>
+            </div>
+          </div>
+          <div className="box-friend-input">
+            {/* <input
+              type="text"
+              className="form-control form-search2 form-border"
+              placeholder="ค้นหาเพื่อนเพิ่มเติม"
+            /> */}
+            <div className="more-friends">
+              <div>
+                <img src={Group} className="icon-Group" />
+                <span className="span-Group">ค้นหาเพื่อนเพิ่มเติม</span>
+              </div>
+              <img src={arrowRight} className="icon-Group" />
             </div>
           </div>
         </div>
