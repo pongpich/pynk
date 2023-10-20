@@ -74,7 +74,7 @@ const Profile = () => {
         </div>
       </div>
       <div className="box-content row">
-        <div className=" col-sm-12 col-md-8 col-lg-8">
+        <div className=" col-sm-12 col-md-8 col-lg-8 mb-4">
           <p className="hand-name">ภารกิจชวนพิชิต</p>
           <div className="content-all">
             <div class="row mb-3">
@@ -156,8 +156,21 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-12 col-md-4 col-lg-4">
+        <div className="col-sm-12 col-md-4 col-lg-4 mb-4">
           <p className="hand-name">เพื่อนของคุณ</p>
+
+          <div className="box-friend">
+            <div className="box-image-friend">
+              <img src={icon_profile} className="icon-profile" />
+            </div>
+            <p className="start-getting">มาเริ่มทำความรู้จักคนๆ อื่นกัน</p>
+            <p className="exercise-will-be">
+              การออกกำลังกายจะสนุกยิ่งขึ้น เมื่อเรามีเพื่อนๆ อยู่ด้วยกัน
+            </p>
+            <div className="box-image-friend">
+              <button className="btn-content-participate">เพิ่มเพื่อน</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
