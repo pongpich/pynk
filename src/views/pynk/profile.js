@@ -3,6 +3,9 @@ import colors from "./colors";
 import icon_profile from "../../assets/img/pynk/shop/profile.png";
 import icon_edit from "../../assets/img/pynk/shop/edit.png";
 import icon_exit from "../../assets/img/pynk/shop/exit.png";
+import rectangle_86 from "../../assets/img/pynk/shop/Rectangle-86.png";
+import rectangle_87 from "../../assets/img/pynk/shop/Rectangle-87.png";
+import rectangle_88 from "../../assets/img/pynk/shop/Rectangle-88.png";
 import "./css/profile.css";
 
 const Profile = () => {
@@ -71,11 +74,90 @@ const Profile = () => {
         </div>
       </div>
       <div className="box-content row">
-        <div className="col-md-6">
-          <p>ภารกิจชวนพิชิต</p>
+        <div className=" col-sm-12 col-md-8 col-lg-8">
+          <p className="hand-name">ภารกิจชวนพิชิต</p>
+          <div className="content-all">
+            <div class="row mb-3">
+              <div class="col-4 col-sm-4 col-md-3 col-lg-3">
+                {" "}
+                <img src={rectangle_86} className="icon-rectangle" />
+              </div>
+              <div class="col-8 col-sm-8 col-md-9 col-lg-9 padding-left">
+                <div class="row">
+                  <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
+                    <p className="still-more-left">เหลืออีก 200 ที่</p>
+                  </div>
+                  <div class="col-sm-12 col-md-8 col-lg-8 order-sm-1 order-md-1 order-lg-1">
+                    <p className="head-text">Fitto 4 Week Starter Program </p>
+                    <p className="text-content">
+                      Details ChallengeDetails ChallengeDetails ChallengeDetails
+                      ChallengeDetails ChallengeDetails
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="div-btn col-sm-12 col-md-12 col-lg-3 "></div>
+              <div className="div-btn col-sm-12 col-md-12 col-lg-9 mt-pra">
+                <button className="btn-content-participate">เข้าร่วม</button>
+                <button className="btn-content-details">รายละเอียด</button>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-4 col-sm-4 col-md-3 col-lg-3">
+                {" "}
+                <img src={rectangle_87} className="icon-rectangle" />
+              </div>
+              <div class="col-8 col-sm-8 col-md-9 col-lg-9 padding-left">
+                <div class="row">
+                  <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
+                    <p className="still-more-left">เหลืออีก 200 ที่</p>
+                  </div>
+                  <div class="col-sm-12 col-md-8 col-lg-8 order-sm-1 order-md-1 order-lg-1">
+                    <p className="head-text">Fitto 4 Week Starter Program </p>
+                    <p className="text-content">
+                      Details ChallengeDetails ChallengeDetails ChallengeDetails
+                      ChallengeDetails ChallengeDetails
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="div-btn col-sm-12 col-md-12 col-lg-3 "></div>
+              <div className="div-btn col-sm-12 col-md-12 col-lg-9 mt-pra">
+                <button className="btn-content-participate">เข้าร่วม</button>
+                <button className="btn-content-details">รายละเอียด</button>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-4 col-sm-4 col-md-3 col-lg-3">
+                {" "}
+                <img src={rectangle_88} className="icon-rectangle" />
+              </div>
+              <div class="col-8 col-sm-8 col-md-9 col-lg-9 padding-left">
+                <div class="row">
+                  <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
+                    <p className="still-more-left">เหลืออีก 200 ที่</p>
+                  </div>
+                  <div class="col-sm-12 col-md-8 col-lg-8 order-sm-1 order-md-1 order-lg-1">
+                    <p className="head-text">Fitto 4 Week Starter Program </p>
+                    <p className="text-content">
+                      Details ChallengeDetails ChallengeDetails ChallengeDetails
+                      ChallengeDetails ChallengeDetails
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="div-btn col-sm-12 col-md-12 col-lg-3 "></div>
+              <div className="div-btn col-sm-12 col-md-12 col-lg-9 mt-pra">
+                <button className="btn-content-participate">เข้าร่วม</button>
+                <button className="btn-content-details">รายละเอียด</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="col-md-6">
-          <p>เพื่อนของคุณ</p>
+        <div className="col-sm-12 col-md-4 col-lg-4">
+          <p className="hand-name">เพื่อนของคุณ</p>
         </div>
       </div>
     </div>

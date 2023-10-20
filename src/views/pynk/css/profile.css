@@ -71,6 +71,54 @@
         height: 195px !important;
     }
 
+    .icon-rectangle {
+        width: 96px !important;
+        height: 96px !important;
+
+    }
+
+    .content-text {
+        margin-left: 8px !important;
+        width: 150px !important;
+        height: 100%;
+    }
+
+    .each-content {
+        height: 177px !important;
+    }
+
+    .head-text {
+        font-size: 14px !important;
+    }
+
+    .text-content {
+        font-size: 9px !important;
+
+    }
+
+
+    .btn-content-participate {
+        width: 119px !important;
+        height: 44px !important;
+    }
+
+    .btn-content-details {
+        width: 119px !important;
+        height: 44px !important;
+    }
+
+    .btn-center {
+        margin-top: 0px !important;
+        margin-left: -16px !important;
+    }
+
+    .still-more-left {
+
+        text-align: left !important;
+
+    }
+
+
 }
 
 @media only screen and (max-width: 767px) {
@@ -87,6 +135,7 @@
     .btn-profile {
         display: none !important;
     }
+
 
 
 }
@@ -121,7 +170,14 @@
 
 }
 
+
 @media only screen and (min-width: 577px) {
+
+    .btn-center {
+        margin-top: -60px;
+        margin-left: 200px;
+    }
+
     .icon-profile {
         width: 64px;
         height: 64px;
@@ -179,13 +235,31 @@
 
 }
 
+@media only screen and (min-width:992px) {
+    .mt-pra {
+        margin-top: -50px;
+    }
+}
+
+.content-text {
+    margin-left: 16px;
+    max-width: 100%;
+    /* กำหนดความกว้างสูงสุดเป็น 100% ของพื้นที่ให้เลย */
+    width: auto;
+    /* ให้ความกว้างเป็นอัตโนมัติเพื่อย่อลงตามขนาดหน้าจอ */
+    height: 100%;
+}
+
+
 
 
 
 .div-profile {
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    background: linear-gradient(to right, #FFFFFF, #DDDDDD);
+
+    background-image: linear-gradient(#FFFFFF, #DDDDDD);
+
 }
 
 .head-profile {
@@ -241,6 +315,10 @@
     margin-right: 16px;
 }
 
+.padding-left {
+    padding-left: 16px;
+}
+
 
 
 .icon-edit {
@@ -282,7 +360,84 @@
 }
 
 .box-content {
+    margin: 164px 5% 0px 5%;
+}
 
-    margin: 64px 5% 0px 5%;
+.hand-name {
+    font-size: 32px;
+    font-family: SemiBoldPynk;
+    color: #4F4F4F;
+    margin-bottom: 32px;
+}
+
+.content-all {
+    padding: 32px 34px;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+}
+
+.each-content {
+    width: 100%;
+    height: 252px;
+}
+
+.icon-rectangle {
+    width: 100%;
+    height: auto;
+    max-width: 193px;
+    max-height: 193px;
+}
+
+
+
+.head-text {
+    margin: 0px;
+    font-size: 24px;
+    font-family: SemiBoldPynk;
+    color: #4F4F4F;
+
+}
+
+.text-content {
+    font-size: 20px;
+    font-family: RegularPynk;
+    color: #4F4F4F;
+
+}
+
+.btn-content-participate {
+    width: 149px;
+    height: 50px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--normal-pink);
+    font-size: 16px;
+    font-family: SemiBoldPynk;
+    color: #FFFFFF;
+}
+
+.btn-content-details {
+    width: 149px;
+    height: 50px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--normal-pink);
+    font-size: 16px;
+    font-family: SemiBoldPynk;
+    color: var(--normal-pink);
+    background-color: #FFFFFF;
+}
+
+.still-more-left {
+    color: #960051;
+    font-size: 12px;
+    font-family: SemiBoldPynk;
+    text-align: end;
 
 }
