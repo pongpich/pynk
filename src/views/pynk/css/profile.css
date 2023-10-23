@@ -125,6 +125,29 @@
     .box-friend-input {
         margin-left: 0 !important;
     }
+
+
+    .box-item-you {
+        width: 103px !important;
+        height: 142px !important;
+    }
+
+    .box-item-img {
+        width: 96px !important;
+        height: 96px !important;
+    }
+
+    .text-milk-tea {
+        margin-top: 16px;
+        font-family: RegularPynk;
+        font-size: 9px !important;
+        color: #4A4A4A;
+    }
+
+    .product-item {
+        width: 82px !important;
+        height: 73px !important;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -142,7 +165,15 @@
         display: none !important;
     }
 
+    .content-all-2 {
+        padding-left: 0px !important;
 
+        position: relative;
+    }
+
+    .content-all-2 {
+        height: 210px !important;
+    }
 
 }
 
@@ -484,7 +515,7 @@
     margin-left: 16px;
     max-width: 352px;
     width: 100%;
-    height: 362px;
+    /* height: 362px; */
     font-family: SemiBoldPynk;
     color: #EF60A3;
     font-size: 16px;
@@ -514,4 +545,80 @@
 
 .span-Group {
     margin-left: 8px;
+}
+
+.box-item-you {
+    width: 196px;
+    height: 283px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.box-item-img {
+    width: 195px;
+    height: 195px;
+    background-color: #D9D9D9;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-milk-tea {
+    margin-top: 16px;
+    font-family: RegularPynk;
+    font-size: 16px;
+    color: #4A4A4A;
+}
+
+.margin-item {
+    margin-left: 24px;
+}
+
+.product-item {
+    width: 166px;
+    height: 152px;
+}
+
+.mt-64 {
+    margin-top: 64px;
+}
+
+.content-all-2 {
+    margin-left: 0px;
+    padding: 32px 0px 32px 0px;
+    width: 100%;
+    border-radius: 16px;
+    height: 344px;
+    background-color: #FFFFFF;
+}
+
+.content-all-2 .slick-slider {
+    padding-left: 0px !important;
+    margin-right: 32px;
+    position: relative;
+}
+
+.nohistory {
+    width: 137px;
+    height: 134px;
+}
+
+.center-nohistory {
+    margin-top: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mt-32 {
+    margin-top: 32px;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.mt-footer {
+    margin-top: 92px;
 }

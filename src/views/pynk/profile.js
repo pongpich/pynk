@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import colors from "./colors";
+import Slider from "react-slick";
 import icon_profile from "../../assets/img/pynk/shop/profile.png";
 import icon_edit from "../../assets/img/pynk/shop/edit.png";
 import icon_exit from "../../assets/img/pynk/shop/exit.png";
@@ -8,7 +9,109 @@ import rectangle_87 from "../../assets/img/pynk/shop/Rectangle-87.png";
 import rectangle_88 from "../../assets/img/pynk/shop/Rectangle-88.png";
 import arrowRight from "../../assets/img/pynk/shop/arrow-right-s-line.png";
 import Group from "../../assets/img/pynk/shop/Group.png";
+import product from "../../assets/img/pynk/shop/image-product.png";
+import icon_circle from "../../assets/img/pynk/shop/icon-circle.png";
+import nohistory from "../../assets/img/pynk/shop/nohistory.png";
+import Footer from "./footer";
+
 import "./css/profile.css";
+
+let slidesToShow = 3.5;
+
+/*  const PreviousBtn = (props) => {
+  const { className, onClick, currentSlide } = props;
+  return (
+    <>
+      {currentSlide !== 0 && (
+        <div className={`previous-btn head-shop`} onClick={onClick}>
+          <img src={icon_circle} className="icon-previous-btn" />
+        </div>
+      )}
+    </>
+  );
+};
+const NextBtn = (props) => {
+  const { className, onClick, slideCount, currentSlide } = props;
+  return (
+    <>
+      {currentSlide !== slideCount - slidesToShow && (
+        <div className={`next-btn head-shop`} onClick={onClick}>
+          <img src={icon_circle} className="icon-next-btn" />
+        </div>
+      )}
+    </>
+  );
+};
+*/
+var settings = {
+  /*  prevArrow: <PreviousBtn />,
+  nextArrow: <NextBtn />, */
+  slidesToShow: slidesToShow,
+  infinite: true,
+  speed: 500,
+  slidesToShow: slidesToShow,
+  slidesToScroll: 2,
+  autoplay: true, // ให้ Slider หมุนเอง
+  autoplaySpeed: 9000, // ตั้งค่าให้หมุนทุก ๆ 30 วินาที
+  responsive: [
+    {
+      breakpoint: 576,
+      settings: {
+        slidesToShow: 2.2,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 769,
+      settings: {
+        slidesToShow: 1.4,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2.2,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1025,
+      settings: {
+        slidesToShow: 2.5,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 2.9,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1400,
+      settings: {
+        slidesToShow: 3,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1600,
+      settings: {
+        slidesToShow: 3,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 1800,
+      settings: {
+        slidesToShow: 3.5,
+        centerMode: true,
+      },
+    },
+  ],
+};
 
 const Profile = () => {
   const [statusManu, setStatusManu] = useState(0);
@@ -18,6 +121,15 @@ const Profile = () => {
     "แพ็กเกจรายเดือน",
     "คำสั่งซื้อของฉัน",
   ];
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="div-profile">
@@ -188,7 +300,70 @@ const Profile = () => {
             </div>
           </div>
         </div>
+        <p className="hand-name mt-64">คลังไอเทมออกกำลังกายของคุณ</p>
+        <div className="col-12 col-sm-12 col-md-8 col-lg-8">
+          <div className="content-all-2">
+            <Slider {...settings}>
+              <div className="box-item-you">
+                <div className="box-item-img">
+                  <img src={product} className="product-item" />
+                </div>
+                <p className="text-milk-tea">
+                  Fitto Drink Milk Tea 1 Box Free 1 Box Fitto Drink Milk Tea ...
+                </p>
+              </div>
+              <div className="box-item-you">
+                <div className="box-item-img">
+                  <img src={product} className="product-item" />
+                </div>
+                <p className="text-milk-tea">
+                  Fitto Drink Milk Tea 1 Box Free 1 Box Fitto Drink Milk Tea ...
+                </p>
+              </div>
+              <div className="box-item-you">
+                <div className="box-item-img">
+                  <img src={product} className="product-item" />
+                </div>
+                <p className="text-milk-tea">
+                  Fitto Drink Milk Tea 1 Box Free 1 Box Fitto Drink Milk Tea ...
+                </p>
+              </div>
+              <div className="box-item-you">
+                <div className="box-item-img">
+                  <img src={product} className="product-item" />
+                </div>
+                <p className="text-milk-tea">
+                  Fitto Drink Milk Tea 1 Box Free 1 Box Fitto Drink Milk Tea ...
+                </p>
+              </div>
+              <div className="box-item-you">
+                <div className="box-item-img">
+                  <img src={product} className="product-item" />
+                </div>
+                <p className="text-milk-tea">
+                  Fitto Drink Milk Tea 1 Box Free 1 Box Fitto Drink Milk Tea ...
+                </p>
+              </div>
+            </Slider>
+          </div>
+        </div>
+        <p className="hand-name mt-64">โปรแกรมออกกำลังกาย</p>
+        <div className="col-12 col-sm-12 col-md-8 col-lg-8">
+          <div className="content-all ">
+            <div className="center-nohistory">
+              <img src={nohistory} className="nohistory" />
+            </div>
+            <p className="head-text text-center mt-32">
+              คุณยังไม่มีโปรแกรมออกกำลังกาย
+            </p>
+            <p className="text-content text-center mt-8">
+              หากยังไม่มั่นใจว่าจะเริ่มต้นยังไงดี เราขอแนะนำให้คุณ
+            </p>
+          </div>
+        </div>
       </div>
+      <div  className="mt-footer" />
+      <Footer />
     </div>
   );
 };
