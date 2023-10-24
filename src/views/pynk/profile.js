@@ -143,13 +143,9 @@ const Profile = () => {
     history.push("/home");
   };
 
-  /*   onUserLogout(event) {
-    this.props.logoutUser();
-    this.props.clearCreateUser();
-    this.props.clearProgram();
-    this.props.history.push("/home");
-  }
- */
+  const onNextEdit = () => {
+    history.push("/profile-edit-pynk");
+  };
 
   return (
     <div className="div-profile">
@@ -170,7 +166,11 @@ const Profile = () => {
               </div>
               <div className="div-btn2 btn-margin-right-64">
                 <div className="btn-icon-profile">
-                  <img src={icon_edit} className="icon-edit " />
+                  <img
+                    src={icon_edit}
+                    className="icon-edit "
+                    onClick={onNextEdit}
+                  />
                   <img
                     src={icon_exit}
                     className="icon-edit cursor-pointer"
@@ -179,7 +179,10 @@ const Profile = () => {
                   />
                 </div>
                 <div>
-                  <div className="btn-profile btn-margin-right cursor-pointer">
+                  <div
+                    className="btn-profile btn-margin-right cursor-pointer"
+                    onClick={onNextEdit}
+                  >
                     <img src={icon_edit} className="icon-edit" />
                     แก้ไขข้อมูลส่วนตัว
                   </div>

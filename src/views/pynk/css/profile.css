@@ -148,6 +148,14 @@
         width: 82px !important;
         height: 73px !important;
     }
+
+    .box-edit-profile {
+        padding: 0 !important;
+    }
+
+    .box-edit {
+        width: 100% !important;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -172,7 +180,7 @@
     }
 
     .content-all-2 {
-        height: 210px !important;
+        height: auto !important;
     }
 
 }
@@ -688,4 +696,81 @@
 .btn-content-logout+.btn-content-no-logout:hover {
     background-color: var(--normal-pink);
     color: #FFFFFF;
+}
+
+.box-edit-profile {
+    margin-top: -97px;
+    padding: 0 4%;
+    background-image: linear-gradient(#FFFFFF, #DDDDDD);
+
+}
+
+.box-edit {
+
+    width: 100%;
+
+    height: 320px;
+    border-radius: 16px;
+    background-color: #FFFFFF;
+    margin-bottom: 32px;
+
+}
+
+.icon-box-edit {
+    width: 361px;
+    display: table-cell;
+    text-align: center;
+    cursor: pointer;
+}
+
+.edit-icon {
+    margin-left: 30px;
+    margin-top: -35px;
+}
+
+.div-edit-profile {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    background-image: linear-gradient(#FFFFFF, #DDDDDD);
+
+
+
+}
+
+.icon-rightContent {
+    width: 24px;
+    height: 24px;
+}
+
+.box-right-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: RegularPynk;
+    font-size: 20px;
+    color: #000000;
+    height: 50px;
+    padding-left: 16px;
+    padding-right: 16px;
+    cursor: pointer;
+}
+
+.box-right-active {
+    width: 100%;
+    background-color: #FFF8FB;
+}
+
+.from-profile {
+
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 36px 24px;
+}
+
+.row-16 {
+    margin: 0px;
+    --bs-gutter-x: 16px !important;
 }
