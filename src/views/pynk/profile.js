@@ -151,16 +151,21 @@ const Profile = () => {
               <div className="div-btn btn-margin-right-64">
                 <div className="btn-icon-profile">
                   <img src={icon_edit} className="icon-edit " />
-                  <img src={icon_exit} className="icon-edit" />
+                  <img
+                    src={icon_exit}
+                    className="icon-edit cursor-pointer"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  />
                 </div>
                 <div>
-                  <div className="btn-profile btn-margin-right">
+                  <div className="btn-profile btn-margin-right cursor-pointer">
                     <img src={icon_edit} className="icon-edit" />
                     แก้ไขข้อมูลส่วนตัว
                   </div>
                 </div>
-                <div>
-                  <div className="btn-profile">
+                <div data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <div className="btn-profile cursor-pointer">
                     <img src={icon_exit} className="icon-edit" />
                     ออกจากระบบ
                   </div>
@@ -362,8 +367,49 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div  className="mt-footer" />
+      <div className="mt-footer" />
       <Footer />
+
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header"></div>
+            <div class="modal-body-profile">
+              <div>
+                <p className="text-modal-body">ยืนยันการออกจากระบบใช่หรือไม่</p>
+
+                <div className="modal-body-profile-btn">
+                  <button
+                    className="btn-content-no-logout"
+                    data-bs-dismiss="modal"
+                  >
+                    ไม่
+                  </button>
+                  <button className="btn-content-logout">ออกจากระบบ</button>
+                </div>
+              </div>
+            </div>
+            {/*  <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div> */}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

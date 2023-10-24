@@ -622,3 +622,70 @@
 .mt-footer {
     margin-top: 92px;
 }
+
+.modal-body-profile {
+    padding-top: 74px;
+    padding-bottom: 74px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.text-modal-body {
+    font-size: 24px;
+    font-family: SemiBoldPynk;
+    color: #000000;
+}
+
+.modal-body-profile-btn {
+    display: flex;
+    align-items: center;
+}
+
+.btn-content-logout {
+    width: 149px;
+    height: 50px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--normal-pink);
+    font-size: 16px;
+    font-family: SemiBoldPynk;
+    color: #FFFFFF;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-content-no-logout {
+    width: 149px;
+    height: 50px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--normal-pink);
+    font-size: 16px;
+    font-family: SemiBoldPynk;
+    color: var(--normal-pink);
+    background-color: #FFFFFF;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+
+.btn-content-no-logout:hover {
+    background-color: var(--normal-pink);
+    color: #ffffff;
+
+}
+
+.btn-content-no-logout:hover+.btn-content-logout {
+    background-color: #FFFFFF;
+    color: var(--normal-pink);
+}
+
+.btn-content-logout+.btn-content-no-logout:hover {
+    background-color: var(--normal-pink);
+    color: #FFFFFF;
+}
