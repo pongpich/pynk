@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 import title from "../../assets/img/content/Title.png";
 import slide1 from "../../assets/img/home/slide1.png";
@@ -25,22 +27,40 @@ import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
 const Content = () => {
-  const history = useHistory();
+    const history = useHistory();
 
-  
 
-  useEffect(() => {
-   
-  }, []);
 
-  return (
-    <div className="page">
-      
+    useEffect(() => {
 
-      <img src={title} alt="" />
-      <Footer />
-    </div>
-  );
+    }, []);
+
+    return (
+        <div className="page">
+
+
+            <img src={title} alt="" />
+            <Box sx={{ '& button': { m: 1 } }}>
+
+                <div>
+                    <Button variant="outlined" size="medium">
+                        ทั้งหมด
+                    </Button>
+                    <Button variant="outlined" size="medium">
+                        อาหาร
+                    </Button>
+                    <Button variant="outlined" size="medium">
+                        ออกกำลังกาย
+                    </Button>
+                    <Button variant="outlined" size="medium">
+                        ไลฟ์สไตล์
+                    </Button>
+                </div>
+
+            </Box>
+            <Footer />
+        </div>
+    );
 };
 
 export default Content;
