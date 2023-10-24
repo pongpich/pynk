@@ -412,6 +412,15 @@ class App extends Component {
                 id="navbarNav"
               >
                 <div className="navbar-nav">
+                  {
+                    (user && user.authorization === "admin") &&
+                    <a
+                      className="nav-link link-pynk"
+                      onClick={() => this.props.history.push("/products_management")}
+                    >
+                      จัดการสินค้า
+                    </a>
+                  }
                   <a
                     className="nav-link  link-pynk active2"
                     href="https://platform.bebefitroutine.com"
@@ -440,14 +449,14 @@ class App extends Component {
                   >
                     ร้านค้า
                   </a>
-                    <a
+                  <a
                     className="nav-link link-pynk"
                     // href="/#"
                     onClick={() => this.props.history.push("/content")}
                   >
                     บทความ
                   </a>
-                   {/* <a class="nav-link" href="#">
+                  {/* <a class="nav-link" href="#">
                     Disabled
                   </a> */}
                 </div>
