@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import colors from "./colors";
 import Slider from "react-slick";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { logout } from "../.././redux/pynk/auth";
 import icon_profile from "../../assets/img/pynk/shop/profile.png";
 import icon_edit from "../../assets/img/pynk/shop/edit.png";
 import icon_exit from "../../assets/img/pynk/shop/exit.png";
@@ -114,6 +117,8 @@ var settings = {
 };
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [statusManu, setStatusManu] = useState(0);
   const menuItems = [
     "ภาพรวมของคุณ",
@@ -131,6 +136,19 @@ const Profile = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const onLogout = () => {
+    dispatch(logout());
+
+    history.push("/home");
+  };
+
+  /*   onUserLogout(event) {
+    this.props.logoutUser();
+    this.props.clearCreateUser();
+    this.props.clearProgram();
+    this.props.history.push("/home");
+  }
+ */
   return (
     <div className="div-profile">
       <div className="head-profile">
@@ -391,7 +409,13 @@ const Profile = () => {
                   >
                     ไม่
                   </button>
-                  <button className="btn-content-logout">ออกจากระบบ</button>
+                  <button
+                    className="btn-content-logout"
+                    data-bs-dismiss="modal"
+                    onClick={onLogout}
+                  >
+                    ออกจากระบบ
+                  </button>
                 </div>
               </div>
             </div>
