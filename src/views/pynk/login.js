@@ -218,7 +218,7 @@ const Login = () => {
 
   useEffect(() => {
     if (statusLogin === "success") {
-      history.push("/shop");
+      history.push("/profile-pynk");
     }
     if (statusLogin === "fail") {
       setIsLoginError("invalidLogin");
