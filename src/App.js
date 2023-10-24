@@ -34,6 +34,7 @@ import Shop_category from "./views/pynk/admin/shop_category";
 import HomePlatfrom from "../src/views/platform/login";
 import Questionare from "../src/views/pynk/questionare";
 import profilePynk from "../src/views/pynk/profile";
+import profileEditPynk from "../src/views/pynk/profile_edit";
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -620,6 +621,7 @@ class App extends Component {
                 />
                 <Route path="/error-payment" component={ShopErrorPaymentPynk} />
                 <Route path="/profile-pynk" component={profilePynk} />
+                <Route path="/profile-edit-pynk" component={profileEditPynk} />
                 <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />
                 <Route
