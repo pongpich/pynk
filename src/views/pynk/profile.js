@@ -156,7 +156,7 @@ const Profile = () => {
         <div className="box-profile">
           <div className="profile-name">
             <div className="box-image-profile">
-              <div className="div-btn">
+              <div className="div-btn2">
                 <div>
                   <img src={icon_profile} className="icon-profile" />
                 </div>
@@ -166,7 +166,7 @@ const Profile = () => {
                   <p className="lv">LV: มือใหม่หัดฟิตหุ่น</p>
                 </div>
               </div>
-              <div className="div-btn btn-margin-right-64">
+              <div className="div-btn2 btn-margin-right-64">
                 <div className="btn-icon-profile">
                   <img src={icon_edit} className="icon-edit " />
                   <img

@@ -198,9 +198,7 @@
     }
 
     .btn-margin-right-64 {
-        position: absolute;
-        right: 0;
-        margin-right: 64px;
+
         padding-right: 0 !important;
     }
 
@@ -254,10 +252,7 @@
     }
 
     .btn-margin-right-64 {
-        position: absolute;
-        right: 0;
-        margin-right: 64px;
-        padding-right: 24px;
+        padding-right: 16px;
     }
 
     .btn-icon-profile {
@@ -336,6 +331,7 @@
     width: 100%;
     height: 111px;
     display: flex;
+    justify-content: space-between;
 
 
 
@@ -344,6 +340,10 @@
 .div-btn {
     display: flex;
     flex-wrap: wrap;
+}
+
+.div-btn2 {
+    display: flex;
 }
 
 
