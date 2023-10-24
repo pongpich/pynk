@@ -35,6 +35,7 @@ import HomePlatfrom from "../src/views/platform/login";
 import Questionare from "../src/views/pynk/questionare";
 import profilePynk from "../src/views/pynk/profile";
 import profileEditPynk from "../src/views/pynk/profile_edit";
+import Content from "../src/views/pynk/content";
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -439,14 +440,14 @@ class App extends Component {
                   >
                     ร้านค้า
                   </a>
-                  {/*   <a
+                    <a
                     className="nav-link link-pynk"
-                    href="/#"
-                    onClick={() => this.props.history.push("/")}
+                    // href="/#"
+                    onClick={() => this.props.history.push("/content")}
                   >
                     บทความ
-                  </a> */}
-                  {/*  <a class="nav-link" href="#">
+                  </a>
+                   {/* <a class="nav-link" href="#">
                     Disabled
                   </a> */}
                 </div>
@@ -586,6 +587,7 @@ class App extends Component {
                 <Route path="/shop_details/:id" component={ShopDetailsPynk} />
                 <Route path="/shop-category/:name" component={Shop_category} />
                 <Route path="/questionare" component={Questionare} />
+                <Route path="/content" component={Content} />
                 <Route
                   path="/shop-order-summary"
                   component={ShopOrderSummaryPynk}
