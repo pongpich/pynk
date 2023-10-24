@@ -127,6 +127,7 @@ const Profile = () => {
     "คำสั่งซื้อของฉัน",
   ];
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const user = useSelector(({ auth }) => (auth ? auth.user : ""));
 
   useEffect(() => {
     const handleResize = () => {
@@ -149,6 +150,7 @@ const Profile = () => {
     this.props.history.push("/home");
   }
  */
+
   return (
     <div className="div-profile">
       <div className="head-profile">
@@ -162,8 +164,8 @@ const Profile = () => {
                 </div>
                 <div>
                   <p className="bebe-fit">BeBe Fit</p>
-                  <p className="username">@username1234</p>
-                  <p className="lv">LV: มือใหม่หัดฟิตหุ่น</p>
+                  <p className="username">@{user && user.first_name}</p>
+                  {/*  <p className="lv">LV: มือใหม่หัดฟิตหุ่น</p> */}
                 </div>
               </div>
               <div className="div-btn2 btn-margin-right-64">
