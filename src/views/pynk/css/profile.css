@@ -699,14 +699,14 @@
 }
 
 .box-edit-profile {
-    margin-top: -97px;
+
     padding: 0 4%;
     background-image: linear-gradient(#FFFFFF, #DDDDDD);
 
 }
 
 .box-edit {
-
+    margin-top: -64px;
     width: 100%;
 
     height: 320px;
@@ -728,15 +728,7 @@
     margin-top: -35px;
 }
 
-.div-edit-profile {
-    width: 100%;
-    min-height: 100vh;
-    height: auto;
-    background-image: linear-gradient(#FFFFFF, #DDDDDD);
-
-
-
-}
+.div-edit-profile {}
 
 .icon-rightContent {
     width: 24px;
@@ -762,7 +754,7 @@
 }
 
 .from-profile {
-
+    margin-top: -64px;
     width: 100%;
     height: 100%;
     background-color: #FFFFFF;
@@ -773,4 +765,96 @@
 .row-16 {
     margin: 0px;
     --bs-gutter-x: 16px !important;
+}
+
+.row-16 .form-label {
+    font-size: 16px;
+    color: #000000;
+    font-family: RegularPynk;
+}
+
+.row-16 .form-label span {
+    color: red;
+    margin-left: 4px;
+}
+
+.box-fa {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 71px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border: 1px solid #000000;
+}
+
+.box-google {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 71px;
+    border-bottom: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
+
+}
+
+.box-line {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 71px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
+
+}
+
+.btn-connect {
+    background-color: #EF60A3;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-family: SemiBoldPynk;
+    width: 132px;
+    height: 44px;
+    border-radius: 50px;
+}
+
+.connect-icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 16px;
+}
+
+.icon_facebook {
+    width: 20px;
+    height: 20px;
+}
+
+.text-icon-connect {
+    font-size: 18px;
+    font-family: RegularPynk;
+    color: #000000;
+    margin-left: 8px;
+    margin-top: 16px;
+}
+
+.save-profile {
+    margin-top: 48px;
+    margin-bottom: 37px;
+    background-color: #EF60A3;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-family: SemiBoldPynk;
+    width: 350px;
+    height: 44px;
+    border-radius: 50px;
+}
+
+.row-16-button {
+    display: flex;
+    justify-content: center;
 }
