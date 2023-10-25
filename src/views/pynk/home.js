@@ -258,13 +258,13 @@ const Home = () => {
                 ></div>
               </div>
               <div className="second-content-bubble">
-                <p className="text-home2-128px LightPynk">STAY FIT</p>
-                <p className="text-home2-48px LightPynk">WITH BEBE</p>
-                <p className="text-home2-24px SemiBoldPynk">
+                <p className="text128 ef60a3 LightPynk">STAY FIT</p>
+                <p className="text48 ef60a3 mg-withbebe LightPynk">WITH BEBE</p>
+                <p className="text24 color-2c2e2f mb-0px SemiBoldPynk">
                   คอร์สสอนออกกำลังกายสุดปังจากวงการเบเบ้
                   ที่จะพาคุณมาอัปเกรดความฟิต ด้วยโปรแกรม 8 สัปดาห์
                 </p>
-                <p className="text-home2-24px RegularPynk">
+                <p className="text24 color-2c2e2f mb-0px RegularPynk">
                   ที่เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ พร้อมการันตีความสนุก
                   และผลลัพธ์ของการเปลี่ยนแปลง มาแล้วมากกว่าสิบรุ่น!
                 </p>
@@ -297,7 +297,7 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <div class="grid-item">
+          <div class="grid-item margin-grid-item-home2">
             <img src={fitto_item} style={{ marginLeft: "50px" }} alt="" />
             <div className="second-content-stayfit">
               <p className="text48 LightPynk" style={{ marginBottom: "0" }}>
