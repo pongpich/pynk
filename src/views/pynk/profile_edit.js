@@ -145,6 +145,70 @@ const Profile_edit = () => {
     return (
       <div className="mb-5">
         <p className="text-modal-body">ข้อมูลที่อยู่</p>
+        <div className="row row-16">
+          <div class="col-12 col-sm-12 col-md-12 mb-3">
+            <label for="exampleFormControlInput1" class="form-label">
+              ที่อยู่ <span>*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="กรุณาระบุชื่อ"
+            />
+          </div>
+        </div>
+        <div className="row row-16">
+          <div class="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" class="form-label">
+              เเขวง/ตำบล <span>*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="เลือกเเขวง/ตำบล"
+            />
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" class="form-label">
+              เขต/อำเภอ <span>*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="เลือกเขต/อำเภอ"
+            />
+          </div>
+        </div>
+        <div className="row row-16">
+          <div class="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" class="form-label">
+              จังหวัด <span>*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="เลือกจังหวัด"
+            />
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" class="form-label">
+              รหัสไปรษณีย์ <span>*</span>
+            </label>
+            <input
+              type="number"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="เลือกรหัสไปรษณีย์"
+            />
+          </div>
+          <div className="row-16-button">
+            <button className="save-profile">บันทึก</button>
+          </div>
+        </div>
       </div>
     );
   };
