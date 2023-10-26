@@ -50,18 +50,69 @@ const Profile_edit = () => {
     }
   };
 
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    first_name: "",
+    last_name: "",
+    phone: "",
+  });
+
+  const validate = () => {
+    let isValid = true;
+
+    const newErrors = {};
+
+    // Email validation
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!email.trim()) {
+      newErrors.email = "กรุณาระบุข้อมูล";
+      isValid = false;
+    } else if (!emailPattern.test(email)) {
+      newErrors.email = "รูปแบบอีเมลไม่ถูกต้อง";
+      isValid = false;
+    }
+
+    // password validation
+    if (!password.trim()) {
+      newErrors.password = "กรุณาระบุข้อมูล";
+      isValid = false;
+    }
+    // first_name validation
+    if (!first_name.trim()) {
+      newErrors.first_name = "กรุณาระบุข้อมูล";
+      isValid = false;
+    }
+    // last_name validation
+    if (!last_name.trim()) {
+      newErrors.last_name = "กรุณาระบุข้อมูล";
+      isValid = false;
+    }
+
+    // phone validation
+    if (!phone.trim()) {
+      newErrors.phone = "กรุณาระบุข้อมูล";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
   const handleSubmit = () => {
     console.log("555");
-    dispatch(
-      updateRegister(
-        user ? user.user_id : null, //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
-        email, //product_list,
-        password, //total_amount,
-        first_name, //customer_data,
-        last_name, //shipping_address,
-        phone //note
-      )
-    );
+    if (validate()) {
+      dispatch(
+        updateRegister(
+          user ? user.user_id : null, //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
+          email, //product_list,
+          password, //total_amount,
+          first_name, //customer_data,
+          last_name, //shipping_address,
+          phone //note
+        )
+      );
+    }
   };
 
   const personalInformation = () => {
@@ -82,6 +133,9 @@ const Profile_edit = () => {
               onChange={handleChange}
               placeholder="กรุณาระบุชื่อ"
             />
+            {errors.first_name && (
+              <div className="error-from">{errors.first_name}</div>
+            )}
           </div>
           <div class="col-12 col-sm-12  col-md-6  mb-3">
             <label for="exampleFormControlInput1" class="form-label">
@@ -96,6 +150,9 @@ const Profile_edit = () => {
               onChange={handleChange}
               placeholder="กรุณาระบุนามสกุล"
             />
+            {errors.last_name && (
+              <div className="error-from">{errors.last_name}</div>
+            )}
           </div>
         </div>
         <div className="row row-16">
@@ -112,6 +169,7 @@ const Profile_edit = () => {
               onChange={handleChange}
               placeholder="0XX-XXX-XXXX"
             />
+            {errors.phone && <div className="error-from">{errors.phone}</div>}
           </div>
         </div>
         <p className="text-modal-body mt-64">บัญชีเข้าใช้งาน</p>
@@ -129,6 +187,7 @@ const Profile_edit = () => {
               id="email"
               placeholder="name@example.com"
             />
+            {errors.email && <div className="error-from">{errors.email}</div>}
           </div>
           <div class="col-12 col-sm-12  col-md-6  mb-3">
             <label for="exampleFormControlInput1" class="form-label">
@@ -143,6 +202,9 @@ const Profile_edit = () => {
               onChange={handleChange}
               placeholder="name@example.com"
             />
+            {errors.password && (
+              <div className="error-from">{errors.password}</div>
+            )}
           </div>
         </div>
 
