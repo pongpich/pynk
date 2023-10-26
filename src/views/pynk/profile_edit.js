@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import colors from "./colors";
 import { useSelector, useDispatch } from "react-redux";
-import { updateRegister } from "../../redux/pynk/auth";
+import { updateRegister, clearUpdateRegister } from "../../redux/pynk/auth";
 import icon_profile from "../../assets/img/pynk/shop/profile.png";
 import { useHistory } from "react-router-dom";
 import rightContent from "../../assets/img/pynk/shop/RightContent.png";
@@ -15,6 +15,9 @@ const Profile_edit = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector(({ auth }) => (auth ? auth.user : ""));
+  const statusUpdateRegister = useSelector(({ auth }) =>
+    auth ? auth.statusUpdateRegister : ""
+  );
   const [statusProfile, setStatusProfile] = useState(1);
   const [id, setID] = useState(user && user.user_id);
   const [email, setEmail] = useState(user && user.email);
@@ -30,6 +33,13 @@ const Profile_edit = () => {
     setLast_name(user && user.last_name);
     setPhone(user && user.phone);
   }, [user]);
+
+  useEffect(() => {
+    if (statusUpdateRegister == "success") {
+      history.push("/profile-pynk");
+      dispatch(clearUpdateRegister());
+    }
+  }, [statusUpdateRegister]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -100,7 +110,6 @@ const Profile_edit = () => {
   };
 
   const handleSubmit = () => {
-    console.log("555");
     if (validate()) {
       dispatch(
         updateRegister(

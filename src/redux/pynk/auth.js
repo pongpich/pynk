@@ -17,6 +17,7 @@ export const types = {
   UPDATE_REGISTER_PYNK: "UPDATE_REGISTER_PYNK",
   UPDATE_REGISTER_SUCCESS: "UPDATE_REGISTER_SUCCESS",
   UPDATE_REGISTER_FAIL: "UPDATE_REGISTER_FAIL",
+  CLEAR_STATUS_UPDATE_REGISTER: "CLEAR_STATUS_UPDATE_REGISTER",
   CLEAR_STATUS: "CLEAR_STATUS",
 };
 
@@ -72,6 +73,10 @@ export const updateRegister = (
     last_name,
     phone,
   },
+});
+export const clearUpdateRegister = () => ({
+  type: types.CLEAR_STATUS_UPDATE_REGISTER,
+  payload: {},
 });
 
 /* END OF ACTION Section */
@@ -293,6 +298,7 @@ const INIT_STATE = {
   statusLoginAdmin: "default",
   user: null,
   statusRegister: "default",
+  statusUpdateRegister: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
@@ -361,6 +367,11 @@ export function reducer(state = INIT_STATE, action) {
         statusLogin: "default",
         statusLoginAdmin: "default",
         statusRegister: "default",
+      };
+    case types.CLEAR_STATUS_UPDATE_REGISTER:
+      return {
+        ...state,
+        statusUpdateRegister: "default",
       };
     case types.LOGOUT:
       return INIT_STATE;
