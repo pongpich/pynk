@@ -14,6 +14,9 @@ export const types = {
   REGISTER_PYNK: "REGISTER_PYNK",
   REGISTER_SUCCESS: "REGISTER_SUCCESS",
   REGISTER_FAIL: "REGISTER_FAIL",
+  UPDATE_REGISTER_PYNK: "UPDATE_REGISTER_PYNK",
+  UPDATE_REGISTER_SUCCESS: "UPDATE_REGISTER_SUCCESS",
+  UPDATE_REGISTER_FAIL: "UPDATE_REGISTER_FAIL",
   CLEAR_STATUS: "CLEAR_STATUS",
 };
 
@@ -52,6 +55,25 @@ export const register = (email, password, first_name, last_name, phone) => ({
   },
 });
 
+export const updateRegister = (
+  id,
+  email,
+  password,
+  first_name,
+  last_name,
+  phone
+) => ({
+  type: types.UPDATE_REGISTER_PYNK,
+  payload: {
+    id,
+    email,
+    password,
+    first_name,
+    last_name,
+    phone,
+  },
+});
+
 /* END OF ACTION Section */
 
 /* SAGA Section */
@@ -75,6 +97,33 @@ const registerSagaAsync = async (
     });
     return apiResult;
   } catch (error) {
+    return { error, messsage: error.message };
+  }
+};
+
+const updateRegisterSagaAsync = async (
+  id,
+  email,
+  password,
+  first_name,
+  last_name,
+  phone
+) => {
+  try {
+    const apiResult = await API.post("pynk", "/updateRegister", {
+      body: {
+        id,
+        email: email,
+        password: password,
+        first_name: first_name,
+        last_name: last_name,
+        phone: phone,
+      },
+    });
+    console.log("apiResult", apiResult);
+    return apiResult;
+  } catch (error) {
+    console.log("error", error);
     return { error, messsage: error.message };
   }
 };
@@ -136,7 +185,7 @@ function* loginAdminSaga({ payload }) {
 
   try {
     const loginResult = yield call(loginAdminSagaAsync, email, password);
-    
+
     if (loginResult.results.message === "success") {
       yield put({
         type: types.LOGIN_ADMIN_SUCCESS,
@@ -181,6 +230,36 @@ function* registerSaga({ payload }) {
   }
 }
 
+function* updateRegisterSaga({ payload }) {
+  const { id, email, password, first_name, last_name, phone } = payload;
+
+  try {
+    const apiResult = yield call(
+      updateRegisterSagaAsync,
+      id,
+      email,
+      password,
+      first_name,
+      last_name,
+      phone
+    );
+
+    console.log("apiResult", apiResult);
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.UPDATE_REGISTER_SUCCESS,
+        payload: apiResult.results.user,
+      });
+    } else if (apiResult.results.message === "fail") {
+      yield put({
+        type: types.UPDATE_REGISTER_FAIL,
+      });
+    }
+  } catch (error) {
+    console.log("error from register :", error);
+  }
+}
+
 export function* watchLogin() {
   yield takeEvery(types.LOGIN, loginSaga);
 }
@@ -192,16 +271,20 @@ export function* watchLoginAdmin() {
 export function* watchRegister() {
   yield takeEvery(types.REGISTER_PYNK, registerSaga);
 }
+export function* watchUpdateRegister() {
+  yield takeEvery(types.UPDATE_REGISTER_PYNK, updateRegisterSaga);
+}
 
 export function* saga() {
   yield all([
-    fork(watchLogin), 
+    fork(watchLogin),
     fork(watchRegister),
-    fork(watchLoginAdmin)
+    fork(watchLoginAdmin),
+    fork(watchUpdateRegister),
   ]);
 }
 
-/* END OF SAGA Section */
+export /* END OF SAGA Section */
 
 /* REDUCER Section */
 
@@ -260,6 +343,17 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         statusRegister: "fail",
+      };
+    case types.UPDATE_REGISTER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        statusUpdateRegister: "success",
+      };
+    case types.UPDATE_REGISTER_FAIL:
+      return {
+        ...state,
+        statusUpdateRegister: "fail",
       };
     case types.CLEAR_STATUS:
       return {
