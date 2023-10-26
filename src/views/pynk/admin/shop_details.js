@@ -25,6 +25,7 @@ import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 
 import { update_status_cart } from "../../../redux/pynk/orders";
+import { updateProductStock } from "../../../redux/pynk/admin";
 
 let slidesToShow = 5.2;
 
@@ -176,7 +177,25 @@ const Shop_details = ({ match }) => {
       products_pynk && products_pynk.find((status) => status.product_id == id)
     );
     setNumber(1);
+
+    dispatch(updateProductStock(id))
   }, [id]);
+
+  const status_update_stock = useSelector(({ admin }) => (admin ? admin.status_update_stock : ""));
+  const available_stock = useSelector(({ admin }) => (admin ? admin.available_stock : ""));
+
+  useEffect(() => {
+    if ((status_update_stock === "success") && (productId)) {
+      // คัดลอก state ทั้ง object
+      const updatedState = { ...productId };
+
+      // ทำการอัปเดตค่าใน object
+      updatedState.available_stock = available_stock;
+
+      setProductId(updatedState);
+    }
+  }, [status_update_stock])
+
 
   const dataCookies = () => {
     const product_name = Cookies.get("product_name");

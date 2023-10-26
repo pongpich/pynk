@@ -16,6 +16,9 @@ export const types = {
     UPDATE_PRODUCT: "UPDATE_PRODUCT",//update_product
     UPDATE_PRODUCT_SUCCESS: "UPDATE_PRODUCT_SUCCESS",
     UPDATE_PRODUCT_FAIL: "UPDATE_PRODUCT_FAIL",
+    UPDATE_PRODUCT_STOCK: "UPDATE_PRODUCT_STOCK",
+    UPDATE_PRODUCT_STOCK_SUCCESS: "UPDATE_PRODUCT_STOCK_SUCCESS",
+    UPDATE_PRODUCT_STOCK_FAIL: "UPDATE_PRODUCT_STOCK_FAIL",
 };
 
 export const clear_status = () => ({
@@ -63,6 +66,15 @@ export const delete_product = (
     }
 });
 
+export const updateProductStock = (
+    product_id
+) => ({
+    type: types.UPDATE_PRODUCT_STOCK,
+    payload: {
+        product_id
+    }
+});
+
 export const update_product = (
     product_id,
     product_name,
@@ -85,6 +97,47 @@ export const update_product = (
         detail
     }
 });
+
+const updateProductStockSagaAsync = async (
+    product_id
+) => {
+    try {
+        const apiResult = await API.put("pynk", "/updateProductStock", {
+            body: {
+                product_id
+            },
+        });
+        return apiResult;
+    } catch (error) {
+        return { error, messsage: error.message };
+    }
+};
+
+function* updateProductStockSaga({ payload }) {
+    const {
+        product_id
+    } = payload;
+
+    try {
+        const apiResult = yield call(
+            updateProductStockSagaAsync,
+            product_id
+        );
+        if (apiResult.results.message === "success") {
+            yield put({
+                type: types.UPDATE_PRODUCT_STOCK_SUCCESS,
+                payload: apiResult.results.product.availablestock
+            })
+            console.log("apiResult :", apiResult.results.product.availablestock);
+
+        }
+    } catch (error) {
+        yield put({
+            type: types.UPDATE_PRODUCT_STOCK_FAIL
+        })
+        console.log("error from updateProductStockSaga :", error);
+    }
+};
 
 const updateProductSagaAsync = async (
     product_id,
@@ -326,12 +379,17 @@ export function* watchUpdateProductSaga() {
     yield takeEvery(types.UPDATE_PRODUCT, updateProductSaga);
 };
 
+export function* watchUpdateProductStockSaga() {
+    yield takeEvery(types.UPDATE_PRODUCT_STOCK, updateProductStockSaga);
+};
+
 export function* saga() {
     yield all([
         fork(watchGetProductDetailSaga),
         fork(watchAddProductSaga),
         fork(watchDeleteProductSaga),
         fork(watchUpdateProductSaga),
+        fork(watchUpdateProductStockSaga),
     ]);
 }
 
@@ -342,10 +400,28 @@ const INIT_STATE = {
     status_add_product: "default",
     status_delete_product: "default",
     status_update_product: "default",
+    status_update_stock: "default",
+    available_stock: 0
 };
 
 export function reducer(state = INIT_STATE, action) {
     switch (action.type) {
+        case types.UPDATE_PRODUCT_STOCK:
+            return {
+                ...state,
+                status_update_stock: "loading",
+            };
+        case types.UPDATE_PRODUCT_STOCK_SUCCESS:
+            return {
+                ...state,
+                status_update_stock: "success",
+                available_stock: action.payload
+            };
+        case types.UPDATE_PRODUCT_STOCK_FAIL:
+            return {
+                ...state,
+                status_update_stock: "fail",
+            };
         case types.UPDATE_PRODUCT:
             return {
                 ...state,

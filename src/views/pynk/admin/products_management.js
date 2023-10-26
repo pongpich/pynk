@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../redux/pynk/get"
-import { delete_product, update_product, clear_status } from "../../../redux/pynk/admin"
+import { delete_product, update_product, clear_status, updateProductStock } from "../../../redux/pynk/admin"
 import no_img from "../../../assets/img/pynk/no_image_icon.png";
 import { s3Upload } from "../../../helpers/awsLib";
 
@@ -260,7 +260,25 @@ function ProductsManagement() {
         const targetProductId = product_id;
         const filteredProduct = products_pynk.filter(product => product.product_id === targetProductId);
         setSelectedProduct(filteredProduct[0]);
+
+        dispatch(updateProductStock(targetProductId))
+
     }
+
+    const status_update_stock = useSelector(({ admin }) => (admin ? admin.status_update_stock : ""));
+    const available_stock = useSelector(({ admin }) => (admin ? admin.available_stock : ""));
+
+    useEffect(() => {
+        if ((status_update_stock === "success") && (selectedProduct)) {
+            // คัดลอก state ทั้ง object
+            const updatedState = { ...selectedProduct };
+
+            // ทำการอัปเดตค่าใน object
+            updatedState.available_stock = available_stock;
+
+            setSelectedProduct(updatedState);
+        }
+    }, [status_update_stock])
 
     const editPageBackToDeatailPage = () => {
         //สั่งอัพเดทค่าในหน้ารายละเอียดสินค้า
