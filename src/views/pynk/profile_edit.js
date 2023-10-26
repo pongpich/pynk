@@ -15,6 +15,13 @@ const Profile_edit = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector(({ auth }) => (auth ? auth.user : ""));
+
+  useEffect(() => {
+    if (!user) {
+      history.push("/home");
+    }
+  }, [user]);
+  
   const statusUpdateRegister = useSelector(({ auth }) =>
     auth ? auth.statusUpdateRegister : ""
   );

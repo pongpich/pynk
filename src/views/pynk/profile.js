@@ -130,6 +130,12 @@ const Profile = () => {
   const user = useSelector(({ auth }) => (auth ? auth.user : ""));
 
   useEffect(() => {
+    if (!user) {
+      history.push("/home");
+    }
+  }, [user]);
+
+  useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
