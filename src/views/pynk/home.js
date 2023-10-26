@@ -23,6 +23,8 @@ import content3 from "../../assets/img/home/content3.png";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
+import styles from "./css/home.module.css"; // เชื่อมต่อไฟล์ CSS
+
 const Home = () => {
   const history = useHistory();
 
@@ -78,7 +80,7 @@ const Home = () => {
 
   return (
     <div className="page">
-      <div className="slider-container">
+      {/*   <div className="slider-container">
         <div className="slider">
           {images.map((image, index) => (
             <div
@@ -105,7 +107,7 @@ const Home = () => {
               />
             ))}
           </div>
-          {currentIndex === 0 ? (
+             {currentIndex === 0 ? (
             <div className="box-text-home1">
               <p className="text48 SemiBoldPynk ef60a3 mb-10px">
                 Stay fit with Bebe
@@ -196,45 +198,48 @@ const Home = () => {
                 </p>
               </button>
             </div>
-          )}
+          )} 
         </div>
-      </div>
+      </div> */}
 
-      <div className="home2">
-        <div
-          ref={textHome2}
-          className={`head-home2 ${textHome2ISVisible && "animate-open-div"}`}
-        >
-          <p className="text48 text-align-center SemiBoldPynk">
-            บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
-            และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
-          </p>
-          <p className="text32 text-align-center MediumPynk">
-            “ไม่ใช่แค่หุ่นดี แต่มันคือการรักตัวเองอย่างมีความสุข”
-          </p>
-        </div>
+      {/*  <p className={`${styles["text-test"]} ${styles["text-b"]} ${"col-5"}`}>
+        {" "}
+        TEST CSS
+      </p> */}
+      <div className={`${styles["home2"]}`}>
+        <p className={`${styles["services-happily"]} ${"text-center"}`}>
+          บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
+          และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
+        </p>
+        <p className={`${styles["not-good"]} ${"text-center"}`}>
+          “ไม่ใช่แค่หุ่นดี{" "}
+          <span className={`${styles["not-good-span"]}`}>
+            {" "}
+            แต่มันคือการรักตัวเองอย่างมีความสุข”
+          </span>
+        </p>
 
-        <div
+        {/*    <div
           ref={bounceContainer}
-          className={`bounce-container ${bounceContainerISVisible && "animate-bounce-container"
-            }`}
+          className={`bounce-container ${
+            bounceContainerISVisible && "animate-bounce-container"
+          }`}
         >
-
           <div className="background-container-bounce">
-            <div className="content-home2 row" >
-
+            <div className="content-home2 row">
               <div className=" col-lg-6 col-md-12">
                 <picture
                   ref={bounceContainer}
-                  className={`bebe-bubble ${bounceContainerISVisible && "animate-bebe-bubble"
-                    }`}
+                  className={`bebe-bubble ${
+                    bounceContainerISVisible && "animate-bebe-bubble"
+                  }`}
                 >
                   <source media="(max-width: 480px)" srcset={bebe_bubble} />
                   <img src={bebe_bubble} width={640} height={600} alt="" />
                 </picture>
               </div>
 
-              <div className=" col-lg-6 col-md-12" >
+              <div className=" col-lg-6 col-md-12">
                 <p className="text128 ef60a3 LightPynk">STAY FIT</p>
                 <p className="text48 ef60a3 mg-withbebe LightPynk">WITH BEBE</p>
                 <p className="text24 color-2c2e2f mb-0px SemiBoldPynk">
@@ -246,47 +251,51 @@ const Home = () => {
                   และผลลัพธ์ของการเปลี่ยนแปลง มาแล้วมากกว่าสิบรุ่น!
                 </p>
               </div>
-
             </div>
-
           </div>
-        </div>
+        </div> */}
 
-        <div
+        {/* <div
           ref={bounceContainer}
-          className={`bounce-container ${bounceContainerISVisible && "animate-bounce-container"
-            }`}
+          className={`bounce-container ${
+            bounceContainerISVisible && "animate-bounce-container"
+          }`}
         >
           <div className="background-container-bounce">
             <div className="content-home2">
               <div className="first-content-bubble">
                 <picture
                   ref={bounceContainer}
-                  className={`bebe-bubble ${bounceContainerISVisible && "animate-bebe-bubble"
-                    }`}
+                  className={`bebe-bubble ${
+                    bounceContainerISVisible && "animate-bebe-bubble"
+                  }`}
                 >
                   <source media="(max-width: 480px)" srcset={bebe_bubble} />
                   <img src={bebe_bubble} width={640} height={600} alt="" />
                 </picture>
                 <div
                   ref={bounceContainer}
-                  className={`bubble6 ${bounceContainerISVisible && "animate-bubble6"
-                    }`}
+                  className={`bubble6 ${
+                    bounceContainerISVisible && "animate-bubble6"
+                  }`}
                 ></div>
                 <div
                   ref={bounceContainer}
-                  className={`bubble7 ${bounceContainerISVisible && "animate-bubble7"
-                    }`}
+                  className={`bubble7 ${
+                    bounceContainerISVisible && "animate-bubble7"
+                  }`}
                 ></div>
                 <div
                   ref={bounceContainer}
-                  className={`bubble8 ${bounceContainerISVisible && "animate-bubble8"
-                    }`}
+                  className={`bubble8 ${
+                    bounceContainerISVisible && "animate-bubble8"
+                  }`}
                 ></div>
                 <div
                   ref={bounceContainer}
-                  className={`bubble9 ${bounceContainerISVisible && "animate-bubble9"
-                    }`}
+                  className={`bubble9 ${
+                    bounceContainerISVisible && "animate-bubble9"
+                  }`}
                 ></div>
               </div>
               <div className="second-content-bubble">
@@ -310,11 +319,12 @@ const Home = () => {
           <div className="bubble4"></div>
           <div className="bubble5"></div>
         </div>
-
-        <div
+ */}
+        {/*  <div
           ref={stayfitItem}
-          className={`stayfit-item-home2 ${statfitItemISVisible && "animate-stayfit-item"
-            }`}
+          className={`stayfit-item-home2 ${
+            statfitItemISVisible && "animate-stayfit-item"
+          }`}
         >
           <div class="grid-item">
             <img src={fit_item} alt="" />
@@ -347,12 +357,13 @@ const Home = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
-      <div ref={home3} className="home3">
+      {/*  <div ref={home3} className="home3">
         <div
-          className={`home3-container ${Home3ISVisible && "animate-open-home3"
-            }`}
+          className={`home3-container ${
+            Home3ISVisible && "animate-open-home3"
+          }`}
         >
           <div
             className="text48 SemiBoldPynk white text-align-center"
@@ -383,8 +394,9 @@ const Home = () => {
                 </p>
               </div>
               <i
-                class={`fa-solid fa-arrow-right fa-xl ${hoveredButton === 1 && "hovered"
-                  }`}
+                class={`fa-solid fa-arrow-right fa-xl ${
+                  hoveredButton === 1 && "hovered"
+                }`}
               ></i>
             </div>
             <div
@@ -407,8 +419,9 @@ const Home = () => {
                 </p>
               </div>
               <i
-                class={`fa-solid fa-arrow-right fa-xl ${hoveredButton === 2 && "hovered"
-                  }`}
+                class={`fa-solid fa-arrow-right fa-xl ${
+                  hoveredButton === 2 && "hovered"
+                }`}
               ></i>
             </div>
             <div
@@ -431,18 +444,20 @@ const Home = () => {
                 </p>
               </div>
               <i
-                class={`fa-solid fa-arrow-right fa-xl ${hoveredButton === 3 && "hovered"
-                  }`}
+                class={`fa-solid fa-arrow-right fa-xl ${
+                  hoveredButton === 3 && "hovered"
+                }`}
               ></i>
             </div>
           </div>
         </div>
-      </div>
-      <div ref={home4} className="home4">
+      </div> */}
+      {/*  <div ref={home4} className="home4">
         <div className="home4-container">
           <div
-            className={`text48 SemiBoldPynk text-align-center ${Home4ISVisible && "animate-open-home4"
-              }`}
+            className={`text48 SemiBoldPynk text-align-center ${
+              Home4ISVisible && "animate-open-home4"
+            }`}
           >
             เสียงตอบรับจากผู้ใช้บริการ
             <div className="home-star">
@@ -497,9 +512,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="home5">
+      {/*   <div className="home5">
         <div className="text-home5">
           <p className="text48 SemiBoldPynk mb-0px">
             เคล็ด (ไม่) ลับ ฉบับอยากแชร์
@@ -555,7 +570,7 @@ const Home = () => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
       <Footer />
     </div>
   );

@@ -64,18 +64,23 @@
   text-align: left;
   margin-bottom: 0px;
 }
+
 .text48 {
   font-size: 48px;
 }
+
 .text32 {
   font-size: 32px;
 }
+
 .text24 {
   font-size: 24px;
 }
+
 .text20 {
   font-size: 20px;
 }
+
 .text18 {
   font-size: 18px;
 }
@@ -87,22 +92,27 @@
 .white {
   color: #fff;
 }
+
 .ef60a3 {
   color: #ef60a3;
 }
+
 .color-4a4a4a {
   color: #4a4a4a;
 }
-.color-2c2e2f{
+
+.color-2c2e2f {
   color: #2c2e2f;
 }
 
 .mb-10px {
   margin-bottom: 10px;
 }
+
 .mb-0px {
   margin-bottom: 0px;
 }
+
 @keyframes animate-open-div {
   0% {
     transform: scale(0);
@@ -184,6 +194,7 @@
   justify-content: center;
   height: 100%;
 }
+
 .footer {
   padding: 60px;
   text-align: center;
@@ -238,10 +249,12 @@
   text-align: center;
   margin-left: 0px;
 }
+
 .button-home2 {
   background-color: #fff;
   color: #ef60a3;
 }
+
 .box-text-home1 {
   height: 35%;
   width: 35%;
@@ -269,7 +282,7 @@
 
 .slide.active_home {
   display: block;
-  flex: 0 0 100%;
+  flex: 1;
   opacity: 1;
   transform: translateX(0);
 }
@@ -328,6 +341,7 @@
   margin-left: 16%;
   opacity: 0;
 }
+
 .animate-open-div {
   animation: animate-open-div 1s ease-out;
   opacity: 1;
@@ -431,7 +445,9 @@
   z-index: 0;
   animation-delay: -5s;
 }
+
 @keyframes animate-bubble {
+
   0%,
   100% {
     transform: translateY(0px);
@@ -461,6 +477,7 @@
 }
 
 @keyframes animate-bubble6 {
+
   0%,
   100% {
     transform: translate(0);
@@ -490,6 +507,7 @@
 }
 
 @keyframes animate-bubble7 {
+
   0%,
   100% {
     transform: translate(0);
@@ -519,6 +537,7 @@
 }
 
 @keyframes animate-bubble8 {
+
   0%,
   100% {
     transform: translate(0);
@@ -548,6 +567,7 @@
 }
 
 @keyframes animate-bubble9 {
+
   0%,
   100% {
     transform: translate(0);
@@ -593,7 +613,7 @@
   border-radius: 52px;
 }
 
-.content-home2 { 
+.content-home2 {
   width: 100%;
   height: 100%;
 }
@@ -611,7 +631,8 @@
   top: 7%;
   height: 75%;
 }
-.mg-withbebe{
+
+.mg-withbebe {
   margin-bottom: 32px;
   margin-top: -60px;
 }
@@ -647,7 +668,8 @@
   position: relative;
   text-align: left;
 }
-.margin-grid-item-home2{
+
+.margin-grid-item-home2 {
   margin-left: -12.2%;
 }
 
@@ -675,21 +697,25 @@
   height: 1012px;
   padding-top: 120px;
 }
+
 .home3-container {
   display: grid;
   grid-template-rows: 1fr 3fr;
   justify-content: center;
   opacity: 0;
 }
+
 .animate-open-home3 {
   animation: animate-open-div 0.7s ease-in;
   opacity: 1;
 }
+
 .card-item-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
 }
+
 .card-item-course {
   position: relative;
   width: 390px;
@@ -701,6 +727,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
 .suggestion {
   position: absolute;
   background-color: #ff4858;
@@ -713,6 +740,7 @@
   border-radius: 7px;
   box-shadow: 0 4px 8px #acacac;
 }
+
 .suggestion::before {
   content: "";
   position: absolute;
@@ -723,6 +751,7 @@
   border-style: solid;
   border-color: transparent transparent #fff transparent;
 }
+
 .suggestion::after {
   content: "";
   position: absolute;
@@ -733,26 +762,31 @@
   border-style: solid;
   border-color: transparent transparent #ff4858 transparent;
 }
+
 .card-image {
   position: relative;
   top: 5%;
   left: 15%;
 }
+
 .card-item-course:nth-child(-n + 3):hover {
   transform: scale(1.14);
   background: white;
   transition: transform 0.3s ease-out;
 }
+
 .card-item-course.hovered {
   transform: scale(1.14);
   background: white;
 }
+
 .card-text-box {
   position: relative;
   width: 90%;
   top: 10%;
   left: 5%;
 }
+
 .fa-arrow-right {
   display: flex;
   position: absolute;
@@ -765,6 +799,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .fa-arrow-right.hovered {
   color: white;
   background-color: #ef60a3;
@@ -778,11 +813,13 @@
   height: 1064px;
   padding-top: 120px;
 }
+
 .home4-container {
   display: grid;
   grid-template-rows: 1fr 3fr;
   justify-content: center;
 }
+
 .home-star {
   display: flex;
   position: relative;
@@ -790,10 +827,12 @@
   width: 30%;
   left: 35%;
 }
+
 .animate-open-home4 {
   animation: animate-open-div 0.7s ease-in;
   opacity: 1;
 }
+
 .comment-item-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -801,24 +840,28 @@
   gap: 10px;
   height: 415px;
 }
+
 .card-comment1 {
   grid-column: 1;
   grid-row: 1;
   animation: slide-up1 0.7s ease-in;
   opacity: 1;
 }
+
 .card-comment2 {
   grid-column: 2;
   grid-row: 1;
   animation: slide-up2 1s ease-in;
   opacity: 1;
 }
+
 .card-comment3 {
   grid-column: 3;
   grid-row: 1;
   animation: slide-up3 1.3s ease-in;
   opacity: 1;
 }
+
 .card-comment4 {
   position: relative;
   top: -25%;
@@ -827,12 +870,14 @@
   animation: slide-up4 1.6s ease-in;
   opacity: 1;
 }
+
 .card-comment5 {
   grid-column: 2;
   grid-row: 2;
   animation: slide-up5 1.9s ease-in;
   opacity: 1;
 }
+
 .card-comment6 {
   position: relative;
   top: -25%;
@@ -841,55 +886,72 @@
   animation: slide-up6 2.2s ease-in;
   opacity: 1;
 }
+
 @keyframes slide-up1 {
   0% {
     transform: translateY(100vw);
   }
+
   100% {
     transform: translateY(0);
   }
 }
+
 @keyframes slide-up2 {
+
   0%,
   10% {
     transform: translateY(100vw);
   }
+
   100% {
     transform: translateY(0);
   }
 }
+
 @keyframes slide-up3 {
+
   0%,
   20% {
     transform: translateY(100vw);
   }
+
   100% {
     transform: translateY(0);
   }
 }
+
 @keyframes slide-up4 {
+
   0%,
   30% {
     transform: translateY(100vw);
   }
+
   100% {
     transform: translateY(0);
   }
 }
+
 @keyframes slide-up5 {
+
   0%,
   40% {
     transform: translateY(100vw);
   }
+
   100% {
     transform: translateY(0);
   }
 }
+
 @keyframes slide-up6 {
+
   0%,
   50% {
     transform: translateY(100vh);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -901,6 +963,7 @@
   height: 759px;
   padding-top: 120px;
 }
+
 .text-home5 {
   position: relative;
   display: flex;
@@ -909,6 +972,7 @@
   left: 10%;
   margin-bottom: 32px;
 }
+
 .card-container-home5 {
   position: relative;
   display: flex;
@@ -917,10 +981,12 @@
   width: 80%;
   left: 10%;
 }
+
 .card-content-home5 {
   width: 376px;
   height: 406px;
 }
+
 .card-content-home5:nth-child(-n + 3):hover {
   transform: scale(1.04);
   cursor: pointer;

@@ -1,0 +1,65 @@
+@media only screen and (max-width: 576px) {
+    .services-happily {
+        font-size: 20px !important;
+    }
+
+    .home2 {
+
+        padding: 32px 32px;
+    }
+
+    .not-good {
+
+        font-size: 16px !important;
+    }
+
+    .not-good-span {
+        display: block;
+        white-space: pre-wrap;
+    }
+
+    .services-happily {
+        font-size: 20px !important;
+    }
+
+    .not-good {
+
+        font-size: 16px !important;
+    }
+
+    .not-good-span {
+        display: block;
+        white-space: pre-wrap !important;
+    }
+}
+
+@media only screen and (min-width: 577px) {
+    .home2 {
+        background-color: #FFFFFF;
+        padding: 64px 64px;
+    }
+}
+
+
+
+@media only screen and (min-width: 1024px) {
+    .home2 {
+        background-color: #FFFFFF;
+        padding: 120px 124px;
+    }
+}
+
+
+
+
+.services-happily {
+    font-size: 48px;
+    font-family: SemiBoldPynk;
+    color: #4A4A4A;
+}
+
+.not-good {
+    font-size: 32px;
+    font-family: RegularPynk;
+    color: #4A4A4A;
+}
