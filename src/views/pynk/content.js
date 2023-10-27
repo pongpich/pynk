@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import axios from "axios";
 
 import title from "../../assets/img/content/Title.png";
 import slide1 from "../../assets/img/home/slide1.png";
@@ -25,15 +26,29 @@ import content2 from "../../assets/img/home/content2.png";
 import content3 from "../../assets/img/home/content3.png";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
+import "./css/content.css";
 
 const Content = () => {
     const history = useHistory();
+    const [products, setProducts] = useState([]);
+    const [page, setPage] = useState(9);
+    const [totalPage, setTotalpage] = useState(1);
 
+    const handlePageChange = (selectedPage) => {
+        setPage(selectedPage);
+    };
 
 
     useEffect(() => {
-
-    }, []);
+        (async () => {
+            const { data } = await axios.get(
+                `https://dummyjson.com/products?limit=10&skip=${page * 10 - 10}`
+            );
+            const { products } = data;
+            setProducts(products);
+            setTotalpage(data.total / 10);
+        })();
+    }, [page]);
 
     return (
         <div className="page">
@@ -56,7 +71,37 @@ const Content = () => {
                         ไลฟ์สไตล์
                     </Button>
                 </div>
-
+                <div className="App">
+                    {products.length > 0 && (
+                        <div className="products">
+                            {products.map((ele) => (
+                                <div key={ele.id} className="product_single">
+                                    <img src={ele.thumbnail} alt={ele.title} />
+                                    <div>{ele.title}</div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                    {products.length > 0 && (
+                        <div className="pagination">
+                            {page > 1 && (
+                                <span onClick={() => handlePageChange(page - 1)}>Back</span>
+                            )}
+                            {[...Array(totalPage)].map((_, i) => (
+                                <span
+                                    key={i}
+                                    onClick={() => handlePageChange(i + 1)}
+                                    className={page === i + 1 ? "pagination__selected" : ""}
+                                >
+                                    {i + 1}
+                                </span>
+                            ))}
+                            {page < totalPage && (
+                                <span onClick={() => handlePageChange(page + 1)}>Next</span>
+                            )}
+                        </div>
+                    )}
+                </div>
             </Box>
             <Footer />
         </div>
