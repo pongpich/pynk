@@ -153,6 +153,7 @@
 
 }
 
+
 .shop-image-background {
 
     background-image: url('../../../../src/assets/img/pynk/shop/FrameLink.png');
@@ -185,9 +186,9 @@
 
 
 .number-40 {
-
     width: 100%;
     height: auto;
     max-width: 389px;
     max-height: 182px;
 }
+
