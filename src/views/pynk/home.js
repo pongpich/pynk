@@ -23,12 +23,13 @@ import content3 from "../../assets/img/home/content3.png";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
+import "./css/home.css";
 import styles from "./css/home.module.css"; // เชื่อมต่อไฟล์ CSS
 let slidesToShow = 3;
 
 const carouselProperties = {
-  prevArrow: null,
-  nextArrow: null,
+  prevArrow: false,
+  nextArrow: false,
   slidesToShow: slidesToShow,
   slidesToScroll: 3,
   infinite: true,
@@ -39,14 +40,14 @@ const carouselProperties = {
     {
       breakpoint: 576,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 1.1,
         centerMode: true,
       },
     },
     {
       breakpoint: 769,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2.5,
         centerMode: true,
       },
     },
@@ -306,7 +307,7 @@ const Home = () => {
                   alt=""
                 />
               </picture>
-              {/*  <div
+              <div
                 ref={bounceContainer}
                 className={`bubble6 ${
                   bounceContainerISVisible && "animate-bubble6"
@@ -329,7 +330,7 @@ const Home = () => {
                 className={`bubble9 ${
                   bounceContainerISVisible && "animate-bubble9"
                 }`}
-              ></div> */}
+              ></div>
             </div>
             <div className="col-md-6">
               <p className={styles["stay-fit"]}>STAY FIT</p>
@@ -393,18 +394,70 @@ const Home = () => {
       </div>
 
       <div ref={home3} className="home3">
+        <div
+          className="text48 SemiBoldPynk white text-align-center"
+          style={{ marginBottom: "32px" }}
+        >
+          คอร์สแนะนำที่อยากบอกต่อ
+        </div>
         <Slider {...carouselProperties}>
           <div className="box-home-slider-1">
-            <h1> Home Slider 1</h1>
+            <div
+              className={`slider-card-item-course ${
+                hoveredButton === 1 && "hovered"
+              }`}
+              onMouseEnter={() => handleButtonHover(1)}
+              onMouseLeave={resetHoveredButton}
+            >
+              {" "}
+            </div>
+            {/*  <div
+              className={`slider-card-item-course ${hoveredButton === 1 && "hovered"}`}
+              onMouseEnter={() => handleButtonHover(1)}
+              onMouseLeave={resetHoveredButton}
+            >
+              card-item-course
+            </div> */}
           </div>
           <div className="box-home-slider-2">
-            {" "}
-            <h1> Home Slider 2</h1>
+            <div
+              className={`slider-card-item-course-center  ${
+                hoveredButton === 2 && "hovered"
+              }`}
+              onMouseEnter={() => handleButtonHover(2)}
+              onMouseLeave={resetHoveredButton}
+            >
+              {" "}
+            </div>
+            {/*  <div
+              className={`card-item-course ${hoveredButton === 2 && "hovered"}`}
+              onMouseEnter={() => handleButtonHover(2)}
+              onMouseLeave={resetHoveredButton}
+            >
+              <div className="suggestion text24 SemiBoldPynk white">แนะนำ</div>
+            </div> */}
           </div>
           <div className="box-home-slider-3">
-            <h1> Home Slider 3</h1>
+            <div
+              className={`slider-card-item-course ${
+                hoveredButton === 3 && "hovered"
+              }`}
+              onMouseEnter={() => handleButtonHover(3)}
+              onMouseLeave={resetHoveredButton}
+            >
+              {" "}
+            </div>
+            {/*  <div
+              className={`card-item-course ${hoveredButton === 3 && "hovered"}`}
+              onMouseEnter={() => handleButtonHover(3)}
+              onMouseLeave={resetHoveredButton}
+            >
+              {" "}
+              card-item-course
+            </div> */}
           </div>
-          {/*  <div
+
+          {/* <div
             className={`home3-container ${
               Home3ISVisible && "animate-open-home3"
             }`}
