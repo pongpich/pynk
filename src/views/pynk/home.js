@@ -402,14 +402,21 @@ const Home = () => {
         </div>
         <Slider {...carouselProperties}>
           <div className="box-home-slider-1">
-            <div
-              className={`slider-card-item-course ${
-                hoveredButton === 1 && "hovered"
-              }`}
-              onMouseEnter={() => handleButtonHover(1)}
-              onMouseLeave={resetHoveredButton}
-            >
-              {" "}
+            <div className="slider-card-item-course">
+              <div className="box-fitto4week">
+                <img className="fitto4week" src={fitto4week} alt="" />
+              </div>
+
+              <div className="card-text-box">
+                <p className="SemiBoldPynk text24">
+                  Fitto 4 Week Starter Program
+                </p>
+                <p className="RegularPynk text20">
+                  “Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.
+                </p>
+                <i class={`fa-solid fa-arrow-right fa-xl`} />
+              </div>
             </div>
             {/*  <div
               className={`slider-card-item-course ${hoveredButton === 1 && "hovered"}`}
@@ -420,14 +427,19 @@ const Home = () => {
             </div> */}
           </div>
           <div className="box-home-slider-2">
-            <div
-              className={`slider-card-item-course-center  ${
-                hoveredButton === 2 && "hovered"
-              }`}
-              onMouseEnter={() => handleButtonHover(2)}
-              onMouseLeave={resetHoveredButton}
-            >
-              {" "}
+            <div className="box-suggestion"></div>
+            <div className="slider-card-item-course-center">
+              <div className="box-fitto4week">
+                <p className="suggestion text24 SemiBoldPynk white">แนะนำ</p>
+                <img className="fitto4week" src={stayfit_with_bebe} alt="" />
+              </div>
+              <div className="card-text-box">
+                <p className="SemiBoldPynk text24">STAY FIT WITH BEBE</p>
+                <p className="RegularPynk text20">
+                  โปรแกรมออกกำลังกาย 8 สัปดาห์ที่ เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ
+                </p>
+                <i class={`fa-solid fa-arrow-right fa-xl`} />
+              </div>
             </div>
             {/*  <div
               className={`card-item-course ${hoveredButton === 2 && "hovered"}`}
@@ -438,16 +450,24 @@ const Home = () => {
             </div> */}
           </div>
           <div className="box-home-slider-3">
-            <div
-              className={`slider-card-item-course ${
-                hoveredButton === 3 && "hovered"
-              }`}
-              onMouseEnter={() => handleButtonHover(3)}
-              onMouseLeave={resetHoveredButton}
-            >
-              {" "}
+            <div className="slider-card-item-course">
+              <div className="box-fitto4week">
+                <img
+                  className="fitto4week"
+                  src={bikini_body_challenge}
+                  alt=""
+                />
+              </div>
+              <div className="card-text-box">
+                <p className="SemiBoldPynk text24">Bikini Body Challenge</p>
+                <p className="RegularPynk text20">
+                  “Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.
+                </p>
+                <i class={`fa-solid fa-arrow-right fa-xl`} />
+              </div>
             </div>
-            {/*  <div
+            {/*   <div
               className={`card-item-course ${hoveredButton === 3 && "hovered"}`}
               onMouseEnter={() => handleButtonHover(3)}
               onMouseLeave={resetHoveredButton}
@@ -505,23 +525,7 @@ const Home = () => {
                 onMouseEnter={() => handleButtonHover(2)}
                 onMouseLeave={resetHoveredButton}
               >
-                <div className="suggestion text24 SemiBoldPynk white">
-                  แนะนำ
-                </div>
-                <img
-                  className="card-image"
-                  src={stayfit_with_bebe}
-                  width={273}
-                  height={263}
-                  alt=""
-                />
-                <div className="card-text-box">
-                  <p className="SemiBoldPynk text24">STAY FIT WITH BEBE</p>
-                  <p className="RegularPynk text20">
-                    โปรแกรมออกกำลังกาย 8 สัปดาห์ที่
-                    เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ
-                  </p>
-                </div>
+                
                 <i
                   class={`fa-solid fa-arrow-right fa-xl ${
                     hoveredButton === 2 && "hovered"
