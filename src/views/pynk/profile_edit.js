@@ -318,24 +318,6 @@ const Profile_edit = () => {
       transition: "border-color .15s ease-in-out, box-shadow .15s ease-in-out",
     };
 
-    const focusStyle = {
-      display: "block",
-      width: "100%",
-      padding: "0.375rem 0.75rem",
-      fontSize: "1rem",
-      fontWeight: "400",
-      lineHeight: "1.5",
-      color: "#212529",
-      backgroundColor: "#fff",
-      backgroundClip: "padding-box",
-      border: "1px solid #ff0000 !important",
-      WebkitAppearance: "none",
-      MozAppearance: "none",
-      appearance: "none",
-      borderRadius: "0.375rem",
-      transition: "border-color .15s ease-in-out, box-shadow .15s ease-in-out",
-    };
-
     return (
       <div className="mb-5">
         <p className="text-modal-body">ข้อมูลที่อยู่</p>
@@ -362,14 +344,6 @@ const Profile_edit = () => {
             <InputAddress
               address="subdistrict"
               style={{ ...baseStyle }}
-              onFocus={(e) => {
-                e.target.style.borderColor = focusStyle.borderColor;
-                e.target.style.boxShadow = focusStyle.boxShadow;
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = baseStyle.borderColor;
-                e.target.style.boxShadow = baseStyle.boxShadow;
-              }}
               value={formData.subdistrict}
               onChange={handleChange}
               onSelect={handleAddressChange}
@@ -386,14 +360,7 @@ const Profile_edit = () => {
             </label>
             <InputAddress
               address="district"
-              style={{
-                width: "100%",
-                height: "42px",
-                marginTop: "-8px",
-                marginBottom: "16px",
-                borderRadius: "8px",
-                border: "1px solid #4A4A4A",
-              }}
+              style={{ ...baseStyle }}
               value={formData.district}
               onChange={handleChange}
               onSelect={handleAddressChange}
@@ -417,14 +384,7 @@ const Profile_edit = () => {
             /> */}
             <InputAddress
               address="province"
-              style={{
-                width: "100%",
-                height: "42px",
-                marginTop: "-8px",
-                marginBottom: "16px",
-                borderRadius: "8px",
-                border: "1px solid #4A4A4A",
-              }}
+              style={{ ...baseStyle }}
               value={formData.province}
               onChange={handleChange}
               onSelect={handleAddressChange}
@@ -446,14 +406,7 @@ const Profile_edit = () => {
             /> */}
             <InputAddress
               address="zipcode"
-              style={{
-                width: "100%",
-                height: "42px",
-                marginTop: "-8px",
-                marginBottom: "16px",
-                borderRadius: "8px",
-                border: "1px solid #4A4A4A",
-              }}
+              style={{ ...baseStyle }}
               value={formData.zipcode}
               onChange={handleChange}
               onSelect={handleAddressChange}
