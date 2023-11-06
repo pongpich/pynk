@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import colors from "./colors";
 import { useSelector, useDispatch } from "react-redux";
-import { updateRegister, clearUpdateRegister } from "../../redux/pynk/auth";
+import {
+  updateRegister,
+  clearUpdateRegister,
+  updateAddress,
+} from "../../redux/pynk/auth";
 import icon_profile from "../../assets/img/pynk/shop/profile.png";
 import { useHistory } from "react-router-dom";
 import rightContent from "../../assets/img/pynk/shop/RightContent.png";
@@ -33,6 +37,29 @@ const Profile_edit = () => {
   const [first_name, setFirst_name] = useState(user && user.first_name);
   const [last_name, setLast_name] = useState(user && user.last_name);
   const [phone, setPhone] = useState(user && user.phone);
+  const [formData, setFormData] = useState({
+    address: "",
+    subdistrict: "",
+    district: "",
+    province: "",
+    zipcode: "",
+  });
+
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    first_name: "",
+    last_name: "",
+    phone: "",
+  });
+
+  const [errorsAddress, setErrorsAddress] = useState({
+    address: "",
+    subdistrict: "",
+    district: "",
+    province: "",
+    zipcode: "",
+  });
 
   useEffect(() => {
     setEmail(user && user.email);
@@ -67,6 +94,23 @@ const Profile_edit = () => {
       setters[name](value);
     }
   };
+  const handleChangeAddress = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
+  };
+  /*   const handleChange = (event) => {
+    const { name, type, checked, value } = event.target;
+    console.log("name", name, type, checked, value);
+
+    if (name == "checkbox") {
+      setFormData((prevState) => ({
+        ...prevState,
+        ["checked"]: type == "checkbox" ? checked : checked,
+      }));
+    } else {
+      setFormData((prevState) => ({ ...prevState, [name]: value }));
+    }
+  }; */
 
   const handleAddressChange = (value) => {
     setFormData({
@@ -78,35 +122,9 @@ const Profile_edit = () => {
     });
   };
 
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-    first_name: "",
-    last_name: "",
-    phone: "",
-  });
-
-  const [formData, setFormData] = useState({
-    address: "",
-    subdistrict: "",
-    district: "",
-    province: "",
-    zipcode: "",
-  });
-
-  const [errorsAddress, setErrorsAddress] = useState({
-    email: "",
-    password: "",
-    first_name: "",
-    last_name: "",
-    phone: "",
-  });
-
   const validate = () => {
     let isValid = true;
-
     const newErrors = {};
-
     // Email validation
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!email.trim()) {
@@ -143,19 +161,68 @@ const Profile_edit = () => {
     return isValid;
   };
 
-  const handleSubmit = () => {
-    if (validate()) {
-      dispatch(
-        updateRegister(
-          user ? user.user_id : null, //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
-          email, //product_list,
-          password, //total_amount,
-          first_name, //customer_data,
-          last_name, //shipping_address,
-          phone //note
-        )
-      );
+  const validateAddress = () => {
+    let isValid = true;
+
+    const newErrors = {};
+
+    // phone validation
+    if (!formData.address.trim()) {
+      newErrors.address = "กรุณาระบุข้อมูล";
+      isValid = false;
     }
+
+    // password validation
+    if (!formData.subdistrict.trim()) {
+      newErrors.subdistrict = "กรุณาระบุข้อมูล";
+      isValid = false;
+    }
+    if (!formData.district.trim()) {
+      newErrors.district = "กรุณาระบุข้อมูล";
+      isValid = false;
+    }
+    // first_name validation
+    if (!formData.province.trim()) {
+      newErrors.province = "กรุณาระบุข้อมูล";
+      isValid = false;
+    }
+    // last_name validation
+    if (!formData.zipcode.trim()) {
+      newErrors.zipcode = "กรุณาระบุข้อมูล";
+      isValid = false;
+    }
+
+    setErrorsAddress(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    if (e == "information") {
+      if (validate()) {
+        dispatch(
+          updateRegister(
+            user ? user.user_id : null, //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
+            email, //product_list,
+            password, //total_amount,
+            first_name, //customer_data,
+            last_name, //shipping_address,
+            phone //note
+          )
+        );
+      }
+    } else {
+      if (validateAddress()) {
+        dispatch(
+          updateAddress(
+            user ? user.user_id : null, //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
+            formData,
+            true
+          )
+        );
+        console.log("address");
+      }
+    }
+    /*    */
   };
 
   const personalInformation = () => {
@@ -278,7 +345,10 @@ const Profile_edit = () => {
               <button className="btn-connect ">Connect</button>
             </div>
             <div className="row-16-button">
-              <button className="save-profile" onClick={handleSubmit}>
+              <button
+                className="save-profile"
+                onClick={(e) => handleSubmit("information")}
+              >
                 บันทึก
               </button>
             </div>
@@ -318,6 +388,8 @@ const Profile_edit = () => {
       transition: "border-color .15s ease-in-out, box-shadow .15s ease-in-out",
     };
 
+    console.log("formData", formData);
+
     return (
       <div className="mb-5">
         <p className="text-modal-body">ข้อมูลที่อยู่</p>
@@ -330,9 +402,14 @@ const Profile_edit = () => {
               type="text"
               className="form-control"
               id="address"
+              onChange={handleChangeAddress}
               name="address"
-              placeholder="กรุณาระบุชื่อ"
+              value={formData.address}
+              placeholder="กรุณาระบุที่อยู่"
             />
+            {errorsAddress.address && (
+              <div className="error-from">{errorsAddress.address}</div>
+            )}
           </div>
         </div>
         <div className="row row-16">
@@ -345,7 +422,9 @@ const Profile_edit = () => {
               address="subdistrict"
               style={{ ...baseStyle }}
               value={formData.subdistrict}
-              onChange={handleChange}
+              name="subdistrict"
+              id="subdistrict"
+              onChange={handleChangeAddress}
               onSelect={handleAddressChange}
               placeholder="เลือกเเขวง/ตำบล"
             />
@@ -360,9 +439,11 @@ const Profile_edit = () => {
             </label>
             <InputAddress
               address="district"
+              name="district"
+              id="district"
               style={{ ...baseStyle }}
               value={formData.district}
-              onChange={handleChange}
+              onChange={handleChangeAddress}
               onSelect={handleAddressChange}
               placeholder="เลือกเเขวง/ตำบล"
             />
@@ -376,17 +457,13 @@ const Profile_edit = () => {
             <label for="exampleFormControlInput1" className="form-label">
               จังหวัด <span>*</span>
             </label>
-            {/*  <input
-              type="text"
-              className="form-control"
-              id="exampleFormControlInput1"
-              placeholder="เลือกจังหวัด"
-            /> */}
             <InputAddress
               address="province"
               style={{ ...baseStyle }}
               value={formData.province}
-              onChange={handleChange}
+              name="province"
+              id="province"
+              onChange={handleChangeAddress}
               onSelect={handleAddressChange}
               placeholder="Placeholder"
             />
@@ -398,17 +475,12 @@ const Profile_edit = () => {
             <label for="exampleFormControlInput1" className="form-label">
               รหัสไปรษณีย์ <span>*</span>
             </label>
-            {/* <input
-              type="number"
-              className="form-control"
-              id="exampleFormControlInput1"
-              placeholder="เลือกรหัสไปรษณีย์"
-            /> */}
             <InputAddress
               address="zipcode"
+              name="zipcode"
               style={{ ...baseStyle }}
               value={formData.zipcode}
-              onChange={handleChange}
+              onChange={handleChangeAddress}
               onSelect={handleAddressChange}
               placeholder="Placeholder"
             />
@@ -418,7 +490,12 @@ const Profile_edit = () => {
             )}
           </div>
           <div className="row-16-button">
-            <button className="save-profile">บันทึก</button>
+            <button
+              className="save-profile"
+              onClick={(e) => handleSubmit("address")}
+            >
+              บันทึก
+            </button>
           </div>
         </div>
       </div>
