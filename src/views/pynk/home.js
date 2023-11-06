@@ -149,6 +149,35 @@ const Home = () => {
       clearInterval(autoSlideIntervalRef.current);
     };
   }, []); */
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const carousel = document.querySelector("#carouselExampleCaptions");
+    carousel.addEventListener("slid.bs.carousel", handleSlideChange);
+
+    return () => {
+      carousel.removeEventListener("slid.bs.carousel", handleSlideChange);
+    };
+  }, []);
+
+  const handleSlideChange = () => {
+    const activeSlide = document.querySelector(".carousel-item.active");
+    const slideIndex = Array.from(
+      document.querySelectorAll(".carousel-item")
+    ).indexOf(activeSlide);
+    const bubbleImg = document.querySelector(".bubble_img");
+
+    if (slideIndex === 0) {
+      bubbleImg.style.animation = "rotate0to120 2s";
+    } else if (slideIndex === 1) {
+      bubbleImg.style.animation = "rotate120to240 2s";
+    } else if (slideIndex === 2) {
+      bubbleImg.style.animation = "rotate240to360 2s";
+    }
+
+    setCurrentSlide(slideIndex);
+  };
+  console.log("currentSlide", currentSlide);
 
   return (
     <div className="page">
@@ -183,24 +212,29 @@ const Home = () => {
           <div className="box_animation">
             <div className="row">
               <div className="col-12 col-md-6 relative flex_center">
-                <img src={bubble} className="bubble_img" alt="" />
+                <img
+                  src={bubble}
+                  className="bubble_img"
+                  id="bubble_img"
+                  alt=""
+                />
                 <img src={bebe_slide1} className="bebe_img" alt="" />
               </div>
               <div className="col-12 col-md-6 relative flex_center">Test2</div>
             </div>
           </div>
 
-          <div className="carousel-item active">
+          <div className="carousel-item active" alt="Slide 1">
             <div className="box_screen1">
               <div className="line3"></div>
             </div>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item" alt="Slide 2">
             <div className="box_screen2">
               <div className="line3"></div>
             </div>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item" alt="Slide 3">
             <div className="box_screen3">
               <div className="line3"></div>
             </div>

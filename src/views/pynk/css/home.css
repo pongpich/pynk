@@ -31,12 +31,13 @@
 }
 
 @media screen and (max-width: 576px) {
-  .flex_center{
+  .flex_center {
     height: 520px;
   }
 }
+
 @media screen and (min-width: 577px) {
-  .flex_center{
+  .flex_center {
     height: 700px;
   }
 }
@@ -119,7 +120,7 @@
   margin-bottom: 0px;
 }
 
-.line3{
+.line3 {
   width: 80%;
   height: 100%;
   background-image: url("../../../../src/assets/img/home/3line.png");
@@ -127,64 +128,128 @@
   background-repeat: no-repeat;
 }
 
-.box_screen1{
-  background: linear-gradient(to bottom ,#FFF,  #FFBBD6);
+.box_screen1 {
+  background: linear-gradient(to bottom, #FFF, #FFBBD6);
   width: 100%;
   height: 700px;
   position: relative;
 }
-.box_screen2{
-  background: linear-gradient(to bottom ,#EF9CC3,  #EF60A3);
+
+.box_screen2 {
+  background: linear-gradient(to bottom, #EF9CC3, #EF60A3);
   width: 100%;
   height: 700px;
   position: relative;
 }
-.box_screen3{
-  background: linear-gradient(to bottom ,#EF60A3,  #960051);
+
+.box_screen3 {
+  background: linear-gradient(to bottom, #EF60A3, #960051);
   width: 100%;
   height: 700px;
   position: relative;
 }
-.relative{
+
+.relative {
   position: relative;
 }
-.absolute{
+
+.absolute {
   position: absolute;
 }
-.flex_center{
+
+.flex_center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.bubble_img{
+
+
+
+/* .carousel-indicators button[data-bs-slide-to="0"].active {
+  background-color: #007bff;
+}
+
+.carousel-indicators button[data-bs-slide-to="1"].active {
+  background-color: #63de11;
+}
+
+.carousel-indicators button[data-bs-slide-to="2"].active {
+  background-color: #e20f0f;
+} */
+
+/* 
+.carousel-indicators button[data-bs-slide-to="0"].active>.carousel-inner .carousel-item.active {
+  transform: rotate(0deg);
+}
+
+.carousel-indicators button[data-bs-slide-to="1"].active>.carousel-inner .carousel-item.active {
+  transform: rotate(90deg);
+}
+
+.carousel-indicators button[data-bs-slide-to="2"].active>.carousel-inner .carousel-item.active {
+  transform: rotate(180deg);
+} */
+
+.bebe_img {
+  position: relative;
+  max-width: 573px;
+  height: auto;
+  width: 100%;
+  z-index: 1;
+}
+
+.box_animation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.bubble_img {
   position: absolute;
   max-width: 573px;
   height: auto;
   width: 100%;
   z-index: 1;
   top: 22%;
+  /*    transform: rotate(-40deg); */
 }
-.bebe_img{
-  position: relative;
-  max-width: 573px;
-  height: auto;
-  width: 100%;
-  z-index: 1;
+
+
+@keyframes rotate0to120 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-40deg);
+  }
 }
-.box_animation{
-  position: absolute;
-  width: 100%;
-  height: 100%;
+
+
+/* @keyframes rotate120to240 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-40deg);
+  }
+} */
+
+/* ถุกเเล้ว */
+
+@keyframes rotate240to360 {
+  0% {
+    transform: rotate(240deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
-.carousel-indicators button[data-bs-slide-to="0" ] .bubble_img {
-  background-color: #007bff;
-}
-.carousel-indicators button[data-bs-slide-to="1"] .bubble_img{
-  transform: rotate(45deg);
-}
-.carousel-indicators button[data-bs-slide-to="2"] .bubble_img{
-  transform: rotate(90deg);
-}
+
+
+
 
 
 /* @keyframes animate-open-div {
