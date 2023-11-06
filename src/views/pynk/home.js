@@ -180,66 +180,29 @@ const Home = () => {
           ></button>
         </div>
         <div className="carousel-inner">
-        <div className="row">
-            <div className="col-12 col-md-6 relative flex_center">
-              <img src={bubble} className="bubble_img" alt="" />
-              <img src={bebe_slide1} className="bebe_img" alt="" />
+          <div className="box_animation">
+            <div className="row">
+              <div className="col-12 col-md-6 relative flex_center">
+                <img src={bubble} className="bubble_img" alt="" />
+                <img src={bebe_slide1} className="bebe_img" alt="" />
+              </div>
+              <div className="col-12 col-md-6 relative flex_center">Test2</div>
             </div>
-            <div className="col-12 col-md-6 relative flex_center">Test2</div>
           </div>
+
           <div className="carousel-item active">
             <div className="box_screen1">
-              <div className="line3">
-                {/* <img src="..." alt="" />
-              <div className="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>
-                  Some representative placeholder content for the first slide.
-                </p>
-              </div> */}
-              </div>
+              <div className="line3"></div>
             </div>
           </div>
           <div className="carousel-item">
             <div className="box_screen2">
-              <div className="line3">
-                <div className="row">
-                  <div className="col-12 col-md-6 relative flex_center">
-                    <img src={bebe_slide2} className="bebe_img" alt="" />
-                  </div>
-                  <div className="col-12 col-md-6 relative flex_center">
-                    Test2
-                  </div>
-                </div>
-                {/* <img src="..." alt="" />
-              <div className="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>
-                  Some representative placeholder content for the first slide.
-                </p>
-              </div> */}
-              </div>
+              <div className="line3"></div>
             </div>
           </div>
           <div className="carousel-item">
             <div className="box_screen3">
-              <div className="line3">
-                <div className="row">
-                  <div className="col-12 col-md-6 relative flex_center">
-                    <img src={bebe_slide3} className="bebe_img" alt="" />
-                  </div>
-                  <div className="col-12 col-md-6 relative flex_center">
-                    Test2
-                  </div>
-                </div>
-                {/* <img src="..." alt="" />
-              <div className="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>
-                  Some representative placeholder content for the first slide.
-                </p>
-              </div> */}
-              </div>
+              <div className="line3"></div>
             </div>
           </div>
         </div>
