@@ -17,9 +17,9 @@ export const types = {
   UPDATE_REGISTER_PYNK: "UPDATE_REGISTER_PYNK",
   UPDATE_REGISTER_SUCCESS: "UPDATE_REGISTER_SUCCESS",
   UPDATE_REGISTER_FAIL: "UPDATE_REGISTER_FAIL",
-  UPDATE_ADDRESS: "UPDATE_ADDRESS",
-  UPDATE_ADDRESS_SUCCESS: "UPDATE_ADDRESS_SUCCESS",
-  UPDATE_ADDRESS_FAIL: "UPDATE_ADDRESS_FAIL",
+  UPDATE_ADDRESS_PYNK: "UPDATE_ADDRESS_PYNK",
+  UPDATE_ADDRESS_PYNK_SUCCESS: "UPDATE_ADDRESS_PYNK_SUCCESS",
+  UPDATE_ADDRESS_PYNK_FAIL: "UPDATE_ADDRESS_PYNK_FAIL",
   CLEAR_STATUS_UPDATE_REGISTER: "CLEAR_STATUS_UPDATE_REGISTER",
   CLEAR_STATUS: "CLEAR_STATUS",
 };
@@ -78,12 +78,12 @@ export const updateRegister = (
   },
 });
 
-export const updateAddress = (id, address, updateAddress) => ({
-  type: types.UPDATE_ADDRESS,
+export const updateAddressPynk = (id, address, addressStatus) => ({
+  type: types.UPDATE_ADDRESS_PYNK,
   payload: {
     id,
     address,
-    updateAddress,
+    addressStatus,
   },
 });
 
@@ -146,16 +146,16 @@ const updateRegisterSagaAsync = async (
   }
 };
 
-const updateAddressSagaAsync = async (id, address, updateAddress) => {
+const updateAddressPynkSagaAsync = async (id, address, addressStatus) => {
   try {
     const apiResult = await API.post("pynk", "/postAddress", {
       body: {
         id,
         address,
-        updateAddress,
+        addressStatus,
       },
     });
-    console.log("apiResult", apiResult);
+    console.log("apiResult 55", apiResult);
     return apiResult;
   } catch (error) {
     console.log("error", error);
@@ -295,26 +295,26 @@ function* updateRegisterSaga({ payload }) {
   }
 }
 
-function* updateAddressSaga({ payload }) {
-  const { id, address, updateAddress } = payload;
+function* updateAddressPynkSaga({ payload }) {
+  const { id, address, addressStatus } = payload;
 
   try {
     const apiResult = yield call(
-      updateAddressSagaAsync,
+      updateAddressPynkSagaAsync,
       id,
       address,
-      updateAddress
+      addressStatus
     );
 
     console.log("apiResult", apiResult);
     if (apiResult.results.message === "success") {
       yield put({
-        type: types.UPDATE_ADDRESS_SUCCESS,
+        type: types.UPDATE_ADDRESS_PYNK_SUCCESS,
         payload: apiResult.results.user,
       });
     } else if (apiResult.results.message === "fail") {
       yield put({
-        type: types.UPDATE_ADDRESS_FAIL,
+        type: types.UPDATE_ADDRESS_PYNK_FAIL,
       });
     }
   } catch (error) {
@@ -336,8 +336,8 @@ export function* watchRegister() {
 export function* watchUpdateRegister() {
   yield takeEvery(types.UPDATE_REGISTER_PYNK, updateRegisterSaga);
 }
-export function* watchUpdateAddressSaga() {
-  yield takeEvery(types.UPDATE_ADDRESS, updateAddressSaga);
+export function* watchUpdateAddressPynk() {
+  yield takeEvery(types.UPDATE_ADDRESS_PYNK, updateAddressPynkSaga);
 }
 
 export function* saga() {
@@ -346,7 +346,7 @@ export function* saga() {
     fork(watchRegister),
     fork(watchLoginAdmin),
     fork(watchUpdateRegister),
-    fork(watchUpdateAddressSaga),
+    fork(watchUpdateAddressPynk),
   ]);
 }
 
@@ -423,13 +423,13 @@ export function reducer(state = INIT_STATE, action) {
         ...state,
         statusUpdateRegister: "fail",
       };
-    case types.UPDATE_ADDRESS_SUCCESS:
+    case types.UPDATE_ADDRESS_PYNK_SUCCESS:
       return {
         ...state,
         user: action.payload,
         statusUpdateAddress: "success",
       };
-    case types.UPDATE_ADDRESS_FAIL:
+    case types.UPDATE_ADDRESS_PYNK_FAIL:
       return {
         ...state,
         statusUpdateAddress: "fail",

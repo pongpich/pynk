@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   updateRegister,
   clearUpdateRegister,
-  updateAddress,
+  updateAddressPynk,
 } from "../../redux/pynk/auth";
 import icon_profile from "../../assets/img/pynk/shop/profile.png";
 import { useHistory } from "react-router-dom";
@@ -27,9 +27,10 @@ const Profile_edit = () => {
     }
   }, [user]);
 
-  const statusUpdateRegister = useSelector(({ auth }) =>
-    auth ? auth.statusUpdateRegister : ""
+  const { statusUpdateRegister, statusUpdateAddress } = useSelector(
+    ({ auth }) => (auth ? auth : "")
   );
+
   const [statusProfile, setStatusProfile] = useState(1);
   const [id, setID] = useState(user && user.user_id);
   const [email, setEmail] = useState(user && user.email);
@@ -75,6 +76,28 @@ const Profile_edit = () => {
       dispatch(clearUpdateRegister());
     }
   }, [statusUpdateRegister]);
+  useEffect(() => {
+    if (statusUpdateAddress == "success") {
+      history.push("/profile-pynk");
+      dispatch(clearUpdateRegister());
+    }
+  }, [statusUpdateAddress]);
+
+  useEffect(() => {
+    if (user && user.address) {
+      let userAddress = user && JSON.parse(user.address);
+      setFormData({
+        ...formData,
+        address: userAddress.address,
+        subdistrict: userAddress.subdistrict,
+        district: userAddress.district,
+        province: userAddress.province,
+        zipcode: userAddress.zipcode,
+      });
+    } else {
+      console.log("A");
+    }
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -98,19 +121,6 @@ const Profile_edit = () => {
     const { name, value } = event.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
-  /*   const handleChange = (event) => {
-    const { name, type, checked, value } = event.target;
-    console.log("name", name, type, checked, value);
-
-    if (name == "checkbox") {
-      setFormData((prevState) => ({
-        ...prevState,
-        ["checked"]: type == "checkbox" ? checked : checked,
-      }));
-    } else {
-      setFormData((prevState) => ({ ...prevState, [name]: value }));
-    }
-  }; */
 
   const handleAddressChange = (value) => {
     setFormData({
@@ -213,13 +223,12 @@ const Profile_edit = () => {
     } else {
       if (validateAddress()) {
         dispatch(
-          updateAddress(
+          updateAddressPynk(
             user ? user.user_id : null, //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
-            formData,
-            true
+            formData ? formData : null,
+            "true"
           )
         );
-        console.log("address");
       }
     }
     /*    */
@@ -359,15 +368,6 @@ const Profile_edit = () => {
   };
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleFocus = () => {
-    console.log("555");
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
-
   const addressInformation = () => {
     const baseStyle = {
       display: "block",
@@ -387,8 +387,6 @@ const Profile_edit = () => {
       borderRadius: "0.375rem",
       transition: "border-color .15s ease-in-out, box-shadow .15s ease-in-out",
     };
-
-    console.log("formData", formData);
 
     return (
       <div className="mb-5">
