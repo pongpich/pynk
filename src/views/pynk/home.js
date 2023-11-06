@@ -165,13 +165,14 @@ const Home = () => {
     const slideIndex = Array.from(
       document.querySelectorAll(".carousel-item")
     ).indexOf(activeSlide);
+    const slideIndex2 = slideIndex + 1;
     const bubbleImg = document.querySelector(".bubble_img");
 
-    if (slideIndex === 0) {
+    if (slideIndex2 === 0) {
       bubbleImg.style.animation = "rotate0to120 2s";
-    } else if (slideIndex === 1) {
+    } else if (slideIndex2 === 1) {
       bubbleImg.style.animation = "rotate120to240 2s";
-    } else if (slideIndex === 2) {
+    } else if (slideIndex2 === 2) {
       bubbleImg.style.animation = "rotate240to360 2s";
     }
 
