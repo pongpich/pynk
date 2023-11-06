@@ -8,6 +8,8 @@ import Cookies from "js-cookie";
 import Footer from "../footer";
 import InputAddress from "react-thailand-address-autocomplete";
 
+import { updateAddressPynk } from "../../../redux/pynk/auth";
+
 import qrcode from "../../../assets/img/pynk/shop/qrcode.png";
 import prompt_pay from "../../../assets/img/pynk/shop/promptPay.png";
 import Visa from "../../../assets/img/pynk/shop/Visa.png";
@@ -84,6 +86,19 @@ const Shop_payment = () => {
   }, []);
   useEffect(() => {
     setOrder(product && JSON.parse(product));
+  }, []);
+  useEffect(() => {
+    if (user) {
+      const addressUser = user && JSON.parse(user.address);
+      setFormData({
+        ...formData,
+        address: user ? addressUser.address : "",
+        subdistrict: user ? addressUser.subdistrict : "",
+        district: user ? addressUser.district : "",
+        province: user ? addressUser.province : "",
+        zipcode: user ? addressUser.zipcode : "",
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -266,6 +281,24 @@ const Shop_payment = () => {
     if (validate()) {
       setStatusStep(1);
       window.scrollTo(0, 0);
+      // update ที่อยู่กรณีที่ไม่เคยมี
+      if (user) {
+        let userAddress = {
+          address: formData && formData.address,
+          subdistrict: formData && formData.subdistrict,
+          district: formData && formData.district,
+          province: formData && formData.province,
+          zipcode: formData && formData.zipcode,
+        };
+
+        dispatch(
+          updateAddressPynk(
+            user ? user.user_id : null, //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
+            formData ? userAddress : null,
+            "false"
+          )
+        );
+      }
     }
   };
 
