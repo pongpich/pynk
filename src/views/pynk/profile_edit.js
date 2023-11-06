@@ -8,6 +8,7 @@ import rightContent from "../../assets/img/pynk/shop/RightContent.png";
 import icon_facebook from "../../assets/img/pynk/shop/icon-facebook.png";
 import icon_Google from "../../assets/img/pynk/shop/icon-Google.png";
 import icon_line from "../../assets/img/pynk/shop/icon-line.png";
+import InputAddress from "react-thailand-address-autocomplete";
 
 import "./css/profile.css";
 
@@ -21,7 +22,7 @@ const Profile_edit = () => {
       history.push("/home");
     }
   }, [user]);
-  
+
   const statusUpdateRegister = useSelector(({ auth }) =>
     auth ? auth.statusUpdateRegister : ""
   );
@@ -67,7 +68,33 @@ const Profile_edit = () => {
     }
   };
 
+  const handleAddressChange = (value) => {
+    setFormData({
+      ...formData,
+      subdistrict: value.subdistrict,
+      district: value.district,
+      province: value.province,
+      zipcode: value.zipcode,
+    });
+  };
+
   const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    first_name: "",
+    last_name: "",
+    phone: "",
+  });
+
+  const [formData, setFormData] = useState({
+    address: "",
+    subdistrict: "",
+    district: "",
+    province: "",
+    zipcode: "",
+  });
+
+  const [errorsAddress, setErrorsAddress] = useState({
     email: "",
     password: "",
     first_name: "",
@@ -136,13 +163,13 @@ const Profile_edit = () => {
       <div>
         <p className="text-modal-body">ข้อมูลส่วนตัว</p>
         <div className="row row-16">
-          <div class="col-12 col-sm-12 col-md-6 mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               ชื่อ <span>*</span>
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               value={first_name}
               name="first_name"
               id="first_name"
@@ -153,15 +180,15 @@ const Profile_edit = () => {
               <div className="error-from">{errors.first_name}</div>
             )}
           </div>
-          <div class="col-12 col-sm-12  col-md-6  mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12  col-md-6  mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               นามสกุล <span>*</span>
             </label>
             <input
               type="text"
               value={last_name}
               name="last_name"
-              class="form-control"
+              className="form-control"
               id="last_name"
               onChange={handleChange}
               placeholder="กรุณาระบุนามสกุล"
@@ -172,13 +199,13 @@ const Profile_edit = () => {
           </div>
         </div>
         <div className="row row-16">
-          <div class="col-12 col-sm-12 col-md-6 mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               เบอร์โทรศัพท์ที่ติดต่อได้ <span>*</span>
             </label>
             <input
               type="number"
-              class="form-control"
+              className="form-control"
               value={phone}
               id="phone"
               name="phone"
@@ -190,8 +217,8 @@ const Profile_edit = () => {
         </div>
         <p className="text-modal-body mt-64">บัญชีเข้าใช้งาน</p>
         <div className="row row-16">
-          <div class="col-12 col-sm-12 col-md-6 mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               อีเมลเข้าใช้งาน <span>*</span>
             </label>
             <input
@@ -199,21 +226,21 @@ const Profile_edit = () => {
               value={email}
               name="email"
               onChange={handleChange}
-              class="form-control"
+              className="form-control"
               id="email"
               placeholder="name@example.com"
             />
             {errors.email && <div className="error-from">{errors.email}</div>}
           </div>
-          <div class="col-12 col-sm-12  col-md-6  mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12  col-md-6  mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               รหัสผ่าน <span>*</span>
             </label>
             <input
               type="password"
               name="password"
               value={password}
-              class="form-control"
+              className="form-control"
               id="password"
               onChange={handleChange}
               placeholder="name@example.com"
@@ -225,8 +252,8 @@ const Profile_edit = () => {
         </div>
 
         <div className="row row-16">
-          <div class="col-12 col-sm-12 col-md-12 mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12 col-md-12 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               การเชื่อมต่อ
             </label>
             <div className="box-fa">
@@ -260,70 +287,182 @@ const Profile_edit = () => {
       </div>
     );
   };
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => {
+    console.log("555");
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
 
   const addressInformation = () => {
+    const baseStyle = {
+      display: "block",
+      height: "auto",
+      width: "100%",
+      padding: "0.375rem 0.75rem",
+      fontSize: "1rem",
+      fontWeight: "400",
+      lineHeight: "1.5",
+      color: "#212529",
+      backgroundColor: "#fff",
+      backgroundClip: "padding-box",
+      border: "1px solid #ced4da",
+      WebkitAppearance: "none",
+      MozAppearance: "none",
+      appearance: "none",
+      borderRadius: "0.375rem",
+      transition: "border-color .15s ease-in-out, box-shadow .15s ease-in-out",
+    };
+
+    const focusStyle = {
+      display: "block",
+      width: "100%",
+      padding: "0.375rem 0.75rem",
+      fontSize: "1rem",
+      fontWeight: "400",
+      lineHeight: "1.5",
+      color: "#212529",
+      backgroundColor: "#fff",
+      backgroundClip: "padding-box",
+      border: "1px solid #ff0000 !important",
+      WebkitAppearance: "none",
+      MozAppearance: "none",
+      appearance: "none",
+      borderRadius: "0.375rem",
+      transition: "border-color .15s ease-in-out, box-shadow .15s ease-in-out",
+    };
+
     return (
       <div className="mb-5">
         <p className="text-modal-body">ข้อมูลที่อยู่</p>
         <div className="row row-16">
-          <div class="col-12 col-sm-12 col-md-12 mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12 col-md-12 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               ที่อยู่ <span>*</span>
             </label>
             <input
               type="text"
-              class="form-control"
-              id="exampleFormControlInput1"
+              className="form-control"
+              id="address"
+              name="address"
               placeholder="กรุณาระบุชื่อ"
             />
           </div>
         </div>
         <div className="row row-16">
-          <div class="col-12 col-sm-12 col-md-6 mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               เเขวง/ตำบล <span>*</span>
             </label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleFormControlInput1"
+
+            <InputAddress
+              address="subdistrict"
+              style={{ ...baseStyle }}
+              onFocus={(e) => {
+                e.target.style.borderColor = focusStyle.borderColor;
+                e.target.style.boxShadow = focusStyle.boxShadow;
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = baseStyle.borderColor;
+                e.target.style.boxShadow = baseStyle.boxShadow;
+              }}
+              value={formData.subdistrict}
+              onChange={handleChange}
+              onSelect={handleAddressChange}
               placeholder="เลือกเเขวง/ตำบล"
             />
+
+            {errorsAddress.subdistrict && (
+              <div className="error-from">{errorsAddress.subdistrict}</div>
+            )}
           </div>
-          <div class="col-12 col-sm-12 col-md-6 mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               เขต/อำเภอ <span>*</span>
             </label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleFormControlInput1"
-              placeholder="เลือกเขต/อำเภอ"
+            <InputAddress
+              address="district"
+              style={{
+                width: "100%",
+                height: "42px",
+                marginTop: "-8px",
+                marginBottom: "16px",
+                borderRadius: "8px",
+                border: "1px solid #4A4A4A",
+              }}
+              value={formData.district}
+              onChange={handleChange}
+              onSelect={handleAddressChange}
+              placeholder="เลือกเเขวง/ตำบล"
             />
+            {errorsAddress.district && (
+              <div className="error-from">{errorsAddress.district}</div>
+            )}
           </div>
         </div>
         <div className="row row-16">
-          <div class="col-12 col-sm-12 col-md-6 mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               จังหวัด <span>*</span>
             </label>
-            <input
+            {/*  <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="exampleFormControlInput1"
               placeholder="เลือกจังหวัด"
+            /> */}
+            <InputAddress
+              address="province"
+              style={{
+                width: "100%",
+                height: "42px",
+                marginTop: "-8px",
+                marginBottom: "16px",
+                borderRadius: "8px",
+                border: "1px solid #4A4A4A",
+              }}
+              value={formData.province}
+              onChange={handleChange}
+              onSelect={handleAddressChange}
+              placeholder="Placeholder"
             />
+            {errorsAddress.province && (
+              <div className="error-from">{errorsAddress.province}</div>
+            )}
           </div>
-          <div class="col-12 col-sm-12 col-md-6 mb-3">
-            <label for="exampleFormControlInput1" class="form-label">
+          <div className="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
               รหัสไปรษณีย์ <span>*</span>
             </label>
-            <input
+            {/* <input
               type="number"
-              class="form-control"
+              className="form-control"
               id="exampleFormControlInput1"
               placeholder="เลือกรหัสไปรษณีย์"
+            /> */}
+            <InputAddress
+              address="zipcode"
+              style={{
+                width: "100%",
+                height: "42px",
+                marginTop: "-8px",
+                marginBottom: "16px",
+                borderRadius: "8px",
+                border: "1px solid #4A4A4A",
+              }}
+              value={formData.zipcode}
+              onChange={handleChange}
+              onSelect={handleAddressChange}
+              placeholder="Placeholder"
             />
+
+            {errorsAddress.zipcode && (
+              <div className="error-from">{errorsAddress.zipcode}</div>
+            )}
           </div>
           <div className="row-16-button">
             <button className="save-profile">บันทึก</button>

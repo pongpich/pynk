@@ -151,7 +151,7 @@ const Home = () => {
 
   return (
     <div className="page">
-      {/*   <div className="slider-container">
+      <div className="slider-container">
         <div className="slider">
           {images.map((image, index) => (
             <div
@@ -178,7 +178,7 @@ const Home = () => {
               />
             ))}
           </div>
-             {currentIndex === 0 ? (
+          {currentIndex === 0 ? (
             <div className="box-text-home1">
               <p className="text48 SemiBoldPynk ef60a3 mb-10px">
                 Stay fit with Bebe
@@ -269,14 +269,9 @@ const Home = () => {
                 </p>
               </button>
             </div>
-          )} 
+          )}
         </div>
-      </div> */}
-
-      {/*  <p className={`${styles["text-test"]} ${styles["text-b"]} ${"col-5"}`}>
-        {" "}
-        TEST CSS
-      </p> */}
+      </div>
 
       <div className={`${styles["home2"]}`}>
         <p className={`${styles["services-happily"]} ${"text-center"}`}>
@@ -418,13 +413,6 @@ const Home = () => {
                 <i class={`fa-solid fa-arrow-right fa-xl`} />
               </div>
             </div>
-            {/*  <div
-              className={`slider-card-item-course ${hoveredButton === 1 && "hovered"}`}
-              onMouseEnter={() => handleButtonHover(1)}
-              onMouseLeave={resetHoveredButton}
-            >
-              card-item-course
-            </div> */}
           </div>
           <div className="box-home-slider-2">
             <div className="box-suggestion"></div>
@@ -441,13 +429,6 @@ const Home = () => {
                 <i class={`fa-solid fa-arrow-right fa-xl`} />
               </div>
             </div>
-            {/*  <div
-              className={`card-item-course ${hoveredButton === 2 && "hovered"}`}
-              onMouseEnter={() => handleButtonHover(2)}
-              onMouseLeave={resetHoveredButton}
-            >
-              <div className="suggestion text24 SemiBoldPynk white">แนะนำ</div>
-            </div> */}
           </div>
           <div className="box-home-slider-3">
             <div className="slider-card-item-course">
@@ -467,14 +448,6 @@ const Home = () => {
                 <i class={`fa-solid fa-arrow-right fa-xl`} />
               </div>
             </div>
-            {/*   <div
-              className={`card-item-course ${hoveredButton === 3 && "hovered"}`}
-              onMouseEnter={() => handleButtonHover(3)}
-              onMouseLeave={resetHoveredButton}
-            >
-              {" "}
-              card-item-course
-            </div> */}
           </div>
 
           {/* <div
