@@ -17,6 +17,9 @@ export const types = {
   UPDATE_REGISTER_PYNK: "UPDATE_REGISTER_PYNK",
   UPDATE_REGISTER_SUCCESS: "UPDATE_REGISTER_SUCCESS",
   UPDATE_REGISTER_FAIL: "UPDATE_REGISTER_FAIL",
+  UPDATE_ADDRESS: "UPDATE_ADDRESS",
+  UPDATE_ADDRESS_SUCCESS: "UPDATE_ADDRESS_SUCCESS",
+  UPDATE_ADDRESS_FAIL: "UPDATE_ADDRESS_FAIL",
   CLEAR_STATUS_UPDATE_REGISTER: "CLEAR_STATUS_UPDATE_REGISTER",
   CLEAR_STATUS: "CLEAR_STATUS",
 };
@@ -74,6 +77,16 @@ export const updateRegister = (
     phone,
   },
 });
+
+export const updateAddress = (id, address, updateAddress) => ({
+  type: types.UPDATE_ADDRESS,
+  payload: {
+    id,
+    address,
+    updateAddress,
+  },
+});
+
 export const clearUpdateRegister = () => ({
   type: types.CLEAR_STATUS_UPDATE_REGISTER,
   payload: {},
@@ -123,6 +136,23 @@ const updateRegisterSagaAsync = async (
         first_name: first_name,
         last_name: last_name,
         phone: phone,
+      },
+    });
+    console.log("apiResult", apiResult);
+    return apiResult;
+  } catch (error) {
+    console.log("error", error);
+    return { error, messsage: error.message };
+  }
+};
+
+const updateAddressSagaAsync = async (id, address, updateAddress) => {
+  try {
+    const apiResult = await API.post("pynk", "/postAddress", {
+      body: {
+        id,
+        address,
+        updateAddress,
       },
     });
     console.log("apiResult", apiResult);
@@ -265,6 +295,33 @@ function* updateRegisterSaga({ payload }) {
   }
 }
 
+function* updateAddressSaga({ payload }) {
+  const { id, address, updateAddress } = payload;
+
+  try {
+    const apiResult = yield call(
+      updateAddressSagaAsync,
+      id,
+      address,
+      updateAddress
+    );
+
+    console.log("apiResult", apiResult);
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.UPDATE_ADDRESS_SUCCESS,
+        payload: apiResult.results.user,
+      });
+    } else if (apiResult.results.message === "fail") {
+      yield put({
+        type: types.UPDATE_ADDRESS_FAIL,
+      });
+    }
+  } catch (error) {
+    console.log("error from register :", error);
+  }
+}
+
 export function* watchLogin() {
   yield takeEvery(types.LOGIN, loginSaga);
 }
@@ -279,6 +336,9 @@ export function* watchRegister() {
 export function* watchUpdateRegister() {
   yield takeEvery(types.UPDATE_REGISTER_PYNK, updateRegisterSaga);
 }
+export function* watchUpdateAddressSaga() {
+  yield takeEvery(types.UPDATE_ADDRESS, updateAddressSaga);
+}
 
 export function* saga() {
   yield all([
@@ -286,6 +346,7 @@ export function* saga() {
     fork(watchRegister),
     fork(watchLoginAdmin),
     fork(watchUpdateRegister),
+    fork(watchUpdateAddressSaga),
   ]);
 }
 
@@ -299,6 +360,7 @@ const INIT_STATE = {
   user: null,
   statusRegister: "default",
   statusUpdateRegister: "default",
+  statusUpdateAddress: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
@@ -361,6 +423,17 @@ export function reducer(state = INIT_STATE, action) {
         ...state,
         statusUpdateRegister: "fail",
       };
+    case types.UPDATE_ADDRESS_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        statusUpdateAddress: "success",
+      };
+    case types.UPDATE_ADDRESS_FAIL:
+      return {
+        ...state,
+        statusUpdateAddress: "fail",
+      };
     case types.CLEAR_STATUS:
       return {
         ...state,
@@ -372,6 +445,7 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         statusUpdateRegister: "default",
+        statusUpdateAddress: "default",
       };
     case types.LOGOUT:
       return INIT_STATE;
