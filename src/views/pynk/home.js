@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import { useInView } from "react-intersection-observer";
-import slide1 from "../../assets/img/home/slide1.png";
-import slide2 from "../../assets/img/home/slide2.png";
-import slide3 from "../../assets/img/home/slide3.png";
+import bebe_slide1 from "../../assets/img/home/bebeSlide1.png";
+import bebe_slide2 from "../../assets/img/home/bebeSlide2.png";
+import bebe_slide3 from "../../assets/img/home/bebeSlide3.png";
+import bubble from "../../assets/img/home/bubble_background.png";
 import bebe_bubble from "../../assets/img/home/bebe_bubble.png";
 import fitto4week from "../../assets/img/home/fitto4week.png";
 import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
@@ -24,8 +25,8 @@ import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
 import "./css/home.css";
-import styles from "./css/home.module.css"; // เชื่อมต่อไฟล์ CSS
-let slidesToShow = 3;
+import styles from "./css/home.module.css";
+/* let slidesToShow = 3;
 
 const carouselProperties = {
   prevArrow: false,
@@ -94,12 +95,12 @@ const carouselProperties = {
       },
     },
   ],
-};
+}; */
 
 const Home = () => {
   const history = useHistory();
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  /* const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredButton, setHoveredButton] = useState(2);
 
   const { ref: textHome2, inView: textHome2ISVisible } = useInView({
@@ -147,10 +148,106 @@ const Home = () => {
     return () => {
       clearInterval(autoSlideIntervalRef.current);
     };
-  }, []);
+  }, []); */
 
   return (
     <div className="page">
+      <div
+        id="carouselExampleCaptions"
+        className="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div className="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="0"
+            className="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div className="carousel-inner">
+        <div className="row">
+            <div className="col-12 col-md-6 relative flex_center">
+              <img src={bubble} className="bubble_img" alt="" />
+              <img src={bebe_slide1} className="bebe_img" alt="" />
+            </div>
+            <div className="col-12 col-md-6 relative flex_center">Test2</div>
+          </div>
+          <div className="carousel-item active">
+            <div className="box_screen1">
+              <div className="line3">
+                {/* <img src="..." alt="" />
+              <div className="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>
+                  Some representative placeholder content for the first slide.
+                </p>
+              </div> */}
+              </div>
+            </div>
+          </div>
+          <div className="carousel-item">
+            <div className="box_screen2">
+              <div className="line3">
+                <div className="row">
+                  <div className="col-12 col-md-6 relative flex_center">
+                    <img src={bebe_slide2} className="bebe_img" alt="" />
+                  </div>
+                  <div className="col-12 col-md-6 relative flex_center">
+                    Test2
+                  </div>
+                </div>
+                {/* <img src="..." alt="" />
+              <div className="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>
+                  Some representative placeholder content for the first slide.
+                </p>
+              </div> */}
+              </div>
+            </div>
+          </div>
+          <div className="carousel-item">
+            <div className="box_screen3">
+              <div className="line3">
+                <div className="row">
+                  <div className="col-12 col-md-6 relative flex_center">
+                    <img src={bebe_slide3} className="bebe_img" alt="" />
+                  </div>
+                  <div className="col-12 col-md-6 relative flex_center">
+                    Test2
+                  </div>
+                </div>
+                {/* <img src="..." alt="" />
+              <div className="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>
+                  Some representative placeholder content for the first slide.
+                </p>
+              </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+/* <div className="page">
       <div className="slider-container">
         <div className="slider">
           {images.map((image, index) => (
@@ -340,12 +437,12 @@ const Home = () => {
               </p>
             </div>
           </div>
-          {/*   <div className="bubble"></div>
+            <div className="bubble"></div>
           <div className="bubble1"></div>
           <div className="bubble2"></div>
           <div className="bubble3"></div>
           <div className="bubble4"></div>
-          <div className="bubble5"></div> */}
+          <div className="bubble5"></div>
         </div>
 
         <div className="row">
@@ -450,7 +547,7 @@ const Home = () => {
             </div>
           </div>
 
-          {/* <div
+          <div
             className={`home3-container ${
               Home3ISVisible && "animate-open-home3"
             }`}
@@ -533,10 +630,10 @@ const Home = () => {
                 ></i>
               </div>
             </div>
-          </div> */}
+          </div>
         </Slider>
       </div>
-      {/*    <div ref={home4} className="home4">
+         <div ref={home4} className="home4">
         <div className="home4-container">
           <div
             className={`text48 SemiBoldPynk text-align-center ${
@@ -654,10 +751,8 @@ const Home = () => {
             </p>
           </div>
         </div>
-      </div> */}
+      </div>
       <Footer />
-    </div>
-  );
-};
+    </div> */
 
 export default Home;

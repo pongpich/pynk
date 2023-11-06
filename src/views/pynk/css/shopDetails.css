@@ -347,7 +347,7 @@
     border-radius: 8px;
 }
 
-.active {
+.box-img .active {
     border: 2px solid var(--normal-pink);
     border-radius: 8px;
 }
