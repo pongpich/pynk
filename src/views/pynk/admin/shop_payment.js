@@ -272,6 +272,26 @@ const Shop_payment = () => {
   const customerInformation = () => {
     const totalSum =
       order && order.reduce((acc, product) => acc + product.totalprice, 0);
+
+    const baseStyle = {
+      display: "block",
+      height: "auto",
+      width: "100%",
+      padding: "0.375rem 0.75rem",
+      fontSize: "1rem",
+      fontWeight: "400",
+      lineHeight: "1.5",
+      color: "#212529",
+      backgroundColor: "#fff",
+      backgroundClip: "padding-box",
+      border: "1px solid #ced4da",
+      WebkitAppearance: "none",
+      MozAppearance: "none",
+      appearance: "none",
+      borderRadius: "0.375rem",
+      transition: "border-color .15s ease-in-out, box-shadow .15s ease-in-out",
+    };
+
     return (
       <div className="box-form-payment">
         <div className="box-row">
@@ -418,14 +438,7 @@ const Shop_payment = () => {
 
                         <InputAddress
                           address="subdistrict"
-                          style={{
-                            width: "100%",
-                            height: "42px",
-                            marginTop: "-8px",
-                            marginBottom: "16px",
-                            borderRadius: "8px",
-                            border: "1px solid #4A4A4A",
-                          }}
+                          style={{ ...baseStyle }}
                           value={formData.subdistrict}
                           onChange={handleChange}
                           onSelect={handleAddressChange}
@@ -445,14 +458,7 @@ const Shop_payment = () => {
                         </p>
                         <InputAddress
                           address="district"
-                          style={{
-                            width: "100%",
-                            height: "42px",
-                            marginTop: "-8px",
-                            marginBottom: "16px",
-                            borderRadius: "8px",
-                            border: "1px solid #4A4A4A",
-                          }}
+                          style={{ ...baseStyle }}
                           value={formData.district}
                           onChange={handleChange}
                           onSelect={handleAddressChange}
@@ -472,14 +478,7 @@ const Shop_payment = () => {
                         </p>
                         <InputAddress
                           address="province"
-                          style={{
-                            width: "100%",
-                            height: "42px",
-                            marginTop: "-8px",
-                            marginBottom: "16px",
-                            borderRadius: "8px",
-                            border: "1px solid #4A4A4A",
-                          }}
+                          style={{ ...baseStyle }}
                           value={formData.province}
                           onChange={handleChange}
                           onSelect={handleAddressChange}
@@ -498,14 +497,7 @@ const Shop_payment = () => {
                         </p>
                         <InputAddress
                           address="zipcode"
-                          style={{
-                            width: "100%",
-                            height: "42px",
-                            marginTop: "-8px",
-                            marginBottom: "16px",
-                            borderRadius: "8px",
-                            border: "1px solid #4A4A4A",
-                          }}
+                          style={{ ...baseStyle }}
                           value={formData.zipcode}
                           onChange={handleChange}
                           onSelect={handleAddressChange}

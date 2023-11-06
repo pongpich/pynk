@@ -864,15 +864,19 @@
 
 /**
 * ! ใช้สำหรับเเก้ form  InputAddress
+* * หน้า profile
  */
 
-.row .row-16 div[style="display: inline-block;"] {
+
+
+/* หน้า shop-payment */
+div[style="display: inline-block;"] {
     display: block !important;
 
 }
 
 
-.row .row-16 div[style="display: inline-block;"]>input:focus {
+div[style="display: inline-block;"]>input:focus {
     color: #292121;
     background-color: #fff;
     border-color: #e25e96 !important;
