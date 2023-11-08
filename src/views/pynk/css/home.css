@@ -259,23 +259,26 @@
 
 
 .rotate1to2 {
-  animation: rotate1to2 .7s linear forwards;
+  animation: rotate1to2 .6s linear forwards;
 }
 
 .rotate2to0 {
-  animation: rotate2to0 .7s linear forwards;
+  animation: rotate2to0 .6s linear forwards;
 }
 
 .rotate0to1 {
-  animation: rotate0to1 .7s linear forwards;
+  animation: rotate0to1 .6s linear forwards;
 }
 
 .rotate0to2 {
-  animation: rotate0to2 .7s linear forwards;
+  animation: rotate0to2 .6s linear forwards;
 }
 
 .rotate1to0 {
-  animation: rotate1to0 .7s linear forwards;
+  animation: rotate1to0 .6s linear forwards;
+}
+.rotate2to1 {
+  animation: rotate2to1 .6s linear forwards;
 }
 
 
@@ -340,6 +343,17 @@
     left: 16px;
     transform: rotate(0deg);
 
+  }
+}
+@keyframes rotate2to1 {
+  0% {
+    left: 300px;
+    transform: rotate(-220deg);
+  }
+
+  100% {
+    left: 200px;
+    transform: rotate(-180deg);
   }
 }
 

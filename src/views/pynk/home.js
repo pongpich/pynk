@@ -119,6 +119,7 @@ const Home = () => {
     setPreviousSlideIndex(e);
   };
   console.log("currentSlideIndex", currentSlideIndex);
+  console.log("previousSlideIndex", previousSlideIndex);
 
   return (
     <div className="page">
@@ -135,21 +136,21 @@ const Home = () => {
             class="active"
             aria-current="true"
             aria-label="Slide 1"
-            onClick={() => previousIndex(0)}
+            onClick={() => previousIndex(currentSlideIndex)}
           ></button>
           <button
             type="button"
             data-bs-target="#carouselExampleAutoplaying"
             data-bs-slide-to="1"
             aria-label="Slide 2"
-            onClick={() => previousIndex(1)}
+            onClick={() => previousIndex(currentSlideIndex)}
           ></button>
           <button
             type="button"
             data-bs-target="#carouselExampleAutoplaying"
             data-bs-slide-to="2"
             aria-label="Slide 3"
-            onClick={() => previousIndex(2)}
+            onClick={() => previousIndex(currentSlideIndex)}
           ></button>
         </div>
         <div class="carousel-inner">
@@ -159,9 +160,12 @@ const Home = () => {
                 <img
                   src={bubblesBottom}
                   className={`bubbles-bottom  ${
-                    (animation && currentSlideIndex === 0 && "rotate2to0") ||
-                    (currentSlideIndex == 1 && "rotate0to1") ||
-                    (currentSlideIndex == 2 && "rotate1to2")
+                    (animation && currentSlideIndex === 0 && previousSlideIndex !== 1 && "rotate2to0") ||
+                    (currentSlideIndex === 0 && previousSlideIndex === 1 && "rotate1to0") ||
+                    (currentSlideIndex === 1 && previousSlideIndex !== 2 && "rotate0to1") ||
+                    (currentSlideIndex === 1 && previousSlideIndex === 2 && "rotate2to1") ||
+                    (currentSlideIndex === 2 && "rotate1to2")
+                  
                   }`}
                   id="bubbles-bottom"
                   alt=""
