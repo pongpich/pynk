@@ -103,6 +103,7 @@ const Home = () => {
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [animation, setAnimation] = useState(false);
+  const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
 
   useEffect(() => {
     const carousel = document.getElementById("carouselExampleAutoplaying");
@@ -114,6 +115,9 @@ const Home = () => {
     });
   }, []);
 
+  const previousIndex = (e) => {
+    setPreviousSlideIndex(e);
+  };
   console.log("currentSlideIndex", currentSlideIndex);
 
   return (
@@ -131,18 +135,21 @@ const Home = () => {
             class="active"
             aria-current="true"
             aria-label="Slide 1"
+            onClick={() => previousIndex(0)}
           ></button>
           <button
             type="button"
             data-bs-target="#carouselExampleAutoplaying"
             data-bs-slide-to="1"
             aria-label="Slide 2"
+            onClick={() => previousIndex(1)}
           ></button>
           <button
             type="button"
             data-bs-target="#carouselExampleAutoplaying"
             data-bs-slide-to="2"
             aria-label="Slide 3"
+            onClick={() => previousIndex(2)}
           ></button>
         </div>
         <div class="carousel-inner">
@@ -152,7 +159,7 @@ const Home = () => {
                 <img
                   src={bubblesBottom}
                   className={`bubbles-bottom  ${
-                    (animation && currentSlideIndex == 0 && "rotate2to0") ||
+                    (animation && currentSlideIndex === 0 && "rotate2to0") ||
                     (currentSlideIndex == 1 && "rotate0to1") ||
                     (currentSlideIndex == 2 && "rotate1to2")
                   }`}
@@ -160,6 +167,7 @@ const Home = () => {
                   alt=""
                 />
               </div>
+
               <div className="col-12 col-md-6 relative flex_center">Test2</div>
             </div>
           </div>

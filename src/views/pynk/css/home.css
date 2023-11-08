@@ -270,6 +270,14 @@
   animation: rotate0to1 .7s linear forwards;
 }
 
+.rotate0to2 {
+  animation: rotate0to2 .7s linear forwards;
+}
+
+.rotate1to0 {
+  animation: rotate1to0 .7s linear forwards;
+}
+
 
 @keyframes rotate0to1 {
   0% {
@@ -306,6 +314,35 @@
     transform: rotate(-360deg);
   }
 }
+
+/* 1 คลิกไป 3 */
+@keyframes rotate0to2 {
+
+  0% {
+    left: 0px;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    left: 300px;
+    transform: rotate(-220deg);
+  }
+}
+
+/* 1 คลิกหลับ 0 */
+@keyframes rotate1to0 {
+  0% {
+    left: 200px;
+    transform: rotate(-180deg);
+  }
+
+  100% {
+    left: 16px;
+    transform: rotate(0deg);
+
+  }
+}
+
 
 
 
