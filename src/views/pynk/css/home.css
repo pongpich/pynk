@@ -204,18 +204,9 @@
   height: 100%;
 }
 
-.bubble_img {
-  position: absolute;
-  max-width: 573px;
-  height: auto;
-  width: 100%;
-  z-index: 1;
-  top: 22%;
-  /*    transform: rotate(-40deg); */
-}
 
 
-@keyframes rotate0to120 {
+/* @keyframes rotate0to120 {
   0% {
     transform: rotate(0deg);
   }
@@ -225,18 +216,15 @@
   }
 }
 
-
 @keyframes rotate120to240 {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(120deg);
   }
 
   100% {
-    transform: rotate(-40deg);
+    transform: rotate(240deg);
   }
 }
-
-
 
 @keyframes rotate240to360 {
   0% {
@@ -246,8 +234,51 @@
   100% {
     transform: rotate(360deg);
   }
+} */
+
+
+.bubble_img {
+  position: absolute;
+  max-width: 573px;
+  height: auto;
+  width: 100%;
+  z-index: 1;
+  top: 22%;
+
 }
 
+.bubbles-bottom {
+  position: absolute;
+  max-width: 257px;
+  height: auto;
+  width: 100%;
+  z-index: 1;
+  top: 52%;
+  left: 16px;
+  transform: rotate(0deg);
+  animation: rotate1to2 2s linear forwards;
+  /* 2s เป็นตัวอย่างเวลาที่คุณสามารถปรับแต่ง */
+}
+
+@keyframes rotate1to2 {
+  0% {
+    left: 16px;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    left: 200px;
+    transform: rotate(-180deg);
+  }
+}
+
+
+
+
+
+
+/* left: 16px;
+    transform: rotate(-60deg); */
 
 
 

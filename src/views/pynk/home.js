@@ -5,6 +5,7 @@ import bebe_slide1 from "../../assets/img/home/bebeSlide1.png";
 import bebe_slide2 from "../../assets/img/home/bebeSlide2.png";
 import bebe_slide3 from "../../assets/img/home/bebeSlide3.png";
 import bubble from "../../assets/img/home/bubble_background.png";
+import bubblesBottom from "../../assets/img/home/bubblesBottom.png";
 import bebe_bubble from "../../assets/img/home/bebe_bubble.png";
 import fitto4week from "../../assets/img/home/fitto4week.png";
 import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
@@ -165,15 +166,15 @@ const Home = () => {
     const slideIndex = Array.from(
       document.querySelectorAll(".carousel-item")
     ).indexOf(activeSlide);
-    const slideIndex2 = slideIndex + 1;
-    const bubbleImg = document.querySelector(".bubble_img");
+    const slideIndex2 = slideIndex;
+    const bubbleImg = document.querySelector(".bubbles-bottom");
 
-    if (slideIndex2 === 0) {
-      bubbleImg.style.animation = "rotate0to120 2s";
-    } else if (slideIndex2 === 1) {
-      bubbleImg.style.animation = "rotate120to240 2s";
-    } else if (slideIndex2 === 2) {
-      bubbleImg.style.animation = "rotate240to360 2s";
+    if (slideIndex2 == 0) {
+      bubbleImg.style.animation = "rotate0to1 2s";
+    } else if (slideIndex2 == 1) {
+      bubbleImg.style.animation = "rotate1to2 2s";
+    } else if (slideIndex2 == 2) {
+      bubbleImg.style.animation = "rotate2to1 2s";
     }
 
     setCurrentSlide(slideIndex);
@@ -214,12 +215,12 @@ const Home = () => {
             <div className="row">
               <div className="col-12 col-md-6 relative flex_center">
                 <img
-                  src={bubble}
-                  className="bubble_img"
-                  id="bubble_img"
+                  src={bubblesBottom}
+                  className="bubbles-bottom"
+                  id="bubbles-bottom"
                   alt=""
                 />
-                <img src={bebe_slide1} className="bebe_img" alt="" />
+                {/*   <img src={bebe_slide1} className="bebe_img" alt="" /> */}
               </div>
               <div className="col-12 col-md-6 relative flex_center">Test2</div>
             </div>
