@@ -151,6 +151,7 @@ const Home = () => {
     };
   }, []); */
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [rotate2to0, setRotate2to0] = useState(true);
 
   useEffect(() => {
     const carousel = document.querySelector("#carouselExampleCaptions");
@@ -161,21 +162,25 @@ const Home = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // เมื่อหน้าเว็บโหลดเสร็จ
+    setRotate2to0(false);
+  }, []);
+
   const handleSlideChange = () => {
     const activeSlide = document.querySelector(".carousel-item.active");
     const slideIndex = Array.from(
       document.querySelectorAll(".carousel-item")
     ).indexOf(activeSlide);
-    const slideIndex2 = slideIndex;
-    const bubbleImg = document.querySelector(".bubbles-bottom");
+    /* const bubbleImg = document.querySelector(".bubbles-bottom");
 
-    if (slideIndex2 == 0) {
+    if (slideIndex2 === 0) {
       bubbleImg.style.animation = "rotate0to1 2s";
-    } else if (slideIndex2 == 1) {
+    } else if (slideIndex2 === 1) {
       bubbleImg.style.animation = "rotate1to2 2s";
-    } else if (slideIndex2 == 2) {
+    } else if (slideIndex2 === 2) {
       bubbleImg.style.animation = "rotate2to1 2s";
-    }
+    } */
 
     setCurrentSlide(slideIndex);
   };
@@ -216,7 +221,17 @@ const Home = () => {
               <div className="col-12 col-md-6 relative flex_center">
                 <img
                   src={bubblesBottom}
-                  className="bubbles-bottom"
+                  className={`bubbles-bottom ${
+                    rotate2to0 && currentSlide === 0
+                      ? "rotate2to0"
+                      : currentSlide === 1
+                      ? "rotate0to1"
+                      : currentSlide === 2
+                      ? "rotate1to2"
+                      : currentSlide === 0
+                      ? "rotate2to0"
+                      : ""
+                  }`}
                   id="bubbles-bottom"
                   alt=""
                 />
