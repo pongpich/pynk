@@ -101,8 +101,8 @@ const carouselProperties = {
 const Home = () => {
   const history = useHistory();
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  /* const [hoveredButton, setHoveredButton] = useState(2); */
+  /* const [currentIndex, setCurrentIndex] = useState(0);
+  const [hoveredButton, setHoveredButton] = useState(2);
 
   const { ref: textHome2, inView: textHome2ISVisible } = useInView({
     triggerOnce: true,
@@ -120,11 +120,7 @@ const Home = () => {
     triggerOnce: true,
   });
 
-  const colors = [
-    "linear-gradient(to bottom, #FFF, #FFBBD6)",
-    "linear-gradient(to bottom, #EF9CC3, #EF60A3)",
-    "linear-gradient(to bottom, #EF60A3, #960051)",
-  ];
+  const images = [slide1, slide2, slide3];
 
   const autoSlideIntervalRef = useRef(null);
 
@@ -136,59 +132,65 @@ const Home = () => {
 
   const startAutoSlide = () => {
     autoSlideIntervalRef.current = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % colors.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000);
   };
 
- /*  const handleButtonHover = (buttonId) => {
+  const handleButtonHover = (buttonId) => {
     setHoveredButton(buttonId);
   };
 
   const resetHoveredButton = () => {
     setHoveredButton(2);
-  }; */
+  };
 
   useEffect(() => {
     startAutoSlide();
     return () => {
       clearInterval(autoSlideIntervalRef.current);
     };
+  }, []); */
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
+  const [rotate2to0, setRotate2to0] = useState(true);
+
+  useEffect(() => {
+    const carousel = document.querySelector("#carouselExampleCaptions");
+    carousel.addEventListener("slid.bs.carousel", handleSlideChange);
+
+    return () => {
+      carousel.removeEventListener("slid.bs.carousel", handleSlideChange);
+    };
   }, []);
+
+  useEffect(() => {
+    // เมื่อหน้าเว็บโหลดเสร็จ
+    setRotate2to0(false);
+  }, []);
+
+  const handleSlideChange = () => {
+    const activeSlide = document.querySelector(".carousel-item.active");
+    const slideIndex = Array.from(
+      document.querySelectorAll(".carousel-item")
+    ).indexOf(activeSlide);
+
+    setCurrentSlide(slideIndex);
+  };
+
+  useEffect(() => {
+    const bubbleImg = document.querySelector(".bubbles-bottom");
+
+    // เช็ค index ย้อนหลัง 1 ครั้ง
+    const previousSlideIndex = (currentSlide - 1 + 3) % 3;
+    setPreviousSlideIndex(previousSlideIndex);
+  }, [currentSlide]);
+
+  console.log("currentSlide", currentSlide);
+  console.log("previousSlideIndex", previousSlideIndex);
 
   return (
     <div className="page">
-      <div className="slider-container">
-        <div className="slider">
-          {colors.map((carouselData, index) => (
-            <div
-              key={index}
-              className={`slide ${index === currentIndex ? "active_home" : ""}`}
-              style={{
-                background: colors[currentIndex],
-                transform: `translateX(${100 * (index - currentIndex)}%)`,
-              }}
-            ></div>
-            
-          ))}
-          <div className="radio-buttons">
-            {colors.map((_, index) => (
-              <div
-                className={
-                  index === currentIndex
-                    ? "button-carousel-active"
-                    : "button-carousel"
-                }
-                aria-current="true"
-                aria-label="Slide 1"
-                checked={index === currentIndex}
-                onClick={() => handleRadioChange(index)}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* <div
+      <div
         id="carouselExampleCaptions"
         className="carousel slide"
         data-bs-ride="carousel"
@@ -222,17 +224,31 @@ const Home = () => {
                 <img
                   src={bubblesBottom}
                   className={`bubbles-bottom ${
-                    currentSlide === 0
+                    /* previousSlideIndex 0 
+                       currentSlide 1   ป3- */
+
+                    previousSlideIndex === 2 && currentSlide === 0
+                      ? "rotate2to0"
+                      : "rewindRotate2to0" ||
+                        (previousSlideIndex === 0 && currentSlide === 1)
+                      ? "rotate0to1"
+                      : "rewindRotate0to1" ||
+                        (previousSlideIndex === 1 && currentSlide === 2)
+                      ? "rotate1to2"
+                      : "rewindRotate1to2"
+
+                    /*       currentSlide === 0
                       ? "rotate2to0"
                       : currentSlide === 1
                       ? "rotate0to1"
                       : currentSlide === 2
                       ? "rotate1to2"
-                      : ""
+                      : "" */
                   }`}
                   id="bubbles-bottom"
                   alt=""
                 />
+                {/*   <img src={bebe_slide1} className="bebe_img" alt="" /> */}
               </div>
               <div className="col-12 col-md-6 relative flex_center">Test2</div>
             </div>
@@ -254,7 +270,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
