@@ -151,6 +151,7 @@ const Home = () => {
     };
   }, []); */
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
   const [rotate2to0, setRotate2to0] = useState(true);
 
   useEffect(() => {
@@ -172,19 +173,20 @@ const Home = () => {
     const slideIndex = Array.from(
       document.querySelectorAll(".carousel-item")
     ).indexOf(activeSlide);
-    /* const bubbleImg = document.querySelector(".bubbles-bottom");
-
-    if (slideIndex2 === 0) {
-      bubbleImg.style.animation = "rotate0to1 2s";
-    } else if (slideIndex2 === 1) {
-      bubbleImg.style.animation = "rotate1to2 2s";
-    } else if (slideIndex2 === 2) {
-      bubbleImg.style.animation = "rotate2to1 2s";
-    } */
 
     setCurrentSlide(slideIndex);
   };
+
+  useEffect(() => {
+    const bubbleImg = document.querySelector(".bubbles-bottom");
+
+    // เช็ค index ย้อนหลัง 1 ครั้ง
+    const previousSlideIndex = (currentSlide - 1 + 3) % 3;
+    setPreviousSlideIndex(previousSlideIndex);
+  }, [currentSlide]);
+
   console.log("currentSlide", currentSlide);
+  console.log("previousSlideIndex", previousSlideIndex);
 
   return (
     <div className="page">
@@ -222,15 +224,26 @@ const Home = () => {
                 <img
                   src={bubblesBottom}
                   className={`bubbles-bottom ${
-                    rotate2to0 && currentSlide === 0
+                    /* previousSlideIndex 0 
+                       currentSlide 1   ป3- */
+
+                    previousSlideIndex === 2 && currentSlide === 0
+                      ? "rotate2to0"
+                      : "rewindRotate2to0" ||
+                        (previousSlideIndex === 0 && currentSlide === 1)
+                      ? "rotate0to1"
+                      : "rewindRotate0to1" ||
+                        (previousSlideIndex === 1 && currentSlide === 2)
+                      ? "rotate1to2"
+                      : "rewindRotate1to2"
+
+                    /*       currentSlide === 0
                       ? "rotate2to0"
                       : currentSlide === 1
                       ? "rotate0to1"
                       : currentSlide === 2
                       ? "rotate1to2"
-                      : currentSlide === 0
-                      ? "rotate2to0"
-                      : ""
+                      : "" */
                   }`}
                   id="bubbles-bottom"
                   alt=""
