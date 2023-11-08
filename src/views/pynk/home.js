@@ -101,99 +101,108 @@ const carouselProperties = {
 const Home = () => {
   const history = useHistory();
 
-  /* const [currentIndex, setCurrentIndex] = useState(0);
-  const [hoveredButton, setHoveredButton] = useState(2);
-
-  const { ref: textHome2, inView: textHome2ISVisible } = useInView({
-    triggerOnce: true,
-  });
-  const { ref: bounceContainer, inView: bounceContainerISVisible } = useInView({
-    triggerOnce: true,
-  });
-  const { ref: stayfitItem, inView: statfitItemISVisible } = useInView({
-    triggerOnce: true,
-  });
-  const { ref: home3, inView: Home3ISVisible } = useInView({
-    triggerOnce: true,
-  });
-  const { ref: home4, inView: Home4ISVisible } = useInView({
-    triggerOnce: true,
-  });
-
-  const images = [slide1, slide2, slide3];
-
-  const autoSlideIntervalRef = useRef(null);
-
-  const handleRadioChange = (newIndex) => {
-    setCurrentIndex(newIndex);
-    clearInterval(autoSlideIntervalRef.current);
-    startAutoSlide();
-  };
-
-  const startAutoSlide = () => {
-    autoSlideIntervalRef.current = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000);
-  };
-
-  const handleButtonHover = (buttonId) => {
-    setHoveredButton(buttonId);
-  };
-
-  const resetHoveredButton = () => {
-    setHoveredButton(2);
-  };
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [animation, setAnimation] = useState(false);
 
   useEffect(() => {
-    startAutoSlide();
-    return () => {
-      clearInterval(autoSlideIntervalRef.current);
-    };
-  }, []); */
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
-  const [rotate2to0, setRotate2to0] = useState(true);
+    const carousel = document.getElementById("carouselExampleAutoplaying");
 
-  useEffect(() => {
-    const carousel = document.querySelector("#carouselExampleCaptions");
-    carousel.addEventListener("slid.bs.carousel", handleSlideChange);
-
-    return () => {
-      carousel.removeEventListener("slid.bs.carousel", handleSlideChange);
-    };
+    // เมื่อสไลด์เปลี่ยน
+    carousel.addEventListener("slid.bs.carousel", (event) => {
+      setCurrentSlideIndex(event.to);
+      setAnimation(true);
+    });
   }, []);
 
-  useEffect(() => {
-    // เมื่อหน้าเว็บโหลดเสร็จ
-    setRotate2to0(false);
-  }, []);
-
-  const handleSlideChange = () => {
-    const activeSlide = document.querySelector(".carousel-item.active");
-    const slideIndex = Array.from(
-      document.querySelectorAll(".carousel-item")
-    ).indexOf(activeSlide);
-
-    setCurrentSlide(slideIndex);
-  };
-
-  useEffect(() => {
-    const bubbleImg = document.querySelector(".bubbles-bottom");
-
-    // เช็ค index ย้อนหลัง 1 ครั้ง
-    const previousSlideIndex = (currentSlide - 1 + 3) % 3;
-    setPreviousSlideIndex(previousSlideIndex);
-  }, [currentSlide]);
-
-  console.log("currentSlide", currentSlide);
-  console.log("previousSlideIndex", previousSlideIndex);
+  console.log("currentSlideIndex", currentSlideIndex);
 
   return (
     <div className="page">
       <div
+        id="carouselExampleAutoplaying"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div className="box_animation">
+            <div className="row">
+              <div className="col-12 col-md-6 relative flex_center">
+                <img
+                  src={bubblesBottom}
+                  className={`bubbles-bottom  ${
+                    (animation && currentSlideIndex == 0 && "rotate2to0") ||
+                    (currentSlideIndex == 1 && "rotate0to1") ||
+                    (currentSlideIndex == 2 && "rotate1to2")
+                  }`}
+                  id="bubbles-bottom"
+                  alt=""
+                />
+              </div>
+              <div className="col-12 col-md-6 relative flex_center">Test2</div>
+            </div>
+          </div>
+          <div class="carousel-item active" data-interval="1000">
+            <div className="box_screen1">
+              <div className="line3"></div>
+            </div>
+          </div>
+          <div class="carousel-item" data-interval="1000">
+            <div className="box_screen2">
+              <div className="line3"></div>
+            </div>
+          </div>
+          <div class="carousel-item" data-interval="1000">
+            <div className="box_screen3">
+              <div className="line3"></div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      {/*     <div
         id="carouselExampleCaptions"
         className="carousel slide"
         data-bs-ride="carousel"
+        data-interval="2000"
       >
         <div className="carousel-indicators">
           <button
@@ -224,31 +233,12 @@ const Home = () => {
                 <img
                   src={bubblesBottom}
                   className={`bubbles-bottom ${
-                    /* previousSlideIndex 0 
-                       currentSlide 1   ป3- */
+                   
 
-                    previousSlideIndex === 2 && currentSlide === 0
-                      ? "rotate2to0"
-                      : "rewindRotate2to0" ||
-                        (previousSlideIndex === 0 && currentSlide === 1)
-                      ? "rotate0to1"
-                      : "rewindRotate0to1" ||
-                        (previousSlideIndex === 1 && currentSlide === 2)
-                      ? "rotate1to2"
-                      : "rewindRotate1to2"
-
-                    /*       currentSlide === 0
-                      ? "rotate2to0"
-                      : currentSlide === 1
-                      ? "rotate0to1"
-                      : currentSlide === 2
-                      ? "rotate1to2"
-                      : "" */
-                  }`}
                   id="bubbles-bottom"
                   alt=""
                 />
-                {/*   <img src={bebe_slide1} className="bebe_img" alt="" /> */}
+   
               </div>
               <div className="col-12 col-md-6 relative flex_center">Test2</div>
             </div>
@@ -270,7 +260,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -257,9 +257,6 @@
   left: 16px;
 }
 
-.rotate0to0 {
-  animation: rotate0to0 .7s linear forwards;
-}
 
 .rotate1to2 {
   animation: rotate1to2 .7s linear forwards;
@@ -273,12 +270,6 @@
   animation: rotate0to1 .7s linear forwards;
 }
 
-@keyframes rotate0to0 {
-  100% {
-    left: 16px;
-    transform: rotate(0deg);
-  }
-}
 
 @keyframes rotate0to1 {
   0% {
@@ -307,12 +298,12 @@
 @keyframes rotate2to0 {
   0% {
     left: 300px;
-    transform: rotate(220deg);
+    transform: rotate(-220deg);
   }
 
   100% {
     left: 16px;
-    transform: rotate(0deg);
+    transform: rotate(-360deg);
   }
 }
 
