@@ -173,17 +173,15 @@ const Home = () => {
     const slideIndex = Array.from(
       document.querySelectorAll(".carousel-item")
     ).indexOf(activeSlide);
-
     setCurrentSlide(slideIndex);
-  };
-
-  useEffect(() => {
-    const bubbleImg = document.querySelector(".bubbles-bottom");
-
-    // เช็ค index ย้อนหลัง 1 ครั้ง
     const previousSlideIndex = (currentSlide - 1 + 3) % 3;
     setPreviousSlideIndex(previousSlideIndex);
-  }, [currentSlide]);
+  };
+
+  /*   useEffect(() => {
+    const previousSlideIndex = (currentSlide - 1 + 3) % 3;
+    setPreviousSlideIndex(previousSlideIndex);
+  }, [currentSlide]); */
 
   console.log("currentSlide", currentSlide);
   console.log("previousSlideIndex", previousSlideIndex);
@@ -226,24 +224,27 @@ const Home = () => {
                   className={`bubbles-bottom ${
                     /* previousSlideIndex 0 
                        currentSlide 1   ป3- */
-
-                    previousSlideIndex === 2 && currentSlide === 0
-                      ? "rotate2to0"
-                      : "rewindRotate2to0" ||
-                        (previousSlideIndex === 0 && currentSlide === 1)
-                      ? "rotate0to1"
+                    /*   (previousSlideIndex === 0 &&
+                      currentSlide === 0 &&
+                      "rotate0to0") || */
+                    /* previousSlideIndex === 0 && currentSlide === 1
+                      ? "rotate0to0"
                       : "rewindRotate0to1" ||
                         (previousSlideIndex === 1 && currentSlide === 2)
                       ? "rotate1to2"
-                      : "rewindRotate1to2"
+                      : "rewindRotate1to2" ||
+                        (previousSlideIndex === 1 && currentSlide === 2)
+                      ? "rotate2to0"
 
-                    /*       currentSlide === 0
+
+*/
+                    currentSlide === 0
                       ? "rotate2to0"
                       : currentSlide === 1
                       ? "rotate0to1"
-                      : currentSlide === 2
+                      : currentSlide === 2 && previousSlideIndex === 2
                       ? "rotate1to2"
-                      : "" */
+                      : ""
                   }`}
                   id="bubbles-bottom"
                   alt=""

@@ -256,14 +256,28 @@
   top: 52%;
   left: 16px;
 }
-.rotate1to2{
+
+.rotate0to0 {
+  animation: rotate0to0 .7s linear forwards;
+}
+
+.rotate1to2 {
   animation: rotate1to2 .7s linear forwards;
 }
-.rotate2to0{
+
+.rotate2to0 {
   animation: rotate2to0 .7s linear forwards;
 }
-.rotate0to1{
+
+.rotate0to1 {
   animation: rotate0to1 .7s linear forwards;
+}
+
+@keyframes rotate0to0 {
+  100% {
+    left: 16px;
+    transform: rotate(0deg);
+  }
 }
 
 @keyframes rotate0to1 {
@@ -277,6 +291,7 @@
     transform: rotate(-180deg);
   }
 }
+
 @keyframes rotate1to2 {
   0% {
     left: 200px;
@@ -288,6 +303,7 @@
     transform: rotate(-220deg);
   }
 }
+
 @keyframes rotate2to0 {
   0% {
     left: 300px;
