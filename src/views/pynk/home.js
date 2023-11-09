@@ -27,6 +27,7 @@ import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
 import "./css/home.css";
+import "./css/home_animation.css";
 import styles from "./css/home.module.css";
 /* let slidesToShow = 3;
 
