@@ -204,21 +204,25 @@ const Home = () => {
                 {currentSlideIndex === 0 ? (
                   <img
                     src={bebe_slide1}
-                    className={`bebe-slide1` }
+                    className={`bebe-slide1 ${
+                      animation && currentSlideIndex === 0
+                        ? "animation-slide1-1"
+                        : "animation-slide1-0"
+                    }`}
                     id="bubbles-bottom"
                     alt=""
                   />
                 ) : currentSlideIndex === 1 ? (
                   <img
                     src={bebe_slide2}
-                    className={`bebe-slide2`}
+                    className={`bebe-slide1`} /* bebe_slide2 */
                     id="bubbles-bottom"
                     alt=""
                   />
                 ) : currentSlideIndex === 2 ? (
                   <img
                     src={bebe_slide3}
-                    className={`bebe-slide3`}
+                    className={`bebe-slide1`} /* bebe_slide3 */
                     id="bubbles-bottom"
                     alt=""
                   />
@@ -226,8 +230,9 @@ const Home = () => {
                   ""
                 )}
               </div>
-
-              <div className="col-12 col-md-6 relative flex_center">Test2</div>
+              <div className="col-12 col-md-6 relative flex_center">
+                <h1 style={{ zIndex: 10 }}>Test2</h1>
+              </div>
             </div>
           </div>
           <div class="carousel-item active" data-interval="1000">
