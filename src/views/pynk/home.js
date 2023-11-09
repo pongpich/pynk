@@ -6,6 +6,7 @@ import bebe_slide2 from "../../assets/img/home/bebeSlide2.png";
 import bebe_slide3 from "../../assets/img/home/bebeSlide3.png";
 import bubble from "../../assets/img/home/bubble_background.png";
 import bubblesBottom from "../../assets/img/home/bubblesBottom.png";
+import bubblesTop from "../../assets/img/home/bubblesTop.png";
 import bebe_bubble from "../../assets/img/home/bebe_bubble.png";
 import fitto4week from "../../assets/img/home/fitto4week.png";
 import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
@@ -158,18 +159,71 @@ const Home = () => {
             <div className="row">
               <div className="col-12 col-md-6 relative flex_center">
                 <img
+                  src={bubblesTop}
+                  className={`bubbles-top  ${
+                    (animation &&
+                      currentSlideIndex === 0 &&
+                      previousSlideIndex !== 1 &&
+                      "rotate2to0-1") ||
+                    (currentSlideIndex === 0 &&
+                      previousSlideIndex === 1 &&
+                      "rotate1to0-1") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex !== 2 &&
+                      "rotate0to1-1") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex === 2 &&
+                      "rotate2to1-1") ||
+                    (currentSlideIndex === 2 && "rotate1to2-1")
+                  }`}
+                  id="bubbles-top"
+                  alt=""
+                />
+                <img
                   src={bubblesBottom}
                   className={`bubbles-bottom  ${
-                    (animation && currentSlideIndex === 0 && previousSlideIndex !== 1 && "rotate2to0") ||
-                    (currentSlideIndex === 0 && previousSlideIndex === 1 && "rotate1to0") ||
-                    (currentSlideIndex === 1 && previousSlideIndex !== 2 && "rotate0to1") ||
-                    (currentSlideIndex === 1 && previousSlideIndex === 2 && "rotate2to1") ||
+                    (animation &&
+                      currentSlideIndex === 0 &&
+                      previousSlideIndex !== 1 &&
+                      "rotate2to0") ||
+                    (currentSlideIndex === 0 &&
+                      previousSlideIndex === 1 &&
+                      "rotate1to0") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex !== 2 &&
+                      "rotate0to1") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex === 2 &&
+                      "rotate2to1") ||
                     (currentSlideIndex === 2 && "rotate1to2")
-                  
                   }`}
                   id="bubbles-bottom"
                   alt=""
                 />
+                {currentSlideIndex === 0 ? (
+                  <img
+                    src={bebe_slide1}
+                    className={`bebe-slide1` }
+                    id="bubbles-bottom"
+                    alt=""
+                  />
+                ) : currentSlideIndex === 1 ? (
+                  <img
+                    src={bebe_slide2}
+                    className={`bebe-slide2`}
+                    id="bubbles-bottom"
+                    alt=""
+                  />
+                ) : currentSlideIndex === 2 ? (
+                  <img
+                    src={bebe_slide3}
+                    className={`bebe-slide3`}
+                    id="bubbles-bottom"
+                    alt=""
+                  />
+                ) : (
+                  ""
+                )}
               </div>
 
               <div className="col-12 col-md-6 relative flex_center">Test2</div>
@@ -210,69 +264,6 @@ const Home = () => {
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-      {/*     <div
-        id="carouselExampleCaptions"
-        className="carousel slide"
-        data-bs-ride="carousel"
-        data-interval="2000"
-      >
-        <div className="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="0"
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div className="carousel-inner">
-          <div className="box_animation">
-            <div className="row">
-              <div className="col-12 col-md-6 relative flex_center">
-                <img
-                  src={bubblesBottom}
-                  className={`bubbles-bottom ${
-                   
-
-                  id="bubbles-bottom"
-                  alt=""
-                />
-   
-              </div>
-              <div className="col-12 col-md-6 relative flex_center">Test2</div>
-            </div>
-          </div>
-
-          <div className="carousel-item active" alt="Slide 1">
-            <div className="box_screen1">
-              <div className="line3"></div>
-            </div>
-          </div>
-          <div className="carousel-item" alt="Slide 2">
-            <div className="box_screen2">
-              <div className="line3"></div>
-            </div>
-          </div>
-          <div className="carousel-item" alt="Slide 3">
-            <div className="box_screen3">
-              <div className="line3"></div>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
