@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Link, useHistory } from "react-router-dom";
 
-
 import picture01 from "../../../assets/img/pynk/shop/group-37546.png";
 import arrow_left_line from "../../../assets/img/pynk/shop/arrow-left-s-line.png";
 import delete_bin_line from "../../../assets/img/pynk/shop/delete-bin-line.png";
@@ -20,7 +19,7 @@ import icon_facebook from "../../../assets/img/pynk/shop/icon-facebook.png";
 import icon_line from "../../../assets/img/pynk/shop/icon-line.png";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../../redux/pynk/auth";
-
+import OtherComponent from "../googleFacebookLineLogin/loginGFL";
 
 const Shop_order_summary = () => {
   const dispatch = useDispatch();
@@ -34,7 +33,11 @@ const Shop_order_summary = () => {
   const [expires_cookies, setExpires_cookies] = useState(7);
   const { pathname } = useLocation();
   const user = useSelector(({ auth }) => (auth ? auth.user : ""));
-  const statusLogin2 = useSelector(({ auth }) => (auth ? auth.statusLogin : ""));
+  const statusLogin2 = useSelector(({ auth }) =>
+    auth ? auth.statusLogin : ""
+  );
+
+  const otherFunctions = OtherComponent();
 
   useEffect(() => {
     if (statusLogin2 === "success") {
@@ -42,7 +45,7 @@ const Shop_order_summary = () => {
       document.getElementById("btn-close-login-modal") &&
         document.getElementById("btn-close-login-modal").click();
     }
-  }, [statusLogin2])
+  }, [statusLogin2]);
 
   useEffect(() => {
     window.scrollTo(0, 0); // คำสั่งนี้จะเลื่อนหน้าไปที่ด้านบนสุดของหน้า
@@ -121,7 +124,17 @@ const Shop_order_summary = () => {
     if (user) {
       history.push("/shop-payment");
     }
-  }
+  };
+
+  const handleGoogleLogin = () => {
+    otherFunctions.googleLogin();
+  };
+  const handleFacebookLogin = () => {
+    otherFunctions.facebookLogin();
+  };
+  const handleLineLogin = () => {
+    otherFunctions.lineLogin();
+  };
 
   const selectLogin = () => {
     return (
@@ -148,18 +161,18 @@ const Shop_order_summary = () => {
                 <img src={icon_Email} className="icon-login-model" />
                 เข้าใช้งานด้วย Email
               </button>
-              {/*  <button className="btn-want-login">
+              <button className="btn-want-login" onClick={handleGoogleLogin}>
                 <img src={icon_Google} className="icon-login-model" />
                 เข้าใช้งานด้วย Google
               </button>
-              <button className="btn-want-login">
+              <button className="btn-want-login" onClick={handleFacebookLogin}>
                 <img src={icon_facebook} className="icon-login-model" />
                 เข้าใช้งานด้วย Facebook
               </button>
-              <button className="btn-want-login">
+              <button className="btn-want-login" onClick={handleLineLogin}>
                 <img src={icon_line} className="icon-login-model" />
                 เข้าใช้งานด้วย Line
-              </button> */}
+              </button>
               <p className="or-login"> หรือ</p>
               <Link to="/shop-payment">
                 <button
@@ -190,7 +203,7 @@ const Shop_order_summary = () => {
       default:
         break;
     }
-  }
+  };
 
   const formLogin = () => {
     return (
@@ -246,19 +259,17 @@ const Shop_order_summary = () => {
                 <a className="forgot-password">ลืมรหัสผ่าน?</a>
                 <button
                   className={
-                    (emailLogin && passwordLogin) ?
-                      "btn-buy-payment"
-                      :
-                      "btn-continue-payment"
+                    emailLogin && passwordLogin
+                      ? "btn-buy-payment"
+                      : "btn-continue-payment"
                   }
                   onClick={() => dispatch(login(emailLogin, passwordLogin))}
                 >
                   ดำเนินการต่อ
                 </button>
-                {
-                  (statusLogin2 === "fail") &&
+                {statusLogin2 === "fail" && (
                   <p style={{ color: "red" }}>อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
-                }
+                )}
 
                 {/*   <p className="or-access">หรือเข้าใช้งานด้วย</p>
                 <div className="justify-content">
@@ -278,7 +289,7 @@ const Shop_order_summary = () => {
     product_cookies &&
     product_cookies.reduce((acc, product) => acc + product.totalprice, 0);
 
-  console.log("product_cookies", product_cookies);
+  /*   console.log("product_cookies", product_cookies); */
 
   return (
     <>
