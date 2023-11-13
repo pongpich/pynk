@@ -11,6 +11,8 @@ export const types = {
   LOGIN_ADMIN_SUCCESS: "LOGIN_ADMIN_SUCCESS",
   LOGIN_ADMIN_FAIL: "LOGIN_ADMIN_FAIL",
   LOGOUT: "LOGOUT",
+  LOGIN_GOOGLE: "LOGIN_GOOGLE",
+  LOGOUT_GOOGLE: "LOGOUT_GOOGLE",
   REGISTER_PYNK: "REGISTER_PYNK",
   REGISTER_SUCCESS: "REGISTER_SUCCESS",
   REGISTER_FAIL: "REGISTER_FAIL",
@@ -90,6 +92,11 @@ export const updateAddressPynk = (id, address, addressStatus) => ({
 export const clearUpdateRegister = () => ({
   type: types.CLEAR_STATUS_UPDATE_REGISTER,
   payload: {},
+});
+
+export const loginGoogle = (profile) => ({
+  type: types.LOGIN_GOOGLE,
+  payload: { profile },
 });
 
 /* END OF ACTION Section */
@@ -358,6 +365,7 @@ const INIT_STATE = {
   statusLogin: "default",
   statusLoginAdmin: "default",
   user: null,
+  googleProfile: null,
   statusRegister: "default",
   statusUpdateRegister: "default",
   statusUpdateAddress: "default",
@@ -446,6 +454,11 @@ export function reducer(state = INIT_STATE, action) {
         ...state,
         statusUpdateRegister: "default",
         statusUpdateAddress: "default",
+      };
+    case types.LOGIN_GOOGLE:
+      return {
+        ...state,
+        googleProfile: action.payload,
       };
     case types.LOGOUT:
       return INIT_STATE;

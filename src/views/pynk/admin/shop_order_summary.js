@@ -36,6 +36,9 @@ const Shop_order_summary = () => {
   const statusLogin2 = useSelector(({ auth }) =>
     auth ? auth.statusLogin : ""
   );
+  const googleProfile = useSelector(({ auth }) =>
+    auth ? auth.googleProfile : ""
+  );
 
   useEffect(() => {
     if (statusLogin2 === "success") {
@@ -48,6 +51,15 @@ const Shop_order_summary = () => {
   useEffect(() => {
     window.scrollTo(0, 0); // คำสั่งนี้จะเลื่อนหน้าไปที่ด้านบนสุดของหน้า
   }, [pathname]);
+
+  useEffect(() => {
+    // login google
+    if (googleProfile && googleProfile.profile != null) {
+      document.getElementById("btn-close-login-modal") &&
+        document.getElementById("btn-close-login-modal").click();
+      history.push("/shop-payment");
+    }
+  }, [googleProfile]);
 
   const plusMinus = (type) => {
     if (type === "plus") {
@@ -139,7 +151,7 @@ const Shop_order_summary = () => {
           <div className="modal-header">
             <button
               type="button"
-              /* id="btn-close-login-modal" */
+              id="btn-close-login-modal"
               className="btn-close mt-16"
               data-bs-dismiss="modal"
               aria-label="Close"
