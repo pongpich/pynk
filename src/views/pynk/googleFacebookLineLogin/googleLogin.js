@@ -3,12 +3,14 @@ import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { gapi } from "gapi-script";
 import { loginGoogle } from "../../../redux/pynk/auth";
 import { useSelector, useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 const GoogleLoginComponent = () => {
   const googleProfile = useSelector(({ auth }) =>
     auth ? auth.googleProfile : ""
   );
   const dispatch = useDispatch();
+  const history = useHistory();
   const clientId =
     "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com";
 
@@ -40,9 +42,11 @@ const GoogleLoginComponent = () => {
   };
 
   const logOutGoogle = () => {
+    history.push("/home");
     dispatch(loginGoogle(null));
   };
 
+  /*   console.log("googleProfile 555", googleProfile); */
 
   return profile ? (
     <GoogleLogout

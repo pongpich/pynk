@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import delete_bin_line from "./assets/img/pynk/shop/delete-bin-line.png";
+import GoogleLoginComponent from "./views/pynk/googleFacebookLineLogin/googleLogin";
+
 //---------------------------------------Pynk---------------------------------------
 // image
 import search_line from "./assets/img/home/search-line.png";
@@ -290,8 +292,10 @@ class App extends Component {
   }
   renderNavbar() {
     const pagePath = this.props.location.pathname;
-    const { user } = this.props;
+    const { user, googleProfile } = this.props;
     const { searchStatus, group_image } = this.state;
+
+    console.log("googleProfile", googleProfile);
 
     return (
       <div className="navbar-pynk">
@@ -332,6 +336,11 @@ class App extends Component {
                   <div className="pointer" onClick={() => this.props.logout()}>
                     ออกจากระบบ
                   </div>
+                ) : this.props.googleProfile &&
+                  this.props.googleProfile.profile ? (
+                  <>
+                    <GoogleLoginComponent />
+                  </>
                 ) : (
                   <button
                     className="nav-link nav-linkHead2 pointer bold  display-none"
@@ -930,6 +939,12 @@ const mapStateToProps = ({ get, settings, auth, orders }) => {
   } else {
     user = null;
   }
+  let googleProfile;
+  if (auth) {
+    googleProfile = auth.googleProfile;
+  } else {
+    googleProfile = null;
+  }
 
   let status_cart;
   if (orders) {
@@ -944,7 +959,7 @@ const mapStateToProps = ({ get, settings, auth, orders }) => {
   } else {
     locale = "th";
   }
-  return { user, register_log, locale, status_cart };
+  return { user, googleProfile, register_log, locale, status_cart };
 };
 
 const mapActionsToProps = {
