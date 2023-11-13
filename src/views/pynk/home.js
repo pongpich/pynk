@@ -129,11 +129,12 @@ const Home = () => {
     });
   }, []);
 
-  const previousIndex = (e) => {
-    setPreviousSlideIndex(e);
-  };
-  console.log("currentSlideIndex", currentSlideIndex);
-  console.log("previousSlideIndex", previousSlideIndex);
+  function previousIndex (curr, prev) {
+    setPreviousSlideIndex(prev);
+    if(curr !== currentSlideIndex){
+      setCurrentSlideIndex(curr);
+    }
+  }
 
   return (
     <div className="page">
@@ -150,21 +151,21 @@ const Home = () => {
             class="active"
             aria-current="true"
             aria-label="Slide 1"
-            onClick={() => previousIndex(currentSlideIndex)}
+            onClick={() => previousIndex(0, currentSlideIndex)}
           ></button>
           <button
             type="button"
             data-bs-target="#carouselExampleAutoplaying"
             data-bs-slide-to="1"
             aria-label="Slide 2"
-            onClick={() => previousIndex(currentSlideIndex)}
+            onClick={() => previousIndex(1, currentSlideIndex)}
           ></button>
           <button
             type="button"
             data-bs-target="#carouselExampleAutoplaying"
             data-bs-slide-to="2"
             aria-label="Slide 3"
-            onClick={() => previousIndex(currentSlideIndex)}
+            onClick={() => previousIndex(2, currentSlideIndex)}
           ></button>
         </div>
         <div class="carousel-inner">
