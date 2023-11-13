@@ -19,7 +19,7 @@ import icon_facebook from "../../../assets/img/pynk/shop/icon-facebook.png";
 import icon_line from "../../../assets/img/pynk/shop/icon-line.png";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../../redux/pynk/auth";
-import OtherComponent from "../googleFacebookLineLogin/loginGFL";
+import GoogleLoginComponent from "../googleFacebookLineLogin/googleLogin";
 
 const Shop_order_summary = () => {
   const dispatch = useDispatch();
@@ -36,8 +36,6 @@ const Shop_order_summary = () => {
   const statusLogin2 = useSelector(({ auth }) =>
     auth ? auth.statusLogin : ""
   );
-
-  const otherFunctions = OtherComponent();
 
   useEffect(() => {
     if (statusLogin2 === "success") {
@@ -126,14 +124,12 @@ const Shop_order_summary = () => {
     }
   };
 
-  const handleGoogleLogin = () => {
-    otherFunctions.googleLogin();
-  };
-  const handleFacebookLogin = () => {
-    otherFunctions.facebookLogin();
-  };
-  const handleLineLogin = () => {
-    otherFunctions.lineLogin();
+  const handleGoogleLoginClick = () => {
+    // Handle any logic you need before or after GoogleLoginComponent is triggered
+    console.log("Button clicked! Performing Google login...");
+
+    // Now, you can use GoogleLoginComponent by including it in the JSX
+    return <GoogleLoginComponent />;
   };
 
   const selectLogin = () => {
@@ -149,7 +145,7 @@ const Shop_order_summary = () => {
               aria-label="Close"
             ></button>
           </div>
-          <div className="modal-body-payment justify-content">
+          <div className="modal-body-payment login-button justify-content">
             <div className="box-button-login">
               <p className="want-login">
                 ต้องการเข้าสู่ระบบ/ ลงทะเบียนของเราหรือไม่?
@@ -161,15 +157,18 @@ const Shop_order_summary = () => {
                 <img src={icon_Email} className="icon-login-model" />
                 เข้าใช้งานด้วย Email
               </button>
-              <button className="btn-want-login" onClick={handleGoogleLogin}>
-                <img src={icon_Google} className="icon-login-model" />
-                เข้าใช้งานด้วย Google
-              </button>
-              <button className="btn-want-login" onClick={handleFacebookLogin}>
+
+              <GoogleLoginComponent />
+
+              <button
+                className="btn-want-login" /*  onClick={handleFacebookLogin} */
+              >
                 <img src={icon_facebook} className="icon-login-model" />
                 เข้าใช้งานด้วย Facebook
               </button>
-              <button className="btn-want-login" onClick={handleLineLogin}>
+              <button
+                className="btn-want-login" /*  onClick={handleLineLogin} */
+              >
                 <img src={icon_line} className="icon-login-model" />
                 เข้าใช้งานด้วย Line
               </button>

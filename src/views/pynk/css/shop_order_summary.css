@@ -889,3 +889,29 @@
     margin-left: 20px !important;
     margin-top: -40px !important;
 }
+
+/* เลือกปุ่ม Google Login */
+
+.login-button button {
+    font-size: 20px !important;
+    font-family: RegularPynk !important;
+    width: 100%;
+    margin-left: 0 !important;
+    background: rgb(255, 255, 255);
+    color: var(--main-text) !important;
+    border: 1px solid var(--normal-pink) !important;
+    border-radius: 50px !important;
+    box-shadow: none !important;
+}
+
+.login-button button div {
+    margin-right: 10px;
+    background: rgb(255, 255, 255);
+    margin-left: 70px !important;
+
+    border-radius: 50px !important;
+}
+
+.login-button button span {
+    margin-left: -8px !important;
+}
