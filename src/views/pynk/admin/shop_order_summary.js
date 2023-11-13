@@ -57,7 +57,7 @@ const Shop_order_summary = () => {
     if (googleProfile && googleProfile.profile != null) {
       document.getElementById("btn-close-login-modal") &&
         document.getElementById("btn-close-login-modal").click();
-      history.push("/shop-payment");
+      /*       history.push("/shop-payment"); */
     }
   }, [googleProfile]);
 

@@ -12,11 +12,12 @@ const GoogleLoginComponent = () => {
   const clientId =
     "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com";
 
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState(
+    googleProfile && googleProfile.profile
+  );
 
   useEffect(() => {
     const initClientGoogle = () => {
-      console.log("444444");
       gapi.client.init({
         clientId: clientId,
         scope: "email profile", // Add any required scopes
@@ -25,12 +26,13 @@ const GoogleLoginComponent = () => {
     gapi.load("client:auth2", initClientGoogle);
   }, []);
 
+  useEffect(() => {
+    // ติดตามการเปลี่ยนแปลงของ googleProfile
+    setProfile(googleProfile && googleProfile.profile);
+  }, [googleProfile]);
+
   const onSuccessGoogle = (res) => {
-    /*  console.log("onSuccessGoogle", res);
-     */
-    setProfile(res.profileObj);
     dispatch(loginGoogle(res.profileObj));
-    /* loginGoogle */
   };
 
   const onFailureGoogle = (res) => {
@@ -39,12 +41,9 @@ const GoogleLoginComponent = () => {
 
   const logOutGoogle = () => {
     dispatch(loginGoogle(null));
-    setProfile(null);
   };
-  /* 
-  console.log("googleProfile", googleProfile);
-  console.log("profile", profile);
- */
+
+
   return profile ? (
     <GoogleLogout
       clientId={clientId}

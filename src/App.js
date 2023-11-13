@@ -412,15 +412,16 @@ class App extends Component {
                 id="navbarNav"
               >
                 <div className="navbar-nav">
-                  {
-                    (user && user.authorization === "admin") &&
+                  {user && user.authorization === "admin" && (
                     <a
                       className="nav-link link-pynk"
-                      onClick={() => this.props.history.push("/products_management")}
+                      onClick={() =>
+                        this.props.history.push("/products_management")
+                      }
                     >
                       จัดการสินค้า
                     </a>
-                  }
+                  )}
                   <a
                     className="nav-link  link-pynk active2"
                     href="https://platform.bebefitroutine.com"
