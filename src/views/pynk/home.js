@@ -29,7 +29,8 @@ import { useHistory } from "react-router-dom";
 import "./css/home.css";
 import "./css/home_animation.css";
 import styles from "./css/home.module.css";
-/* let slidesToShow = 3;
+
+let slidesToShow = 3;
 
 const carouselProperties = {
   prevArrow: false,
@@ -98,14 +99,25 @@ const carouselProperties = {
       },
     },
   ],
-}; */
-
+};
 const Home = () => {
   const history = useHistory();
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [animation, setAnimation] = useState(false);
   const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
+  const [hoveredButton, setHoveredButton] = useState(2);
+
+  const handleButtonHover = (buttonId) => {
+    setHoveredButton(buttonId);
+  };
+  const resetHoveredButton = () => {
+    setHoveredButton(2);
+  };
+
+  const { ref: home4, inView: Home4ISVisible } = useInView({
+    triggerOnce: true,
+  });
 
   useEffect(() => {
     const carousel = document.getElementById("carouselExampleAutoplaying");
@@ -271,6 +283,177 @@ const Home = () => {
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
+      <Slider {...carouselProperties}>
+        <div className="box-home-slider-1">
+          <div className="slider-card-item-course">
+            <div className="box-fitto4week">
+              <img className="fitto4week" src={fitto4week} alt="" />
+            </div>
+
+            <div className="card-text-box">
+              <p className="SemiBoldPynk text24">
+                Fitto 4 Week Starter Program
+              </p>
+              <p className="RegularPynk text20">
+                “Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry.
+              </p>
+              <i class={`fa-solid fa-arrow-right fa-xl`} />
+            </div>
+          </div>
+        </div>
+        <div className="box-home-slider-2">
+          <div className="box-suggestion"></div>
+          <div className="slider-card-item-course-center">
+            <div className="box-fitto4week">
+              <p className="suggestion text24 SemiBoldPynk white">แนะนำ</p>
+              <img className="fitto4week" src={stayfit_with_bebe} alt="" />
+            </div>
+            <div className="card-text-box">
+              <p className="SemiBoldPynk text24">STAY FIT WITH BEBE</p>
+              <p className="RegularPynk text20">
+                โปรแกรมออกกำลังกาย 8 สัปดาห์ที่ เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ
+              </p>
+              <i class={`fa-solid fa-arrow-right fa-xl`} />
+            </div>
+          </div>
+        </div>
+        <div className="box-home-slider-3">
+          <div className="slider-card-item-course">
+            <div className="box-fitto4week">
+              <img className="fitto4week" src={bikini_body_challenge} alt="" />
+            </div>
+            <div className="card-text-box">
+              <p className="SemiBoldPynk text24">Bikini Body Challenge</p>
+              <p className="RegularPynk text20">
+                “Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry.
+              </p>
+              <i class={`fa-solid fa-arrow-right fa-xl`} />
+            </div>
+          </div>
+        </div>
+      </Slider>
+
+      <div ref={home4} className="home4">
+        <div className="home4-container">
+          <div
+            className={`text48 SemiBoldPynk text-align-center ${
+              Home4ISVisible && "animate-open-home4"
+            }`}
+          >
+            เสียงตอบรับจากผู้ใช้บริการ
+            <div className="home-star">
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+            </div>
+          </div>
+          <div className="comment-item-container">
+            <div className={Home4ISVisible && "card-comment1"}>
+              <picture>
+                <img src={comment1} alt="" />
+              </picture>
+            </div>
+            <div className={Home4ISVisible && "card-comment2"}>
+              <picture>
+                <img src={comment2} alt="" />
+              </picture>
+            </div>
+            <div className={Home4ISVisible && "card-comment3"}>
+              <picture>
+                <img src={comment3} alt="" />
+              </picture>
+            </div>
+            <div className={Home4ISVisible && "card-comment4"}>
+              <picture>
+                <img src={comment4} alt="" />
+              </picture>
+            </div>
+            <div className={Home4ISVisible && "card-comment5"}>
+              <picture>
+                <img src={comment5} alt="" />
+              </picture>
+            </div>
+            <div className={Home4ISVisible && "card-comment6"}>
+              <picture>
+                <img src={comment6} alt="" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="home5">
+        <div className="text-home5">
+          <p className="text48 SemiBoldPynk mb-0px">
+            เคล็ด (ไม่) ลับ ฉบับอยากแชร์
+          </p>
+          <button
+            className="text18 SemiBoldPynk ef60a3"
+            style={{ alignSelf: "center", backgroundColor: "#fff" }}
+          >
+            ดูเพิ่มเติม
+          </button>
+        </div>
+        <div className="card-container-home5">
+          <div className="card-content-home5">
+            <img
+              src={content1}
+              width={376}
+              height={251}
+              style={{ marginBottom: "32px" }}
+              alt=""
+            />
+            <p className="text24 SemiBoldPynk">Content</p>
+            <p className="text20 RegularPynk">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the{" "}
+            </p>
+          </div>
+          <div className="card-content-home5">
+            <img
+              src={content2}
+              width={376}
+              height={251}
+              style={{ marginBottom: "32px" }}
+              alt=""
+            />
+            <p className="text24 SemiBoldPynk">Content</p>
+            <p className="text20 RegularPynk">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the{" "}
+            </p>
+          </div>
+          <div className="card-content-home5">
+            <img
+              src={content3}
+              width={376}
+              height={251}
+              style={{ marginBottom: "32px" }}
+              alt=""
+            />
+            <p className="text24 SemiBoldPynk">Content</p>
+            <p className="text20 RegularPynk">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the{" "}
+            </p>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
