@@ -128,9 +128,12 @@ const Profile = () => {
   ];
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const user = useSelector(({ auth }) => (auth ? auth.user : ""));
+  const googleProfile = useSelector(({ auth }) =>
+    auth ? auth.googleProfile : ""
+  );
 
   useEffect(() => {
-    if (!user) {
+    if (!user && googleProfile && googleProfile.profile == null) {
       history.push("/home");
     }
   }, [user]);

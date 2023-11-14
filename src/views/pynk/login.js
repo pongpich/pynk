@@ -5,6 +5,7 @@ import "./css/home.css";
 import "./css/login.css";
 
 import { login, logout, register, clear_status } from "../../redux/pynk/auth";
+import GoogleLoginComponent from "./googleFacebookLineLogin/googleLogin";
 
 const Login = () => {
   const history = useHistory();
@@ -43,6 +44,9 @@ const Login = () => {
   const [isPasswordValid, setIsPasswordValid] = useState("default");
   const [hasUpperCase, setHasUpperCase] = useState("default");
   const [hasNumber, setHasNumber] = useState("default");
+  const googleProfile = useSelector(({ auth }) =>
+    auth ? auth.googleProfile : ""
+  );
 
   const handleBlur = (event) => {
     var inputID = event.target.id;
@@ -281,6 +285,14 @@ const Login = () => {
     }
   }, [renderName]);
 
+  useEffect(() => {
+    // login google
+    console.log("login Google");
+    if (googleProfile && googleProfile.profile != null) {
+      history.push("/profile-pynk");
+    }
+  }, [googleProfile]);
+
   return (
     <div className="body-login">
       <div className="wrapper">
@@ -401,8 +413,12 @@ const Login = () => {
                   )}
                   {isRegisterFail === "invalidRegister" && (
                     <div className="empty-text hasEmail">
-                      <p style={{marginBottom:"0px"}}>มีข้อมูลอีเมลนี้ในระบบแล้ว</p>
-                      <p style={{marginBottom:"0px"}}>กรุณาสมัครใช้งานด้วยอีเมลอื่นหรือเลือกเข้าสู่ระบบ</p>
+                      <p style={{ marginBottom: "0px" }}>
+                        มีข้อมูลอีเมลนี้ในระบบแล้ว
+                      </p>
+                      <p style={{ marginBottom: "0px" }}>
+                        กรุณาสมัครใช้งานด้วยอีเมลอื่นหรือเลือกเข้าสู่ระบบ
+                      </p>
                     </div>
                   )}
                 </div>
@@ -673,6 +689,10 @@ const Login = () => {
               {isLoginError === "invalidLogin" && (
                 <p style={{ color: "red" }}>อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
               )}
+
+              <div>
+                <GoogleLoginComponent />
+              </div>
               {/* <div className="two-col">
               <div className="one">
                 <input type="checkbox" id="login-check" />
