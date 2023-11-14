@@ -807,7 +807,7 @@ class App extends Component {
           style={{ display: "none" }}
           type="button"
           id="modalAchievement1Btn_shopDetails"
-          class="btn btn-primary"
+          className="btn btn-primary"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
@@ -815,9 +815,9 @@ class App extends Component {
         </button>
 
         <div
-          class="modal fade"
+          className="modal fade"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >

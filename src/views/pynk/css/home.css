@@ -234,7 +234,12 @@
 .mb-0px {
   margin-bottom: 0px;
 }
-
+.text-home2{
+  position: relative;
+  margin-top: 32px;
+  width: 70%;
+  left: 15%;
+}
 .box-home-slider-1 {
   margin-top: 32px;
   padding-top: 64px;

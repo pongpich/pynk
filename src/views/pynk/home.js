@@ -129,9 +129,9 @@ const Home = () => {
     });
   }, []);
 
-  function previousIndex (curr, prev) {
+  function previousIndex(curr, prev) {
     setPreviousSlideIndex(prev);
-    if(curr !== currentSlideIndex){
+    if (curr !== currentSlideIndex) {
       setCurrentSlideIndex(curr);
     }
   }
@@ -140,15 +140,15 @@ const Home = () => {
     <div className="page">
       <div
         id="carouselExampleAutoplaying"
-        class="carousel slide"
+        className="carousel slide"
         data-bs-ride="carousel"
       >
-        <div class="carousel-indicators">
+        <div className="carousel-indicators">
           <button
             type="button"
             data-bs-target="#carouselExampleAutoplaying"
             data-bs-slide-to="0"
-            class="active"
+            className="active"
             aria-current="true"
             aria-label="Slide 1"
             onClick={() => previousIndex(0, currentSlideIndex)}
@@ -168,7 +168,7 @@ const Home = () => {
             onClick={() => previousIndex(2, currentSlideIndex)}
           ></button>
         </div>
-        <div class="carousel-inner">
+        <div className="carousel-inner">
           <div className="box_animation">
             <div className="row">
               <div className="col-12 col-md-6 relative flex_center">
@@ -249,40 +249,54 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div class="carousel-item active" data-interval="1000">
+          <div className="carousel-item active" data-interval="1000">
             <div className="box_screen1">
               <div className="line3"></div>
             </div>
           </div>
-          <div class="carousel-item" data-interval="1000">
+          <div className="carousel-item" data-interval="1000">
             <div className="box_screen2">
               <div className="line3"></div>
             </div>
           </div>
-          <div class="carousel-item" data-interval="1000">
+          <div className="carousel-item" data-interval="1000">
             <div className="box_screen3">
               <div className="line3"></div>
             </div>
           </div>
         </div>
         <button
-          class="carousel-control-prev"
+          className="carousel-control-prev"
           type="button"
           data-bs-target="#carouselExampleAutoplaying"
           data-bs-slide="prev"
         >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
         </button>
         <button
-          class="carousel-control-next"
+          className="carousel-control-next"
           type="button"
           data-bs-target="#carouselExampleAutoplaying"
           data-bs-slide="next"
         >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
         </button>
+      </div>
+
+      <div className="text-home2">
+        <p className={`${styles["services-happily"]} ${"text-center"}`}>
+          บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
+          และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
+        </p>
+        <p className={`${styles["not-good"]} ${"text-center"}`}>
+          “ไม่ใช่แค่หุ่นดี{" "}
+          <span className={`${styles["not-good-span"]}`}>
+            {" "}
+            แต่มันคือการรักตัวเองอย่างมีความสุข”
+          </span>
+        </p>
       </div>
 
       <Slider {...carouselProperties}>
@@ -300,7 +314,7 @@ const Home = () => {
                 “Lorem Ipsum is simply dummy text of the printing and
                 typesetting industry.
               </p>
-              <i class={`fa-solid fa-arrow-right fa-xl`} />
+              <i className={`fa-solid fa-arrow-right fa-xl`} />
             </div>
           </div>
         </div>
@@ -316,7 +330,7 @@ const Home = () => {
               <p className="RegularPynk text20">
                 โปรแกรมออกกำลังกาย 8 สัปดาห์ที่ เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ
               </p>
-              <i class={`fa-solid fa-arrow-right fa-xl`} />
+              <i className={`fa-solid fa-arrow-right fa-xl`} />
             </div>
           </div>
         </div>
@@ -331,7 +345,7 @@ const Home = () => {
                 “Lorem Ipsum is simply dummy text of the printing and
                 typesetting industry.
               </p>
-              <i class={`fa-solid fa-arrow-right fa-xl`} />
+              <i className={`fa-solid fa-arrow-right fa-xl`} />
             </div>
           </div>
         </div>
@@ -718,7 +732,7 @@ const Home = () => {
                   “Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry.
                 </p>
-                <i class={`fa-solid fa-arrow-right fa-xl`} />
+                <i className={`fa-solid fa-arrow-right fa-xl`} />
               </div>
             </div>
           </div>
@@ -734,7 +748,7 @@ const Home = () => {
                 <p className="RegularPynk text20">
                   โปรแกรมออกกำลังกาย 8 สัปดาห์ที่ เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ
                 </p>
-                <i class={`fa-solid fa-arrow-right fa-xl`} />
+                <i className={`fa-solid fa-arrow-right fa-xl`} />
               </div>
             </div>
           </div>
@@ -753,7 +767,7 @@ const Home = () => {
                   “Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry.
                 </p>
-                <i class={`fa-solid fa-arrow-right fa-xl`} />
+                <i className={`fa-solid fa-arrow-right fa-xl`} />
               </div>
             </div>
           </div>
@@ -794,7 +808,7 @@ const Home = () => {
                   </p>
                 </div>
                 <i
-                  class={`fa-solid fa-arrow-right fa-xl ${
+                  className={`fa-solid fa-arrow-right fa-xl ${
                     hoveredButton === 1 && "hovered"
                   }`}
                 ></i>
@@ -808,7 +822,7 @@ const Home = () => {
               >
                 
                 <i
-                  class={`fa-solid fa-arrow-right fa-xl ${
+                  className={`fa-solid fa-arrow-right fa-xl ${
                     hoveredButton === 2 && "hovered"
                   }`}
                 ></i>
@@ -835,7 +849,7 @@ const Home = () => {
                   </p>
                 </div>
                 <i
-                  class={`fa-solid fa-arrow-right fa-xl ${
+                  className={`fa-solid fa-arrow-right fa-xl ${
                     hoveredButton === 3 && "hovered"
                   }`}
                 ></i>
