@@ -20,6 +20,7 @@ import icon_line from "../../../assets/img/pynk/shop/icon-line.png";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../../redux/pynk/auth";
 import GoogleLoginComponent from "../googleFacebookLineLogin/googleLogin";
+import FaceBookLoginComponent from "../googleFacebookLineLogin/faceBookLogin";
 
 const Shop_order_summary = () => {
   const dispatch = useDispatch();
@@ -170,8 +171,12 @@ const Shop_order_summary = () => {
                 เข้าใช้งานด้วย Email
               </button>
 
-              <GoogleLoginComponent />
-
+              <div className="google">
+                <GoogleLoginComponent />
+              </div>
+              <div className="fb">
+                <FaceBookLoginComponent />
+              </div>
               <button
                 className="btn-want-login" /*  onClick={handleFacebookLogin} */
               >

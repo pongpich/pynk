@@ -295,8 +295,6 @@ class App extends Component {
     const { user, googleProfile } = this.props;
     const { searchStatus, group_image } = this.state;
 
-    console.log("googleProfile", googleProfile);
-
     return (
       <div className="navbar-pynk">
         <nav className="navbar navbar-expand-sm bg-light information-nav fixed-top">

@@ -892,7 +892,7 @@
 
 /* เลือกปุ่ม Google Login */
 
-.login-button button {
+.login-button .google button {
     font-size: 20px !important;
     font-family: RegularPynk !important;
     width: 100%;
@@ -904,7 +904,7 @@
     box-shadow: none !important;
 }
 
-.login-button button div {
+.login-button .google button div {
     margin-right: 10px;
     background: rgb(255, 255, 255);
     margin-left: 70px !important;
@@ -912,6 +912,6 @@
     border-radius: 50px !important;
 }
 
-.login-button button span {
+.login-button .google button span {
     margin-left: -8px !important;
 }

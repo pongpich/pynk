@@ -1,68 +1,44 @@
 import { React, useState, useEffect } from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
-import { gapi } from "gapi-script";
 import { loginGoogle } from "../../../redux/pynk/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { LoginSocialFacebook } from "reactjs-social-login";
+import { FacebookLoginButton } from "react-social-login-buttons";
 
-const GoogleLoginComponent = () => {
+const FaceBookLoginComponent = () => {
   const googleProfile = useSelector(({ auth }) =>
     auth ? auth.googleProfile : ""
   );
   const dispatch = useDispatch();
   const history = useHistory();
-  const clientId = "709473964494006";
+  const appId = "709473964494006";
 
   const [profile, setProfile] = useState(
-    googleProfile && googleProfile.profile
+    null
+    /*   faceBookProfile && faceBookProfile.profile */
   );
-
-  useEffect(() => {
-    const initClientGoogle = () => {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "email profile", // Add any required scopes
-      });
-    };
-    gapi.load("client:auth2", initClientGoogle);
-  }, []);
-
-  useEffect(() => {
-    // ติดตามการเปลี่ยนแปลงของ googleProfile
-    setProfile(googleProfile && googleProfile.profile);
-  }, [googleProfile]);
-
-  const onSuccessGoogle = (res) => {
-    dispatch(loginGoogle(res.profileObj));
+  const componentClicked = () => {
+    console.log("click");
   };
-
-  const onFailureGoogle = (res) => {
-    console.log("onFailureGoogle", res);
+  const responseFacebook = (response) => {
+    console.log(response);
   };
-
-  const logOutGoogle = () => {
-    history.push("/home");
-    dispatch(loginGoogle(null));
-  };
-
-  /*   console.log("googleProfile 555", googleProfile); */
 
   return profile ? (
-    <GoogleLogout
-      clientId={clientId}
-      buttonText="Logout Google"
-      onLogoutSuccess={logOutGoogle}
-    />
+    <>Logout Facebook</>
   ) : (
-    <GoogleLogin
-      clientId={clientId}
-      buttonText="เข้าใช้งานด้วย Google"
-      onSuccess={onSuccessGoogle}
-      onFailure={onFailureGoogle}
-      cookiePolicy={"Single_host_origin"}
-      isSignedIn={true}
-    />
+    <LoginSocialFacebook
+      appId="856088889511351"
+      onResolve={(res) => {
+        console.log("res", res);
+      }}
+      onReject={(error) => {
+        console.log("error", error);
+      }}
+    >
+      <FacebookLoginButton />
+    </LoginSocialFacebook>
   );
 };
 
-export default GoogleLoginComponent;
+export default FaceBookLoginComponent;
