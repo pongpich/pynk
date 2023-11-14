@@ -83,7 +83,8 @@ export const update_product = (
     image_list,
     description,
     nutritional_value,
-    detail
+    detail,
+    after_discount
 ) => ({
     type: types.UPDATE_PRODUCT,
     payload: {
@@ -94,7 +95,8 @@ export const update_product = (
         image_list,
         description,
         nutritional_value,
-        detail
+        detail,
+        after_discount
     }
 });
 
@@ -147,7 +149,8 @@ const updateProductSagaAsync = async (
     image_list,
     description,
     nutritional_value,
-    detail
+    detail,
+    after_discount
 ) => {
     try {
         const apiResult = await API.put("pynk", "/update_product", {
@@ -159,7 +162,8 @@ const updateProductSagaAsync = async (
                 image_list,
                 description,
                 nutritional_value,
-                detail
+                detail,
+                after_discount
             },
         });
         return apiResult;
@@ -177,7 +181,8 @@ function* updateProductSaga({ payload }) {
         image_list,
         description,
         nutritional_value,
-        detail
+        detail,
+        after_discount
     } = payload;
 
     try {
@@ -190,7 +195,8 @@ function* updateProductSaga({ payload }) {
             image_list,
             description,
             nutritional_value,
-            detail
+            detail,
+            after_discount
         );
 
         if (apiResult.results.message === "success") {

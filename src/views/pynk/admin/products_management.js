@@ -41,6 +41,7 @@ function ProductsManagement() {
         }
     }, [status_products_pynk]);
 
+    const [isAfterDiscount, setIsAfterDiscount] = useState(false);
     const [isNutritionalInfoProvided, setIsNutritionalInfoProvided] = useState(false);
     const [nutritionalInfoList, setNutritionalInfoList] = useState([
         { nutrition_name: '', value: '', unit: '' },
@@ -66,6 +67,12 @@ function ProductsManagement() {
         setIsNutritionalInfoProvided(event.target.value === 'yes');
         // เมื่อผู้ใช้เลือก "ใช่" ให้เปิดใช้งานช่องกรอกข้อมูลสารอาหาร
         // เมื่อผู้ใช้เลือก "ไม่" ให้ปิดใช้งานช่องกรอกข้อมูลสารอาหาร
+    };
+
+    const handleRadioChange2 = (event) => {
+        setIsAfterDiscount(event.target.value === 'yes');
+        // เมื่อผู้ใช้เลือก "ใช่" ให้เปิดใช้งานช่องกรอกลดราคา
+        // เมื่อผู้ใช้เลือก "ไม่" ให้ปิดใช้งานช่องกรอกลดราคา
     };
 
     const [productDetailPage, setProductDetailPage] = useState(false);
@@ -188,8 +195,24 @@ function ProductsManagement() {
         category: 'another',
         description: '',
         detail: '',
-        nutritional_value: null
+        nutritional_value: null,
+        after_discount: null
     });
+
+    useEffect(() => {
+        if (isAfterDiscount) {
+            setEditDetailForm({
+                ...editDetailForm,
+                after_discount: selectedProduct.after_discount ? selectedProduct.after_discount : (selectedProduct.price - 1),
+            });
+        }
+        if (!isAfterDiscount) {
+            setEditDetailForm({
+                ...editDetailForm,
+                after_discount: null
+            });
+        }
+    }, [isAfterDiscount])
 
     useEffect(() => {
         if (editDetail) {
@@ -197,14 +220,25 @@ function ProductsManagement() {
                 ...editDetailForm,
                 product_name: selectedProduct.product_name,
                 description: selectedProduct.description,
-                detail: selectedProduct.detail
+                detail: selectedProduct.detail,
+                after_discount: selectedProduct.after_discount ? selectedProduct.after_discount : (selectedProduct.price - 1),
             });
+
+            setIsAfterDiscount(selectedProduct.after_discount ? true : false);
         }
     }, [editDetail]);
 
     const handleChangeEditForm = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+
+        //เพิ่มการเช็คราคาที่ลดห้ามกรอกเกินราคาต้น
+        if (name === 'after_discount') {
+            if (value > (selectedProduct.price - 1)) {
+                value = selectedProduct.price - 1;
+            }
+        }
         setEditDetailForm({ ...editDetailForm, [name]: value });
+
     };
 
     const [isPopupVisible, setPopupVisible] = useState(false);
@@ -347,6 +381,7 @@ function ProductsManagement() {
                                 <th>ชื่อสินค้า</th>
                                 <th>หมวดหมู่สินค้า</th>
                                 <th>ราคา</th>
+                                <th>ราคาลด</th>
                                 <th>จำนวนสินค้า</th>
                             </tr>
                         </thead>
@@ -375,6 +410,7 @@ function ProductsManagement() {
                                                 {(product.category === "another") && "อื่นๆ"}
                                             </td>
                                             <td>{product.price}</td>
+                                            <td>{product.after_discount ? `${product.after_discount}` : "-"}</td>
                                             <td>{product.available_stock}</td>
                                         </tr>
                                     ))
@@ -524,7 +560,15 @@ function ProductsManagement() {
                             </div>
                             <div className='mb-2'>
                                 <div>ราคา:</div>
-                                <div className='bold fs-5'>{selectedProduct.price} บาท</div>
+                                {
+                                    selectedProduct.after_discount ?
+                                        <div className="d-flex gap-2">
+                                            <p className='fs-5' style={{ textDecoration: "line-through" }} >{selectedProduct.price} บาท</p>
+                                            <p className='bold fs-5'>{selectedProduct.after_discount} บาท</p>
+                                        </div>
+                                        :
+                                        <div className='bold fs-5'>{selectedProduct.price} บาท</div>
+                                }
                             </div>
                             <div className='mb-2'>
                                 <div>จำนวนคงเหลือ:</div>
@@ -564,7 +608,8 @@ function ProductsManagement() {
         available_stock,
         description,
         nutritional_value,
-        detail
+        detail,
+        after_discount
     ) {
 
         let image_list = [];
@@ -582,7 +627,8 @@ function ProductsManagement() {
             image_list,
             description,
             nutritional_value,
-            detail
+            detail,
+            after_discount
         ));
     };
 
@@ -729,7 +775,56 @@ function ProductsManagement() {
                             </div>
                             <div className='mb-2'>
                                 <div>ราคา:</div>
-                                <div className='bold fs-5'>{selectedProduct.price} บาท</div>
+                                {
+                                    isAfterDiscount ?
+                                        <div className='fs-5' style={{ textDecoration: "line-through" }}>{selectedProduct.price} บาท</div>
+                                        :
+                                        <div className='bold fs-5'>{selectedProduct.price} บาท</div>
+                                }
+                            </div>
+                            <div className='mb-2'>
+                                <label>คุณต้องการลดราคาสินค้าชิ้นนี้หรือไม่?</label>
+
+                                <div className='d-flex align-items-center gap-2'>
+                                    <input
+                                        className='form-check-input2'
+                                        type="radio"
+                                        id="no"
+                                        name="afterDiscount"
+                                        value="no"
+                                        checked={!isAfterDiscount}
+                                        onChange={handleRadioChange2}
+                                    />
+                                    <div>ไม่</div>
+                                </div>
+                                <div className='d-flex  align-items-center gap-2'>
+                                    <input
+                                        className='form-check-input2'
+                                        type="radio"
+                                        id="yes"
+                                        name="afterDiscount"
+                                        value="yes"
+                                        checked={isAfterDiscount}
+                                        onChange={handleRadioChange2}
+                                    />
+                                    <div>ใช่</div>
+                                </div>
+                                {
+                                    isAfterDiscount &&
+                                    <div className='d-flex align-items-center gap-1'>
+                                        <p>ราคาหลังจากลด:</p>
+                                        <input
+                                            type="number"
+                                            id="after_discount"
+                                            name="after_discount"
+                                            value={editDetailForm.after_discount}
+                                            onChange={handleChangeEditForm}
+                                            style={{ width: 150, height: 40 }}
+                                            max={selectedProduct.price - 1}
+                                        />
+                                        <p>บาท</p>
+                                    </div>
+                                }
                             </div>
                             <div className='mb-2'>
                                 <div>จำนวนคงเหลือ:</div>
@@ -890,7 +985,8 @@ function ProductsManagement() {
                                 selectedProduct.available_stock,
                                 editDetailForm.description,
                                 nutritionalInfoList,
-                                editDetailForm.detail
+                                editDetailForm.detail,
+                                (editDetailForm.after_discount && isAfterDiscount) ? editDetailForm.after_discount : null
                             )}
                         >
                             บันทึก
