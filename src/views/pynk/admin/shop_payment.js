@@ -106,6 +106,84 @@ const Shop_payment = () => {
   }, [product]);
 
   useEffect(() => {
+    /*     if (!user) { */
+    const getUsername = window.localStorage.getItem("username");
+    const getSurname = window.localStorage.getItem("surname");
+    const getEmail = window.localStorage.getItem("email");
+    const getPhone = window.localStorage.getItem("phone");
+    const getAddress = window.localStorage.getItem("address");
+    const getSubdistrict = window.localStorage.getItem("subdistrict");
+    const getDistrict = window.localStorage.getItem("district");
+    const getProvince = window.localStorage.getItem("province");
+    const getZipcode = window.localStorage.getItem("zipcode");
+
+    setFormData({
+      ...formData,
+      username: getUsername,
+      surname: getSurname,
+      email: getEmail,
+      phone_number: getPhone,
+      address: getAddress,
+      subdistrict: getSubdistrict,
+      district: getDistrict,
+      province: getProvince,
+      zipcode: getZipcode,
+    });
+
+    /*  if (getSurname != null && getSurname != "") {
+      setFormData({
+        ...formData,
+        surname: getSurname,
+      });
+      console.log("getSurname", getSurname);
+    }
+    if (getEmail != null && getEmail != "") {
+      setFormData({
+        ...formData,
+        email: getEmail,
+      });
+    }
+    if (getPhone != null && getPhone != "") {
+      setFormData({
+        ...formData,
+        phone_number: getPhone,
+      });
+    }
+    if (getAddress != null && getAddress != "") {
+      setFormData({
+        ...formData,
+        address: getAddress,
+      });
+    }
+    if (getSubdistrict != null && getSubdistrict != "") {
+      setFormData({
+        ...formData,
+        subdistrict: getSubdistrict,
+      });
+    }
+    if (getDistrict != null && getDistrict != "") {
+      setFormData({
+        ...formData,
+        district: getDistrict,
+      });
+    }
+    if (getProvince != null && getProvince != "") {
+      setFormData({
+        ...formData,
+        province: getProvince,
+      });
+    }
+    if (getZipcode != null && getZipcode != "") {
+      setFormData({
+        ...formData,
+        zipcode: getZipcode,
+      });
+    } */
+
+    /*     } */
+  }, []);
+
+  useEffect(() => {
     if (status_create_order === "default") {
       setStatusStep(0);
     }
@@ -144,7 +222,6 @@ const Shop_payment = () => {
       if (selectedPaymentMethod == "credit_card") {
         history.push("/cc_token_pynk");
       }
-      console.log("555");
     }
   }, [status_create_order]);
 
