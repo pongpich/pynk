@@ -1,13 +1,16 @@
 import { React, useState, useEffect } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { gapi } from "gapi-script";
-import { loginGoogle } from "../../../redux/pynk/auth";
+import { loginGoogle, registerLoginGoogle } from "../../../redux/pynk/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
 const GoogleLoginComponent = () => {
   const googleProfile = useSelector(({ auth }) =>
     auth ? auth.googleProfile : ""
+  );
+  const statusGoogleProfile = useSelector(({ auth }) =>
+    auth ? auth.statusGoogleProfile : ""
   );
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,7 +37,13 @@ const GoogleLoginComponent = () => {
   }, [googleProfile]);
 
   const onSuccessGoogle = (res) => {
+    //registerLoginGoogle email, first_name, last_name
+    const email = res.profileObj.email;
+    const first_name = res.profileObj.givenName;
+    const last_name = res.profileObj.familyName;
+    dispatch(registerLoginGoogle(email, first_name, last_name));
     dispatch(loginGoogle(res.profileObj));
+    console.log("res.profileObj", res.profileObj);
   };
 
   const onFailureGoogle = (res) => {
@@ -46,7 +55,9 @@ const GoogleLoginComponent = () => {
     dispatch(loginGoogle(null));
   };
 
-  /*   console.log("googleProfile 555", googleProfile); */
+  console.log("googleProfile ", googleProfile);
+
+  console.log("statusGoogleProfile ", statusGoogleProfile);
 
   return profile ? (
     <GoogleLogout

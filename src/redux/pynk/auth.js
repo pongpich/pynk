@@ -15,6 +15,9 @@ export const types = {
   REGISTER_PYNK: "REGISTER_PYNK",
   REGISTER_SUCCESS: "REGISTER_SUCCESS",
   REGISTER_FAIL: "REGISTER_FAIL",
+  REGISTER_LOGIN_GOOGLE_PYNK: "REGISTER_LOGIN_GOOGLE_PYNK",
+  REGISTER_LOGIN_GOOGLE_PYNK_SUCCESS: "REGISTER_LOGIN_GOOGLE_PYNK_SUCCESS",
+  REGISTER_LOGIN_GOOGLE_PYNK_FAIL: "REGISTER_LOGIN_GOOGLE_PYNK_FAIL",
   UPDATE_REGISTER_PYNK: "UPDATE_REGISTER_PYNK",
   UPDATE_REGISTER_SUCCESS: "UPDATE_REGISTER_SUCCESS",
   UPDATE_REGISTER_FAIL: "UPDATE_REGISTER_FAIL",
@@ -60,6 +63,15 @@ export const register = (email, password, first_name, last_name, phone) => ({
   },
 });
 
+export const registerLoginGoogle = (email, first_name, last_name) => ({
+  type: types.REGISTER_LOGIN_GOOGLE_PYNK,
+  payload: {
+    email,
+    first_name,
+    last_name,
+  },
+});
+
 export const updateRegister = (
   id,
   email,
@@ -98,7 +110,6 @@ export const loginGoogle = (profile) => ({
   payload: { profile },
 });
 
-
 /* END OF ACTION Section */
 
 /* SAGA Section */
@@ -120,6 +131,21 @@ const registerSagaAsync = async (
         phone: phone,
       },
     });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+};
+const registerLoginGoogleSagaAsync = async (email, first_name, last_name) => {
+  try {
+    const apiResult = await API.post("pynk", "/registerLoginGoogle", {
+      body: {
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+      },
+    });
+    console.log("apiResult", apiResult);
     return apiResult;
   } catch (error) {
     return { error, messsage: error.message };
@@ -271,6 +297,29 @@ function* registerSaga({ payload }) {
     console.log("error from register :", error);
   }
 }
+function* registerLoginGoogleSaga({ payload }) {
+  const { email, first_name, last_name } = payload;
+
+  try {
+    const apiResult = yield call(
+      registerLoginGoogleSagaAsync,
+      email,
+      first_name,
+      last_name
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.REGISTER_LOGIN_GOOGLE_PYNK_SUCCESS,
+      });
+    } else if (apiResult.results.message === "fail") {
+      yield put({
+        type: types.REGISTER_LOGIN_GOOGLE_PYNK_FAIL,
+      });
+    }
+  } catch (error) {
+    console.log("error from register :", error);
+  }
+}
 
 function* updateRegisterSaga({ payload }) {
   const { id, email, password, first_name, last_name, phone } = payload;
@@ -340,6 +389,9 @@ export function* watchLoginAdmin() {
 export function* watchRegister() {
   yield takeEvery(types.REGISTER_PYNK, registerSaga);
 }
+export function* watchRegisterLoginGoogleSaga() {
+  yield takeEvery(types.REGISTER_LOGIN_GOOGLE_PYNK, registerLoginGoogleSaga);
+}
 export function* watchUpdateRegister() {
   yield takeEvery(types.UPDATE_REGISTER_PYNK, updateRegisterSaga);
 }
@@ -354,6 +406,7 @@ export function* saga() {
     fork(watchLoginAdmin),
     fork(watchUpdateRegister),
     fork(watchUpdateAddressPynk),
+    fork(watchRegisterLoginGoogleSaga),
   ]);
 }
 
@@ -366,6 +419,7 @@ const INIT_STATE = {
   statusLoginAdmin: "default",
   user: null,
   googleProfile: null,
+  statusGoogleProfile: "default",
   statusRegister: "default",
   statusUpdateRegister: "default",
   statusUpdateAddress: "default",
@@ -441,6 +495,21 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         statusUpdateAddress: "fail",
+      };
+    case types.REGISTER_LOGIN_GOOGLE_PYNK:
+      return {
+        ...state,
+        statusGoogleProfile: "fail",
+      };
+    case types.REGISTER_LOGIN_GOOGLE_PYNK_SUCCESS:
+      return {
+        ...state,
+        statusGoogleProfile: "success",
+      };
+    case types.REGISTER_LOGIN_GOOGLE_PYNK_FAIL:
+      return {
+        ...state,
+        statusGoogleProfile: "fail",
       };
     case types.CLEAR_STATUS:
       return {
