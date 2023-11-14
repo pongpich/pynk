@@ -321,34 +321,21 @@
     animation: rotate2to1-1 0.6s linear forwards;
   }
 
-  /* เอามาเเสดง */
-  .animation-slide1-1 {
-    animation: rotateShow1to1 0.6s linear forwards;
+  .rotate130to0{
+    animation: rotate130to0 0.3 linear forwards;
+    overflow: hidden;
   }
-
-  /* ซ่อนเเสดง */
-  .animation-slide1-0 {
-    animation: rotateShow1to0 0.6s linear forwards;
+  .rotate0to130{
+    animation: rotate0to130 0.3 linear forwards;
+    overflow: hidden;
   }
-
-  /* เอามาเเสดง */
-  .animation-slide2-1 {
-    animation: rotateShow2to1 0.6s linear forwards;
+  .rotate-130to0{
+    animation: rotate-130to0 0.3 linear forwards;
+    overflow: hidden;
   }
-
-  /* ซ่อนเเสดง */
-  .animation-slide2-0 {
-    animation: rotateShow2to0 0.6s linear forwards;
-  }
-
-  /* เอามาเเสดง */
-  .animation-slide3-1 {
-    animation: rotateShow3to1 0.6s linear forwards;
-  }
-
-  /* ซ่อนเเสดง */
-  .animation-slide3-0 {
-    animation: rotateShow3to0 0.6s linear forwards;
+  .rotate0to-130{
+    animation: rotate0to-130 0.3 linear forwards;
+    overflow: hidden;
   }
 
 
@@ -516,7 +503,7 @@
     }
   }
 
-  @keyframes rotateShow1to1 {
+  @keyframes rotate130to0 {
     0% {
       top: 100%;
       transform: rotate(130deg);
@@ -529,28 +516,24 @@
       transform: rotate(0deg);
     }
   }
-
-  @keyframes rotateShow1to0 {
-
+  @keyframes rotate0to130 {
     0% {
       top: 0%;
-      transform: rotate(0deg);
-    }
-
-    100% {
-      top: 100%;
-      margin-left: -100%;
       transform-origin: center;
       transform-origin: bottom center;
+      transform: rotate(0deg);
+      
+    }
+    100% {
+      top: 100%;
+      transform: rotate(130deg);
+    }
+  }
+  @keyframes rotate-130to0 {
+    0% {
+      top: 100%;
       transform: rotate(-130deg);
     }
-  }
-
-  @keyframes rotateShow2to1 {
-    0% {
-      top: 100%;
-      transform: rotate(130deg);
-    }
 
     100% {
       top: 0%;
@@ -559,49 +542,16 @@
       transform: rotate(0deg);
     }
   }
-
-  @keyframes rotateShow2to0 {
-
+  @keyframes rotate0to-130 {
     0% {
-      top: 0%;
-      transform: rotate(0deg);
-    }
-
-    100% {
-      top: 100%;
-      margin-left: -100%;
-      transform-origin: center;
-      transform-origin: bottom center;
-      transform: rotate(-130deg);
-    }
-  }
-
-  @keyframes rotateShow3to1 {
-    0% {
-      top: 100%;
-      transform: rotate(130deg);
-    }
-
-    100% {
       top: 0%;
       transform-origin: center;
       transform-origin: bottom center;
       transform: rotate(0deg);
+      
     }
-  }
-
-  @keyframes rotateShow3to0 {
-
-    0% {
-      top: 0%;
-      transform: rotate(0deg);
-    }
-
     100% {
       top: 100%;
-      margin-left: -100%;
-      transform-origin: center;
-      transform-origin: bottom center;
       transform: rotate(-130deg);
     }
   }
@@ -662,6 +612,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .bubble_img {
@@ -687,53 +638,66 @@
   z-index: 1;
 }
 
-.bebe-slide1 {
+.bebe-slide1, .bebe-slide2, .bebe-slide3 {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  z-index: 2;
+  transition: transform 0.6s ease-in-out;
+}
+.bebe-slide1-before, .bebe-slide2-before, .bebe-slide3-before {
   position: absolute;
   height: auto;
   width: 100%;
   z-index: 2;
 }
-
-.bebe-slide2 {
+.slide-img1, .slide-img2, .slide-img3{
   position: absolute;
   height: auto;
   width: 100%;
   z-index: 2;
+  top: 10%;
 }
-
-.bebe-slide3 {
+.slide-text1, .slide-text2, .slide-text3 {
   position: absolute;
-  height: auto;
-  width: 100%;
-  z-index: 2;
+  top: 52%;
+  z-index: 10;
+  font-size: 24px;
+  width: 70%;
+  left: 0%;
 }
-
-.bebe-rotate-before {
-  overflow: hidden;
-  animation: bebe-rotate-before 0.3 linear forwards;
+.slide-text2, .slide-text3{
+  color: white;
 }
-
-.bebe-rotate-after {
-  overflow: hidden;
-  animation: bebe-rotate-after 0.3 linear forwards;
+.slide-text3{
+  margin-top: 15px;
+  top: 57%;
 }
-
-@keyframes bebe-rotate-before {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(120deg);
-  }
+.button-home1{
+  display: flex;
+  width: 26%;
+  top: 68%;
+  left: 0%;
+  height: 6%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0px;
+  position: absolute;
+  font-family: SemiBoldPynk;
+  font-size: 18px;
+  z-index: 10;
+  background-color: white;
+  color: #EF60A3;
+  border: solid 1px #EF60A3;
+  border-radius: 50px;
 }
-
-@keyframes bebe-rotate-after {
-  0% {
-    transform: rotate(120deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
+/* .bebe-slide1:not(.active) {
+  transform: rotate(-130deg);
 }
+.bebe-slide2:not(.active) {
+  transform: rotate(-130deg);
+}
+.bebe-slide3:not(.active) {
+  transform: rotate(-130deg);
+} */

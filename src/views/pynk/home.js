@@ -4,15 +4,14 @@ import { useInView } from "react-intersection-observer";
 import bebe_slide1 from "../../assets/img/home/bebeSlide1.png";
 import bebe_slide2 from "../../assets/img/home/bebeSlide2.png";
 import bebe_slide3 from "../../assets/img/home/bebeSlide3.png";
-import bubble from "../../assets/img/home/bubble_background.png";
 import bubblesBottom from "../../assets/img/home/bubblesBottom.png";
 import bubblesTop from "../../assets/img/home/bubblesTop.png";
-import bebe_bubble from "../../assets/img/home/bebe_bubble.png";
 import fitto4week from "../../assets/img/home/fitto4week.png";
 import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
 import bikini_body_challenge from "../../assets/img/home/bikini_body_challenge.png";
-import fit_item from "../../assets/img/home/group-37365.png";
-import fitto_item from "../../assets/img/home/group-37366.png";
+import stay_fit_with_bebe from "../../assets/img/home/stay_fit_with_bebe.png";
+import lets_challenge from "../../assets/img/home/lets_challenge.png";
+import shop_fin from "../../assets/img/home/shop_fin.png";
 import star from "../../assets/img/home/star.png";
 import comment1 from "../../assets/img/home/comment1.png";
 import comment2 from "../../assets/img/home/comment2.png";
@@ -218,26 +217,24 @@ const Home = () => {
                   <img
                     src={bebe_slide1}
                     className={`bebe-slide1 ${
-                      animation &&
-                      (currentSlideIndex === 0
-                        ? "animation-slide1-1"
-                        : "animation-slide1-0")
+                      animation && (currentSlideIndex === 0 ? "" : "")
                     }`}
-                    id="bubbles-bottom"
                     alt=""
                   />
                 ) : currentSlideIndex === 1 ? (
                   <img
                     src={bebe_slide2}
-                    className={`bebe-slide2 `} /* bebe_slide2 */
-                    id="bubbles-bottom"
+                    className={`bebe-slide2 ${
+                      currentSlideIndex === 1 ? "" : ""
+                    }`}
                     alt=""
                   />
                 ) : currentSlideIndex === 2 ? (
                   <img
                     src={bebe_slide3}
-                    className={`bebe-slide3 `} /* bebe_slide3 */
-                    id="bubbles-bottom"
+                    className={`bebe-slide3 ${
+                      currentSlideIndex === 2 ? "" : ""
+                    }`}
                     alt=""
                   />
                 ) : (
@@ -245,7 +242,37 @@ const Home = () => {
                 )}
               </div>
               <div className="col-12 col-md-6 relative flex_center">
-                <h1 style={{ zIndex: 10 }}>Test2</h1>
+                {currentSlideIndex === 0 ? (
+                  <img src={stay_fit_with_bebe} className="slide-img1" alt="" />
+                ) : currentSlideIndex === 1 ? (
+                  <img src={lets_challenge} className="slide-img2" alt="" />
+                ) : currentSlideIndex === 2 ? (
+                  <img src={shop_fin} className="slide-img3" alt="" />
+                ) : (
+                  ""
+                )}
+                {currentSlideIndex === 0 ? (
+                  <p className="slide-text1 SemiBoldPynk">
+                    คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตีความสำเร็จจากนักเรียนกว่าสิบรุ่น
+                  </p>
+                ) : currentSlideIndex === 1 ? (
+                  <p className="slide-text2 SemiBoldPynk">
+                    ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝันได้กับไอเทมฮอตฮิตจาก
+                    bebe fit routine
+                  </p>
+                ) : currentSlideIndex === 2 ? (
+                  <p className="slide-text3 SemiBoldPynk">
+                    รวมดีลเด็ดที่คุณต้องไม่พลาด ช้อปเลย!
+                  </p>
+                ) : (
+                  ""
+                )}
+                <button
+                  onClick={() => history.push("/questionare")}
+                  className="btn  bold button-home1 col-10 col-sm-10 button-home1"
+                >
+                  เริ่มฟิตไปด้วยกัน
+                </button>
               </div>
             </div>
           </div>
@@ -264,25 +291,25 @@ const Home = () => {
               <div className="line3"></div>
             </div>
           </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleAutoplaying"
-          data-bs-slide="prev"
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleAutoplaying"
-          data-bs-slide="next"
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Next</span>
-        </button>
       </div>
 
       <div className="text-home2">
