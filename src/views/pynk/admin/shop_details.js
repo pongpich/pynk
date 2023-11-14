@@ -217,9 +217,9 @@ const Shop_details = ({ match }) => {
           sku: productId.product_id,
           name: productId.product_name,
           number: number,
-          pricepernumber: productId.price,
+          pricepernumber: productId.after_discount ? productId.after_discount : productId.price,
           discount: "0",
-          totalprice: parseInt(productId.price) * parseInt(number),
+          totalprice: parseInt(productId.after_discount ? productId.after_discount : productId.price) * parseInt(number),
         };
         array.push(product_list);
         Cookies.set("product_name", JSON.stringify(array), {
@@ -255,9 +255,9 @@ const Shop_details = ({ match }) => {
           sku: productId.product_id,
           name: productId.product_name,
           number: number,
-          pricepernumber: productId.price,
+          pricepernumber: productId.after_discount ? productId.after_discount : productId.price,
           discount: "0",
-          totalprice: parseInt(productId.price) * parseInt(number),
+          totalprice: parseInt(productId.after_discount ? productId.after_discount : productId.price) * parseInt(number),
         },
       ];
       Cookies.set("product_name", JSON.stringify(product_list), {
