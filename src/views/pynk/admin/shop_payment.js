@@ -129,58 +129,6 @@ const Shop_payment = () => {
       province: getProvince,
       zipcode: getZipcode,
     });
-
-    /*  if (getSurname != null && getSurname != "") {
-      setFormData({
-        ...formData,
-        surname: getSurname,
-      });
-      console.log("getSurname", getSurname);
-    }
-    if (getEmail != null && getEmail != "") {
-      setFormData({
-        ...formData,
-        email: getEmail,
-      });
-    }
-    if (getPhone != null && getPhone != "") {
-      setFormData({
-        ...formData,
-        phone_number: getPhone,
-      });
-    }
-    if (getAddress != null && getAddress != "") {
-      setFormData({
-        ...formData,
-        address: getAddress,
-      });
-    }
-    if (getSubdistrict != null && getSubdistrict != "") {
-      setFormData({
-        ...formData,
-        subdistrict: getSubdistrict,
-      });
-    }
-    if (getDistrict != null && getDistrict != "") {
-      setFormData({
-        ...formData,
-        district: getDistrict,
-      });
-    }
-    if (getProvince != null && getProvince != "") {
-      setFormData({
-        ...formData,
-        province: getProvince,
-      });
-    }
-    if (getZipcode != null && getZipcode != "") {
-      setFormData({
-        ...formData,
-        zipcode: getZipcode,
-      });
-    } */
-
-    /*     } */
   }, []);
 
   useEffect(() => {
