@@ -358,10 +358,22 @@ const Shop_details = ({ match }) => {
           <div className="box-details">
             <p className="text-head">{productId && productId.product_name}</p>
             {/*      <p className="text-name">ธัญพืชรสชานม</p> */}
-            <p className="text-price">
-              ฿{productId && productId.price.toLocaleString()}
-            </p>
-            {/* <p className="text-span-price">฿1,990 </p> */}
+
+            {
+              (productId && productId.after_discount) ?
+                <>
+                  <p className="text-price">
+                    ฿{productId && productId.after_discount.toLocaleString()}
+                  </p>
+                  <p className="text-span-price">฿{productId && productId.price.toLocaleString()} </p>
+                </>
+                :
+                <p className="text-price">
+                  ฿{productId && productId.price.toLocaleString()}
+                </p>
+            }
+
+
             <p className="text-span">{productId && productId.description}</p>
             <div className="row">
               {nutritional_value &&

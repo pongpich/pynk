@@ -526,10 +526,17 @@ function ShopPynk() {
                       <p className="text-center text-head-slider white-space-ellipsis">
                         {item.product_name}
                       </p>
-                      <p className="text-center text-slider-hover">
-                        ฿{item.price.toLocaleString()}{" "}
-                        {/* <span className="slide-span">฿199 </span> */}
-                      </p>
+                      {
+                        item.after_discount ?
+                          <p className="text-center text-slider-hover">
+                            ฿{item.after_discount.toLocaleString()}{" "}
+                            <span className="slide-span">฿{item.price.toLocaleString()}</span>
+                          </p>
+                          :
+                          <p className="text-center text-slider-hover">
+                            ฿{item.price.toLocaleString()}{" "}
+                          </p>
+                      }
 
                       <button
                         type="button"
