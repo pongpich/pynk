@@ -218,9 +218,8 @@ const Home = () => {
                     src={bebe_slide1}
                     className={`bebe-slide1 ${
                       animation &&
-                      (currentSlideIndex === 0
-                        ? "rotate130to0"
-                        : currentSlideIndex === 1 && "rotate0to-130")
+                      currentSlideIndex === 0 &&
+                      "rotate130to0-i1 rotate0to-130-i1"
                     }`}
                     id="bubbles-bottom"
                     alt=""
@@ -228,14 +227,19 @@ const Home = () => {
                 ) : currentSlideIndex === 1 ? (
                   <img
                     src={bebe_slide2}
-                    className={`bebe-slide2 `}
+                    className={`bebe-slide2  ${
+                      currentSlideIndex === 1 &&
+                      "rotate130to0-i2 rotate0to-130-i2"
+                    }`}
                     id="bubbles-bottom"
                     alt=""
                   />
                 ) : currentSlideIndex === 2 ? (
                   <img
                     src={bebe_slide3}
-                    className={`bebe-slide3 `} /* bebe_slide3 */
+                    className={`bebe-slide3 ${
+                      currentSlideIndex === 2 && "rotate130to0-i1 rotate0to-i2"
+                    }`} /* bebe_slide3 */
                     id="bubbles-bottom"
                     alt=""
                   />
