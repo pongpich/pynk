@@ -322,20 +322,16 @@
   }
 
   .rotate130to0{
-    animation: rotate130to0 0.3 linear forwards;
-    overflow: hidden;
+    animation: rotate130to0 0.3s linear forwards;
   }
   .rotate0to130{
-    animation: rotate0to130 0.3 linear forwards;
-    overflow: hidden;
+    animation: rotate0to130 0.3s linear forwards;
   }
   .rotate-130to0{
-    animation: rotate-130to0 0.3 linear forwards;
-    overflow: hidden;
+    animation: rotate-130to0 0.3s linear forwards;
   }
   .rotate0to-130{
-    animation: rotate0to-130 0.3 linear forwards;
-    overflow: hidden;
+    animation: rotate0to-130 0.3s linear forwards;
   }
 
 
@@ -508,7 +504,7 @@
       top: 100%;
       transform: rotate(130deg);
     }
-
+  
     100% {
       top: 0%;
       transform-origin: center;
@@ -701,3 +697,123 @@
 .bebe-slide3:not(.active) {
   transform: rotate(-130deg);
 } */
+
+  /* เอามาเเสดง */
+  .animation-slide1-1 {
+    animation: rotateShow1to1 0.6s linear forwards;
+  }
+
+  /* ซ่อนเเสดง */
+  .animation-slide1-0 {
+    animation: rotateShow1to0 0.6s linear forwards;
+  }
+
+  /* เอามาเเสดง */
+  .animation-slide2-1 {
+    animation: rotateShow2to1 0.6s linear forwards;
+  }
+
+  /* ซ่อนเเสดง */
+  .animation-slide2-0 {
+    animation: rotateShow2to0 0.6s linear forwards;
+  }
+
+  /* เอามาเเสดง */
+  .animation-slide3-1 {
+    animation: rotateShow3to1 0.6s linear forwards;
+  }
+
+  /* ซ่อนเเสดง */
+  .animation-slide3-0 {
+    animation: rotateShow3to0 0.6s linear forwards;
+  }
+
+@keyframes rotateShow1to1 {
+  0% {
+    top: 100%;
+    transform: rotate(130deg);
+  }
+
+  100% {
+    top: 0%;
+    transform-origin: center;
+    transform-origin: bottom center;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rotateShow1to0 {
+
+  0% {
+    top: 0%;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    top: 100%;
+    margin-left: -100%;
+    transform-origin: center;
+    transform-origin: bottom center;
+    transform: rotate(-130deg);
+  }
+}
+
+@keyframes rotateShow2to1 {
+  0% {
+    top: 100%;
+    transform: rotate(130deg);
+  }
+
+  100% {
+    top: 0%;
+    transform-origin: center;
+    transform-origin: bottom center;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rotateShow2to0 {
+
+  0% {
+    top: 0%;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    top: 100%;
+    margin-left: -100%;
+    transform-origin: center;
+    transform-origin: bottom center;
+    transform: rotate(-130deg);
+  }
+}
+
+@keyframes rotateShow3to1 {
+  0% {
+    top: 100%;
+    transform: rotate(130deg);
+  }
+
+  100% {
+    top: 0%;
+    transform-origin: center;
+    transform-origin: bottom center;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rotateShow3to0 {
+
+  0% {
+    top: 0%;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    top: 100%;
+    margin-left: -100%;
+    transform-origin: center;
+    transform-origin: bottom center;
+    transform: rotate(-130deg);
+  }
+}
