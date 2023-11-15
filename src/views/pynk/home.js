@@ -213,39 +213,28 @@ const Home = () => {
                   id="bubbles-bottom"
                   alt=""
                 />
-                {currentSlideIndex === 0 ? (
-                  <img
-                    src={bebe_slide1}
-                    className={`bebe-slide1 ${
-                      animation &&
-                      currentSlideIndex === 0 &&
-                      "rotate130to0-i1 rotate0to-130-i1"
-                    }`}
-                    id="bubbles-bottom"
-                    alt=""
-                  />
-                ) : currentSlideIndex === 1 ? (
-                  <img
-                    src={bebe_slide2}
-                    className={`bebe-slide2  ${
-                      currentSlideIndex === 1 &&
-                      "rotate130to0-i2 rotate0to-130-i2"
-                    }`}
-                    id="bubbles-bottom"
-                    alt=""
-                  />
-                ) : currentSlideIndex === 2 ? (
-                  <img
-                    src={bebe_slide3}
-                    className={`bebe-slide3 ${
-                      currentSlideIndex === 2 && "rotate130to0-i1 rotate0to-i2"
-                    }`} /* bebe_slide3 */
-                    id="bubbles-bottom"
-                    alt=""
-                  />
-                ) : (
-                  ""
-                )}
+                <div
+                  className={`${
+                    (currentSlideIndex === 0 &&
+                      previousSlideIndex !== 1 &&
+                      "bebe-slide1 bebe-slide2to0") ||
+                    (currentSlideIndex === 0 &&
+                      previousSlideIndex === 1 &&
+                      "bebe-slide1 bebe-slide1to0") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex !== 2 &&
+                      "bebe-slide2 bebe-slide0to1") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex === 2 &&
+                      "bebe-slide2 bebe-slide2to1") ||
+                    (currentSlideIndex === 2 &&
+                      previousSlideIndex !== 0 &&
+                      "bebe-slide3 bebe-slide1to2") ||
+                    (currentSlideIndex === 2 &&
+                      previousSlideIndex === 0 &&
+                      "bebe-slide3 bebe-slide0to2")
+                  }`}
+                ></div>
               </div>
               <div className="col-12 col-md-6 relative flex_center">
                 {currentSlideIndex === 0 ? (
