@@ -92,11 +92,11 @@ const Shop_payment = () => {
       const addressUser = user && JSON.parse(user.address);
       setFormData({
         ...formData,
-        address: user ? addressUser.address : "",
-        subdistrict: user ? addressUser.subdistrict : "",
-        district: user ? addressUser.district : "",
-        province: user ? addressUser.province : "",
-        zipcode: user ? addressUser.zipcode : "",
+        address: addressUser ? addressUser.address : "",
+        subdistrict: addressUser ? addressUser.subdistrict : "",
+        district: addressUser ? addressUser.district : "",
+        province: addressUser ? addressUser.province : "",
+        zipcode: addressUser ? addressUser.zipcode : "",
       });
     }
   }, []);
