@@ -227,12 +227,7 @@ const Home = () => {
                     (currentSlideIndex === 1 &&
                       previousSlideIndex === 2 &&
                       "bebe-slide2 bebe-slide2to1") ||
-                    (currentSlideIndex === 2 &&
-                      previousSlideIndex !== 0 &&
-                      "bebe-slide3 bebe-slide1to2") ||
-                    (currentSlideIndex === 2 &&
-                      previousSlideIndex === 0 &&
-                      "bebe-slide3 bebe-slide0to2")
+                    (currentSlideIndex === 2 && "bebe-slide3 bebe-slide1to2")
                   }`}
                 ></div>
               </div>
