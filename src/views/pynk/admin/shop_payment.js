@@ -24,6 +24,35 @@ const Shop_payment = () => {
   const [pageUrl, setPageUrl] = useState(window.location.href);
   const product = Cookies.get("product_name");
   const [order, setOrder] = useState(null);
+  const [individual, setIndividual] = useState("บุคคลธรรมดา");
+  const [useShippingAddress, setUseShippingAddress] = useState(false);
+  // ข้อมูลเกี่ยวกับใบกำกับภาษี
+  //start
+
+  const [InvoiceTaxpayerName, setInvoiceTaxpayerName] = useState(null); //ชื่อผู้เสียภาษี
+  const [InvoiceTaxpayerBranchName, setInvoiceTaxpayerBranchName] =
+    useState(null); //สำนักงานใหญ่/สาขา
+  const [InvoiceTaxIdentificationNumber, setInvoiceTaxIdentificationNumber] =
+    useState(null); //เลขประจำตัวผู้เสียภาษี
+  const [InvoiceTelephone, setInvoiceTelephone] = useState(null); //หมายเลขโทรศัพท์
+  const [address, setAddress] = useState(null); //ที่อยู่
+  const [subdistrict, setSubdistrict] = useState(null); //แขวง/ตำบล
+  const [district, setDistrict] = useState(null); //เขต/อำเภอ
+  const [province, setProvince] = useState(null); //จังหวัด
+  const [zipcode, setZipcode] = useState(null); //รหัสไปรษณีย์
+  const [tax_invoice_address, setTax_invoice_address] = useState({
+    InvoiceTaxpayerName: "",
+    InvoiceTaxpayerBranchName: "",
+    InvoiceTaxIdentificationNumber: "",
+    InvoiceTelephone: "",
+    address: "",
+    subdistrict: "",
+    district: "",
+    province: "",
+    zipcode: "",
+  }); //ที่อยู่ใบกำกับภาษี
+
+  // end start
 
   const dispatch = useDispatch();
 
@@ -327,6 +356,19 @@ const Shop_payment = () => {
     }
   };
 
+  const taxInvoice = (e) => {
+    const { checked } = e.target;
+
+    if (checked) {
+      document.getElementById("clickModal") &&
+        document.getElementById("clickModal").click();
+    }
+  };
+  const clickUseShippingAddress = (e) => {
+    const { checked } = e.target;
+    setUseShippingAddress(checked);
+  };
+
   const customerInformation = () => {
     const totalSum =
       order && order.reduce((acc, product) => acc + product.totalprice, 0);
@@ -566,6 +608,19 @@ const Shop_payment = () => {
                           <div className="error-from">{errors.zipcode}</div>
                         )}
                       </div>
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="flexCheckDefault"
+                        onClick={(e) => taxInvoice(e)}
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        ขอใบเสร็จรับเงิน/ใบกำกับภาษี
+                      </label>
                     </div>
                   </div>
                   <div class="mb-3 row">
@@ -891,9 +946,38 @@ const Shop_payment = () => {
     );
   };
 
+  useEffect(() => {
+    setTax_invoice_address({
+      InvoiceTaxpayerName: InvoiceTaxpayerName || "",
+      InvoiceTaxpayerBranchName: InvoiceTaxpayerBranchName || "",
+      InvoiceTaxIdentificationNumber: InvoiceTaxIdentificationNumber || "",
+      InvoiceTelephone: InvoiceTelephone || "",
+      address: useShippingAddress ? formData.address : address || "",
+      subdistrict: useShippingAddress
+        ? formData.subdistrict
+        : subdistrict || "",
+      district: useShippingAddress ? formData.district : district || "",
+      province: useShippingAddress ? formData.province : province || "",
+      zipcode: useShippingAddress ? formData.zipcode : zipcode || "",
+    });
+  }, [
+    InvoiceTaxpayerName,
+    InvoiceTaxpayerBranchName,
+    InvoiceTaxIdentificationNumber,
+    InvoiceTelephone,
+    address,
+    subdistrict,
+    district,
+    province,
+    zipcode,
+    useShippingAddress,
+  ]);
+
   //   Cookies.remove('username'); ลบ Cookies;
 
   /* console.log("order", order); */
+
+  console.log("shipping_address", tax_invoice_address);
   return (
     <>
       <div className="box-order-summary">
@@ -908,6 +992,284 @@ const Shop_payment = () => {
         </div>
 
         <Footer />
+      </div>
+
+      <button
+        style={{ display: "none" }}
+        type="button"
+        id="clickModal"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModalTaxInvoice"
+      >
+        Launch demo modal
+      </button>
+
+      <div
+        class="modal fade"
+        id="exampleModalTaxInvoice"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p class="bold font-size5  color-protein" id="exampleModalLabel">
+                <span>ที่อยู่ใบเสร็จรับเงิน/ใบกำกับภาษี</span>
+              </p>
+              <button
+                type="button"
+                class="btn-close close-inv"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="tax-invoice">
+              <div class="modal-body">
+                <div className="flex-direction-row mt--32">
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="InvoicePerson"
+                      id="inlineRadio1"
+                      onClick={() => setIndividual("บุคคลธรรมดา")}
+                      checked={individual === "บุคคลธรรมดา"}
+                    />
+                    <label class="form-check-label">
+                      <span>บุคคลธรรมดา</span>
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="InvoicePerson"
+                      id="inlineRadio2"
+                      onClick={() => setIndividual("นิติบุคคล")}
+                      checked={individual === "นิติบุคคล"}
+                    />
+                    <label class="form-check-label">
+                      <span>นิติบุคคล</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* form */}
+                {individual == "บุคคลธรรมดา" ? (
+                  <>
+                    <div class=" col-12 col-sm-12  col-md-12 col-lg-12 mt-20  plr-16">
+                      <div class="mb-3">
+                        <label class="form-label bold">
+                          <span>ชื่อผู้เสียภาษี</span>
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleFormControlInput1"
+                          name="InvoiceTaxpayerName"
+                          placeholder="กรอกชื่อ"
+                          onChange={(event) =>
+                            setInvoiceTaxpayerName(event.target.value)
+                          }
+                        />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="mt-20">
+                    <div class="row ">
+                      <div class=" col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label bold">
+                            <span>ชื่อนิติบุคคล</span>
+                          </label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            name="legal_entity_name"
+                            placeholder="กรอกชื่อ"
+                            onChange={(event) =>
+                              setInvoiceTaxpayerName(event.target.value)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div class=" col-12 col-sm-12  col-md-6 col-lg-6">
+                        <div class="mb-3">
+                          <label class="form-label bold">
+                            <span>สำนักงานใหญ่/สาขา</span>
+                          </label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="exampleFormControlInput1"
+                            name="InvoiceTaxpayerBranchName"
+                            placeholder="กรุณาระบุ"
+                            onChange={(event) =>
+                              setInvoiceTaxpayerBranchName(event.target.value)
+                            }
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div class="row">
+                  <div class=" col-12 col-sm-12 col-md-6 col-lg-6 ">
+                    <div class="mb-3">
+                      <label class="form-label bold">
+                        <span>เลขประจำตัวผู้เสียภาษี</span>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput1"
+                        name="InvoiceTaxIdentificationNumber"
+                        placeholder="กรุณาระบุ"
+                        onChange={(event) =>
+                          setInvoiceTaxIdentificationNumber(event.target.value)
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div class=" col-12 col-sm-12  col-md-6 col-lg-6 ">
+                    <div class="mb-3">
+                      <label class="form-label bold">
+                        <span>หมายเลขโทรศัพท์</span>
+                      </label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="exampleFormControlInput1"
+                        placeholder="กรุณาระบุ"
+                        name="InvoiceTelephone"
+                        onChange={(event) =>
+                          setInvoiceTelephone(event.target.value)
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="flexCheckDefault"
+                    onClick={(e) => clickUseShippingAddress(e)}
+                  />
+                  <label class="form-check-label">
+                    <span>ใช้ที่อยู่จัดส่งสินค้า </span>
+                  </label>
+                </div>
+                {useShippingAddress == false && (
+                  <div>
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-12 padding-top2">
+                      <div className="mb-3">
+                        <label className="form-label bold">
+                          <span>ที่อยู่</span>
+                        </label>
+                        <textarea
+                          className="form-control"
+                          name="address"
+                          id="exampleFormControlTextarea1"
+                          rows="3"
+                          placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจุดสังเกต(ถ้ามี)"
+                          onChange={(event) => setAddress(event.target.value)}
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div className="mb-3 elementStyle">
+                          <label className="form-label bold">
+                            <span>แขวง/ตำบล</span>
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="subdistrict"
+                            placeholder="แขวง/ตำบล"
+                            onChange={(event) =>
+                              setSubdistrict(event.target.value)
+                            }
+                            style={{ width: "100%" }}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div className="mb-3 elementStyle">
+                          <label className="form-label bold">
+                            <span>เขต/อำเภอ</span>
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="district"
+                            onChange={(event) =>
+                              setDistrict(event.target.value)
+                            }
+                            placeholder="เขต/อำเภอ"
+                            style={{ width: "100%" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div className="mb-3 elementStyle">
+                          <label className="form-label bold">
+                            <span>จังหวัด</span>
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="province"
+                            placeholder="จังหวัด"
+                            onChange={(event) =>
+                              setProvince(event.target.value)
+                            }
+                            style={{ width: "100%" }}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div className="mb-3 elementStyle">
+                          <label className="form-label bold">
+                            <span>รหัสไปรษณีย์</span>
+                          </label>
+                          <input
+                            type="number"
+                            className="form-control"
+                            name="zipcode"
+                            placeholder="รหัสไปรษณีย์"
+                            onChange={(event) => setZipcode(event.target.value)}
+                            style={{ width: "100%" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div class="col-12 col-sm-12  col-md-12 col-lg-12 center">
+                  <button
+                    type="button"
+                    class="btn btn-outline-pinkModel"
+                    data-bs-dismiss="modal"
+                  >
+                    <span>ยกเลิก</span>
+                  </button>
+                  &nbsp;&nbsp;&nbsp;
+                  <button type="button" class="btn btn-outline-pinkModelFocus">
+                    <span>ยืนยัน</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

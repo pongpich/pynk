@@ -1026,3 +1026,41 @@ button {
 .scroll-disabled {
     overflow-y: hidden !important;
 }
+
+.tax-invoice .form-check {
+    width: 100%;
+    margin-top: 18px;
+    position: relative !important;
+}
+
+.flex-direction-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.tax-invoice .row {
+    padding: 0;
+    --bs-gutter-x: 1.5rem !important;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt--32 {
+    margin-top: -32px;
+}
+
+.tax-invoice button {
+    width: 150px;
+    height: 45px;
+}
+
+.plr-16 {
+    padding: 0 11.5px;
+}
+
+.close-inv {
+    margin-right: 16px !important;
+    margin-top: -16px !important;
+}

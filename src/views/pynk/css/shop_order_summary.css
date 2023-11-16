@@ -915,3 +915,7 @@
 .login-button .google button span {
     margin-left: -8px !important;
 }
+
+.tax-invoice .modal-body {
+    height: auto;
+}
