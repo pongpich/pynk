@@ -313,6 +313,7 @@ const Shop_payment = () => {
       zipcode: formData.zipcode,
     };
 
+    console.log("tax_invoice_address", tax_invoice_address);
     dispatch(
       create_order(
         user ? user.user_id : null, //user_id, ถ้าสมัครสมาชิกก่อนซื้อจะมี user_id / ถ้าไม่สมัครจะเป็น NULL
@@ -320,6 +321,7 @@ const Shop_payment = () => {
         totalSum && totalSum.toLocaleString(), //total_amount,
         customer_data, //customer_data,
         shipping_address, //shipping_address,
+        tax_invoice_address, //invoice_address
         formData.order_notes, //note
         selectedPaymentMethod //payment_method
       )
@@ -977,7 +979,6 @@ const Shop_payment = () => {
 
   /* console.log("order", order); */
 
-  console.log("shipping_address", tax_invoice_address);
   return (
     <>
       <div className="box-order-summary">
@@ -1254,15 +1255,19 @@ const Shop_payment = () => {
                   </div>
                 )}
                 <div class="col-12 col-sm-12  col-md-12 col-lg-12 center">
-                  <button
+                  {/* <button
                     type="button"
                     class="btn btn-outline-pinkModel"
                     data-bs-dismiss="modal"
                   >
                     <span>ยกเลิก</span>
                   </button>
-                  &nbsp;&nbsp;&nbsp;
-                  <button type="button" class="btn btn-outline-pinkModelFocus">
+                  &nbsp;&nbsp;&nbsp; */}
+                  <button
+                    type="button"
+                    class="btn btn-outline-pinkModelFocus"
+                    data-bs-dismiss="modal"
+                  >
                     <span>ยืนยัน</span>
                   </button>
                 </div>

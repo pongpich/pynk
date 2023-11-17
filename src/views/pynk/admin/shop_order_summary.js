@@ -174,9 +174,9 @@ const Shop_order_summary = () => {
               <div className="google">
                 <GoogleLoginComponent />
               </div>
-              <div className="fb">
+              {/*  <div className="fb">
                 <FaceBookLoginComponent />
-              </div>
+              </div> */}
               <button
                 className="btn-want-login" /*  onClick={handleFacebookLogin} */
               >
