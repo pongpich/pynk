@@ -235,9 +235,9 @@ const Profile = () => {
               </div>
               <div class="col-8 col-sm-8 col-md-9 col-lg-9 padding-left">
                 <div class="row">
-                  <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
+                  {/* <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
                     <p className="still-more-left">เหลืออีก 200 ที่</p>
-                  </div>
+                  </div> */}
                   <div class="col-sm-12 col-md-8 col-lg-8 order-sm-1 order-md-1 order-lg-1">
                     <p className="head-text">Fitto 4 Week Starter Program </p>
                     <p className="text-content">
@@ -261,9 +261,9 @@ const Profile = () => {
               </div>
               <div class="col-8 col-sm-8 col-md-9 col-lg-9 padding-left">
                 <div class="row">
-                  <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
+                  {/*  <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
                     <p className="still-more-left">เหลืออีก 200 ที่</p>
-                  </div>
+                  </div> */}
                   <div class="col-sm-12 col-md-8 col-lg-8 order-sm-1 order-md-1 order-lg-1">
                     <p className="head-text">Fitto 4 Week Starter Program </p>
                     <p className="text-content">
@@ -287,9 +287,9 @@ const Profile = () => {
               </div>
               <div class="col-8 col-sm-8 col-md-9 col-lg-9 padding-left">
                 <div class="row">
-                  <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
+                  {/* <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
                     <p className="still-more-left">เหลืออีก 200 ที่</p>
-                  </div>
+                  </div> */}
                   <div class="col-sm-12 col-md-8 col-lg-8 order-sm-1 order-md-1 order-lg-1">
                     <p className="head-text">Fitto 4 Week Starter Program </p>
                     <p className="text-content">
@@ -307,7 +307,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-12 col-md-4 col-lg-4 mb-4">
+        {/*  <div className="col-sm-12 col-md-4 col-lg-4 mb-4">
           <p className="hand-name">เพื่อนของคุณ</p>
 
           <div className="box-friend">
@@ -323,11 +323,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="box-friend-input">
-            {/* <input
-              type="text"
-              className="form-control form-search2 form-border"
-              placeholder="ค้นหาเพื่อนเพิ่มเติม"
-            /> */}
+            
             <div className="more-friends">
               <div>
                 <img src={Group} className="icon-Group" />
@@ -336,8 +332,8 @@ const Profile = () => {
               <img src={arrowRight} className="icon-Group" />
             </div>
           </div>
-        </div>
-        <p className="hand-name mt-64">คลังไอเทมออกกำลังกายของคุณ</p>
+        </div> */}
+        {/*         <p className="hand-name mt-64">คลังไอเทมออกกำลังกายของคุณ</p>
         <div className="col-12 col-sm-12 col-md-8 col-lg-8">
           <div className="content-all-2">
             <Slider {...settings}>
@@ -397,7 +393,7 @@ const Profile = () => {
               หากยังไม่มั่นใจว่าจะเริ่มต้นยังไงดี เราขอแนะนำให้คุณ
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="mt-footer" />
       <Footer />
