@@ -387,13 +387,16 @@ const Shop_details = ({ match }) => {
             <p className="text-head">{productId && productId.product_name}</p>
             {
               groupedProducts &&
-              <select className="form-select col-md-6 mb-3" aria-label="Default select example" style={{ width: 300 }} onChange={handleChangeProperty}>
-                {
-                  groupedProducts.map((item, index) => (
-                    <option value={item.product_id} className="text-head">{item.property}</option>
-                  ))
-                }
-              </select>
+              <div className="">
+                <p className="text-span">ตัวเลือก :</p>
+                <select className="form-select col-md-6 mb-3" aria-label="Default select example" style={{ width: 300 }} onChange={handleChangeProperty}>
+                  {
+                    groupedProducts.map((item, index) => (
+                      <option value={item.product_id} className="text-head">{item.property}</option>
+                    ))
+                  }
+                </select>
+              </div>
             }
 
             {/*      <p className="text-name">ธัญพืชรสชานม</p> */}
