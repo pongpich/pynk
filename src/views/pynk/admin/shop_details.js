@@ -187,8 +187,7 @@ const Shop_details = ({ match }) => {
       }
       return acc;
     }, {});
-    console.log("grouped :", grouped);
-    setGroupedProducts(grouped.test_group);
+    setGroupedProducts(grouped[curr_group_name]);
   }, [])
 
   useEffect(() => {
