@@ -445,7 +445,7 @@ const Shop_details = ({ match }) => {
               {" "}
               <img src={vector} className="vector-image" />
             </span>
-            เหลือสินค้าอยู่ {productId && productId.available_stock} ชิ้น
+            เหลือสินค้าอยู่ {productId && ((productId.available_stock <= 0) ? 0 : productId.available_stock)} ชิ้น
           </p>
           <div className="row justify-content-576">
             {productId && productId.available_stock > 0 ? (
