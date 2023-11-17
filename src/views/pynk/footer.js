@@ -15,11 +15,19 @@ export default function footer() {
     >
       <div className="row  justify-content-md-center">
         <div class="col-12 col-md-4" style={{ textAlign: "left" }}>
-          <img src={pinklogo} style={{ marginBottom: "40px" }} />
+          <img
+            src={pinklogo}
+            style={{
+              marginBottom: "40px",
+              maxWidth: "105px",
+              width: "100%",
+              height: "auth",
+            }}
+          />
           <p className="bbpf-company">บริษัท บีบีพีเอฟ จำกัด (สำนักงานใหญ่)</p>
           <p className="bbpf-address">
-            เลขที่ 429/129 ถนนสรงประภา แขวงดอนเมือง เขตดอนเมือง กรุงเทพมหานคร
-            10210
+            เลขที่1/2 ถ.พระรามที่2 ซอย82 แยก6 แขวงแสมดำ เขตบางขุนเทียน กรุงเทพ
+            10150
           </p>
         </div>
         <div class="col-12 col-md-4 center-content-icon">
