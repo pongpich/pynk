@@ -40,17 +40,8 @@ const Shop_payment = () => {
   const [district, setDistrict] = useState(null); //เขต/อำเภอ
   const [province, setProvince] = useState(null); //จังหวัด
   const [zipcode, setZipcode] = useState(null); //รหัสไปรษณีย์
-  const [tax_invoice_address, setTax_invoice_address] = useState({
-    InvoiceTaxpayerName: "",
-    InvoiceTaxpayerBranchName: "",
-    InvoiceTaxIdentificationNumber: "",
-    InvoiceTelephone: "",
-    address: "",
-    subdistrict: "",
-    district: "",
-    province: "",
-    zipcode: "",
-  }); //ที่อยู่ใบกำกับภาษี
+  const [tax_invoice_address, setTax_invoice_address] = useState(null); //ที่อยู่ใบกำกับภาษี
+  const [statusTaxInvoice, setStatusTaxInvoice] = useState(false); //ที่อยู่ใบกำกับภาษี
 
   // end start
 
@@ -201,6 +192,35 @@ const Shop_payment = () => {
       }
     }
   }, [status_create_order]);
+
+  useEffect(() => {
+    if (statusTaxInvoice) {
+      setTax_invoice_address({
+        InvoiceTaxpayerName: InvoiceTaxpayerName || "",
+        InvoiceTaxpayerBranchName: InvoiceTaxpayerBranchName || "",
+        InvoiceTaxIdentificationNumber: InvoiceTaxIdentificationNumber || "",
+        InvoiceTelephone: InvoiceTelephone || "",
+        address: useShippingAddress ? formData.address : address || "",
+        subdistrict: useShippingAddress
+          ? formData.subdistrict
+          : subdistrict || "",
+        district: useShippingAddress ? formData.district : district || "",
+        province: useShippingAddress ? formData.province : province || "",
+        zipcode: useShippingAddress ? formData.zipcode : zipcode || "",
+      });
+    }
+  }, [
+    InvoiceTaxpayerName,
+    InvoiceTaxpayerBranchName,
+    InvoiceTaxIdentificationNumber,
+    InvoiceTelephone,
+    address,
+    subdistrict,
+    district,
+    province,
+    zipcode,
+    useShippingAddress,
+  ]);
 
   const validate = () => {
     let isValid = true;
@@ -361,6 +381,10 @@ const Shop_payment = () => {
   const taxInvoice = (e) => {
     const { checked } = e.target;
 
+    setStatusTaxInvoice(checked);
+    if (checked == false) {
+      setTax_invoice_address(null);
+    }
     if (checked) {
       document.getElementById("clickModal") &&
         document.getElementById("clickModal").click();
@@ -948,37 +972,11 @@ const Shop_payment = () => {
     );
   };
 
-  useEffect(() => {
-    setTax_invoice_address({
-      InvoiceTaxpayerName: InvoiceTaxpayerName || "",
-      InvoiceTaxpayerBranchName: InvoiceTaxpayerBranchName || "",
-      InvoiceTaxIdentificationNumber: InvoiceTaxIdentificationNumber || "",
-      InvoiceTelephone: InvoiceTelephone || "",
-      address: useShippingAddress ? formData.address : address || "",
-      subdistrict: useShippingAddress
-        ? formData.subdistrict
-        : subdistrict || "",
-      district: useShippingAddress ? formData.district : district || "",
-      province: useShippingAddress ? formData.province : province || "",
-      zipcode: useShippingAddress ? formData.zipcode : zipcode || "",
-    });
-  }, [
-    InvoiceTaxpayerName,
-    InvoiceTaxpayerBranchName,
-    InvoiceTaxIdentificationNumber,
-    InvoiceTelephone,
-    address,
-    subdistrict,
-    district,
-    province,
-    zipcode,
-    useShippingAddress,
-  ]);
-
   //   Cookies.remove('username'); ลบ Cookies;
 
   /* console.log("order", order); */
 
+  console.log("tax_invoice_address", tax_invoice_address);
   return (
     <>
       <div className="box-order-summary">

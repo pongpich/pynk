@@ -13,6 +13,7 @@ import shopping_bag_line from "./assets/img/home/shopping-bag-line.png";
 import user_line from "./assets/img/home/user-3-line.png";
 import close_line from "./assets/img/home/close-line.png";
 import group from "./assets/img/home/Group.png";
+import ellipse24 from "./assets/img/home/Ellipse24.png";
 /* search-line.png */
 // redux
 import { logout } from "./redux/pynk/auth";
@@ -331,14 +332,72 @@ class App extends Component {
                   alt="vector"
                 />
                 {this.props.user ? (
-                  <div className="pointer" onClick={() => this.props.logout()}>
+                  <div className="nav-pynk">
+                    <div class="dropdown">
+                      <div
+                        class="btn  dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <img
+                          src={ellipse24}
+                          className="nav-ellipse24"
+                          alt="vector"
+                        />
+                        {this.props.user.email}
+                      </div>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <Link class="dropdown-item" to="profile-pynk">
+                            profile
+                          </Link>
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            onClick={() => this.props.logout()}
+                          >
+                            ออกจากระบบ
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    {/* <div className="pointer" onClick={() => this.props.logout()}>
                     ออกจากระบบ
+                  </div> */}
                   </div>
                 ) : this.props.googleProfile &&
                   this.props.googleProfile.profile ? (
-                  <>
-                    <GoogleLoginComponent />
-                  </>
+                  <div className="nav-pynk">
+                    <div class="dropdown">
+                      <div
+                        class="btn  dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <img
+                          src={ellipse24}
+                          className="nav-ellipse24"
+                          alt="vector"
+                        />
+                        {this.props.googleProfile.profile.email}
+                      </div>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <Link class="dropdown-item" to="profile-pynk">
+                            profile
+                          </Link>
+                        </li>
+                        <li>
+                          <div className="nav-logout">
+                            <GoogleLoginComponent />
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 ) : (
                   <button
                     className="nav-link nav-linkHead2 pointer bold  display-none"

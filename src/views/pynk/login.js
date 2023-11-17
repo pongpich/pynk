@@ -690,7 +690,7 @@ const Login = () => {
                 <p style={{ color: "red" }}>อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
               )}
 
-              <div>
+              <div className="login-path">
                 <GoogleLoginComponent />
               </div>
               {/* <div className="two-col">
