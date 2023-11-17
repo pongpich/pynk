@@ -175,7 +175,7 @@ const Shop_details = ({ match }) => {
 
   useEffect(() => {
     const currProduct = products_pynk.find((status) => status.product_id == id);
-    const curr_group_name = currProduct.group_name;
+    const curr_group_name = currProduct && currProduct.group_name;
 
     const grouped = products_pynk.reduce((acc, product) => {
       const { product_id, group_name, property } = product;
@@ -188,7 +188,7 @@ const Shop_details = ({ match }) => {
       return acc;
     }, {});
     setGroupedProducts(grouped[curr_group_name]);
-  }, [])
+  }, []);
 
   useEffect(() => {
     setProductId(
@@ -196,14 +196,18 @@ const Shop_details = ({ match }) => {
     );
     setNumber(1);
 
-    dispatch(updateProductStock(id))
+    dispatch(updateProductStock(id));
   }, [id]);
 
-  const status_update_stock = useSelector(({ admin }) => (admin ? admin.status_update_stock : ""));
-  const available_stock = useSelector(({ admin }) => (admin ? admin.available_stock : ""));
+  const status_update_stock = useSelector(({ admin }) =>
+    admin ? admin.status_update_stock : ""
+  );
+  const available_stock = useSelector(({ admin }) =>
+    admin ? admin.available_stock : ""
+  );
 
   useEffect(() => {
-    if ((status_update_stock === "success") && (productId)) {
+    if (status_update_stock === "success" && productId) {
       // คัดลอก state ทั้ง object
       const updatedState = { ...productId };
 
@@ -212,8 +216,7 @@ const Shop_details = ({ match }) => {
 
       setProductId(updatedState);
     }
-  }, [status_update_stock])
-
+  }, [status_update_stock]);
 
   const dataCookies = () => {
     const product_name = Cookies.get("product_name");
@@ -235,9 +238,16 @@ const Shop_details = ({ match }) => {
           sku: productId.product_id,
           name: productId.product_name,
           number: number,
-          pricepernumber: productId.after_discount ? productId.after_discount : productId.price,
+          pricepernumber: productId.after_discount
+            ? productId.after_discount
+            : productId.price,
           discount: "0",
-          totalprice: parseInt(productId.after_discount ? productId.after_discount : productId.price) * parseInt(number),
+          totalprice:
+            parseInt(
+              productId.after_discount
+                ? productId.after_discount
+                : productId.price
+            ) * parseInt(number),
         };
         array.push(product_list);
         Cookies.set("product_name", JSON.stringify(array), {
@@ -273,9 +283,16 @@ const Shop_details = ({ match }) => {
           sku: productId.product_id,
           name: productId.product_name,
           number: number,
-          pricepernumber: productId.after_discount ? productId.after_discount : productId.price,
+          pricepernumber: productId.after_discount
+            ? productId.after_discount
+            : productId.price,
           discount: "0",
-          totalprice: parseInt(productId.after_discount ? productId.after_discount : productId.price) * parseInt(number),
+          totalprice:
+            parseInt(
+              productId.after_discount
+                ? productId.after_discount
+                : productId.price
+            ) * parseInt(number),
         },
       ];
       Cookies.set("product_name", JSON.stringify(product_list), {
@@ -332,7 +349,6 @@ const Shop_details = ({ match }) => {
   };
 
   return (
-
     <>
       <div className="url-product">
         <Link to="/shop">สินค้า</Link>
@@ -349,71 +365,76 @@ const Shop_details = ({ match }) => {
             <img src={mainImage} className="image-product" />
           </div>
           <div className="row box-image">
-            {
-              (imageList) ?
-                imageList.map((imageUrl, index) => (
-                  <div className="box-img mb-3">
-                    <img
-                      key={index}
-                      alt={`Image ${index}`}
-                      src={imageUrl}
-                      className={`image ${activeImage === productId && productId.image_url ? "active" : ""
-                        }`}
-                      onClick={() =>
-                        handleImageClick(imageUrl)
-                      }
-                    />
-                  </div>
-                ))
-                :
+            {imageList ? (
+              imageList.map((imageUrl, index) => (
                 <div className="box-img mb-3">
                   <img
-                    src={productId && productId.image_url}
-                    className={`image ${activeImage === productId && productId.image_url
-                      ? "active"
-                      : ""
-                      }`}
-                    onClick={() =>
-                      handleImageClick(productId && productId.image_url)
-                    }
+                    key={index}
+                    alt={`Image ${index}`}
+                    src={imageUrl}
+                    className={`image ${
+                      activeImage === productId && productId.image_url
+                        ? "active"
+                        : ""
+                    }`}
+                    onClick={() => handleImageClick(imageUrl)}
                   />
                 </div>
-            }
+              ))
+            ) : (
+              <div className="box-img mb-3">
+                <img
+                  src={productId && productId.image_url}
+                  className={`image ${
+                    activeImage === productId && productId.image_url
+                      ? "active"
+                      : ""
+                  }`}
+                  onClick={() =>
+                    handleImageClick(productId && productId.image_url)
+                  }
+                />
+              </div>
+            )}
           </div>
         </div>
         <div className="box-image col-12 col-sm-6  col-md-7  col-lg-7">
           <div className="box-details">
             <p className="text-head">{productId && productId.product_name}</p>
-            {
-              groupedProducts &&
+            {groupedProducts && (
               <div className="">
                 <p className="text-span">ตัวเลือก :</p>
-                <select className="form-select col-md-6 mb-3" aria-label="Default select example" style={{ width: 300 }} onChange={handleChangeProperty}>
-                  {
-                    groupedProducts.map((item, index) => (
-                      <option value={item.product_id} className="text-head">{item.property}</option>
-                    ))
-                  }
+                <select
+                  className="form-select col-md-6 mb-3"
+                  aria-label="Default select example"
+                  style={{ width: 300 }}
+                  onChange={handleChangeProperty}
+                >
+                  {groupedProducts.map((item, index) => (
+                    <option value={item.product_id} className="text-head">
+                      {item.property}
+                    </option>
+                  ))}
                 </select>
               </div>
-            }
+            )}
 
             {/*      <p className="text-name">ธัญพืชรสชานม</p> */}
 
-            {
-              (productId && productId.after_discount) ?
-                <>
-                  <p className="text-price">
-                    ฿{productId && productId.after_discount.toLocaleString()}
-                  </p>
-                  <p className="text-span-price">฿{productId && productId.price.toLocaleString()} </p>
-                </>
-                :
+            {productId && productId.after_discount ? (
+              <>
                 <p className="text-price">
-                  ฿{productId && productId.price.toLocaleString()}
+                  ฿{productId && productId.after_discount.toLocaleString()}
                 </p>
-            }
-
+                <p className="text-span-price">
+                  ฿{productId && productId.price.toLocaleString()}{" "}
+                </p>
+              </>
+            ) : (
+              <p className="text-price">
+                ฿{productId && productId.price.toLocaleString()}
+              </p>
+            )}
 
             <p className="text-span">{productId && productId.description}</p>
             <div className="row">
@@ -445,7 +466,12 @@ const Shop_details = ({ match }) => {
               {" "}
               <img src={vector} className="vector-image" />
             </span>
-            เหลือสินค้าอยู่ {productId && ((productId.available_stock <= 0) ? 0 : productId.available_stock)} ชิ้น
+            เหลือสินค้าอยู่{" "}
+            {productId &&
+              (productId.available_stock <= 0
+                ? 0
+                : productId.available_stock)}{" "}
+            ชิ้น
           </p>
           <div className="row justify-content-576">
             {productId && productId.available_stock > 0 ? (
@@ -562,7 +588,7 @@ const Shop_details = ({ match }) => {
                   <div
                     key={index}
                     className="box-item-hover cursor-pointer"
-                  /*   onClick={() => seId_order(item.product_id)} */
+                    /*   onClick={() => seId_order(item.product_id)} */
                   >
                     <p className="hot-shop-details">HOT</p>
                     <img src={item.image_url} className="image-slider" />
