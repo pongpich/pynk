@@ -126,29 +126,30 @@ const Shop_payment = () => {
   }, [product]);
 
   useEffect(() => {
-    /*     if (!user) { */
-    const getUsername = window.localStorage.getItem("username");
-    const getSurname = window.localStorage.getItem("surname");
-    const getEmail = window.localStorage.getItem("email");
-    const getPhone = window.localStorage.getItem("phone");
-    const getAddress = window.localStorage.getItem("address");
-    const getSubdistrict = window.localStorage.getItem("subdistrict");
-    const getDistrict = window.localStorage.getItem("district");
-    const getProvince = window.localStorage.getItem("province");
-    const getZipcode = window.localStorage.getItem("zipcode");
+    if (!user) {
+      const getUsername = window.localStorage.getItem("username");
+      const getSurname = window.localStorage.getItem("surname");
+      const getEmail = window.localStorage.getItem("email");
+      const getPhone = window.localStorage.getItem("phone");
+      const getAddress = window.localStorage.getItem("address");
+      const getSubdistrict = window.localStorage.getItem("subdistrict");
+      const getDistrict = window.localStorage.getItem("district");
+      const getProvince = window.localStorage.getItem("province");
+      const getZipcode = window.localStorage.getItem("zipcode");
 
-    setFormData({
-      ...formData,
-      username: getUsername,
-      surname: getSurname,
-      email: getEmail,
-      phone_number: getPhone,
-      address: getAddress,
-      subdistrict: getSubdistrict,
-      district: getDistrict,
-      province: getProvince,
-      zipcode: getZipcode,
-    });
+      setFormData({
+        ...formData,
+        username: getUsername,
+        surname: getSurname,
+        email: getEmail,
+        phone_number: getPhone,
+        address: getAddress,
+        subdistrict: getSubdistrict,
+        district: getDistrict,
+        province: getProvince,
+        zipcode: getZipcode,
+      });
+    }
   }, []);
 
   useEffect(() => {
