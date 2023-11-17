@@ -138,6 +138,7 @@ const Shop_details = ({ match }) => {
   const [product, setProduct] = useState(products_pynk);
   const [productId, setProductId] = useState(null);
   const [product_cookies, setProduct_cookies] = useState(null);
+  const [groupedProducts, setGroupedProducts] = useState(null);
 
   const { id } = match.params; // รับ ID จาก URL
   //const [id, setId]= useState(match.params); //240230303013
@@ -171,6 +172,24 @@ const Shop_details = ({ match }) => {
   useEffect(() => {
     setProduct(products_pynk);
   }, [products_pynk]);
+
+  useEffect(() => {
+    const currProduct = products_pynk.find((status) => status.product_id == id);
+    const curr_group_name = currProduct.group_name;
+
+    const grouped = products_pynk.reduce((acc, product) => {
+      const { product_id, group_name, property } = product;
+      if (curr_group_name == group_name) {
+        if (!acc[group_name]) {
+          acc[group_name] = [];
+        }
+        acc[group_name].push({ product_id, group_name, property });
+      }
+      return acc;
+    }, {});
+    console.log("grouped :", grouped);
+    setGroupedProducts(grouped.test_group);
+  }, [])
 
   useEffect(() => {
     setProductId(
@@ -304,6 +323,15 @@ const Shop_details = ({ match }) => {
 
   const imageList = JSON.parse(productId && productId.image_list);
 
+  const handleChangeProperty = (e) => {
+    let { value } = e.target;
+
+    console.log("value :", value);
+    // Function to change the URL
+
+    history.push(`/shop_details/${value}`);
+  };
+
   return (
 
     <>
@@ -357,6 +385,17 @@ const Shop_details = ({ match }) => {
         <div className="box-image col-12 col-sm-6  col-md-7  col-lg-7">
           <div className="box-details">
             <p className="text-head">{productId && productId.product_name}</p>
+            {
+              groupedProducts &&
+              <select className="form-select col-md-6 mb-3" aria-label="Default select example" style={{ width: 300 }} onChange={handleChangeProperty}>
+                {
+                  groupedProducts.map((item, index) => (
+                    <option value={item.product_id} className="text-head">{item.property}</option>
+                  ))
+                }
+              </select>
+            }
+
             {/*      <p className="text-name">ธัญพืชรสชานม</p> */}
 
             {
