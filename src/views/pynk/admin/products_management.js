@@ -370,8 +370,8 @@ function ProductsManagement() {
                         </div>
                     </div>
                     <div>
-                    <button className='buy-now' style={{ width: 150 }} onClick={() => history.push("add_product")}><i class="fa-solid fa-plus"></i> เพิ่มสินค้าใหม่</button>
-                    <button className='buy-now' style={{ width: 150 }} onClick={() => history.push("add_product")}>จัดกลุ่มสินค้า</button>
+                        <button className='buy-now' style={{ width: 150 }} onClick={() => history.push("group_product")}>จัดกลุ่มสินค้า</button>
+                        <button className='buy-now' style={{ width: 150 }} onClick={() => history.push("add_product")}><i class="fa-solid fa-plus"></i> เพิ่มสินค้าใหม่</button>
                     </div>
                 </div>
 

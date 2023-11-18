@@ -20,6 +20,7 @@ import { logout } from "./redux/pynk/auth";
 import { update_status_cart } from "./redux/pynk/orders";
 
 // route
+import GroupProduct from "./views/pynk/admin/group_product";
 import AdminPynk from "./views/pynk/admin/admin";
 import Home from "../src/views/pynk/home";
 import DashboardPynk from "./views/pynk/admin/dashboard";
@@ -657,6 +658,10 @@ class App extends Component {
                 <Route
                   path="/products_management"
                   component={ProductsManagement}
+                />
+                <Route
+                  path="/group_product"
+                  component={GroupProduct}
                 />
                 <Route path="/add_product" component={AddProduct} />
                 <Route path="/shop" component={ShopPynk} />
