@@ -383,6 +383,7 @@ function ProductsManagement() {
                                 <th>รหัสสินค้า</th>
                                 <th>ชื่อสินค้า</th>
                                 <th>หมวดหมู่สินค้า</th>
+                                <th>กลุ่มสินค้า</th>
                                 <th>ราคา</th>
                                 <th>ราคาลด</th>
                                 <th>จำนวนสินค้า</th>
@@ -412,6 +413,7 @@ function ProductsManagement() {
                                                 {(product.category === "fitto_drink") && "Fitto Drink"}
                                                 {(product.category === "another") && "อื่นๆ"}
                                             </td>
+                                            <td>{product.group_name ? product.group_name : "-"}</td>
                                             <td>{product.price}</td>
                                             <td>{product.after_discount ? `${product.after_discount}` : "-"}</td>
                                             <td>{product.available_stock}</td>
