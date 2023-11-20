@@ -33,6 +33,7 @@ import ShopErrorPaymentPynk from "./views/pynk/admin/shop_error_payment";
 import Popup_login from "./components/Popup_login";
 import Login from "../src/views/pynk/login";
 import ProductsManagement from "./views/pynk/admin/products_management";
+import ContentsManagement from "./views/pynk/admin/contents_management";
 import AddProduct from "./views/pynk/admin/add_product";
 import Shop_category from "./views/pynk/admin/shop_category";
 import HomePlatfrom from "../src/views/platform/login";
@@ -662,6 +663,10 @@ class App extends Component {
                 <Route
                   path="/group_product"
                   component={GroupProduct}
+                />
+                <Route
+                  path="/contents_management"
+                  component={ContentsManagement}
                 />
                 <Route path="/add_product" component={AddProduct} />
                 <Route path="/shop" component={ShopPynk} />
