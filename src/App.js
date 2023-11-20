@@ -23,6 +23,7 @@ import { update_status_cart } from "./redux/pynk/orders";
 import GroupProduct from "./views/pynk/admin/group_product";
 import AdminPynk from "./views/pynk/admin/admin";
 import Home from "../src/views/pynk/home";
+import OrderTracking from "../src/views/pynk/order_tracking";
 import DashboardPynk from "./views/pynk/admin/dashboard";
 import ShopPynk from "./views/pynk/shop";
 import ShopDetailsPynk from "./views/pynk/admin/shop_details";
@@ -682,6 +683,7 @@ class App extends Component {
                 <Route path="/shop" component={ShopPynk} />
                 <Route path="/shop_details/:id" component={ShopDetailsPynk} />
                 <Route path="/shop-category/:name" component={Shop_category} />
+                <Route path="/order_tracking" component={OrderTracking} />
                 <Route path="/questionare" component={Questionare} />
                 <Route path="/content" component={Content} />
                 <Route
