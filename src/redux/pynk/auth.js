@@ -78,7 +78,11 @@ export const updateRegister = (
   password,
   first_name,
   last_name,
-  phone
+  phone,
+  name_display_system,
+  facebook,
+  birthday,
+  sex
 ) => ({
   type: types.UPDATE_REGISTER_PYNK,
   payload: {
@@ -88,6 +92,10 @@ export const updateRegister = (
     first_name,
     last_name,
     phone,
+    name_display_system,
+    facebook,
+    birthday,
+    sex,
   },
 });
 
@@ -158,7 +166,11 @@ const updateRegisterSagaAsync = async (
   password,
   first_name,
   last_name,
-  phone
+  phone,
+  name_display_system,
+  facebook,
+  birthday,
+  sex
 ) => {
   try {
     const apiResult = await API.post("pynk", "/updateRegister", {
@@ -169,6 +181,10 @@ const updateRegisterSagaAsync = async (
         first_name: first_name,
         last_name: last_name,
         phone: phone,
+        name_display_system,
+        facebook,
+        birthday,
+        sex,
       },
     });
     console.log("apiResult", apiResult);
@@ -322,7 +338,18 @@ function* registerLoginGoogleSaga({ payload }) {
 }
 
 function* updateRegisterSaga({ payload }) {
-  const { id, email, password, first_name, last_name, phone } = payload;
+  const {
+    id,
+    email,
+    password,
+    first_name,
+    last_name,
+    phone,
+    name_display_system,
+    facebook,
+    birthday,
+    sex,
+  } = payload;
 
   try {
     const apiResult = yield call(
@@ -332,7 +359,11 @@ function* updateRegisterSaga({ payload }) {
       password,
       first_name,
       last_name,
-      phone
+      phone,
+      name_display_system,
+      facebook,
+      birthday,
+      sex
     );
 
     console.log("apiResult", apiResult);

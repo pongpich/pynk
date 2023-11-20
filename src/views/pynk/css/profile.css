@@ -279,6 +279,14 @@
     .mt-pra {
         margin-top: -50px;
     }
+
+    .mt--32px {
+        margin-top: -16px;
+    }
+
+    .box-sex {
+        padding-left: 32px;
+    }
 }
 
 .content-text {
@@ -882,6 +890,36 @@ div[style="display: inline-block;"]>input:focus {
     border-color: #e25e96 !important;
     outline: 0;
     box-shadow: 0 0 0 0.25rem hsl(335, 69%, 63%, 0.25);
+}
+
+.box-radio {
+    width: 104px;
+    height: 64px;
+    border: 1px solid #EF60A3;
+    padding-left: 19px;
+    padding-top: 19px;
+    margin-right: 16px;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.box-radio span {
+    margin-left: 8px;
+}
+
+.background-radio {
+    background-color: #FCDEEC;
+}
+
+.box-sex {
+    display: flex;
+    flex-direction: row;
+}
+
+.checkbox-img {
+    width: 24px;
+    height: 24px;
+
 }
 
 /* end ใช้สำหรับเเก้ form  InputAddress */

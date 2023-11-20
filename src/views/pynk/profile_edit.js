@@ -13,6 +13,11 @@ import icon_facebook from "../../assets/img/pynk/shop/icon-facebook.png";
 import icon_Google from "../../assets/img/pynk/shop/icon-Google.png";
 import icon_line from "../../assets/img/pynk/shop/icon-line.png";
 import InputAddress from "react-thailand-address-autocomplete";
+import Checkbox from "../../assets/img/home/Checkbox.png";
+import Checkbox2 from "../../assets/img/home/Checkbox2.png";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 import "./css/profile.css";
 
@@ -38,6 +43,17 @@ const Profile_edit = () => {
   const [first_name, setFirst_name] = useState(user && user.first_name);
   const [last_name, setLast_name] = useState(user && user.last_name);
   const [phone, setPhone] = useState(user && user.phone);
+  const [name_display_system, setName_display_system] = useState(
+    user && user.name_display_system
+  );
+  const [facebook, setFacebook] = useState(user && user.facebook);
+  const [birthday, setBirthday] = useState(
+    user && user.birthday
+      ? JSON.parse(user.birthday)
+      : { dd: "", mm: "", yyyy: "" }
+  );
+  const [sex, setSex] = useState(user && user.sex);
+
   const [formData, setFormData] = useState({
     address: "",
     subdistrict: "",
@@ -68,6 +84,14 @@ const Profile_edit = () => {
     setFirst_name(user && user.first_name);
     setLast_name(user && user.last_name);
     setPhone(user && user.phone);
+    setName_display_system(user && user.name_display_system);
+    setFacebook(user && user.facebook);
+    setBirthday(
+      user && user.birthday
+        ? JSON.parse(user.birthday)
+        : { dd: "", mm: "", yyyy: "" }
+    );
+    setSex(user && user.sex);
   }, [user]);
 
   useEffect(() => {
@@ -109,7 +133,9 @@ const Profile_edit = () => {
       phone: setPhone,
       email: setEmail,
       password: setPassword,
-
+      name_display_system: setName_display_system,
+      facebook: setFacebook,
+      sex: setSex,
       // เพิ่ม setter อื่น ๆ ตามความจำเป็น
     };
 
@@ -216,7 +242,11 @@ const Profile_edit = () => {
             password, //total_amount,
             first_name, //customer_data,
             last_name, //shipping_address,
-            phone //note
+            phone, //note
+            name_display_system, //note
+            facebook, //note
+            birthday,
+            sex //note
           )
         );
       }
@@ -234,10 +264,13 @@ const Profile_edit = () => {
     /*    */
   };
 
+  /*  console.log("user.birthday)", user.birthday); */
   const personalInformation = () => {
+    console.log("setBirthday", birthday);
     return (
       <div>
         <p className="text-modal-body">ข้อมูลส่วนตัว</p>
+
         <div className="row row-16">
           <div className="col-12 col-sm-12 col-md-6 mb-3">
             <label for="exampleFormControlInput1" className="form-label">
@@ -275,6 +308,95 @@ const Profile_edit = () => {
           </div>
         </div>
         <div className="row row-16">
+          <div className="col-12 col-sm-12 col-md-12 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
+              วัน/เดือน/ปีเกิด
+            </label>
+            <div className="row row-16">
+              <div className="col-lg-2 mb-3">
+                <input
+                  type="number"
+                  className="form-control"
+                  id="exampleFormControlInput1"
+                  value={birthday && birthday.dd}
+                  onChange={(event) =>
+                    setBirthday({ ...birthday, dd: event.target.value })
+                  }
+                  placeholder="วัน"
+                />
+              </div>
+              <div className="col-lg-2 mb-3">
+                <input
+                  type="number"
+                  className="form-control"
+                  id="exampleFormControlInput1"
+                  value={birthday && birthday.mm}
+                  onChange={(event) =>
+                    setBirthday({ ...birthday, mm: event.target.value })
+                  }
+                  placeholder="เดือน"
+                />
+              </div>
+              <div className="col-lg-2 mb-3">
+                <input
+                  type="number"
+                  className="form-control"
+                  id="exampleFormControlInput1"
+                  value={birthday && birthday.yyyy}
+                  onChange={(event) =>
+                    setBirthday({ ...birthday, yyyy: event.target.value })
+                  }
+                  placeholder="ปี"
+                />
+              </div>
+              <div className="col-lg-6 box-sex mt--32px">
+                <div
+                  className={
+                    sex == "หญิง" ? "box-radio background-radio" : "box-radio"
+                  }
+                  onClick={() => setSex("หญิง")}
+                >
+                  <img
+                    src={sex == "หญิง" ? Checkbox : Checkbox2}
+                    alt=""
+                    className="checkbox-img"
+                  />
+                  <span>หญิง</span>
+                </div>
+                <div
+                  className={
+                    sex == "ชาย" ? "box-radio background-radio" : "box-radio"
+                  }
+                  onClick={() => setSex("ชาย")}
+                >
+                  <img
+                    src={sex == "ชาย" ? Checkbox : Checkbox2}
+                    alt=""
+                    className="checkbox-img"
+                  />
+                  <span>ชาย</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="row row-16">
+          <div className="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
+              ชื่อที่ต้องการแสดงในระบบ
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="name_display_system"
+              name="name_display_system"
+              value={name_display_system}
+              onChange={handleChange}
+              placeholder="ชื่อที่ต้องการแสดงในระบบ"
+            />
+            {errors.phone && <div className="error-from">{errors.phone}</div>}
+          </div>
           <div className="col-12 col-sm-12 col-md-6 mb-3">
             <label for="exampleFormControlInput1" className="form-label">
               เบอร์โทรศัพท์ที่ติดต่อได้ <span>*</span>
@@ -289,6 +411,25 @@ const Profile_edit = () => {
               placeholder="0XX-XXX-XXXX"
             />
             {errors.phone && <div className="error-from">{errors.phone}</div>}
+          </div>
+        </div>
+        <div className="row row-16">
+          <div className="col-12 col-sm-12 col-md-6 mb-3">
+            <label for="exampleFormControlInput1" className="form-label">
+              Facebook
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="facebook"
+              name="facebook"
+              value={facebook}
+              onChange={handleChange}
+              placeholder="ระบุชื่อ Facebook หรือ link Facebook"
+            />
+            {errors.facebook && (
+              <div className="error-from">{errors.facebook}</div>
+            )}
           </div>
         </div>
         <p className="text-modal-body mt-64">บัญชีเข้าใช้งาน</p>
