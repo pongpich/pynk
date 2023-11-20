@@ -490,6 +490,16 @@ class App extends Component {
                       จัดการสินค้า
                     </a>
                   )}
+                  {user && user.authorization === "admin" && (
+                    <a
+                      className="nav-link link-pynk"
+                      onClick={() =>
+                        this.props.history.push("/contents_management")
+                      }
+                    >
+                      จัดการบทความ
+                    </a>
+                  )}
                   <a
                     className="nav-link  link-pynk active2"
                     href="https://platform.bebefitroutine.com"
