@@ -110,6 +110,7 @@ import { awsConfig } from "./constants/defaultValues";
 import { BrowserRouter } from "react-router-dom";
 import user_circle from "./assets/img/user_circle1.svg";
 import TagManager from "react-gtm-module";
+import { all } from 'redux-saga/effects';
 
 Amplify.configure(awsConfig);
 
@@ -446,7 +447,7 @@ class App extends Component {
               </div>
             </div>
           </div>
-          {searchStatus == 0 ? (
+          {searchStatus === 0 ? (
             <div className="information-box-row2">
               <div className="navbar-flex-center user-line">
                 {group_image ? (
@@ -933,6 +934,7 @@ class App extends Component {
                           <img
                             src={product.image}
                             className="model-image-slider"
+                            alt=""
                           />
                         </div>
                         <div className="col-8 col-md-9  mb-3">
@@ -967,6 +969,7 @@ class App extends Component {
                                 this.deleteArrayCookies(product.sku)
                               }
                               className="delete_bin_line col-3"
+                              alt=""
                             />
                             <p className="fitto-shop price-ml col-3">
                               {product.totalprice.toLocaleString()} บาท
