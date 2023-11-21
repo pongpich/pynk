@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "LightPynk";
+  font-style: normal;
+  font-weight: normal;
+  src: url(../../../fontsPynk/NotoSansThai-Light.ttf);
+}
+
+@font-face {
+  font-family: "ThinPynk";
+  src: url(../../../fontsPynk/NotoSansThai-Thin.ttf);
+}
+
+@font-face {
+  font-family: "RegularPynk";
+  src: url(../../../fontsPynk/NotoSansThai-Regular.ttf);
+}
+
+@font-face {
+  font-family: "MediumPynk";
+  src: url(../../../fontsPynk/NotoSansThai-Medium.ttf);
+}
+
+@font-face {
+  font-family: "SemiBoldPynk";
+  src: url(../../../fontsPynk/NotoSansThai-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: "BoldPynk";
+  src: url(../../../fontsPynk/NotoSansThai-Bold.ttf);
+}
+
+.LightPynk {
+  font-family: "LightPynk";
+}
+
+.ThinPynk {
+  font-family: "ThinPynk";
+}
+
+.RegularPynk {
+  font-family: "RegularPynk";
+}
+
+.MediumPynk {
+  font-family: "MediumPynk";
+}
+
+.SemiBoldPynk {
+  font-family: "SemiBoldPynk";
+}
+
+.BoldPynk {
+  font-family: "BoldPynk";
+}
+
+.text128 {
+  font-size: 128px;
+  text-align: left;
+  margin-bottom: 0px;
+}
+
+.text48 {
+  font-size: 48px;
+}
+
+.text32 {
+  font-size: 32px;
+}
+
+.text24 {
+  font-size: 24px;
+}
+
+.text20 {
+  font-size: 20px;
+}
+
+.text18 {
+  font-size: 18px;
+}

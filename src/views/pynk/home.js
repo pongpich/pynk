@@ -133,6 +133,7 @@ const Home = () => {
   }
 
   return (
+    <>
     <div className="page">
       <div
         id="carouselExampleAutoplaying"
@@ -482,8 +483,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
+    <Footer />
+    </>
   );
 };
 export default Home;
