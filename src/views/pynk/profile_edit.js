@@ -25,9 +25,12 @@ const Profile_edit = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector(({ auth }) => (auth ? auth.user : ""));
+  const googleProfile = useSelector(({ auth }) =>
+    auth ? auth.googleProfile : ""
+  );
 
   useEffect(() => {
-    if (!user) {
+    if (!user && googleProfile && googleProfile.profile == null) {
       history.push("/home");
     }
   }, [user]);
@@ -478,21 +481,29 @@ const Profile_edit = () => {
                 <img src={icon_facebook} className="icon_facebook" />
                 <p className="text-icon-connect">Facebook</p>
               </div>
-              <button className="btn-connect ">Connect</button>
+              <button className="btn-noConnect">Connect</button>
             </div>
             <div className="box-google">
               <div className="connect-icon">
                 <img src={icon_Google} className="icon_facebook" />
                 <p className="text-icon-connect">Google</p>
               </div>
-              <button className="btn-connect ">Connect</button>
+              <button
+                className={
+                  googleProfile && googleProfile.profile != null
+                    ? "btn-connect"
+                    : "btn-noConnect"
+                }
+              >
+                Connect
+              </button>
             </div>
             <div className="box-line">
               <div className="connect-icon">
                 <img src={icon_line} className="icon_facebook" />
                 <p className="text-icon-connect">Line</p>
               </div>
-              <button className="btn-connect ">Connect</button>
+              <button className="btn-noConnect ">Connect</button>
             </div>
             <div className="row-16-button">
               <button

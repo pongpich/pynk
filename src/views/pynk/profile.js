@@ -250,7 +250,13 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="row mt-5  none-767">
-                  <button className="btn-content-participate">เข้าร่วม</button>
+                  <a
+                    href="https://form.typeform.com/to/T0cII7D0?typeform-source=bebefitroutine.com"
+                    target="_blank"
+                    className="btn-content-participate"
+                  >
+                    เข้าร่วม
+                  </a>
                   <a
                     target="_blank"
                     href="https://bebefitroutine.com/bikinibodychallenge/?fbclid=IwAR3ih08Gn7iVJforCps-27hju1Nhh86rUNTKg1liAUqqNiHYjNa6VxOr8zo"
@@ -290,7 +296,13 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="row mt-5  none-767">
-                  <button className="btn-content-participate">เข้าร่วม</button>
+                  <a
+                    target="_blank"
+                    href="https://bebefitroutine.com/speedropechallenge/apply/"
+                    className="btn-content-participate"
+                  >
+                    เข้าร่วม
+                  </a>
                   <a
                     target="_blank"
                     href="https://bebefitroutine.com/speedropechallenge/?fbclid=IwAR1lYqFXccwliYG6nDNwF6rPI9_4SlDd2_LteE7R6b_VH-pm7kjD2KaWpuw"
@@ -330,7 +342,13 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="row mt-5  none-767">
-                  <button className="btn-content-participate">เข้าร่วม</button>
+                  <a
+                    href="https://5ag91vnk022.typeform.com/to/eaaDFZtz"
+                    target="_blank"
+                    className="btn-content-participate"
+                  >
+                    เข้าร่วม
+                  </a>
                   <a
                     target="_blank"
                     href="https://bebefitroutine.com/bodystepchallenge/?fbclid=IwAR3oOGlRcrHs1kRcyD-0r4tIjHN-QOX89pv_fm1zRpPjAU7TvCV5Of1Jyfg"

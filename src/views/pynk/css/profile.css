@@ -840,6 +840,17 @@
 }
 
 .btn-connect {
+    cursor: default !important;
+    background-color: var(--placeholder);
+    color: #FFFFFF;
+    font-size: 18px;
+    font-family: SemiBoldPynk;
+    width: 132px;
+    height: 44px;
+    border-radius: 50px;
+}
+
+.btn-noConnect {
     background-color: #EF60A3;
     color: #FFFFFF;
     font-size: 18px;
