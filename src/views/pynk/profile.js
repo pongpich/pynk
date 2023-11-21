@@ -15,6 +15,9 @@ import Group from "../../assets/img/pynk/shop/Group.png";
 import product from "../../assets/img/pynk/shop/image-product.png";
 import icon_circle from "../../assets/img/pynk/shop/icon-circle.png";
 import nohistory from "../../assets/img/pynk/shop/nohistory.png";
+import bikinibodychallenge from "../../assets/img/pynk/challenge/bikinibodychallenge.jpg";
+import bodystepchallenge from "../../assets/img/pynk/challenge/bodystepchallenge.jpg";
+import speedropechallenge from "../../assets/img/pynk/challenge/speedropechallenge.jpg";
 import Footer from "./footer";
 
 import "./css/profile.css";
@@ -231,78 +234,121 @@ const Profile = () => {
             <div class="row mb-3">
               <div class="col-4 col-sm-4 col-md-3 col-lg-3">
                 {" "}
-                <img src={rectangle_86} className="icon-rectangle" />
+                <img src={bikinibodychallenge} className="icon-rectangle" />
               </div>
               <div class="col-8 col-sm-8 col-md-9 col-lg-9 padding-left">
                 <div class="row">
                   {/* <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
                     <p className="still-more-left">เหลืออีก 200 ที่</p>
                   </div> */}
-                  <div class="col-sm-12 col-md-8 col-lg-8 order-sm-1 order-md-1 order-lg-1">
-                    <p className="head-text">Fitto 4 Week Starter Program </p>
-                    <p className="text-content">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <p className="head-text">Bikini Body Challenge</p>
+                    {/*  <p className="text-content">
                       Details ChallengeDetails ChallengeDetails ChallengeDetails
                       ChallengeDetails ChallengeDetails
-                    </p>
+                    </p> */}
                   </div>
                 </div>
+                <div className="row mt-5  none-767">
+                  <button className="btn-content-participate">เข้าร่วม</button>
+                  <a
+                    target="_blank"
+                    href="https://bebefitroutine.com/bikinibodychallenge/?fbclid=IwAR3ih08Gn7iVJforCps-27hju1Nhh86rUNTKg1liAUqqNiHYjNa6VxOr8zo"
+                    className="btn-content-details"
+                  >
+                    รายละเอียด
+                  </a>
+                </div>
               </div>
-              <div className="div-btn col-sm-12 col-md-12 col-lg-3 "></div>
-              <div className="div-btn col-sm-12 col-md-12 col-lg-9 mt-pra">
+              <div className="row mt-3 mb-2 none-992">
                 <button className="btn-content-participate">เข้าร่วม</button>
-                <button className="btn-content-details">รายละเอียด</button>
+                <a
+                  target="_blank"
+                  href="https://bebefitroutine.com/bikinibodychallenge/?fbclid=IwAR3ih08Gn7iVJforCps-27hju1Nhh86rUNTKg1liAUqqNiHYjNa6VxOr8zo"
+                  className="btn-content-details"
+                >
+                  รายละเอียด
+                </a>
               </div>
             </div>
-
             <div class="row mb-3">
               <div class="col-4 col-sm-4 col-md-3 col-lg-3">
                 {" "}
-                <img src={rectangle_87} className="icon-rectangle" />
-              </div>
-              <div class="col-8 col-sm-8 col-md-9 col-lg-9 padding-left">
-                <div class="row">
-                  {/*  <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
-                    <p className="still-more-left">เหลืออีก 200 ที่</p>
-                  </div> */}
-                  <div class="col-sm-12 col-md-8 col-lg-8 order-sm-1 order-md-1 order-lg-1">
-                    <p className="head-text">Fitto 4 Week Starter Program </p>
-                    <p className="text-content">
-                      Details ChallengeDetails ChallengeDetails ChallengeDetails
-                      ChallengeDetails ChallengeDetails
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="div-btn col-sm-12 col-md-12 col-lg-3 "></div>
-              <div className="div-btn col-sm-12 col-md-12 col-lg-9 mt-pra">
-                <button className="btn-content-participate">เข้าร่วม</button>
-                <button className="btn-content-details">รายละเอียด</button>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-4 col-sm-4 col-md-3 col-lg-3">
-                {" "}
-                <img src={rectangle_88} className="icon-rectangle" />
+                <img src={speedropechallenge} className="icon-rectangle" />
               </div>
               <div class="col-8 col-sm-8 col-md-9 col-lg-9 padding-left">
                 <div class="row">
                   {/* <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
                     <p className="still-more-left">เหลืออีก 200 ที่</p>
                   </div> */}
-                  <div class="col-sm-12 col-md-8 col-lg-8 order-sm-1 order-md-1 order-lg-1">
-                    <p className="head-text">Fitto 4 Week Starter Program </p>
-                    <p className="text-content">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <p className="head-text">Speed Rope Challenge</p>
+                    {/*  <p className="text-content">
                       Details ChallengeDetails ChallengeDetails ChallengeDetails
                       ChallengeDetails ChallengeDetails
-                    </p>
+                    </p> */}
                   </div>
                 </div>
+                <div className="row mt-5  none-767">
+                  <button className="btn-content-participate">เข้าร่วม</button>
+                  <a
+                    target="_blank"
+                    href="https://bebefitroutine.com/speedropechallenge/?fbclid=IwAR1lYqFXccwliYG6nDNwF6rPI9_4SlDd2_LteE7R6b_VH-pm7kjD2KaWpuw"
+                    className="btn-content-details"
+                  >
+                    รายละเอียด
+                  </a>
+                </div>
               </div>
-              <div className="div-btn col-sm-12 col-md-12 col-lg-3 "></div>
-              <div className="div-btn col-sm-12 col-md-12 col-lg-9 mt-pra">
+              <div className="row mt-3 mb-2 none-992">
                 <button className="btn-content-participate">เข้าร่วม</button>
-                <button className="btn-content-details">รายละเอียด</button>
+                <a
+                  target="_blank"
+                  href="https://bebefitroutine.com/speedropechallenge/?fbclid=IwAR1lYqFXccwliYG6nDNwF6rPI9_4SlDd2_LteE7R6b_VH-pm7kjD2KaWpuw"
+                  className="btn-content-details"
+                >
+                  รายละเอียด
+                </a>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-4 col-sm-4 col-md-3 col-lg-3">
+                {" "}
+                <img src={bodystepchallenge} className="icon-rectangle" />
+              </div>
+              <div class="col-8 col-sm-8 col-md-9 col-lg-9 padding-left">
+                <div class="row">
+                  {/* <div class="col-sm-12 col-md-4 col-lg-4 order-sm-2 order-md-2  order-lg-2">
+                    <p className="still-more-left">เหลืออีก 200 ที่</p>
+                  </div> */}
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                    <p className="head-text">Body Step Challenge</p>
+                    {/*  <p className="text-content">
+                      Details ChallengeDetails ChallengeDetails ChallengeDetails
+                      ChallengeDetails ChallengeDetails
+                    </p> */}
+                  </div>
+                </div>
+                <div className="row mt-5  none-767">
+                  <button className="btn-content-participate">เข้าร่วม</button>
+                  <a
+                    target="_blank"
+                    href="https://bebefitroutine.com/bodystepchallenge/?fbclid=IwAR3oOGlRcrHs1kRcyD-0r4tIjHN-QOX89pv_fm1zRpPjAU7TvCV5Of1Jyfg"
+                    className="btn-content-details"
+                  >
+                    รายละเอียด
+                  </a>
+                </div>
+              </div>
+              <div className="row mt-3 mb-2 none-992">
+                <button className="btn-content-participate">เข้าร่วม</button>
+                <a
+                  target="_blank"
+                  href="https://bebefitroutine.com/bodystepchallenge/?fbclid=IwAR3oOGlRcrHs1kRcyD-0r4tIjHN-QOX89pv_fm1zRpPjAU7TvCV5Of1Jyfg"
+                  className="btn-content-details"
+                >
+                  รายละเอียด
+                </a>
               </div>
             </div>
           </div>

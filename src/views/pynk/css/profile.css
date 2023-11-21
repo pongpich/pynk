@@ -183,6 +183,20 @@
         height: auto !important;
     }
 
+    .none-767 {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 992px) {
+
+
+
+    .none-767 {
+        display: none;
+    }
+
 }
 
 @media only screen and (min-width: 577px) and (max-width: 768px) {
@@ -286,6 +300,10 @@
 
     .box-sex {
         padding-left: 32px;
+    }
+
+    .none-992 {
+        display: none;
     }
 }
 
