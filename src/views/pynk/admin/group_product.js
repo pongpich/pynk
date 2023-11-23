@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { getMemberGroupProduct, getAllGroupProduct } from "../../../redux/pynk/admin";
+import no_img from "../../../assets/img/pynk/no_image_icon.png";
+
 
 function GroupProduct() {
     const history = useHistory();
@@ -8,18 +11,22 @@ function GroupProduct() {
     const [addGroupPage, setAddGroupPage] = useState(false);
     const [newGroupName, setNewGroupName] = useState('');
     const [productGroups, setProductGroups] = useState(['Group 1', 'Group 2']); // กำหนดกลุ่มสินค้าเริ่มต้น
+    const [products, setProducts] = useState([]); // สร้าง state เพื่อเก็บสินค้าที่เพิ่มเข้ามา
+
+    const status_get_all_group_product = useSelector(({ admin }) => (admin ? admin.status_get_all_group_product : ""));
+    const all_group_product = useSelector(({ admin }) => (admin ? admin.all_group_product : ""));
+    const status_get_member_group_product = useSelector(({ admin }) => (admin ? admin.status_get_member_group_product : ""));
+    const member_group_product = useSelector(({ admin }) => (admin ? admin.member_group_product : ""));
 
 
-    const [groups, setGroups] = useState([
-        "Bebe Fit Routine Speed Rope",
-        "Fitto Plant Protein"
-    ]);
+    const [groups, setGroups] = useState([]);
     const [selectedGroup, setSelectedGroup] = useState('');
     const handleSelectChange = (event) => {
         setSelectedGroup(event.target.value);
+
+        dispatch(getMemberGroupProduct(event.target.value))
     };
 
-    const [products, setProducts] = useState([]); // สร้าง state เพื่อเก็บสินค้าที่เพิ่มเข้ามา
 
     const handleAddProduct = (event) => {
         event.preventDefault();
@@ -38,6 +45,22 @@ function GroupProduct() {
             setNewGroupName('');
         }
     };
+
+    useEffect(() => {
+        dispatch(getAllGroupProduct());
+    }, [])
+
+    useEffect(() => {
+        if (status_get_all_group_product === "success") {
+            setGroups(all_group_product);
+        }
+    }, [status_get_all_group_product]);
+
+    useEffect(() => {
+        if (status_get_member_group_product === "success") {
+            setProducts(member_group_product);
+        }
+    }, [status_get_member_group_product]);
 
     const renderAddProductGroup = () => {
         return (
@@ -72,28 +95,41 @@ function GroupProduct() {
                     onChange={handleSelectChange}
                 >
                     <option value="">Select a group</option>
-                    {groups.map((group, index) => (
-                        <option key={index} value={group}>
-                            {group}
-                        </option>
-                    ))}
+                    {groups &&
+                        groups.map((group, index) => (
+                            <option key={index} value={group.group_name}>
+                                {group.group_name}
+                            </option>
+                        ))}
                 </select>
 
                 {
                     selectedGroup &&
                     <div>
+                        <p>สมาชิกในกลุ่ม:</p>
+                        <ul>
+                            {products.map((product, index) => (
+                                <tr key={product.product_id}>
+                                    <td>{product.product_id}</td>
+                                    <td>
+                                        {
+                                            product.image_url ?
+                                                <img src={product.image_url} width={50} height={50} />
+                                                :
+                                                <img src={no_img} width={50} height={50} />
+                                        }
+                                        {` `}{product.product_name}
+                                    </td>
+                                    <td>{product.property}</td>
+                                </tr>
+                            ))}
+                        </ul>
+
                         <form className='mt-5' onSubmit={handleAddProduct}>
                             <label htmlFor="productId">กรอกรหัสสินค้า:</label>
                             <input type="text" id="productId" name="productId" />
                             <button type="submit">เพิ่มสินค้า</button>
                         </form>
-
-                        <p>สมาชิกในกลุ่ม:</p>
-                        <ul>
-                            {products.map((product, index) => (
-                                <li key={index}>{product}</li>
-                            ))}
-                        </ul>
                     </div>
                 }
             </div>

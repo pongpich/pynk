@@ -19,7 +19,24 @@ export const types = {
     UPDATE_PRODUCT_STOCK: "UPDATE_PRODUCT_STOCK",
     UPDATE_PRODUCT_STOCK_SUCCESS: "UPDATE_PRODUCT_STOCK_SUCCESS",
     UPDATE_PRODUCT_STOCK_FAIL: "UPDATE_PRODUCT_STOCK_FAIL",
+    GET_MEMBER_GROUP_PRODUCT: "GET_MEMBER_GROUP_PRODUCT",
+    GET_MEMBER_GROUP_PRODUCT_SUCCESS: "GET_MEMBER_GROUP_PRODUCT_SUCCESS",
+    GET_MEMBER_GROUP_PRODUCT_FAIL: "GET_MEMBER_GROUP_PRODUCT_FAIL",
+    GET_ALL_GROUP_PRODUCT: "GET_ALL_GROUP_PRODUCT",
+    GET_ALL_GROUP_PRODUCT_SUCCESS: "GET_ALL_GROUP_PRODUCT_SUCCESS",
+    GET_ALL_GROUP_PRODUCT_FAIL: "GET_ALL_GROUP_PRODUCT_FAIL",
 };
+
+export const getMemberGroupProduct = (group_name) => ({
+    type: types.GET_MEMBER_GROUP_PRODUCT,
+    payload: {
+        group_name
+    }
+});
+
+export const getAllGroupProduct = () => ({
+    type: types.GET_ALL_GROUP_PRODUCT
+});
 
 export const clear_status = () => ({
     type: types.CLEAR_STATUS_PRODUCT_MANAGEMENT
@@ -325,6 +342,74 @@ function* addProductSaga({ payload }) {
     }
 };
 
+const getAllGroupProductSagaAsync = async (
+
+) => {
+    try {
+        const apiResult = await API.get("pynk", "/getAllGroupProduct", {
+            queryStringParameters: {
+
+            },
+        });
+        return apiResult;
+    } catch (error) {
+        return { error, messsage: error.message };
+    }
+};
+
+function* getAllGroupProductSaga({  }) {
+   
+
+    try {
+        const apiResult = yield call(
+            getAllGroupProductSagaAsync
+        );
+        yield put({
+            type: types.GET_ALL_GROUP_PRODUCT_SUCCESS,
+            payload: apiResult.results.queryResult
+        })
+
+    } catch (error) {
+        console.log("error from getAllGroupProductSaga :", error);
+    }
+};
+
+const getMemberGroupProductSagaAsync = async (
+    group_name
+) => {
+    try {
+        const apiResult = await API.get("pynk", "/getMemberGroupProduct", {
+            queryStringParameters: {
+                group_name
+            },
+        });
+        return apiResult;
+    } catch (error) {
+        return { error, messsage: error.message };
+    }
+};
+
+function* getMemberGroupProductSaga({ payload }) {
+    const {
+        group_name
+    } = payload
+
+    try {
+        const apiResult = yield call(
+            getMemberGroupProductSagaAsync,
+            group_name
+        );
+
+        yield put({
+            type: types.GET_MEMBER_GROUP_PRODUCT_SUCCESS,
+            payload: apiResult.results.queryResult
+        })
+
+    } catch (error) {
+        console.log("error from getMemberGroupProductSaga :", error);
+    }
+};
+
 const getProductDetailSagaAsync = async (
     sku
 ) => {
@@ -389,6 +474,14 @@ export function* watchUpdateProductStockSaga() {
     yield takeEvery(types.UPDATE_PRODUCT_STOCK, updateProductStockSaga);
 };
 
+export function* watchGetMemberGroupProductSaga() {
+    yield takeEvery(types.GET_MEMBER_GROUP_PRODUCT, getMemberGroupProductSaga);
+};
+
+export function* watchGetAllGroupProductSaga() {
+    yield takeEvery(types.GET_ALL_GROUP_PRODUCT, getAllGroupProductSaga);
+};
+
 export function* saga() {
     yield all([
         fork(watchGetProductDetailSaga),
@@ -396,6 +489,8 @@ export function* saga() {
         fork(watchDeleteProductSaga),
         fork(watchUpdateProductSaga),
         fork(watchUpdateProductStockSaga),
+        fork(watchGetMemberGroupProductSaga),
+        fork(watchGetAllGroupProductSaga),
     ]);
 }
 
@@ -407,11 +502,37 @@ const INIT_STATE = {
     status_delete_product: "default",
     status_update_product: "default",
     status_update_stock: "default",
-    available_stock: 0
+    available_stock: 0,
+    status_get_member_group_product: "default",
+    member_group_product: null,
+    status_get_all_group_product: "default",
+    all_group_product: null,
 };
 
 export function reducer(state = INIT_STATE, action) {
     switch (action.type) {
+        case types.GET_ALL_GROUP_PRODUCT:
+            return {
+                ...state,
+                status_get_all_group_product: "loading",
+            };
+        case types.GET_ALL_GROUP_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                status_get_all_group_product: "success",
+                all_group_product: action.payload
+            };
+        case types.GET_MEMBER_GROUP_PRODUCT:
+            return {
+                ...state,
+                status_get_member_group_product: "loading",
+            };
+        case types.GET_MEMBER_GROUP_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                status_get_member_group_product: "success",
+                member_group_product: action.payload
+            };
         case types.UPDATE_PRODUCT_STOCK:
             return {
                 ...state,
