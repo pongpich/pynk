@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts } from "../../../redux/pynk/get"
+import { getProducts, getContents } from "../../../redux/pynk/get"
 import { delete_product, update_product, clear_status, updateProductStock } from "../../../redux/pynk/admin"
 import no_img from "../../../assets/img/pynk/no_image_icon.png";
 import { s3Upload } from "../../../helpers/awsLib";
@@ -18,6 +18,9 @@ function ContentsManagement() {
     const status_delete_product = useSelector(({ admin }) => (admin ? admin.status_delete_product : ""));
     const status_update_product = useSelector(({ admin }) => (admin ? admin.status_update_product : ""));
 
+    const contents_pynk = useSelector(({ getPynk }) => (getPynk ? getPynk.contents_pynk : ""));
+    const status_contents_pynk = useSelector(({ getPynk }) => (getPynk ? getPynk.status_contents_pynk : ""));
+
     useEffect(() => {
         //เช็คว่าถ้าไม่ใช่ admin ให้เตะออกจากหน้านี้
         if (!user || (user && user.authorization !== "admin")) {
@@ -28,6 +31,7 @@ function ContentsManagement() {
         dispatch(clear_status());
 
         dispatch(getProducts());
+        dispatch(getContents());
     }, []);
 
     useEffect(() => {
@@ -40,6 +44,21 @@ function ContentsManagement() {
             setFilteredProducts(filtered);
         }
     }, [status_products_pynk]);
+
+    useEffect(() => {
+        console.log(status_contents_pynk);
+        console.log(contents_pynk);
+        if (status_contents_pynk && contents_pynk) {
+            // const filtered = contents_pynk.filter(
+            //     content =>
+            //         content.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            //         content.title.toLowerCase().includes(searchTerm.toLowerCase())
+            // );
+            setFilteredContents(contents_pynk);
+        }
+    }, [status_contents_pynk]);
+
+
 
     const [isAfterDiscount, setIsAfterDiscount] = useState(false);
     const [isNutritionalInfoProvided, setIsNutritionalInfoProvided] = useState(false);
@@ -334,6 +353,7 @@ function ContentsManagement() {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [filteredContents, setFilteredContents] = useState([]);
 
     // ฟังก์ชันค้นหารายการสินค้า
     const handleSearch = () => {
@@ -354,7 +374,7 @@ function ContentsManagement() {
     const renderContentList = () => {
         return (
             <div>
-                {/* <div className='d-flex justify-content-between mb-4'>
+                <div className='d-flex justify-content-between mb-4'>
                     <div>
                         <h2 className='bold'>สินค้า</h2>
                         <div>จำนวน {products_pynk ? products_pynk.length : 0} รายการ</div>
@@ -372,8 +392,10 @@ function ContentsManagement() {
                     <div>
                         <button className='buy-now' style={{ width: 150 }} onClick={() => history.push("group_product")}>จัดกลุ่มสินค้า</button>
                         <button className='buy-now' style={{ width: 150 }} onClick={() => history.push("add_product")}><i class="fa-solid fa-plus"></i> เพิ่มสินค้าใหม่</button>
+                        <button className='buy-now' style={{ width: 150 }} onClick={() => history.push("add_content")}><i class="fa-solid fa-plus"></i> เพิ่มสินค้าใหม่</button>
+
                     </div>
-                </div> */}
+                </div>
 
 
                 <div className='card'>
@@ -420,7 +442,58 @@ function ContentsManagement() {
                                         </tr>
                                     ))
                                     :
-                                    <div>xxxx</div>
+                                    products_pynk &&
+                                    products_pynk.map((product, index) => (
+
+                                        <tr key={product.product_id} onClick={() => onSelectedProduct(product.product_id)}>
+                                            <td>{product.product_id}</td>
+                                            <td>
+                                                {
+                                                    product.image_url ?
+                                                        <img src={product.image_url} width={50} height={50} />
+                                                        :
+                                                        <img src={no_img} width={50} height={50} />
+                                                }
+                                                {` `}{product.product_name}
+                                            </td>
+                                            <td>
+                                                {(product.category === "food_supplement") && "อาหารเสริม"}
+                                                {(product.category === "exercise_equipment") && "อุปกรณ์ออกกำลังกาย"}
+                                                {(product.category === "fitto_plant_protein") && "Fitto Plant Protein"}
+                                                {(product.category === "fitto_pre_workout_fat_burner") && "Fitto Pre-Work Out & Fat Burner"}
+                                                {(product.category === "fitto_drink") && "Fitto Drink"}
+                                                {(product.category === "another") && "อื่นๆ"}
+                                            </td>
+                                            <td>{product.price}</td>
+                                            <td>{product.available_stock}</td>
+                                        </tr>
+                                    ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div className='card'>
+                    <table class="product-table-admin">
+                        <thead>
+                            <tr>
+                                <th>รหัสบทความ</th>
+                                <th>ชื่อบทความ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            {
+                                (filteredContents.length > 0) ?
+                                    filteredContents.map((content, index) => (
+
+                                        <tr key={content.id} onClick={() => onSelectedProduct(content.id)}>
+                                            <td>{content.id}</td>
+                                            <td>{content.title}</td>
+                                        </tr>
+                                    ))
+                                    :
+                                    <div>Error!!</div>
                             }
                         </tbody>
                     </table>
@@ -644,7 +717,7 @@ function ContentsManagement() {
 
                 <div className='card'>
                     <div className="p-3 gap-3">
-                        {/* <div style={{}}>
+                        <div style={{}}>
                             {
                                 (focusImg) ?
                                     <img src={focusImg} width={400} style={{ margin: 2 }} />
@@ -669,7 +742,7 @@ function ContentsManagement() {
                                         <></>
                                 }
                             </div>
-                        </div> */}
+                        </div>
 
                         <p className='text-danger' style={{ position: "absolute" }}>โปรดใส่อย่างน้อย 1 รูป เพื่อใช้เป็นรูปสินค้าหลัก</p>
                         <div className='d-flex mt-5 gap-3 flex-wrap' style={{}}>

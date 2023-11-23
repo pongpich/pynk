@@ -36,6 +36,7 @@ import Login from "../src/views/pynk/login";
 import ProductsManagement from "./views/pynk/admin/products_management";
 import ContentsManagement from "./views/pynk/admin/contents_management";
 import AddProduct from "./views/pynk/admin/add_product";
+import AddContent from "./views/pynk/admin/add_content";
 import Shop_category from "./views/pynk/admin/shop_category";
 import HomePlatfrom from "../src/views/platform/login";
 import Questionare from "../src/views/pynk/questionare";
@@ -681,6 +682,7 @@ class App extends Component {
                   component={ContentsManagement}
                 />
                 <Route path="/add_product" component={AddProduct} />
+                <Route path="/add_content" component={AddContent} />
                 <Route path="/shop" component={ShopPynk} />
                 <Route path="/shop_details/:id" component={ShopDetailsPynk} />
                 <Route path="/shop-category/:name" component={Shop_category} />
