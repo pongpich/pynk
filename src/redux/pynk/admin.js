@@ -28,6 +28,9 @@ export const types = {
     SET_GROUP_PRODUCT: "SET_GROUP_PRODUCT",
     SET_GROUP_PRODUCT_SUCCESS: "SET_GROUP_PRODUCT_SUCCESS",
     SET_GROUP_PRODUCT_FAIL: "SET_GROUP_PRODUCT_FAIL",
+    ADD_GROUP_PRODUCT: "ADD_GROUP_PRODUCT",
+    ADD_GROUP_PRODUCT_SUCCESS: "ADD_GROUP_PRODUCT_SUCCESS",
+    ADD_GROUP_PRODUCT_FAIL: "ADD_GROUP_PRODUCT_FAIL",
 };
 
 export const getMemberGroupProduct = (group_name) => ({
@@ -51,6 +54,15 @@ export const setGroupProduct = (
         product_id,
         group_name,
         property
+    }
+});
+
+export const addGroupProduct = (
+    group_name
+) => ({
+    type: types.ADD_GROUP_PRODUCT,
+    payload: {
+        group_name
     }
 });
 
@@ -358,6 +370,48 @@ function* addProductSaga({ payload }) {
     }
 };
 
+const addGroupProductSagaAsync = async (
+    group_name,
+) => {
+    try {
+        const apiResult = await API.post("pynk", "/addGroupProduct", {
+            body: {
+                group_name
+            },
+        });
+        return apiResult;
+    } catch (error) {
+        return { error, messsage: error.message };
+    }
+}
+
+function* addGroupProductSaga({ payload }) {
+    const {
+        group_name
+    } = payload
+
+    try {
+        const apiResult = yield call(
+            addGroupProductSagaAsync,
+            group_name
+        );
+
+        if (apiResult.results.message === "success") {
+            yield put({
+                type: types.ADD_GROUP_PRODUCT_SUCCESS
+            })
+        };
+        if (apiResult.results.message === "fail") {
+            yield put({
+                type: types.ADD_GROUP_PRODUCT_FAIL
+            })
+        };
+
+    } catch (error) {
+        console.log("error from getMemberGroupProductSaga :", error);
+    }
+};
+
 const setGroupProductSagaAsync = async (
     product_id,
     group_name,
@@ -551,6 +605,9 @@ export function* watchGetAllGroupProductSaga() {
 export function* watchSetGroupProductSaga() {
     yield takeEvery(types.SET_GROUP_PRODUCT, setGroupProductSaga);
 };
+export function* watchAddGroupProductSaga() {
+    yield takeEvery(types.ADD_GROUP_PRODUCT, addGroupProductSaga);
+};
 
 export function* saga() {
     yield all([
@@ -562,6 +619,7 @@ export function* saga() {
         fork(watchGetMemberGroupProductSaga),
         fork(watchGetAllGroupProductSaga),
         fork(watchSetGroupProductSaga),
+        fork(watchAddGroupProductSaga),
     ]);
 }
 
@@ -578,11 +636,27 @@ const INIT_STATE = {
     member_group_product: null,
     status_get_all_group_product: "default",
     all_group_product: null,
-    status_set_group_product: "default"
+    status_set_group_product: "default",
+    status_add_group_product: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
     switch (action.type) {
+        case types.ADD_GROUP_PRODUCT:
+            return {
+                ...state,
+                status_add_group_product: "loading",
+            };
+        case types.ADD_GROUP_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                status_add_group_product: "success",
+            };
+        case types.ADD_GROUP_PRODUCT_FAIL:
+            return {
+                ...state,
+                status_add_group_product: "fail",
+            };
         case types.SET_GROUP_PRODUCT:
             return {
                 ...state,

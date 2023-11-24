@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getMemberGroupProduct, getAllGroupProduct, setGroupProduct } from "../../../redux/pynk/admin";
+import { getMemberGroupProduct, getAllGroupProduct, setGroupProduct, addGroupProduct } from "../../../redux/pynk/admin";
 import no_img from "../../../assets/img/pynk/no_image_icon.png";
 
 
@@ -19,6 +19,7 @@ function GroupProduct() {
     const status_get_member_group_product = useSelector(({ admin }) => (admin ? admin.status_get_member_group_product : ""));
     const member_group_product = useSelector(({ admin }) => (admin ? admin.member_group_product : ""));
     const status_set_group_product = useSelector(({ admin }) => (admin ? admin.status_set_group_product : ""));
+    const status_add_group_product = useSelector(({ admin }) => (admin ? admin.status_add_group_product : ""));
 
 
     const handleSelectChange = (event) => {
@@ -47,10 +48,12 @@ function GroupProduct() {
     };
 
     const handleAddGroup = () => {
-        if (newGroupName.trim() !== '') {
-            setProductGroups([...productGroups, newGroupName]);
-            setNewGroupName('');
-        }
+        console.log("newGroupName :", newGroupName);
+        dispatch(addGroupProduct(newGroupName))
+        /* if (newGroupName.trim() !== '') {
+            //setProductGroups([...productGroups, newGroupName]);
+           // setNewGroupName('');
+        } */
     };
 
     useEffect(() => {
@@ -71,9 +74,15 @@ function GroupProduct() {
 
     useEffect(() => {
         if (status_set_group_product === "success") {
-            dispatch(getMemberGroupProduct(selectedGroup))
+            dispatch(getMemberGroupProduct(selectedGroup));
         }
     }, [status_set_group_product]);
+
+    useEffect(() => {
+        if (status_add_group_product === "success") {
+            dispatch(getAllGroupProduct());
+        }
+    }, [status_add_group_product])
 
     const renderAddProductGroup = () => {
         return (
@@ -87,11 +96,14 @@ function GroupProduct() {
                 />
                 <button onClick={handleAddGroup}>Add Group</button>
 
-                <p>รายชื่อกลุ่ม</p>
+                <p>รายชื่อกลุ่มทั้งหมด:</p>
                 <ul>
-                    {productGroups.map((group, index) => (
-                        <li key={index}>{group}</li>
-                    ))}
+                    {
+                        groups &&
+                        groups.map((group, index) => (
+                            <li key={index}>{group.group_name}</li>
+                        ))
+                    }
                 </ul>
             </div>
         )
@@ -116,13 +128,19 @@ function GroupProduct() {
                         ))}
                 </select>
 
+                <p className='mt-5'>สมาชิกในกลุ่ม:</p>
                 {
                     selectedGroup &&
                     <div>
-                        <p>สมาชิกในกลุ่ม:</p>
                         <table className="product-table-admin">
+                            <thead>
+                                <tr>
+                                    <th>รหัสสินค้า</th>
+                                    <th>ชื่อสินค้า</th>
+                                    <th>คุณสมบัติ</th>
+                                </tr>
+                            </thead>
                             <tbody>
-
                                 {products.map((product, index) => (
                                     <tr key={product.product_id}>
                                         <td>{product.product_id}</td>
@@ -141,7 +159,8 @@ function GroupProduct() {
                             </tbody>
                         </table>
 
-                        <form className='mt-5' onSubmit={handleAddProduct}>
+                        <p className='mt-5'>เพิ่มสมาชิก:</p>
+                        <form onSubmit={handleAddProduct}>
                             <label htmlFor="productId">รหัสสินค้า:</label>
                             <input type="text" id="product_id" name="product_id" />
                             <label htmlFor="productId">คุณสมบัติ (เช่น สี, รสชาติ, size):</label>
