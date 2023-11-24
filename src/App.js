@@ -111,7 +111,7 @@ import { awsConfig } from "./constants/defaultValues";
 import { BrowserRouter } from "react-router-dom";
 import user_circle from "./assets/img/user_circle1.svg";
 import TagManager from "react-gtm-module";
-import { all } from 'redux-saga/effects';
+import { all } from "redux-saga/effects";
 
 Amplify.configure(awsConfig);
 
@@ -421,22 +421,27 @@ class App extends Component {
                     height: 30,
                   }}
                 >
-                  {/*     |
+                  |
                 </h2>
-                <img
-                  src={truck_line}
-                  onClick={() => this.showMinus2()}
-                  className="truck-line-icon"
-                  alt="vector"
-                />
-                <p className="order-status display-none">สถานะคำสั่งซื้อ</p>
+                <div
+                  className="d-flex justify-content-center align-items-center cursor-pointer"
+                  onClick={() => this.props.history.push("/order_tracking")}
+                >
+                  <img
+                    src={truck_line}
+                    className="truck-line-icon"
+                    alt="vector"
+                  />
+                  <p className="order-status display-none ms-1 mb-0">สถานะคำสั่งซื้อ</p>
+                </div>
+
                 <h2
                   style={{
                     color: "#BCCCD6",
                     fontWeight: 10,
                     height: 30,
                   }}
-                > */}
+                >
                   |
                 </h2>
                 <img
@@ -673,10 +678,7 @@ class App extends Component {
                   path="/products_management"
                   component={ProductsManagement}
                 />
-                <Route
-                  path="/group_product"
-                  component={GroupProduct}
-                />
+                <Route path="/group_product" component={GroupProduct} />
                 <Route
                   path="/contents_management"
                   component={ContentsManagement}
