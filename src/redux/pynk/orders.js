@@ -201,6 +201,11 @@ export function reducer(state = INIT_STATE, action) {
         tracking_orders: action.payload,
         status_tracking_orders: "success",
       };
+    case types.GET_TRACKING_ORDERS_FAIL:
+      return {
+        ...state,
+        status_tracking_orders: "fail",
+      };
     case types.CLEAR_STATUS:
       return {
         ...state,

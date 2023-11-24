@@ -12,12 +12,25 @@ import "./css/fonts.css";
 const OrderTracking = () => {
   const history = useHistory();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showList, setShowList] = useState(false);
 
   const dispatch = useDispatch();
   const user = useSelector(({ auth }) => (auth ? auth.user : ""));
   const tracking_orders = useSelector(({ orders }) =>
     orders ? orders.tracking_orders : ""
   );
+  const status_tracking_orders = useSelector(({ orders }) =>
+    orders ? orders.status_tracking_orders : ""
+  );
+
+  useEffect(() => {
+    if (status_tracking_orders === "success") {
+      setShowList(true)
+    }
+    if (status_tracking_orders === "fail") {
+      setShowList(false)
+    }
+  }, [status_tracking_orders]);
 
   useEffect(() => {
     if (user) {
@@ -38,7 +51,7 @@ const OrderTracking = () => {
             <div className="head-order RegularPynk">
               ประวัติคำสั่งซื้อของฉัน
             </div>
-            {tracking_orders.length > 0 ? (
+            {showList ? (
               <div className="order-tracking">
                 {tracking_orders.map((item, index) => {
                   const product_list_item = JSON.parse(item.product_list);
@@ -46,11 +59,13 @@ const OrderTracking = () => {
                     item.shipping_address
                   );
 
+                  console.log("shipping_address_item :", shipping_address_item);
+
                   return (
                     <React.Fragment key={`order-${index}`}>
                       <div className="show-order">
                         <section className="order-detail">
-                          <div>เลขที่คำสั่งซื้อ: {item.order_id}</div>
+                          <div>เลขที่คำสั่งซื้อ: {item.zort_order_id}</div>
                           <div className="express-number">
                             <div>จัดส่งโดย: {item.shipping_channel}</div>
                             <div>หมายเลขพัสดุ: {item.tracking_no}</div>
@@ -93,22 +108,23 @@ const OrderTracking = () => {
                           </p>
                         </div>
 
-                        <section className="order-detail mb-5">
-                          <div className="express-number">
+                        <section className="order-detail mb-5 row">
+                          <div className="express-number col-lg-9  col-md-12" >
                             <div>ชำระสินค้าโดย: {item.payment_method}</div>
                             <div>สถานะการชำระเงิน: {item.payment_status}</div>
+                            <div>สถานะการจัดส่ง: {
+                              (item.delivery_status === "Pending") ?
+                                'รอส่งสินค้า'
+                                :
+                                (item.delivery_status === "Success") ?
+                                  'สำเร็จ'
+                                  :
+                                  '-'
+                            }
+                            </div>
                           </div>
-
-                          {/* {shipping_address_item &&
-                            shipping_address_item.map((shipping, index) => (
-                              <section key={index}>
-                                <div>
-                                  ที่อยู่ในการจัดส่ง: {shipping.address}
-                                </div>
-                              </section>
-                            ))} */}
-                          <section>
-                            <div>ที่อยู่ในการจัดส่ง: {}</div>
+                          <section className="col-lg-3  col-md-12">
+                            <div>ที่อยู่ในการจัดส่ง: {shipping_address_item.address} {shipping_address_item.subdistrict} {shipping_address_item.district} {shipping_address_item.province} {shipping_address_item.zipcode}</div>
                           </section>
                         </section>
                       </div>
