@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { get_tracking_order } from "../../../src/redux/pynk/orders";
+
+import no_img from "../../assets/img/pynk/no_image_icon.png";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
@@ -16,8 +18,6 @@ const OrderTracking = () => {
   const tracking_orders = useSelector(({ orders }) =>
     orders ? orders.tracking_orders : ""
   );
-  const dataProductList = tracking_orders;
-  /* const dataImageURL = JSON.parse(dataProductList); */
 
   useEffect(() => {
     if (user) {
@@ -40,12 +40,15 @@ const OrderTracking = () => {
             </div>
             {tracking_orders.length > 0 ? (
               <div className="order-tracking">
-                {tracking_orders.map(
-                  (item) => {
-                    const product_list_item = JSON.parse(item.product_list);
+                {tracking_orders.map((item, index) => {
+                  const product_list_item = JSON.parse(item.product_list);
+                  const shipping_address_item = JSON.parse(
+                    item.shipping_address
+                  );
 
-                    return (
-                      <>
+                  return (
+                    <React.Fragment key={`order-${index}`}>
+                      <div className="show-order">
                         <section className="order-detail">
                           <div>เลขที่คำสั่งซื้อ: {item.order_id}</div>
                           <div className="express-number">
@@ -55,34 +58,63 @@ const OrderTracking = () => {
                         </section>
                         {product_list_item &&
                           product_list_item.map((product, index) => (
-                            <section key={index} className="order-detail">
-                              <div>
-                                <img src={product.image} alt="" />
+                            <section
+                              key={`product-${index}`}
+                              className="order-detail none-border-bottom"
+                            >
+                              <div className="d-flex align-items-center">
+                                {product.image ? (
+                                  <img
+                                    src={product.image}
+                                    alt=""
+                                    width={100}
+                                    height={100}
+                                  />
+                                ) : (
+                                  <img
+                                    src={no_img}
+                                    width={100}
+                                    height={100}
+                                    alt=""
+                                  />
+                                )}
+                                <p className="ms-5 mb-0">{product.name}</p>
                               </div>
-                              {/* Add other details of the product as needed */}
+
+                              <p className="d-flex justify-content-center align-items-center mb-0">
+                                ราคา: {product.totalprice}฿
+                              </p>
                             </section>
                           ))}
-                      </>
-                    );
-                  }
-                  /* (
 
-                  <div key={index} className="show-order">
-                    
-                    
-                    <section className="order-detail mb-5">
-                      <div className="express-number">
-                        <div>ชำระสินค้าโดย: {item.payment_method}</div>
-                        <div>สถานะการชำระเงิน: {item.payment_status}</div>
-                      </div>
+                        <div className="order-detail">
+                          <p className="total-price">
+                            รวมการสั่งซื้อ: {item.total_amount}฿
+                          </p>
+                        </div>
 
-                      <div>
-                        <div>ที่อยู่ในการจัดส่ง: {}</div>
+                        <section className="order-detail mb-5">
+                          <div className="express-number">
+                            <div>ชำระสินค้าโดย: {item.payment_method}</div>
+                            <div>สถานะการชำระเงิน: {item.payment_status}</div>
+                          </div>
+
+                          {/* {shipping_address_item &&
+                            shipping_address_item.map((shipping, index) => (
+                              <section key={index}>
+                                <div>
+                                  ที่อยู่ในการจัดส่ง: {shipping.address}
+                                </div>
+                              </section>
+                            ))} */}
+                          <section>
+                            <div>ที่อยู่ในการจัดส่ง: {}</div>
+                          </section>
+                        </section>
                       </div>
-                    </section>
-                  </div>
-                ) */
-                )}
+                    </React.Fragment>
+                  );
+                })}
               </div>
             ) : (
               <div className="not-login">
@@ -91,24 +123,6 @@ const OrderTracking = () => {
             )}
           </div>
         )}
-
-        {/* {isLoggedIn && haveOrder ? { tracking_orders.map((item,index) => (
-          <li key={index}>{item.order_id}</li>)) } :""} */}
-
-        {/* <div className="order-tracking">
-              <div className="order-id text32 RegularPynk">
-                Order-ID:123456789
-              </div>
-              <div className="order-detail">
-                <div >รูปสินค้า</div>
-                <div>ชื่อสินค้า</div>
-                <div className="price">ราคา</div>
-              </div>
-              <div className="footer-detail">
-                <div>payment method</div>
-                <div>ที่อยู่ในการจัดส่งสินค้า</div>
-              </div>
-            </div> */}
         <div className="footer"></div>
         <Footer />
       </div>

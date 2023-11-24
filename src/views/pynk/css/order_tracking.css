@@ -33,6 +33,7 @@
     margin: 12px 0;
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
     border-radius: 0.125rem;
+    background-color: #F5F5F5;
 }
 .express-number{
     display: flex;
@@ -45,4 +46,12 @@
     padding: 1rem;
     width: 80%;
     border-bottom: 2px solid #fd1081;
+}
+.total-price{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+.none-border-bottom{
+    border: none;
 }
