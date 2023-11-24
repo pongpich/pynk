@@ -259,7 +259,7 @@ const Profile = () => {
                   </a>
                   <a
                     target="_blank"
-                    href="https://bebefitroutine.com/bikinibodychallenge/?fbclid=IwAR3ih08Gn7iVJforCps-27hju1Nhh86rUNTKg1liAUqqNiHYjNa6VxOr8zo"
+                    href="https://bebefitroutine.com/bikinibodychallenge/"
                     className="btn-content-details"
                   >
                     รายละเอียด
@@ -270,7 +270,7 @@ const Profile = () => {
                 <button className="btn-content-participate">เข้าร่วม</button>
                 <a
                   target="_blank"
-                  href="https://bebefitroutine.com/bikinibodychallenge/?fbclid=IwAR3ih08Gn7iVJforCps-27hju1Nhh86rUNTKg1liAUqqNiHYjNa6VxOr8zo"
+                  href="https://bebefitroutine.com/bikinibodychallenge/"
                   className="btn-content-details"
                 >
                   รายละเอียด
@@ -305,7 +305,7 @@ const Profile = () => {
                   </a>
                   <a
                     target="_blank"
-                    href="https://bebefitroutine.com/speedropechallenge/?fbclid=IwAR1lYqFXccwliYG6nDNwF6rPI9_4SlDd2_LteE7R6b_VH-pm7kjD2KaWpuw"
+                    href="https://bebefitroutine.com/speedropechallenge/"
                     className="btn-content-details"
                   >
                     รายละเอียด
@@ -316,7 +316,7 @@ const Profile = () => {
                 <button className="btn-content-participate">เข้าร่วม</button>
                 <a
                   target="_blank"
-                  href="https://bebefitroutine.com/speedropechallenge/?fbclid=IwAR1lYqFXccwliYG6nDNwF6rPI9_4SlDd2_LteE7R6b_VH-pm7kjD2KaWpuw"
+                  href="https://bebefitroutine.com/speedropechallenge/"
                   className="btn-content-details"
                 >
                   รายละเอียด
@@ -351,7 +351,7 @@ const Profile = () => {
                   </a>
                   <a
                     target="_blank"
-                    href="https://bebefitroutine.com/bodystepchallenge/?fbclid=IwAR3oOGlRcrHs1kRcyD-0r4tIjHN-QOX89pv_fm1zRpPjAU7TvCV5Of1Jyfg"
+                    href="https://bebefitroutine.com/bodystepchallenge/"
                     className="btn-content-details"
                   >
                     รายละเอียด
@@ -362,7 +362,7 @@ const Profile = () => {
                 <button className="btn-content-participate">เข้าร่วม</button>
                 <a
                   target="_blank"
-                  href="https://bebefitroutine.com/bodystepchallenge/?fbclid=IwAR3oOGlRcrHs1kRcyD-0r4tIjHN-QOX89pv_fm1zRpPjAU7TvCV5Of1Jyfg"
+                  href="https://bebefitroutine.com/bodystepchallenge/"
                   className="btn-content-details"
                 >
                   รายละเอียด
