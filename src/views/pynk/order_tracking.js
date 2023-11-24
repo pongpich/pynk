@@ -42,24 +42,28 @@ const OrderTracking = () => {
               <div className="order-tracking">
                 {tracking_orders.map(
                   (item) => {
-                    <section className="order-detail">
-                      <div>เลขที่คำสั่งซื้อ: {item.order_id}</div>
-                      <div className="express-number">
-                        <div>จัดส่งโดย: {item.shipping_channel}</div>
-                        <div>หมายเลขพัสดุ: {item.tracking_no}</div>
-                      </div>
-                    </section>;
-
                     const product_list_item = JSON.parse(item.product_list);
-                    product_list_item &&
-                      JSON.parse(item.product_list).map((product, index) => (
-                        <section key={index} className="order-detail">
-                          <div>
-                            <img src={product.image} alt="" />
+
+                    return (
+                      <>
+                        <section className="order-detail">
+                          <div>เลขที่คำสั่งซื้อ: {item.order_id}</div>
+                          <div className="express-number">
+                            <div>จัดส่งโดย: {item.shipping_channel}</div>
+                            <div>หมายเลขพัสดุ: {item.tracking_no}</div>
                           </div>
-                          <div></div>
                         </section>
-                      ));
+                        {product_list_item &&
+                          product_list_item.map((product, index) => (
+                            <section key={index} className="order-detail">
+                              <div>
+                                <img src={product.image} alt="" />
+                              </div>
+                              {/* Add other details of the product as needed */}
+                            </section>
+                          ))}
+                      </>
+                    );
                   }
                   /* (
 
