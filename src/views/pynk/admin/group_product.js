@@ -13,6 +13,7 @@ function GroupProduct() {
     const [products, setProducts] = useState([]); // สร้าง state เพื่อเก็บสินค้าที่เพิ่มเข้ามา
     const [groups, setGroups] = useState([]);
     const [selectedGroup, setSelectedGroup] = useState('');
+    const [errMessageProductId, setErrMessageProductId] = useState(false);
 
     const status_get_all_group_product = useSelector(({ admin }) => (admin ? admin.status_get_all_group_product : ""));
     const all_group_product = useSelector(({ admin }) => (admin ? admin.all_group_product : ""));
@@ -35,7 +36,6 @@ function GroupProduct() {
         const property = event.target.property.value;
         // setProducts([...products, productId]); // เพิ่มรหัสสินค้าลงใน state products
         event.target.reset(); // รีเซ็ตค่าในฟอร์ม
-
         dispatch(setGroupProduct(
             product_id,
             selectedGroup,
@@ -84,6 +84,15 @@ function GroupProduct() {
         }
     }, [status_add_group_product])
 
+    useEffect(() => {
+        if (status_set_group_product === "fail") {
+            setErrMessageProductId(true);
+        }
+        if (status_set_group_product === "success") {
+            setErrMessageProductId(false);
+        }
+    }, [status_set_group_product])
+
     const renderAddProductGroup = () => {
         return (
             <div className='card'>
@@ -113,7 +122,7 @@ function GroupProduct() {
         return (
             <div className='card mb-5'>
                 <h2>จัดการกลุ่ม</h2>
-                <label htmlFor="groupSelect">เลือกกลุ่ม:</label>
+                <label htmlFor="groupSelect" className='mt-5 bold'>เลือกกลุ่ม:</label>
                 <select
                     id="groupSelect"
                     value={selectedGroup}
@@ -128,7 +137,7 @@ function GroupProduct() {
                         ))}
                 </select>
 
-                <p className='mt-5'>สมาชิกในกลุ่ม:</p>
+                <p className='mt-5 bold'>สมาชิกในกลุ่ม:</p>
                 {
                     selectedGroup &&
                     <div>
@@ -159,14 +168,19 @@ function GroupProduct() {
                             </tbody>
                         </table>
 
-                        <p className='mt-5'>เพิ่มสมาชิก:</p>
+                        <p className='mt-5 bold'>เพิ่มสมาชิก:</p>
                         <form onSubmit={handleAddProduct}>
-                            <label htmlFor="productId">รหัสสินค้า:</label>
-                            <input type="text" id="product_id" name="product_id" />
-                            <label htmlFor="productId">คุณสมบัติ (เช่น สี, รสชาติ, size):</label>
-
-                            <input type="text" id="property" name="property" />
-                            <button type="submit">เพิ่มสมาชิก</button>
+                            <div className='d-flex  align-items-center'>
+                                <label htmlFor="productId">รหัสสินค้า:</label>
+                                <input type="text" id="product_id" name="product_id" style={{ width: "20%", height: 40 }} />
+                                <label htmlFor="productId" >คุณสมบัติ (เช่น สี, รสชาติ, size):</label>
+                                <input type="text" id="property" name="property" style={{ width: "20%", height: 40 }} />
+                                <button className='buy-now' style={{ width: 100 }} type="submit">เพิ่มสมาชิก</button>
+                            </div>
+                            {
+                                (errMessageProductId) &&
+                                <p className="text-danger">รหัสสินค้าไม่ถูกต้อง ตรวจสอบให้แน่ใจว่าเพิ่มสินค้าในระบบแล้ว</p>
+                            }
                         </form>
                     </div>
                 }
