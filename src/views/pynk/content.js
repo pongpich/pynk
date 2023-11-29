@@ -31,6 +31,8 @@ import "./css/content.css";
 const Content = () => {
     const history = useHistory();
     const [products, setProducts] = useState([]);
+    const [contents, setContents] = useState([]);
+
     const [page, setPage] = useState(9);
     const [totalPage, setTotalpage] = useState(1);
 
@@ -38,6 +40,7 @@ const Content = () => {
         setPage(selectedPage);
     };
 
+    const reqURL = 'https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf';
 
     useEffect(() => {
         (async () => {
@@ -50,6 +53,15 @@ const Content = () => {
         })();
     }, [page]);
 
+    useEffect(() => {
+        (async () => {
+            const { data } = await axios.get(reqURL);
+            const { contents } = data;
+            setContents(contents);
+            console.log(data,'xxx');
+            // setTotalpage(data.total / 10);
+        })();
+    });
     return (
         <div className="page">
 
@@ -72,7 +84,10 @@ const Content = () => {
                     </Button>
                 </div>
                 <div className="App">
-                    {products.length > 0 && (
+                   
+                     
+                   
+                     {products.length > 0 && (
                         <div className="products">
                             {products.map((ele) => (
                                 <div key={ele.id} className="product_single">
@@ -81,8 +96,8 @@ const Content = () => {
                                 </div>
                             ))}
                         </div>
-                    )}
-                    {products.length > 0 && (
+                    )} 
+                    {/* {products.length > 0 && (
                         <div className="pagination">
                             {page > 1 && (
                                 <span onClick={() => handlePageChange(page - 1)}>Back</span>
@@ -100,7 +115,7 @@ const Content = () => {
                                 <span onClick={() => handlePageChange(page + 1)}>Next</span>
                             )}
                         </div>
-                    )}
+                    )}*/}
                 </div>
             </Box>
             <Footer />

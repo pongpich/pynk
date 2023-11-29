@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import * as ReactDOM from 'react-dom';
+// import MarkdownIt from 'markdown-it';
+// import MdEditor from 'react-markdown-editor-lite';
+// import 'react-markdown-editor-lite/lib/index.css';
+
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../../redux/pynk/get";
 import { getProductDetail, add_product } from "../../../redux/pynk/admin";
@@ -8,6 +13,8 @@ import no_img from "../../../assets/img/pynk/no_image_icon.png";
 import "../css/add_product.css";
 
 function AddContent() {
+    // const mdParser = new MarkdownIt(/* Markdown-it options */);
+
     const history = useHistory();
     const dispatch = useDispatch();
     const user = useSelector(({ auth }) => (auth ? auth.user : ""));
@@ -282,7 +289,7 @@ function AddContent() {
 
         return (
             <div>
-                <div className='pointer bold text-primary' onClick={() => history.push("products_management")}>{`< สินค้า`}</div>
+                <div className='pointer bold text-primary' onClick={() => history.push("contents_management")}>{`< สินค้า`}</div>
                 <h2 className='mb-5'>เพิ่มสินค้าใหม่</h2>
 
                 <div className='text-danger'>** กรอกรหัสสินค้าจากเว็บไซต์ Zort **</div>
