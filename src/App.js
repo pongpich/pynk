@@ -162,6 +162,7 @@ class App extends Component {
     this.props.clearCreateUser();
     this.props.clearProgram();
     this.props.history.push("/home");
+    this.props.logout();
   }
   onClickNavbar(e) {
     if (e === "videoList") {
@@ -361,7 +362,7 @@ class App extends Component {
                         <li>
                           <a
                             class="dropdown-item"
-                            onClick={() => this.props.logout()}
+                            onClick={() => this.onUserLogout()}
                           >
                             ออกจากระบบ
                           </a>
