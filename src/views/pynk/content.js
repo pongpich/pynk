@@ -49,16 +49,26 @@ const Content = () => {
             );
             const { products } = data;
             setProducts(products);
+            console.log(data, 'product');
             setTotalpage(data.total / 10);
         })();
     }, [page]);
 
+    // useEffect(() => {
+    //     (async () => {
+    //         const { data } = await axios.get(reqURL).json();
+    //         const { contents } = data;
+    //         setContents(contents);
+    //         console.log(data, 'xxx');
+    //         // setTotalpage(data.total / 10);
+    //     })();
+    // });
     useEffect(() => {
         (async () => {
-            const { data } = await axios.get(reqURL);
-            const { contents } = data;
+            const req = await fetch(reqURL);
+            const contents = await req.json();
             setContents(contents);
-            console.log(data,'xxx');
+            console.log(contents, 'contents');
             // setTotalpage(data.total / 10);
         })();
     });
@@ -84,10 +94,18 @@ const Content = () => {
                     </Button>
                 </div>
                 <div className="App">
-                   
-                     
-                   
-                     {products.length > 0 && (
+
+
+                    <div className="products">
+                        {contents.map((content, index) => (
+                            <div key={content.id} className="product_single">
+                                <img className="content_img" src={content.acf.thumbnail} alt={content.title.rendered} />
+                                <div className="content_title">{content.title.rendered}</div>
+                                <div>{content.acf.summary}</div>
+                            </div>
+                        ))}
+                    </div>
+                    {/* {products.length > 0 && (
                         <div className="products">
                             {products.map((ele) => (
                                 <div key={ele.id} className="product_single">
@@ -96,7 +114,7 @@ const Content = () => {
                                 </div>
                             ))}
                         </div>
-                    )} 
+                    )} */}
                     {/* {products.length > 0 && (
                         <div className="pagination">
                             {page > 1 && (
