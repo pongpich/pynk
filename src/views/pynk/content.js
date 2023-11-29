@@ -75,13 +75,16 @@ const Content = () => {
     return (
         <div>
             <div className="page_title">
-                    <img src={title} alt="page_title" />
+                <div className="page_title_text">                
+                    บทความและสาระดีๆ
                 </div>
+                {/* <img src={title} alt="page_title" /> */}
+            </div>
             <div className="page">
-                
+
                 <Box sx={{ '& button': { m: 1 } }}>
 
-                    <div>
+                    <div className="button">
                         <Button variant="outlined" size="medium">
                             ทั้งหมด
                         </Button>
