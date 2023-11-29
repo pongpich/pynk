@@ -95,32 +95,48 @@ function GroupProduct() {
 
     const renderAddProductGroup = () => {
         return (
-            <div className='card'>
+            <div className='card' style={{ padding: 20 }}>
                 <h2>สร้างกลุ่มใหม่</h2>
-                <input
-                    type="text"
-                    placeholder="Enter group name"
-                    value={newGroupName}
-                    onChange={handleInputChange}
-                />
-                <button onClick={handleAddGroup}>Add Group</button>
+                <div className='d-flex align-items-center mt-5'>
+                    <p className='bold'>ตั้งชื่อกลุ่ม:</p>
+                    <input
+                        type="text"
+                        placeholder="กรอกชื่อกลุ่ม"
+                        value={newGroupName}
+                        onChange={handleInputChange}
+                        style={{ width: "35%", height: 40 }}
+                    />
+                    <button className='buy-now' style={{ width: 150 }} onClick={handleAddGroup}>สร้างกลุ่ม</button>
+                </div>
+                {
+                    (status_add_group_product === "fail") &&
+                    <p className="text-danger">มีชื่อกลุ่มนี้อยู่แล้วในระบบ ห้ามตั้งชื่อซ้ำ</p>
+                }
 
-                <p>รายชื่อกลุ่มทั้งหมด:</p>
-                <ul>
-                    {
-                        groups &&
-                        groups.map((group, index) => (
-                            <li key={index}>{group.group_name}</li>
-                        ))
-                    }
-                </ul>
+                <p className='bold'>รายชื่อกลุ่มทั้งหมด:</p> <p>(จะเรียงจากอันที่สร้างล่าสุด ไว้บนสุด)</p>
+                <table className="product-table-admin">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ชื่อกลุ่ม</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {groups && groups.map((group, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{group.group_name}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         )
     }
 
     const renderSelectedGroup = () => {
         return (
-            <div className='card mb-5'>
+            <div className='card mb-5' style={{ padding: 20 }}>
                 <h2>จัดการกลุ่ม</h2>
                 <label htmlFor="groupSelect" className='mt-5 bold'>เลือกกลุ่ม:</label>
                 <select
@@ -172,9 +188,9 @@ function GroupProduct() {
                         <form onSubmit={handleAddProduct}>
                             <div className='d-flex  align-items-center'>
                                 <label htmlFor="productId">รหัสสินค้า:</label>
-                                <input type="text" id="product_id" name="product_id" style={{ width: "20%", height: 40 }} />
+                                <input type="text" id="product_id" name="product_id" placeholder="กรอกรหัสสินค้า" style={{ width: "20%", height: 40 }} />
                                 <label htmlFor="productId" >คุณสมบัติ (เช่น สี, รสชาติ, size):</label>
-                                <input type="text" id="property" name="property" style={{ width: "20%", height: 40 }} />
+                                <input type="text" id="property" name="property" placeholder="กรอกคุณสมบัติ" style={{ width: "20%", height: 40 }} />
                                 <button className='buy-now' style={{ width: 100 }} type="submit">เพิ่มสมาชิก</button>
                             </div>
                             {
