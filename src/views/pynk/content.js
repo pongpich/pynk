@@ -73,39 +73,41 @@ const Content = () => {
         })();
     });
     return (
-        <div className="page">
-
-
-            <img src={title} alt="" />
-            <Box sx={{ '& button': { m: 1 } }}>
-
-                <div>
-                    <Button variant="outlined" size="medium">
-                        ทั้งหมด
-                    </Button>
-                    <Button variant="outlined" size="medium">
-                        อาหาร
-                    </Button>
-                    <Button variant="outlined" size="medium">
-                        ออกกำลังกาย
-                    </Button>
-                    <Button variant="outlined" size="medium">
-                        ไลฟ์สไตล์
-                    </Button>
+        <div>
+            <div className="page_title">
+                    <img src={title} alt="page_title" />
                 </div>
-                <div className="App">
+            <div className="page">
+                
+                <Box sx={{ '& button': { m: 1 } }}>
 
-
-                    <div className="products">
-                        {contents.map((content, index) => (
-                            <div key={content.id} className="product_single">
-                                <img className="content_img" src={content.acf.thumbnail} alt={content.title.rendered} />
-                                <div className="content_title">{content.title.rendered}</div>
-                                <div>{content.acf.summary}</div>
-                            </div>
-                        ))}
+                    <div>
+                        <Button variant="outlined" size="medium">
+                            ทั้งหมด
+                        </Button>
+                        <Button variant="outlined" size="medium">
+                            อาหาร
+                        </Button>
+                        <Button variant="outlined" size="medium">
+                            ออกกำลังกาย
+                        </Button>
+                        <Button variant="outlined" size="medium">
+                            ไลฟ์สไตล์
+                        </Button>
                     </div>
-                    {/* {products.length > 0 && (
+                    <div className="App">
+
+
+                        <div className="products">
+                            {contents.map((content, index) => (
+                                <div key={content.id} className="product_single">
+                                    <img className="content_img" src={content.acf.thumbnail} alt={content.title.rendered} />
+                                    <div className="content_title">{content.title.rendered}</div>
+                                    <div className="content_summary">{content.acf.summary}</div>
+                                </div>
+                            ))}
+                        </div>
+                        {/* {products.length > 0 && (
                         <div className="products">
                             {products.map((ele) => (
                                 <div key={ele.id} className="product_single">
@@ -115,7 +117,7 @@ const Content = () => {
                             ))}
                         </div>
                     )} */}
-                    {/* {products.length > 0 && (
+                        {/* {products.length > 0 && (
                         <div className="pagination">
                             {page > 1 && (
                                 <span onClick={() => handlePageChange(page - 1)}>Back</span>
@@ -134,10 +136,13 @@ const Content = () => {
                             )}
                         </div>
                     )}*/}
-                </div>
-            </Box>
+                    </div>
+                </Box>
+            </div>
             <Footer />
+
         </div>
+
     );
 };
 
