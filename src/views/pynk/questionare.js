@@ -90,6 +90,8 @@ const questions = [
 ];
 const Questionare = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const user = useSelector(({ auth }) => (auth ? auth.user : ""));
   const [formData, setFormData] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showOtherInput, setShowOtherInput] = useState(false);
@@ -97,23 +99,28 @@ const Questionare = () => {
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
 
   const handleInputChange = (questionId, answer) => {
-    if (questions[currentQuestion].hasOther && answer === "Other") {
-      setShowOtherInput(true);
-      // Set the selected option to the last option
-      answer =
-        questions[currentQuestion].options[
-          questions[currentQuestion].options.length - 1
-        ];
+    let updatedAnswers;
+
+    if (questions[currentQuestion].allowMultiple) {
+      const currentAnswers = formData[questionId] || [];
+      updatedAnswers = [...currentAnswers];
+
+      if (updatedAnswers.includes(answer)) {
+        updatedAnswers = updatedAnswers.filter(
+          (selectedAnswer) => selectedAnswer !== answer
+        );
+      } else {
+        updatedAnswers.push(answer);
+      }
     } else {
-      setShowOtherInput(false);
+      updatedAnswers = answer;
     }
 
     setFormData((prevData) => ({
       ...prevData,
-      [questionId]: answer,
+      "หัวข้อ": questions[currentQuestion].text,
+      [questionId]: updatedAnswers,
     }));
-
-    setIsOptionSelected(true);
 
     if (!answeredQuestions.includes(currentQuestion)) {
       setAnsweredQuestions((prevAnswers) => [...prevAnswers, currentQuestion]);
@@ -133,9 +140,10 @@ const Questionare = () => {
   };
 
   const handleSaveData = () => {
-    const savedData =
-      JSON.parse(localStorage.getItem("questionnaireData")) || [];
-    savedData[currentQuestion] = formData;
+    let savedData = JSON.parse(localStorage.getItem("questionnaireData"));
+    savedData[savedData.length - 1] = formData;
+    savedData = savedData.filter((data) => data !== null);
+
     localStorage.setItem("questionnaireData", JSON.stringify(savedData));
 
     if (currentQuestion < questions.length - 1) {
@@ -145,13 +153,13 @@ const Questionare = () => {
       /* if (formData.question1 === "Blue") {
         history.push("/blue-page");
       } */
+      dispatch(insertQuestion(user.user_id, savedData));
     }
   };
 
   /* dispatch(insertQuestion(user_id, data)); */
 
   const progress = ((currentQuestion + 1) / questions.length) * 100;
-
 
   return (
     <div className="page">
@@ -164,19 +172,30 @@ const Questionare = () => {
         <React.Fragment key={option}>
           <label>
             <input
-              type="radio"
+              type={
+                questions[currentQuestion].allowMultiple ? "checkbox" : "radio"
+              }
               name={questions[currentQuestion].id}
               value={option}
               onChange={() =>
                 handleInputChange(questions[currentQuestion].id, option)
               }
-              checked={formData[questions[currentQuestion].id] === option}
+              checked={
+                questions[currentQuestion].allowMultiple
+                  ? formData[questions[currentQuestion].id]?.includes(option)
+                  : formData[questions[currentQuestion].id] === option
+              }
             />
             {option === "Other" && showOtherInput ? (
+              // Show text box for "Other" option
               <input
                 type="text"
                 placeholder="Please specify"
-                value={formData[questions[currentQuestion].id] || ""}
+                value={
+                  formData[questions[currentQuestion].id]?.includes("Other")
+                    ? ""
+                    : formData[questions[currentQuestion].id]
+                }
                 onChange={(e) =>
                   handleInputChange(
                     questions[currentQuestion].id,
@@ -193,12 +212,22 @@ const Questionare = () => {
               <label>
                 Other:
                 <input
-                  type="radio"
+                  type={
+                    questions[currentQuestion].allowMultiple
+                      ? "checkbox"
+                      : "radio"
+                  }
                   value="Other"
                   onChange={() =>
                     handleInputChange(questions[currentQuestion].id, "Other")
                   }
-                  checked={formData[questions[currentQuestion].id] === "Other"}
+                  checked={
+                    questions[currentQuestion].allowMultiple
+                      ? formData[questions[currentQuestion].id]?.includes(
+                          "Other"
+                        )
+                      : formData[questions[currentQuestion].id] === "Other"
+                  }
                 />
               </label>
             )}
