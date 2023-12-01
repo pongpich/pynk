@@ -8,8 +8,22 @@ export const types = {
   GET_PRODUCTS_SUCCESS: "GET_PRODUCTS_SUCCESS",
   GET_CONTENTS: "GET_CONTENTS",
   GET_CONTENTS_SUCCESS: "GET_CONTENTS_SUCCESS",
-
+  GET_PAGE: "GET_PAGE",
+  GET_PAGE: "GET_PAGE",
+  GET_PAGE_SUCCESS: "GET_PAGE_SUCCESS",
+  CLEAR_GET_PAGE: "CLEAR_GET_PAGE",
+  CLEAR_GET_PAGE_SUCCESS: "CLEAR_GET_PAGE_SUCCESS",
 };
+
+export const getPage = (data) => ({
+  type: types.GET_PAGE,
+  payload: { data },
+});
+
+export const clearGetPage = () => ({
+  type: types.CLEAR_GET_PAGE,
+  payload: {},
+});
 
 export const getProducts = () => ({
   type: types.GET_PRODUCTS,
@@ -41,7 +55,7 @@ const getContentsSagaAsync = async () => {
   }
 };
 
-function* getProductsSaga({ }) {
+function* getProductsSaga({}) {
   try {
     const apiResult = yield call(getProductsSagaAsync);
     yield put({
@@ -53,7 +67,7 @@ function* getProductsSaga({ }) {
   }
 }
 
-function* getContentsSaga({ }) {
+function* getContentsSaga({}) {
   try {
     const apiResult = yield call(getContentsSagaAsync);
     yield put({
@@ -73,17 +87,16 @@ export function* watchGetContentsSaga() {
   yield takeEvery(types.GET_CONTENTS, getContentsSaga);
 }
 export function* saga() {
-  yield all([
-    fork(watchGetProductsSaga),
-    fork(watchGetContentsSaga),
-  ]);
+  yield all([fork(watchGetProductsSaga), fork(watchGetContentsSaga)]);
 }
 
 const INIT_STATE = {
   products_pynk: null,
   contents_pynk: null,
   status_products_pynk: "default",
-  status_contents_pynk: "default"
+  status_contents_pynk: "default",
+  dataPage: null,
+  status_data_page: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
@@ -109,6 +122,17 @@ export function reducer(state = INIT_STATE, action) {
         ...state,
         contents_pynk: action.payload.contents,
         status_contents_pynk: "success",
+      };
+    case types.GET_PAGE:
+      return {
+        ...state,
+        dataPage: action.payload.data,
+        status_data_page: "success",
+      };
+    case types.CLEAR_GET_PAGE:
+      return {
+        ...state,
+        status_data_page: "default",
       };
     default:
       return { ...state };

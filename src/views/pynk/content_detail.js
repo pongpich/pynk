@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 
 import title from "../../assets/img/content/Title.png";
 import slide1 from "../../assets/img/home/slide1.png";
@@ -25,83 +26,73 @@ import content1 from "../../assets/img/home/content1.png";
 import content2 from "../../assets/img/home/content2.png";
 import content3 from "../../assets/img/home/content3.png";
 import Footer from "./footer";
-import { useHistory,useLocation } from "react-router-dom";
+import { clearGetPage } from "../../redux/pynk/contents";
+import { useHistory, useLocation } from "react-router-dom";
 import "./css/content.css";
 
 const Content_detail = () => {
-    const history = useHistory();
-    const [products, setProducts] = useState([]);
-    const [contents, setContents] = useState([]);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-    const [page, setPage] = useState(9);
-    const [totalPage, setTotalpage] = useState(1);
+  const { getContents, dataPage } = useSelector(({ contents }) =>
+    contents ? contents : null
+  );
+  const [products, setProducts] = useState([]);
+  const [contents, setContents] = useState(dataPage ?? []);
 
-    const handlePageChange = (selectedPage) => {
-        setPage(selectedPage);
-    };
+  const [page, setPage] = useState(9);
+  const [totalPage, setTotalpage] = useState(1);
 
-    const page_link = useLocation()
-    const [sample, setSample] = useState(undefined);
+  const handlePageChange = (selectedPage) => {
+    setPage(selectedPage);
+  };
 
+  const reqURL =
+    "https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf";
+  // const page_link = 'https://content.pynk.co/sample-page/';
 
-    const reqURL = 'https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf';
-    // const page_link = 'https://content.pynk.co/sample-page/';
+  // useEffect(() => {
+  //     (async () => {
+  //         const { data } = await axios.get(
+  //             `https://dummyjson.com/products?limit=10&skip=${page * 10 - 10}`
+  //         );
+  //         const { products } = data;
+  //         setProducts(products);
+  //         console.log(data, 'product');
+  //         setTotalpage(data.total / 10);
+  //     })();
+  // }, [page]);
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const { data } = await axios.get(
-    //             `https://dummyjson.com/products?limit=10&skip=${page * 10 - 10}`
-    //         );
-    //         const { products } = data;
-    //         setProducts(products);
-    //         console.log(data, 'product');
-    //         setTotalpage(data.total / 10);
-    //     })();
-    // }, [page]);
+  // useEffect(() => {
+  //     (async () => {
+  //         const { data } = await axios.get(reqURL).json();
+  //         const { contents } = data;
+  //         setContents(contents);
+  //         console.log(data, 'xxx');
+  //         // setTotalpage(data.total / 10);
+  //     })();
+  // });
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const { data } = await axios.get(reqURL).json();
-    //         const { contents } = data;
-    //         setContents(contents);
-    //         console.log(data, 'xxx');
-    //         // setTotalpage(data.total / 10);
-    //     })();
-    // });
-    useEffect(() => {
-        (async () => {
-            const req = await fetch(reqURL);
-            const contents = await req.json();
-            setContents(contents);
-            console.log(contents, 'contents');
-            // setTotalpage(data.total / 10);
-        })();
-        const page_link_real = page_link.state.page_link;
-        // const test = page_link_real.replace('https://content.pynk.co/','');
-        if (page_link_real != undefined || page_link_real != null) {
-            setSample(page_link_real);
-          } 
-        console.log(sample);
-    });
-    return (
-        <div>
+  useEffect(() => {
+    dispatch(clearGetPage());
+  }, []);
 
-            <div className="page">
+  useEffect(() => {
+    setContents(dataPage);
+  }, [dataPage]);
 
-                <Box sx={{ '& button': { m: 1 } }}>
+  console.log("contents", contents);
 
-
-                    <div className="App">
-
-                        xxxxxx
-                    </div>
-                </Box>
-            </div>
-            {/* <Footer /> */}
-
-        </div>
-
-    );
+  return (
+    <div>
+      <div className="page">
+        <Box sx={{ "& button": { m: 1 } }}>
+          <div className="App">xxxxxx</div>
+        </Box>
+      </div>
+      {/* <Footer /> */}
+    </div>
+  );
 };
 
 export default Content_detail;

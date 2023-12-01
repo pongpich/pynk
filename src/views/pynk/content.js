@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import axios from "axios";
+import { getPage } from "../../redux/pynk/contents";
+import { useSelector, useDispatch } from "react-redux";
 
 import title from "../../assets/img/content/Title.png";
 import slide1 from "../../assets/img/home/slide1.png";
@@ -30,98 +32,116 @@ import "./css/content.css";
 import { Link } from "react-router-dom";
 
 const Content = () => {
-    const history = useHistory();
-    const [products, setProducts] = useState([]);
-    const [contents, setContents] = useState([]);
+  const status_data_page = useSelector(({ contents }) =>
+    contents ? contents.status_data_page : ""
+  );
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
+  const [contents, setContents] = useState([]);
 
-    const [page, setPage] = useState(9);
-    const [totalPage, setTotalpage] = useState(1);
+  const [page, setPage] = useState(9);
+  const [totalPage, setTotalpage] = useState(1);
 
-    const handlePageChange = (selectedPage) => {
-        setPage(selectedPage);
-    };
+  const handlePageChange = (selectedPage) => {
+    setPage(selectedPage);
+  };
 
-    const reqURL = 'https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf';
-  
-    useEffect(() => {
-        (async () => {
-            const { data } = await axios.get(
-                `https://dummyjson.com/products?limit=10&skip=${page * 10 - 10}`
-            );
-            const { products } = data;
-            setProducts(products);
-            console.log(data, 'product');
-            setTotalpage(data.total / 10);
-        })();
-    }, [page]);
+  const reqURL =
+    "https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf";
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const { data } = await axios.get(reqURL).json();
-    //         const { contents } = data;
-    //         setContents(contents);
-    //         console.log(data, 'xxx');
-    //         // setTotalpage(data.total / 10);
-    //     })();
-    // });
-    useEffect(() => {
-        (async () => {
-            const req = await fetch(reqURL);
-            const contents = await req.json();
-            setContents(contents);
-            console.log(contents, 'contents');
-            // setTotalpage(data.total / 10);
-        })();
-    });
-    return (
-        <div>
-            <div className="page_title">
-                <div className="page_title_text">
-                    บทความและสาระดีๆ
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get(
+        `https://dummyjson.com/products?limit=10&skip=${page * 10 - 10}`
+      );
+      const { products } = data;
+      setProducts(products);
+      console.log(data, "product");
+      setTotalpage(data.total / 10);
+    })();
+  }, [page]);
+
+  // useEffect(() => {
+  //     (async () => {
+  //         const { data } = await axios.get(reqURL).json();
+  //         const { contents } = data;
+  //         setContents(contents);
+  //         console.log(data, 'xxx');
+  //         // setTotalpage(data.total / 10);
+  //     })();
+  // });
+  useEffect(() => {
+    //
+    (async () => {
+      const req = await fetch(reqURL);
+      const contents = await req.json();
+      setContents(contents);
+    })();
+  }, []);
+
+  const nextPage = async (contents) => {
+    console.log("contents", contents);
+    dispatch(getPage(contents));
+  };
+
+  useEffect(() => {
+    if (status_data_page == "success") {
+      history.push(`/content_detail/${contents.id}`);
+    }
+  }, [status_data_page]);
+  console.log("status_data_page", status_data_page);
+
+  return (
+    <div>
+      <div className="page_title">
+        <div className="page_title_text">บทความและสาระดีๆ</div>
+        {/* <img src={title} alt="page_title" /> */}
+      </div>
+      <div className="page">
+        <Box sx={{ "& button": { m: 1 } }}>
+          <div className="button">
+            <Button variant="outlined" size="medium">
+              ทั้งหมด
+            </Button>
+            <Button variant="outlined" size="medium">
+              อาหาร
+            </Button>
+            <Button variant="outlined" size="medium">
+              ออกกำลังกาย
+            </Button>
+            <Button variant="outlined" size="medium">
+              ไลฟ์สไตล์
+            </Button>
+          </div>
+          <div className="App">
+            <div className="products">
+              {contents.map((content, index) => (
+                // <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}>
+
+                /*   <Link
+                  to={{
+                    pathname: `/content_detail/${content.id}`,
+                    state: { page_link: content.acf.page_link },
+                  }}
+                > */
+                <div
+                  key={content.id}
+                  className="product_single"
+                  onClick={() => nextPage(content)}
+                >
+                  <img
+                    className="content_img"
+                    src={content.acf.thumbnail}
+                    alt={content.title.rendered}
+                  />
+                  <div className="content_title">{content.title.rendered}</div>
+                  <div className="content_summary">{content.acf.summary}</div>
                 </div>
-                {/* <img src={title} alt="page_title" /> */}
+                /*  </Link> */
+              ))}
             </div>
-            <div className="page">
-
-                <Box sx={{ '& button': { m: 1 } }}>
-
-                    <div className="button">
-                        <Button variant="outlined" size="medium">
-                            ทั้งหมด
-                        </Button>
-                        <Button variant="outlined" size="medium">
-                            อาหาร
-                        </Button>
-                        <Button variant="outlined" size="medium">
-                            ออกกำลังกาย
-                        </Button>
-                        <Button variant="outlined" size="medium">
-                            ไลฟ์สไตล์
-                        </Button>
-                    </div>
-                    <div className="App">
-
-
-                        <div className="products">
-                            {contents.map((content, index) => (
-                                // <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}>
-                                
-                                <Link
-                                    to={{
-                                        pathname: `/content_detail/${content.id}`,
-                                        state: {page_link: content.acf.page_link},
-                                    }}
-                                >
-                                    <div key={content.id} className="product_single">
-                                        <img className="content_img" src={content.acf.thumbnail} alt={content.title.rendered} />
-                                        <div className="content_title">{content.title.rendered}</div>
-                                        <div className="content_summary">{content.acf.summary}</div>
-                                    </div>
-                                </Link>
-
-                            ))}
-                        </div>
-                        {/* {products.length > 0 && (
+            {/* {products.length > 0 && (
                         <div className="products">
                             {products.map((ele) => (
                                 <div key={ele.id} className="product_single">
@@ -131,7 +151,7 @@ const Content = () => {
                             ))}
                         </div>
                     )} */}
-                        {/* {products.length > 0 && (
+            {/* {products.length > 0 && (
                         <div className="pagination">
                             {page > 1 && (
                                 <span onClick={() => handlePageChange(page - 1)}>Back</span>
@@ -150,14 +170,12 @@ const Content = () => {
                             )}
                         </div>
                     )}*/}
-                    </div>
-                </Box>
-            </div>
-            <Footer />
-
-        </div>
-
-    );
+          </div>
+        </Box>
+      </div>
+      <Footer />
+    </div>
+  );
 };
 
 export default Content;
