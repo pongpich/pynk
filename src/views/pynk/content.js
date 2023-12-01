@@ -57,7 +57,7 @@ const Content = () => {
       );
       const { products } = data;
       setProducts(products);
-      console.log(data, "product");
+    //   console.log(data, "product");
       setTotalpage(data.total / 10);
     })();
   }, [page]);
@@ -76,6 +76,7 @@ const Content = () => {
     (async () => {
       const req = await fetch(reqURL);
       const contents = await req.json();
+      console.log(contents);
       setContents(contents);
     })();
   }, []);
