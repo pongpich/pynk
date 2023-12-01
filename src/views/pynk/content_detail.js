@@ -28,7 +28,7 @@ import content3 from "../../assets/img/home/content3.png";
 import Footer from "./footer";
 import { clearGetPage } from "../../redux/pynk/contents";
 import { useHistory, useLocation } from "react-router-dom";
-import "./css/content.css";
+import "./css/content_detail.css";
 
 const Content_detail = () => {
     const history = useHistory();
@@ -88,15 +88,15 @@ const Content_detail = () => {
             // const requrl2 = 'https://content.pynk.co/wp-json/wp/v2/pages?_fields=id,slug,title,content&slug='+requrl;
             // const req = await fetch(contents.acf.page_link);
             console.log(contents.acf.page_link);
-            if(contents.acf.page_link){
+            if (contents.acf.page_link) {
                 const requrl = (contents.acf.page_link).replace('https://content.pynk.co/', 'https://content.pynk.co/wp-json/wp/v2/pages?_fields=id,slug,title,content&slug=');;
                 const req = await fetch(requrl);
-    
+
                 const page = await req.json();
                 setXxxxx(page);
                 console.log(page[0]);
             }
-           
+
         })();
     }, []);
     //   console.log("contents", contents);
@@ -109,8 +109,8 @@ const Content_detail = () => {
                         <div className="products">
                             {xxxxx.map((page, index) => (
                                 <div>
-                                    <h1>{page.title.rendered}</h1>
-                                    <div dangerouslySetInnerHTML={{__html: page.content.rendered}}/>
+                                    <h1 className="title">{page.title.rendered}</h1>
+                                    <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
                                 </div>
 
 
@@ -120,7 +120,7 @@ const Content_detail = () => {
                     </div>
                 </Box>
             </div>
-            {/* <Footer /> */}
+            <Footer />
         </div>
     );
 };
