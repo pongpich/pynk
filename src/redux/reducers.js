@@ -7,6 +7,7 @@ import settings from "./settings/reducer";
 
 //ของ Pynk
 import { reducer as dashboardPynk } from "./pynk/post";
+import { reducer as question } from "./pynk/question";
 import { reducer as auth } from "./pynk/auth";
 import { reducer as orders } from "./pynk/orders";
 import { reducer as getPynk } from "./pynk/get";
@@ -74,6 +75,7 @@ const reducers = combineReducers({
   orders,
   admin,
   contents,
+  question,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

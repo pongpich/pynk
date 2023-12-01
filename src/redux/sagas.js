@@ -25,6 +25,7 @@ import { saga as updatePlatform } from "./platform/update";
 
 //ของ Pynk
 import { saga as dashboardPynk } from "./pynk/post";
+import { saga as question } from "./pynk/question";
 import { saga as auth } from "./pynk/auth";
 import { saga as orders } from "./pynk/orders";
 import { saga as getPynk } from "./pynk/get";
@@ -63,5 +64,6 @@ export default function* rootSaga(getState) {
     orders(),
     admin(),
     contents(),
+    question(),
   ]);
 }
