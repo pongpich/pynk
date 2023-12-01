@@ -27,6 +27,7 @@ import content3 from "../../assets/img/home/content3.png";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 import "./css/content.css";
+import { Link } from "react-router-dom";
 
 const Content = () => {
     const history = useHistory();
@@ -41,7 +42,7 @@ const Content = () => {
     };
 
     const reqURL = 'https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf';
-
+  
     useEffect(() => {
         (async () => {
             const { data } = await axios.get(
@@ -75,7 +76,7 @@ const Content = () => {
     return (
         <div>
             <div className="page_title">
-                <div className="page_title_text">                
+                <div className="page_title_text">
                     บทความและสาระดีๆ
                 </div>
                 {/* <img src={title} alt="page_title" /> */}
@@ -103,11 +104,21 @@ const Content = () => {
 
                         <div className="products">
                             {contents.map((content, index) => (
-                                <div key={content.id} className="product_single">
-                                    <img className="content_img" src={content.acf.thumbnail} alt={content.title.rendered} />
-                                    <div className="content_title">{content.title.rendered}</div>
-                                    <div className="content_summary">{content.acf.summary}</div>
-                                </div>
+                                // <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}>
+                                
+                                <Link
+                                    to={{
+                                        pathname: `/content_detail/${content.id}`,
+                                        state: {page_link: content.acf.page_link},
+                                    }}
+                                >
+                                    <div key={content.id} className="product_single">
+                                        <img className="content_img" src={content.acf.thumbnail} alt={content.title.rendered} />
+                                        <div className="content_title">{content.title.rendered}</div>
+                                        <div className="content_summary">{content.acf.summary}</div>
+                                    </div>
+                                </Link>
+
                             ))}
                         </div>
                         {/* {products.length > 0 && (

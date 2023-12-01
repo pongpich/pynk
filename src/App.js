@@ -43,6 +43,7 @@ import Questionare from "../src/views/pynk/questionare";
 import profilePynk from "../src/views/pynk/profile";
 import profileEditPynk from "../src/views/pynk/profile_edit";
 import Content from "../src/views/pynk/content";
+import Content_detail from "../src/views/pynk/content_detail";
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -692,6 +693,7 @@ class App extends Component {
                 <Route path="/order_tracking" component={OrderTracking} />
                 <Route path="/questionare" component={Questionare} />
                 <Route path="/content" component={Content} />
+                <Route path="/content_detail/:id" component={Content_detail} />
                 <Route
                   path="/shop-order-summary"
                   component={ShopOrderSummaryPynk}
