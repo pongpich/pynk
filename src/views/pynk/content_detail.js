@@ -79,14 +79,21 @@ const Content_detail = () => {
 
     useEffect(() => {
         setContents(dataPage);
+        history.push(`/content_detail/${contents.id}`);
     }, [dataPage]);
-
+    // useEffect(() => {
+    //     if (status_data_page == "success") {
+    //       history.push(`/content_detail/${contents.id}`);
+    //     }
+    //   }, [status_data_page]);
     useEffect(() => {
         //
         (async () => {
             // const requrl = (contents.acf.page_link).replace('https://content.pynk.co/','');;
             // const requrl2 = 'https://content.pynk.co/wp-json/wp/v2/pages?_fields=id,slug,title,content&slug='+requrl;
             // const req = await fetch(contents.acf.page_link);
+            console.log(contents);
+
             console.log(contents.acf.page_link);
             if (contents.acf.page_link) {
                 const requrl = (contents.acf.page_link).replace('https://content.pynk.co/', 'https://content.pynk.co/wp-json/wp/v2/pages?_fields=id,slug,title,content&slug=');;
