@@ -57,7 +57,7 @@ const Content = () => {
       );
       const { products } = data;
       setProducts(products);
-    //   console.log(data, "product");
+      //   console.log(data, "product");
       setTotalpage(data.total / 10);
     })();
   }, [page]);
@@ -86,11 +86,11 @@ const Content = () => {
     dispatch(getPage(contents));
   };
 
-  useEffect(() => {
-    if (status_data_page == "success") {
-      history.push(`/content_detail/${contents.id}`);
-    }
-  }, [status_data_page]);
+  // useEffect(() => {
+  //   if (status_data_page == "success") {
+  //     history.push(`/content_detail/${contents.id}`);
+  //   }
+  // }, [status_data_page]);
   console.log("status_data_page", status_data_page);
 
   return (
@@ -120,25 +120,22 @@ const Content = () => {
               {contents.map((content, index) => (
                 // <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}>
 
-                /*   <Link
-                  to={{
-                    pathname: `/content_detail/${content.id}`,
-                    state: { page_link: content.acf.page_link },
-                  }}
-                > */
-                <div
-                  key={content.id}
-                  className="product_single"
-                  onClick={() => nextPage(content)}
-                >
-                  <img
-                    className="content_img"
-                    src={content.acf.thumbnail}
-                    alt={content.title.rendered}
-                  />
-                  <div className="content_title">{content.title.rendered}</div>
-                  <div className="content_summary">{content.acf.summary}</div>
-                </div>
+                <Link to={`/content_detail/${content.id}`}>
+                  <div
+                    key={content.id}
+                    className="product_single"
+                    onClick={() => nextPage(content)}
+                  >
+                    <img
+                      className="content_img"
+                      src={content.acf.thumbnail}
+                      alt={content.title.rendered}
+                    />
+                    <div className="content_title">{content.title.rendered}</div>
+                    <div className="content_summary">{content.acf.summary}</div>
+                  </div>
+                </Link>
+
                 /*  </Link> */
               ))}
             </div>
