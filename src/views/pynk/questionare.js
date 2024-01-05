@@ -98,11 +98,10 @@ const Questionare = () => {
   const [isOptionSelected, setIsOptionSelected] = useState(false);
   const [answeredQuestions, setAnsweredQuestions] = useState([]);
 
-  const handleInputChange = (questionId, answer) => {
+  const handleInputChange = (text, answer) => {
     let updatedAnswers;
-
     if (questions[currentQuestion].allowMultiple) {
-      const currentAnswers = formData[questionId] || [];
+      const currentAnswers = formData[text] || [];
       updatedAnswers = [...currentAnswers];
 
       if (updatedAnswers.includes(answer)) {
@@ -118,8 +117,8 @@ const Questionare = () => {
 
     setFormData((prevData) => ({
       ...prevData,
-      "หัวข้อ": questions[currentQuestion].text,
-      [questionId]: updatedAnswers,
+      /* "หัวข้อ": questions[currentQuestion].text, */
+      [text]: updatedAnswers,
     }));
 
     if (!answeredQuestions.includes(currentQuestion)) {
@@ -143,6 +142,8 @@ const Questionare = () => {
     let savedData = JSON.parse(localStorage.getItem("questionnaireData"));
     savedData[savedData.length - 1] = formData;
     savedData = savedData.filter((data) => data !== null);
+
+    console.log("savedData",savedData);
 
     localStorage.setItem("questionnaireData", JSON.stringify(savedData));
 
@@ -175,15 +176,15 @@ const Questionare = () => {
               type={
                 questions[currentQuestion].allowMultiple ? "checkbox" : "radio"
               }
-              name={questions[currentQuestion].id}
+              name={questions[currentQuestion].text}
               value={option}
               onChange={() =>
-                handleInputChange(questions[currentQuestion].id, option)
+                handleInputChange(questions[currentQuestion].text, option)
               }
               checked={
                 questions[currentQuestion].allowMultiple
-                  ? formData[questions[currentQuestion].id]?.includes(option)
-                  : formData[questions[currentQuestion].id] === option
+                  ? formData[questions[currentQuestion].text]?.includes(option)
+                  : formData[questions[currentQuestion].text] === option
               }
             />
             {option === "Other" && showOtherInput ? (
@@ -192,13 +193,13 @@ const Questionare = () => {
                 type="text"
                 placeholder="Please specify"
                 value={
-                  formData[questions[currentQuestion].id]?.includes("Other")
+                  formData[questions[currentQuestion].text]?.includes("Other")
                     ? ""
-                    : formData[questions[currentQuestion].id]
+                    : formData[questions[currentQuestion].text]
                 }
                 onChange={(e) =>
                   handleInputChange(
-                    questions[currentQuestion].id,
+                    questions[currentQuestion].text,
                     e.target.value
                   )
                 }
@@ -219,14 +220,14 @@ const Questionare = () => {
                   }
                   value="Other"
                   onChange={() =>
-                    handleInputChange(questions[currentQuestion].id, "Other")
+                    handleInputChange(questions[currentQuestion].text, "Other")
                   }
                   checked={
                     questions[currentQuestion].allowMultiple
-                      ? formData[questions[currentQuestion].id]?.includes(
+                      ? formData[questions[currentQuestion].text]?.includes(
                           "Other"
                         )
-                      : formData[questions[currentQuestion].id] === "Other"
+                      : formData[questions[currentQuestion].text] === "Other"
                   }
                 />
               </label>

@@ -260,7 +260,7 @@ const Home = () => {
                     ""
                   )}
                   <button
-                    onClick={() => history.push("/questionare")}
+                    /* onClick={() => history.push("/questionare")} */
                     className="btn  bold button-home1 col-10 col-sm-10 button-home1"
                   >
                     เริ่มฟิตไปด้วยกัน
@@ -432,8 +432,6 @@ const Home = () => {
             <div className="card-content-home5">
               <img
                 src={content1}
-                width={376}
-                height={251}
                 style={{ marginBottom: "32px" }}
                 alt=""
               />
@@ -446,8 +444,6 @@ const Home = () => {
             <div className="card-content-home5">
               <img
                 src={content2}
-                width={376}
-                height={251}
                 style={{ marginBottom: "32px" }}
                 alt=""
               />
@@ -460,8 +456,6 @@ const Home = () => {
             <div className="card-content-home5">
               <img
                 src={content3}
-                width={376}
-                height={251}
                 style={{ marginBottom: "32px" }}
                 alt=""
               />

@@ -629,11 +629,12 @@ transition: transform 0.3s ease-out;
   justify-content: space-between;
   width: 80%;
   left: 10%;
+  gap: 30px;
 }
 
-.card-content-home5 {
-  width: 376px;
-  height: 406px;
+.card-content-home5 img{
+  width: 100%;
+  height: auto;
 }
 
 .card-content-home5:nth-child(-n + 3):hover {
