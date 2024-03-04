@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.4",
+    "@emotion/style": "^0.8.0",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
-    "@mui/material": "^5.14.4",
+    "@mui/material": "^5.15.11",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "aos": "^2.3.4",
     "aws-amplify": "^4.3.22",
     "axios": "^0.27.2",
     "base-64": "^1.0.0",
@@ -75,4 +77,3 @@
     "sass": "^1.62.1"
   }
 }
-

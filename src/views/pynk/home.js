@@ -25,6 +25,8 @@ import { useHistory } from "react-router-dom";
 import "./css/home.css";
 import "./css/home_animation.css";
 import styles from "./css/home.module.css";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 
 let slidesToShow = 3;
 
@@ -39,24 +41,33 @@ const carouselProperties = {
   // slidesToScroll={3}
   responsive: [
     {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+    {
       breakpoint: 576,
       settings: {
-        slidesToShow: 1.1,
+        slidesToShow: 1,
         centerMode: true,
+        slidesToScroll: 1,
       },
     },
     {
       breakpoint: 769,
       settings: {
-        slidesToShow: 2.5,
+        slidesToShow: 1,
         centerMode: true,
+        slidesToScroll: 1,
       },
     },
     {
       breakpoint: 992,
       settings: {
-        slidesToShow: 3,
-        centerMode: true,
+        slidesToShow: 2,
+        slidesToScroll: 1,
       },
     },
     {
@@ -117,13 +128,14 @@ const Home = () => {
 
   useEffect(() => {
     const carousel = document.getElementById("carouselExampleAutoplaying");
-
     // เมื่อสไลด์เปลี่ยน
     carousel.addEventListener("slid.bs.carousel", (event) => {
       setCurrentSlideIndex(event.to);
       setAnimation(true);
     });
-  }, []);
+    console.log("currentSlideIndex", currentSlideIndex);
+    console.log("previousSlideIndex", previousSlideIndex);
+  }, [currentSlideIndex]);
 
   function previousIndex(curr, prev) {
     setPreviousSlideIndex(prev);
@@ -133,173 +145,176 @@ const Home = () => {
   }
 
   return (
-    <>
-      <div className="page">
-        <div
-          id="carouselExampleAutoplaying"
-          className="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div className="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 1"
-              onClick={() => previousIndex(0, currentSlideIndex)}
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-              onClick={() => previousIndex(1, currentSlideIndex)}
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-              onClick={() => previousIndex(2, currentSlideIndex)}
-            ></button>
-          </div>
-          <div className="carousel-inner">
-            <div className="box_animation">
-              <div className="row">
-                <div className="col-12 col-md-6 relative flex_center">
-                  <img
-                    src={bubblesTop}
-                    className={`bubbles-top  ${
-                      (animation &&
-                        currentSlideIndex === 0 &&
-                        previousSlideIndex !== 1 &&
-                        "rotate2to0-1") ||
-                      (currentSlideIndex === 0 &&
-                        previousSlideIndex === 1 &&
-                        "rotate1to0-1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex !== 2 &&
-                        "rotate0to1-1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex === 2 &&
-                        "rotate2to1-1") ||
-                      (currentSlideIndex === 2 && "rotate1to2-1")
-                    }`}
-                    id="bubbles-top"
-                    alt=""
-                  />
-                  <img
-                    src={bubblesBottom}
-                    className={`bubbles-bottom  ${
-                      (animation &&
-                        currentSlideIndex === 0 &&
-                        previousSlideIndex !== 1 &&
-                        "rotate2to0") ||
-                      (currentSlideIndex === 0 &&
-                        previousSlideIndex === 1 &&
-                        "rotate1to0") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex !== 2 &&
-                        "rotate0to1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex === 2 &&
-                        "rotate2to1") ||
-                      (currentSlideIndex === 2 && "rotate1to2")
-                    }`}
-                    id="bubbles-bottom"
-                    alt=""
-                  />
-                  <div
-                    className={`${
-                      (currentSlideIndex === 0 &&
-                        previousSlideIndex !== 1 &&
-                        "bebe-slide1 bebe-slide2to0") ||
-                      (currentSlideIndex === 0 &&
-                        previousSlideIndex === 1 &&
-                        "bebe-slide1 bebe-slide1to0") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex !== 2 &&
-                        "bebe-slide2 bebe-slide0to1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex === 2 &&
-                        "bebe-slide2 bebe-slide2to1") ||
-                      (currentSlideIndex === 2 && "bebe-slide3 bebe-slide1to2")
-                    }`}
-                  ></div>
-                </div>
-                <div className="col-12 col-md-6 relative flex_center">
-                  {currentSlideIndex === 0 ? (
-                    <div className="home1-detail">
-                      <img
-                        src={stay_fit_with_bebe}
-                        className="slide-img1"
-                        alt=""
-                      />
-                      <p className="slide-text1 SemiBoldPynk">
-                        คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตีความสำเร็จจากนักเรียนกว่าสิบรุ่น
-                      </p>
-                    </div>
-                  ) : currentSlideIndex === 1 ? (
-                    <div className="home1-detail">
-                      <img src={lets_challenge} className="slide-img2" alt="" />
-                      <p className="slide-text2 SemiBoldPynk">
-                        ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝันได้กับไอเทมฮอตฮิตจาก
-                        bebe fit routine
-                      </p>
-                    </div>
-                  ) : currentSlideIndex === 2 ? (
-                    <div className="home1-detail">
-                      <img src={shop_fin} className="slide-img3" alt="" />
-                      <p className="slide-text3 SemiBoldPynk">
-                        รวมดีลเด็ดที่คุณต้องไม่พลาด ช้อปเลย!
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  <button
-                    /* onClick={() => history.push("/questionare")} */
-                    className="btn  bold button-home1 col-10 col-sm-10 button-home1"
-                  >
-                    เริ่มฟิตไปด้วยกัน
-                  </button>
-                </div>
+    <div className="">
+      <div
+        id="carouselExampleAutoplaying"
+        className="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div className="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide-to="0"
+            className="active"
+            aria-current="true"
+            aria-label="Slide 1"
+            onClick={() => previousIndex(0, currentSlideIndex)}
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+            onClick={() => previousIndex(1, currentSlideIndex)}
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+            onClick={() => previousIndex(2, currentSlideIndex)}
+          ></button>
+        </div>
+        <div className="carousel-inner">
+          <div className="box_animation">
+            <div className="row">
+              <div className="col-12 col-md-6 relative flex_center">
+                <img
+                  src={bubblesTop}
+                  className={`bubbles-top  ${
+                    (animation &&
+                      currentSlideIndex === 0 &&
+                      previousSlideIndex !== 1 &&
+                      "rotate2to0-1") ||
+                    (currentSlideIndex === 0 &&
+                      previousSlideIndex === 1 &&
+                      "rotate1to0-1") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex !== 2 &&
+                      "rotate0to1-1") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex === 2 &&
+                      "rotate2to1-1") ||
+                    (currentSlideIndex === 2 && "rotate1to2-1")
+                  }`}
+                  id="bubbles-top"
+                  alt=""
+                />
+                <img
+                  src={bubblesBottom}
+                  className={`bubbles-bottom  ${
+                    (animation &&
+                      currentSlideIndex === 0 &&
+                      previousSlideIndex !== 1 &&
+                      "rotate2to0") ||
+                    (currentSlideIndex === 0 &&
+                      previousSlideIndex === 1 &&
+                      "rotate1to0") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex !== 2 &&
+                      "rotate0to1") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex === 2 &&
+                      "rotate2to1") ||
+                    (currentSlideIndex === 2 && "rotate1to2")
+                  }`}
+                  id="bubbles-bottom"
+                  alt=""
+                />
+                <div
+                  className={`${
+                    (currentSlideIndex === 0 &&
+                      previousSlideIndex === 0 &&
+                      "bebe-slide1") ||
+                    (currentSlideIndex === 0 &&
+                      previousSlideIndex !== 1 &&
+                      "bebe-slide1 bebe-slide2to0") ||
+                    (currentSlideIndex === 0 &&
+                      previousSlideIndex === 1 &&
+                      "bebe-slide1 bebe-slide1to0") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex !== 2 &&
+                      "bebe-slide2 bebe-slide0to1") ||
+                    (currentSlideIndex === 1 &&
+                      previousSlideIndex === 2 &&
+                      "bebe-slide2 bebe-slide2to1") ||
+                    (currentSlideIndex === 2 && "bebe-slide3 bebe-slide1to2")
+                  }`}
+                />
               </div>
-            </div>
-            <div className="carousel-item active" data-interval="1000">
-              <div className="box_screen1">
-                <div className="line3"></div>
-              </div>
-            </div>
-            <div className="carousel-item" data-interval="1000">
-              <div className="box_screen2">
-                <div className="line3"></div>
-              </div>
-            </div>
-            <div className="carousel-item" data-interval="1000">
-              <div className="box_screen3">
-                <div className="line3"></div>
+              <div className="col-12 col-md-6 relative flex_center">
+                {currentSlideIndex === 0 ? (
+                  <div className="home1-detail">
+                    <img
+                      src={stay_fit_with_bebe}
+                      className="slide-img1"
+                      alt=""
+                    />
+                    <p className="slide-text1 SemiBoldPynk">
+                      คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตีความสำเร็จจากนักเรียนกว่าสิบรุ่น
+                    </p>
+                  </div>
+                ) : currentSlideIndex === 1 ? (
+                  <div className="home1-detail">
+                    <img src={lets_challenge} className="slide-img2" alt="" />
+                    <p className="slide-text2 SemiBoldPynk">
+                      ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝันได้กับไอเทมฮอตฮิตจาก
+                      bebe fit routine
+                    </p>
+                  </div>
+                ) : currentSlideIndex === 2 ? (
+                  <div className="home1-detail">
+                    <img src={shop_fin} className="slide-img3" alt="" />
+                    <p className="slide-text3 SemiBoldPynk">
+                      รวมดีลเด็ดที่คุณต้องไม่พลาด ช้อปเลย!
+                    </p>
+                  </div>
+                ) : (
+                  ""
+                )}
+                <button
+                  /* onClick={() => history.push("/questionare")} */
+                  className="btn  bold button-home1 col-10 col-sm-10 button-home1"
+                >
+                  เริ่มฟิตไปด้วยกัน
+                </button>
               </div>
             </div>
           </div>
+          <div className="carousel-item active" data-interval="1000">
+            <div className="box_screen1">
+              <div className="line3"></div>
+            </div>
+          </div>
+          <div className="carousel-item" data-interval="1000">
+            <div className="box_screen2">
+              <div className="line3"></div>
+            </div>
+          </div>
+          <div className="carousel-item" data-interval="1000">
+            <div className="box_screen3">
+              <div className="line3"></div>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div className="text-home2">
-          <p className={`${styles["services-happily"]} ${"text-center"}`}>
-            บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
-            และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
-          </p>
-          <p className={`${styles["not-good"]} ${"text-center"}`}>
-            “ไม่ใช่แค่หุ่นดี{" "}
-            <span className={`${styles["not-good-span"]}`}>
-              {" "}
-              แต่มันคือการรักตัวเองอย่างมีความสุข”
-            </span>
-          </p>
-        </div>
+      <div className="text-home2">
+        <p className={`${styles["services-happily"]} ${"text-center"}`}>
+          บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
+          และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
+        </p>
+        <p className={`${styles["not-good"]} ${"text-center"}`}>
+          “ไม่ใช่แค่หุ่นดี{" "}
+          <span className={`${styles["not-good-span"]}`}>
+            {" "}
+            แต่มันคือการรักตัวเองอย่างมีความสุข”
+          </span>
+        </p>
+      </div>
 
+      <div className="slider-container">
         <Slider {...carouselProperties}>
           <div className="box-home-slider-1">
             <div className="slider-card-item-course">
@@ -320,10 +335,10 @@ const Home = () => {
             </div>
           </div>
           <div className="box-home-slider-2">
-            <div className="box-suggestion"></div>
+            {/* <div className="box-suggestion"></div> */}
             <div className="slider-card-item-course-center">
               <div className="box-fitto4week">
-                <p className="suggestion text24 SemiBoldPynk white">แนะนำ</p>
+                {/* <p className="suggestion text24 SemiBoldPynk white">แนะนำ</p> */}
                 <img className="fitto4week" src={stayfit_with_bebe} alt="" />
               </div>
               <div className="card-text-box">
@@ -355,121 +370,132 @@ const Home = () => {
             </div>
           </div>
         </Slider>
-
-        <div ref={home4} className="home4">
-          <div className="home4-container">
-            <div
-              className={`text48 SemiBoldPynk text-align-center ${
-                Home4ISVisible && "animate-open-home4"
-              }`}
-            >
-              เสียงตอบรับจากผู้ใช้บริการ
-              <div className="home-star">
-                <picture>
-                  <img src={star} width={62} height={62} alt="" />
-                </picture>
-                <picture>
-                  <img src={star} width={62} height={62} alt="" />
-                </picture>
-                <picture>
-                  <img src={star} width={62} height={62} alt="" />
-                </picture>
-                <picture>
-                  <img src={star} width={62} height={62} alt="" />
-                </picture>
-                <picture>
-                  <img src={star} width={62} height={62} alt="" />
-                </picture>
-              </div>
-            </div>
-            <div className="comment-item-container">
-              <div className={Home4ISVisible && "card-comment1"}>
-                <picture>
-                  <img src={comment1} alt="" />
-                </picture>
-              </div>
-              <div className={Home4ISVisible && "card-comment2"}>
-                <picture>
-                  <img src={comment2} alt="" />
-                </picture>
-              </div>
-              <div className={Home4ISVisible && "card-comment3"}>
-                <picture>
-                  <img src={comment3} alt="" />
-                </picture>
-              </div>
-              <div className={Home4ISVisible && "card-comment4"}>
-                <picture>
-                  <img src={comment4} alt="" />
-                </picture>
-              </div>
-              <div className={Home4ISVisible && "card-comment5"}>
-                <picture>
-                  <img src={comment5} alt="" />
-                </picture>
-              </div>
-              <div className={Home4ISVisible && "card-comment6"}>
-                <picture>
-                  <img src={comment6} alt="" />
-                </picture>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="home5">
-          <div className="text-home5">
-            <p className="text48 SemiBoldPynk mb-0px">
-              เคล็ด (ไม่) ลับ ฉบับอยากแชร์
-            </p>
-            <button
-              className="text18 SemiBoldPynk ef60a3"
-              style={{ alignSelf: "center", backgroundColor: "#fff" }}
-            >
-              ดูเพิ่มเติม
-            </button>
-          </div>
-          <div className="card-container-home5">
-            <div className="card-content-home5">
-              <img
-                src={content1}
-                style={{ marginBottom: "32px" }}
-                alt=""
-              />
-              <p className="text24 SemiBoldPynk">Content</p>
-              <p className="text20 RegularPynk">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the{" "}
-              </p>
-            </div>
-            <div className="card-content-home5">
-              <img
-                src={content2}
-                style={{ marginBottom: "32px" }}
-                alt=""
-              />
-              <p className="text24 SemiBoldPynk">Content</p>
-              <p className="text20 RegularPynk">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the{" "}
-              </p>
-            </div>
-            <div className="card-content-home5">
-              <img
-                src={content3}
-                style={{ marginBottom: "32px" }}
-                alt=""
-              />
-              <p className="text24 SemiBoldPynk">Content</p>
-              <p className="text20 RegularPynk">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the{" "}
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
+
+      <div ref={home4} className="home4">
+        <div
+          className={`text48 SemiBoldPynk text-align-center ${
+            Home4ISVisible && "animate-open-home4"
+          }`}
+        >
+          เสียงตอบรับจากผู้ใช้บริการ
+          <div className="">
+            <picture>
+              <img src={star} width={62} height={62} alt="" />
+            </picture>
+            <picture>
+              <img src={star} width={62} height={62} alt="" />
+            </picture>
+            <picture>
+              <img src={star} width={62} height={62} alt="" />
+            </picture>
+            <picture>
+              <img src={star} width={62} height={62} alt="" />
+            </picture>
+            <picture>
+              <img src={star} width={62} height={62} alt="" />
+            </picture>
+          </div>
+        </div>
+
+        <Grid
+          container
+          spacing={2}
+          direction={{ xs: "column", md: "row" }}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item xs={12} md={6} lg={4}>
+            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="500">
+              <img src={comment1} alt="" />
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="800">
+              <picture>
+                <img src={comment2} alt="" />
+              </picture>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1300">
+              <picture>
+                <img src={comment3} alt="" />
+              </picture>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1800">
+              <picture>
+                <img src={comment4} alt="" />
+              </picture>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="2300">
+              <picture>
+                <img src={comment5} alt="" />
+              </picture>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="2500">
+              <picture>
+                <img src={comment6} alt="" />
+              </picture>
+            </div>
+          </Grid>
+        </Grid>
+      </div>
+
+      <Container maxWidth="lg" sx={{ mt: 10 }}>
+        <div className="d-block d-md-flex justify-content-between mb-5">
+          <p className="text48 SemiBoldPynk mb-0px">
+            เคล็ด (ไม่) ลับ ฉบับอยากแชร์
+          </p>
+          <button
+            className="text18 SemiBoldPynk ef60a3"
+            style={{ alignSelf: "center", backgroundColor: "#fff" }}
+          >
+            ดูเพิ่มเติม
+          </button>
+        </div>
+        <Grid container spacing={2} sx={{ p: 2 }}>
+          <Grid item xs={12} lg={4}>
+            <div className="card-content-home5">
+              <img src={content1} style={{ marginBottom: "32px" }} alt="" />
+              <p className="text24 SemiBoldPynk">Content</p>
+              <p className="text20 RegularPynk">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the{" "}
+              </p>
+            </div>
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            <div className="card-content-home5">
+              <img src={content2} style={{ marginBottom: "32px" }} alt="" />
+              <p className="text24 SemiBoldPynk">Content</p>
+              <p className="text20 RegularPynk">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the{" "}
+              </p>
+            </div>
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            <div className="card-content-home5">
+              <img src={content3} style={{ marginBottom: "32px" }} alt="" />
+              <p className="text24 SemiBoldPynk">Content</p>
+              <p className="text20 RegularPynk">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the{" "}
+              </p>
+            </div>
+          </Grid>
+        </Grid>
+      </Container>
+
       <Footer />
-    </>
+    </div>
   );
 };
 export default Home;

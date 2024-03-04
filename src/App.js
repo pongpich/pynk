@@ -113,6 +113,8 @@ import { BrowserRouter } from "react-router-dom";
 import user_circle from "./assets/img/user_circle1.svg";
 import TagManager from "react-gtm-module";
 import { all } from "redux-saga/effects";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 Amplify.configure(awsConfig);
 
@@ -201,6 +203,9 @@ class App extends Component {
     }
 
     window.addEventListener("resize", this.updateWindowWidth);
+    //when refresh scroll to top
+    window.history.scrollRestoration = "manual";
+    AOS.init();
   }
 
   componentWillUnmount() {
@@ -434,7 +439,9 @@ class App extends Component {
                     className="truck-line-icon"
                     alt="vector"
                   />
-                  <p className="order-status display-none ms-1 mb-0">สถานะคำสั่งซื้อ</p>
+                  <p className="order-status display-none ms-1 mb-0">
+                    สถานะคำสั่งซื้อ
+                  </p>
                 </div>
 
                 <h2
@@ -661,7 +668,7 @@ class App extends Component {
           locale={currentAppLocale.locale}
           messages={currentAppLocale.messages}
         >
-          <div className="App">
+          <div className="App" style={{ background: "black" }}>
             {this.renderNavbar()}
             <Popup_login
               isOpen={this.state.isPopupLoginOpen}
