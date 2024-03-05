@@ -59,12 +59,10 @@ const Content_detail = () => {
 
   const nextPage = (contents) => {
     dispatch(getPage(contents));
-    console.log("contents", contents);
   };
 
   const reqURL =
     "https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf";
-  // const page_link = 'https://content.pynk.co/sample-page/';
 
   // useEffect(() => {
   //     (async () => {
@@ -107,7 +105,6 @@ const Content_detail = () => {
         );
         const req = await fetch(url);
         const page = await req.json();
-        console.log("page", page);
         setXxxxx(page);
       }
     })();
@@ -127,26 +124,16 @@ const Content_detail = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={6} lg={8}>
             <Box>
-              {xxxxx.length == 0 ? (
-                <Stack mt={5} width={500}>
-                  <Skeleton variant="text" sx={{ fontSize: "3rem" }} />
-                  <Skeleton variant="rectangular" width={"100%"} height={300} />
-                  <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-                  <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-                  <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
-                </Stack>
-              ) : (
-                xxxxx.map((page, index) => (
-                  <div key={index}>
-                    <h1 className="title">{page.title.rendered}</h1>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: page.content.rendered,
-                      }}
-                    />
-                  </div>
-                ))
-              )}
+              {xxxxx.map((page, index) => (
+                <div key={index}>
+                  <h1 className="title">{page.title.rendered}</h1>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: page.content.rendered,
+                    }}
+                  />
+                </div>
+              ))}
             </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4} mt={{ xs: 0, lg: 5 }} mb={{ xs: 5 }}>
@@ -172,41 +159,70 @@ const Content_detail = () => {
                 borderBottomRightRadius: "1rem",
               }}
             >
-              {contentsRight
-                .filter(
-                  (item) =>
-                    item.acf.category.name != "Home" && item.id !== Number(id)
-                )
-                .map((content, index) => (
-                  <div key={index} test={console.log("contentsRgiht", content)}>
+              {contentsRight.length == 0
+                ? [1, 2, 3].map((item) => (
                     <Stack
-                      flexDirection={{ xs: "column", sm: "row", lg: "row" }}
+                      width={400}
+                      flexDirection={"row"}
                       gap={2}
-                      onClick={() => {
-                        history.push(`/content_detail/${content.id}`);
-                        nextPage(content);
-                        window.scrollTo(0, 0);
-                      }}
-                      sx={{ cursor: "pointer" }}
+                      mb={2}
+                      key={item}
                     >
-                      <img
-                        src={content.acf.thumbnail}
-                        alt={content.title.rendered}
-                        style={{
-                          width: { xs: "100%", sm: 180 },
-                          height: 100,
-                        }}
+                      <Skeleton
+                        variant="rectangular"
+                        width={150}
+                        height={100}
                       />
                       <Box>
-                        <Typography>
-                          {content.acf.summary.slice(0, 120) + "..."}
-                        </Typography>
+                        <Skeleton
+                          variant="text"
+                          width={200}
+                          sx={{ fontSize: "1rem" }}
+                        />
+                        <Skeleton
+                          variant="text"
+                          width={200}
+                          sx={{ fontSize: "1rem" }}
+                        />
                       </Box>
                     </Stack>
-                    <Divider sx={{ mt: 2, borderBottomWidth: 3, mb: 2 }} />
-                  </div>
-                ))
-                .slice(0, 3)}
+                  ))
+                : contentsRight
+                    .filter(
+                      (item) =>
+                        item.acf.category.name != "Home" &&
+                        item.id !== Number(id)
+                    )
+                    .map((content, index) => (
+                      <div key={index}>
+                        <Stack
+                          flexDirection={{ xs: "column", sm: "row", lg: "row" }}
+                          gap={2}
+                          onClick={() => {
+                            history.push(`/content_detail/${content.id}`);
+                            nextPage(content);
+                            window.scrollTo(0, 0);
+                          }}
+                          sx={{ cursor: "pointer" }}
+                        >
+                          <img
+                            src={content.acf.thumbnail}
+                            alt={content.title.rendered}
+                            style={{
+                              width: { xs: "100%", sm: 180 },
+                              height: 100,
+                            }}
+                          />
+                          <Box>
+                            <Typography>
+                              {content.acf.summary.slice(0, 120) + "..."}
+                            </Typography>
+                          </Box>
+                        </Stack>
+                        <Divider sx={{ mt: 2, borderBottomWidth: 3, mb: 2 }} />
+                      </div>
+                    ))
+                    .slice(0, 3)}
             </Box>
           </Grid>
         </Grid>
