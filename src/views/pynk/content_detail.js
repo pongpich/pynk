@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -30,12 +31,13 @@ import content1 from "../../assets/img/home/content1.png";
 import content2 from "../../assets/img/home/content2.png";
 import content3 from "../../assets/img/home/content3.png";
 import Footer from "./footer";
-import { clearGetPage } from "../../redux/pynk/contents";
+import { clearGetPage, getPage } from "../../redux/pynk/contents";
 import { useHistory, useLocation } from "react-router-dom";
 import "./css/content_detail.css";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const Content_detail = () => {
   const history = useHistory();
@@ -45,13 +47,19 @@ const Content_detail = () => {
     contents ? contents : null
   );
   const [products, setProducts] = useState([]);
-  const [contents, setContents] = useState(dataPage ?? []);
+  const [contentsRight, setContentsRight] = useState([]);
   const [xxxxx, setXxxxx] = useState([]);
   const [page, setPage] = useState(9);
   const [totalPage, setTotalpage] = useState(1);
+  const { id } = useParams();
 
   const handlePageChange = (selectedPage) => {
     setPage(selectedPage);
+  };
+
+  const nextPage = (contents) => {
+    dispatch(getPage(contents));
+    console.log("contents", contents);
   };
 
   const reqURL =
@@ -89,20 +97,27 @@ const Content_detail = () => {
   //       history.push(`/content_detail/${contents.id}`);
   //     }
   //   }, [status_data_page]);
+
   useEffect(() => {
     (async () => {
-      // const requrl = (contents.acf.page_link).replace('https://content.pynk.co/','');;
-      // const requrl2 = 'https://content.pynk.co/wp-json/wp/v2/pages?_fields=id,slug,title,content&slug='+requrl;
-      // const req = await fetch(contents.acf.page_link);
-      if (contents.acf.page_link) {
-        const requrl = contents.acf.page_link.replace(
+      if (dataPage.acf.page_link) {
+        const url = dataPage.acf.page_link.replace(
           "https://content.pynk.co/",
           "https://content.pynk.co/wp-json/wp/v2/pages?_fields=id,slug,title,content&slug="
         );
-        const req = await fetch(requrl);
+        const req = await fetch(url);
         const page = await req.json();
+        console.log("page", page);
         setXxxxx(page);
       }
+    })();
+  }, [dataPage]);
+
+  useEffect(() => {
+    (async () => {
+      const req = await fetch(reqURL);
+      const contentsData = await req.json();
+      setContentsRight(contentsData);
     })();
   }, []);
 
@@ -157,27 +172,41 @@ const Content_detail = () => {
                 borderBottomRightRadius: "1rem",
               }}
             >
-              <Stack
-                flexDirection={{ xs: "column", sm: "row", lg: "row" }}
-                gap={2}
-              >
-                <img
-                  src={slide1}
-                  style={{
-                    width: { xs: "100%", sm: 180 },
-                    height: 100,
-                  }}
-                  alt="demo"
-                />
-                <Box>
-                  <Typography>
-                    This is an example page. It’s different from a blog post
-                    because it will stay in one place and will show up in your
-                    site
-                  </Typography>
-                </Box>
-              </Stack>
-              <Divider sx={{ mt: 2, borderBottomWidth: 3 }} />
+              {contentsRight
+                .filter(
+                  (item) =>
+                    item.acf.category.name != "Home" && item.id !== Number(id)
+                )
+                .map((content, index) => (
+                  <div key={index} test={console.log("contentsRgiht", content)}>
+                    <Stack
+                      flexDirection={{ xs: "column", sm: "row", lg: "row" }}
+                      gap={2}
+                      onClick={() => {
+                        history.push(`/content_detail/${content.id}`);
+                        nextPage(content);
+                        window.scrollTo(0, 0);
+                      }}
+                      sx={{ cursor: "pointer" }}
+                    >
+                      <img
+                        src={content.acf.thumbnail}
+                        alt={content.title.rendered}
+                        style={{
+                          width: { xs: "100%", sm: 180 },
+                          height: 100,
+                        }}
+                      />
+                      <Box>
+                        <Typography>
+                          {content.acf.summary.slice(0, 120) + "..."}
+                        </Typography>
+                      </Box>
+                    </Stack>
+                    <Divider sx={{ mt: 2, borderBottomWidth: 3, mb: 2 }} />
+                  </div>
+                ))
+                .slice(0, 3)}
             </Box>
           </Grid>
         </Grid>
