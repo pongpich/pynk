@@ -1,10 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from "react";
 import { useInView } from "react-intersection-observer";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import axios from "axios";
-import { getPage } from "../../redux/pynk/contents";
+import { clearGetPage, getPage } from "../../redux/pynk/contents";
 import { useSelector, useDispatch } from "react-redux";
+import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
 
 import title from "../../assets/img/content/Title.png";
 import slide1 from "../../assets/img/home/slide1.png";
@@ -30,6 +38,15 @@ import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 import "./css/content.css";
 import { Link } from "react-router-dom";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+
+const cateButton = [
+  { title: "ทั้งหมด", category: "All" },
+  { title: "อาหาร", category: "Food" },
+  { title: "ไลฟ์สไตล์", category: "Lifestyle" },
+  { title: "ออกกำลังกาย", category: "Exercise" },
+];
 
 const Content = () => {
   const status_data_page = useSelector(({ contents }) =>
@@ -42,6 +59,7 @@ const Content = () => {
 
   const [page, setPage] = useState(9);
   const [totalPage, setTotalpage] = useState(1);
+  const [activeColor, setActiveColor] = useState("All");
 
   const handlePageChange = (selectedPage) => {
     setPage(selectedPage);
@@ -57,7 +75,6 @@ const Content = () => {
       );
       const { products } = data;
       setProducts(products);
-      //   console.log(data, "product");
       setTotalpage(data.total / 10);
     })();
   }, [page]);
@@ -72,18 +89,33 @@ const Content = () => {
   //     })();
   // });
   useEffect(() => {
-    //
     (async () => {
       const req = await fetch(reqURL);
-      const contents = await req.json();
-      console.log(contents);
-      setContents(contents);
+      const contentsData = await req.json();
+      setContents(contentsData);
     })();
   }, []);
 
-  const nextPage = async (contents) => {
-    console.log("contents", contents);
+  const nextPage = (contents) => {
     dispatch(getPage(contents));
+  };
+
+  const fetchDataAndFilter = async (cate) => {
+    const req = await fetch(reqURL);
+    const contentsData = await req.json();
+    let filteredData = contentsData;
+
+    if (cate !== "All") {
+      filteredData = contentsData.filter(
+        (item) => item.acf.category.name === cate
+      );
+    }
+    setContents(filteredData);
+  };
+
+  const handleFilterCategory = async (cate) => {
+    await fetchDataAndFilter(cate);
+    setActiveColor(cate);
   };
 
   // useEffect(() => {
@@ -91,55 +123,82 @@ const Content = () => {
   //     history.push(`/content_detail/${contents.id}`);
   //   }
   // }, [status_data_page]);
-  console.log("status_data_page", status_data_page);
-
   return (
     <div>
       <div className="page_title">
         <div className="page_title_text">บทความและสาระดีๆ</div>
         {/* <img src={title} alt="page_title" /> */}
       </div>
+
       <div className="page">
         <Box sx={{ "& button": { m: 1 } }}>
           <div className="button">
-            <Button variant="outlined" size="medium">
-              ทั้งหมด
-            </Button>
-            <Button variant="outlined" size="medium">
-              อาหาร
-            </Button>
-            <Button variant="outlined" size="medium">
-              ออกกำลังกาย
-            </Button>
-            <Button variant="outlined" size="medium">
-              ไลฟ์สไตล์
-            </Button>
+            {cateButton.map((item) => (
+              <Button
+                sx={{
+                  p: "0.3rem !important",
+                  width: 120,
+                  borderRadius: "1.5rem",
+                  color: activeColor == item.category ? "#FFFFFF" : "#EF60A3",
+                  border: "1px solid #EF60A3",
+                  background:
+                    activeColor == item.category ? "#EF60A3" : "#FFFFFF",
+                  ":hover": {
+                    background: "#FFFFFF",
+                    color: "#EF60A3",
+                  },
+                }}
+                variant="contained"
+                size="large"
+                onClick={() => handleFilterCategory(item.category)}
+                key={item.title}
+              >
+                {item.title}
+              </Button>
+            ))}
           </div>
-          <div className="App">
-            <div className="products">
-              {contents.map((content, index) => (
-                // <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}>
+          <Container maxWidth="xl">
+            <Grid container spacing={1}>
+              {contents
+                .filter((item) => item.acf.category.name != "Home")
+                .map((content, index) => (
+                  <Grid item xs={12} sm={6} lg={4} key={index}>
+                    {/* <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}> */}
+                    <Link to={`/content_detail/${content.id}`}>
+                      <div
+                        key={content.id}
+                        className="product_single"
+                        onClick={() => {
+                          nextPage(content);
+                          window.scrollTo(0, 0);
+                        }}
+                      >
+                        <img
+                          className="content_img"
+                          src={content.acf.thumbnail}
+                          alt={content.title.rendered}
+                        />
+                        <div
+                          className="content_title"
+                          style={{ color: "#4F4F4F" }}
+                        >
+                          {content.title.rendered}
+                        </div>
+                        <div
+                          className="content_summary"
+                          style={{ color: "#4F4F4F" }}
+                        >
+                          {content.acf.summary.slice(0, 120) + "..."}
+                        </div>
+                      </div>
+                    </Link>
+                    {/* </Link>  */}
+                  </Grid>
+                ))}
+            </Grid>
+          </Container>
 
-                <Link to={`/content_detail/${content.id}`}>
-                  <div
-                    key={content.id}
-                    className="product_single"
-                    onClick={() => nextPage(content)}
-                  >
-                    <img
-                      className="content_img"
-                      src={content.acf.thumbnail}
-                      alt={content.title.rendered}
-                    />
-                    <div className="content_title">{content.title.rendered}</div>
-                    <div className="content_summary">{content.acf.summary}</div>
-                  </div>
-                </Link>
-
-                /*  </Link> */
-              ))}
-            </div>
-            {/* {products.length > 0 && (
+          {/* {products.length > 0 && (
                         <div className="products">
                             {products.map((ele) => (
                                 <div key={ele.id} className="product_single">
@@ -149,7 +208,7 @@ const Content = () => {
                             ))}
                         </div>
                     )} */}
-            {/* {products.length > 0 && (
+          {/* {products.length > 0 && (
                         <div className="pagination">
                             {page > 1 && (
                                 <span onClick={() => handlePageChange(page - 1)}>Back</span>
@@ -168,7 +227,6 @@ const Content = () => {
                             )}
                         </div>
                     )}*/}
-          </div>
         </Box>
       </div>
       <Footer />

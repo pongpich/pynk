@@ -18,9 +18,10 @@
   text-align: left;
   /* overflow: hidden;
   white-space: nowrap; /* Don't forget this one */
-  text-overflow: ellipsis;} 
+  text-overflow: ellipsis;
+}
 
-.product_single>img {
+.product_single > img {
   width: 100%;
   height: 80%;
   object-fit: cover;
@@ -40,6 +41,12 @@
   text-align: left;
 }
 
+@media (max-width: 476px) {
+  .page_title_text {
+    font-size: 28px;
+  }
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -47,7 +54,7 @@
   margin: 5%;
 }
 
-.pagination>span {
+.pagination > span {
   border: 1px solid lightgray;
   padding: 3%;
   cursor: pointer;
@@ -79,5 +86,5 @@
 }
 
 .button {
-padding: 16px;
+  padding: 16px;
 }
