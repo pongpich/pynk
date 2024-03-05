@@ -51,7 +51,6 @@ export default function Footer() {
       </div>
       <div className="box-footer-bottom">
         <p>© 2022 BBPF RIGHTS RESERVED</p>
-
         <div className="policy-bottom">
           <div className="hr-policy policy-none" />
           <p>Privacy Policy</p>
