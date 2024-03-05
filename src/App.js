@@ -313,7 +313,7 @@ class App extends Component {
         <nav className="navbar navbar-expand-sm bg-light information-nav fixed-top">
           <div className="information-box">
             <div className="flex-container">
-              <Link to="home">
+              <Link to="/">
                 <img src={logo} alt="vector" />
               </Link>
               {/*       <div className="custom-input ">

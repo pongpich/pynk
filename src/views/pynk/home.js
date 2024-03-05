@@ -21,12 +21,15 @@ import content2 from "../../assets/img/home/content2.png";
 import content3 from "../../assets/img/home/content3.png";
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import "./css/home.css";
 import "./css/home_animation.css";
 import styles from "./css/home.module.css";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+import { Link } from "@mui/icons-material";
+import { clearGetPage, getPage } from "../../redux/pynk/contents";
 
 let slidesToShow = 3;
 
@@ -109,11 +112,15 @@ const carouselProperties = {
 };
 const Home = () => {
   const history = useHistory();
+  const reqURL =
+    "https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf";
+  const dispatch = useDispatch();
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [animation, setAnimation] = useState(false);
   const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
   const [hoveredButton, setHoveredButton] = useState(2);
+  const [contents, setContents] = useState([]);
 
   const handleButtonHover = (buttonId) => {
     setHoveredButton(buttonId);
@@ -126,17 +133,6 @@ const Home = () => {
     triggerOnce: true,
   });
 
-  useEffect(() => {
-    const carousel = document.getElementById("carouselExampleAutoplaying");
-    // เมื่อสไลด์เปลี่ยน
-    carousel.addEventListener("slid.bs.carousel", (event) => {
-      setCurrentSlideIndex(event.to);
-      setAnimation(true);
-    });
-    console.log("currentSlideIndex", currentSlideIndex);
-    console.log("previousSlideIndex", previousSlideIndex);
-  }, [currentSlideIndex]);
-
   function previousIndex(curr, prev) {
     setPreviousSlideIndex(prev);
     if (curr !== currentSlideIndex) {
@@ -144,6 +140,26 @@ const Home = () => {
     }
   }
 
+  const nextPage = (contents) => {
+    dispatch(getPage(contents));
+  };
+
+  useEffect(() => {
+    const carousel = document.getElementById("carouselExampleAutoplaying");
+    // เมื่อสไลด์เปลี่ยน
+    carousel.addEventListener("slid.bs.carousel", (event) => {
+      setCurrentSlideIndex(event.to);
+      setAnimation(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const req = await fetch(reqURL);
+      const contentsData = await req.json();
+      setContents(contentsData);
+    })();
+  }, []);
   return (
     <div className="">
       <div
@@ -456,41 +472,43 @@ const Home = () => {
           <button
             className="text18 SemiBoldPynk ef60a3"
             style={{ alignSelf: "center", backgroundColor: "#fff" }}
+            onClick={() => {
+              history.push("/content");
+              window.scrollTo(0, 0);
+            }}
           >
             ดูเพิ่มเติม
           </button>
         </div>
-        <Grid container spacing={2} sx={{ p: 2 }}>
-          <Grid item xs={12} lg={4}>
-            <div className="card-content-home5">
-              <img src={content1} style={{ marginBottom: "32px" }} alt="" />
-              <p className="text24 SemiBoldPynk">Content</p>
-              <p className="text20 RegularPynk">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the{" "}
-              </p>
-            </div>
-          </Grid>
-          <Grid item xs={12} lg={4}>
-            <div className="card-content-home5">
-              <img src={content2} style={{ marginBottom: "32px" }} alt="" />
-              <p className="text24 SemiBoldPynk">Content</p>
-              <p className="text20 RegularPynk">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the{" "}
-              </p>
-            </div>
-          </Grid>
-          <Grid item xs={12} lg={4}>
-            <div className="card-content-home5">
-              <img src={content3} style={{ marginBottom: "32px" }} alt="" />
-              <p className="text24 SemiBoldPynk">Content</p>
-              <p className="text20 RegularPynk">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the{" "}
-              </p>
-            </div>
-          </Grid>
+
+        <Grid container spacing={3}>
+          {contents
+            .filter((item) => item.acf.category.name === "Home")
+            .map((content, index) => (
+              <Grid item xs={12} sm={6} lg={4} key={index}>
+                <div
+                  className="card-content-home5"
+                  onClick={() => {
+                    history.push(`/content_detail/${content.id}`);
+                    nextPage(content);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  <img
+                    className="content_img"
+                    src={content.acf.thumbnail}
+                    alt={content.title.rendered}
+                  />
+                  <p className="text24 SemiBoldPynk">
+                    {content.title.rendered}
+                  </p>
+                  <p className="text20 RegularPynk">
+                    {content.acf.summary.slice(0, 105) + "..."}
+                  </p>
+                </div>
+              </Grid>
+            ))
+            .slice(0, 3)}
         </Grid>
       </Container>
 
