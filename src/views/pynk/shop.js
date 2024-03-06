@@ -518,7 +518,7 @@ function ShopPynk() {
             <Slider {...carouselProperties}>
               {promotionalProduct &&
                 promotionalProduct.map((item, index) => (
-                  <Link to={`/shop_details/${item.product_id}`}>
+                  <Link to={`/shop_details/${item.product_id}`} key={index}>
                     <div className="box-item-hover cursor-pointer">
                       <p className="hot-shop-details">HOT</p>
                       <img src={item.image_url} className="image-slider" />

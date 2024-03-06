@@ -27,6 +27,7 @@ import OrderTracking from "../src/views/pynk/order_tracking";
 import DashboardPynk from "./views/pynk/admin/dashboard";
 import ShopPynk from "./views/pynk/shop";
 import ShopDetailsPynk from "./views/pynk/admin/shop_details";
+import ShopDetailsMultiplePynk from "./views/pynk/admin/shop_details_multiple";
 import ShopOrderSummaryPynk from "./views/pynk/admin/shop_order_summary";
 import ShopPaymentPynk from "./views/pynk/admin/shop_payment";
 import ShopSuccessfulPaymentPynk from "./views/pynk/admin/shop_successful_payment";
@@ -695,7 +696,7 @@ class App extends Component {
                 <Route path="/add_product" component={AddProduct} />
                 <Route path="/add_content" component={AddContent} />
                 <Route path="/shop" component={ShopPynk} />
-                <Route path="/shop_details/:id" component={ShopDetailsPynk} />
+                <Route path="/shop_details/:id" component={ShopDetailsMultiplePynk} />
                 <Route path="/shop-category/:name" component={Shop_category} />
                 <Route path="/order_tracking" component={OrderTracking} />
                 <Route path="/questionare" component={Questionare} />

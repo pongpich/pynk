@@ -31,6 +31,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
+import Divider from "@mui/material/Divider";
 
 let slidesToShow = 5.2;
 
@@ -127,7 +128,7 @@ const carouselProperties = {
   ],
 };
 
-const Shop_details = ({ match }) => {
+const Shop_details_Multiple = ({ match }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -165,13 +166,24 @@ const Shop_details = ({ match }) => {
     setActiveImage(image);
   };
 
-  const plusMinus = (type) => {
-    if (type === "plus") {
-      setNumber((prevNumber) => prevNumber + 1);
-    } else if (number > 1) {
-      setNumber((prevNumber) => prevNumber - 1);
-    }
+  const plusMinus = (type, proId) => {
+    setGroupedProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.product_id === proId
+          ? {
+              ...product,
+              quantity:
+                type === "plus"
+                  ? (product.quantity || 0) + 1
+                  : (product.quantity || 0) - 1,
+            }
+          : product
+      )
+    );
+
+    console.log("addProduct", type, groupedProducts);
   };
+
   useEffect(() => {
     setProduct(products_pynk);
   }, [products_pynk]);
@@ -197,6 +209,7 @@ const Shop_details = ({ match }) => {
     setProductId(
       products_pynk && products_pynk.find((status) => status.product_id == id)
     );
+    console.log('productId', productId)
     setNumber(1);
     dispatch(updateProductStock(id));
   }, [id]);
@@ -313,7 +326,7 @@ const Shop_details = ({ match }) => {
 
   const buy_now = () => {
     dataCookies();
-    history.push("/shop-order-summary");
+    // history.push("/shop-order-summary");
   };
 
   const showMinus = (action) => {
@@ -340,10 +353,6 @@ const Shop_details = ({ match }) => {
     : null;
 
   const imageList = JSON.parse(productId && productId.image_list);
-
-  const handleClickChooseProduct = (item) => {
-    history.push(`/shop_details/${item}`);
-  };
   return (
     <>
       <div className="url-product">
@@ -355,6 +364,8 @@ const Shop_details = ({ match }) => {
           <span>Fitto Plant Protein</span>
         </a>
       </div>
+      <h1>Multiple</h1>
+
       <div className="product-details row">
         <div className="col-12  col-sm-6 col-md-5 col-lg-5 ">
           <div className="image-center">
@@ -400,9 +411,7 @@ const Shop_details = ({ match }) => {
         </div>
         <div className="box-image col-12 col-sm-6  col-md-7  col-lg-7">
           <div className="box-details">
-            <p className="text-head" style={{ fontWeight: 900 }}>
-              {productId && productId.product_name}
-            </p>
+            <p className="text-head">{productId && productId.product_name}</p>
             {productId && productId.after_discount ? (
               <>
                 <p className="text-price">
@@ -417,54 +426,77 @@ const Shop_details = ({ match }) => {
                 ราคา {productId && productId.price.toLocaleString()} บาท
               </p>
             )}
+            {/* Start Mutilple */}
             {groupedProducts && (
-              <Box
-                sx={{
-                  border: "1px solid #DDDDDD",
-                  p: 2,
-                  borderRadius: "1rem",
-                  mb: 2,
-                }}
-              >
-                <p className="text-span">เลือก :</p>
-                <Stack flexDirection={"row"} gap={2} flexWrap={"wrap"}>
-                  {groupedProducts.map((item, index) => (
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      sx={{
-                        p: "2px 12px !important",
-                        borderRadius: "1.5rem",
-                        borderColor:
-                          productId.property === item.property
-                            ? "#EF60A3"
-                            : "#7A7A7A",
-                        color:
-                          productId.property === item.property
-                            ? "#EF60A3"
-                            : "#000000",
-                        ":hover": {
-                          background: "transparent",
-                          borderColor:
-                            productId.property === item.property
-                              ? "#EF60A3"
-                              : "#7A7A7A",
-                          color:
-                            productId.property === item.property
-                              ? "#EF60A3"
-                              : "#000000",
-                        },
-                        width: "auto",
-                      }}
-                      key={index}
-                      onClick={() => handleClickChooseProduct(item.product_id)}
-                    >
-                      {item.property}
-                    </Button>
-                  ))}
+              <Box>
+                <Stack flexDirection={"row"} justifyContent={"space-between"}>
+                  <p className="text-span">เลือก :</p>
+                  <p className="text-span">จำนวน 0/2 กล่อง</p>
                 </Stack>
+
+                {groupedProducts.map((item, index) => (
+                  <Box key={index}>
+                    <Stack
+                      flexDirection={"row"}
+                      justifyContent={"space-between"}
+                      alignItems={"center"}
+                    >
+                      <Stack
+                        flexDirection={"row"}
+                        gap={2}
+                        alignItems={"center"}
+                      >
+                        <div
+                          style={{ background: "red", width: 70, height: 70 }}
+                        />
+                        <p style={{ fontWeight: 600 }}>{item.property}</p>
+                      </Stack>
+
+                      <Stack
+                        flexDirection={"row"}
+                        alignItems={"center"}
+                        sx={{
+                          background: "#FFF8FB",
+                          width: "fit-content",
+                          height: 40,
+                        }}
+                      >
+                        <Button
+                          sx={{
+                            color: "#EF60A3",
+                            fontWeight: 900,
+                            fontSize: 20,
+                            ":hover": { background: "none" },
+                          }}
+                          variant="text"
+                          onClick={() => plusMinus("minus", item.product_id)}
+                          disabled={
+                            item.quantity == 0 || !item.quantity ? true : false
+                          }
+                        >
+                          {"-"}
+                        </Button>
+                        <span>{item.quantity || 0}</span>
+                        <Button
+                          sx={{
+                            color: "#EF60A3",
+                            fontWeight: 900,
+                            fontSize: 20,
+                            ":hover": { background: "none" },
+                          }}
+                          variant="text"
+                          onClick={() => plusMinus("plus", item.product_id)}
+                        >
+                          {"+"}
+                        </Button>
+                      </Stack>
+                    </Stack>
+                    <Divider sx={{ mt: 2, mb: 2, borderBottomWidth: 2 }} />
+                  </Box>
+                ))}
               </Box>
             )}
+            {/* END Mutilple */}
 
             <p className="text-span">{productId && productId.description}</p>
             <div className="row">
@@ -694,4 +726,4 @@ const Shop_details = ({ match }) => {
   );
 };
 
-export default Shop_details;
+export default Shop_details_Multiple;

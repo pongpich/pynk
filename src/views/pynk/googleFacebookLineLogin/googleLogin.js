@@ -55,10 +55,6 @@ const GoogleLoginComponent = () => {
     dispatch(loginGoogle(null));
   };
 
-  console.log("googleProfile ", googleProfile);
-
-  console.log("statusGoogleProfile ", statusGoogleProfile);
-
   return profile ? (
     <GoogleLogout
       clientId={clientId}
