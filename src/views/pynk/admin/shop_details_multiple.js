@@ -141,10 +141,12 @@ const Shop_details_Multiple = ({ match }) => {
   const { products_pynk, status_products_pynk } = useSelector(
     (state) => state.getPynk
   );
-  const [product, setProduct] = useState(products_pynk);
+  const [products, setProducts] = useState(products_pynk);
   const [productId, setProductId] = useState(null);
   const [product_cookies, setProduct_cookies] = useState(null);
   const [groupedProducts, setGroupedProducts] = useState(null);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [isCartBlank, setisCartBlank] = useState(false);
   const { id } = match.params; // รับ ID จาก URL
   //const [id, setId]= useState(match.params); //240230303013
   const { pathname } = useLocation();
@@ -167,25 +169,30 @@ const Shop_details_Multiple = ({ match }) => {
   };
 
   const plusMinus = (type, proId) => {
+    const filterItem = groupedProducts.filter(
+      (item) => item.product_id == proId
+    );
     setGroupedProducts((prevProducts) =>
       prevProducts.map((product) =>
         product.product_id === proId
           ? {
               ...product,
-              quantity:
-                type === "plus"
-                  ? (product.quantity || 0) + 1
-                  : (product.quantity || 0) - 1,
+              number:
+                type === "plus" ? (product.number = 1) : (product.number = 0),
             }
           : product
       )
     );
-
-    console.log("addProduct", type, groupedProducts);
+    const existingItem = selectedItems.some(
+      (item) => item.product_id === proId
+    );
+    if (!existingItem) {
+      setSelectedItems([...selectedItems, ...filterItem]);
+    }
   };
 
   useEffect(() => {
-    setProduct(products_pynk);
+    setProducts(products_pynk);
   }, [products_pynk]);
 
   useEffect(() => {
@@ -202,14 +209,19 @@ const Shop_details_Multiple = ({ match }) => {
       }
       return acc;
     }, {});
-    setGroupedProducts(grouped[curr_group_name]);
+    const newGroup = grouped[curr_group_name].map((item) => {
+      return {
+        ...item,
+        number: 0,
+      };
+    });
+    setGroupedProducts(newGroup);
   }, []);
 
   useEffect(() => {
     setProductId(
       products_pynk && products_pynk.find((status) => status.product_id == id)
     );
-    console.log('productId', productId)
     setNumber(1);
     dispatch(updateProductStock(id));
   }, [id]);
@@ -234,88 +246,32 @@ const Shop_details_Multiple = ({ match }) => {
   }, [status_update_stock]);
 
   const dataCookies = () => {
-    const product_name = Cookies.get("product_name");
+    const filterProduct = products.filter((item) =>
+      selectedItems.some((val) => val.product_id == item.product_id)
+    );
 
-    if (product_name && product_name != "undefined") {
-      // มีสินค้า
-      const productArray = product_name && JSON.parse(product_name);
-      const foundProduct =
-        Array.isArray(productArray) &&
-        productArray.find((product) => product.sku == productId.product_id);
+    const originalData = filterProduct.map((currentItem) => {
+      return {
+        image: currentItem.image_url,
+        sku: currentItem.product_id,
+        name: currentItem.product_name,
+        number: 1,
+        pricepernumber: currentItem.after_discount
+          ? currentItem.after_discount
+          : currentItem.price,
+        discount: "0",
+        totalprice:
+          parseInt(
+            productId.after_discount
+              ? productId.after_discount
+              : productId.price
+          ) * parseInt(number),
+      };
+    });
 
-      if (!foundProduct) {
-        // product_id สินค้าไม่ซ้ำกัน
-        const array = Array.isArray(productArray)
-          ? productArray
-          : [productArray];
-        const product_list = {
-          image: productId.image_url,
-          sku: productId.product_id,
-          name: productId.product_name,
-          number: number,
-          pricepernumber: productId.after_discount
-            ? productId.after_discount
-            : productId.price,
-          discount: "0",
-          totalprice:
-            parseInt(
-              productId.after_discount
-                ? productId.after_discount
-                : productId.price
-            ) * parseInt(number),
-        };
-        array.push(product_list);
-        Cookies.set("product_name", JSON.stringify(array), {
-          expires: expires_cookies,
-        });
-      } else {
-        // product_id สินค้าซ้ำกัน
-        const foundProductIndex =
-          Array.isArray(productArray) &&
-          productArray.findIndex(
-            (product) => product.sku === productId.product_id
-          );
-
-        if (foundProductIndex !== -1) {
-          productArray[foundProductIndex].number =
-            parseInt(productArray[foundProductIndex].number) + parseInt(number);
-
-          productArray[foundProductIndex].totalprice =
-            parseInt(productArray[foundProductIndex].pricepernumber) *
-            parseInt(productArray[foundProductIndex].number);
-
-          Cookies.set("product_name", JSON.stringify(productArray), {
-            expires: expires_cookies,
-          });
-          setNumber(1);
-        }
-      }
-    } else {
-      // ยังไม่มีสินค้า
-      const product_list = [
-        {
-          image: productId.image_url,
-          sku: productId.product_id,
-          name: productId.product_name,
-          number: number,
-          pricepernumber: productId.after_discount
-            ? productId.after_discount
-            : productId.price,
-          discount: "0",
-          totalprice:
-            parseInt(
-              productId.after_discount
-                ? productId.after_discount
-                : productId.price
-            ) * parseInt(number),
-        },
-      ];
-      Cookies.set("product_name", JSON.stringify(product_list), {
-        expires: expires_cookies,
-      });
-    }
-    const product_name1 = Cookies.get("product_name");
-    setProduct_cookies(product_name1 && JSON.parse(product_name1));
+    Cookies.set("product_name", JSON.stringify(originalData), {
+      expires: expires_cookies,
+    });
   };
 
   const clickSelected = () => {
@@ -325,8 +281,13 @@ const Shop_details_Multiple = ({ match }) => {
   };
 
   const buy_now = () => {
-    dataCookies();
-    // history.push("/shop-order-summary");
+    if (selectedItems.length == 0) {
+      setisCartBlank(true);
+    } else {
+      dataCookies();
+      history.push("/shop-order-summary");
+      setisCartBlank(false);
+    }
   };
 
   const showMinus = (action) => {
@@ -470,13 +431,11 @@ const Shop_details_Multiple = ({ match }) => {
                           }}
                           variant="text"
                           onClick={() => plusMinus("minus", item.product_id)}
-                          disabled={
-                            item.quantity == 0 || !item.quantity ? true : false
-                          }
+                          disabled={item.number == 0 ? true : false}
                         >
                           {"-"}
                         </Button>
-                        <span>{item.quantity || 0}</span>
+                        <span>{item.number}</span>
                         <Button
                           sx={{
                             color: "#EF60A3",
@@ -498,6 +457,20 @@ const Shop_details_Multiple = ({ match }) => {
             )}
             {/* END Mutilple */}
 
+            {isCartBlank ? (
+              <Alert
+                severity="error"
+                style={{
+                  color: "red",
+                  ".MuiAlert-icon": {
+                    color: "red",
+                  },
+                }}
+              >
+                กรุณาระบุตัวเลือกสินค้า
+              </Alert>
+            ) : null}
+
             <p className="text-span">{productId && productId.description}</p>
             <div className="row">
               {nutritional_value &&
@@ -515,40 +488,6 @@ const Shop_details_Multiple = ({ match }) => {
                 ))}
             </div>
 
-            <Box mt={3}>
-              <p className="text-span">จำนวน :</p>
-              <Stack
-                flexDirection={"row"}
-                alignItems={"center"}
-                sx={{ background: "#FFF8FB", width: "fit-content" }}
-              >
-                <Button
-                  sx={{
-                    color: "#EF60A3",
-                    fontWeight: 900,
-                    fontSize: 20,
-                    ":hover": { background: "none" },
-                  }}
-                  variant="text"
-                  onClick={() => plusMinus("minus")}
-                >
-                  {"-"}
-                </Button>
-                <span>{number}</span>
-                <Button
-                  sx={{
-                    color: "#EF60A3",
-                    fontWeight: 900,
-                    fontSize: 20,
-                    ":hover": { background: "none" },
-                  }}
-                  variant="text"
-                  onClick={() => plusMinus("plus")}
-                >
-                  {"+"}
-                </Button>
-              </Stack>
-            </Box>
             <p className="stock-left mt-4">
               <span>
                 <img src={VectorNew} className="vector-image" alt="VectorNew" />
@@ -673,8 +612,8 @@ const Shop_details_Multiple = ({ match }) => {
         </div>
         <div>
           <Slider {...carouselProperties}>
-            {product &&
-              product.map((item, index) => (
+            {products &&
+              products.map((item, index) => (
                 <Link to={`/shop_details/${item.product_id}`} key={index}>
                   <div
                     key={index}
