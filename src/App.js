@@ -698,7 +698,7 @@ class App extends Component {
                 <Route path="/shop" component={ShopPynk} />
                 <Route
                   path="/shop_details/:id"
-                  component={ShopDetailsMultiplePynk}
+                  component={ShopDetailsPynk}
                 />
                 <Route path="/shop-category/:name" component={Shop_category} />
                 <Route path="/order_tracking" component={OrderTracking} />
