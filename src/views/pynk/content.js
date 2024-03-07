@@ -77,6 +77,7 @@ const Content = () => {
       setProducts(products);
       setTotalpage(data.total / 10);
     })();
+    window.scrollTo(0, 0);
   }, [page]);
 
   // useEffect(() => {

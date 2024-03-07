@@ -31,6 +31,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
+import Divider from "@mui/material/Divider";
 
 let slidesToShow = 5.2;
 
@@ -127,7 +128,7 @@ const carouselProperties = {
   ],
 };
 
-const Shop_details = ({ match }) => {
+const Shop_details_Multiple = ({ match }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -140,10 +141,12 @@ const Shop_details = ({ match }) => {
   const { products_pynk, status_products_pynk } = useSelector(
     (state) => state.getPynk
   );
-  const [product, setProduct] = useState(products_pynk);
+  const [products, setProducts] = useState(products_pynk);
   const [productId, setProductId] = useState(null);
   const [product_cookies, setProduct_cookies] = useState(null);
   const [groupedProducts, setGroupedProducts] = useState(null);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [isCartBlank, setisCartBlank] = useState(false);
   const { id } = match.params; // รับ ID จาก URL
   //const [id, setId]= useState(match.params); //240230303013
   const { pathname } = useLocation();
@@ -165,15 +168,31 @@ const Shop_details = ({ match }) => {
     setActiveImage(image);
   };
 
-  const plusMinus = (type) => {
-    if (type === "plus") {
-      setNumber((prevNumber) => prevNumber + 1);
-    } else if (number > 1) {
-      setNumber((prevNumber) => prevNumber - 1);
+  const plusMinus = (type, proId) => {
+    const filterItem = groupedProducts.filter(
+      (item) => item.product_id == proId
+    );
+    setGroupedProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.product_id === proId
+          ? {
+              ...product,
+              number:
+                type === "plus" ? (product.number = 1) : (product.number = 0),
+            }
+          : product
+      )
+    );
+    const existingItem = selectedItems.some(
+      (item) => item.product_id === proId
+    );
+    if (!existingItem) {
+      setSelectedItems([...selectedItems, ...filterItem]);
     }
   };
+
   useEffect(() => {
-    setProduct(products_pynk);
+    setProducts(products_pynk);
   }, [products_pynk]);
 
   useEffect(() => {
@@ -190,7 +209,13 @@ const Shop_details = ({ match }) => {
       }
       return acc;
     }, {});
-    setGroupedProducts(grouped[curr_group_name]);
+    const newGroup = grouped[curr_group_name].map((item) => {
+      return {
+        ...item,
+        number: 0,
+      };
+    });
+    setGroupedProducts(newGroup);
   }, []);
 
   useEffect(() => {
@@ -221,88 +246,32 @@ const Shop_details = ({ match }) => {
   }, [status_update_stock]);
 
   const dataCookies = () => {
-    const product_name = Cookies.get("product_name");
+    const filterProduct = products.filter((item) =>
+      selectedItems.some((val) => val.product_id == item.product_id)
+    );
 
-    if (product_name && product_name != "undefined") {
-      // มีสินค้า
-      const productArray = product_name && JSON.parse(product_name);
-      const foundProduct =
-        Array.isArray(productArray) &&
-        productArray.find((product) => product.sku == productId.product_id);
+    const originalData = filterProduct.map((currentItem) => {
+      return {
+        image: currentItem.image_url,
+        sku: currentItem.product_id,
+        name: currentItem.product_name,
+        number: 1,
+        pricepernumber: currentItem.after_discount
+          ? currentItem.after_discount
+          : currentItem.price,
+        discount: "0",
+        totalprice:
+          parseInt(
+            productId.after_discount
+              ? productId.after_discount
+              : productId.price
+          ) * parseInt(number),
+      };
+    });
 
-      if (!foundProduct) {
-        // product_id สินค้าไม่ซ้ำกัน
-        const array = Array.isArray(productArray)
-          ? productArray
-          : [productArray];
-        const product_list = {
-          image: productId.image_url,
-          sku: productId.product_id,
-          name: productId.product_name,
-          number: number,
-          pricepernumber: productId.after_discount
-            ? productId.after_discount
-            : productId.price,
-          discount: "0",
-          totalprice:
-            parseInt(
-              productId.after_discount
-                ? productId.after_discount
-                : productId.price
-            ) * parseInt(number),
-        };
-        array.push(product_list);
-        Cookies.set("product_name", JSON.stringify(array), {
-          expires: expires_cookies,
-        });
-      } else {
-        // product_id สินค้าซ้ำกัน
-        const foundProductIndex =
-          Array.isArray(productArray) &&
-          productArray.findIndex(
-            (product) => product.sku === productId.product_id
-          );
-
-        if (foundProductIndex !== -1) {
-          productArray[foundProductIndex].number =
-            parseInt(productArray[foundProductIndex].number) + parseInt(number);
-
-          productArray[foundProductIndex].totalprice =
-            parseInt(productArray[foundProductIndex].pricepernumber) *
-            parseInt(productArray[foundProductIndex].number);
-
-          Cookies.set("product_name", JSON.stringify(productArray), {
-            expires: expires_cookies,
-          });
-          setNumber(1);
-        }
-      }
-    } else {
-      // ยังไม่มีสินค้า
-      const product_list = [
-        {
-          image: productId.image_url,
-          sku: productId.product_id,
-          name: productId.product_name,
-          number: number,
-          pricepernumber: productId.after_discount
-            ? productId.after_discount
-            : productId.price,
-          discount: "0",
-          totalprice:
-            parseInt(
-              productId.after_discount
-                ? productId.after_discount
-                : productId.price
-            ) * parseInt(number),
-        },
-      ];
-      Cookies.set("product_name", JSON.stringify(product_list), {
-        expires: expires_cookies,
-      });
-    }
-    const product_name1 = Cookies.get("product_name");
-    setProduct_cookies(product_name1 && JSON.parse(product_name1));
+    Cookies.set("product_name", JSON.stringify(originalData), {
+      expires: expires_cookies,
+    });
   };
 
   const clickSelected = () => {
@@ -312,8 +281,13 @@ const Shop_details = ({ match }) => {
   };
 
   const buy_now = () => {
-    dataCookies();
-    history.push("/shop-order-summary");
+    if (selectedItems.length == 0) {
+      setisCartBlank(true);
+    } else {
+      dataCookies();
+      history.push("/shop-order-summary");
+      setisCartBlank(false);
+    }
   };
 
   const showMinus = (action) => {
@@ -340,10 +314,6 @@ const Shop_details = ({ match }) => {
     : null;
 
   const imageList = JSON.parse(productId && productId.image_list);
-
-  const handleClickChooseProduct = (item) => {
-    history.push(`/shop_details/${item}`);
-  };
   return (
     <>
       <div className="url-product">
@@ -355,6 +325,8 @@ const Shop_details = ({ match }) => {
           <span>Fitto Plant Protein</span>
         </a>
       </div>
+      <h1>Multiple</h1>
+
       <div className="product-details row">
         <div className="col-12  col-sm-6 col-md-5 col-lg-5 ">
           <div className="image-center">
@@ -400,9 +372,7 @@ const Shop_details = ({ match }) => {
         </div>
         <div className="box-image col-12 col-sm-6  col-md-7  col-lg-7">
           <div className="box-details">
-            <p className="text-head" style={{ fontWeight: 900 }}>
-              {productId && productId.product_name}
-            </p>
+            <p className="text-head">{productId && productId.product_name}</p>
             {productId && productId.after_discount ? (
               <>
                 <p className="text-price">
@@ -417,54 +387,89 @@ const Shop_details = ({ match }) => {
                 ราคา {productId && productId.price.toLocaleString()} บาท
               </p>
             )}
+            {/* Start Mutilple */}
             {groupedProducts && (
-              <Box
-                sx={{
-                  border: "1px solid #DDDDDD",
-                  p: 2,
-                  borderRadius: "1rem",
-                  mb: 2,
-                }}
-              >
-                <p className="text-span">เลือก :</p>
-                <Stack flexDirection={"row"} gap={2} flexWrap={"wrap"}>
-                  {groupedProducts.map((item, index) => (
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      sx={{
-                        p: "2px 12px !important",
-                        borderRadius: "1.5rem",
-                        borderColor:
-                          productId.property === item.property
-                            ? "#EF60A3"
-                            : "#7A7A7A",
-                        color:
-                          productId.property === item.property
-                            ? "#EF60A3"
-                            : "#000000",
-                        ":hover": {
-                          background: "transparent",
-                          borderColor:
-                            productId.property === item.property
-                              ? "#EF60A3"
-                              : "#7A7A7A",
-                          color:
-                            productId.property === item.property
-                              ? "#EF60A3"
-                              : "#000000",
-                        },
-                        width: "auto",
-                      }}
-                      key={index}
-                      onClick={() => handleClickChooseProduct(item.product_id)}
-                    >
-                      {item.property}
-                    </Button>
-                  ))}
+              <Box>
+                <Stack flexDirection={"row"} justifyContent={"space-between"}>
+                  <p className="text-span">เลือก :</p>
+                  <p className="text-span">จำนวน 0/2 กล่อง</p>
                 </Stack>
+
+                {groupedProducts.map((item, index) => (
+                  <Box key={index}>
+                    <Stack
+                      flexDirection={"row"}
+                      justifyContent={"space-between"}
+                      alignItems={"center"}
+                    >
+                      <Stack
+                        flexDirection={"row"}
+                        gap={2}
+                        alignItems={"center"}
+                      >
+                        <div
+                          style={{ background: "red", width: 70, height: 70 }}
+                        />
+                        <p style={{ fontWeight: 600 }}>{item.property}</p>
+                      </Stack>
+
+                      <Stack
+                        flexDirection={"row"}
+                        alignItems={"center"}
+                        sx={{
+                          background: "#FFF8FB",
+                          width: "fit-content",
+                          height: 40,
+                        }}
+                      >
+                        <Button
+                          sx={{
+                            color: "#EF60A3",
+                            fontWeight: 900,
+                            fontSize: 20,
+                            ":hover": { background: "none" },
+                          }}
+                          variant="text"
+                          onClick={() => plusMinus("minus", item.product_id)}
+                          disabled={item.number == 0 ? true : false}
+                        >
+                          {"-"}
+                        </Button>
+                        <span>{item.number}</span>
+                        <Button
+                          sx={{
+                            color: "#EF60A3",
+                            fontWeight: 900,
+                            fontSize: 20,
+                            ":hover": { background: "none" },
+                          }}
+                          variant="text"
+                          onClick={() => plusMinus("plus", item.product_id)}
+                        >
+                          {"+"}
+                        </Button>
+                      </Stack>
+                    </Stack>
+                    <Divider sx={{ mt: 2, mb: 2, borderBottomWidth: 2 }} />
+                  </Box>
+                ))}
               </Box>
             )}
+            {/* END Mutilple */}
+
+            {isCartBlank ? (
+              <Alert
+                severity="error"
+                style={{
+                  color: "red",
+                  ".MuiAlert-icon": {
+                    color: "red",
+                  },
+                }}
+              >
+                กรุณาระบุตัวเลือกสินค้า
+              </Alert>
+            ) : null}
 
             <p className="text-span">{productId && productId.description}</p>
             <div className="row">
@@ -483,40 +488,6 @@ const Shop_details = ({ match }) => {
                 ))}
             </div>
 
-            <Box mt={3}>
-              <p className="text-span">จำนวน :</p>
-              <Stack
-                flexDirection={"row"}
-                alignItems={"center"}
-                sx={{ background: "#FFF8FB", width: "fit-content" }}
-              >
-                <Button
-                  sx={{
-                    color: "#EF60A3",
-                    fontWeight: 900,
-                    fontSize: 20,
-                    ":hover": { background: "none" },
-                  }}
-                  variant="text"
-                  onClick={() => plusMinus("minus")}
-                >
-                  {"-"}
-                </Button>
-                <span>{number}</span>
-                <Button
-                  sx={{
-                    color: "#EF60A3",
-                    fontWeight: 900,
-                    fontSize: 20,
-                    ":hover": { background: "none" },
-                  }}
-                  variant="text"
-                  onClick={() => plusMinus("plus")}
-                >
-                  {"+"}
-                </Button>
-              </Stack>
-            </Box>
             <p className="stock-left mt-4">
               <span>
                 <img src={VectorNew} className="vector-image" alt="VectorNew" />
@@ -641,8 +612,8 @@ const Shop_details = ({ match }) => {
         </div>
         <div>
           <Slider {...carouselProperties}>
-            {product &&
-              product.map((item, index) => (
+            {products &&
+              products.map((item, index) => (
                 <Link to={`/shop_details/${item.product_id}`} key={index}>
                   <div
                     key={index}
@@ -694,4 +665,4 @@ const Shop_details = ({ match }) => {
   );
 };
 
-export default Shop_details;
+export default Shop_details_Multiple;
