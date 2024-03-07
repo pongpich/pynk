@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { useInView } from "react-intersection-observer";
 import bubblesBottom from "../../assets/img/home/bubblesBottom.png";
 import bubblesTop from "../../assets/img/home/bubblesTop.png";
+import bebeSlide from "../../assets/img/home/bebeSlide.png";
 import fitto4week from "../../assets/img/home/fitto4week.png";
 import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
 import bikini_body_challenge from "../../assets/img/home/bikini_body_challenge.png";
@@ -238,7 +239,8 @@ const Home = () => {
                   id="bubbles-bottom"
                   alt=""
                 />
-                <div
+                <img
+                  src={bebeSlide}
                   className={`bebe-slide ${
                     (animation &&
                       currentSlideIndex === 0 &&
@@ -255,8 +257,10 @@ const Home = () => {
                       "bebe-slide2to1") ||
                     (currentSlideIndex === 2 && "bebe-slide1to2")
                   }`}
+                  id="bebe-slide"
+                  alt=""
                 />
-              </div>
+                </div>
               <div className="col-12 col-md-6 relative flex_center">
                 {currentSlideIndex === 0 ? (
                   <div className="home1-detail">

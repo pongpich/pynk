@@ -146,7 +146,6 @@
     height: 1810px;
     top: 5%;
     left: -63%;
-    transform: rotate(0deg);
   }
   .bebe-slide0to1 {
     animation: bebe-slide0to1 0.6s ease-in-out;
@@ -252,7 +251,6 @@
     height: 1800px;
     top: 8%;
     left: -67%;
-    transform: rotate(0deg);
   }
   .bebe-slide0to1 {
     animation: bebe-slide0to1 0.6s ease-in-out;
@@ -367,7 +365,7 @@
     height: 1774px;
     top: -3%;
     left: -104%;
-    transform: rotate(0deg) scale(0.9);
+    transform: scale(0.9);
   }
   .bebe-slide0to1 {
     animation: bebe-slide0to1 0.6s ease-in-out;
@@ -1023,8 +1021,6 @@
 }
 
 .bebe-slide{
-  background-image: url(../../../assets/img/home/bebeSlide.png);
-  background-size: cover;
   position: absolute;
   z-index: 10;
 }
