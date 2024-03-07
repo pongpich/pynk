@@ -135,27 +135,22 @@ const Content = () => {
         <Box sx={{ "& button": { m: 1 } }}>
           <div className="button">
             {cateButton.map((item) => (
-              <Button
-                sx={{
-                  p: "0.3rem !important",
-                  width: 120,
+              <button
+                style={{
+                  height: 35,
+                  width: 130,
                   borderRadius: "1.5rem",
                   color: activeColor == item.category ? "#FFFFFF" : "#EF60A3",
                   border: "1px solid #EF60A3",
                   background:
                     activeColor == item.category ? "#EF60A3" : "#FFFFFF",
-                  ":hover": {
-                    background: "#FFFFFF",
-                    color: "#EF60A3",
-                  },
+                  fontWeight: 700,
                 }}
-                variant="contained"
-                size="large"
                 onClick={() => handleFilterCategory(item.category)}
                 key={item.title}
               >
                 {item.title}
-              </Button>
+              </button>
             ))}
           </div>
           <Container maxWidth="xl">

@@ -205,12 +205,13 @@ const Content_detail = () => {
                           }}
                           sx={{ cursor: "pointer" }}
                         >
-                          <img
+                          <Box
+                            component={"img"}
                             src={content.acf.thumbnail}
                             alt={content.title.rendered}
-                            style={{
-                              width: { xs: "100%", sm: 180 },
-                              height: 100,
+                            sx={{
+                              width: { xs: "100%", sm: 180, lg: 150 },
+                              height: { xs: 150, sm: 150, lg: 100 },
                             }}
                           />
                           <Box>

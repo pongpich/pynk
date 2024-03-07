@@ -1,7 +1,6 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
-
 :root {
   --lightest-pink-white: #fff8fb;
   --lightest-pink: #fcdeec;
@@ -3683,6 +3682,18 @@ tr:last-child td:last-child {
 .dropdown-item:active {
   background-color: #e25e96;
   color: #ffffff !important;
+}
+.google_style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+}
+
+.google_style:hover {
+  height: 32px;
+  background-color: var(--bs-dropdown-link-hover-bg);
+  color: #e25e96;
 }
 
 .register-to-join {

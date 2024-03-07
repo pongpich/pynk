@@ -3,10 +3,11 @@ import colors from "./colors";
 import Slider from "react-slick";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { logout } from "../.././redux/pynk/auth";
+import { loginGoogle, logout } from "../.././redux/pynk/auth";
 import icon_profile from "../../assets/img/pynk/shop/profile.png";
 import icon_edit from "../../assets/img/pynk/shop/edit.png";
 import icon_exit from "../../assets/img/pynk/shop/exit.png";
+
 import rectangle_86 from "../../assets/img/pynk/shop/Rectangle-86.png";
 import rectangle_87 from "../../assets/img/pynk/shop/Rectangle-87.png";
 import rectangle_88 from "../../assets/img/pynk/shop/Rectangle-88.png";
@@ -21,6 +22,8 @@ import speedropechallenge from "../../assets/img/pynk/challenge/speedropechallen
 import Footer from "./footer";
 
 import "./css/profile.css";
+import { GoogleLogout, useGoogleLogout } from "react-google-login";
+import GoogleLoginComponent from "./googleFacebookLineLogin/googleLogin";
 
 let slidesToShow = 3.5;
 
@@ -49,7 +52,7 @@ const NextBtn = (props) => {
   );
 };
 */
-var settings = {
+const settings = {
   /*  prevArrow: <PreviousBtn />,
   nextArrow: <NextBtn />, */
   slidesToShow: slidesToShow,
@@ -118,16 +121,18 @@ var settings = {
     },
   ],
 };
-
+const clientId =
+  "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com";
 const Profile = () => {
   const dispatch = useDispatch();
+
   const history = useHistory();
   const [statusManu, setStatusManu] = useState(0);
   const menuItems = [
     "ภาพรวมของคุณ",
-    "ภารกิจของคุณ",
-    "แพ็กเกจรายเดือน",
-    "คำสั่งซื้อของฉัน",
+    // "ภารกิจของคุณ",
+    // "แพ็กเกจรายเดือน",
+    // "คำสั่งซื้อของฉัน",
   ];
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const user = useSelector(({ auth }) => (auth ? auth.user : ""));
@@ -199,12 +204,38 @@ const Profile = () => {
                     แก้ไขข้อมูลส่วนตัว
                   </div>
                 </div>
-                <div data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                {/* <GoogleLogout
+                    clientId={clientId}
+                    buttonText="ออกจากระบบ"
+                    onLogoutSuccess={logOutGoogle}
+                    render={(renderProps) => (
+                      <div
+                        className="btn-profile cursor-pointer"
+                        onClick={logOutGoogle}
+                      >
+                        <img
+                          src={icon_google}
+                          className="icon-edit"
+                          alt="icon_google"
+                        />
+                        ออกจากระบบ
+                      </div>
+                    )}
+                  /> */}
+
+                {googleProfile?.profile ? (
                   <div className="btn-profile cursor-pointer">
-                    <img src={icon_exit} className="icon-edit" />
-                    ออกจากระบบ
+                    <GoogleLoginComponent />
                   </div>
-                </div>
+                ) : (
+                  <div data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <div className="btn-profile cursor-pointer">
+                      <img src={icon_exit} className="icon-edit" />
+                      ออกจากระบบ
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -249,7 +280,7 @@ const Profile = () => {
                     </p> */}
                   </div>
                 </div>
-                <div className="row mt-5  none-767">
+                <div className="row mt-5 none-767 gap-2">
                   <a
                     href="https://form.typeform.com/to/T0cII7D0?typeform-source=bebefitroutine.com"
                     target="_blank"
@@ -295,7 +326,7 @@ const Profile = () => {
                     </p> */}
                   </div>
                 </div>
-                <div className="row mt-5  none-767">
+                <div className="row mt-5  none-767 gap-2">
                   <a
                     target="_blank"
                     href="https://bebefitroutine.com/speedropechallenge/apply/"
@@ -341,7 +372,7 @@ const Profile = () => {
                     </p> */}
                   </div>
                 </div>
-                <div className="row mt-5  none-767">
+                <div className="row mt-5  none-767 gap-2">
                   <a
                     href="https://5ag91vnk022.typeform.com/to/eaaDFZtz"
                     target="_blank"
