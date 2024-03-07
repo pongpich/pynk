@@ -260,43 +260,70 @@ const Home = () => {
                   id="bebe-slide"
                   alt=""
                 />
-                </div>
-              <div className="col-12 col-md-6 relative flex_center">
-                {currentSlideIndex === 0 ? (
-                  <div className="home1-detail">
-                    <img
-                      src={stay_fit_with_bebe}
-                      className="slide-img1"
-                      alt=""
-                    />
-                    <p className="slide-text1 SemiBoldPynk">
-                      คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตีความสำเร็จจากนักเรียนกว่าสิบรุ่น
-                    </p>
-                  </div>
-                ) : currentSlideIndex === 1 ? (
-                  <div className="home1-detail">
+              </div>
+              <div className={`texthome1 col-12 col-md-6`}>
+                <div className={`text-anime col-12 col-md-6`}>
+                  <div
+                    className={`text-slide ${
+                      (animation &&
+                        currentSlideIndex === 0 &&
+                        previousSlideIndex !== 1 &&
+                        "text-anime2to0") ||
+                      (currentSlideIndex === 0 &&
+                        previousSlideIndex === 1 &&
+                        "text-anime1to0") ||
+                      (currentSlideIndex === 1 &&
+                        previousSlideIndex !== 2 &&
+                        "text-anime0to1") ||
+                      (currentSlideIndex === 1 &&
+                        previousSlideIndex === 2 &&
+                        "text-anime2to1") ||
+                      (currentSlideIndex === 2 && "text-anime1to2")
+                    }`}
+                  >
+                    <div className="home1-detail">
+                      <img
+                        src={stay_fit_with_bebe}
+                        className="slide-img1"
+                        alt=""
+                      />
+                      <p className="slide-text1 SemiBoldPynk">
+                        คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตีความสำเร็จจากนักเรียนกว่าสิบรุ่น
+                      </p>
+                      <button
+                        onClick={() => history.push("/questionare")}
+                        className="btn  bold button-home1 col-10 col-sm-10 button-home1"
+                      >
+                        เริ่มฟิตไปด้วยกัน
+                      </button>
+                    </div>
+                    <div className="home1-detail1">
                     <img src={lets_challenge} className="slide-img2" alt="" />
                     <p className="slide-text2 SemiBoldPynk">
                       ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝันได้กับไอเทมฮอตฮิตจาก
                       bebe fit routine
                     </p>
+                    <button
+                    onClick={() => history.push("/questionare")}
+                    className="btn  bold button-home1 col-10 col-sm-10 button-home1"
+                  >
+                    เริ่มฟิตไปด้วยกัน
+                  </button>
                   </div>
-                ) : currentSlideIndex === 2 ? (
-                  <div className="home1-detail">
+                  <div className="home1-detail2">
                     <img src={shop_fin} className="slide-img3" alt="" />
                     <p className="slide-text3 SemiBoldPynk">
                       รวมดีลเด็ดที่คุณต้องไม่พลาด ช้อปเลย!
                     </p>
+                    <button
+                    onClick={() => history.push("/questionare")}
+                    className="btn  bold button-home1 col-10 col-sm-10 button-home1"
+                  >
+                    เริ่มฟิตไปด้วยกัน
+                  </button>
                   </div>
-                ) : (
-                  ""
-                )}
-                <button
-                  /* onClick={() => history.push("/questionare")} */
-                  className="btn  bold button-home1 col-10 col-sm-10 button-home1"
-                >
-                  เริ่มฟิตไปด้วยกัน
-                </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
