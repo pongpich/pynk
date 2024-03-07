@@ -161,7 +161,7 @@ const Home = () => {
     })();
   }, []);
   return (
-    <div className="">
+    <div className="page">
       <div
         id="carouselExampleAutoplaying"
         className="carousel slide"
@@ -239,23 +239,21 @@ const Home = () => {
                   alt=""
                 />
                 <div
-                  className={`${
-                    (currentSlideIndex === 0 &&
-                      previousSlideIndex === 0 &&
-                      "bebe-slide1") ||
-                    (currentSlideIndex === 0 &&
+                  className={`bebe-slide ${
+                    (animation &&
+                      currentSlideIndex === 0 &&
                       previousSlideIndex !== 1 &&
-                      "bebe-slide1 bebe-slide2to0") ||
+                      "bebe-slide2to0") ||
                     (currentSlideIndex === 0 &&
                       previousSlideIndex === 1 &&
-                      "bebe-slide1 bebe-slide1to0") ||
+                      "bebe-slide1to0") ||
                     (currentSlideIndex === 1 &&
                       previousSlideIndex !== 2 &&
-                      "bebe-slide2 bebe-slide0to1") ||
+                      "bebe-slide0to1") ||
                     (currentSlideIndex === 1 &&
                       previousSlideIndex === 2 &&
-                      "bebe-slide2 bebe-slide2to1") ||
-                    (currentSlideIndex === 2 && "bebe-slide3 bebe-slide1to2")
+                      "bebe-slide2to1") ||
+                    (currentSlideIndex === 2 && "bebe-slide1to2")
                   }`}
                 />
               </div>
