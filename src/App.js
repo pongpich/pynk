@@ -116,6 +116,7 @@ import TagManager from "react-gtm-module";
 import { all } from "redux-saga/effects";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import icon_exit from "./assets/img/pynk/shop/exit.png";
 
 Amplify.configure(awsConfig);
 
@@ -363,6 +364,11 @@ class App extends Component {
                       <ul class="dropdown-menu">
                         <li>
                           <Link class="dropdown-item" to="profile-pynk">
+                            <img
+                              src={icon_exit}
+                              className="icon-edit cursor-pointer"
+                              alt="icon_exit"
+                            />
                             profile
                           </Link>
                         </li>
@@ -371,6 +377,11 @@ class App extends Component {
                             class="dropdown-item"
                             onClick={() => this.onUserLogout()}
                           >
+                            <img
+                              src={icon_exit}
+                              className="icon-edit cursor-pointer"
+                              alt="icon_exit"
+                            />
                             ออกจากระบบ
                           </a>
                         </li>
@@ -400,11 +411,16 @@ class App extends Component {
                       <ul class="dropdown-menu">
                         <li>
                           <Link class="dropdown-item" to="profile-pynk">
+                            <img
+                              src={icon_exit}
+                              alt="icon_exit"
+                              className="icon-edit cursor-pointer"
+                            />
                             profile
                           </Link>
                         </li>
                         <li>
-                          <div className="nav-logout">
+                          <div class="google_style">
                             <GoogleLoginComponent />
                           </div>
                         </li>
@@ -696,10 +712,7 @@ class App extends Component {
                 <Route path="/add_product" component={AddProduct} />
                 <Route path="/add_content" component={AddContent} />
                 <Route path="/shop" component={ShopPynk} />
-                <Route
-                  path="/shop_details/:id"
-                  component={ShopDetailsPynk}
-                />
+                <Route path="/shop_details/:id" component={ShopDetailsPynk} />
                 <Route path="/shop-category/:name" component={Shop_category} />
                 <Route path="/order_tracking" component={OrderTracking} />
                 <Route path="/questionare" component={Questionare} />

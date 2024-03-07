@@ -1,21 +1,25 @@
 import { React, useState, useEffect } from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { GoogleLogin, GoogleLogout, useGoogleLogout } from "react-google-login";
 import { gapi } from "gapi-script";
 import { loginGoogle, registerLoginGoogle } from "../../../redux/pynk/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import icon_google from "../../../assets/img/pynk/shop/Google_Icons-09-512.webp";
 
 const GoogleLoginComponent = () => {
+  const clientId =
+    "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com";
   const googleProfile = useSelector(({ auth }) =>
     auth ? auth.googleProfile : ""
   );
   const statusGoogleProfile = useSelector(({ auth }) =>
     auth ? auth.statusGoogleProfile : ""
   );
+  const { signOut } = useGoogleLogout({
+    clientId,
+  });
   const dispatch = useDispatch();
   const history = useHistory();
-  const clientId =
-    "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com";
 
   const [profile, setProfile] = useState(
     googleProfile && googleProfile.profile
@@ -53,6 +57,7 @@ const GoogleLoginComponent = () => {
   const logOutGoogle = () => {
     history.push("/home");
     dispatch(loginGoogle(null));
+    signOut();
   };
 
   return profile ? (
@@ -60,6 +65,16 @@ const GoogleLoginComponent = () => {
       clientId={clientId}
       buttonText="Logout Google"
       onLogoutSuccess={logOutGoogle}
+      render={(renderProps) => (
+        <div
+          className="d-flex align-items-center justify-content-center"
+          style={{ cursor: "pointer"}}
+          onClick={logOutGoogle}
+        >
+          <img src={icon_google} className="icon-edit" alt="icon_google" />
+          ออกจากระบบ
+        </div>
+      )}
     />
   ) : (
     <GoogleLogin

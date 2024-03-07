@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import Footer from "../footer";
@@ -147,6 +147,7 @@ const Shop_details_Multiple = ({ match }) => {
   const [groupedProducts, setGroupedProducts] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
   const [isCartBlank, setisCartBlank] = useState(false);
+  const [isDisableBtn, setIsDisableBtn] = useState(false);
   const { id } = match.params; // รับ ID จาก URL
   //const [id, setId]= useState(match.params); //240230303013
   const { pathname } = useLocation();
@@ -172,6 +173,7 @@ const Shop_details_Multiple = ({ match }) => {
     const filterItem = groupedProducts.filter(
       (item) => item.product_id == proId
     );
+
     setGroupedProducts((prevProducts) =>
       prevProducts.map((product) =>
         product.product_id === proId
@@ -186,8 +188,15 @@ const Shop_details_Multiple = ({ match }) => {
     const existingItem = selectedItems.some(
       (item) => item.product_id === proId
     );
+
     if (!existingItem) {
       setSelectedItems([...selectedItems, ...filterItem]);
+    }
+    if (type == "minus") {
+      const removeArray = selectedItems.filter(
+        (item) => item.product_id !== proId
+      );
+      setSelectedItems(removeArray);
     }
   };
 
@@ -246,6 +255,8 @@ const Shop_details_Multiple = ({ match }) => {
   }, [status_update_stock]);
 
   const dataCookies = () => {
+    const product_name = Cookies.get("product_name");
+
     const filterProduct = products.filter((item) =>
       selectedItems.some((val) => val.product_id == item.product_id)
     );
@@ -260,6 +271,7 @@ const Shop_details_Multiple = ({ match }) => {
           ? currentItem.after_discount
           : currentItem.price,
         discount: "0",
+        property: currentItem.property,
         totalprice:
           parseInt(
             productId.after_discount
@@ -268,16 +280,26 @@ const Shop_details_Multiple = ({ match }) => {
           ) * parseInt(number),
       };
     });
+    console.log("originalData", originalData);
 
-    Cookies.set("product_name", JSON.stringify(originalData), {
-      expires: expires_cookies,
-    });
+    // Cookies.set("product_name", JSON.stringify(originalData), {
+    //   expires: expires_cookies,
+    // });
   };
 
   const clickSelected = () => {
-    dataCookies();
-    //showMinus();
-    dispatch(update_status_cart("success"));
+    // const product_name = Cookies.get("product_name");
+    // if (product_name.length > 2) {
+    //   console.log("product_name", product_name);
+    // }
+    if (selectedItems.length == 0) {
+      setisCartBlank(true);
+    } else {
+      setisCartBlank(false);
+      dataCookies();
+      //showMinus();
+      dispatch(update_status_cart("success"));
+    }
   };
 
   const buy_now = () => {
@@ -302,10 +324,13 @@ const Shop_details_Multiple = ({ match }) => {
     }
   }, [productId]);
 
-  // คำนวน ราคา ทั้งหมด
-  const totalSum =
-    product_cookies &&
-    product_cookies.reduce((acc, product) => acc + product.totalprice, 0);
+  useMemo(() => {
+    if (selectedItems.length == 2) {
+      setIsDisableBtn(true);
+    } else {
+      setIsDisableBtn(false);
+    }
+  }, [selectedItems]);
 
   const nutritional_value = productId
     ? productId.nutritional_value
@@ -392,7 +417,9 @@ const Shop_details_Multiple = ({ match }) => {
               <Box>
                 <Stack flexDirection={"row"} justifyContent={"space-between"}>
                   <p className="text-span">เลือก :</p>
-                  <p className="text-span">จำนวน 0/2 กล่อง</p>
+                  <p className="text-span">
+                    จำนวน {selectedItems.length}/2 กล่อง
+                  </p>
                 </Stack>
 
                 {groupedProducts.map((item, index) => (
@@ -445,6 +472,7 @@ const Shop_details_Multiple = ({ match }) => {
                           }}
                           variant="text"
                           onClick={() => plusMinus("plus", item.product_id)}
+                          disabled={isDisableBtn}
                         >
                           {"+"}
                         </Button>

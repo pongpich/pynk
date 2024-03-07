@@ -43,7 +43,6 @@ const PreviousBtn = (props) => {
 };
 const NextBtn = (props) => {
   const { className, onClick, slideCount, currentSlide } = props;
-  console.log(props);
   return (
     <>
       {currentSlide !== slideCount - slidesToShow && (
@@ -597,7 +596,7 @@ function ShopPynk() {
             <Slider {...carouselProperties2}>
               {promotionalProduct &&
                 promotionalProduct.map((item, index) => (
-                  <Link to={`/shop_details/${item.product_id}`}>
+                  <Link to={`/shop_details/${item.product_id}`} key={index}>
                     <div className="box-item-hover cursor-pointer">
                       <p className="hot-shop-details">HOT</p>
                       <img src={item.image_url} className="image-slider" />
