@@ -367,8 +367,6 @@ class App extends Component {
                             <img
                               src={icon_exit}
                               className="icon-edit cursor-pointer"
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
                               alt="icon_exit"
                             />
                             profile
@@ -382,8 +380,6 @@ class App extends Component {
                             <img
                               src={icon_exit}
                               className="icon-edit cursor-pointer"
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
                               alt="icon_exit"
                             />
                             ออกจากระบบ
@@ -415,6 +411,11 @@ class App extends Component {
                       <ul class="dropdown-menu">
                         <li>
                           <Link class="dropdown-item" to="profile-pynk">
+                            <img
+                              src={icon_exit}
+                              alt="icon_exit"
+                              className="icon-edit cursor-pointer"
+                            />
                             profile
                           </Link>
                         </li>
