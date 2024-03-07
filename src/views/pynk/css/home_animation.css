@@ -27,16 +27,16 @@
     left: -45%;
   }
   .bebe-slide0to1 {
-    animation: bebe-slide0to1 0.6s ease-in-out;
+    animation: bebe-slide0to1 0.6s forwards;
   }
   .bebe-slide1to0 {
-    animation: bebe-slide1to0 0.6s ease-in-out;
+    animation: bebe-slide1to0 0.6s forwards;
   }
   .bebe-slide1to2 {
-    animation: bebe-slide1to2 0.6s ease-in-out;
+    animation: bebe-slide1to2 0.6s forwards;
   }
   .bebe-slide2to1 {
-    animation: bebe-slide2to1 0.6s ease-in-out;
+    animation: bebe-slide2to1 0.6s forwards;
   }
   .bebe-slide2to0 {
     animation: bebe-slide2to0 0.6s linear forwards;
@@ -46,8 +46,6 @@
   }
   @keyframes bebe-slide0to1 {
     0% {
-      top: 0;
-      left: -45%;
       transform: rotate(0deg);
     }
     100% {
@@ -148,16 +146,16 @@
     left: -63%;
   }
   .bebe-slide0to1 {
-    animation: bebe-slide0to1 0.6s ease-in-out;
+    animation: bebe-slide0to1 0.6s forwards;
   }
   .bebe-slide1to0 {
-    animation: bebe-slide1to0 0.6s ease-in-out;
+    animation: bebe-slide1to0 0.6s forwards;
   }
   .bebe-slide1to2 {
-    animation: bebe-slide1to2 0.6s ease-in-out;
+    animation: bebe-slide1to2 0.6s forwards;
   }
   .bebe-slide2to1 {
-    animation: bebe-slide2to1 0.6s ease-in-out;
+    animation: bebe-slide2to1 0.6s forwards;
   }
   .bebe-slide2to0 {
     animation: bebe-slide2to0 0.6s linear forwards;
@@ -253,16 +251,16 @@
     left: -67%;
   }
   .bebe-slide0to1 {
-    animation: bebe-slide0to1 0.6s ease-in-out;
+    animation: bebe-slide0to1 0.6s forwards;
   }
   .bebe-slide1to0 {
-    animation: bebe-slide1to0 0.6s ease-in-out;
+    animation: bebe-slide1to0 0.6s forwards;
   }
   .bebe-slide1to2 {
-    animation: bebe-slide1to2 0.6s ease-in-out;
+    animation: bebe-slide1to2 0.6s forwards;
   }
   .bebe-slide2to1 {
-    animation: bebe-slide2to1 0.6s ease-in-out;
+    animation: bebe-slide2to1 0.6s forwards;
   }
   .bebe-slide2to0 {
     animation: bebe-slide2to0 0.6s linear forwards;
@@ -368,16 +366,16 @@
     transform: scale(0.9);
   }
   .bebe-slide0to1 {
-    animation: bebe-slide0to1 0.6s ease-in-out;
+    animation: bebe-slide0to1 0.6s forwards;
   }
   .bebe-slide1to0 {
-    animation: bebe-slide1to0 0.6s ease-in-out;
+    animation: bebe-slide1to0 0.6s forwards;
   }
   .bebe-slide1to2 {
-    animation: bebe-slide1to2 0.6s ease-in-out;
+    animation: bebe-slide1to2 0.6s forwards;
   }
   .bebe-slide2to1 {
-    animation: bebe-slide2to1 0.6s ease-in-out;
+    animation: bebe-slide2to1 0.6s forwards;
   }
   .bebe-slide2to0 {
     animation: bebe-slide2to0 0.6s linear forwards;
