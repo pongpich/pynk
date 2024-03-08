@@ -5,6 +5,7 @@ import { loginGoogle, registerLoginGoogle } from "../../../redux/pynk/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import icon_google from "../../../assets/img/pynk/shop/Google_Icons-09-512.webp";
+import icon_exit from "../../../assets/img/pynk/shop/exit.png";
 
 const GoogleLoginComponent = () => {
   const clientId =
@@ -47,7 +48,7 @@ const GoogleLoginComponent = () => {
     const last_name = res.profileObj.familyName;
     dispatch(registerLoginGoogle(email, first_name, last_name));
     dispatch(loginGoogle(res.profileObj));
-    console.log("res.profileObj", res.profileObj);
+    // console.log("res.profileObj", res.profileObj);
   };
 
   const onFailureGoogle = (res) => {
@@ -68,10 +69,10 @@ const GoogleLoginComponent = () => {
       render={(renderProps) => (
         <div
           className="d-flex align-items-center justify-content-center"
-          style={{ cursor: "pointer"}}
-          onClick={logOutGoogle}
+          style={{ cursor: "pointer" }}
+          onClick={renderProps.onClick}
         >
-          <img src={icon_google} className="icon-edit" alt="icon_google" />
+          <img src={icon_exit} className="icon-edit" alt="icon_google" />
           ออกจากระบบ
         </div>
       )}
@@ -84,6 +85,16 @@ const GoogleLoginComponent = () => {
       onFailure={onFailureGoogle}
       cookiePolicy={"Single_host_origin"}
       isSignedIn={true}
+      render={(renderProps) => (
+        <div>
+          <img
+            src={icon_google}
+            alt="icon_google"
+            style={{ width: 40, height: 40, cursor: "pointer" }}
+            onClick={renderProps.onClick}
+          />
+        </div>
+      )}
     />
   );
 };

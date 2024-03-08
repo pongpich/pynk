@@ -6,6 +6,9 @@ import "./css/login.css";
 
 import { login, logout, register, clear_status } from "../../redux/pynk/auth";
 import GoogleLoginComponent from "./googleFacebookLineLogin/googleLogin";
+import FaceBookLoginComponent from "./googleFacebookLineLogin/faceBookLogin";
+import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
 
 const Login = () => {
   const history = useHistory();
@@ -347,7 +350,6 @@ const Login = () => {
                     <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                 </div>
-
                 <div className="input-box">
                   <label for="last-name">
                     นามสกุล <span style={{ color: "red" }}>*</span>
@@ -683,6 +685,9 @@ const Login = () => {
                     value={"ดำเนินการต่อ"}
                     style={{ cursor: "default", backgroundColor: "#C3C3C3" }}
                   />
+                  <h6 style={{ color: "#4F4F4F", marginTop: 10 }}>
+                    หรือเข้าสู่ระบบด้วย
+                  </h6>
                 </div>
               )}
 
@@ -691,7 +696,10 @@ const Login = () => {
               )}
 
               <div className="login-path">
-                <GoogleLoginComponent />
+                <Stack flexDirection={"row"} gap={2} justifyContent={"center"}>
+                  <GoogleLoginComponent />
+                  <FaceBookLoginComponent />
+                </Stack>
               </div>
               {/* <div className="two-col">
               <div className="one">

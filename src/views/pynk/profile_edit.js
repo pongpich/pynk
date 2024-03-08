@@ -28,7 +28,6 @@ const Profile_edit = () => {
   const googleProfile = useSelector(({ auth }) =>
     auth ? auth.googleProfile : ""
   );
-
   useEffect(() => {
     if (!user && googleProfile && googleProfile.profile == null) {
       history.push("/home");
@@ -481,7 +480,15 @@ const Profile_edit = () => {
                 <img src={icon_facebook} className="icon_facebook" />
                 <p className="text-icon-connect">Facebook</p>
               </div>
-              <button className="btn-noConnect">Connect</button>
+              <button
+                className={
+                  googleProfile && googleProfile?.profile?.facebook
+                    ? "btn-connect"
+                    : "btn-noConnect"
+                }
+              >
+                Connect
+              </button>
             </div>
             <div className="box-google">
               <div className="connect-icon">
@@ -490,7 +497,9 @@ const Profile_edit = () => {
               </div>
               <button
                 className={
-                  googleProfile && googleProfile.profile != null
+                  googleProfile &&
+                  googleProfile.profile != null &&
+                  !googleProfile.profile.facebook
                     ? "btn-connect"
                     : "btn-noConnect"
                 }
@@ -669,6 +678,9 @@ const Profile_edit = () => {
                   <p className="bebe-fit text-center">BeBe Fit</p>
                   <p className="username text-center">
                     @{user && user.first_name}
+                    {googleProfile && googleProfile.profile
+                      ? googleProfile.profile.givenName
+                      : null}
                   </p>
                 </div>
                 {/*  <p className="lv">LV: มือใหม่หัดฟิตหุ่น</p> */}
