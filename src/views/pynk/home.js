@@ -20,6 +20,8 @@ import comment6 from "../../assets/img/home/comment6.png";
 import content1 from "../../assets/img/home/content1.png";
 import content2 from "../../assets/img/home/content2.png";
 import content3 from "../../assets/img/home/content3.png";
+import icon_circle from "../../assets/img/pynk/shop/icon-circle.png";
+
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -29,20 +31,41 @@ import "./css/home_animation.css";
 import styles from "./css/home.module.css";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+
 import { Link } from "@mui/icons-material";
 import { clearGetPage, getPage } from "../../redux/pynk/contents";
 
 let slidesToShow = 3;
 
+const PreviousBtn = (props) => {
+  const { className, onClick, currentSlide } = props;
+  return (
+    <>
+      <div className={`previous-btn-home`} onClick={onClick}>
+        <img src={icon_circle} className="icon-previous-btn" />
+      </div>
+    </>
+  );
+};
+const NextBtn = (props) => {
+  const { className, onClick, slideCount, currentSlide } = props;
+  return (
+    <>
+      <div className={`next-btn-home`} onClick={onClick}>
+        <img src={icon_circle} className="icon-next-btn" />
+      </div>
+    </>
+  );
+};
+
 const carouselProperties = {
-  prevArrow: false,
-  nextArrow: false,
-  slidesToShow: slidesToShow,
-  slidesToScroll: 3,
+  prevArrow: <PreviousBtn />,
+  nextArrow: <NextBtn />,
+  slidesToShow: 2,
+  slidesToScroll: 1,
   infinite: true,
   autoplay: true, // ให้ Slider หมุนเอง
   autoplaySpeed: 9000, // ตั้งค่าให้หมุนทุก ๆ 30 วินาที
-  // slidesToScroll={3}
   responsive: [
     {
       breakpoint: 480,
@@ -77,15 +100,17 @@ const carouselProperties = {
     {
       breakpoint: 1025,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
         centerMode: true,
+        slidesToScroll: 1,
       },
     },
     {
       breakpoint: 1200,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
         centerMode: true,
+        slidesToScroll: 1,
       },
     },
     {
@@ -93,13 +118,15 @@ const carouselProperties = {
       settings: {
         slidesToShow: 3,
         centerMode: true,
+        slidesToScroll: 1,
       },
     },
     {
       breakpoint: 1600,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
         centerMode: true,
+        slidesToScroll: 1,
       },
     },
     {
@@ -107,10 +134,12 @@ const carouselProperties = {
       settings: {
         slidesToShow: 3,
         centerMode: true,
+        slidesToScroll: 1,
       },
     },
   ],
 };
+
 const Home = () => {
   const history = useHistory();
   const reqURL =
@@ -298,30 +327,30 @@ const Home = () => {
                       </button>
                     </div>
                     <div className="home1-detail1">
-                    <img src={lets_challenge} className="slide-img2" alt="" />
-                    <p className="slide-text2 SemiBoldPynk">
-                      ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝันได้กับไอเทมฮอตฮิตจาก
-                      bebe fit routine
-                    </p>
-                    <button
-                    onClick={() => history.push("/questionare")}
-                    className="btn  bold button-home1 col-10 col-sm-10 button-home1"
-                  >
-                    เริ่มฟิตไปด้วยกัน
-                  </button>
-                  </div>
-                  <div className="home1-detail2">
-                    <img src={shop_fin} className="slide-img3" alt="" />
-                    <p className="slide-text3 SemiBoldPynk">
-                      รวมดีลเด็ดที่คุณต้องไม่พลาด ช้อปเลย!
-                    </p>
-                    <button
-                    onClick={() => history.push("/questionare")}
-                    className="btn  bold button-home1 col-10 col-sm-10 button-home1"
-                  >
-                    เริ่มฟิตไปด้วยกัน
-                  </button>
-                  </div>
+                      <img src={lets_challenge} className="slide-img2" alt="" />
+                      <p className="slide-text2 SemiBoldPynk">
+                        ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝันได้กับไอเทมฮอตฮิตจาก
+                        bebe fit routine
+                      </p>
+                      <button
+                        onClick={() => history.push("/questionare")}
+                        className="btn  bold button-home1 col-10 col-sm-10 button-home1"
+                      >
+                        เริ่มฟิตไปด้วยกัน
+                      </button>
+                    </div>
+                    <div className="home1-detail2">
+                      <img src={shop_fin} className="slide-img3" alt="" />
+                      <p className="slide-text3 SemiBoldPynk">
+                        รวมดีลเด็ดที่คุณต้องไม่พลาด ช้อปเลย!
+                      </p>
+                      <button
+                        onClick={() => history.push("/questionare")}
+                        className="btn  bold button-home1 col-10 col-sm-10 button-home1"
+                      >
+                        เริ่มฟิตไปด้วยกัน
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -359,7 +388,7 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="slider-container">
+      <div className="">
         <Slider {...carouselProperties}>
           <div className="box-home-slider-1">
             <div className="slider-card-item-course">
@@ -380,10 +409,8 @@ const Home = () => {
             </div>
           </div>
           <div className="box-home-slider-2">
-            {/* <div className="box-suggestion"></div> */}
             <div className="slider-card-item-course-center">
               <div className="box-fitto4week">
-                {/* <p className="suggestion text24 SemiBoldPynk white">แนะนำ</p> */}
                 <img className="fitto4week" src={stayfit_with_bebe} alt="" />
               </div>
               <div className="card-text-box">
