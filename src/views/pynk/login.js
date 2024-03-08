@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./css/home.css";
@@ -271,10 +271,10 @@ const Login = () => {
   }, [passwordRegister]);
 
   useEffect(() => {
-    var x = document.getElementById("login");
-    var y = document.getElementById("register");
-    var a = document.getElementById("btn-register");
-    var b = document.getElementById("btn-login");
+    let x = document.getElementById("login");
+    let y = document.getElementById("register");
+    let a = document.getElementById("btn-register");
+    let b = document.getElementById("btn-login");
     if (renderName === "register") {
       x.style.right = "-520px";
       y.style.left = "4px";
@@ -295,6 +295,15 @@ const Login = () => {
       history.push("/profile-pynk");
     }
   }, [googleProfile]);
+
+  useMemo(() => {
+    //for valied email suddenly
+    if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailRegister)) {
+      setIsEmailRegisterError("formatEmail");
+    } else {
+      setIsEmailRegisterError("default");
+    }
+  }, [emailRegister]);
 
   return (
     <div className="body-login">
@@ -385,6 +394,11 @@ const Login = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={isPhoneEmpty ? "invalid-field" : "input-field"}
+                    onKeyPress={(event) => {
+                      if (!/[0-9]/.test(event.key)) {
+                        event.preventDefault();
+                      }
+                    }}
                   />
                   {isPhoneEmpty && (
                     <p className="empty-text">กรุณาระบุข้อมูล</p>
@@ -591,7 +605,8 @@ const Login = () => {
                 isConfirmPasswordMatch &&
                 isPasswordValid === "valid" &&
                 hasUpperCase === "valid" &&
-                hasNumber === "valid" ? (
+                hasNumber === "valid" &&
+                isEmailRegisterError !== "formatEmail" ? (
                 <div className="input-box">
                   <input
                     onClick={handleRegister}
