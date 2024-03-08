@@ -140,8 +140,16 @@ const Profile = () => {
     auth ? auth.googleProfile : ""
   );
 
+
   useEffect(() => {
-    if (!user && googleProfile && googleProfile.profile == null) {
+    if (
+      !user &&
+      googleProfile &&
+      googleProfile.profile == null
+      // &&
+      // facebookProfile &&
+      // facebookProfile.profile == null
+    ) {
       history.push("/home");
     }
   }, [user]);
@@ -177,7 +185,12 @@ const Profile = () => {
                 </div>
                 <div>
                   <p className="bebe-fit">BeBe Fit</p>
-                  <p className="username">@{user && user.first_name}</p>
+                  <p className="username">
+                    @{user ? user.first_name : null}
+                    {googleProfile && googleProfile.profile
+                      ? googleProfile.profile.givenName
+                      : null}
+                  </p>
                   {/*  <p className="lv">LV: มือใหม่หัดฟิตหุ่น</p> */}
                 </div>
               </div>
@@ -204,25 +217,6 @@ const Profile = () => {
                     แก้ไขข้อมูลส่วนตัว
                   </div>
                 </div>
-
-                {/* <GoogleLogout
-                    clientId={clientId}
-                    buttonText="ออกจากระบบ"
-                    onLogoutSuccess={logOutGoogle}
-                    render={(renderProps) => (
-                      <div
-                        className="btn-profile cursor-pointer"
-                        onClick={logOutGoogle}
-                      >
-                        <img
-                          src={icon_google}
-                          className="icon-edit"
-                          alt="icon_google"
-                        />
-                        ออกจากระบบ
-                      </div>
-                    )}
-                  /> */}
 
                 {googleProfile?.profile ? (
                   <div className="btn-profile cursor-pointer">

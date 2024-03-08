@@ -193,7 +193,6 @@ class App extends Component {
 
   componentDidMount() {
     const { user, locale } = this.props;
-
     if (locale === "th") {
       this.setState({
         thEn: "ไทย",
@@ -415,6 +414,7 @@ class App extends Component {
                               src={icon_exit}
                               alt="icon_exit"
                               className="icon-edit cursor-pointer"
+                              style={{ marginLeft: "2px" }}
                             />
                             profile
                           </Link>

@@ -442,6 +442,12 @@
   color: var(--normal-pink);
 }
 
+@media (max-width: 996px) {
+  .btn-content-participate {
+    color: white;
+  }
+}
+
 .btn-content-details {
   width: 149px;
   height: 50px;

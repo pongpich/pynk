@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./css/home.css";
@@ -6,6 +6,9 @@ import "./css/login.css";
 
 import { login, logout, register, clear_status } from "../../redux/pynk/auth";
 import GoogleLoginComponent from "./googleFacebookLineLogin/googleLogin";
+import FaceBookLoginComponent from "./googleFacebookLineLogin/faceBookLogin";
+import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
 
 const Login = () => {
   const history = useHistory();
@@ -268,10 +271,10 @@ const Login = () => {
   }, [passwordRegister]);
 
   useEffect(() => {
-    var x = document.getElementById("login");
-    var y = document.getElementById("register");
-    var a = document.getElementById("btn-register");
-    var b = document.getElementById("btn-login");
+    let x = document.getElementById("login");
+    let y = document.getElementById("register");
+    let a = document.getElementById("btn-register");
+    let b = document.getElementById("btn-login");
     if (renderName === "register") {
       x.style.right = "-520px";
       y.style.left = "4px";
@@ -292,6 +295,15 @@ const Login = () => {
       history.push("/profile-pynk");
     }
   }, [googleProfile]);
+
+  useMemo(() => {
+    //for valied email suddenly
+    if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailRegister)) {
+      setIsEmailRegisterError("formatEmail");
+    } else {
+      setIsEmailRegisterError("default");
+    }
+  }, [emailRegister]);
 
   return (
     <div className="body-login">
@@ -347,7 +359,6 @@ const Login = () => {
                     <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                 </div>
-
                 <div className="input-box">
                   <label for="last-name">
                     นามสกุล <span style={{ color: "red" }}>*</span>
@@ -383,6 +394,11 @@ const Login = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={isPhoneEmpty ? "invalid-field" : "input-field"}
+                    onKeyPress={(event) => {
+                      if (!/[0-9]/.test(event.key)) {
+                        event.preventDefault();
+                      }
+                    }}
                   />
                   {isPhoneEmpty && (
                     <p className="empty-text">กรุณาระบุข้อมูล</p>
@@ -589,7 +605,8 @@ const Login = () => {
                 isConfirmPasswordMatch &&
                 isPasswordValid === "valid" &&
                 hasUpperCase === "valid" &&
-                hasNumber === "valid" ? (
+                hasNumber === "valid" &&
+                isEmailRegisterError !== "formatEmail" ? (
                 <div className="input-box">
                   <input
                     onClick={handleRegister}
@@ -683,6 +700,9 @@ const Login = () => {
                     value={"ดำเนินการต่อ"}
                     style={{ cursor: "default", backgroundColor: "#C3C3C3" }}
                   />
+                  <h6 style={{ color: "#4F4F4F", marginTop: 10 }}>
+                    หรือเข้าสู่ระบบด้วย
+                  </h6>
                 </div>
               )}
 
@@ -691,7 +711,10 @@ const Login = () => {
               )}
 
               <div className="login-path">
-                <GoogleLoginComponent />
+                <Stack flexDirection={"row"} gap={2} justifyContent={"center"}>
+                  <GoogleLoginComponent />
+                  <FaceBookLoginComponent />
+                </Stack>
               </div>
               {/* <div className="two-col">
               <div className="one">
