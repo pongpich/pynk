@@ -8,6 +8,7 @@ import fitto4week from "../../assets/img/home/fitto4week.png";
 import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
 import bikini_body_challenge from "../../assets/img/home/bikini_body_challenge.png";
 import stay_fit_with_bebe from "../../assets/img/home/stay_fit_with_bebe.png";
+import suggest_icon from "../../assets/img/pynk/shop/suggest.png";
 import lets_challenge from "../../assets/img/home/lets_challenge.png";
 import shop_fin from "../../assets/img/home/shop_fin.png";
 import star from "../../assets/img/home/star.png";
@@ -21,6 +22,11 @@ import content1 from "../../assets/img/home/content1.png";
 import content2 from "../../assets/img/home/content2.png";
 import content3 from "../../assets/img/home/content3.png";
 import icon_circle from "../../assets/img/pynk/shop/icon-circle.png";
+import bg_grey_1 from "../../assets/img/pynk/bg_grey_1.png";
+import Group37365 from "../../assets/img/pynk/Group37365.png";
+import LOGO from "../../assets/img/pynk/LOGO.png";
+import Group11 from "../../assets/img/pynk/Group11.png";
+import Rectangle4390 from "../../assets/img/pynk/Rectangle4390.png";
 
 import Footer from "./footer";
 import { useHistory } from "react-router-dom";
@@ -30,10 +36,18 @@ import "./css/home.css";
 import "./css/home_animation.css";
 import styles from "./css/home.module.css";
 import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Box from "@mui/material/Box";
 
 import { Link } from "@mui/icons-material";
 import { clearGetPage, getPage } from "../../redux/pynk/contents";
+import { Button } from "@mui/material";
 
 let slidesToShow = 3;
 
@@ -61,14 +75,12 @@ const NextBtn = (props) => {
 const carouselProperties = {
   prevArrow: <PreviousBtn />,
   nextArrow: <NextBtn />,
-  slidesToShow: 2,
-  slidesToScroll: 1,
   infinite: true,
   autoplay: true, // ให้ Slider หมุนเอง
   autoplaySpeed: 9000, // ตั้งค่าให้หมุนทุก ๆ 30 วินาที
   responsive: [
     {
-      breakpoint: 480,
+      breakpoint: 476,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -85,8 +97,8 @@ const carouselProperties = {
     {
       breakpoint: 769,
       settings: {
-        slidesToShow: 1,
-        centerMode: true,
+        slidesToShow: 2,
+        // centerMode: true,
         slidesToScroll: 1,
       },
     },
@@ -124,22 +136,46 @@ const carouselProperties = {
     {
       breakpoint: 1600,
       settings: {
-        slidesToShow: 2,
-        centerMode: true,
-        slidesToScroll: 1,
-      },
-    },
-    {
-      breakpoint: 1800,
-      settings: {
         slidesToShow: 3,
         centerMode: true,
         slidesToScroll: 1,
       },
     },
+    // {
+    //   breakpoint: 1800,
+    //   settings: {
+    //     slidesToShow: 3,
+    //     centerMode: true,
+    //     slidesToScroll: 1,
+    //   },
+    // },
   ],
 };
 
+const boxServices = [
+  {
+    id: 1,
+    title: "Fitto 4 Week Starter Program",
+    img: fitto4week,
+    link: "",
+    content: "Lorem Ipsum is simply dummy text of the printing",
+  },
+  {
+    id: 2,
+    title: "STAY FIT WITH BEBE",
+    img: stayfit_with_bebe,
+
+    link: "",
+    content: "Lorem Ipsum is simply dummy text of the printing",
+  },
+  {
+    id: 3,
+    title: "Bikini Body Challenge",
+    img: bikini_body_challenge,
+    link: "",
+    content: "Lorem Ipsum is simply dummy text of the printing",
+  },
+];
 const Home = () => {
   const history = useHistory();
   const reqURL =
@@ -388,61 +424,219 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="">
+      <Container maxWidth="lg" sx={{ mt: 3, mb: 3 }}>
         <Slider {...carouselProperties}>
-          <div className="box-home-slider-1">
-            <div className="slider-card-item-course">
-              <div className="box-fitto4week">
-                <img className="fitto4week" src={fitto4week} alt="" />
-              </div>
+          {boxServices.map((item) => (
+            <Grid container spacing={3} alignItems={"center"} key={item.id}>
+              <Grid item xs={12}>
+                {
+                  <Stack
+                    flexDirection={"row"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                  >
+                    {item.id == 2 ? (
+                      <img
+                        src={suggest_icon}
+                        alt="suggest"
+                        style={{
+                          width: 100,
+                          height: 50,
+                          marginBottom: "-20px",
+                        }}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          width: 100,
+                          height: 50,
+                          marginBottom: "-20px",
+                        }}
+                      />
+                    )}
+                  </Stack>
+                }
+                <Card
+                  sx={{
+                    height: 500,
+                    p: 2,
+                    borderRadius: "1rem",
+                    border: "1px solid #E8E8E8",
+                    width: { xs: 350, lg: 300 },
+                    ":hover": {
+                      // borderImage:
+                      //   "linear-gradient(#7E74F2, #F05098, #F4A7BC, #DCDBDB) 2",
+                      borderColor: "#F05098",
+                      borderWidth: 2,
+                      borderStyle: "solid",
+                      borderRadius: "1rem",
+                    },
+                  }}
+                >
+                  <CardMedia
+                    sx={{
+                      height: 290,
+                      width: "100%",
+                    }}
+                    image={item.img}
+                    title={item.title}
+                  />
 
-              <div className="card-text-box">
-                <p className="SemiBoldPynk text24">
-                  Fitto 4 Week Starter Program
-                </p>
-                <p className="RegularPynk text20">
-                  “Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
-                </p>
-                <i className={`fa-solid fa-arrow-right fa-xl`} />
-              </div>
-            </div>
-          </div>
-          <div className="box-home-slider-2">
-            <div className="slider-card-item-course-center">
-              <div className="box-fitto4week">
-                <img className="fitto4week" src={stayfit_with_bebe} alt="" />
-              </div>
-              <div className="card-text-box">
-                <p className="SemiBoldPynk text24">STAY FIT WITH BEBE</p>
-                <p className="RegularPynk text20">
-                  โปรแกรมออกกำลังกาย 8 สัปดาห์ที่ เบเบ้ออกแบบพิเศษให้เหมาะกับคุณ
-                </p>
-                <i className={`fa-solid fa-arrow-right fa-xl`} />
-              </div>
-            </div>
-          </div>
-          <div className="box-home-slider-3">
-            <div className="slider-card-item-course">
-              <div className="box-fitto4week">
-                <img
-                  className="fitto4week"
-                  src={bikini_body_challenge}
-                  alt=""
-                />
-              </div>
-              <div className="card-text-box">
-                <p className="SemiBoldPynk text24">Bikini Body Challenge</p>
-                <p className="RegularPynk text20">
-                  “Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
-                </p>
-                <i className={`fa-solid fa-arrow-right fa-xl`} />
-              </div>
-            </div>
-          </div>
+                  <CardContent>
+                    <Typography
+                      gutterBottom
+                      variant="h6"
+                      color={"#2C2E2F"}
+                      fontWeight={600}
+                      height={"64px"}
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography variant="body2" color="#2C2E2F">
+                      {item.content}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <a
+                      href="/#"
+                      color="#2C2E2F"
+                      style={{ textDecoration: "underline" }}
+                    >
+                      ดูรายละเอียด
+                    </a>
+                  </CardActions>
+                </Card>
+              </Grid>
+            </Grid>
+          ))}
         </Slider>
-      </div>
+      </Container>
+
+      <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+        <Stack
+          sx={{
+            backgroundImage: `url(${bg_grey_1})`,
+            p: 2,
+            width: "100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            borderRadius: "1.5rem",
+            height: { xs: "100%", lg: 320 },
+          }}
+        >
+          <Grid container spacing={3}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={6}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <img
+                src={Group37365}
+                style={{ width: "100%", height: "auto" }}
+                alt="img"
+              />
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={6}
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <Box>
+                <Typography variant="h2" color={"#FCDEEC"} fontWeight={700}>
+                  FIT ITEMS
+                </Typography>
+                <Typography variant="h4" fontWeight={500} color={"#FFFFFF"}>
+                  ‘ตอบโจทย์ ทุกไลฟ์สไตล์ของสายฟิต’
+                </Typography>
+                <Typography
+                  variant="h6"
+                  fontWeight={400}
+                  color={"#FFFFFF"}
+                  mt={1}
+                >
+                  ไม่ว่าจะสายฟิตมือใหม่หรือสายฟิตมือโปร
+                </Typography>
+                <Typography variant="h6" fontWeight={400} color={"#FFFFFF"}>
+                  ก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </Stack>
+      </Container>
+
+      <Container maxWidth="xl" sx={{ mt: 4, mb: 8 }}>
+        <Stack
+          sx={{
+            backgroundImage: `url(${Rectangle4390})`,
+            p: 2,
+            width: "100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            borderRadius: "1.5rem",
+            height: { xs: "100%", lg: 320 },
+          }}
+        >
+          <Grid container spacing={3} sx={{ height: { xs: "100%", lg: 320 } }}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={6}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              order={{ xs: 2, sm: 1 }}
+            >
+              <Box>
+                <img src={LOGO} style={{ width: 120, height: 60 }} alt="img" />
+                <Typography variant="h4" fontWeight={500} color={"#000000"}>
+                  ‘ทางลัดปั้นหุ่นสวยฉบับสายฟิต’
+                </Typography>
+                <Typography
+                  variant="h6"
+                  fontWeight={400}
+                  color={"#000000"}
+                  mt={1}
+                >
+                  ไม่ว่าจะสายฟิตมือใหม่หรือสายฟิตมือโปร
+                </Typography>
+                <Typography variant="h6" fontWeight={400} color={"#000000"}>
+                  ก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={6}
+              order={{ xs: 1, sm: 2 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <img
+                src={Group11}
+                style={{ width: "100%", height: "auto" }}
+                alt="img"
+              />
+            </Grid>
+          </Grid>
+        </Stack>
+      </Container>
 
       <div ref={home4} className="home4">
         <div
