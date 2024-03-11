@@ -1028,13 +1028,19 @@
   height: auto;
   width: 100%;
   z-index: 2;
-  top: 10%;
 }
 .slide-text1,
 .slide-text2,
 .slide-text3 {
   position: absolute;
   z-index: 10;
+}
+.slide-text1,
+.slide-text2 {
+  top: 54%;
+}
+.slide-text3{
+  top: 62%;
 }
 .slide-text2,
 .slide-text3 {
@@ -1061,7 +1067,6 @@
   position: relative;
 }
 .text-anime {
-  background-color: blue;
   width: 100%;
   position: relative;
   z-index: 10;
