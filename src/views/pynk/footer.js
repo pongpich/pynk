@@ -3,10 +3,10 @@ import "./css/footer.css";
 import pinklogo from "../../assets/img/home/pinklogo.png";
 import phonelogo from "../../assets/img/home/phonelogo.png";
 import emaillogo from "../../assets/img/home/emaillogo.png";
-import fb from "../../assets/img/home/fb.png";
-import instagram from "../../assets/img/home/Instagram.png";
-import te from "../../assets/img/home/te.png";
-import line from "../../assets/img/home/line.png";
+import fb from "../../assets/img/home/icon_fb.png";
+import instagram from "../../assets/img/home/icon_ig.png";
+import te from "../../assets/img/home/icon_tk.png";
+import line from "../../assets/img/home/icon_line.png";
 
 export default function Footer() {
   return (
