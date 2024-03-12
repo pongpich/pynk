@@ -163,7 +163,7 @@ const boxServices = [
     id: 1,
     title: "Fitto 4 Week Starter Program",
     img: fitto4week,
-    link: "",
+    link: "/sale-page",
     content: "Lorem Ipsum is simply dummy text of the printing",
   },
   {
@@ -519,7 +519,7 @@ const Home = () => {
                       maxHeight: 250,
                       width: "100%",
                       backgroundSize: "cover",
-                      borderRadius:'1.5rem'
+                      borderRadius: "1.5rem",
                     }}
                     src={item.img}
                     alt={item.title}
@@ -541,7 +541,7 @@ const Home = () => {
                   </CardContent>
                   <CardActions>
                     <a
-                      href="/#"
+                      onClick={() => history.push(item.link)}
                       color="#2C2E2F"
                       style={{ textDecoration: "underline" }}
                     >
