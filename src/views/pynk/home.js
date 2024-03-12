@@ -8,6 +8,11 @@ import fitto4week from "../../assets/img/home/fitto4week.png";
 import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
 import bikini_body_challenge from "../../assets/img/home/bikini_body_challenge.png";
 import stay_fit_with_bebe from "../../assets/img/home/stay_fit_with_bebe.png";
+import bebefitroutine from "../../assets/img/home/bebefitroutine.png";
+import pilates7day from "../../assets/img/home/pilates7day.png";
+import getfitwithcarrot from "../../assets/img/home/getfitwithcarrot.png";
+import better_preem from "../../assets/img/home/better-preem.png";
+
 import suggest_icon from "../../assets/img/pynk/shop/suggest.png";
 import lets_challenge from "../../assets/img/home/lets_challenge.png";
 import shop_fin from "../../assets/img/home/shop_fin.png";
@@ -175,7 +180,40 @@ const boxServices = [
     link: "",
     content: "Lorem Ipsum is simply dummy text of the printing",
   },
+  {
+    id: 4,
+    title: "Bebe for Beginner",
+    img: bebefitroutine,
+    link: "",
+    content:
+      "คอร์สปั้นหุ่นฉบับมือใหม่ 8 สัปดาห์ ที่ไม่ว่าใครก็เริ่มต้นความฟิตกับเบเบ้ได้ ฟิตหุ่นเป๊ะปังกับโปรแกรมพิเศษจากเบเบ้ที่สนุก ง่าย ทำตามได้ และได้ผลจริง",
+  },
+  {
+    id: 5,
+    title: "7 DAY WITH PILATES RING",
+    img: pilates7day,
+    link: "",
+    content:
+      "สาว ๆ ตัว Top แห่งวงการความฟิต เบเบ้ จินนี่ และลิตา ชวนคุณมาสนุกกับคอร์สปั้นหุ่นเฟิร์มปัง กระชับทั้งตัวแบบ Full Body 360° ใน 4 สัปดาห์ ด้วยอุปกรณ์ Pilates Ring",
+  },
+  {
+    id: 6,
+    title: "Get Fit With Carrot In 8 Week",
+    img: getfitwithcarrot,
+    link: "",
+    content: `คอร์ส 8 สัปดาห์ ที่จะพาคุณมาปั้นหุ่นสับ แบบ Full Body 
+      สร้างเอวเอสก้นกลมเด้ง กับโปรแกรมพิเศษสไตล์ “แครอท ปภาดา”`,
+  },
+  {
+    id: 7,
+    title: "Better Shape in 60 Days",
+    img: better_preem,
+    link: "",
+    content:
+      "คอร์สปั้นหุ่น 8 สัปดาห์ ฉบับซุปตาร์พรีม รณิดา ฝึกความยืดหยุ่นและสร้างความแข็งแรงให้กับกล้ามเนื้อแกนกลางลำตัว โปรแกรมออกแบบมาพิเศษสำหรับผู้ที่ต้องการเริ่มต้นออกกำลังกาย สร้างสุขภาพและรูปร่างที่ดีในแบบของตนเอง",
+  },
 ];
+
 const Home = () => {
   const history = useHistory();
   const reqURL =
@@ -493,7 +531,7 @@ const Home = () => {
                       {item.title}
                     </Typography>
                     <Typography variant="body2" color="#2C2E2F">
-                      {item.content}
+                      {item.content.slice(0, 70) + "..."}
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -520,8 +558,9 @@ const Home = () => {
             width: "100%",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
+            backgroundSize: "cover",
             borderRadius: "1.5rem",
-            height: { xs: "100%", lg: 320 },
+            height: { xs: "100%", lg: 270 },
           }}
         >
           <Grid container spacing={3}>
@@ -538,7 +577,12 @@ const Home = () => {
             >
               <img
                 src={Group37365}
-                style={{ width: "100%", height: "auto" }}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: "582px",
+                  maxHeight: "250px",
+                }}
                 alt="img"
               />
             </Grid>
@@ -581,8 +625,9 @@ const Home = () => {
             width: "100%",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
+            backgroundSize: "cover",
             borderRadius: "1.5rem",
-            height: { xs: "100%", lg: 320 },
+            height: { xs: "100%", lg: 270 },
           }}
         >
           <Grid container spacing={3} sx={{ height: { xs: "100%", lg: 320 } }}>
