@@ -87,6 +87,7 @@ const carouselProperties = {
     {
       breakpoint: 476,
       settings: {
+        centerMode: true,
         slidesToShow: 1,
         slidesToScroll: 1,
       },
@@ -496,11 +497,11 @@ const Home = () => {
                 }
                 <Card
                   sx={{
-                    height: 500,
+                    height: { xs: 454, sm: 480 },
                     p: 2,
                     borderRadius: "1rem",
                     border: "1px solid #E8E8E8",
-                    width: { xs: 350, lg: 300 },
+                    width: { xs: 250, sm: 300, lg: 300 },
                     ":hover": {
                       // borderImage:
                       //   "linear-gradient(#7E74F2, #F05098, #F4A7BC, #DCDBDB) 2",
@@ -511,13 +512,17 @@ const Home = () => {
                     },
                   }}
                 >
-                  <CardMedia
+                  <Box
+                    component={"img"}
                     sx={{
-                      height: 290,
+                      height: "auto",
+                      maxHeight: 250,
                       width: "100%",
+                      backgroundSize: "cover",
+                      borderRadius:'1.5rem'
                     }}
-                    image={item.img}
-                    title={item.title}
+                    src={item.img}
+                    alt={item.title}
                   />
 
                   <CardContent>
