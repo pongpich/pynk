@@ -227,7 +227,7 @@ const Home = () => {
     })();
   }, []);
   return (
-    <div className="">
+    <div className="page">
       <div
         id="carouselExampleAutoplaying"
         className="carousel slide"
