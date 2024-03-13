@@ -117,7 +117,6 @@ import { all } from "redux-saga/effects";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import icon_exit from "./assets/img/pynk/shop/exit.png";
-import SalePage from "./views/pynk/sale_page";
 
 Amplify.configure(awsConfig);
 
@@ -305,10 +304,19 @@ class App extends Component {
     const { searchStatus } = this.state;
     this.setState({ searchStatus: e });
   }
+
   renderNavbar() {
     const pagePath = this.props.location.pathname;
     const { user, googleProfile } = this.props;
     const { searchStatus, group_image } = this.state;
+
+    const params = {
+      key1: "sorawit@hotmail.com",
+    };
+
+    // แปลงอ็อบเจ็กต์พารามิเตอร์เป็นสตริงแล้วเข้ารหัส Base64
+    const encodedParams = btoa(JSON.stringify(params));
+    // สร้างลิงก์พร้อมพารามิเตอร์ที่เข้ารหัสแล้ว
 
     return (
       <div className="navbar-pynk">
@@ -557,12 +565,19 @@ class App extends Component {
                   >
                     Exclusive Coaching
                   </a> */}
-                  <a
+                  {/*    <a
                     className="nav-link link-pynk"
                     onClick={() => this.props.history.push("/shop")}
                   >
                     ร้านค้า
+                  </a> */}
+                  <a
+                    className="nav-link link-pynk"
+                    href={`http://localhost:3001/#/login?encodedParams=${encodedParams}`}
+                  >
+                    Better Shape
                   </a>
+
                   <a
                     className="nav-link link-pynk"
                     // href="/#"
@@ -754,7 +769,6 @@ class App extends Component {
                 />
                 <Route path="/error-payment" component={ShopErrorPaymentPynk} />
                 <Route path="/profile-pynk" component={profilePynk} />
-                <Route path="/sale-page" component={SalePage} />
                 <Route path="/profile-edit-pynk" component={profileEditPynk} />
                 <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />
