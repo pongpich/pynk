@@ -118,6 +118,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import icon_exit from "./assets/img/pynk/shop/exit.png";
 import SalePage from "./views/pynk/sale_page";
+import SaleChoicePage from "./views/pynk/sale_choice_page";
 
 Amplify.configure(awsConfig);
 
@@ -755,6 +756,7 @@ class App extends Component {
                 <Route path="/error-payment" component={ShopErrorPaymentPynk} />
                 <Route path="/profile-pynk" component={profilePynk} />
                 <Route path="/sale-page" component={SalePage} />
+                <Route path="/sale-choice" component={SaleChoicePage} />
                 <Route path="/profile-edit-pynk" component={profileEditPynk} />
                 <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />

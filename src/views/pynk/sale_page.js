@@ -5,12 +5,29 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 export default function SalePage() {
+  const history = useHistory();
+  const googleProfle = useSelector(({ auth }) => auth.googleProfile);
+  const authUserEmail = useSelector(({ auth }) => auth.user.email);
+
+  React.useMemo(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <div>
       <Box sx={{ background: "red", height: 500 }}>
         <h1>ContentForSale</h1>
+        <Button
+          variant="contained"
+          onClick={() => history.push("/sale-choice")}
+        >
+          สมัคร
+        </Button>
       </Box>
 
       <Container maxWidth="lg" sx={{ mt: 8 }}>
