@@ -71,7 +71,17 @@ export default function SaleBebePage() {
                 />
               </Box>
               <Box>
+<<<<<<< HEAD
       
+=======
+                <div style="height:100px; line-height:100px; background:#EEE;">
+                  <span style="vertical-align:middle;">test</span>
+                  <span style="font-size:2em; vertical-align:middle;">
+                    test
+                  </span>
+                </div>
+                
+>>>>>>> f4e1cd9 (demo push)
 
                 <Typography
                   sx={{ color: "#FCDEEC", fontSize: { xs: 50, lg: 120 } }}
