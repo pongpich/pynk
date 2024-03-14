@@ -346,8 +346,7 @@ const Home = () => {
                     id="bubbles-bottom"
                     alt=""
                   />
-                  <img
-                    src={bebeSlide}
+                  <div
                     className={`bebe-slide ${
                       (animation &&
                         currentSlideIndex === 0 &&
@@ -445,7 +444,7 @@ const Home = () => {
             </div>
             <div className="carousel-item" data-interval="1000">
               <div className="box_screen2">
-                <div className="line3"></div>
+                <div className="line3"></div>                
               </div>
             </div>
             <div className="carousel-item" data-interval="1000">

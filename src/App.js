@@ -117,11 +117,8 @@ import { all } from "redux-saga/effects";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import icon_exit from "./assets/img/pynk/shop/exit.png";
-<<<<<<< HEAD
-=======
 import SalePage from "./views/pynk/sale_page";
 import SaleChoicePage from "./views/pynk/sale_choice_page";
->>>>>>> da915ed8410660cd1e1219c56b6605719908f97e
 
 Amplify.configure(awsConfig);
 
@@ -774,11 +771,8 @@ class App extends Component {
                 />
                 <Route path="/error-payment" component={ShopErrorPaymentPynk} />
                 <Route path="/profile-pynk" component={profilePynk} />
-<<<<<<< HEAD
-=======
                 <Route path="/sale-page" component={SalePage} />
                 <Route path="/sale-choice" component={SaleChoicePage} />
->>>>>>> da915ed8410660cd1e1219c56b6605719908f97e
                 <Route path="/profile-edit-pynk" component={profileEditPynk} />
                 <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />
