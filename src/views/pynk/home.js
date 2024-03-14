@@ -444,7 +444,7 @@ const Home = () => {
             </div>
             <div className="carousel-item" data-interval="1000">
               <div className="box_screen2">
-                <div className="line3"></div>                
+                <div className="line3"></div>
               </div>
             </div>
             <div className="carousel-item" data-interval="1000">
@@ -472,35 +472,36 @@ const Home = () => {
         <Container maxWidth="xl" sx={{ mt: 3, mb: 3 }}>
           <Slider {...carouselProperties}>
             {boxServices.map((item) => (
-              <Grid container spacing={3} alignItems={"center"} key={item.id}>
+              <Grid container spacing={3} key={item.id}>
                 <Grid item xs={12}>
-                  {
-                    <Stack
-                      flexDirection={"row"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                    >
-                      {item.id == 2 ? (
-                        <img
-                          src={suggest_icon}
-                          alt="suggest"
-                          style={{
-                            width: 100,
-                            height: 50,
-                            marginBottom: "-20px",
-                          }}
-                        />
-                      ) : (
-                        <div
-                          style={{
-                            width: 100,
-                            height: 50,
-                            marginBottom: "-20px",
-                          }}
-                        />
-                      )}
-                    </Stack>
-                  }
+                  <Stack
+                    flexDirection={"row"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    sx={{
+                      width: { xs: 250, sm: 300, lg: 300 },
+                    }}
+                  >
+                    {item.id == 2 ? (
+                      <img
+                        src={suggest_icon}
+                        alt="suggest"
+                        style={{
+                          width: 100,
+                          height: 50,
+                          marginBottom: "-20px",
+                        }}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          width: 100,
+                          height: 50,
+                          marginBottom: "-20px",
+                        }}
+                      />
+                    )}
+                  </Stack>
                   <Card
                     sx={{
                       height: { xs: 454, sm: 480 },
