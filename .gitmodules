@@ -1,3 +1,6 @@
 [submodule "pynk_header_footer"]
 	path = pynk_header_footer
 	url = https://th-thanet@bitbucket.org/p4ftech/pynk_header_footer.git
+[submodule "src/pynk_header_footer"]
+	path = src/pynk_header_footer
+	url = https://th-thanet@bitbucket.org/p4ftech/pynk_header_footer.git
