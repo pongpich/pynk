@@ -72,8 +72,11 @@ export default function SaleBebePage() {
               </Box>
               <Box>
 <<<<<<< HEAD
+<<<<<<< HEAD
       
 =======
+=======
+>>>>>>> f4e1cd9a3c09a1ce8207e58c64a8058fc228e856
                 <div style="height:100px; line-height:100px; background:#EEE;">
                   <span style="vertical-align:middle;">test</span>
                   <span style="font-size:2em; vertical-align:middle;">
@@ -81,7 +84,10 @@ export default function SaleBebePage() {
                   </span>
                 </div>
                 
+<<<<<<< HEAD
 >>>>>>> f4e1cd9 (demo push)
+=======
+>>>>>>> f4e1cd9a3c09a1ce8207e58c64a8058fc228e856
 
                 <Typography
                   sx={{ color: "#FCDEEC", fontSize: { xs: 50, lg: 120 } }}
