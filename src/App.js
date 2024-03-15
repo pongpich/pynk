@@ -319,7 +319,15 @@ class App extends Component {
     const encodedParams = btoa(JSON.stringify(params));
     // สร้างลิงก์พร้อมพารามิเตอร์ที่เข้ารหัสแล้ว
 
-    return <HeaderPynk />;
+    return (
+      <HeaderPynk
+        user={this.props.user}
+        googleProfile={this.props.googleProfile}
+        group_image={group_image}
+        searchStatus={searchStatus}
+        googleLoginComponent={GoogleLoginComponent}
+      />
+    );
   }
 
   openPopup() {
