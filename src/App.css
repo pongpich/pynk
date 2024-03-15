@@ -5396,6 +5396,26 @@ tr:last-child td:last-child {
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.triangle {
+  position: relative;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+.triangle::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  bottom: -2em;
+  left: 48.5%;
+  box-sizing: border-box;
+  border: 1em solid black;
+  border-color: transparent transparent #ffffff #ffffff;
+  transform-origin: 0 0;
+  transform: rotate(-45deg);
+}
+
 /*  .btn-secondary {
   --bs-btn-color: var(--border) !important;
   --bs-btn-bg: none !important;
