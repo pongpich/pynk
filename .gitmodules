@@ -6,7 +6,7 @@
 	url = https://th-thanet@bitbucket.org/p4ftech/pynk_header_footer.git
 [submodule "header_footer_pynk"]
 	path = header_footer_pynk
-	url = https://th-thanet@bitbucket.org/p4ftech/header_footer_pynk.git
+	url = git@bitbucket.org:p4ftech/header_footer_pynk.git
 [submodule "src/header_footer_pynk"]
 	path = src/header_footer_pynk
 	url = https://th-thanet@bitbucket.org/p4ftech/header_footer_pynk.git
