@@ -215,9 +215,20 @@ class App extends Component {
     window.removeEventListener("resize", this.updateWindowWidth);
   }
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusGetExpireDate, status_cart } = this.props;
-
+    const { user, statusGetExpireDate, status_cart, googleProfile } =
+      this.props;
     const { windowWidth, searchStatus, product_cookies } = this.state;
+
+    Cookies.set("loginUser", user);
+    Cookies.set("loginUserWeb", googleProfile.profile);
+    if (
+      (prevProps.user != user && user != null) ||
+      (prevProps.googleProfile != googleProfile && googleProfile != null)
+    ) {
+      let userCookies = user && user && googleProfile;
+      Cookies.set("loginUser", userCookies);
+      Cookies.set("loginUserWeb", userCookies);
+    }
 
     if (prevState.windowWidth != windowWidth && windowWidth > 576) {
       this.setState({ searchStatus: 0 });

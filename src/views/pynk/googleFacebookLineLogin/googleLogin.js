@@ -7,6 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import icon_google from "../../../assets/img/pynk/shop/Google_Icons-09-512.webp";
 import icon_exit from "../../../assets/img/pynk/shop/exit.png";
 
+
 const GoogleLoginComponent = () => {
   const clientId =
     "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com";
@@ -48,6 +49,7 @@ const GoogleLoginComponent = () => {
     const last_name = res.profileObj.familyName;
     dispatch(registerLoginGoogle(email, first_name, last_name));
     dispatch(loginGoogle(res.profileObj));
+ 
     // console.log("res.profileObj", res.profileObj);
   };
 
