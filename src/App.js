@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import delete_bin_line from "./assets/img/pynk/shop/delete-bin-line.png";
-import GoogleLoginComponent from "./views/pynk/googleFacebookLineLogin/googleLogin";
-
+/* import GoogleLoginComponent from "./views/pynk/googleFacebookLineLogin/googleLogin";
+ */
 //---------------------------------------Pynk---------------------------------------
 // image
 import search_line from "./assets/img/home/search-line.png";
@@ -325,7 +325,6 @@ class App extends Component {
         googleProfile={this.props.googleProfile}
         group_image={group_image}
         searchStatus={searchStatus}
-        googleLoginComponent={GoogleLoginComponent}
       />
     );
   }

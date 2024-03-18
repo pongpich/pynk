@@ -558,7 +558,7 @@ export function reducer(state = INIT_STATE, action) {
     case types.LOGIN_GOOGLE:
       return {
         ...state,
-        googleProfile: action.payload,
+        googleProfile: action.payload.profile,
       };
     case types.LOGOUT:
       return INIT_STATE;
