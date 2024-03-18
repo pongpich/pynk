@@ -34,7 +34,7 @@ import Group11 from "../../assets/img/pynk/Group11.png";
 import Rectangle4390 from "../../assets/img/pynk/Rectangle4390.png";
 
 import Footer from "./footer";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import "./css/home.css";
@@ -50,9 +50,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 
-import { Link } from "@mui/icons-material";
 import { clearGetPage, getPage } from "../../redux/pynk/contents";
 import { Button } from "@mui/material";
+import FooterPynk from "../../pynk_header_footer/footer";
 
 let slidesToShow = 3;
 
@@ -163,29 +163,28 @@ const boxServices = [
     id: 1,
     title: "Fitto 4 Week Starter Program",
     img: fitto4week,
-    link: "/sale-page",
+    link: "/sale-page?link=fitto",
     content: "Lorem Ipsum is simply dummy text of the printing",
   },
   {
     id: 2,
     title: "STAY FIT WITH BEBE",
     img: stayfit_with_bebe,
-
-    link: "",
+    link: "/sale-page?link=stayfit",
     content: "Lorem Ipsum is simply dummy text of the printing",
   },
   {
     id: 3,
     title: "Bikini Body Challenge",
     img: bikini_body_challenge,
-    link: "",
+    link: "/sale-page?link=bikini",
     content: "Lorem Ipsum is simply dummy text of the printing",
   },
   {
     id: 4,
     title: "Bebe for Beginner",
     img: bebefitroutine,
-    link: "",
+    link: "/sale-page?link=bebe",
     content:
       "คอร์สปั้นหุ่นฉบับมือใหม่ 8 สัปดาห์ ที่ไม่ว่าใครก็เริ่มต้นความฟิตกับเบเบ้ได้ ฟิตหุ่นเป๊ะปังกับโปรแกรมพิเศษจากเบเบ้ที่สนุก ง่าย ทำตามได้ และได้ผลจริง",
   },
@@ -193,7 +192,7 @@ const boxServices = [
     id: 5,
     title: "7 DAY WITH PILATES RING",
     img: pilates7day,
-    link: "",
+    link: "/sale-page?link=7day",
     content:
       "สาว ๆ ตัว Top แห่งวงการความฟิต เบเบ้ จินนี่ และลิตา ชวนคุณมาสนุกกับคอร์สปั้นหุ่นเฟิร์มปัง กระชับทั้งตัวแบบ Full Body 360° ใน 4 สัปดาห์ ด้วยอุปกรณ์ Pilates Ring",
   },
@@ -201,7 +200,7 @@ const boxServices = [
     id: 6,
     title: "Get Fit With Carrot In 8 Week",
     img: getfitwithcarrot,
-    link: "",
+    link: "/sale-page?link=getfit",
     content: `คอร์ส 8 สัปดาห์ ที่จะพาคุณมาปั้นหุ่นสับ แบบ Full Body 
       สร้างเอวเอสก้นกลมเด้ง กับโปรแกรมพิเศษสไตล์ “แครอท ปภาดา”`,
   },
@@ -209,7 +208,7 @@ const boxServices = [
     id: 7,
     title: "Better Shape in 60 Days",
     img: better_preem,
-    link: "",
+    link: "/sale-page?link=bettershape",
     content:
       "คอร์สปั้นหุ่น 8 สัปดาห์ ฉบับซุปตาร์พรีม รณิดา ฝึกความยืดหยุ่นและสร้างความแข็งแรงให้กับกล้ามเนื้อแกนกลางลำตัว โปรแกรมออกแบบมาพิเศษสำหรับผู้ที่ต้องการเริ่มต้นออกกำลังกาย สร้างสุขภาพและรูปร่างที่ดีในแบบของตนเอง",
   },
@@ -266,552 +265,583 @@ const Home = () => {
     })();
   }, []);
   return (
-    <div className="page">
-      <div
-        id="carouselExampleAutoplaying"
-        className="carousel slide"
-        data-bs-ride="carousel"
-      >
-        <div className="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide-to="0"
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-            onClick={() => previousIndex(0, currentSlideIndex)}
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-            onClick={() => previousIndex(1, currentSlideIndex)}
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-            onClick={() => previousIndex(2, currentSlideIndex)}
-          ></button>
-        </div>
-        <div className="carousel-inner">
-          <div className="box_animation">
-            <div className="row">
-              <div className="col-12 col-md-6 relative flex_center">
-                <img
-                  src={bubblesTop}
-                  className={`bubbles-top  ${
-                    (animation &&
-                      currentSlideIndex === 0 &&
-                      previousSlideIndex !== 1 &&
-                      "rotate2to0-1") ||
-                    (currentSlideIndex === 0 &&
-                      previousSlideIndex === 1 &&
-                      "rotate1to0-1") ||
-                    (currentSlideIndex === 1 &&
-                      previousSlideIndex !== 2 &&
-                      "rotate0to1-1") ||
-                    (currentSlideIndex === 1 &&
-                      previousSlideIndex === 2 &&
-                      "rotate2to1-1") ||
-                    (currentSlideIndex === 2 && "rotate1to2-1")
-                  }`}
-                  id="bubbles-top"
-                  alt=""
-                />
-                <img
-                  src={bubblesBottom}
-                  className={`bubbles-bottom  ${
-                    (animation &&
-                      currentSlideIndex === 0 &&
-                      previousSlideIndex !== 1 &&
-                      "rotate2to0") ||
-                    (currentSlideIndex === 0 &&
-                      previousSlideIndex === 1 &&
-                      "rotate1to0") ||
-                    (currentSlideIndex === 1 &&
-                      previousSlideIndex !== 2 &&
-                      "rotate0to1") ||
-                    (currentSlideIndex === 1 &&
-                      previousSlideIndex === 2 &&
-                      "rotate2to1") ||
-                    (currentSlideIndex === 2 && "rotate1to2")
-                  }`}
-                  id="bubbles-bottom"
-                  alt=""
-                />
-                <div
-                  className={`bebe-slide ${
-                    (animation &&
-                      currentSlideIndex === 0 &&
-                      previousSlideIndex !== 1 &&
-                      "bebe-slide2to0") ||
-                    (currentSlideIndex === 0 &&
-                      previousSlideIndex === 1 &&
-                      "bebe-slide1to0") ||
-                    (currentSlideIndex === 1 &&
-                      previousSlideIndex !== 2 &&
-                      "bebe-slide0to1") ||
-                    (currentSlideIndex === 1 &&
-                      previousSlideIndex === 2 &&
-                      "bebe-slide2to1") ||
-                    (currentSlideIndex === 2 && "bebe-slide1to2")
-                  }`}
-                  id="bebe-slide"
-                ></div>
-              </div>
-              <div className={`texthome1 col-12 col-md-6`}>
-                <div className={`text-anime col-12 col-md-6`}>
-                  <div
-                    className={`text-slide ${
+    <>
+      <div className="page">
+        <div
+          id="carouselExampleAutoplaying"
+          className="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div className="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="0"
+              className="active"
+              aria-current="true"
+              aria-label="Slide 1"
+              onClick={() => previousIndex(0, currentSlideIndex)}
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+              onClick={() => previousIndex(1, currentSlideIndex)}
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+              onClick={() => previousIndex(2, currentSlideIndex)}
+            ></button>
+          </div>
+          <div className="carousel-inner">
+            <div className="box_animation">
+              <div className="row">
+                <div className="col-12 col-md-6 relative flex_center">
+                  <img
+                    src={bubblesTop}
+                    className={`bubbles-top  ${
                       (animation &&
                         currentSlideIndex === 0 &&
                         previousSlideIndex !== 1 &&
-                        "text-anime2to0") ||
+                        "rotate2to0-1") ||
                       (currentSlideIndex === 0 &&
                         previousSlideIndex === 1 &&
-                        "text-anime1to0") ||
+                        "rotate1to0-1") ||
                       (currentSlideIndex === 1 &&
                         previousSlideIndex !== 2 &&
-                        "text-anime0to1") ||
+                        "rotate0to1-1") ||
                       (currentSlideIndex === 1 &&
                         previousSlideIndex === 2 &&
-                        "text-anime2to1") ||
-                      (currentSlideIndex === 2 && "text-anime1to2")
+                        "rotate2to1-1") ||
+                      (currentSlideIndex === 2 && "rotate1to2-1")
                     }`}
-                  >
-                    <div className="home1-detail">
-                      <img
-                        src={stay_fit_with_bebe}
-                        className="slide-img1"
-                        alt=""
-                      />
-                      <p className="slide-text1 SemiBoldPynk">
-                        คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตีความสำเร็จจากนักเรียนกว่าสิบรุ่น
-                      </p>
-                      <button
-                        onClick={() => history.push("/questionare")}
-                        className="btn  bold button-home1 col-10 col-sm-10"
-                      >
-                        เริ่มฟิตไปด้วยกัน
-                      </button>
-                    </div>
-                    <div className="home1-detail1">
-                      <img src={lets_challenge} className="slide-img2" alt="" />
-                      <p className="slide-text2 SemiBoldPynk">
-                        ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝันได้กับไอเทมฮอตฮิตจาก
-                        bebe fit routine
-                      </p>
-                      <button
-                        onClick={() => history.push("/questionare")}
-                        className="btn  bold button-home1 col-10 col-sm-10"
-                      >
-                        เริ่มฟิตไปด้วยกัน
-                      </button>
-                    </div>
-                    <div className="home1-detail2">
-                      <img src={shop_fin} className="slide-img3" alt="" />
-                      <p className="slide-text3 SemiBoldPynk">
-                        รวมดีลเด็ดที่คุณต้องไม่พลาด ช้อปเลย!
-                      </p>
-                      <button
-                        onClick={() => history.push("/questionare")}
-                        className="btn  bold button-home1 col-10 col-sm-10"
-                      >
-                        เริ่มฟิตไปด้วยกัน
-                      </button>
+                    id="bubbles-top"
+                    alt=""
+                  />
+                  <img
+                    src={bubblesBottom}
+                    className={`bubbles-bottom  ${
+                      (animation &&
+                        currentSlideIndex === 0 &&
+                        previousSlideIndex !== 1 &&
+                        "rotate2to0") ||
+                      (currentSlideIndex === 0 &&
+                        previousSlideIndex === 1 &&
+                        "rotate1to0") ||
+                      (currentSlideIndex === 1 &&
+                        previousSlideIndex !== 2 &&
+                        "rotate0to1") ||
+                      (currentSlideIndex === 1 &&
+                        previousSlideIndex === 2 &&
+                        "rotate2to1") ||
+                      (currentSlideIndex === 2 && "rotate1to2")
+                    }`}
+                    id="bubbles-bottom"
+                    alt=""
+                  />
+                  <div
+                    className={`bebe-slide ${
+                      (animation &&
+                        currentSlideIndex === 0 &&
+                        previousSlideIndex !== 1 &&
+                        "bebe-slide2to0") ||
+                      (currentSlideIndex === 0 &&
+                        previousSlideIndex === 1 &&
+                        "bebe-slide1to0") ||
+                      (currentSlideIndex === 1 &&
+                        previousSlideIndex !== 2 &&
+                        "bebe-slide0to1") ||
+                      (currentSlideIndex === 1 &&
+                        previousSlideIndex === 2 &&
+                        "bebe-slide2to1") ||
+                      (currentSlideIndex === 2 && "bebe-slide1to2")
+                    }`}
+                    id="bebe-slide"
+                  ></div>
+                </div>
+                <div className={`texthome1 col-12 col-md-6`}>
+                  <div className={`text-anime col-12 col-md-6`}>
+                    <div
+                      className={`text-slide ${
+                        (animation &&
+                          currentSlideIndex === 0 &&
+                          previousSlideIndex !== 1 &&
+                          "text-anime2to0") ||
+                        (currentSlideIndex === 0 &&
+                          previousSlideIndex === 1 &&
+                          "text-anime1to0") ||
+                        (currentSlideIndex === 1 &&
+                          previousSlideIndex !== 2 &&
+                          "text-anime0to1") ||
+                        (currentSlideIndex === 1 &&
+                          previousSlideIndex === 2 &&
+                          "text-anime2to1") ||
+                        (currentSlideIndex === 2 && "text-anime1to2")
+                      }`}
+                    >
+                      <div className="home1-detail">
+                        <img
+                          src={stay_fit_with_bebe}
+                          className="slide-img1"
+                          alt=""
+                        />
+                        <p className="slide-text1 SemiBoldPynk">
+                          คอร์สออนไลน์ปั้นหุ่นสุดสนุกการันตีความสำเร็จจากนักเรียนกว่าสิบรุ่น
+                        </p>
+                        <button
+                          onClick={() => history.push("/questionare")}
+                          className="btn  bold button-home1 col-10 col-sm-10"
+                        >
+                          เริ่มฟิตไปด้วยกัน
+                        </button>
+                      </div>
+                      <div className="home1-detail1">
+                        <img
+                          src={lets_challenge}
+                          className="slide-img2"
+                          alt=""
+                        />
+                        <p className="slide-text2 SemiBoldPynk">
+                          ชาเลนจ์สุดปังที่จะพาคุณพิชิตเป้าหมายในฝันได้กับไอเทมฮอตฮิตจาก
+                          bebe fit routine
+                        </p>
+                        <button
+                          onClick={() => history.push("/questionare")}
+                          className="btn  bold button-home1 col-10 col-sm-10"
+                        >
+                          เริ่มฟิตไปด้วยกัน
+                        </button>
+                      </div>
+                      <div className="home1-detail2">
+                        <img src={shop_fin} className="slide-img3" alt="" />
+                        <p className="slide-text3 SemiBoldPynk">
+                          รวมดีลเด็ดที่คุณต้องไม่พลาด ช้อปเลย!
+                        </p>
+                        <button
+                          onClick={() => history.push("/questionare")}
+                          className="btn  bold button-home1 col-10 col-sm-10"
+                        >
+                          เริ่มฟิตไปด้วยกัน
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="carousel-item active" data-interval="1000">
-            <div className="box_screen1">
-              <div className="line3"></div>
+            <div className="carousel-item active" data-interval="1000">
+              <div className="box_screen1">
+                <div className="line3"></div>
+              </div>
             </div>
-          </div>
-          <div className="carousel-item" data-interval="1000">
-            <div className="box_screen2">
-              <div className="line3"></div>
+            <div className="carousel-item" data-interval="1000">
+              <div className="box_screen2">
+                <div className="line3"></div>
+              </div>
             </div>
-          </div>
-          <div className="carousel-item" data-interval="1000">
-            <div className="box_screen3">
-              <div className="line3"></div>
+            <div className="carousel-item" data-interval="1000">
+              <div className="box_screen3">
+                <div className="line3"></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="text-home2">
-        <p className={`${styles["services-happily"]} ${"text-center"}`}>
-          บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
-          และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
-        </p>
-        <p className={`${styles["not-good"]} ${"text-center"}`}>
-          “ไม่ใช่แค่หุ่นดี{" "}
-          <span className={`${styles["not-good-span"]}`}>
-            {" "}
-            แต่มันคือการรักตัวเองอย่างมีความสุข”
-          </span>
-        </p>
-      </div>
-
-      <Container maxWidth="lg" sx={{ mt: 3, mb: 3 }}>
-        <Slider {...carouselProperties}>
-          {boxServices.map((item) => (
-            <Grid container spacing={3} alignItems={"center"} key={item.id}>
-              <Grid item xs={12}>
-                {
-                  <Stack
-                    flexDirection={"row"}
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                  >
-                    {item.id == 2 ? (
-                      <img
-                        src={suggest_icon}
-                        alt="suggest"
-                        style={{
-                          width: 100,
-                          height: 50,
-                          marginBottom: "-20px",
-                        }}
-                      />
-                    ) : (
-                      <div
-                        style={{
-                          width: 100,
-                          height: 50,
-                          marginBottom: "-20px",
-                        }}
-                      />
-                    )}
-                  </Stack>
-                }
-                <Card
-                  sx={{
-                    height: { xs: 454, sm: 480 },
-                    p: 2,
-                    borderRadius: "1rem",
-                    border: "1px solid #E8E8E8",
-                    width: { xs: 250, sm: 300, lg: 300 },
-                    ":hover": {
-                      // borderImage:
-                      //   "linear-gradient(#7E74F2, #F05098, #F4A7BC, #DCDBDB) 2",
-                      borderColor: "#F05098",
-                      borderWidth: 2,
-                      borderStyle: "solid",
-                      borderRadius: "1rem",
-                    },
-                  }}
-                >
-                  <Box
-                    component={"img"}
-                    sx={{
-                      height: "auto",
-                      maxHeight: 250,
-                      width: "100%",
-                      backgroundSize: "cover",
-                      borderRadius: "1.5rem",
-                    }}
-                    src={item.img}
-                    alt={item.title}
-                  />
-
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h6"
-                      color={"#2C2E2F"}
-                      fontWeight={600}
-                      height={"64px"}
-                    >
-                      {item.title}
-                    </Typography>
-                    <Typography variant="body2" color="#2C2E2F">
-                      {item.content.slice(0, 70) + "..."}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <a
-                      onClick={() => history.push(item.link)}
-                      color="#2C2E2F"
-                      style={{ textDecoration: "underline" }}
-                    >
-                      ดูรายละเอียด
-                    </a>
-                  </CardActions>
-                </Card>
-              </Grid>
-            </Grid>
-          ))}
-        </Slider>
-      </Container>
-
-      <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-        <Stack
-          sx={{
-            backgroundImage: `url(${bg_grey_1})`,
-            p: 2,
-            width: "100%",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            borderRadius: "1.5rem",
-            height: { xs: "100%", lg: 270 },
-          }}
-        >
-          <Grid container spacing={3}>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              lg={6}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img
-                src={Group37365}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  maxWidth: "582px",
-                  maxHeight: "250px",
-                }}
-                alt="img"
-              />
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              lg={6}
-              sx={{ display: "flex", alignItems: "center" }}
-            >
-              <Box>
-                <Typography variant="h2" color={"#FCDEEC"} fontWeight={700}>
-                  FIT ITEMS
-                </Typography>
-                <Typography variant="h4" fontWeight={500} color={"#FFFFFF"}>
-                  ‘ตอบโจทย์ ทุกไลฟ์สไตล์ของสายฟิต’
-                </Typography>
-                <Typography
-                  variant="h6"
-                  fontWeight={400}
-                  color={"#FFFFFF"}
-                  mt={1}
-                >
-                  ไม่ว่าจะสายฟิตมือใหม่หรือสายฟิตมือโปร
-                </Typography>
-                <Typography variant="h6" fontWeight={400} color={"#FFFFFF"}>
-                  ก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-        </Stack>
-      </Container>
-
-      <Container maxWidth="xl" sx={{ mt: 4, mb: 8 }}>
-        <Stack
-          sx={{
-            backgroundImage: `url(${Rectangle4390})`,
-            p: 2,
-            width: "100%",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            borderRadius: "1.5rem",
-            height: { xs: "100%", lg: 270 },
-          }}
-        >
-          <Grid container spacing={3} sx={{ height: { xs: "100%", lg: 320 } }}>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              lg={6}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              order={{ xs: 2, sm: 1 }}
-            >
-              <Box>
-                <img src={LOGO} style={{ width: 120, height: 60 }} alt="img" />
-                <Typography variant="h4" fontWeight={500} color={"#000000"}>
-                  ‘ทางลัดปั้นหุ่นสวยฉบับสายฟิต’
-                </Typography>
-                <Typography
-                  variant="h6"
-                  fontWeight={400}
-                  color={"#000000"}
-                  mt={1}
-                >
-                  ไม่ว่าจะสายฟิตมือใหม่หรือสายฟิตมือโปร
-                </Typography>
-                <Typography variant="h6" fontWeight={400} color={"#000000"}>
-                  ก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              lg={6}
-              order={{ xs: 1, sm: 2 }}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img
-                src={Group11}
-                style={{ width: "100%", height: "auto" }}
-                alt="img"
-              />
-            </Grid>
-          </Grid>
-        </Stack>
-      </Container>
-
-      <div ref={home4} className="home4">
-        <div
-          className={`text48 SemiBoldPynk text-align-center ${
-            Home4ISVisible && "animate-open-home4"
-          }`}
-        >
-          เสียงตอบรับจากผู้ใช้บริการ
-          <div className="">
-            <picture>
-              <img src={star} width={62} height={62} alt="" />
-            </picture>
-            <picture>
-              <img src={star} width={62} height={62} alt="" />
-            </picture>
-            <picture>
-              <img src={star} width={62} height={62} alt="" />
-            </picture>
-            <picture>
-              <img src={star} width={62} height={62} alt="" />
-            </picture>
-            <picture>
-              <img src={star} width={62} height={62} alt="" />
-            </picture>
-          </div>
-        </div>
-
-        <Grid
-          container
-          spacing={2}
-          direction={{ xs: "column", md: "row" }}
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Grid item xs={12} md={6} lg={4}>
-            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="500">
-              <img src={comment1} alt="" width={377} />
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="800">
-              <picture>
-                <img src={comment2} alt="" width={377} />
-              </picture>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1300">
-              <picture>
-                <img src={comment3} alt="" width={377} />
-              </picture>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1800">
-              <picture>
-                <img src={comment4} alt="" width={377} />
-              </picture>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="2300">
-              <picture>
-                <img src={comment5} alt="" width={377} />
-              </picture>
-            </div>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="2500">
-              <picture>
-                <img src={comment6} alt="" width={377} />
-              </picture>
-            </div>
-          </Grid>
-        </Grid>
-      </div>
-
-      <Container maxWidth="lg" sx={{ mt: 10 }}>
-        <div className="d-block d-md-flex justify-content-between mb-5">
-          <p className="text48 SemiBoldPynk mb-0px">
-            เคล็ด (ไม่) ลับ ฉบับอยากแชร์
+        <div className="text-home2">
+          <p className={`${styles["services-happily"]} ${"text-center"}`}>
+            บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
+            และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
           </p>
-          <button
-            className="text18 SemiBoldPynk ef60a3"
-            style={{ alignSelf: "center", backgroundColor: "#fff" }}
-            onClick={() => {
-              history.push("/content");
-              window.scrollTo(0, 0);
+          <p className={`${styles["not-good"]} ${"text-center"}`}>
+            “ไม่ใช่แค่หุ่นดี{" "}
+            <span className={`${styles["not-good-span"]}`}>
+              {" "}
+              แต่มันคือการรักตัวเองอย่างมีความสุข”
+            </span>
+          </p>
+        </div>
+
+        <Container maxWidth="lg" sx={{ mt: 3, mb: 3 }}>
+          <Slider {...carouselProperties}>
+            {boxServices.map((item) => (
+              <Grid container spacing={3} alignItems={"center"} key={item.id}>
+                <Grid item xs={12}>
+                  {
+                    <Stack
+                      flexDirection={"row"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                    >
+                      {item.id == 2 ? (
+                        <img
+                          src={suggest_icon}
+                          alt="suggest"
+                          style={{
+                            width: 100,
+                            height: 50,
+                            marginBottom: "-20px",
+                          }}
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            width: 100,
+                            height: 50,
+                            marginBottom: "-20px",
+                          }}
+                        />
+                      )}
+                    </Stack>
+                  }
+                  <Card
+                    sx={{
+                      height: { xs: 454, sm: 480 },
+                      p: 2,
+                      borderRadius: "1rem",
+                      border: "1px solid #E8E8E8",
+                      width: { xs: 250, sm: 300, lg: 300 },
+                      ":hover": {
+                        // borderImage:
+                        //   "linear-gradient(#7E74F2, #F05098, #F4A7BC, #DCDBDB) 2",
+                        borderColor: "#F05098",
+                        borderWidth: 2,
+                        borderStyle: "solid",
+                        borderRadius: "1rem",
+                      },
+                    }}
+                  >
+                    <Box
+                      component={"img"}
+                      sx={{
+                        height: "auto",
+                        maxHeight: 250,
+                        width: "100%",
+                        backgroundSize: "cover",
+                        borderRadius: "1.5rem",
+                      }}
+                      src={item.img}
+                      alt={item.title}
+                    />
+
+                    <CardContent>
+                      <Typography
+                        gutterBottom
+                        variant="h6"
+                        color={"#2C2E2F"}
+                        fontWeight={600}
+                        height={"64px"}
+                      >
+                        {item.title}
+                      </Typography>
+                      <Typography variant="body2" color="#2C2E2F">
+                        {item.content.slice(0, 70) + "..."}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <a
+                        onClick={() => history.push(item.link)}
+                        color="#2C2E2F"
+                        style={{ textDecoration: "underline" }}
+                      >
+                        ดูรายละเอียด
+                      </a>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              </Grid>
+            ))}
+          </Slider>
+        </Container>
+
+        <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+          <Stack
+            sx={{
+              backgroundImage: `url(${bg_grey_1})`,
+              p: 2,
+              width: "100%",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              borderRadius: "1.5rem",
+              height: { xs: "100%", lg: 270 },
             }}
           >
-            ดูเพิ่มเติม
-          </button>
+            <Grid container spacing={3}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                lg={6}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src={Group37365}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    maxWidth: "582px",
+                    maxHeight: "250px",
+                  }}
+                  alt="img"
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                lg={6}
+                sx={{ display: "flex", alignItems: "center" }}
+              >
+                <Box>
+                  <Typography variant="h2" color={"#FCDEEC"} fontWeight={700}>
+                    FIT ITEMS
+                  </Typography>
+                  <Typography variant="h4" fontWeight={500} color={"#FFFFFF"}>
+                    ‘ตอบโจทย์ ทุกไลฟ์สไตล์ของสายฟิต’
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    fontWeight={400}
+                    color={"#FFFFFF"}
+                    mt={1}
+                  >
+                    ไม่ว่าจะสายฟิตมือใหม่หรือสายฟิตมือโปร
+                  </Typography>
+                  <Typography variant="h6" fontWeight={400} color={"#FFFFFF"}>
+                    ก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+          </Stack>
+        </Container>
+
+        <Container maxWidth="xl" sx={{ mt: 4, mb: 8 }}>
+          <Stack
+            sx={{
+              backgroundImage: `url(${Rectangle4390})`,
+              p: 2,
+              width: "100%",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              borderRadius: "1.5rem",
+              height: { xs: "100%", lg: 270 },
+            }}
+          >
+            <Grid
+              container
+              spacing={3}
+              sx={{ height: { xs: "100%", lg: 320 } }}
+            >
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                lg={6}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                order={{ xs: 2, sm: 1 }}
+              >
+                <Box>
+                  <img
+                    src={LOGO}
+                    style={{ width: 120, height: 60 }}
+                    alt="img"
+                  />
+                  <Typography variant="h4" fontWeight={500} color={"#000000"}>
+                    ‘ทางลัดปั้นหุ่นสวยฉบับสายฟิต’
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    fontWeight={400}
+                    color={"#000000"}
+                    mt={1}
+                  >
+                    ไม่ว่าจะสายฟิตมือใหม่หรือสายฟิตมือโปร
+                  </Typography>
+                  <Typography variant="h6" fontWeight={400} color={"#000000"}>
+                    ก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                lg={6}
+                order={{ xs: 1, sm: 2 }}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src={Group11}
+                  style={{ width: "100%", height: "auto" }}
+                  alt="img"
+                />
+              </Grid>
+            </Grid>
+          </Stack>
+        </Container>
+
+        <div ref={home4} className="home4">
+          <div
+            className={`text48 SemiBoldPynk text-align-center ${
+              Home4ISVisible && "animate-open-home4"
+            }`}
+          >
+            เสียงตอบรับจากผู้ใช้บริการ
+            <div className="">
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+              <picture>
+                <img src={star} width={62} height={62} alt="" />
+              </picture>
+            </div>
+          </div>
+
+          <Grid
+            container
+            spacing={2}
+            direction={{ xs: "column", md: "row" }}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Grid item xs={12} md={6} lg={4}>
+              <div data-aos="fade-up" data-aos-once={true} data-aos-delay="500">
+                <img src={comment1} alt="" width={377} />
+              </div>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <div data-aos="fade-up" data-aos-once={true} data-aos-delay="800">
+                <picture>
+                  <img src={comment2} alt="" width={377} />
+                </picture>
+              </div>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <div
+                data-aos="fade-up"
+                data-aos-once={true}
+                data-aos-delay="1300"
+              >
+                <picture>
+                  <img src={comment3} alt="" width={377} />
+                </picture>
+              </div>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <div
+                data-aos="fade-up"
+                data-aos-once={true}
+                data-aos-delay="1800"
+              >
+                <picture>
+                  <img src={comment4} alt="" width={377} />
+                </picture>
+              </div>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <div
+                data-aos="fade-up"
+                data-aos-once={true}
+                data-aos-delay="2300"
+              >
+                <picture>
+                  <img src={comment5} alt="" width={377} />
+                </picture>
+              </div>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <div
+                data-aos="fade-up"
+                data-aos-once={true}
+                data-aos-delay="2500"
+              >
+                <picture>
+                  <img src={comment6} alt="" width={377} />
+                </picture>
+              </div>
+            </Grid>
+          </Grid>
         </div>
 
-        <Grid container spacing={3}>
-          {contents
-            .filter((item) => item.acf.category.name === "Home")
-            .map((content, index) => (
-              <Grid item xs={12} sm={6} lg={4} key={index}>
-                <div
-                  className="card-content-home5"
-                  onClick={() => {
-                    history.push(`/content_detail/${content.id}`);
-                    nextPage(content);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <img
-                    className="content_img"
-                    src={content.acf.thumbnail}
-                    alt={content.title.rendered}
-                  />
-                  <p className="text24 SemiBoldPynk">
-                    {content.title.rendered}
-                  </p>
-                  <p className="text20 RegularPynk">
-                    {content.acf.summary.slice(0, 105) + "..."}
-                  </p>
-                </div>
-              </Grid>
-            ))
-            .slice(0, 3)}
-        </Grid>
-      </Container>
+        <Container maxWidth="lg" sx={{ mt: 10 }}>
+          <div className="d-block d-md-flex justify-content-between mb-5">
+            <p className="text48 SemiBoldPynk mb-0px">
+              เคล็ด (ไม่) ลับ ฉบับอยากแชร์
+            </p>
+            <button
+              className="text18 SemiBoldPynk ef60a3"
+              style={{ alignSelf: "center", backgroundColor: "#fff" }}
+              onClick={() => {
+                history.push("/content");
+                window.scrollTo(0, 0);
+              }}
+            >
+              ดูเพิ่มเติม
+            </button>
+          </div>
 
-      <Footer />
-    </div>
+          <Grid container spacing={3}>
+            {contents
+              .filter((item) => item.acf.category.name === "Home")
+              .map((content, index) => (
+                <Grid item xs={12} sm={6} lg={4} key={index}>
+                  <div
+                    className="card-content-home5"
+                    onClick={() => {
+                      history.push(`/content_detail/${content.id}`);
+                      nextPage(content);
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    <img
+                      className="content_img"
+                      src={content.acf.thumbnail}
+                      alt={content.title.rendered}
+                    />
+                    <p className="text24 SemiBoldPynk">
+                      {content.title.rendered}
+                    </p>
+                    <p className="text20 RegularPynk">
+                      {content.acf.summary.slice(0, 105) + "..."}
+                    </p>
+                  </div>
+                </Grid>
+              ))
+              .slice(0, 3)}
+          </Grid>
+        </Container>
+
+        {/* <Footer /> */}
+      </div>
+      <FooterPynk />
+    </>
   );
 };
 export default Home;

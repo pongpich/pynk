@@ -118,6 +118,7 @@ import { all } from "redux-saga/effects";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import icon_exit from "./assets/img/pynk/shop/exit.png";
+import SalePageComponents from "./views/pynk/components/sale_page";
 
 Amplify.configure(awsConfig);
 
@@ -442,6 +443,7 @@ class App extends Component {
                 <Route path="/order_tracking" component={OrderTracking} />
                 <Route path="/questionare" component={Questionare} />
                 <Route path="/content" component={Content} />
+                <Route path="/sale-page" component={SalePageComponents} />
                 <Route path="/content_detail/:id" component={Content_detail} />
                 <Route
                   path="/shop-order-summary"
