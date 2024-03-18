@@ -371,10 +371,14 @@ export default function SaleBebePage() {
                   </span>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 
 >>>>>>> f4e1cd9 (demo push)
 =======
 >>>>>>> a9fcb07 (update ui sale_page (for test))
+=======
+                
+>>>>>>> f4e1cd9 (demo push)
 
                 <Typography
                   sx={{ color: "#FCDEEC", fontSize: { xs: 50, lg: 120 } }}
