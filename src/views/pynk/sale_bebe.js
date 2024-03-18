@@ -291,6 +291,7 @@ export default function SaleBebePage() {
         />
       </Stack>
 
+<<<<<<< HEAD
       <Box sx={{ background: "#FCDEEC" }}>
         <Container maxWidth="xl">
           <Grid container spacing={3}>
@@ -307,6 +308,81 @@ export default function SaleBebePage() {
                 justifyContent={"center"}
                 height={"100%"}
               >
+=======
+      <Container
+        maxWidth="lg"
+        sx={{
+          backgroundImage: `url(${bg_1})`,
+          backgroundSize: "cover",
+          height: 500,
+          width: "100%",
+          borderRadius: "1.5rem",
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={7}>
+            <Box
+              sx={{
+                background: "#202020",
+                p: 2,
+                height: 100,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              mt={7}
+            >
+              <Stack flexDirection={"row"} alignItems={"flex-end"}>
+                <Typography variant="h6" color={"#FFFFFF"}>
+                  ให้การ<span style={{ color: "#FF4ABB" }}>ลดน้ำหนัก</span>
+                  ครั้งนี้
+                </Typography>
+                <Typography variant="h3" color={"#FFFFFF"} sx={{ p: "-20px" }}>
+                  เป็นครั้งสุดท้าย
+                </Typography>
+              </Stack>
+            </Box>
+
+            <Stack
+              flexDirection={"row"}
+              flexWrap={"wrap"}
+              alignItems={"center"}
+              ml={2}
+            >
+              <Box>
+                <img
+                  src={logo}
+                  style={{ width: "40px", height: "80px" }}
+                  alt="logo"
+                />
+              </Box>
+              <Box>
+<<<<<<< HEAD
+<<<<<<< HEAD
+      
+=======
+=======
+>>>>>>> a9fcb07 (update ui sale_page (for test))
+                <div style="height:100px; line-height:100px; background:#EEE;">
+                  <span style="vertical-align:middle;">test</span>
+                  <span style="font-size:2em; vertical-align:middle;">
+                    test
+                  </span>
+                </div>
+<<<<<<< HEAD
+                
+>>>>>>> f4e1cd9 (demo push)
+=======
+>>>>>>> a9fcb07 (update ui sale_page (for test))
+
+                <Typography
+                  sx={{ color: "#FCDEEC", fontSize: { xs: 50, lg: 120 } }}
+                  fontWeight={700}
+                >
+                  8 Weeks
+                </Typography>
+>>>>>>> bff9e96 (update ui sale_page (for test))
                 <Typography
                   sx={{
                     typography: { xs: "h3", sm: "h3", md: "h2" },
