@@ -487,13 +487,16 @@ const Home = () => {
         <Container maxWidth="xl" sx={{ mt: 3, mb: 3 }}>
           <Slider {...carouselProperties}>
             {boxServices.map((item) => (
-              <Grid container spacing={3} alignItems={"center"} key={item.id}>
+              <Grid container spacing={3} key={item.id}>
                 <Grid item xs={12}>
                   {
                     <Stack
                       flexDirection={"row"}
                       alignItems={"center"}
                       justifyContent={"center"}
+                      sx={{
+                        width: { xs: 250, sm: 300, lg: 300 },
+                      }}
                     >
                       {item.id == 2 ? (
                         <img
