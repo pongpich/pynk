@@ -292,6 +292,9 @@ export default function SaleBebePage() {
       </Stack>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c1ea535 (update sale bebe)
       <Box sx={{ background: "#FCDEEC" }}>
         <Container maxWidth="xl">
           <Grid container spacing={3}>
@@ -308,6 +311,7 @@ export default function SaleBebePage() {
                 justifyContent={"center"}
                 height={"100%"}
               >
+<<<<<<< HEAD
 =======
       <Container
         maxWidth="lg"
@@ -373,6 +377,8 @@ export default function SaleBebePage() {
                   8 Weeks
                 </Typography>
 >>>>>>> f4e1cd9 (demo push)
+=======
+>>>>>>> c1ea535 (update sale bebe)
                 <Typography
                   sx={{
                     typography: { xs: "h3", sm: "h3", md: "h2" },
