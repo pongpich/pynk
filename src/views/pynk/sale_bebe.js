@@ -292,6 +292,7 @@ export default function SaleBebePage() {
       </Stack>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Box sx={{ background: "#FCDEEC" }}>
         <Container maxWidth="xl">
           <Grid container spacing={3}>
@@ -309,6 +310,8 @@ export default function SaleBebePage() {
                 height={"100%"}
               >
 =======
+=======
+>>>>>>> a7f5a25 (update sale bebe)
       <Container
         maxWidth="lg"
         sx={{
@@ -386,7 +389,28 @@ export default function SaleBebePage() {
                 >
                   8 Weeks
                 </Typography>
+<<<<<<< HEAD
 >>>>>>> bff9e96 (update ui sale_page (for test))
+=======
+=======
+      <Box sx={{ background: "#FCDEEC" }}>
+        <Container maxWidth="xl">
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
+              <img
+                src={babe_2}
+                style={{ width: "100%", height: "auto" }}
+                alt="babe_2"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
+              <Stack
+                flexDirection={"column"}
+                justifyContent={"center"}
+                height={"100%"}
+              >
+>>>>>>> c1ea535 (update sale bebe)
+>>>>>>> a7f5a25 (update sale bebe)
                 <Typography
                   sx={{
                     typography: { xs: "h3", sm: "h3", md: "h2" },
