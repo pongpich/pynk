@@ -398,7 +398,7 @@ const Home = () => {
                         </p>
                         <button
                           onClick={() => history.push("/questionare")}
-                          className="btn  bold button-home1 col-10 col-sm-10 button-home1"
+                          className="btn  bold button-home1 col-10 col-sm-10"
                         >
                           เริ่มฟิตไปด้วยกัน
                         </button>
@@ -415,7 +415,7 @@ const Home = () => {
                         </p>
                         <button
                           onClick={() => history.push("/questionare")}
-                          className="btn  bold button-home1 col-10 col-sm-10 button-home1"
+                          className="btn  bold button-home1 col-10 col-sm-10"
                         >
                           เริ่มฟิตไปด้วยกัน
                         </button>
@@ -427,7 +427,7 @@ const Home = () => {
                         </p>
                         <button
                           onClick={() => history.push("/questionare")}
-                          className="btn  bold button-home1 col-10 col-sm-10 button-home1"
+                          className="btn  bold button-home1 col-10 col-sm-10"
                         >
                           เริ่มฟิตไปด้วยกัน
                         </button>
@@ -739,13 +739,13 @@ const Home = () => {
           >
             <Grid item xs={12} md={6} lg={4}>
               <div data-aos="fade-up" data-aos-once={true} data-aos-delay="500">
-                <img src={comment1} alt="" />
+                <img src={comment1} alt="" width={377}/>
               </div>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <div data-aos="fade-up" data-aos-once={true} data-aos-delay="800">
                 <picture>
-                  <img src={comment2} alt="" />
+                  <img src={comment2} alt="" width={377}/>
                 </picture>
               </div>
             </Grid>
@@ -756,7 +756,7 @@ const Home = () => {
                 data-aos-delay="1300"
               >
                 <picture>
-                  <img src={comment3} alt="" />
+                  <img src={comment3} alt="" width={377}/>
                 </picture>
               </div>
             </Grid>
@@ -767,7 +767,7 @@ const Home = () => {
                 data-aos-delay="1800"
               >
                 <picture>
-                  <img src={comment4} alt="" />
+                  <img src={comment4} alt="" width={377}/>
                 </picture>
               </div>
             </Grid>
@@ -778,7 +778,7 @@ const Home = () => {
                 data-aos-delay="2300"
               >
                 <picture>
-                  <img src={comment5} alt="" />
+                  <img src={comment5} alt="" width={377}/>
                 </picture>
               </div>
             </Grid>
@@ -789,7 +789,7 @@ const Home = () => {
                 data-aos-delay="2500"
               >
                 <picture>
-                  <img src={comment6} alt="" />
+                  <img src={comment6} alt="" width={377}/>
                 </picture>
               </div>
             </Grid>
