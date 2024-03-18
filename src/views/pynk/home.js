@@ -311,6 +311,9 @@ const Home = () => {
                         currentSlideIndex === 0 &&
                         previousSlideIndex !== 1 &&
                         "rotate2to0-1") ||
+                      (currentSlideIndex === 2 &&
+                        previousSlideIndex === 0 &&
+                        "rotate0to2-1") ||
                       (currentSlideIndex === 0 &&
                         previousSlideIndex === 1 &&
                         "rotate1to0-1") ||
@@ -320,7 +323,9 @@ const Home = () => {
                       (currentSlideIndex === 1 &&
                         previousSlideIndex === 2 &&
                         "rotate2to1-1") ||
-                      (currentSlideIndex === 2 && "rotate1to2-1")
+                      (currentSlideIndex === 2 &&
+                        previousSlideIndex === 1 &&
+                        "rotate1to2-1")
                     }`}
                     id="bubbles-top"
                     alt=""
@@ -332,6 +337,9 @@ const Home = () => {
                         currentSlideIndex === 0 &&
                         previousSlideIndex !== 1 &&
                         "rotate2to0") ||
+                      (currentSlideIndex === 2 &&
+                        previousSlideIndex === 0 &&
+                        "rotate0to2") ||
                       (currentSlideIndex === 0 &&
                         previousSlideIndex === 1 &&
                         "rotate1to0") ||
@@ -341,7 +349,9 @@ const Home = () => {
                       (currentSlideIndex === 1 &&
                         previousSlideIndex === 2 &&
                         "rotate2to1") ||
-                      (currentSlideIndex === 2 && "rotate1to2")
+                      (currentSlideIndex === 2 &&
+                        previousSlideIndex === 1 &&
+                        "rotate1to2")
                     }`}
                     id="bubbles-bottom"
                     alt=""
@@ -352,6 +362,9 @@ const Home = () => {
                         currentSlideIndex === 0 &&
                         previousSlideIndex !== 1 &&
                         "bebe-slide2to0") ||
+                      (currentSlideIndex === 2 &&
+                        previousSlideIndex === 0 &&
+                        "bebe-slide0to2") ||
                       (currentSlideIndex === 0 &&
                         previousSlideIndex === 1 &&
                         "bebe-slide1to0") ||
@@ -361,7 +374,9 @@ const Home = () => {
                       (currentSlideIndex === 1 &&
                         previousSlideIndex === 2 &&
                         "bebe-slide2to1") ||
-                      (currentSlideIndex === 2 && "bebe-slide1to2")
+                      (currentSlideIndex === 2 &&
+                        previousSlideIndex === 1 &&
+                        "bebe-slide1to2")
                     }`}
                     id="bebe-slide"
                     alt=""
@@ -472,36 +487,35 @@ const Home = () => {
         <Container maxWidth="xl" sx={{ mt: 3, mb: 3 }}>
           <Slider {...carouselProperties}>
             {boxServices.map((item) => (
-              <Grid container spacing={3} key={item.id}>
+              <Grid container spacing={3} alignItems={"center"} key={item.id}>
                 <Grid item xs={12}>
-                  <Stack
-                    flexDirection={"row"}
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                    sx={{
-                      width: { xs: 250, sm: 300, lg: 300 },
-                    }}
-                  >
-                    {item.id == 2 ? (
-                      <img
-                        src={suggest_icon}
-                        alt="suggest"
-                        style={{
-                          width: 100,
-                          height: 50,
-                          marginBottom: "-20px",
-                        }}
-                      />
-                    ) : (
-                      <div
-                        style={{
-                          width: 100,
-                          height: 50,
-                          marginBottom: "-20px",
-                        }}
-                      />
-                    )}
-                  </Stack>
+                  {
+                    <Stack
+                      flexDirection={"row"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                    >
+                      {item.id == 2 ? (
+                        <img
+                          src={suggest_icon}
+                          alt="suggest"
+                          style={{
+                            width: 100,
+                            height: 50,
+                            marginBottom: "-20px",
+                          }}
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            width: 100,
+                            height: 50,
+                            marginBottom: "-20px",
+                          }}
+                        />
+                      )}
+                    </Stack>
+                  }
                   <Card
                     sx={{
                       height: { xs: 454, sm: 480 },
@@ -739,13 +753,13 @@ const Home = () => {
           >
             <Grid item xs={12} md={6} lg={4}>
               <div data-aos="fade-up" data-aos-once={true} data-aos-delay="500">
-                <img src={comment1} alt="" width={377}/>
+                <img src={comment1} alt="" width={377} />
               </div>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <div data-aos="fade-up" data-aos-once={true} data-aos-delay="800">
                 <picture>
-                  <img src={comment2} alt="" width={377}/>
+                  <img src={comment2} alt="" width={377} />
                 </picture>
               </div>
             </Grid>
@@ -756,7 +770,7 @@ const Home = () => {
                 data-aos-delay="1300"
               >
                 <picture>
-                  <img src={comment3} alt="" width={377}/>
+                  <img src={comment3} alt="" width={377} />
                 </picture>
               </div>
             </Grid>
@@ -767,7 +781,7 @@ const Home = () => {
                 data-aos-delay="1800"
               >
                 <picture>
-                  <img src={comment4} alt="" width={377}/>
+                  <img src={comment4} alt="" width={377} />
                 </picture>
               </div>
             </Grid>
@@ -778,7 +792,7 @@ const Home = () => {
                 data-aos-delay="2300"
               >
                 <picture>
-                  <img src={comment5} alt="" width={377}/>
+                  <img src={comment5} alt="" width={377} />
                 </picture>
               </div>
             </Grid>
@@ -789,7 +803,7 @@ const Home = () => {
                 data-aos-delay="2500"
               >
                 <picture>
-                  <img src={comment6} alt="" width={377}/>
+                  <img src={comment6} alt="" width={377} />
                 </picture>
               </div>
             </Grid>
