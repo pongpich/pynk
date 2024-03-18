@@ -1,3 +1,0 @@
-[submodule "src/--force"]
-	path = src/--force
-	url = git@bitbucket.org:p4ftech/pynk_header_footer.git
