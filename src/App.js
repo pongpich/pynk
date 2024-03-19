@@ -226,12 +226,10 @@ class App extends Component {
       this.props;
     const { windowWidth, searchStatus, product_cookies, isLogout, clientId } =
       this.state;
-
     if (
-      (prevProps.user != user && user != null) ||
-      (prevProps.googleProfile != googleProfile &&
-        googleProfile != null &&
-        isLogout)
+      (user && user !== prevProps.user) || // ถ้า user มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
+      (googleProfile && googleProfile !== prevProps.googleProfile) || // ถ้า googleProfile มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
+      (isLogout && isLogout !== prevProps.isLogout)
     ) {
       let userCookies = user ? user : googleProfile?.profile?.email;
       this.setState({ isLogout: false });
