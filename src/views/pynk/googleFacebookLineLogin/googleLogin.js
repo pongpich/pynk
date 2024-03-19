@@ -32,7 +32,7 @@ const GoogleLoginComponent = () => {
     const email = res.profileObj.email;
     const first_name = res.profileObj.givenName;
     const last_name = res.profileObj.familyName;
-
+    console.log("res", res);
     dispatch(registerLoginGoogle(email, first_name, last_name));
     dispatch(loginGoogle(res.profileObj));
 
@@ -46,12 +46,17 @@ const GoogleLoginComponent = () => {
   const logOutGoogle = () => {
     history.push("/home");
     dispatch(loginGoogle(null));
+    signOut();
   };
 
   useEffect(() => {
-    if (!googleProfile) {
+    const data = Cookies.get("loginUser");
+    if(data == undefined) return
+    if (!googleProfile && (data != "undefined" || data != "null")) {
+    console.log('check if')
       logOutGoogle();
-    } else {
+    } 
+    if(googleProfile?.profile) {
       setProfile(googleProfile && googleProfile.profile);
     }
     /*     setProfile(googleProfile && googleProfile.profile); */

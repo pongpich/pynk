@@ -202,6 +202,7 @@ class App extends Component {
 
   componentDidMount() {
     const { user, locale } = this.props;
+
     if (locale === "th") {
       this.setState({
         thEn: "ไทย",
@@ -211,6 +212,7 @@ class App extends Component {
         thEn: "English",
       });
     }
+
     window.addEventListener("resize", this.updateWindowWidth);
     //when refresh scroll to top
     window.history.scrollRestoration = "manual";
