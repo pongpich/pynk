@@ -28,15 +28,11 @@ const GoogleLoginComponent = () => {
   );
 
   const onSuccessGoogle = (res) => {
-    //registerLoginGoogle email, first_name, last_name
     const email = res.profileObj.email;
     const first_name = res.profileObj.givenName;
     const last_name = res.profileObj.familyName;
-    console.log("res", res);
     dispatch(registerLoginGoogle(email, first_name, last_name));
     dispatch(loginGoogle(res.profileObj));
-
-    // console.log("res.profileObj", res.profileObj);
   };
 
   const onFailureGoogle = (res) => {
@@ -46,20 +42,21 @@ const GoogleLoginComponent = () => {
   const logOutGoogle = () => {
     history.push("/home");
     dispatch(loginGoogle(null));
-    signOut();
+    /*  signOut(); */
   };
 
   useEffect(() => {
     const data = Cookies.get("loginUser");
-    if(data == undefined) return
-    if (!googleProfile && (data != "undefined" || data != "null")) {
-    console.log('check if')
+    if (data === undefined || data === null) return;
+
+    if (!googleProfile) {
+      console.log("check if");
       logOutGoogle();
-    } 
-    if(googleProfile?.profile) {
+     
+    }
+    if (googleProfile?.profile) {
       setProfile(googleProfile && googleProfile.profile);
     }
-    /*     setProfile(googleProfile && googleProfile.profile); */
   }, [googleProfile]);
 
   return profile ? (
@@ -73,7 +70,12 @@ const GoogleLoginComponent = () => {
           style={{ cursor: "pointer" }}
           onClick={renderProps.onClick}
         >
-          <img src={icon_exit} className="icon-edit" alt="icon_google" />
+          <img
+            src={icon_exit}
+            className="icon-edit"
+            id="icon-google"
+            alt="icon_google"
+          />
           ออกจากระบบ
         </div>
       )}

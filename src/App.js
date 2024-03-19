@@ -202,7 +202,6 @@ class App extends Component {
 
   componentDidMount() {
     const { user, locale } = this.props;
-
     if (locale === "th") {
       this.setState({
         thEn: "ไทย",
@@ -425,8 +424,6 @@ class App extends Component {
   render() {
     const { locale, googleProfile } = this.props;
     const currentAppLocale = AppLocale[locale];
-
-    console.log("googleProfile APP.JS", googleProfile);
 
     const { product_cookies, isLogout } = this.state;
     const totalSum =
