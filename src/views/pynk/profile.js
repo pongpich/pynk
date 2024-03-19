@@ -140,19 +140,35 @@ const Profile = () => {
     auth ? auth.googleProfile : ""
   );
 
-
   useEffect(() => {
+    console.log("googleProfile HOme", googleProfile);
+    console.log(
+      "test condition",
+
+      googleProfile == null
+    );
     if (
       !user &&
-      googleProfile &&
-      googleProfile.profile == null
+      googleProfile == null
       // &&
       // facebookProfile &&
       // facebookProfile.profile == null
     ) {
       history.push("/home");
     }
-  }, [user]);
+  }, [user, googleProfile]);
+
+  useEffect(() => {
+    if (
+      !user &&
+      googleProfile == null
+      // &&
+      // facebookProfile &&
+      // facebookProfile.profile == null
+    ) {
+      history.push("/home");
+    }
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {

@@ -119,6 +119,9 @@ import { all } from "redux-saga/effects";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import icon_exit from "./assets/img/pynk/shop/exit.png";
+import { loginGoogle } from "./redux/pynk/auth";
+import { useGoogleLogout } from "react-google-login";
+import LogoutHeader from "./views/pynk/googleFacebookLineLogin/logoutHeader";
 
 Amplify.configure(awsConfig);
 
@@ -140,6 +143,9 @@ class App extends Component {
       group_image: false,
       expires_cookies: 7,
       product_cookies: null,
+      isLogout: false,
+      clientId:
+        "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com",
     };
   }
 
@@ -168,9 +174,9 @@ class App extends Component {
     this.props.logoutUser();
     this.props.clearCreateUser();
     this.props.clearProgram();
-    this.props.history.push("/home");
     this.props.logout();
   }
+
   onClickNavbar(e) {
     if (e === "videoList") {
       this.props.history.push("/videoList");
@@ -204,7 +210,6 @@ class App extends Component {
         thEn: "English",
       });
     }
-
     window.addEventListener("resize", this.updateWindowWidth);
     //when refresh scroll to top
     window.history.scrollRestoration = "manual";
@@ -214,22 +219,42 @@ class App extends Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWindowWidth);
   }
+
   componentDidUpdate(prevProps, prevState) {
     const { user, statusGetExpireDate, status_cart, googleProfile } =
       this.props;
-    const { windowWidth, searchStatus, product_cookies } = this.state;
+    const { windowWidth, searchStatus, product_cookies, isLogout, clientId } =
+      this.state;
 
-    Cookies.set("loginUser", user);
-    Cookies.set("loginUserWeb", googleProfile.profile);
     if (
       (prevProps.user != user && user != null) ||
-      (prevProps.googleProfile != googleProfile && googleProfile != null)
+      (prevProps.googleProfile != googleProfile &&
+        googleProfile != null &&
+        isLogout)
     ) {
-      let userCookies = user && user && googleProfile;
+      let userCookies = user ? user : googleProfile?.profile?.email;
+      console.log("userCookies", userCookies);
+      console.log("user", user);
+      console.log("googleProfile", googleProfile);
+      this.setState({ isLogout: false });
       Cookies.set("loginUser", userCookies);
-      Cookies.set("loginUserWeb", userCookies);
+      // Cookies.set("loginUserWeb", userCookies);
     }
 
+    const dataCookie = Cookies.get("loginUser");
+
+    console.log("dataCookie outside", dataCookie);
+    console.log("outside isLogout", isLogout);
+
+    if (dataCookie == "null" && !isLogout) {
+      console.log("dataCookie inside", dataCookie);
+      // this.props.loginGoogle(null);
+      this.setState({ isLogout: true });
+      this.onUserLogout();
+      // this.LogoutHeader()
+    }
+
+    console.log("googleProfile", googleProfile);
     if (prevState.windowWidth != windowWidth && windowWidth > 576) {
       this.setState({ searchStatus: 0 });
     }
@@ -408,16 +433,17 @@ class App extends Component {
   }
 
   render() {
-    const { locale } = this.props;
+    const { locale, googleProfile } = this.props;
     const currentAppLocale = AppLocale[locale];
 
-    const { product_cookies } = this.state;
+    const { product_cookies, isLogout } = this.state;
     const totalSum =
       product_cookies &&
       product_cookies.reduce((acc, product) => acc + product.totalprice, 0);
 
     return (
       <div>
+        <LogoutHeader isLogout={isLogout} />
         <IntlProvider
           locale={currentAppLocale.locale}
           messages={currentAppLocale.messages}
@@ -821,6 +847,7 @@ const mapActionsToProps = {
   getRegister_log,
   logout,
   update_status_cart,
+  loginGoogle,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(App);
