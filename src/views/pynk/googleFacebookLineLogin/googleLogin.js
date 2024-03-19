@@ -27,16 +27,6 @@ const GoogleLoginComponent = () => {
     googleProfile && googleProfile.profile
   );
 
-  useEffect(() => {
-    const initClientGoogle = () => {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "email profile", // Add any required scopes
-      });
-    };
-    gapi.load("client:auth2", initClientGoogle);
-  }, []);
-
   const onSuccessGoogle = (res) => {
     //registerLoginGoogle email, first_name, last_name
     const email = res.profileObj.email;
@@ -56,13 +46,9 @@ const GoogleLoginComponent = () => {
   const logOutGoogle = () => {
     history.push("/home");
     dispatch(loginGoogle(null));
-    signOut();
   };
 
   useEffect(() => {
-    // ติดตามการเปลี่ยนแปลงของ googleProfile
-    const dataCookie = Cookies.get("loginUser");
-    console.log("555555 googleProfile", googleProfile, dataCookie);
     if (!googleProfile) {
       logOutGoogle();
     } else {

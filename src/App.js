@@ -234,6 +234,7 @@ class App extends Component {
       let userCookies = user ? user : googleProfile?.profile?.email;
       this.setState({ isLogout: false });
       Cookies.set("loginUser", userCookies);
+
       // Cookies.set("loginUserWeb", userCookies);
     }
 
@@ -432,7 +433,7 @@ class App extends Component {
 
     return (
       <div>
-        <LogoutHeader isLogout={isLogout} />
+        <LogoutHeader />
         <IntlProvider
           locale={currentAppLocale.locale}
           messages={currentAppLocale.messages}
