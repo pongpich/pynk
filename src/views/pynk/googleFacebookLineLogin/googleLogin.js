@@ -46,6 +46,16 @@ const GoogleLoginComponent = () => {
   };
 
   useEffect(() => {
+    const initClientGoogle = () => {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "email profile", // Add any required scopes
+      });
+    };
+    gapi.load("client:auth2", initClientGoogle);
+  }, []);
+
+  useEffect(() => {
     const data = Cookies.get("loginUser");
     if (data === undefined || data === null) return;
 
