@@ -155,7 +155,9 @@ const Profile = () => {
   }, []);
 
   const onLogout = () => {
-    dispatch(logout());
+    if (document.getElementById("icon-google")) {
+      document.getElementById("icon-google").click();
+    }
 
     history.push("/home");
   };
