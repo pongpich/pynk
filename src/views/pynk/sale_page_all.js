@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
 
-export default function SalePageComponents() {
+export default function SalePageAll() {
   const params = useLocation();
   const [link, setLink] = React.useState("");
-
+  console.log("params", params);
   React.useEffect(() => {
     const linkMap = {
       "?link=fitto": "",
@@ -18,6 +18,13 @@ export default function SalePageComponents() {
     if (linkMap.hasOwnProperty(params.search)) {
       setLink(linkMap[params.search]);
     }
+
+    if (params.pathname == "/sale-page") {
+      document.body.classList.add("hide-scrollbar");
+    }
+    return () => {
+      document.body.classList.remove("hide-scrollbar"); 
+    };
   }, [params]);
 
   return (
@@ -26,10 +33,9 @@ export default function SalePageComponents() {
         src={link}
         title="Preem Pynk"
         style={{
-          minHeight: "100vh",
+          height: "100vh",
           width: "100%",
         }}
-        // scrolling="no"
       ></iframe>
     </div>
   );

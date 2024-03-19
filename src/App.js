@@ -46,6 +46,7 @@ import profilePynk from "../src/views/pynk/profile";
 import profileEditPynk from "../src/views/pynk/profile_edit";
 import Content from "../src/views/pynk/content";
 import Content_detail from "../src/views/pynk/content_detail";
+import SalePageAll from "./views/pynk/sale_page_all";
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -118,7 +119,6 @@ import { all } from "redux-saga/effects";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import icon_exit from "./assets/img/pynk/shop/exit.png";
-import SalePageComponents from "./views/pynk/components/sale_page";
 
 Amplify.configure(awsConfig);
 
@@ -454,7 +454,7 @@ class App extends Component {
                 <Route path="/order_tracking" component={OrderTracking} />
                 <Route path="/questionare" component={Questionare} />
                 <Route path="/content" component={Content} />
-                <Route path="/sale-page" component={SalePageComponents} />
+                <Route path="/sale-page" component={SalePageAll} />
                 <Route path="/content_detail/:id" component={Content_detail} />
                 <Route
                   path="/shop-order-summary"
