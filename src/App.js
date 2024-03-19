@@ -121,7 +121,7 @@ import "aos/dist/aos.css";
 import icon_exit from "./assets/img/pynk/shop/exit.png";
 import { loginGoogle } from "./redux/pynk/auth";
 import { useGoogleLogout } from "react-google-login";
-import LogoutHeader from "./views/pynk/googleFacebookLineLogin/logoutHeader";
+import LogoutHeader from "./views/pynk/googleFacebookLineLogin/googleLogin";
 
 Amplify.configure(awsConfig);
 
@@ -171,6 +171,7 @@ class App extends Component {
   };
 
   onUserLogout(event) {
+    this.props.logoutUser();
     this.props.logoutUser();
     this.props.clearCreateUser();
     this.props.clearProgram();
@@ -233,9 +234,6 @@ class App extends Component {
         isLogout)
     ) {
       let userCookies = user ? user : googleProfile?.profile?.email;
-      console.log("userCookies", userCookies);
-      console.log("user", user);
-      console.log("googleProfile", googleProfile);
       this.setState({ isLogout: false });
       Cookies.set("loginUser", userCookies);
       // Cookies.set("loginUserWeb", userCookies);
@@ -243,26 +241,17 @@ class App extends Component {
 
     const dataCookie = Cookies.get("loginUser");
 
-    console.log("dataCookie outside", dataCookie);
-    console.log("outside isLogout", isLogout);
-
     if (dataCookie == "null" && !isLogout) {
-      console.log("dataCookie inside", dataCookie);
-      // this.props.loginGoogle(null);
       this.setState({ isLogout: true });
       this.onUserLogout();
-      // this.LogoutHeader()
     }
 
-    console.log("googleProfile", googleProfile);
     if (prevState.windowWidth != windowWidth && windowWidth > 576) {
       this.setState({ searchStatus: 0 });
     }
 
     if (prevProps.status_cart !== status_cart && status_cart === "success") {
-      console.log("กดใส่ถุงจ้า!!");
       this.showMinus2();
-
       this.props.update_status_cart("default");
     }
   }
@@ -435,6 +424,8 @@ class App extends Component {
   render() {
     const { locale, googleProfile } = this.props;
     const currentAppLocale = AppLocale[locale];
+
+    console.log("googleProfile APP.JS", googleProfile);
 
     const { product_cookies, isLogout } = this.state;
     const totalSum =

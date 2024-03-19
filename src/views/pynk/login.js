@@ -119,7 +119,7 @@ const Login = () => {
         } else {
           setIsConfirmPasswordEmpty(false);
         }
-        console.log(passwordRegister, confirmPassword);
+
         if (passwordRegister !== confirmPassword) {
           setIsConfirmPasswordMatch(false);
         } else {
@@ -290,7 +290,7 @@ const Login = () => {
 
   useEffect(() => {
     // login google
-    console.log("login Google");
+
     if (googleProfile && googleProfile.profile != null) {
       history.push("/profile-pynk");
     }

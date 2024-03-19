@@ -141,34 +141,10 @@ const Profile = () => {
   );
 
   useEffect(() => {
-    console.log("googleProfile HOme", googleProfile);
-    console.log(
-      "test condition",
-
-      googleProfile == null
-    );
-    if (
-      !user &&
-      googleProfile == null
-      // &&
-      // facebookProfile &&
-      // facebookProfile.profile == null
-    ) {
+    if (!user && googleProfile?.profile == null) {
       history.push("/home");
     }
   }, [user, googleProfile]);
-
-  useEffect(() => {
-    if (
-      !user &&
-      googleProfile == null
-      // &&
-      // facebookProfile &&
-      // facebookProfile.profile == null
-    ) {
-      history.push("/home");
-    }
-  }, []);
 
   useEffect(() => {
     const handleResize = () => {

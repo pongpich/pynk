@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import icon_google from "../../../assets/img/pynk/shop/Google_Icons-09-512.webp";
 import icon_exit from "../../../assets/img/pynk/shop/exit.png";
-
+import Cookies from "js-cookie";
 
 const GoogleLoginComponent = () => {
   const clientId =
@@ -37,19 +37,15 @@ const GoogleLoginComponent = () => {
     gapi.load("client:auth2", initClientGoogle);
   }, []);
 
-  useEffect(() => {
-    // ติดตามการเปลี่ยนแปลงของ googleProfile
-    setProfile(googleProfile && googleProfile.profile);
-  }, [googleProfile]);
-
   const onSuccessGoogle = (res) => {
     //registerLoginGoogle email, first_name, last_name
     const email = res.profileObj.email;
     const first_name = res.profileObj.givenName;
     const last_name = res.profileObj.familyName;
+
     dispatch(registerLoginGoogle(email, first_name, last_name));
     dispatch(loginGoogle(res.profileObj));
- 
+
     // console.log("res.profileObj", res.profileObj);
   };
 
@@ -62,6 +58,18 @@ const GoogleLoginComponent = () => {
     dispatch(loginGoogle(null));
     signOut();
   };
+
+  useEffect(() => {
+    // ติดตามการเปลี่ยนแปลงของ googleProfile
+    const dataCookie = Cookies.get("loginUser");
+    console.log("555555 googleProfile", googleProfile, dataCookie);
+    if (!googleProfile) {
+      logOutGoogle();
+    } else {
+      setProfile(googleProfile && googleProfile.profile);
+    }
+    /*     setProfile(googleProfile && googleProfile.profile); */
+  }, [googleProfile]);
 
   return profile ? (
     <GoogleLogout
