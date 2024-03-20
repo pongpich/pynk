@@ -18,7 +18,7 @@ import ellipse24 from "./assets/img/home/Ellipse24.png";
 // redux
 import { logout } from "./redux/pynk/auth";
 import { update_status_cart } from "./redux/pynk/orders";
-import HeaderPynk from "./pynk_header_footer/header";
+import HeaderPynkMain from "./pynk_header_footer/header";
 
 // route
 import GroupProduct from "./views/pynk/admin/group_product";
@@ -122,6 +122,7 @@ import icon_exit from "./assets/img/pynk/shop/exit.png";
 import { loginGoogle } from "./redux/pynk/auth";
 import { useGoogleLogout } from "react-google-login";
 import LogoutHeader from "./views/pynk/googleFacebookLineLogin/googleLogin";
+import PynkHeader from "./pynk_header_footer/header/index";
 
 Amplify.configure(awsConfig);
 
@@ -144,8 +145,8 @@ class App extends Component {
       expires_cookies: 7,
       product_cookies: null,
       isLogout: false,
-      clientId:
-        "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com",
+      isLoginUser: null,
+      isLoginGoogleProfile: null,
     };
   }
 
@@ -225,23 +226,35 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { user, statusGetExpireDate, status_cart, googleProfile } =
       this.props;
-    const { windowWidth, searchStatus, product_cookies, isLogout, clientId } =
-      this.state;
+    const { windowWidth, searchStatus, product_cookies, isLogout } = this.state;
     if (
-      (user && user !== prevProps.user) || // ถ้า user มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
-      (googleProfile && googleProfile !== prevProps.googleProfile) || // ถ้า googleProfile มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
-      (isLogout && isLogout !== prevProps.isLogout)
+      prevProps.user !== user || // ถ้า user มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
+      prevProps.googleProfile !== googleProfile || // ถ้า googleProfile มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
+      prevState.isLogout !== isLogout
     ) {
       let userCookies = user ? user : googleProfile?.profile?.email;
-      this.setState({ isLogout: false });
-      Cookies.set("loginUser", userCookies);
+      if (userCookies) {
+        this.setState({ isLogout: false });
+        Cookies.set("loginUser", userCookies);
+      }
+
+      // if (prevProps.user !== user && user) {
+      //   this.setState({ isLoginUser: user });
+      // } else {
+      //   this.setState({ isLoginUser: null });
+      // }
+
+      // if (prevProps.googleProfile !== googleProfile && googleProfile) {
+      //   this.setState({ isLoginGoogleProfile: googleProfile.profile });
+      // } else {
+      //   this.setState({ isLoginGoogleProfile: null });
+      // }
 
       // Cookies.set("loginUserWeb", userCookies);
     }
 
     const dataCookie = Cookies.get("loginUser");
-
-    if (dataCookie == "null" && !isLogout) {
+    if (!dataCookie && !isLogout) {
       this.setState({ isLogout: true });
       this.onUserLogout();
     }
@@ -335,7 +348,8 @@ class App extends Component {
   renderNavbar() {
     const pagePath = this.props.location.pathname;
     const { user, googleProfile } = this.props;
-    const { searchStatus, group_image } = this.state;
+    const { searchStatus, group_image, isLoginUser, isLoginGoogleProfile } =
+      this.state;
 
     const params = {
       key1: "sorawit@hotmail.com",
@@ -346,9 +360,9 @@ class App extends Component {
     // สร้างลิงก์พร้อมพารามิเตอร์ที่เข้ารหัสแล้ว
 
     return (
-      <HeaderPynk
+      <PynkHeader
         user={this.props.user}
-        googleProfile={this.props.googleProfile}
+        googleProfile={this.props.googleProfile}        
         group_image={group_image}
         searchStatus={searchStatus}
       />

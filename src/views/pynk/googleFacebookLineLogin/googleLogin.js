@@ -42,6 +42,8 @@ const GoogleLoginComponent = () => {
   const logOutGoogle = () => {
     history.push("/home");
     dispatch(loginGoogle(null));
+    Cookies.remove("loginUser");
+    Cookies.remove("loginUserWeb");
     /*  signOut(); */
   };
 

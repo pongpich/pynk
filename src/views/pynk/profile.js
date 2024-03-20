@@ -7,6 +7,7 @@ import { loginGoogle, logout } from "../.././redux/pynk/auth";
 import icon_profile from "../../assets/img/pynk/shop/profile.png";
 import icon_edit from "../../assets/img/pynk/shop/edit.png";
 import icon_exit from "../../assets/img/pynk/shop/exit.png";
+import Cookies from "js-cookie";
 
 import rectangle_86 from "../../assets/img/pynk/shop/Rectangle-86.png";
 import rectangle_87 from "../../assets/img/pynk/shop/Rectangle-87.png";
@@ -158,7 +159,8 @@ const Profile = () => {
     if (document.getElementById("icon-google")) {
       document.getElementById("icon-google").click();
     }
-
+    Cookies.remove("loginUser");
+    Cookies.remove("loginUserWeb");
     history.push("/home");
   };
 
