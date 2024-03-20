@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 export default function SalePageAll() {
   const params = useLocation();
   const [link, setLink] = React.useState("");
-  console.log("params", params);
+  
   React.useEffect(() => {
     const linkMap = {
       "?link=fitto": "",
