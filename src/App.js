@@ -258,7 +258,11 @@ class App extends Component {
       let userCookies = user ? user.email : googleProfile?.profile?.email;
       if (userCookies) {
         this.setState({ isLogout: false });
-        Cookies.set("loginUser", userCookies);
+        // Cookies.set("loginUser", userCookies);
+        Cookies.set("loginUser", userCookies, {
+          domain: "pynk.co",
+          path: "/",
+        });
         localStorage.setItem("loginUser", userCookies);
       }
 
