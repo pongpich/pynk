@@ -236,6 +236,7 @@ class App extends Component {
       if (userCookies) {
         this.setState({ isLogout: false });
         Cookies.set("loginUser", userCookies);
+        localStorage.setItem("loginUser", userCookies);
       }
 
       // if (prevProps.user !== user && user) {
