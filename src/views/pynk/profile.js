@@ -160,7 +160,6 @@ const Profile = () => {
       document.getElementById("icon-google").click();
     }
     Cookies.remove("loginUser");
-    Cookies.remove("loginUserWeb");
     history.push("/home");
   };
 

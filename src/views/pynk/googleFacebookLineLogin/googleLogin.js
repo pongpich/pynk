@@ -43,7 +43,6 @@ const GoogleLoginComponent = () => {
     history.push("/home");
     dispatch(loginGoogle(null));
     Cookies.remove("loginUser");
-    Cookies.remove("loginUserWeb");
     /*  signOut(); */
   };
 
@@ -64,7 +63,6 @@ const GoogleLoginComponent = () => {
     if (!googleProfile) {
       console.log("check if");
       logOutGoogle();
-     
     }
     if (googleProfile?.profile) {
       setProfile(googleProfile && googleProfile.profile);
