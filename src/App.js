@@ -232,7 +232,7 @@ class App extends Component {
       prevProps.googleProfile !== googleProfile || // ถ้า googleProfile มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
       prevState.isLogout !== isLogout
     ) {
-      let userCookies = user ? user : googleProfile?.profile?.email;
+      let userCookies = user ? user.email : googleProfile?.profile?.email;
       if (userCookies) {
         this.setState({ isLogout: false });
         Cookies.set("loginUser", userCookies);
@@ -362,7 +362,7 @@ class App extends Component {
     return (
       <PynkHeader
         user={this.props.user}
-        googleProfile={this.props.googleProfile}        
+        googleProfile={this.props.googleProfile}
         group_image={group_image}
         searchStatus={searchStatus}
       />
