@@ -223,6 +223,29 @@ class App extends Component {
     window.removeEventListener("resize", this.updateWindowWidth);
   }
 
+  handleClickLogin = (event) => {
+    // axios
+    //   .get(`https://api.planforfit.com/preem/login?email=${clickMail}`)
+    //   .then((response) => {
+    //     const res = response.data.results;
+    //     if (res.message == "success") {
+    //       const params = {
+    //         key1: res.user,
+    //       };
+    //       const encodedParams = btoa(JSON.stringify(params));
+    //       const baseUrl = `http://localhost:3001/#/videolist?encodedParams=${encodedParams}`;
+    //       //window.location.href = baseUrl;
+    //       window.open(baseUrl, "_blank");
+    //     } else {
+    //       console.log("ไม่มี");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     // ดำเนินการเมื่อเกิดข้อผิดพลาดในการเรียก API
+    //     console.error("Error fetching data:", error);
+    //   });
+  };
+
   componentDidUpdate(prevProps, prevState) {
     const { user, statusGetExpireDate, status_cart, googleProfile } =
       this.props;
@@ -244,13 +267,11 @@ class App extends Component {
       // } else {
       //   this.setState({ isLoginUser: null });
       // }
-
       // if (prevProps.googleProfile !== googleProfile && googleProfile) {
       //   this.setState({ isLoginGoogleProfile: googleProfile.profile });
       // } else {
       //   this.setState({ isLoginGoogleProfile: null });
       // }
-
       // Cookies.set("loginUserWeb", userCookies);
     }
 
