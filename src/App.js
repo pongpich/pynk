@@ -250,6 +250,8 @@ class App extends Component {
     const { user, statusGetExpireDate, status_cart, googleProfile } =
       this.props;
     const { windowWidth, searchStatus, product_cookies, isLogout } = this.state;
+    let urlCookie = !true;
+    let urlCookieOrLocal = urlCookie ? "pynk.co" : "localhost"
     if (
       prevProps.user !== user || // ถ้า user มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
       prevProps.googleProfile !== googleProfile || // ถ้า googleProfile มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
@@ -260,7 +262,7 @@ class App extends Component {
         this.setState({ isLogout: false });
         // Cookies.set("loginUser", userCookies);
         Cookies.set("loginUser", userCookies, {
-          domain: "pynk.co",
+          domain: urlCookieOrLocal,
           path: "/",
         });
         localStorage.setItem("loginUser", userCookies);
@@ -279,7 +281,12 @@ class App extends Component {
       // Cookies.set("loginUserWeb", userCookies);
     }
 
-    const dataCookie = Cookies.get("loginUser");
+    // const dataCookie = Cookies.get("loginUser");
+
+    const dataCookie = Cookies.get("loginUser", {
+      domain: urlCookieOrLocal,
+      path: "/",
+    });
     if (!dataCookie && !isLogout) {
       this.setState({ isLogout: true });
       this.onUserLogout();
