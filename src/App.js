@@ -123,6 +123,7 @@ import { loginGoogle } from "./redux/pynk/auth";
 import { useGoogleLogout } from "react-google-login";
 import LogoutHeader from "./views/pynk/googleFacebookLineLogin/googleLogin";
 import PynkHeader from "./pynk_header_footer/header/index";
+import FooterPynk from "./pynk_header_footer/footer";
 
 Amplify.configure(awsConfig);
 
@@ -147,6 +148,7 @@ class App extends Component {
       isLogout: false,
       isLoginUser: null,
       isLoginGoogleProfile: null,
+      isLocalhost: window.location.hostname != "localhost",
     };
   }
 
@@ -249,8 +251,14 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { user, statusGetExpireDate, status_cart, googleProfile } =
       this.props;
-    const { windowWidth, searchStatus, product_cookies, isLogout } = this.state;
-    let urlCookieOrLocal = true ? "pynk.co" : "localhost"
+    const {
+      windowWidth,
+      searchStatus,
+      product_cookies,
+      isLogout,
+      isLocalhost,
+    } = this.state;
+    let urlCookieOrLocal = isLocalhost ? "pynk.co" : "localhost";
     if (
       prevProps.user !== user || // ถ้า user มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
       prevProps.googleProfile !== googleProfile || // ถ้า googleProfile มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
@@ -399,6 +407,10 @@ class App extends Component {
         searchStatus={searchStatus}
       />
     );
+  }
+
+  renderFooterPynk() {
+    return <FooterPynk />;
   }
 
   openPopup() {
@@ -712,6 +724,7 @@ class App extends Component {
                 <Route path="/platfrom_home" component={HomePlatfrom} />
               </Switch>
             </header>
+            {this.renderFooterPynk()}
           </div>
         </IntlProvider>
 

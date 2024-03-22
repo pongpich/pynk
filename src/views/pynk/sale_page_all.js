@@ -7,6 +7,7 @@ export default function SalePageAll() {
   const [link, setLink] = React.useState("");
 
   React.useEffect(() => {
+    window.scrollTo(0, 0);
     const linkMap = {
       "?link=fitto": "",
       "?link=bebe":
@@ -20,25 +21,27 @@ export default function SalePageAll() {
       setLink(linkMap[params.search]);
     }
 
-    if (params.pathname == "/sale-page") {
-      document.body.classList.add("hide-scrollbar");
-    }
-    return () => {
-      document.body.classList.remove("hide-scrollbar");
-    };
+    // if (params.pathname == "/sale-page") {
+    //   document.body.classList.add("hide-scrollbar");
+    // }
+    // return () => {
+    //   document.body.classList.remove("hide-scrollbar");
+    // };
   }, [params]);
 
   return (
-    <>
+    <div class="iframe-container">
       <iframe
         src={link}
+        className="scrollable-content"
         title="Preem Pynk"
         style={{
           height: "100vh",
           width: "100%",
         }}
       ></iframe>
-      {/* <FooterPynk /> */}
-    </>
+
+      <FooterPynk />
+    </div>
   );
 }

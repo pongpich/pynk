@@ -840,7 +840,7 @@ const Home = () => {
 
         {/* <Footer /> */}
       </div>
-      <FooterPynk />
+      {/* <FooterPynk /> */}
     </>
   );
 };

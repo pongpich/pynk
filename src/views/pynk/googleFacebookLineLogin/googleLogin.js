@@ -9,6 +9,8 @@ import icon_exit from "../../../assets/img/pynk/shop/exit.png";
 import Cookies from "js-cookie";
 
 const GoogleLoginComponent = () => {
+  const isLocalHost = window.location.hostname != "localhost";
+
   const clientId =
     "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com";
   const googleProfile = useSelector(({ auth }) =>
@@ -40,7 +42,7 @@ const GoogleLoginComponent = () => {
   };
 
   const logOutGoogle = () => {
-    const urlCookieLoginWeb = true ? "pynk.co" : "localhost";
+    const urlCookieLoginWeb = isLocalHost ? "pynk.co" : "localhost";
     history.push("/home");
     dispatch(loginGoogle(null));
     Cookies.remove("loginUser", { domain: urlCookieLoginWeb, path: "/" });
