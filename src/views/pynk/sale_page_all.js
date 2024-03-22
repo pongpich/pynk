@@ -41,7 +41,7 @@ export default function SalePageAll() {
         }}
       ></iframe>
 
-      <FooterPynk />
+      {/* <FooterPynk /> */}
     </div>
   );
 }
