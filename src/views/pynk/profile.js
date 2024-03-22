@@ -156,10 +156,12 @@ const Profile = () => {
   }, []);
 
   const onLogout = () => {
+    const urlCookieLoginWeb = true ? "pynk.co" : "localhost";
+
     if (document.getElementById("icon-google")) {
       document.getElementById("icon-google").click();
     }
-    Cookies.remove("loginUser");
+    Cookies.remove("loginUser", { domain: urlCookieLoginWeb, path: "/" });
     history.push("/home");
   };
 
