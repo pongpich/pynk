@@ -250,8 +250,7 @@ class App extends Component {
     const { user, statusGetExpireDate, status_cart, googleProfile } =
       this.props;
     const { windowWidth, searchStatus, product_cookies, isLogout } = this.state;
-    let urlCookie = !true;
-    let urlCookieOrLocal = urlCookie ? "pynk.co" : "localhost"
+    let urlCookieOrLocal = true ? "pynk.co" : "localhost"
     if (
       prevProps.user !== user || // ถ้า user มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
       prevProps.googleProfile !== googleProfile || // ถ้า googleProfile มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
