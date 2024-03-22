@@ -1,10 +1,11 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
+import FooterPynk from "../../pynk_header_footer/footer";
 
 export default function SalePageAll() {
   const params = useLocation();
   const [link, setLink] = React.useState("");
-  
+
   React.useEffect(() => {
     const linkMap = {
       "?link=fitto": "",
@@ -23,12 +24,12 @@ export default function SalePageAll() {
       document.body.classList.add("hide-scrollbar");
     }
     return () => {
-      document.body.classList.remove("hide-scrollbar"); 
+      document.body.classList.remove("hide-scrollbar");
     };
   }, [params]);
 
   return (
-    <div>
+    <>
       <iframe
         src={link}
         title="Preem Pynk"
@@ -37,6 +38,7 @@ export default function SalePageAll() {
           width: "100%",
         }}
       ></iframe>
-    </div>
+      {/* <FooterPynk /> */}
+    </>
   );
 }

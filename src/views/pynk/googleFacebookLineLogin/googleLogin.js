@@ -40,9 +40,10 @@ const GoogleLoginComponent = () => {
   };
 
   const logOutGoogle = () => {
+    const urlCookieLoginWeb = true ? "pynk.co" : "localhost";
     history.push("/home");
     dispatch(loginGoogle(null));
-    Cookies.remove("loginUser");
+    Cookies.remove("loginUser", { domain: urlCookieLoginWeb, path: "/" });
     /*  signOut(); */
   };
 
