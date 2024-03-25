@@ -30,14 +30,20 @@ export default function SalePageAll() {
   }, [params]);
 
   return (
-    <div class="iframe-container">
+    <div class="">
+      <style>{`
+        ::-webkit-scrollbar {
+          display: none;  
+        }       
+      `}</style>
       <iframe
         src={link}
-        className="scrollable-content"
+        className=""
         title="Preem Pynk"
         style={{
-          height: "100vh",
+          minHeight: "100vh",
           width: "100%",
+          marginTop: -32,
         }}
       ></iframe>
 

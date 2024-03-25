@@ -17,7 +17,7 @@ body {
 
 .hide-scrollbar {
   /* margin-top: 120px; */
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 
 .MuiTypography-root {

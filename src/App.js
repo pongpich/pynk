@@ -272,7 +272,6 @@ class App extends Component {
           domain: urlCookieOrLocal,
           path: "/",
         });
-        localStorage.setItem("loginUser", userCookies);
       }
 
       // if (prevProps.user !== user && user) {
