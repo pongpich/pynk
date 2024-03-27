@@ -349,7 +349,15 @@ const Login = () => {
 
         {renderName == "register" ? (
           <Box>
-            <Grid container spacing={2}>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                ".MuiGrid-item": {
+                  paddingTop: "6px",
+                },
+              }}
+            >
               <Grid item xs={12} sm={6} lg={6}>
                 <div className="input-box">
                   <label for="first-name">
@@ -642,7 +650,7 @@ const Login = () => {
                   />
                 </div>
               ) : (
-                <div className="input-box">
+                <div className="input-box" style={{ marginTop: 10 }}>
                   <input
                     type="submit"
                     className="submit"

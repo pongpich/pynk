@@ -83,6 +83,9 @@ const carouselProperties = {
   infinite: true,
   autoplay: true, // ให้ Slider หมุนเอง
   autoplaySpeed: 9000, // ตั้งค่าให้หมุนทุก ๆ 30 วินาที
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  centerMode: true,
   responsive: [
     {
       breakpoint: 476,
@@ -104,7 +107,7 @@ const carouselProperties = {
       breakpoint: 769,
       settings: {
         slidesToShow: 2,
-        // centerMode: true,
+        centerMode: true,
         slidesToScroll: 1,
       },
     },
@@ -147,14 +150,14 @@ const carouselProperties = {
         slidesToScroll: 1,
       },
     },
-    // {
-    //   breakpoint: 1800,
-    //   settings: {
-    //     slidesToShow: 3,
-    //     centerMode: true,
-    //     slidesToScroll: 1,
-    //   },
-    // },
+    {
+      breakpoint: 1800,
+      settings: {
+        slidesToShow: 3,
+        centerMode: true,
+        slidesToScroll: 1,
+      },
+    },
   ],
 };
 
@@ -503,7 +506,7 @@ const Home = () => {
                       p: 2,
                       borderRadius: "1rem",
                       border: "1px solid #E8E8E8",
-                      width: { xs: 250, sm: 300, lg: 300 },
+                      // width: { xs: 250, sm: 300, lg: 300 },
                       ":hover": {
                         // borderImage:
                         //   "linear-gradient(#7E74F2, #F05098, #F4A7BC, #DCDBDB) 2",

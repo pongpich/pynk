@@ -104,6 +104,12 @@
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
+@media (max-width: 476px) {
+  .submit {
+    width: 80%;
+  }
+}
+
 .two-col {
   display: flex;
   justify-content: space-around;
