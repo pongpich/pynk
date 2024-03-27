@@ -9,6 +9,7 @@ import GoogleLoginComponent from "./googleFacebookLineLogin/googleLogin";
 import FaceBookLoginComponent from "./googleFacebookLineLogin/faceBookLogin";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 const Login = () => {
   const history = useHistory();
@@ -271,21 +272,21 @@ const Login = () => {
   }, [passwordRegister]);
 
   useEffect(() => {
-    let x = document.getElementById("login");
-    let y = document.getElementById("register");
-    let a = document.getElementById("btn-register");
-    let b = document.getElementById("btn-login");
-    if (renderName === "register") {
-      x.style.right = "-520px";
-      y.style.left = "4px";
-      b.className = "btn-header";
-      a.className += " pink-color";
-    } else {
-      x.style.right = "4px";
-      y.style.left = "-520px";
-      b.className += " pink-color";
-      a.className = "btn-header";
-    }
+    // let x = document.getElementById("login");
+    // let y = document.getElementById("register");
+    // let a = document.getElementById("btn-register");
+    // let b = document.getElementById("btn-login");
+    // if (renderName === "register") {
+    //   x.style.right = "-520px";
+    //   y.style.left = "4px";
+    //   b.className = "btn-header";
+    //   a.className += " pink-color";
+    // } else {
+    //   x.style.right = "4px";
+    //   y.style.left = "-520px";
+    //   b.className += " pink-color";
+    //   a.className = "btn-header";
+    // }
   }, [renderName]);
 
   useEffect(() => {
@@ -298,37 +299,46 @@ const Login = () => {
 
   useMemo(() => {
     //for valied email suddenly
-    if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailRegister)) {
-      setIsEmailRegisterError("formatEmail");
-    } else {
-      setIsEmailRegisterError("default");
+    if (email != "") {
+      if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailRegister)) {
+        setIsEmailRegisterError("formatEmail");
+      } else {
+        setIsEmailRegisterError("default");
+      }
     }
-  }, [emailRegister]);
-
+  }, [emailRegister, email]);
   return (
     <div className="body-login">
       <div className="wrapper">
         <div className="two-col">
-          <div className="one">
+          <div className="">
             <span>
               <a
                 onClick={() => {
                   setRenderName("register");
                 }}
-                className="btn-header pink-color"
+                className={
+                  renderName == "register"
+                    ? "btn-header pink-color"
+                    : "btn-header "
+                }
                 id="btn-register"
               >
                 ลงทะเบียน
               </a>
             </span>
           </div>
-          <div className="two">
+          <div className="">
             <span>
               <a
                 onClick={() => {
                   setRenderName("login");
                 }}
-                className="btn-header"
+                className={
+                  renderName == "login"
+                    ? "btn-header pink-color"
+                    : "btn-header "
+                }
                 id="btn-login"
               >
                 เข้าสู่ระบบ
@@ -336,10 +346,11 @@ const Login = () => {
             </span>
           </div>
         </div>
-        <div style={{ justifyContent: "center", display: "flex" }}>
-          <div className="form-box">
-            <div className="register-container" id="register">
-              <div className="two-forms">
+
+        {renderName == "register" ? (
+          <Box>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6} lg={6}>
                 <div className="input-box">
                   <label for="first-name">
                     ชื่อ <span style={{ color: "red" }}>*</span>
@@ -359,6 +370,8 @@ const Login = () => {
                     <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                 </div>
+              </Grid>
+              <Grid item xs={12} sm={6} lg={6}>
                 <div className="input-box">
                   <label for="last-name">
                     นามสกุล <span style={{ color: "red" }}>*</span>
@@ -378,9 +391,8 @@ const Login = () => {
                     <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                 </div>
-              </div>
-
-              <div className="two-forms">
+              </Grid>
+              <Grid item xs={12} sm={6} lg={6}>
                 <div className="input-box">
                   <label for="phone">
                     เบอร์โทรศัพท์ที่ติดต่อได้{" "}
@@ -404,6 +416,9 @@ const Login = () => {
                     <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                 </div>
+              </Grid>
+
+              <Grid item xs={12} sm={6} lg={6}>
                 <div className="input-box">
                   <label for="email">
                     อีเมลเข้าใช้งาน <span style={{ color: "red" }}>*</span>
@@ -438,9 +453,9 @@ const Login = () => {
                     </div>
                   )}
                 </div>
-              </div>
+              </Grid>
 
-              <div className="two-forms">
+              <Grid item xs={12} sm={6} lg={6}>
                 <div className="input-box">
                   <label for="password">
                     รหัสผ่าน <span style={{ color: "red" }}>*</span>
@@ -465,96 +480,10 @@ const Login = () => {
                   {isPasswordRegisterEmpty && (
                     <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
-                  <div style={{ textAlign: "left" }}>
-                    <div className="d-flex">
-                      <div
-                        className="check-icon-default"
-                        style={{
-                          backgroundColor:
-                            isPasswordValid === "valid"
-                              ? "#09A969"
-                              : isPasswordValid === "invalid"
-                              ? "#DC061E"
-                              : "#ACACAC",
-                        }}
-                      >
-                        {isPasswordValid === "invalid" ? (
-                          <i class="fa-solid fa-xmark"></i>
-                        ) : (
-                          <i class="fa-solid fa-check"></i>
-                        )}
-                      </div>
-                      <p
-                        className="check-text-password"
-                        style={{
-                          color:
-                            isPasswordValid === "invalid" ? "#DC061E" : "#000",
-                        }}
-                      >
-                        รหัสผ่านมีความยาวอย่างน้อย 6 ตัวอักษร
-                      </p>
-                    </div>
-                    <div style={{ textAlign: "left" }}>
-                      <div className="d-flex">
-                        <div
-                          className="check-icon-default"
-                          style={{
-                            backgroundColor:
-                              hasUpperCase === "valid"
-                                ? "#09A969"
-                                : hasUpperCase === "invalid"
-                                ? "#DC061E"
-                                : "#ACACAC",
-                          }}
-                        >
-                          {hasUpperCase === "invalid" ? (
-                            <i class="fa-solid fa-xmark"></i>
-                          ) : (
-                            <i class="fa-solid fa-check"></i>
-                          )}
-                        </div>
-                        <p
-                          className="check-text-password"
-                          style={{
-                            color:
-                              hasUpperCase === "invalid" ? "#DC061E" : "#000",
-                          }}
-                        >
-                          มีตัวอักษร A-Z อย่างน้อย 1 ตัว
-                        </p>
-                      </div>
-                    </div>
-                    <div style={{ textAlign: "left" }}>
-                      <div className="d-flex">
-                        <div
-                          className="check-icon-default"
-                          style={{
-                            backgroundColor:
-                              hasNumber === "valid"
-                                ? "#09A969"
-                                : hasNumber === "invalid"
-                                ? "#DC061E"
-                                : "#ACACAC",
-                          }}
-                        >
-                          {hasNumber === "invalid" ? (
-                            <i class="fa-solid fa-xmark"></i>
-                          ) : (
-                            <i class="fa-solid fa-check"></i>
-                          )}
-                        </div>
-                        <p
-                          className="check-text-password"
-                          style={{
-                            color: hasNumber === "invalid" ? "#DC061E" : "#000",
-                          }}
-                        >
-                          มีตัวเลข 0-9 อย่างน้อย 1 ตัว
-                        </p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
+              </Grid>
+
+              <Grid item xs={12} sm={6} lg={6}>
                 <div className="input-box">
                   <label for="confirm-password">
                     ยืนยันรหัสผ่าน <span style={{ color: "red" }}>*</span>
@@ -576,22 +505,119 @@ const Login = () => {
                   >
                     {showPasswordConfirm ? "ซ่อน" : "แสดง"}
                   </button>
-                  {isConfirmPasswordEmpty && (
-                    <p className="empty-text">กรุณาระบุข้อมูล</p>
-                  )}
-                  {!isConfirmPasswordMatch && (
-                    <p
+                  <div>
+                    {isConfirmPasswordEmpty && (
+                      <p className="empty-text">กรุณาระบุข้อมูล</p>
+                    )}
+                    {!isConfirmPasswordMatch && (
+                      <p
+                        style={{
+                          color: "red",
+                          fontSize: "10px",
+                          textAlign: "left",
+                        }}
+                      >
+                        รหัสผ่านที่ตั้งไม่ตรงกัน กรุณาตรวจสอบความถูกต้อง
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <div style={{ textAlign: "left" }}>
+                  <div className="d-flex">
+                    <div
+                      className="check-icon-default"
                       style={{
-                        color: "red",
-                        fontSize: "10px",
-                        textAlign: "left",
+                        backgroundColor:
+                          isPasswordValid === "valid"
+                            ? "#09A969"
+                            : isPasswordValid === "invalid"
+                            ? "#DC061E"
+                            : "#ACACAC",
                       }}
                     >
-                      รหัสผ่านที่ตั้งไม่ตรงกัน กรุณาตรวจสอบความถูกต้อง
+                      {isPasswordValid === "invalid" ? (
+                        <i class="fa-solid fa-xmark"></i>
+                      ) : (
+                        <i class="fa-solid fa-check"></i>
+                      )}
+                    </div>
+                    <p
+                      className="check-text-password"
+                      style={{
+                        color:
+                          isPasswordValid === "invalid" ? "#DC061E" : "#000",
+                      }}
+                    >
+                      รหัสผ่านมีความยาวอย่างน้อย 6 ตัวอักษร
                     </p>
-                  )}
+                  </div>
+                  <div style={{ textAlign: "left" }}>
+                    <div className="d-flex">
+                      <div
+                        className="check-icon-default"
+                        style={{
+                          backgroundColor:
+                            hasUpperCase === "valid"
+                              ? "#09A969"
+                              : hasUpperCase === "invalid"
+                              ? "#DC061E"
+                              : "#ACACAC",
+                        }}
+                      >
+                        {hasUpperCase === "invalid" ? (
+                          <i class="fa-solid fa-xmark"></i>
+                        ) : (
+                          <i class="fa-solid fa-check"></i>
+                        )}
+                      </div>
+                      <p
+                        className="check-text-password"
+                        style={{
+                          color:
+                            hasUpperCase === "invalid" ? "#DC061E" : "#000",
+                        }}
+                      >
+                        มีตัวอักษร A-Z อย่างน้อย 1 ตัว
+                      </p>
+                    </div>
+                  </div>
+                  <div style={{ textAlign: "left" }}>
+                    <div className="d-flex">
+                      <div
+                        className="check-icon-default"
+                        style={{
+                          backgroundColor:
+                            hasNumber === "valid"
+                              ? "#09A969"
+                              : hasNumber === "invalid"
+                              ? "#DC061E"
+                              : "#ACACAC",
+                        }}
+                      >
+                        {hasNumber === "invalid" ? (
+                          <i class="fa-solid fa-xmark"></i>
+                        ) : (
+                          <i class="fa-solid fa-check"></i>
+                        )}
+                      </div>
+                      <p
+                        className="check-text-password"
+                        style={{
+                          color: hasNumber === "invalid" ? "#DC061E" : "#000",
+                        }}
+                      >
+                        มีตัวเลข 0-9 อย่างน้อย 1 ตัว
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </Grid>
+            </Grid>
+
+            <Box>
               {statusRegister === "loading" ? (
                 <div className="spinner-box">
                   <div className="spinner"></div>
@@ -625,98 +651,99 @@ const Login = () => {
                   />
                 </div>
               )}
+            </Box>
+          </Box>
+        ) : (
+          <div className="" id="">
+            <div className="input-box">
+              <label for="email">
+                อีเมลเข้าใช้งาน <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="example@mail.com"
+                id="email"
+                value={email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={
+                  isEmailEmpty || isEmailError !== "default"
+                    ? "invalid-field"
+                    : "input-field"
+                }
+              />
+              {isEmailEmpty && <p className="empty-text">กรุณาระบุข้อมูล</p>}
+              {isEmailError === "formatEmail" && (
+                <p style={{ color: "red" }}>รูปแบบอีเมลไม่ถูกต้อง</p>
+              )}
             </div>
-
-            <div className="login-container" id="login">
-              <div className="input-box">
-                <label for="email">
-                  อีเมลเข้าใช้งาน <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="example@mail.com"
-                  id="email"
-                  value={email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    isEmailEmpty || isEmailError !== "default"
-                      ? "invalid-field"
-                      : "input-field"
-                  }
-                />
-                {isEmailEmpty && <p className="empty-text">กรุณาระบุข้อมูล</p>}
-                {isEmailError === "formatEmail" && (
-                  <p style={{ color: "red" }}>รูปแบบอีเมลไม่ถูกต้อง</p>
-                )}
-              </div>
-              <div className="input-box">
-                <label for="password">
-                  รหัสผ่าน <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type={showPasswordLogin ? "text" : "password"}
-                  placeholder="ระบุรหัสผ่าน"
-                  id="password"
-                  value={password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={isPasswordEmpty ? "invalid-field" : "input-field"}
-                />
-                <button
-                  id="showPasswordButtonLogin"
-                  onClick={togglePasswordVisibility}
-                >
-                  {showPasswordLogin ? "ซ่อน" : "แสดง"}
-                </button>
-                {isPasswordEmpty ? (
-                  <p className="empty-text">กรุณาระบุข้อมูล</p>
-                ) : (
-                  ""
-                )}
-              </div>
-              <a href="#" className="forgot-password">
-                ลืมรหัสผ่าน?
-              </a>
-
-              {statusLogin === "loading" ? (
-                <div className="spinner-box">
-                  <div className="spinner"></div>
-                </div>
-              ) : email && password ? (
-                <div className="input-box">
-                  <input
-                    onClick={handleLogin}
-                    type="submit"
-                    className="submit"
-                    value={"ดำเนินการต่อ"}
-                  />
-                </div>
+            <div className="input-box">
+              <label for="password">
+                รหัสผ่าน <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type={showPasswordLogin ? "text" : "password"}
+                placeholder="ระบุรหัสผ่าน"
+                id="password"
+                value={password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={isPasswordEmpty ? "invalid-field" : "input-field"}
+              />
+              <button
+                id="showPasswordButtonLogin"
+                onClick={togglePasswordVisibility}
+              >
+                {showPasswordLogin ? "ซ่อน" : "แสดง"}
+              </button>
+              {isPasswordEmpty ? (
+                <p className="empty-text">กรุณาระบุข้อมูล</p>
               ) : (
-                <div className="input-box">
-                  <input
-                    type="submit"
-                    className="submit"
-                    value={"ดำเนินการต่อ"}
-                    style={{ cursor: "default", backgroundColor: "#C3C3C3" }}
-                  />
-                  <h6 style={{ color: "#4F4F4F", marginTop: 10 }}>
-                    หรือเข้าสู่ระบบด้วย
-                  </h6>
-                </div>
+                ""
               )}
+            </div>
+            <a href="#" className="forgot-password">
+              ลืมรหัสผ่าน?
+            </a>
 
-              {isLoginError === "invalidLogin" && (
-                <p style={{ color: "red" }}>อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
-              )}
-
-              <div className="login-path">
-                <Stack flexDirection={"row"} gap={2} justifyContent={"center"}>
-                  <GoogleLoginComponent />
-                  <FaceBookLoginComponent />
-                </Stack>
+            {statusLogin === "loading" ? (
+              <div className="spinner-box">
+                <div className="spinner"></div>
               </div>
-              {/* <div className="two-col">
+            ) : email && password ? (
+              <div className="input-box">
+                <input
+                  onClick={handleLogin}
+                  type="submit"
+                  className="submit"
+                  value={"ดำเนินการต่อ"}
+                />
+              </div>
+            ) : (
+              <div className="input-box">
+                <input
+                  type="submit"
+                  className="submit"
+                  value={"ดำเนินการต่อ"}
+                  style={{ cursor: "default", backgroundColor: "#C3C3C3" }}
+                />
+                <h6 style={{ color: "#4F4F4F", marginTop: 10 }}>
+                  หรือเข้าสู่ระบบด้วย
+                </h6>
+              </div>
+            )}
+
+            {isLoginError === "invalidLogin" && (
+              <p style={{ color: "red" }}>อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
+            )}
+
+            <div className="login-path">
+              <Stack flexDirection={"row"} gap={2} justifyContent={"center"}>
+                <GoogleLoginComponent />
+                <FaceBookLoginComponent />
+              </Stack>
+            </div>
+            {/* <div className="two-col">
               <div className="one">
                 <input type="checkbox" id="login-check" />
                 <label for="login-check"> Remember Me </label>
@@ -727,9 +754,8 @@ const Login = () => {
                 </label>
               </div>
             </div> */}
-            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
