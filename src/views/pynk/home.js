@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import { useInView } from "react-intersection-observer";
 import bubblesBottom from "../../assets/img/home/bubblesBottom.png";
 import bubblesTop from "../../assets/img/home/bubblesTop.png";
-/* import bebeSlide from "../../assets/img/home/bebeSlide.png"; */
 import fitto4week from "../../assets/img/home/fitto4week.png";
 import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
 import bikini_body_challenge from "../../assets/img/home/bikini_body_challenge.png";
@@ -23,9 +22,6 @@ import comment3 from "../../assets/img/home/comment3.png";
 import comment4 from "../../assets/img/home/comment4.png";
 import comment5 from "../../assets/img/home/comment5.png";
 import comment6 from "../../assets/img/home/comment6.png";
-import content1 from "../../assets/img/home/content1.png";
-import content2 from "../../assets/img/home/content2.png";
-import content3 from "../../assets/img/home/content3.png";
 import icon_circle from "../../assets/img/pynk/shop/icon-circle.png";
 import bg_grey_1 from "../../assets/img/pynk/bg_grey_1.png";
 import Group37365 from "../../assets/img/pynk/Group37365.png";
@@ -46,31 +42,26 @@ import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 
-import { Link } from "@mui/icons-material";
-import { clearGetPage, getPage } from "../../redux/pynk/contents";
-import { Button } from "@mui/material";
-
-let slidesToShow = 3;
+import { getPage } from "../../redux/pynk/contents";
 
 const PreviousBtn = (props) => {
-  const { className, onClick, currentSlide } = props;
+  const { onClick } = props;
   return (
     <>
       <div className={`previous-btn-home`} onClick={onClick}>
-        <img src={icon_circle} className="icon-previous-btn" />
+        <img src={icon_circle} className="icon-previous-btn" alt="" />
       </div>
     </>
   );
 };
 const NextBtn = (props) => {
-  const { className, onClick, slideCount, currentSlide } = props;
+  const { onClick } = props;
   return (
     <>
       <div className={`next-btn-home`} onClick={onClick}>
-        <img src={icon_circle} className="icon-next-btn" />
+        <img src={icon_circle} className="icon-next-btn" alt="" />
       </div>
     </>
   );
@@ -80,8 +71,8 @@ const carouselProperties = {
   prevArrow: <PreviousBtn />,
   nextArrow: <NextBtn />,
   infinite: true,
-  autoplay: true, // ให้ Slider หมุนเอง
-  autoplaySpeed: 9000, // ตั้งค่าให้หมุนทุก ๆ 30 วินาที
+  autoplay: true,
+  autoplaySpeed: 9000,
   slidesToShow: 3,
   slidesToScroll: 1,
   responsive: [
@@ -223,7 +214,6 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const [animation, setAnimation] = useState(false);
-  const [hoveredButton, setHoveredButton] = useState(2);
   const [contents, setContents] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [prevSlide, setPrevSlide] = useState(null);
@@ -244,13 +234,6 @@ const Home = () => {
 
     return () => clearInterval(interval);
   }, [currentSlide]);
-
-  const handleButtonHover = (buttonId) => {
-    setHoveredButton(buttonId);
-  };
-  const resetHoveredButton = () => {
-    setHoveredButton(2);
-  };
 
   const { ref: home4, inView: Home4ISVisible } = useInView({
     triggerOnce: true,
@@ -508,7 +491,7 @@ const Home = () => {
                         width: { xs: 250, sm: 300, lg: 300 },
                       }}
                     >
-                      {item.id == 2 ? (
+                      {item.id === 2 ? (
                         <img
                           src={suggest_icon}
                           alt="suggest"
@@ -574,14 +557,17 @@ const Home = () => {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        color="#2C2E2F"
-                        style={{ textDecoration: "underline" }}
+                      <button
+                        onClick={() => window.open(item.link, "_blank")}
+                        style={{
+                          textDecoration: "underline",
+                          backgroundColor: "transparent",
+                          border: "none",
+                          color: "#2C2E2F",
+                        }}
                       >
                         ดูรายละเอียด
-                      </a>
+                      </button>
                     </CardActions>
                   </Card>
                 </Grid>
