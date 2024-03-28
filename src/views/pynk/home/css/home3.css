@@ -1,0 +1,27 @@
+.home3 {
+    background-image: url("../../../../assets/img/home/background_home4.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: fit-content;
+    padding-top: 120px;
+  }
+  
+  .home3-container {
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    justify-content: center;
+  }
+
+  .home-star {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    width: 30%;
+    left: 35%;
+  }
+  
+  .animate-open-home3 {
+    animation: animate-open-div 0.7s ease-in;
+    opacity: 1;
+  }

@@ -22,7 +22,7 @@ import { update_status_cart } from "./redux/pynk/orders";
 // route
 import GroupProduct from "./views/pynk/admin/group_product";
 import AdminPynk from "./views/pynk/admin/admin";
-import HomePynk from "../src/views/pynk/home";
+import HomePynk from "./views/pynk/home";
 import OrderTracking from "../src/views/pynk/order_tracking";
 import DashboardPynk from "./views/pynk/admin/dashboard";
 import ShopPynk from "./views/pynk/shop";
