@@ -3680,8 +3680,8 @@ tr:last-child td:last-child {
 }
 
 .dropdown-item:active {
-  background-color: #e25e96;
-  color: #ffffff !important;
+  background-color: transparent !important;
+  color: inherit !important;
 }
 .google_style {
   display: flex;

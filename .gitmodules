@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 [submodule "pynk_header_footer"]
 	path = pynk_header_footer
 	url = git@bitbucket.org:p4ftech/pynk_header_footer.git
 [submodule "src/pynk_header_footer"]
 	path = src/pynk_header_footer
 	url = git@bitbucket.org:p4ftech/pynk_header_footer.git
+=======
+[submodule "another_submodule_name"]
+	path = src/pynk_header_footer
+	url = https://bitbucket.org/p4ftech/pynk_header_footer.git
+[submodule "src/pynk_header_footer"]
+	path = src/pynk_header_footer
+	url = https://bitbucket.org/p4ftech/pynk_header_footer.git
+>>>>>>> ee74cca68c133f6c8c5d10cdb12ea8e75c5501ca

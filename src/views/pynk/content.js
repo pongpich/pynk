@@ -224,7 +224,6 @@ const Content = () => {
                     )}*/}
         </Box>
       </div>
-      <Footer />
     </div>
   );
 };

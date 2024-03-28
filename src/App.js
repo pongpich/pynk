@@ -4,8 +4,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import delete_bin_line from "./assets/img/pynk/shop/delete-bin-line.png";
-import GoogleLoginComponent from "./views/pynk/googleFacebookLineLogin/googleLogin";
-
+/* import GoogleLoginComponent from "./views/pynk/googleFacebookLineLogin/googleLogin";
+ */
 //---------------------------------------Pynk---------------------------------------
 // image
 import search_line from "./assets/img/home/search-line.png";
@@ -19,6 +19,7 @@ import ellipse24 from "./assets/img/home/Ellipse24.png";
 // redux
 import { logout } from "./redux/pynk/auth";
 import { update_status_cart } from "./redux/pynk/orders";
+import HeaderPynkMain from "./pynk_header_footer/header";
 
 // route
 import GroupProduct from "./views/pynk/admin/group_product";
@@ -46,6 +47,7 @@ import profilePynk from "../src/views/pynk/profile";
 import profileEditPynk from "../src/views/pynk/profile_edit";
 import Content from "../src/views/pynk/content";
 import Content_detail from "../src/views/pynk/content_detail";
+import SalePageAll from "./views/pynk/sale_page_all";
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -118,9 +120,17 @@ import { all } from "redux-saga/effects";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import icon_exit from "./assets/img/pynk/shop/exit.png";
+<<<<<<< HEAD
 import SalePage from "./views/pynk/sale_page";
 import SaleChoicePage from "./views/pynk/sale_choice_page";
 import SaleBebePage from "./views/pynk/sale_bebe";
+=======
+import { loginGoogle } from "./redux/pynk/auth";
+import { useGoogleLogout } from "react-google-login";
+import LogoutHeader from "./views/pynk/googleFacebookLineLogin/googleLogin";
+import PynkHeader from "./pynk_header_footer/header/index";
+import FooterPynk from "./pynk_header_footer/footer";
+>>>>>>> ee74cca68c133f6c8c5d10cdb12ea8e75c5501ca
 
 Amplify.configure(awsConfig);
 
@@ -142,6 +152,10 @@ class App extends Component {
       group_image: false,
       expires_cookies: 7,
       product_cookies: null,
+      isLogout: false,
+      isLoginUser: null,
+      isLoginGoogleProfile: null,
+      isLocalhost: window.location.hostname != "localhost",
     };
   }
 
@@ -168,11 +182,12 @@ class App extends Component {
 
   onUserLogout(event) {
     this.props.logoutUser();
+    this.props.logoutUser();
     this.props.clearCreateUser();
     this.props.clearProgram();
-    this.props.history.push("/home");
     this.props.logout();
   }
+
   onClickNavbar(e) {
     if (e === "videoList") {
       this.props.history.push("/videoList");
@@ -216,19 +231,86 @@ class App extends Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWindowWidth);
   }
-  componentDidUpdate(prevProps, prevState) {
-    const { user, statusGetExpireDate, status_cart } = this.props;
 
-    const { windowWidth, searchStatus, product_cookies } = this.state;
+  handleClickLogin = (event) => {
+    // axios
+    //   .get(`https://api.planforfit.com/preem/login?email=${clickMail}`)
+    //   .then((response) => {
+    //     const res = response.data.results;
+    //     if (res.message == "success") {
+    //       const params = {
+    //         key1: res.user,
+    //       };
+    //       const encodedParams = btoa(JSON.stringify(params));
+    //       const baseUrl = `http://localhost:3001/#/videolist?encodedParams=${encodedParams}`;
+    //       //window.location.href = baseUrl;
+    //       window.open(baseUrl, "_blank");
+    //     } else {
+    //       console.log("ไม่มี");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     // ดำเนินการเมื่อเกิดข้อผิดพลาดในการเรียก API
+    //     console.error("Error fetching data:", error);
+    //   });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    const { user, statusGetExpireDate, status_cart, googleProfile } =
+      this.props;
+    const {
+      windowWidth,
+      searchStatus,
+      product_cookies,
+      isLogout,
+      isLocalhost,
+    } = this.state;
+    let urlCookieOrLocal = isLocalhost ? "pynk.co" : "localhost";
+    if (
+      prevProps.user !== user || // ถ้า user มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
+      prevProps.googleProfile !== googleProfile || // ถ้า googleProfile มีค่าและมีการเปลี่ยนแปลงจากค่าก่อนหน้า
+      prevState.isLogout !== isLogout
+    ) {
+      let userCookies = user ? user.email : googleProfile?.profile?.email;
+      if (userCookies) {
+        this.setState({ isLogout: false });
+        // Cookies.set("loginUser", userCookies);
+        Cookies.set("loginUser", userCookies, {
+          domain: urlCookieOrLocal,
+          path: "/",
+        });
+      }
+
+      // if (prevProps.user !== user && user) {
+      //   this.setState({ isLoginUser: user });
+      // } else {
+      //   this.setState({ isLoginUser: null });
+      // }
+      // if (prevProps.googleProfile !== googleProfile && googleProfile) {
+      //   this.setState({ isLoginGoogleProfile: googleProfile.profile });
+      // } else {
+      //   this.setState({ isLoginGoogleProfile: null });
+      // }
+      // Cookies.set("loginUserWeb", userCookies);
+    }
+
+    // const dataCookie = Cookies.get("loginUser");
+
+    const dataCookie = Cookies.get("loginUser", {
+      domain: urlCookieOrLocal,
+      path: "/",
+    });
+    if (!dataCookie && !isLogout) {
+      this.setState({ isLogout: true });
+      this.onUserLogout();
+    }
 
     if (prevState.windowWidth != windowWidth && windowWidth > 576) {
       this.setState({ searchStatus: 0 });
     }
 
     if (prevProps.status_cart !== status_cart && status_cart === "success") {
-      console.log("กดใส่ถุงจ้า!!");
       this.showMinus2();
-
       this.props.update_status_cart("default");
     }
   }
@@ -341,7 +423,8 @@ class App extends Component {
   renderNavbar() {
     const pagePath = this.props.location.pathname;
     const { user, googleProfile } = this.props;
-    const { searchStatus, group_image } = this.state;
+    const { searchStatus, group_image, isLoginUser, isLoginGoogleProfile } =
+      this.state;
 
     const params = {
       key1: "sorawit@hotmail.com",
@@ -352,6 +435,7 @@ class App extends Component {
     // สร้างลิงก์พร้อมพารามิเตอร์ที่เข้ารหัสแล้ว
 
     return (
+<<<<<<< HEAD
       <div className="navbar-pynk">
         <nav className="navbar navbar-expand-sm bg-light information-nav fixed-top">
           <div className="information-box">
@@ -650,7 +734,19 @@ class App extends Component {
           )}
         </nav>
       </div>
+=======
+      <PynkHeader
+        user={this.props.user}
+        googleProfile={this.props.googleProfile}
+        group_image={group_image}
+        searchStatus={searchStatus}
+      />
+>>>>>>> ee74cca68c133f6c8c5d10cdb12ea8e75c5501ca
     );
+  }
+
+  renderFooterPynk() {
+    return <FooterPynk />;
   }
 
   openPopup() {
@@ -720,16 +816,17 @@ class App extends Component {
   }
 
   render() {
-    const { locale } = this.props;
+    const { locale, googleProfile } = this.props;
     const currentAppLocale = AppLocale[locale];
 
-    const { product_cookies } = this.state;
+    const { product_cookies, isLogout } = this.state;
     const totalSum =
       product_cookies &&
       product_cookies.reduce((acc, product) => acc + product.totalprice, 0);
 
     return (
       <div>
+        <LogoutHeader />
         <IntlProvider
           locale={currentAppLocale.locale}
           messages={currentAppLocale.messages}
@@ -766,6 +863,7 @@ class App extends Component {
                 <Route path="/order_tracking" component={OrderTracking} />
                 <Route path="/questionare" component={Questionare} />
                 <Route path="/content" component={Content} />
+                <Route path="/sale-page" component={SalePageAll} />
                 <Route path="/content_detail/:id" component={Content_detail} />
                 <Route
                   path="/shop-order-summary"
@@ -965,6 +1063,7 @@ class App extends Component {
                 <Route path="/platfrom_home" component={HomePlatfrom} />
               </Switch>
             </header>
+            {this.renderFooterPynk()}
           </div>
         </IntlProvider>
 
@@ -1135,6 +1234,7 @@ const mapActionsToProps = {
   getRegister_log,
   logout,
   update_status_cart,
+  loginGoogle,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(App);

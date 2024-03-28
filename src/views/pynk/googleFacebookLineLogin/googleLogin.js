@@ -6,8 +6,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import icon_google from "../../../assets/img/pynk/shop/Google_Icons-09-512.webp";
 import icon_exit from "../../../assets/img/pynk/shop/exit.png";
+import Cookies from "js-cookie";
 
 const GoogleLoginComponent = () => {
+  const isLocalHost = window.location.hostname != "localhost";
+
   const clientId =
     "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com";
   const googleProfile = useSelector(({ auth }) =>
@@ -26,6 +29,26 @@ const GoogleLoginComponent = () => {
     googleProfile && googleProfile.profile
   );
 
+  const onSuccessGoogle = (res) => {
+    const email = res.profileObj.email;
+    const first_name = res.profileObj.givenName;
+    const last_name = res.profileObj.familyName;
+    dispatch(registerLoginGoogle(email, first_name, last_name));
+    dispatch(loginGoogle(res.profileObj));
+  };
+
+  const onFailureGoogle = (res) => {
+    console.log("onFailureGoogle", res);
+  };
+
+  const logOutGoogle = () => {
+    const urlCookieLoginWeb = isLocalHost ? "pynk.co" : "localhost";
+    history.push("/home");
+    dispatch(loginGoogle(null));
+    Cookies.remove("loginUser", { domain: urlCookieLoginWeb, path: "/" });
+    /*  signOut(); */
+  };
+
   useEffect(() => {
     const initClientGoogle = () => {
       gapi.client.init({
@@ -37,29 +60,17 @@ const GoogleLoginComponent = () => {
   }, []);
 
   useEffect(() => {
-    // ติดตามการเปลี่ยนแปลงของ googleProfile
-    setProfile(googleProfile && googleProfile.profile);
+    const data = Cookies.get("loginUser");
+    if (data === undefined || data === null) return;
+
+    if (!googleProfile) {
+      console.log("check if");
+      logOutGoogle();
+    }
+    if (googleProfile?.profile) {
+      setProfile(googleProfile && googleProfile.profile);
+    }
   }, [googleProfile]);
-
-  const onSuccessGoogle = (res) => {
-    //registerLoginGoogle email, first_name, last_name
-    const email = res.profileObj.email;
-    const first_name = res.profileObj.givenName;
-    const last_name = res.profileObj.familyName;
-    dispatch(registerLoginGoogle(email, first_name, last_name));
-    dispatch(loginGoogle(res.profileObj));
-    // console.log("res.profileObj", res.profileObj);
-  };
-
-  const onFailureGoogle = (res) => {
-    console.log("onFailureGoogle", res);
-  };
-
-  const logOutGoogle = () => {
-    history.push("/home");
-    dispatch(loginGoogle(null));
-    signOut();
-  };
 
   return profile ? (
     <GoogleLogout
@@ -72,7 +83,12 @@ const GoogleLoginComponent = () => {
           style={{ cursor: "pointer" }}
           onClick={renderProps.onClick}
         >
-          <img src={icon_exit} className="icon-edit" alt="icon_google" />
+          <img
+            src={icon_exit}
+            className="icon-edit"
+            id="icon-google"
+            alt="icon_google"
+          />
           ออกจากระบบ
         </div>
       )}

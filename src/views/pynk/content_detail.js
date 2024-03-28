@@ -227,7 +227,6 @@ const Content_detail = () => {
           </Grid>
         </Grid>
       </Container>
-      <Footer />
     </div>
   );
 };
