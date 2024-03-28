@@ -124,7 +124,7 @@ const settings = {
 };
 const clientId =
   "796848287017-3eh30gsc3e5o8dv5hh25bqa1c5ushgf8.apps.googleusercontent.com";
-const Profile = () => {
+const ProfilePynk = () => {
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -534,4 +534,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePynk;

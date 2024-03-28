@@ -1,7 +1,6 @@
 import "./App.css";
 import axios from "axios";
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import Cookies from "js-cookie";
 import delete_bin_line from "./assets/img/pynk/shop/delete-bin-line.png";
 /* import GoogleLoginComponent from "./views/pynk/googleFacebookLineLogin/googleLogin";
@@ -19,12 +18,11 @@ import ellipse24 from "./assets/img/home/Ellipse24.png";
 // redux
 import { logout } from "./redux/pynk/auth";
 import { update_status_cart } from "./redux/pynk/orders";
-import HeaderPynkMain from "./pynk_header_footer/header";
 
 // route
 import GroupProduct from "./views/pynk/admin/group_product";
 import AdminPynk from "./views/pynk/admin/admin";
-import Home from "../src/views/pynk/home";
+import HomePynk from "../src/views/pynk/home";
 import OrderTracking from "../src/views/pynk/order_tracking";
 import DashboardPynk from "./views/pynk/admin/dashboard";
 import ShopPynk from "./views/pynk/shop";
@@ -43,11 +41,14 @@ import AddContent from "./views/pynk/admin/add_content";
 import Shop_category from "./views/pynk/admin/shop_category";
 import HomePlatfrom from "../src/views/platform/login";
 import Questionare from "../src/views/pynk/questionare";
-import profilePynk from "../src/views/pynk/profile";
-import profileEditPynk from "../src/views/pynk/profile_edit";
+import ProfilePynk from "../src/views/pynk/profile";
+import ProfileEditPynk from "../src/views/pynk/profile_edit";
 import Content from "../src/views/pynk/content";
 import Content_detail from "../src/views/pynk/content_detail";
 import SalePageAll from "./views/pynk/sale_page_all";
+import SalePage from "./views/pynk/sale_page";
+import SaleChoicePage from "./views/pynk/sale_choice_page";
+import SaleBebePage from "./views/pynk/sale_bebe";
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -60,7 +61,7 @@ import Shipping_Address from "../src/views/stay_fit/information/shipping_address
 import EditShipping_Address from "../src/views/stay_fit/information/edit_shipping_address";
 import Payment from "../src/views/stay_fit/information/payment";
 import SubscriptionPayment from "../src/views/stay_fit/information/subscriptionPayment";
-import subscriptionDiscount from "../src/views/stay_fit/information/subscriptionDiscount";
+import SubscriptionDiscount from "../src/views/stay_fit/information/subscriptionDiscount";
 import Welcome_NewMember from "../src/views/stay_fit/information/welcome_new_member";
 import Basic_Information from "../src/views/stay_fit/information/basic_information";
 import Your_Program from "../src/views/stay_fit/information/your_program";
@@ -72,7 +73,7 @@ import Cancel_Package_New from "./views/stay_fit/profile/cancel_package_new";
 import Cancel_Package_Succeed from "./views/stay_fit/profile/cancel_packag_succeed";
 import Subscription_Success from "./views/stay_fit/information/subscription_success";
 import ProgramPackage from "./views/stay_fit/programPackage";
-import videoList from "./views/stay_fit/information/video_List";
+import VideoList from "./views/stay_fit/information/video_List";
 import logo from "./views/stay_fit/images/logo.png";
 import Shipping_check from "./views/stay_fit/profile/shipping_check";
 import Billing_history from "./views/stay_fit/profile/billing_history";
@@ -83,7 +84,7 @@ import New_password from "./views/stay_fit/profile/new_password";
 import Dashboard from "./views/stay_fit/information/dashboard";
 import Challenge from "./views/stay_fit/information/challenge";
 import Exercise_method from "./views/stay_fit/information/exercise_method";
-import Admin from "./views/stay_fit/admin/admin";
+import AdminStayFit from "./views/stay_fit/admin/admin";
 
 //-------------------------------------Platform-------------------------------------
 
@@ -93,8 +94,6 @@ import IntlMessages from "../src/helpers/IntlMessages";
 import { changeLocale } from "../src/redux/actions";
 
 import { localeOptions } from "../src/constants/defaultValues";
-
-//import Home from '../views/home';Welcome_NewMember
 
 import { connect } from "react-redux";
 import { logoutUser } from "./redux/stay_fit/auth";
@@ -109,20 +108,16 @@ import {
   Switch,
   Route,
   Redirect,
+  Link,
 } from "react-router-dom";
-
 import Amplify from "aws-amplify";
 import { awsConfig } from "./constants/defaultValues";
-import { BrowserRouter } from "react-router-dom";
 import user_circle from "./assets/img/user_circle1.svg";
 import TagManager from "react-gtm-module";
 import { all } from "redux-saga/effects";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import icon_exit from "./assets/img/pynk/shop/exit.png";
-import SalePage from "./views/pynk/sale_page";
-import SaleChoicePage from "./views/pynk/sale_choice_page";
-import SaleBebePage from "./views/pynk/sale_bebe";
 import { loginGoogle } from "./redux/pynk/auth";
 import { useGoogleLogout } from "react-google-login";
 import LogoutHeader from "./views/pynk/googleFacebookLineLogin/googleLogin";
@@ -134,8 +129,7 @@ Amplify.configure(awsConfig);
 TagManager.initialize({
   gtmId: "GTM-KLDH7S5",
 });
-
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -539,7 +533,7 @@ class App extends Component {
                 <Route exact path="/">
                   <Redirect to="/home" />
                 </Route>
-                <Route path="/home" component={Home} />
+                <Route path="/home" component={HomePynk} />
                 <Route path="/dashboard" component={DashboardPynk} />
                 <Route path="/admin" component={AdminPynk} />
                 <Route
@@ -595,11 +589,11 @@ class App extends Component {
                   component={ShopSuccessfulPaymentPynk}
                 />
                 <Route path="/error-payment" component={ShopErrorPaymentPynk} />
-                <Route path="/profile-pynk" component={profilePynk} />
+                <Route path="/profile-pynk" component={ProfilePynk} />
                 <Route path="/sale-page" component={SalePage} />
                 <Route path="/sale-choice" component={SaleChoicePage} />
                 <Route path="/sale-bebe" component={SaleBebePage} />
-                <Route path="/profile-edit-pynk" component={profileEditPynk} />
+                <Route path="/profile-edit-pynk" component={ProfileEditPynk} />
                 <Route path="/login" component={Login} />
                 <Route path="/stay_fit_home" component={HomeStayFit} />
                 <Route
@@ -629,7 +623,7 @@ class App extends Component {
                 />
                 <Route
                   path="/subscription_discount"
-                  component={subscriptionDiscount}
+                  component={SubscriptionDiscount}
                 />
                 <Route
                   path="/welcome_new_nember"
@@ -656,7 +650,7 @@ class App extends Component {
                   component={Subscription_Success}
                 />
                 <Route path="/programPackage" component={ProgramPackage} />
-                <Route path="/videoList" component={videoList} />
+                <Route path="/videoList" component={VideoList} />
                 <Route
                   path="/qr_checkout"
                   render={() => {
@@ -708,7 +702,7 @@ class App extends Component {
                   component={Reset_password_succeed}
                 />
                 <Route path="/new_password" component={New_password} />
-                <Route path="/admin_stayfit" component={Admin} />
+                <Route path="/admin_stayfit" component={AdminStayFit} />
                 <Route path="/dashboard_stayfit" component={Dashboard} />
                 <Route path="/challenge" component={Challenge} />
                 <Route path="/exercise_method" component={Exercise_method} />

@@ -21,7 +21,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import "./css/profile.css";
 
-const Profile_edit = () => {
+const ProfileEditPynk = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector(({ auth }) => (auth ? auth.user : ""));
@@ -728,4 +728,4 @@ const Profile_edit = () => {
   );
 };
 
-export default Profile_edit;
+export default ProfileEditPynk;

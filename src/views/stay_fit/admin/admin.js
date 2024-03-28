@@ -4,7 +4,7 @@ import { selectMemberInfo } from "../../../redux/stay_fit/exerciseVideos";
 import { changeEmail ,addOrderInZort} from "../../../redux/stay_fit/auth";
 import { selectMemberEventLog } from "../../../redux/stay_fit/challenges";
 
-class Index extends Component {
+class AdminStayFit extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -411,4 +411,4 @@ const mapActionsToProps = { selectMemberEventLog, changeEmail, selectMemberInfo,
 export default connect(
     mapStateToProps,
     mapActionsToProps
-)(Index);
+)(AdminStayFit);

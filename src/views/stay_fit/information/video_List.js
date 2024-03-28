@@ -49,7 +49,7 @@ import IntlMessages from "../../../helpers/IntlMessages";
 import { injectIntl } from 'react-intl';
 import { FacebookShareButton, TwitterShareButton, FacebookMessengerShareButton, LineShareButton, WhatsappShareButton } from "react-share";
 
-class videoList extends React.Component {
+class VideoList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -2555,4 +2555,4 @@ const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, update
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(injectIntl(videoList));
+)(injectIntl(VideoList));

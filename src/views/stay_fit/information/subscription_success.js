@@ -5,7 +5,7 @@ import Rectangle29 from '../../../assets/img/rectangle29.png';
 import Rectangle28 from '../../../assets/img/rectangle28.png';
 import Rectangle27 from '../../../assets/img/rectangle27.png';
 import IntlMessages from "../../../helpers/IntlMessages";
-class CancelPackageSucceed extends React.Component {
+class Subscription_Success extends React.Component {
   render() {
     return (
       <>
@@ -67,5 +67,5 @@ class CancelPackageSucceed extends React.Component {
   }
 }
 
-export default CancelPackageSucceed;
+export default Subscription_Success;
 ;

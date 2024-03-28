@@ -19,7 +19,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { encode as btoa } from 'base-64';
 
-class subscriptionDiscount extends React.Component {
+class SubscriptionDiscount extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -415,4 +415,4 @@ const mapActionsToProps = { getUserProgram, insertSubscriptionProducts, getSubsc
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(subscriptionDiscount);
+)(SubscriptionDiscount);
