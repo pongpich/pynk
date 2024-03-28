@@ -29,8 +29,7 @@ import LOGO from "../../assets/img/pynk/LOGO.png";
 import Group11 from "../../assets/img/pynk/Group11.png";
 import Rectangle4390 from "../../assets/img/pynk/Rectangle4390.png";
 
-import Footer from "./footer";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import "./css/home.css";
@@ -45,11 +44,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 
-import { clearGetPage, getPage } from "../../redux/pynk/contents";
-import { Button } from "@mui/material";
-import FooterPynk from "../../pynk_header_footer/footer";
-
-let slidesToShow = 3;
+import { getPage } from "../../redux/pynk/contents";
 
 const PreviousBtn = (props) => {
   const { onClick } = props;
@@ -218,11 +213,10 @@ const Home = () => {
     "https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf";
   const dispatch = useDispatch();
 
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [animation, setAnimation] = useState(false);
   const [contents, setContents] = useState([]);
+
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
   const [prevSlide, setPrevSlide] = useState(null);
 
   const handleSlideChange = (event) => {
@@ -239,7 +233,6 @@ const Home = () => {
       setCurrentSlide(nextSlideIndex);
       setAnimation(true);
     }, 5000);
-
     return () => clearInterval(interval);
   }, [currentSlide]);
 
@@ -247,25 +240,9 @@ const Home = () => {
     triggerOnce: true,
   });
 
-  function previousIndex(curr, prev) {
-    setPreviousSlideIndex(prev);
-    if (curr !== currentSlideIndex) {
-      setCurrentSlideIndex(curr);
-    }
-  }
-
   const nextPage = (contents) => {
     dispatch(getPage(contents));
   };
-
-  useEffect(() => {
-    const carousel = document.getElementById("carouselExampleAutoplaying");
-    // เมื่อสไลด์เปลี่ยน
-    carousel.addEventListener("slid.bs.carousel", (event) => {
-      setCurrentSlideIndex(event.to);
-      setAnimation(true);
-    });
-  }, []);
 
   useEffect(() => {
     (async () => {
@@ -283,29 +260,36 @@ const Home = () => {
           data-bs-ride="carousel"
         >
           <div className="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 1"
-              onClick={() => previousIndex(0, currentSlideIndex)}
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-              onClick={() => previousIndex(1, currentSlideIndex)}
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-              onClick={() => previousIndex(2, currentSlideIndex)}
-            ></button>
+            <input
+              type="radio"
+              name="slide"
+              id="slide1"
+              className="carousel-indicator"
+              value="0"
+              checked={currentSlide === 0}
+              onChange={handleSlideChange}
+            />
+            <label htmlFor="slide1" className="carousel-indicator"></label>
+            <input
+              type="radio"
+              name="slide"
+              id="slide2"
+              className="carousel-indicator"
+              value="1"
+              checked={currentSlide === 1}
+              onChange={handleSlideChange}
+            />
+            <label htmlFor="slide2" className="carousel-indicator"></label>
+            <input
+              type="radio"
+              name="slide"
+              id="slide3"
+              className="carousel-indicator"
+              value="2"
+              checked={currentSlide === 2}
+              onChange={handleSlideChange}
+            />
+            <label htmlFor="slide3" className="carousel-indicator"></label>
           </div>
           <div className="carousel-inner">
             <div className="box_animation">
@@ -315,19 +299,19 @@ const Home = () => {
                     src={bubblesTop}
                     className={`bubbles-top  ${
                       (animation &&
-                        currentSlideIndex === 0 &&
-                        previousSlideIndex !== 1 &&
+                        currentSlide === 0 &&
+                        prevSlide !== 1 &&
                         "rotate2to0-1") ||
-                      (currentSlideIndex === 0 &&
-                        previousSlideIndex === 1 &&
+                      (currentSlide === 0 &&
+                        prevSlide === 1 &&
                         "rotate1to0-1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex !== 2 &&
+                      (currentSlide === 1 &&
+                        prevSlide !== 2 &&
                         "rotate0to1-1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex === 2 &&
+                      (currentSlide === 1 &&
+                        prevSlide === 2 &&
                         "rotate2to1-1") ||
-                      (currentSlideIndex === 2 && "rotate1to2-1")
+                      (currentSlide === 2 && "rotate1to2-1")
                     }`}
                     id="bubbles-top"
                     alt=""
@@ -336,19 +320,13 @@ const Home = () => {
                     src={bubblesBottom}
                     className={`bubbles-bottom  ${
                       (animation &&
-                        currentSlideIndex === 0 &&
-                        previousSlideIndex !== 1 &&
+                        currentSlide === 0 &&
+                        prevSlide !== 1 &&
                         "rotate2to0") ||
-                      (currentSlideIndex === 0 &&
-                        previousSlideIndex === 1 &&
-                        "rotate1to0") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex !== 2 &&
-                        "rotate0to1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex === 2 &&
-                        "rotate2to1") ||
-                      (currentSlideIndex === 2 && "rotate1to2")
+                      (currentSlide === 0 && prevSlide === 1 && "rotate1to0") ||
+                      (currentSlide === 1 && prevSlide !== 2 && "rotate0to1") ||
+                      (currentSlide === 1 && prevSlide === 2 && "rotate2to1") ||
+                      (currentSlide === 2 && "rotate1to2")
                     }`}
                     id="bubbles-bottom"
                     alt=""
@@ -356,19 +334,19 @@ const Home = () => {
                   <div
                     className={`bebe-slide ${
                       (animation &&
-                        currentSlideIndex === 0 &&
-                        previousSlideIndex !== 1 &&
+                        currentSlide === 0 &&
+                        prevSlide !== 1 &&
                         "bebe-slide2to0") ||
-                      (currentSlideIndex === 0 &&
-                        previousSlideIndex === 1 &&
+                      (currentSlide === 0 &&
+                        prevSlide === 1 &&
                         "bebe-slide1to0") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex !== 2 &&
+                      (currentSlide === 1 &&
+                        prevSlide !== 2 &&
                         "bebe-slide0to1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex === 2 &&
+                      (currentSlide === 1 &&
+                        prevSlide === 2 &&
                         "bebe-slide2to1") ||
-                      (currentSlideIndex === 2 && "bebe-slide1to2")
+                      (currentSlide === 2 && "bebe-slide1to2")
                     }`}
                     id="bebe-slide"
                   ></div>
@@ -378,19 +356,19 @@ const Home = () => {
                     <div
                       className={`text-slide ${
                         (animation &&
-                          currentSlideIndex === 0 &&
-                          previousSlideIndex !== 1 &&
+                          currentSlide === 0 &&
+                          prevSlide !== 1 &&
                           "text-anime2to0") ||
-                        (currentSlideIndex === 0 &&
-                          previousSlideIndex === 1 &&
+                        (currentSlide === 0 &&
+                          prevSlide === 1 &&
                           "text-anime1to0") ||
-                        (currentSlideIndex === 1 &&
-                          previousSlideIndex !== 2 &&
+                        (currentSlide === 1 &&
+                          prevSlide !== 2 &&
                           "text-anime0to1") ||
-                        (currentSlideIndex === 1 &&
-                          previousSlideIndex === 2 &&
+                        (currentSlide === 1 &&
+                          prevSlide === 2 &&
                           "text-anime2to1") ||
-                        (currentSlideIndex === 2 && "text-anime1to2")
+                        (currentSlide === 2 && "text-anime1to2")
                       }`}
                     >
                       <div className="home1-detail">
@@ -443,17 +421,29 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="carousel-item active" data-interval="1000">
+            <div
+              className={
+                currentSlide === 0 ? "carousel-item active" : "carousel-item"
+              }
+            >
               <div className="box_screen1">
                 <div className="line3"></div>
               </div>
             </div>
-            <div className="carousel-item" data-interval="1000">
+            <div
+              className={
+                currentSlide === 1 ? "carousel-item active" : "carousel-item"
+              }
+            >
               <div className="box_screen2">
                 <div className="line3"></div>
               </div>
             </div>
-            <div className="carousel-item" data-interval="1000">
+            <div
+              className={
+                currentSlide === 2 ? "carousel-item active" : "carousel-item"
+              }
+            >
               <div className="box_screen3">
                 <div className="line3"></div>
               </div>
@@ -851,10 +841,7 @@ const Home = () => {
               .slice(0, 3)}
           </Grid>
         </Container>
-
-        {/* <Footer /> */}
       </div>
-      {/* <FooterPynk /> */}
     </>
   );
 };
