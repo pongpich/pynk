@@ -6,7 +6,7 @@ import { Grid, Container } from "@mui/material";
 
 import { getPage } from "../../../redux/pynk/contents";
 
-function Home4() {
+function ContentBebe() {
   const history = useHistory();
 
   const [contents, setContents] = useState([]);
@@ -79,4 +79,4 @@ function Home4() {
   );
 }
 
-export default Home4;
+export default ContentBebe;

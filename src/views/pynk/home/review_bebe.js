@@ -1,6 +1,6 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
-import "./css/home3.css"
+import "./css/review_bebe.css"
 
 import { Grid } from "@mui/material";
 
@@ -12,7 +12,7 @@ import comment4 from "../../../assets/img/home/comment4.png";
 import comment5 from "../../../assets/img/home/comment5.png";
 import comment6 from "../../../assets/img/home/comment6.png";
 
-function Home3() {
+function ReviewBebe() {
   const { ref: home3, inView: Home3ISVisible } = useInView({
     triggerOnce: true,
   });
@@ -97,4 +97,4 @@ function Home3() {
   );
 }
 
-export default Home3;
+export default ReviewBebe;

@@ -191,7 +191,7 @@ const carouselProperties = {
   ],
 };
 
-function Home2() {
+function CourseBebe() {
   const history = useHistory();
 
   return (
@@ -450,4 +450,4 @@ function Home2() {
   );
 }
 
-export default Home2;
+export default CourseBebe;

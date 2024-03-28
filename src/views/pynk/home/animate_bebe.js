@@ -7,9 +7,9 @@ import stay_fit_with_bebe from "../../../assets/img/home/stay_fit_with_bebe.png"
 import lets_challenge from "../../../assets/img/home/lets_challenge.png";
 import shop_fin from "../../../assets/img/home/shop_fin.png";
 
-import "./css/home1.css"
+import "./css/animate_bebe.css"
 
-function Home1() {
+function AnimateBebe() {
   const history = useHistory();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [prevSlide, setPrevSlide] = useState(null);
@@ -216,4 +216,4 @@ function Home1() {
   );
 }
 
-export default Home1;
+export default AnimateBebe;
