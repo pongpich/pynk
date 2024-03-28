@@ -29,12 +29,8 @@ import LOGO from "../../assets/img/pynk/LOGO.png";
 import Group11 from "../../assets/img/pynk/Group11.png";
 import Rectangle4390 from "../../assets/img/pynk/Rectangle4390.png";
 
-<<<<<<< HEAD
 import Footer from "./footer";
 import { Link, useHistory } from "react-router-dom";
-=======
-import { useHistory } from "react-router-dom";
->>>>>>> 32fe52c0d1e320911c40d6bd57529f2195e507f3
 import { useDispatch } from "react-redux";
 
 import "./css/home.css";
@@ -54,7 +50,6 @@ import { Button } from "@mui/material";
 import FooterPynk from "../../pynk_header_footer/footer";
 
 let slidesToShow = 3;
-import { getPage } from "../../redux/pynk/contents";
 
 const PreviousBtn = (props) => {
   const { onClick } = props;
@@ -227,6 +222,7 @@ const Home = () => {
   const [animation, setAnimation] = useState(false);
   const [contents, setContents] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
   const [prevSlide, setPrevSlide] = useState(null);
 
   const handleSlideChange = (event) => {
