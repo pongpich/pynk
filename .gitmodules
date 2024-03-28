@@ -1,6 +1,3 @@
 [submodule "another_submodule_name"]
 	path = src/pynk_header_footer
 	url = https://bitbucket.org/p4ftech/pynk_header_footer.git
-[submodule "src/pynk_header_footer"]
-	path = src/pynk_header_footer
-	url = https://bitbucket.org/p4ftech/pynk_header_footer.git
