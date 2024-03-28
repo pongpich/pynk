@@ -39,6 +39,10 @@ import "./css/content.css";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 
 const cateButton = [
   { title: "ทั้งหมด", category: "All" },
@@ -124,7 +128,7 @@ const Content = () => {
   //   }
   // }, [status_data_page]);
   return (
-    <div>
+    <div style={{ marginBottom: 30 }}>
       <div className="page_title">
         <div className="page_title_text">บทความและสาระดีๆ</div>
         {/* <img src={title} alt="page_title" /> */}
@@ -153,14 +157,14 @@ const Content = () => {
             ))}
           </div>
           <Container maxWidth="xl">
-            <Grid container spacing={1}>
+            <Grid container spacing={3}>
               {contents
                 .filter((item) => item.acf.category.name != "Home")
                 .map((content, index) => (
                   <Grid item xs={12} sm={6} lg={4} key={index}>
                     {/* <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}> */}
                     <Link to={`/content_detail/${content.id}`}>
-                      <div
+                      {/* <div
                         key={content.id}
                         className="product_single"
                         onClick={() => {
@@ -185,7 +189,48 @@ const Content = () => {
                         >
                           {content.acf.summary.slice(0, 120) + "..."}
                         </div>
-                      </div>
+                      </div> */}
+
+                      <Card
+                        sx={{
+                          height: 400,
+                          p: 2,
+                          border: "none",
+                          boxShadow: "none",
+                          width: 350,
+                        }}
+                        onClick={() => {
+                          nextPage(content);
+                          window.scrollTo(0, 0);
+                        }}
+                        key={content.id}
+                      >
+                        <Box
+                          component={"img"}
+                          sx={{
+                            height: "auto",
+                            maxHeight: 250,
+                            width: "100%",
+                            backgroundSize: "cover",
+                            borderRadius: "1.5rem",
+                          }}
+                          src={content.acf.thumbnail}
+                          alt={content.acf.thumbnail}
+                        />
+                        <CardContent>
+                          <Typography
+                            gutterBottom
+                            variant="h6"
+                            color={"#4F4F4F"}
+                            fontWeight={600}
+                          >
+                            {content.title.rendered.slice(0, 50) + "..."}
+                          </Typography>
+                          <Typography variant="body2" color="#4F4F4F">
+                            {content.acf.summary.slice(0, 120) + "..."}
+                          </Typography>
+                        </CardContent>
+                      </Card>
                     </Link>
                     {/* </Link>  */}
                   </Grid>

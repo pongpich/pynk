@@ -553,7 +553,7 @@ const Home = () => {
                     </CardContent>
                     <CardActions>
                       <button
-                        onClick={() => window.open(item.link, "_blank")}
+                        onClick={() => history.push(item.link)}
                         style={{
                           textDecoration: "underline",
                           backgroundColor: "transparent",

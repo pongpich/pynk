@@ -521,7 +521,7 @@ class App extends React.Component {
           locale={currentAppLocale.locale}
           messages={currentAppLocale.messages}
         >
-          <div className="App" style={{ background: "black" }}>
+          <div className="App">
             {this.renderNavbar()}
             <Popup_login
               isOpen={this.state.isPopupLoginOpen}
@@ -590,7 +590,7 @@ class App extends React.Component {
                 />
                 <Route path="/error-payment" component={ShopErrorPaymentPynk} />
                 <Route path="/profile-pynk" component={ProfilePynk} />
-                <Route path="/sale-page" component={SalePage} />
+                {/* <Route path="/sale-page" component={SalePage} /> */}
                 <Route path="/sale-choice" component={SaleChoicePage} />
                 <Route path="/sale-bebe" component={SaleBebePage} />
                 <Route path="/profile-edit-pynk" component={ProfileEditPynk} />
