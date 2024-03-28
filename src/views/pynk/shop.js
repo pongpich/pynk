@@ -20,7 +20,6 @@ import bfr_coupon from "../../assets/img/pynk/shop/bfr_coupon.png";
 import icon_circle from "../../assets/img/pynk/shop/icon-circle.png";
 import icon_cart_white from "../../assets/img/pynk/shop/icon_cart_white.png";
 import { useHistory } from "react-router-dom";
-import Footer from "./footer";
 import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../redux/pynk/get";
 import { Link } from "react-router-dom";
@@ -655,7 +654,6 @@ function ShopPynk() {
         <img src={bfr_coupon} className="bfr-coupon" />
         <img src={bfr_coupon} className="bfr-coupon" />
       </div>
-      <Footer />
     </div>
   );
 }

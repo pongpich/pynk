@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/shop_category.css";
 import colors from "../colors";
-import Footer from "../footer";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
@@ -207,8 +206,6 @@ const Shop_category = ({ match }) => {
           <div className="box-pagination">{pagination_category()}</div>
         )}
       </div>
-
-      <Footer />
     </div>
   );
 };

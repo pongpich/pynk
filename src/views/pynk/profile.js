@@ -20,7 +20,6 @@ import nohistory from "../../assets/img/pynk/shop/nohistory.png";
 import bikinibodychallenge from "../../assets/img/pynk/challenge/bikinibodychallenge.jpg";
 import bodystepchallenge from "../../assets/img/pynk/challenge/bodystepchallenge.jpg";
 import speedropechallenge from "../../assets/img/pynk/challenge/speedropechallenge.jpg";
-import Footer from "./footer";
 
 import "./css/profile.css";
 import { GoogleLogout, useGoogleLogout } from "react-google-login";
@@ -482,7 +481,6 @@ const ProfilePynk = () => {
         </div> */}
       </div>
       <div className="mt-footer" />
-      <Footer />
 
       <div
         class="modal fade"

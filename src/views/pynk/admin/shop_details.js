@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import Footer from "../footer";
 import "../css/shopDetails.css";
 import picture01 from "../../../assets/img/pynk/shop/group-37546.png";
 import picture02 from "../../../assets/img/pynk/shop/product-picture02.png";
@@ -688,8 +687,6 @@ const Shop_details = ({ match }) => {
           </Slider>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { get_tracking_order } from "../../../src/redux/pynk/orders";
 
 import no_img from "../../assets/img/pynk/no_image_icon.png";
-import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 
 import "./css/order_tracking.css";
@@ -140,7 +139,6 @@ const OrderTracking = () => {
           </div>
         )}
         <div className="footer"></div>
-        <Footer />
       </div>
     );
   };

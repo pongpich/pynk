@@ -33,7 +33,6 @@ import LOGO from "../../assets/img/pynk/LOGO.png";
 import Group11 from "../../assets/img/pynk/Group11.png";
 import Rectangle4390 from "../../assets/img/pynk/Rectangle4390.png";
 
-import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -872,7 +871,6 @@ const Home = () => {
           </Grid>
         </Container>
       </div>
-      <Footer />
     </div>
   );
 };
