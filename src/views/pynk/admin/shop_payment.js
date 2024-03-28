@@ -5,7 +5,6 @@ import { create_order, clear_status } from "../../../redux/pynk/orders";
 import "../css/shop_order_summary.css";
 import { useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
-import Footer from "../footer";
 import InputAddress from "react-thailand-address-autocomplete";
 
 import { updateAddressPynk } from "../../../redux/pynk/auth";
@@ -991,7 +990,6 @@ const Shop_payment = () => {
           </div>
         </div>
 
-        <Footer />
       </div>
 
       <button

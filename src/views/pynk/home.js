@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import { useInView } from "react-intersection-observer";
 import bubblesBottom from "../../assets/img/home/bubblesBottom.png";
 import bubblesTop from "../../assets/img/home/bubblesTop.png";
-/* import bebeSlide from "../../assets/img/home/bebeSlide.png"; */
 import fitto4week from "../../assets/img/home/fitto4week.png";
 import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
 import bikini_body_challenge from "../../assets/img/home/bikini_body_challenge.png";
@@ -23,9 +22,6 @@ import comment3 from "../../assets/img/home/comment3.png";
 import comment4 from "../../assets/img/home/comment4.png";
 import comment5 from "../../assets/img/home/comment5.png";
 import comment6 from "../../assets/img/home/comment6.png";
-import content1 from "../../assets/img/home/content1.png";
-import content2 from "../../assets/img/home/content2.png";
-import content3 from "../../assets/img/home/content3.png";
 import icon_circle from "../../assets/img/pynk/shop/icon-circle.png";
 import bg_grey_1 from "../../assets/img/pynk/bg_grey_1.png";
 import Group37365 from "../../assets/img/pynk/Group37365.png";
@@ -33,8 +29,12 @@ import LOGO from "../../assets/img/pynk/LOGO.png";
 import Group11 from "../../assets/img/pynk/Group11.png";
 import Rectangle4390 from "../../assets/img/pynk/Rectangle4390.png";
 
+<<<<<<< HEAD
 import Footer from "./footer";
 import { Link, useHistory } from "react-router-dom";
+=======
+import { useHistory } from "react-router-dom";
+>>>>>>> 32fe52c0d1e320911c40d6bd57529f2195e507f3
 import { useDispatch } from "react-redux";
 
 import "./css/home.css";
@@ -47,7 +47,6 @@ import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 
 import { clearGetPage, getPage } from "../../redux/pynk/contents";
@@ -55,23 +54,24 @@ import { Button } from "@mui/material";
 import FooterPynk from "../../pynk_header_footer/footer";
 
 let slidesToShow = 3;
+import { getPage } from "../../redux/pynk/contents";
 
 const PreviousBtn = (props) => {
-  const { className, onClick, currentSlide } = props;
+  const { onClick } = props;
   return (
     <>
       <div className={`previous-btn-home`} onClick={onClick}>
-        <img src={icon_circle} className="icon-previous-btn" />
+        <img src={icon_circle} className="icon-previous-btn" alt="" />
       </div>
     </>
   );
 };
 const NextBtn = (props) => {
-  const { className, onClick, slideCount, currentSlide } = props;
+  const { onClick } = props;
   return (
     <>
       <div className={`next-btn-home`} onClick={onClick}>
-        <img src={icon_circle} className="icon-next-btn" />
+        <img src={icon_circle} className="icon-next-btn" alt="" />
       </div>
     </>
   );
@@ -81,8 +81,8 @@ const carouselProperties = {
   prevArrow: <PreviousBtn />,
   nextArrow: <NextBtn />,
   infinite: true,
-  autoplay: true, // ให้ Slider หมุนเอง
-  autoplaySpeed: 9000, // ตั้งค่าให้หมุนทุก ๆ 30 วินาที
+  autoplay: true,
+  autoplaySpeed: 9000,
   slidesToShow: 3,
   slidesToScroll: 1,
   centerMode: true,
@@ -225,16 +225,27 @@ const Home = () => {
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [animation, setAnimation] = useState(false);
-  const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
-  const [hoveredButton, setHoveredButton] = useState(2);
   const [contents, setContents] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [prevSlide, setPrevSlide] = useState(null);
 
-  const handleButtonHover = (buttonId) => {
-    setHoveredButton(buttonId);
+  const handleSlideChange = (event) => {
+    const newSlideIndex = parseInt(event.target.value);
+    setPrevSlide(currentSlide);
+    setCurrentSlide(newSlideIndex);
+    setAnimation(true);
   };
-  const resetHoveredButton = () => {
-    setHoveredButton(2);
-  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const nextSlideIndex = (currentSlide + 1) % 3;
+      setPrevSlide(currentSlide);
+      setCurrentSlide(nextSlideIndex);
+      setAnimation(true);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
 
   const { ref: home4, inView: Home4ISVisible } = useInView({
     triggerOnce: true,
@@ -479,7 +490,7 @@ const Home = () => {
                       alignItems={"center"}
                       justifyContent={"center"}
                     >
-                      {item.id == 2 ? (
+                      {item.id === 2 ? (
                         <img
                           src={suggest_icon}
                           alt="suggest"
@@ -545,13 +556,17 @@ const Home = () => {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <a
-                        onClick={() => history.push(item.link)}
-                        color="#2C2E2F"
-                        style={{ textDecoration: "underline" }}
+                      <button
+                        onClick={() => window.open(item.link, "_blank")}
+                        style={{
+                          textDecoration: "underline",
+                          backgroundColor: "transparent",
+                          border: "none",
+                          color: "#2C2E2F",
+                        }}
                       >
                         ดูรายละเอียด
-                      </a>
+                      </button>
                     </CardActions>
                   </Card>
                 </Grid>
@@ -736,13 +751,13 @@ const Home = () => {
           >
             <Grid item xs={12} md={6} lg={4}>
               <div data-aos="fade-up" data-aos-once={true} data-aos-delay="500">
-                <img src={comment1} alt="" width={377} />
+                <img src={comment1} alt="" width={350} />
               </div>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <div data-aos="fade-up" data-aos-once={true} data-aos-delay="800">
                 <picture>
-                  <img src={comment2} alt="" width={377} />
+                  <img src={comment2} alt="" width={350} />
                 </picture>
               </div>
             </Grid>
@@ -753,7 +768,7 @@ const Home = () => {
                 data-aos-delay="1300"
               >
                 <picture>
-                  <img src={comment3} alt="" width={377} />
+                  <img src={comment3} alt="" width={350} />
                 </picture>
               </div>
             </Grid>
@@ -764,7 +779,7 @@ const Home = () => {
                 data-aos-delay="1800"
               >
                 <picture>
-                  <img src={comment4} alt="" width={377} />
+                  <img src={comment4} alt="" width={350} />
                 </picture>
               </div>
             </Grid>
@@ -775,7 +790,7 @@ const Home = () => {
                 data-aos-delay="2300"
               >
                 <picture>
-                  <img src={comment5} alt="" width={377} />
+                  <img src={comment5} alt="" width={350} />
                 </picture>
               </div>
             </Grid>
@@ -786,7 +801,7 @@ const Home = () => {
                 data-aos-delay="2500"
               >
                 <picture>
-                  <img src={comment6} alt="" width={377} />
+                  <img src={comment6} alt="" width={350} />
                 </picture>
               </div>
             </Grid>

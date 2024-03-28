@@ -223,7 +223,7 @@
 }
 @keyframes text-anime2to0 {
   0% {
-    transform: translateY(-200%);
+    transform: translateY(200%);
     opacity: 0;
   }
   100% {

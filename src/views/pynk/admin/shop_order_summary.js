@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import "../css/shop_order_summary.css";
-import Footer from "../footer";
 import { useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Link, useHistory } from "react-router-dom";
@@ -426,7 +425,6 @@ const Shop_order_summary = () => {
           </div>
         </div>
         {/*         //Logo_payment_1 */}
-        <Footer />
       </div>
 
       <div

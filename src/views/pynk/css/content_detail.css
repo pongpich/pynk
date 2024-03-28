@@ -81,6 +81,7 @@
 
 .App {
   margin-bottom: 50px;
+  margin-top: -31px;
 }
 
 .content_summary {
@@ -95,4 +96,10 @@
 
 figure img {
   width: 100% !important;
+}
+
+@media  screen and (max-width: 480px) {
+  .App {
+    margin-top: -39px;
+  }
 }

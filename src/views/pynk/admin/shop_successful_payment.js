@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import "../css/shop_order_summary.css";
-import Footer from "../footer";
 import checkGreen from "../../../assets/img/pynk/shop/check-green.png";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -136,8 +135,6 @@ const Shop_successful_payment = (props) => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };
