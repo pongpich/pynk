@@ -34,7 +34,7 @@ import Group11 from "../../assets/img/pynk/Group11.png";
 import Rectangle4390 from "../../assets/img/pynk/Rectangle4390.png";
 
 import Footer from "./footer";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import "./css/home.css";
@@ -50,9 +50,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 
+import { Link } from "@mui/icons-material";
 import { clearGetPage, getPage } from "../../redux/pynk/contents";
 import { Button } from "@mui/material";
-import FooterPynk from "../../pynk_header_footer/footer";
 
 let slidesToShow = 3;
 
@@ -85,7 +85,6 @@ const carouselProperties = {
   autoplaySpeed: 9000, // ตั้งค่าให้หมุนทุก ๆ 30 วินาที
   slidesToShow: 3,
   slidesToScroll: 1,
-  centerMode: true,
   responsive: [
     {
       breakpoint: 476,
@@ -107,7 +106,7 @@ const carouselProperties = {
       breakpoint: 769,
       settings: {
         slidesToShow: 2,
-        centerMode: true,
+        // centerMode: true,
         slidesToScroll: 1,
       },
     },
@@ -166,28 +165,29 @@ const boxServices = [
     id: 1,
     title: "Fitto 4 Week Starter Program",
     img: fitto4week,
-    link: "/#",
+    link: "/sale-page",
     content: "Lorem Ipsum is simply dummy text of the printing",
   },
   {
     id: 2,
     title: "STAY FIT WITH BEBE",
     img: stayfit_with_bebe,
-    link: "/#t",
+
+    link: "",
     content: "Lorem Ipsum is simply dummy text of the printing",
   },
   {
     id: 3,
     title: "Bikini Body Challenge",
     img: bikini_body_challenge,
-    link: "/#",
+    link: "",
     content: "Lorem Ipsum is simply dummy text of the printing",
   },
   {
     id: 4,
     title: "Bebe for Beginner",
     img: bebefitroutine,
-    link: "/sale-page?link=bebe",
+    link: "https://bebefitroutine.com/beginnerprogram/?fbclid=IwAR0FZ9Pb3aSEI-4nLp_VLnpOWSqhAAwwm7yzeE-eW-PBNlsMdRUR3hUtiCw",
     content:
       "คอร์สปั้นหุ่นฉบับมือใหม่ 8 สัปดาห์ ที่ไม่ว่าใครก็เริ่มต้นความฟิตกับเบเบ้ได้ ฟิตหุ่นเป๊ะปังกับโปรแกรมพิเศษจากเบเบ้ที่สนุก ง่าย ทำตามได้ และได้ผลจริง",
   },
@@ -195,7 +195,7 @@ const boxServices = [
     id: 5,
     title: "7 DAY WITH PILATES RING",
     img: pilates7day,
-    link: "/sale-page?link=7day",
+    link: "https://bebefitroutine.com/sevendaywithpilatesring/",
     content:
       "สาว ๆ ตัว Top แห่งวงการความฟิต เบเบ้ จินนี่ และลิตา ชวนคุณมาสนุกกับคอร์สปั้นหุ่นเฟิร์มปัง กระชับทั้งตัวแบบ Full Body 360° ใน 4 สัปดาห์ ด้วยอุปกรณ์ Pilates Ring",
   },
@@ -203,7 +203,7 @@ const boxServices = [
     id: 6,
     title: "Get Fit With Carrot In 8 Week",
     img: getfitwithcarrot,
-    link: "/sale-page?link=getfit",
+    link: "https://carrot.pynk.co/",
     content: `คอร์ส 8 สัปดาห์ ที่จะพาคุณมาปั้นหุ่นสับ แบบ Full Body 
       สร้างเอวเอสก้นกลมเด้ง กับโปรแกรมพิเศษสไตล์ “แครอท ปภาดา”`,
   },
@@ -211,23 +211,40 @@ const boxServices = [
     id: 7,
     title: "Better Shape in 60 Days",
     img: better_preem,
-    link: "/sale-page?link=bettershape",
+    link: "https://preem.pynk.co/",
     content:
       "คอร์สปั้นหุ่น 8 สัปดาห์ ฉบับซุปตาร์พรีม รณิดา ฝึกความยืดหยุ่นและสร้างความแข็งแรงให้กับกล้ามเนื้อแกนกลางลำตัว โปรแกรมออกแบบมาพิเศษสำหรับผู้ที่ต้องการเริ่มต้นออกกำลังกาย สร้างสุขภาพและรูปร่างที่ดีในแบบของตนเอง",
   },
 ];
 
-const HomePynk = () => {
+const Home = () => {
   const history = useHistory();
   const reqURL =
     "https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf";
   const dispatch = useDispatch();
 
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [animation, setAnimation] = useState(false);
-  const [previousSlideIndex, setPreviousSlideIndex] = useState(0);
   const [hoveredButton, setHoveredButton] = useState(2);
   const [contents, setContents] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [prevSlide, setPrevSlide] = useState(null);
+
+  const handleSlideChange = (event) => {
+    const newSlideIndex = parseInt(event.target.value);
+    setPrevSlide(currentSlide);
+    setCurrentSlide(newSlideIndex);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const nextSlideIndex = (currentSlide + 1) % 3;
+      setPrevSlide(currentSlide);
+      setCurrentSlide(nextSlideIndex);
+      setAnimation(true);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
 
   const handleButtonHover = (buttonId) => {
     setHoveredButton(buttonId);
@@ -239,26 +256,9 @@ const HomePynk = () => {
   const { ref: home4, inView: Home4ISVisible } = useInView({
     triggerOnce: true,
   });
-
-  function previousIndex(curr, prev) {
-    setPreviousSlideIndex(prev);
-    if (curr !== currentSlideIndex) {
-      setCurrentSlideIndex(curr);
-    }
-  }
-
   const nextPage = (contents) => {
     dispatch(getPage(contents));
   };
-
-  useEffect(() => {
-    const carousel = document.getElementById("carouselExampleAutoplaying");
-    // เมื่อสไลด์เปลี่ยน
-    carousel.addEventListener("slid.bs.carousel", (event) => {
-      setCurrentSlideIndex(event.to);
-      setAnimation(true);
-    });
-  }, []);
 
   useEffect(() => {
     (async () => {
@@ -268,7 +268,7 @@ const HomePynk = () => {
     })();
   }, []);
   return (
-    <>
+    <div>
       <div className="page">
         <div
           id="carouselExampleAutoplaying"
@@ -276,29 +276,36 @@ const HomePynk = () => {
           data-bs-ride="carousel"
         >
           <div className="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 1"
-              onClick={() => previousIndex(0, currentSlideIndex)}
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-              onClick={() => previousIndex(1, currentSlideIndex)}
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleAutoplaying"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-              onClick={() => previousIndex(2, currentSlideIndex)}
-            ></button>
+            <input
+              type="radio"
+              name="slide"
+              id="slide1"
+              className="carousel-indicator"
+              value="0"
+              checked={currentSlide === 0}
+              onChange={handleSlideChange}
+            />
+            <label htmlFor="slide1" className="carousel-indicator"></label>
+            <input
+              type="radio"
+              name="slide"
+              id="slide2"
+              className="carousel-indicator"
+              value="1"
+              checked={currentSlide === 1}
+              onChange={handleSlideChange}
+            />
+            <label htmlFor="slide2" className="carousel-indicator"></label>
+            <input
+              type="radio"
+              name="slide"
+              id="slide3"
+              className="carousel-indicator"
+              value="2"
+              checked={currentSlide === 2}
+              onChange={handleSlideChange}
+            />
+            <label htmlFor="slide3" className="carousel-indicator"></label>
           </div>
           <div className="carousel-inner">
             <div className="box_animation">
@@ -308,19 +315,22 @@ const HomePynk = () => {
                     src={bubblesTop}
                     className={`bubbles-top  ${
                       (animation &&
-                        currentSlideIndex === 0 &&
-                        previousSlideIndex !== 1 &&
+                        currentSlide === 0 &&
+                        prevSlide !== 1 &&
                         "rotate2to0-1") ||
-                      (currentSlideIndex === 0 &&
-                        previousSlideIndex === 1 &&
+                      (currentSlide === 2 &&
+                        prevSlide === 0 &&
+                        "rotate0to2-1") ||
+                      (currentSlide === 0 &&
+                        prevSlide === 1 &&
                         "rotate1to0-1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex !== 2 &&
+                      (currentSlide === 1 &&
+                        prevSlide !== 2 &&
                         "rotate0to1-1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex === 2 &&
+                      (currentSlide === 1 &&
+                        prevSlide === 2 &&
                         "rotate2to1-1") ||
-                      (currentSlideIndex === 2 && "rotate1to2-1")
+                      (currentSlide === 2 && prevSlide === 1 && "rotate1to2-1")
                     }`}
                     id="bubbles-top"
                     alt=""
@@ -329,19 +339,14 @@ const HomePynk = () => {
                     src={bubblesBottom}
                     className={`bubbles-bottom  ${
                       (animation &&
-                        currentSlideIndex === 0 &&
-                        previousSlideIndex !== 1 &&
+                        currentSlide === 0 &&
+                        prevSlide !== 1 &&
                         "rotate2to0") ||
-                      (currentSlideIndex === 0 &&
-                        previousSlideIndex === 1 &&
-                        "rotate1to0") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex !== 2 &&
-                        "rotate0to1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex === 2 &&
-                        "rotate2to1") ||
-                      (currentSlideIndex === 2 && "rotate1to2")
+                      (currentSlide === 2 && prevSlide === 0 && "rotate0to2") ||
+                      (currentSlide === 0 && prevSlide === 1 && "rotate1to0") ||
+                      (currentSlide === 1 && prevSlide !== 2 && "rotate0to1") ||
+                      (currentSlide === 1 && prevSlide === 2 && "rotate2to1") ||
+                      (currentSlide === 2 && prevSlide === 1 && "rotate1to2")
                     }`}
                     id="bubbles-bottom"
                     alt=""
@@ -349,41 +354,47 @@ const HomePynk = () => {
                   <div
                     className={`bebe-slide ${
                       (animation &&
-                        currentSlideIndex === 0 &&
-                        previousSlideIndex !== 1 &&
+                        currentSlide === 0 &&
+                        prevSlide !== 1 &&
                         "bebe-slide2to0") ||
-                      (currentSlideIndex === 0 &&
-                        previousSlideIndex === 1 &&
+                      (currentSlide === 2 &&
+                        prevSlide === 0 &&
+                        "bebe-slide0to2") ||
+                      (currentSlide === 0 &&
+                        prevSlide === 1 &&
                         "bebe-slide1to0") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex !== 2 &&
+                      (currentSlide === 1 &&
+                        prevSlide !== 2 &&
                         "bebe-slide0to1") ||
-                      (currentSlideIndex === 1 &&
-                        previousSlideIndex === 2 &&
+                      (currentSlide === 1 &&
+                        prevSlide === 2 &&
                         "bebe-slide2to1") ||
-                      (currentSlideIndex === 2 && "bebe-slide1to2")
+                      (currentSlide === 2 &&
+                        prevSlide === 1 &&
+                        "bebe-slide1to2")
                     }`}
                     id="bebe-slide"
-                  ></div>
+                    alt=""
+                  />
                 </div>
                 <div className={`texthome1 col-12 col-md-6`}>
                   <div className={`text-anime col-12 col-md-6`}>
                     <div
                       className={`text-slide ${
                         (animation &&
-                          currentSlideIndex === 0 &&
-                          previousSlideIndex !== 1 &&
+                          currentSlide === 0 &&
+                          prevSlide !== 1 &&
                           "text-anime2to0") ||
-                        (currentSlideIndex === 0 &&
-                          previousSlideIndex === 1 &&
+                        (currentSlide === 0 &&
+                          prevSlide === 1 &&
                           "text-anime1to0") ||
-                        (currentSlideIndex === 1 &&
-                          previousSlideIndex !== 2 &&
+                        (currentSlide === 1 &&
+                          prevSlide !== 2 &&
                           "text-anime0to1") ||
-                        (currentSlideIndex === 1 &&
-                          previousSlideIndex === 2 &&
+                        (currentSlide === 1 &&
+                          prevSlide === 2 &&
                           "text-anime2to1") ||
-                        (currentSlideIndex === 2 && "text-anime1to2")
+                        (currentSlide === 2 && "text-anime1to2")
                       }`}
                     >
                       <div className="home1-detail">
@@ -436,17 +447,33 @@ const HomePynk = () => {
                 </div>
               </div>
             </div>
-            <div className="carousel-item active" data-interval="1000">
+
+            <div
+              className={
+                currentSlide === 0 ? "carousel-item active" : "carousel-item"
+              }
+              data-interval="1000"
+            >
               <div className="box_screen1">
                 <div className="line3"></div>
               </div>
             </div>
-            <div className="carousel-item" data-interval="1000">
+            <div
+              className={
+                currentSlide === 1 ? "carousel-item active" : "carousel-item"
+              }
+              data-interval="1000"
+            >
               <div className="box_screen2">
                 <div className="line3"></div>
               </div>
             </div>
-            <div className="carousel-item" data-interval="1000">
+            <div
+              className={
+                currentSlide === 2 ? "carousel-item active" : "carousel-item"
+              }
+              data-interval="1000"
+            >
               <div className="box_screen3">
                 <div className="line3"></div>
               </div>
@@ -468,16 +495,19 @@ const HomePynk = () => {
           </p>
         </div>
 
-        <Container maxWidth="lg" sx={{ mt: 3, mb: 3 }}>
+        <Container maxWidth="xl" sx={{ mt: 3, mb: 3 }}>
           <Slider {...carouselProperties}>
             {boxServices.map((item) => (
-              <Grid container spacing={3} alignItems={"center"} key={item.id}>
+              <Grid container spacing={3} key={item.id}>
                 <Grid item xs={12}>
                   {
                     <Stack
                       flexDirection={"row"}
                       alignItems={"center"}
                       justifyContent={"center"}
+                      sx={{
+                        width: { xs: 250, sm: 300, lg: 300 },
+                      }}
                     >
                       {item.id == 2 ? (
                         <img
@@ -506,7 +536,7 @@ const HomePynk = () => {
                       p: 2,
                       borderRadius: "1rem",
                       border: "1px solid #E8E8E8",
-                      // width: { xs: 250, sm: 300, lg: 300 },
+                      width: { xs: 250, sm: 300, lg: 300 },
                       ":hover": {
                         // borderImage:
                         //   "linear-gradient(#7E74F2, #F05098, #F4A7BC, #DCDBDB) 2",
@@ -546,7 +576,8 @@ const HomePynk = () => {
                     </CardContent>
                     <CardActions>
                       <a
-                        onClick={() => history.push(item.link)}
+                        href={item.link}
+                        target="_blank"
                         color="#2C2E2F"
                         style={{ textDecoration: "underline" }}
                       >
@@ -840,11 +871,9 @@ const HomePynk = () => {
               .slice(0, 3)}
           </Grid>
         </Container>
-
-        {/* <Footer /> */}
       </div>
-      {/* <FooterPynk /> */}
-    </>
+      <Footer />
+    </div>
   );
 };
-export default HomePynk;
+export default Home;
