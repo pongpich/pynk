@@ -20,13 +20,6 @@ export default function SalePageAll() {
     if (linkMap.hasOwnProperty(params.search)) {
       setLink(linkMap[params.search]);
     }
-
-    // if (params.pathname == "/sale-page") {
-    //   document.body.classList.add("hide-scrollbar");
-    // }
-    // return () => {
-    //   document.body.classList.remove("hide-scrollbar");
-    // };
   }, [params]);
 
   return (
