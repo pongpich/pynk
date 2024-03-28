@@ -222,6 +222,7 @@ const Home = () => {
     const newSlideIndex = parseInt(event.target.value);
     setPrevSlide(currentSlide);
     setCurrentSlide(newSlideIndex);
+    setAnimation(true);
   };
 
   useEffect(() => {
