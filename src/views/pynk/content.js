@@ -136,7 +136,14 @@ const Content = () => {
 
       <div className="page">
         <Box sx={{ "& button": { m: 1 } }}>
-          <div className="button">
+          <Box
+            className="button"
+            sx={{
+              display: "flex",
+              justifyContent: { xs: "center", sm: "flex-start" },
+              flexWrap: "wrap",
+            }}
+          >
             {cateButton.map((item) => (
               <button
                 style={{
@@ -155,42 +162,15 @@ const Content = () => {
                 {item.title}
               </button>
             ))}
-          </div>
+          </Box>
           <Container maxWidth="xl">
-            <Grid container spacing={3}>
+            <Grid container>
               {contents
                 .filter((item) => item.acf.category.name != "Home")
                 .map((content, index) => (
                   <Grid item xs={12} sm={6} lg={4} key={index}>
                     {/* <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}> */}
                     <Link to={`/content_detail/${content.id}`}>
-                      {/* <div
-                        key={content.id}
-                        className="product_single"
-                        onClick={() => {
-                          nextPage(content);
-                          window.scrollTo(0, 0);
-                        }}
-                      >
-                        <img
-                          className="content_img"
-                          src={content.acf.thumbnail}
-                          alt={content.title.rendered}
-                        />
-                        <div
-                          className="content_title"
-                          style={{ color: "#4F4F4F" }}
-                        >
-                          {content.title.rendered}
-                        </div>
-                        <div
-                          className="content_summary"
-                          style={{ color: "#4F4F4F" }}
-                        >
-                          {content.acf.summary.slice(0, 120) + "..."}
-                        </div>
-                      </div> */}
-
                       <Card
                         sx={{
                           height: 400,
@@ -208,9 +188,10 @@ const Content = () => {
                         <Box
                           component={"img"}
                           sx={{
-                            height: "auto",
-                            maxHeight: 250,
+                            height: "100%",
+                            maxHeight: 200,
                             width: "100%",
+                            maxWidth: 350,
                             backgroundSize: "cover",
                             borderRadius: "1.5rem",
                           }}

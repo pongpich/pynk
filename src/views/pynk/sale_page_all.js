@@ -31,16 +31,14 @@ export default function SalePageAll() {
       `}</style>
       <iframe
         src={link}
-        className=""
         title="Preem Pynk"
         style={{
           minHeight: "100vh",
           width: "100%",
-          marginTop: -32,
+          // marginTop: 90,
+          paddingTop: 90,
         }}
       ></iframe>
-
-      {/* <FooterPynk /> */}
     </div>
   );
 }
