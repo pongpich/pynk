@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-} from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import axios from "axios";
 import { getPage } from "../../redux/pynk/contents";
@@ -106,13 +103,14 @@ const Content = () => {
       </div>
 
       <div className="page">
-        <Box sx={{ "& button": { m: 1 } }}>
+        <Box sx={{ "& button": { m: 1 }, mt: 3 }}>
           <Box
             className="button"
             sx={{
               display: "flex",
               justifyContent: { xs: "center", sm: "flex-start" },
               flexWrap: "wrap",
+              mb: 1,
             }}
           >
             {cateButton.map((item) => (
