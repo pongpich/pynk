@@ -1,46 +1,17 @@
 import React, {
   useState,
   useEffect,
-  useRef,
-  useCallback,
-  useMemo,
 } from "react";
-import { useInView } from "react-intersection-observer";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import axios from "axios";
-import { clearGetPage, getPage } from "../../redux/pynk/contents";
+import { getPage } from "../../redux/pynk/contents";
 import { useSelector, useDispatch } from "react-redux";
-import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
-
-import title from "../../assets/img/content/Title.png";
-import slide1 from "../../assets/img/home/slide1.png";
-import slide2 from "../../assets/img/home/slide2.png";
-import slide3 from "../../assets/img/home/slide3.png";
-import fitto4week from "../../assets/img/home/fitto4week.png";
-import stayfit_with_bebe from "../../assets/img/home/stayfit_with_bebe.png";
-import bikini_body_challenge from "../../assets/img/home/bikini_body_challenge.png";
-import fit_item from "../../assets/img/home/fit_item.png";
-import fitto_item from "../../assets/img/home/fitto_item.png";
-import star from "../../assets/img/home/star.png";
-import comment1 from "../../assets/img/home/comment1.png";
-import comment2 from "../../assets/img/home/comment2.png";
-import comment3 from "../../assets/img/home/comment3.png";
-import comment4 from "../../assets/img/home/comment4.png";
-import comment5 from "../../assets/img/home/comment5.png";
-import comment6 from "../../assets/img/home/comment6.png";
-import content1 from "../../assets/img/home/content1.png";
-import content2 from "../../assets/img/home/content2.png";
-import content3 from "../../assets/img/home/content3.png";
-import Footer from "./footer";
 import { useHistory } from "react-router-dom";
 import "./css/content.css";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
@@ -150,10 +121,10 @@ const Content = () => {
                   height: 35,
                   width: 130,
                   borderRadius: "1.5rem",
-                  color: activeColor == item.category ? "#FFFFFF" : "#EF60A3",
+                  color: activeColor === item.category ? "#FFFFFF" : "#EF60A3",
                   border: "1px solid #EF60A3",
                   background:
-                    activeColor == item.category ? "#EF60A3" : "#FFFFFF",
+                    activeColor === item.category ? "#EF60A3" : "#FFFFFF",
                   fontWeight: 700,
                 }}
                 onClick={() => handleFilterCategory(item.category)}
@@ -166,7 +137,7 @@ const Content = () => {
           <Container maxWidth="xl">
             <Grid container>
               {contents
-                .filter((item) => item.acf.category.name != "Home")
+                .filter((item) => item.acf.category.name !== "Home")
                 .map((content, index) => (
                   <Grid item xs={12} sm={6} lg={4} key={index}>
                     {/* <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}> */}

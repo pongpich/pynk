@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
-import FooterPynk from "../../pynk_header_footer/footer";
 
 export default function SalePageAll() {
   const params = useLocation();

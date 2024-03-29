@@ -36,7 +36,6 @@ function AnimateBebe() {
     <div
       id="carouselExampleAutoplaying"
       className="carousel slide"
-      data-bs-ride="carousel"
     >
       <div className="carousel-indicators">
         <input

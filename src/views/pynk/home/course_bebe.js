@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import Slider from "react-slick";
+import { makeStyles } from '@mui/styles';
 import {
   Card,
   CardActions,
@@ -190,9 +191,16 @@ const carouselProperties = {
     },
   ],
 };
+const useStyles = makeStyles({
+  cardContainer:{
+    borderRadius: "1rem",
+    border: "1px solid #E8E8E8"
+  },
+});
 
 function CourseBebe() {
   const history = useHistory();
+  const classes = useStyles();
 
   return (
     <>
@@ -243,12 +251,10 @@ function CourseBebe() {
                   </Stack>
                 }
                 <Card
+                  className={classes.cardContainer}
                   sx={{
                     height: { xs: 454, sm: 480 },
                     p: 2,
-                    borderRadius: "1rem",
-                    border: "1px solid #E8E8E8",
-                    // width: { xs: 250, sm: 300, lg: 300 },
                     ":hover": {
                       // borderImage:
                       //   "linear-gradient(#7E74F2, #F05098, #F4A7BC, #DCDBDB) 2",
