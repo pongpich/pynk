@@ -30,6 +30,7 @@ import Group11 from "../../../assets/img/pynk/Group11.png";
 import Rectangle4390 from "../../../assets/img/pynk/Rectangle4390.png";
 
 import styles from "../css/home.module.css";
+import "./css/course_bebe.css"
 
 const boxServices = [
   {
@@ -294,6 +295,7 @@ function CourseBebe() {
                       width: "100%",
                       backgroundSize: "cover",
                       borderRadius: "1.5rem",
+                      objectFit: 'cover'
                     }}
                     src={item.img}
                     alt={item.title}
