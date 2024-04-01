@@ -104,7 +104,7 @@ function ReviewBebe() {
             alignItems={"center"}
             justifyContent={"center"}
           >
-            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1800">
+            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1500">
               <picture>
                 <img src={comment4} alt="" width={377} />
               </picture>
@@ -119,7 +119,7 @@ function ReviewBebe() {
             alignItems={"center"}
             justifyContent={"center"}
           >
-            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="2300">
+            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1700">
               <picture>
                 <img src={comment5} alt="" width={377} />
               </picture>
@@ -134,7 +134,7 @@ function ReviewBebe() {
             alignItems={"center"}
             justifyContent={"center"}
           >
-            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="2500">
+            <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1900">
               <picture>
                 <img src={comment6} alt="" width={377} />
               </picture>
