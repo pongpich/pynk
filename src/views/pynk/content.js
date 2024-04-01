@@ -102,15 +102,15 @@ const Content = () => {
         {/* <img src={title} alt="page_title" /> */}
       </div>
 
-      <div className="page">
-        <Box sx={{ "& button": { m: 1 }, mt: 3 }}>
+      <Box sx={{ "& button": { m: 1 }, mt: 4 }}>
+        <Container maxWidth="lg">
           <Box
             className="button"
             sx={{
               display: "flex",
               justifyContent: { xs: "center", sm: "flex-start" },
               flexWrap: "wrap",
-              mb: 1,
+              mb: 2,
             }}
           >
             {cateButton.map((item) => (
@@ -132,63 +132,62 @@ const Content = () => {
               </button>
             ))}
           </Box>
-          <Container maxWidth="xl">
-            <Grid container>
-              {contents
-                .filter((item) => item.acf.category.name !== "Home")
-                .map((content, index) => (
-                  <Grid item xs={12} sm={6} lg={4} key={index}>
-                    {/* <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}> */}
-                    <Link to={`/content_detail/${content.id}`}>
-                      <Card
+          <Grid container>
+            {contents
+              .filter((item) => item.acf.category.name !== "Home")
+              .map((content, index) => (
+                <Grid item xs={12} sm={6} lg={4} key={index}>
+                  {/* <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}> */}
+                  <Link to={`/content_detail/${content.id}`}>
+                    <Card
+                      sx={{
+                        height: 400,
+                        p: 2,
+                        border: "none",
+                        boxShadow: "none",
+                        width: 350,
+                      }}
+                      onClick={() => {
+                        nextPage(content);
+                        window.scrollTo(0, 0);
+                      }}
+                      key={content.id}
+                    >
+                      <Box
+                        component={"img"}
                         sx={{
-                          height: 400,
-                          p: 2,
-                          border: "none",
-                          boxShadow: "none",
-                          width: 350,
+                          height: "100%",
+                          maxHeight: 200,
+                          width: "100%",
+                          maxWidth: 350,
+                          backgroundSize: "cover",
+                          borderRadius: "1.5rem",
                         }}
-                        onClick={() => {
-                          nextPage(content);
-                          window.scrollTo(0, 0);
-                        }}
-                        key={content.id}
-                      >
-                        <Box
-                          component={"img"}
-                          sx={{
-                            height: "100%",
-                            maxHeight: 200,
-                            width: "100%",
-                            maxWidth: 350,
-                            backgroundSize: "cover",
-                            borderRadius: "1.5rem",
-                          }}
-                          src={content.acf.thumbnail}
-                          alt={content.acf.thumbnail}
-                        />
-                        <CardContent>
-                          <Typography
-                            gutterBottom
-                            variant="h6"
-                            color={"#4F4F4F"}
-                            fontWeight={600}
-                          >
-                            {content.title.rendered.slice(0, 50) + "..."}
-                          </Typography>
-                          <Typography variant="body2" color="#4F4F4F">
-                            {content.acf.summary.slice(0, 120) + "..."}
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                    {/* </Link>  */}
-                  </Grid>
-                ))}
-            </Grid>
-          </Container>
+                        src={content.acf.thumbnail}
+                        alt={content.acf.thumbnail}
+                      />
+                      <CardContent>
+                        <Typography
+                          gutterBottom
+                          variant="h6"
+                          color={"#4F4F4F"}
+                          fontWeight={600}
+                        >
+                          {content.title.rendered.slice(0, 50) + "..."}
+                        </Typography>
+                        <Typography variant="body2" color="#4F4F4F">
+                          {content.acf.summary.slice(0, 120) + "..."}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                  {/* </Link>  */}
+                </Grid>
+              ))}
+          </Grid>
+        </Container>
 
-          {/* {products.length > 0 && (
+        {/* {products.length > 0 && (
                         <div className="products">
                             {products.map((ele) => (
                                 <div key={ele.id} className="product_single">
@@ -198,7 +197,7 @@ const Content = () => {
                             ))}
                         </div>
                     )} */}
-          {/* {products.length > 0 && (
+        {/* {products.length > 0 && (
                         <div className="pagination">
                             {page > 1 && (
                                 <span onClick={() => handlePageChange(page - 1)}>Back</span>
@@ -217,8 +216,7 @@ const Content = () => {
                             )}
                         </div>
                     )}*/}
-        </Box>
-      </div>
+      </Box>
     </div>
   );
 };

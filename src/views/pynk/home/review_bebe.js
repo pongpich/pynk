@@ -1,6 +1,6 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
-import "./css/review_bebe.css"
+import "./css/review_bebe.css";
 
 import { Grid } from "@mui/material";
 
@@ -27,67 +27,116 @@ function ReviewBebe() {
           เสียงตอบรับจากผู้ใช้บริการ
           <div className="">
             <picture>
-              <img src={star} width={62} height={62} alt="" />
+              <img src={star} width={40} height={40} alt="" />
             </picture>
             <picture>
-              <img src={star} width={62} height={62} alt="" />
+              <img src={star} width={40} height={40} alt="" />
             </picture>
             <picture>
-              <img src={star} width={62} height={62} alt="" />
+              <img src={star} width={40} height={40} alt="" />
             </picture>
             <picture>
-              <img src={star} width={62} height={62} alt="" />
+              <img src={star} width={40} height={40} alt="" />
             </picture>
             <picture>
-              <img src={star} width={62} height={62} alt="" />
+              <img src={star} width={40} height={40} alt="" />
             </picture>
           </div>
         </div>
 
         <Grid
           container
-          spacing={2}
+          display={"flex"}
           direction={{ xs: "column", md: "row" }}
           alignItems="center"
           justifyContent="center"
+          sx={{ p: 0 }}
         >
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={3}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="500">
-              <img src={comment1} alt="" width={350} />
+              <img src={comment1} alt="" width={377} />
             </div>
           </Grid>
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={3}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="800">
               <picture>
-                <img src={comment2} alt="" width={350} />
+                <img src={comment2} alt="" width={377} />
               </picture>
             </div>
           </Grid>
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={3}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1300">
               <picture>
-                <img src={comment3} alt="" width={350} />
+                <img src={comment3} alt="" width={377} />
               </picture>
             </div>
           </Grid>
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={3}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1800">
               <picture>
-                <img src={comment4} alt="" width={350} />
+                <img src={comment4} alt="" width={377} />
               </picture>
             </div>
           </Grid>
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={3}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="2300">
               <picture>
-                <img src={comment5} alt="" width={350} />
+                <img src={comment5} alt="" width={377} />
               </picture>
             </div>
           </Grid>
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={3}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="2500">
               <picture>
-                <img src={comment6} alt="" width={350} />
+                <img src={comment6} alt="" width={377} />
               </picture>
             </div>
           </Grid>
