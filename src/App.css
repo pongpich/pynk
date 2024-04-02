@@ -1225,6 +1225,11 @@ button:not(:disabled) {
 
 a {
   text-decoration: none;
+  color: inherit !important;  
+}
+
+a:hover {
+  color: inherit !important;
 }
 
 .padding-left {
@@ -2507,10 +2512,6 @@ div.sticky {
   color: #000000;
   cursor: pointer;
   font-size: 14px !important;
-}
-
-a:hover {
-  color: #e25e96 !important;
 }
 
 .rectangle13 {

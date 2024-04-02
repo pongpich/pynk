@@ -1,0 +1,38 @@
+.text-home2 {
+  position: relative;
+  margin-top: 64px;
+  width: 70%;
+  left: 15%;
+}
+
+.next-btn-home {
+  width: 50px;
+  height: 50px;
+  background-color: var(--white);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  right: 0;
+  cursor: pointer;
+}
+
+.previous-btn-home {
+  width: 50px;
+  height: 50px;
+  background-color: var(--white);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  left: 0px;
+  cursor: pointer;
+}

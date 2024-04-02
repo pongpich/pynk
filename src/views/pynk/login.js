@@ -312,37 +312,33 @@ const Login = () => {
       <div className="wrapper">
         <div className="two-col">
           <div className="">
-            <span>
-              <a
-                onClick={() => {
-                  setRenderName("register");
-                }}
-                className={
-                  renderName == "register"
-                    ? "btn-header pink-color"
-                    : "btn-header "
-                }
-                id="btn-register"
-              >
-                ลงทะเบียน
-              </a>
+            <span
+              onClick={() => {
+                setRenderName("register");
+              }}
+              className={
+                renderName == "register"
+                  ? "btn-header pink-color"
+                  : "btn-header "
+              }
+              id="btn-register"
+              style={{ cursor: "pointer" }}
+            >
+              ลงทะเบียน
             </span>
           </div>
           <div className="">
-            <span>
-              <a
-                onClick={() => {
-                  setRenderName("login");
-                }}
-                className={
-                  renderName == "login"
-                    ? "btn-header pink-color"
-                    : "btn-header "
-                }
-                id="btn-login"
-              >
-                เข้าสู่ระบบ
-              </a>
+            <span
+              onClick={() => {
+                setRenderName("login");
+              }}
+              className={
+                renderName == "login" ? "btn-header pink-color" : "btn-header "
+              }
+              id="btn-login"
+              style={{ cursor: "pointer" }}
+            >
+              เข้าสู่ระบบ
             </span>
           </div>
         </div>

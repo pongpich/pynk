@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 import Slider from "react-slick";
-import { makeStyles } from '@mui/styles';
+import { keyframes } from "@mui/system";
 import {
   Card,
   CardActions,
@@ -30,6 +30,7 @@ import Group11 from "../../../assets/img/pynk/Group11.png";
 import Rectangle4390 from "../../../assets/img/pynk/Rectangle4390.png";
 
 import styles from "../css/home.module.css";
+import "./css/course_bebe.css"
 
 const boxServices = [
   {
@@ -191,16 +192,9 @@ const carouselProperties = {
     },
   ],
 };
-const useStyles = makeStyles({
-  cardContainer:{
-    borderRadius: "1rem",
-    border: "1px solid #E8E8E8"
-  },
-});
 
 function CourseBebe() {
   const history = useHistory();
-  const classes = useStyles();
 
   return (
     <>
@@ -250,18 +244,46 @@ function CourseBebe() {
                     )}
                   </Stack>
                 }
+
                 <Card
-                  className={classes.cardContainer}
+                  onClick={() => history.push(item.link)}
                   sx={{
+                    borderRadius: "1rem",
                     height: { xs: 454, sm: 480 },
                     p: 2,
+                    position: "relative",
+                    zIndex: "10",
+                    overflow: "hidden",
+                    cursor: "pointer",
                     ":hover": {
-                      // borderImage:
-                      //   "linear-gradient(#7E74F2, #F05098, #F4A7BC, #DCDBDB) 2",
-                      borderColor: "#F05098",
-                      borderWidth: 2,
-                      borderStyle: "solid",
-                      borderRadius: "1rem",
+                      transform: "scale(1.01)",
+                      "&::before, &::after": {
+                        content: '""',
+                        position: "absolute",
+                        borderRadius: "1rem",
+                      },
+                      "&::before": {
+                        backgroundImage:
+                          "conic-gradient(#DCDBDB,#F4A7BC,#F05098,#7E74F2)",
+                        zIndex: "-2",
+                        top: "-25%",
+                        left: "-50%",
+                        right: 0,
+                        bottom: 0,
+                        width: "200%",
+                        height: "150%",
+                        animation: `${keyframes({
+                          "100%": { transform: "rotate(360deg)" },
+                        })} 2s infinite linear`,
+                      },
+                      "&::after": {
+                        width: "98%",
+                        height: "99%",
+                        left: "1%",
+                        top: "0.5%",
+                        backgroundColor: "white",
+                        zIndex: "-1",
+                      },
                     },
                   }}
                 >
@@ -273,6 +295,7 @@ function CourseBebe() {
                       width: "100%",
                       backgroundSize: "cover",
                       borderRadius: "1.5rem",
+                      objectFit: 'cover'
                     }}
                     src={item.img}
                     alt={item.title}
@@ -313,145 +336,137 @@ function CourseBebe() {
       </Container>
 
       <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-          <Stack
-            sx={{
-              backgroundImage: `url(${bg_grey_1})`,
-              p: 2,
-              width: "100%",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              borderRadius: "1.5rem",
-              height: { xs: "100%", lg: 270 },
-            }}
-          >
-            <Grid container spacing={3}>
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                lg={6}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img
-                  src={Group37365}
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    maxWidth: "582px",
-                    maxHeight: "250px",
-                  }}
-                  alt="img"
-                />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                lg={6}
-                sx={{ display: "flex", alignItems: "center" }}
-              >
-                <Box>
-                  <Typography variant="h2" color={"#FCDEEC"} fontWeight={700}>
-                    FIT ITEMS
-                  </Typography>
-                  <Typography variant="h4" fontWeight={500} color={"#FFFFFF"}>
-                    ‘ตอบโจทย์ ทุกไลฟ์สไตล์ของสายฟิต’
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    fontWeight={400}
-                    color={"#FFFFFF"}
-                    mt={1}
-                  >
-                    ไม่ว่าจะสายฟิตมือใหม่หรือสายฟิตมือโปร
-                  </Typography>
-                  <Typography variant="h6" fontWeight={400} color={"#FFFFFF"}>
-                    ก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-          </Stack>
-        </Container>
-
-        <Container maxWidth="xl" sx={{ mt: 4, mb: 8 }}>
-          <Stack
-            sx={{
-              backgroundImage: `url(${Rectangle4390})`,
-              p: 2,
-              width: "100%",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              borderRadius: "1.5rem",
-              height: { xs: "100%", lg: 270 },
-            }}
-          >
+        <Stack
+          sx={{
+            backgroundImage: `url(${bg_grey_1})`,
+            p: 2,
+            width: "100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            borderRadius: "1.5rem",
+            height: { xs: "100%", lg: 270 },
+          }}
+        >
+          <Grid container spacing={3}>
             <Grid
-              container
-              spacing={3}
-              sx={{ height: { xs: "100%", lg: 320 } }}
+              item
+              xs={12}
+              sm={6}
+              lg={6}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                lg={6}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+              <img
+                src={Group37365}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: "582px",
+                  maxHeight: "250px",
                 }}
-                order={{ xs: 2, sm: 1 }}
-              >
-                <Box>
-                  <img
-                    src={LOGO}
-                    style={{ width: 120, height: 60 }}
-                    alt="img"
-                  />
-                  <Typography variant="h4" fontWeight={500} color={"#000000"}>
-                    ‘ทางลัดปั้นหุ่นสวยฉบับสายฟิต’
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    fontWeight={400}
-                    color={"#000000"}
-                    mt={1}
-                  >
-                    ไม่ว่าจะสายฟิตมือใหม่หรือสายฟิตมือโปร
-                  </Typography>
-                  <Typography variant="h6" fontWeight={400} color={"#000000"}>
-                    ก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                lg={6}
-                order={{ xs: 1, sm: 2 }}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img
-                  src={Group11}
-                  style={{ width: "100%", height: "auto" }}
-                  alt="img"
-                />
-              </Grid>
+                alt="img"
+              />
             </Grid>
-          </Stack>
-        </Container>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={6}
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <Box>
+                <Typography variant="h2" color={"#FCDEEC"} fontWeight={700}>
+                  FIT ITEMS
+                </Typography>
+                <Typography variant="h4" fontWeight={500} color={"#FFFFFF"}>
+                  ‘ตอบโจทย์ ทุกไลฟ์สไตล์ของสายฟิต’
+                </Typography>
+                <Typography
+                  variant="h6"
+                  fontWeight={400}
+                  color={"#FFFFFF"}
+                  mt={1}
+                >
+                  ไม่ว่าจะสายฟิตมือใหม่หรือสายฟิตมือโปร
+                </Typography>
+                <Typography variant="h6" fontWeight={400} color={"#FFFFFF"}>
+                  ก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </Stack>
+      </Container>
+
+      <Container maxWidth="xl" sx={{ mt: 4, mb: 8 }}>
+        <Stack
+          sx={{
+            backgroundImage: `url(${Rectangle4390})`,
+            p: 2,
+            width: "100%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            borderRadius: "1.5rem",
+            height: { xs: "100%", lg: 270 },
+          }}
+        >
+          <Grid container spacing={3} sx={{ height: { xs: "100%", lg: 320 } }}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={6}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              order={{ xs: 2, sm: 1 }}
+            >
+              <Box>
+                <img src={LOGO} style={{ width: 120, height: 60 }} alt="img" />
+                <Typography variant="h4" fontWeight={500} color={"#000000"}>
+                  ‘ทางลัดปั้นหุ่นสวยฉบับสายฟิต’
+                </Typography>
+                <Typography
+                  variant="h6"
+                  fontWeight={400}
+                  color={"#000000"}
+                  mt={1}
+                >
+                  ไม่ว่าจะสายฟิตมือใหม่หรือสายฟิตมือโปร
+                </Typography>
+                <Typography variant="h6" fontWeight={400} color={"#000000"}>
+                  ก็สามารถสนุกไปกับการออกกำลังกายที่บ้านได้แบบไม่จำเจ
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={6}
+              order={{ xs: 1, sm: 2 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <img
+                src={Group11}
+                style={{ width: "100%", height: "auto" }}
+                alt="img"
+              />
+            </Grid>
+          </Grid>
+        </Stack>
+      </Container>
     </>
   );
 }

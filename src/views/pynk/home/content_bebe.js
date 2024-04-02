@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import { Grid, Container } from "@mui/material";
 
 import { getPage } from "../../../redux/pynk/contents";
@@ -29,8 +32,11 @@ function ContentBebe() {
   return (
     <>
       <Container maxWidth="lg" sx={{ mt: 10 }}>
-        <div className="d-block d-md-flex justify-content-between mb-5">
-          <p className="text48 SemiBoldPynk mb-0px">
+        <div
+          className="d-block d-md-flex justify-content-between"
+          style={{ marginBottom: 10 }}
+        >
+          <p className="text32 SemiBoldPynk mb-0px">
             เคล็ด (ไม่) ลับ ฉบับอยากแชร์
           </p>
           <button
@@ -45,31 +51,65 @@ function ContentBebe() {
           </button>
         </div>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={1}>
           {contents
-            .filter((item) => item.acf.category.name === "Home")
+            // .filter((item) => item.acf.category.name === "Home")
             .map((content, index) => (
-              <Grid item xs={12} sm={6} lg={4} key={index}>
-                <div
-                  className="card-content-home5"
-                  onClick={() => {
-                    history.push(`/content_detail/${content.id}`);
-                    nextPage(content);
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <img
-                    className="content_img"
-                    src={content.acf.thumbnail}
-                    alt={content.title.rendered}
-                  />
-                  <p className="text24 SemiBoldPynk">
-                    {content.title.rendered}
-                  </p>
-                  <p className="text20 RegularPynk">
-                    {content.acf.summary.slice(0, 105) + "..."}
-                  </p>
-                </div>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                lg={4}
+                key={index}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Link to={`/content_detail/${content.id}`}>
+                  <Card
+                    sx={{
+                      height: 400,
+                      p: 2,
+                      border: "none",
+                      boxShadow: "none",
+                      width: 377,
+                    }}
+                    onClick={() => {
+                      nextPage(content);
+                      window.scrollTo(0, 0);
+                    }}
+                    key={content.id}
+                  >
+                    <Box
+                      component={"img"}
+                      sx={{
+                        height: "100%",
+                        maxHeight: 200,
+                        width: "100%",
+                        maxWidth: 377,
+                        backgroundSize: "cover",
+                        borderRadius: "1.5rem",
+                      }}
+                      src={content.acf.thumbnail}
+                      alt={content.acf.thumbnail}
+                    />
+                    <CardContent>
+                      <Typography
+                        gutterBottom
+                        variant="h6"
+                        color={"#4F4F4F"}
+                        fontWeight={600}
+                      >
+                        {content.title.rendered.slice(0, 50) + "..."}
+                      </Typography>
+                      <Typography variant="body2" color="#4F4F4F">
+                        {content.acf.summary.slice(0, 120) + "..."}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Link>
               </Grid>
             ))
             .slice(0, 3)}
