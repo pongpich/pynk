@@ -6,8 +6,11 @@ import bubblesTop from "../../../assets/img/home/bubblesTop.png";
 import stay_fit_with_bebe from "../../../assets/img/home/stay_fit_with_bebe.png";
 import lets_challenge from "../../../assets/img/home/lets_challenge.png";
 import shop_fin from "../../../assets/img/home/shop_fin.png";
+import bebe_img_1 from "../../../assets/img/landing/Component19.png";
+import bebe_img_2 from "../../../assets/img/landing/Component20.png";
+import bebe_img_3 from "../../../assets/img/landing/Component21.png";
 
-import "./css/animate_bebe.css"
+import "./css/animate_bebe.css";
 
 function AnimateBebe() {
   const history = useHistory();
@@ -33,10 +36,7 @@ function AnimateBebe() {
   }, [currentSlide]);
 
   return (
-    <div
-      id="carouselExampleAutoplaying"
-      className="carousel slide"
-    >
+    <div id="carouselExampleAutoplaying" className="carousel slide">   
       <div className="carousel-indicators">
         <input
           type="radio"
@@ -104,7 +104,11 @@ function AnimateBebe() {
                 alt=""
               />
               <div
-                className={`bebe-slide ${
+                className={`${
+                  (currentSlide == 0 && "bebe-slide_copy_1",
+                  currentSlide == 1 && "bebe-slide_copy_2",
+                  currentSlide == 2 && "bebe-slide_copy_3")
+                } ${
                   (animation &&
                     currentSlide === 0 &&
                     prevSlide !== 1 &&

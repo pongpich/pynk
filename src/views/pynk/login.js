@@ -444,7 +444,7 @@ const Login = () => {
                     <p className="empty-text">กรุณาระบุข้อมูล</p>
                   )}
                   {isEmailRegisterError === "formatEmail" && (
-                    <p style={{ color: "red" }}>รูปแบบอีเมลไม่ถูกต้อง</p>
+                    <p className="empty-text">รูปแบบอีเมลไม่ถูกต้อง</p>
                   )}
                   {isRegisterFail === "invalidRegister" && (
                     <div className="empty-text hasEmail">
@@ -513,14 +513,8 @@ const Login = () => {
                     {isConfirmPasswordEmpty && (
                       <p className="empty-text">กรุณาระบุข้อมูล</p>
                     )}
-                    {!isConfirmPasswordMatch && (
-                      <p
-                        style={{
-                          color: "red",
-                          fontSize: "10px",
-                          textAlign: "left",
-                        }}
-                      >
+                    {!isConfirmPasswordMatch && !isConfirmPasswordEmpty && (
+                      <p className="empty-text">
                         รหัสผ่านที่ตั้งไม่ตรงกัน กรุณาตรวจสอบความถูกต้อง
                       </p>
                     )}
