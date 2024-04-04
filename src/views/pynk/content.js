@@ -37,7 +37,7 @@ const Content = () => {
   };
 
   const reqURL =
-    "https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf";
+    "https://content.pynk.co/wp-json/wp/v2/contents?acf_format=standard&_fields=id,title,acf&per_page=100";
 
   useEffect(() => {
     (async () => {
@@ -64,6 +64,7 @@ const Content = () => {
     (async () => {
       const req = await fetch(reqURL);
       const contentsData = await req.json();
+      console.log('contentsData', contentsData)
       setContents(contentsData);
     })();
   }, []);
