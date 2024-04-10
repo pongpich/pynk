@@ -31,7 +31,7 @@ function ContentBebe() {
   }, []);
   return (
     <>
-      <Container maxWidth="lg" sx={{ mt: 10 }}>
+      <Container maxWidth="lg" sx={{ mt: 15, mb: 15 }}>
         <div
           className="d-block d-md-flex justify-content-between"
           style={{ marginBottom: 10 }}

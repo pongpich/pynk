@@ -201,7 +201,7 @@ function CourseBebe() {
       <div className="text-home2">
         <p className={`${styles["services-happily"]} ${"text-center"}`}>
           บริการที่ทำให้คุณออกกำลังกายอย่างมีความสุข
-          และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน
+          {/* และทำได้จนเป็นส่วนหนึ่งของชีวิตประจำวัน */}
         </p>
         <p className={`${styles["not-good"]} ${"text-center"}`}>
           “ไม่ใช่แค่หุ่นดี{" "}
@@ -335,7 +335,7 @@ function CourseBebe() {
         </Slider>
       </Container>
 
-      <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+      <Container maxWidth="xl" sx={{ mt: 15, mb: 4 }}>
         <Stack
           sx={{
             backgroundImage: `url(${bg_grey_1})`,

@@ -50,7 +50,7 @@ function ReviewBebe() {
           direction={{ xs: "column", md: "row" }}
           alignItems="center"
           justifyContent="center"
-          sx={{ p: 0 }}
+          sx={{ pb: 6}}
         >
           <Grid
             item
