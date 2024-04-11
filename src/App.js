@@ -49,6 +49,7 @@ import SalePageAll from "./views/pynk/sale_page_all";
 import SalePage from "./views/pynk/sale_page";
 import SaleChoicePage from "./views/pynk/sale_choice_page";
 import SaleBebePage from "./views/pynk/sale_bebe";
+import Privacy from "./views/pynk/privacy_policy";
 
 //-------------------------------------Stay Fit-------------------------------------
 import HomeStayFit from "../src/views/stay_fit/information/home";
@@ -546,6 +547,7 @@ class App extends React.Component {
                   component={ContentsManagement}
                 />
                 <Route path="/add_product" component={AddProduct} />
+                <Route path="/privacy_policy" component={Privacy} />
                 <Route path="/add_content" component={AddContent} />
                 <Route path="/shop" component={ShopPynk} />
                 <Route path="/shop_details/:id" component={ShopDetailsPynk} />
