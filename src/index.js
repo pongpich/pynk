@@ -5,7 +5,7 @@ import App from './App';
 
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
-import { Route, HashRouter, BrowserRouter, Link } from 'react-router-dom'; // HashRouter = serve static file, BrowserRouter = serve พวก url
+import { Route, BrowserRouter } from 'react-router-dom'; // HashRouter = serve static file, BrowserRouter = serve พวก url
 import { Provider } from 'react-redux';
 import { configureStore } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
