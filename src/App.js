@@ -264,10 +264,15 @@ class App extends React.Component {
       prevState.isLogout !== isLogout
     ) {
       let userCookies = user ? user.email : googleProfile?.profile?.email;
+      let userPynkCoinCookies = user ? user.pynk_coin : googleProfile?.profile?.pynk_coin;
       if (userCookies) {
         this.setState({ isLogout: false });
         // Cookies.set("loginUser", userCookies);
         Cookies.set("loginUser", userCookies, {
+          domain: urlCookieOrLocal,
+          path: "/",
+        });
+        Cookies.set("user_pynk_coin", userPynkCoinCookies, {
           domain: urlCookieOrLocal,
           path: "/",
         });
