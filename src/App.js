@@ -290,7 +290,6 @@ class App extends React.Component {
       // }
       // Cookies.set("loginUserWeb", userCookies);
     }
-
     // const dataCookie = Cookies.get("loginUser");
 
     const dataCookie = Cookies.get("loginUser", {
