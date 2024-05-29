@@ -62,7 +62,7 @@ function ReviewBebe() {
             justifyContent={"center"}
           >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="500">
-              <img src={comment1} alt="" width={377} />
+              <img src={comment1} alt="" width={375} />
             </div>
           </Grid>
           <Grid
@@ -76,7 +76,7 @@ function ReviewBebe() {
           >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="800">
               <picture>
-                <img src={comment2} alt="" width={377} />
+                <img src={comment2} alt="" width={375} />
               </picture>
             </div>
           </Grid>
@@ -91,7 +91,7 @@ function ReviewBebe() {
           >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1300">
               <picture>
-                <img src={comment3} alt="" width={377} />
+                <img src={comment3} alt="" width={375} />
               </picture>
             </div>
           </Grid>
@@ -106,7 +106,7 @@ function ReviewBebe() {
           >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1500">
               <picture>
-                <img src={comment4} alt="" width={377} />
+                <img src={comment4} alt="" width={375} />
               </picture>
             </div>
           </Grid>
@@ -121,7 +121,7 @@ function ReviewBebe() {
           >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1700">
               <picture>
-                <img src={comment5} alt="" width={377} />
+                <img src={comment5} alt="" width={375} />
               </picture>
             </div>
           </Grid>
@@ -136,7 +136,7 @@ function ReviewBebe() {
           >
             <div data-aos="fade-up" data-aos-once={true} data-aos-delay="1900">
               <picture>
-                <img src={comment6} alt="" width={377} />
+                <img src={comment6} alt="" width={375} />
               </picture>
             </div>
           </Grid>

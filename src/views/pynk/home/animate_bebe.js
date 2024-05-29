@@ -6,9 +6,6 @@ import bubblesTop from "../../../assets/img/home/bubblesTop.png";
 import stay_fit_with_bebe from "../../../assets/img/home/stay_fit_with_bebe.png";
 import lets_challenge from "../../../assets/img/home/lets_challenge.png";
 import shop_fin from "../../../assets/img/home/shop_fin.png";
-import bebe_img_1 from "../../../assets/img/landing/Component19.png";
-import bebe_img_2 from "../../../assets/img/landing/Component20.png";
-import bebe_img_3 from "../../../assets/img/landing/Component21.png";
 
 import "./css/animate_bebe.css";
 
@@ -17,6 +14,12 @@ function AnimateBebe() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [prevSlide, setPrevSlide] = useState(null);
   const [animation, setAnimation] = useState(false);
+  const [bebeSlide, setBebeSlide] = useState('');
+  const [slide2_0, setSlide2_0] = useState('');
+  const [slide0_1, setSlide0_1] = useState('');
+  const [slide1_0, setSlide1_0] = useState('');
+  const [slide1_2, setSlide1_2] = useState('');
+  const [slide2_1, setSlide2_1] = useState('');
 
   const handleSlideChange = (event) => {
     const newSlideIndex = parseInt(event.target.value);
@@ -26,12 +29,35 @@ function AnimateBebe() {
   };
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.matchMedia("(max-width: 480px)").matches) {
+        setBebeSlide('bebe-slide-mobile');
+        setSlide2_0('bebe-slide2to0-mobile');
+        setSlide1_0('bebe-slide1to0-mobile');
+        setSlide0_1('bebe-slide0to1-mobile');
+        setSlide1_2('bebe-slide1to2-mobile');
+        setSlide2_1('bebe-slide2to1-mobile');
+      } else {
+        setBebeSlide('bebe-slide');
+        setSlide2_0('bebe-slide2to0');
+        setSlide1_0('bebe-slide1to0');
+        setSlide0_1('bebe-slide0to1');
+        setSlide1_2('bebe-slide1to2');
+        setSlide2_1('bebe-slide2to1');
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       const nextSlideIndex = (currentSlide + 1) % 3;
       setPrevSlide(currentSlide);
       setCurrentSlide(nextSlideIndex);
       setAnimation(true);
-    }, 5000);
+    }, 500000000000);
     return () => clearInterval(interval);
   }, [currentSlide]);
 
@@ -104,19 +130,15 @@ function AnimateBebe() {
                 alt=""
               />
               <div
-                className={`${
-                  (currentSlide == 0 && "bebe-slide_copy_1",
-                  currentSlide == 1 && "bebe-slide_copy_2",
-                  currentSlide == 2 && "bebe-slide_copy_3")
-                } ${
+                className={`${bebeSlide} ${
                   (animation &&
                     currentSlide === 0 &&
                     prevSlide !== 1 &&
-                    "bebe-slide2to0") ||
-                  (currentSlide === 0 && prevSlide === 1 && "bebe-slide1to0") ||
-                  (currentSlide === 1 && prevSlide !== 2 && "bebe-slide0to1") ||
-                  (currentSlide === 1 && prevSlide === 2 && "bebe-slide2to1") ||
-                  (currentSlide === 2 && "bebe-slide1to2")
+                    slide2_0) ||
+                  (currentSlide === 0 && prevSlide === 1 && slide1_0) ||
+                  (currentSlide === 1 && prevSlide !== 2 && slide0_1) ||
+                  (currentSlide === 1 && prevSlide === 2 && slide2_1) ||
+                  (currentSlide === 2 && slide1_2)
                 }`}
                 id="bebe-slide"
               ></div>
