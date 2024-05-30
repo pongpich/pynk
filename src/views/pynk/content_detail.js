@@ -47,7 +47,7 @@ const Content_detail = () => {
   );
   const [products, setProducts] = useState([]);
   const [contentsRight, setContentsRight] = useState([]);
-  const [xxxxx, setXxxxx] = useState([]);
+  const [contentDetails, setContentDetails] = useState([]);
   const [page, setPage] = useState(9);
   const [totalPage, setTotalpage] = useState(1);
   const { id } = useParams();
@@ -104,7 +104,8 @@ const Content_detail = () => {
         );
         const req = await fetch(url);
         const page = await req.json();
-        setXxxxx(page);
+        setContentDetails(page);
+        console.log("contentsRight", contentsRight);
       }
     })();
   }, [dataPage]);
@@ -123,7 +124,7 @@ const Content_detail = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={6} lg={8}>
             <Box>
-              {xxxxx.map((page, index) => (
+              {contentDetails.map((page, index) => (
                 <div key={index}>
                   <h1 className="title">{page.title.rendered}</h1>
                   <div
@@ -156,6 +157,7 @@ const Content_detail = () => {
                 borderTopRightRadius: "1rem",
                 borderBottomLeftRadius: "1rem",
                 borderBottomRightRadius: "1rem",
+                width: { xs: 256, sm: "100%" },
               }}
             >
               {contentsRight.length == 0
@@ -187,11 +189,7 @@ const Content_detail = () => {
                     </Stack>
                   ))
                 : contentsRight
-                    .filter(
-                      (item) =>
-                        item.acf.category.name != "Home" &&
-                        item.id !== Number(id)
-                    )
+                    .filter((item) => item.id !== Number(id))
                     .map((content, index) => (
                       <div key={index}>
                         <Stack
@@ -209,13 +207,15 @@ const Content_detail = () => {
                             src={content.acf.thumbnail}
                             alt={content.title.rendered}
                             sx={{
-                              width: { xs: "100%", sm: 180, lg: 150 },
-                              height: { xs: 150, sm: 150, lg: 100 },
+                              maxWidth: 192,
+                              minWidth: 192,
+                              height: 103,
+                              width: "100%",
                             }}
                           />
                           <Box>
                             <Typography>
-                              {content.acf.summary.slice(0, 120) + "..."}
+                              {content.title.rendered.slice(0, 120) + "..."}
                             </Typography>
                           </Box>
                         </Stack>

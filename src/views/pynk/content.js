@@ -135,7 +135,6 @@ const Content = () => {
           </Box>
           <Grid container>
             {contents
-              .filter((item) => item.acf.category.name !== "Home")
               .map((content, index) => (
                 <Grid item xs={12} sm={6} lg={4} key={index}>
                   {/* <Link to={`/content_detail/${content.id}`} state={{ videoTitle: 'xxxxxxxxx'}}> */}

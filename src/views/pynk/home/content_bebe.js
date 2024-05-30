@@ -53,7 +53,7 @@ function ContentBebe() {
 
         <Grid container spacing={1}>
           {contents
-            // .filter((item) => item.acf.category.name === "Home")
+            .filter((item) => item.acf.category.name === "Home")
             .map((content, index) => (
               <Grid
                 item

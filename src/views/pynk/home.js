@@ -14,7 +14,7 @@ const Home = () => {
         <AnimateBebe />
         <CourseBebe />
         <ReviewBebe />
-        {/* <ContentBebe /> */}
+        <ContentBebe />
       </div>
     </>
   );
