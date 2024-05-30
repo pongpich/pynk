@@ -94,9 +94,9 @@
   padding: 16px;
 }
 
-/* figure img {
+figure img {
   width: 100% !important;
-} */
+}
 
 @media  screen and (max-width: 480px) {
   .App {
