@@ -57,7 +57,7 @@ function AnimateBebe() {
       setPrevSlide(currentSlide);
       setCurrentSlide(nextSlideIndex);
       setAnimation(true);
-    }, 500000000000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [currentSlide]);
 
